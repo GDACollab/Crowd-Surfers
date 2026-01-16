@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://68pf05368ihk"]
+[gd_scene load_steps=2 format=3 uid="uid://68pf05368ihk"]
+
+[ext_resource type="PackedScene" uid="uid://c6gtuja0mhmsp" path="res://DebugMenu.tscn" id="1_wi2w1"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugMenu" parent="CanvasLayer" instance=ExtResource("1_wi2w1")]
