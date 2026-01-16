@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6gtuja0mhmsp"]
 
-[ext_resource type="Script" uid="uid://c50owskimfba1" path="res://Scripts/Singletons/DebugButton.gd" id="1_fyald"]
-[ext_resource type="PackedScene" uid="uid://budnmwpyhotao" path="res://DebugSingleDisplay.tscn" id="2_fyald"]
+[ext_resource type="Script" uid="uid://c50owskimfba1" path="res://Scripts/DebugButton.gd" id="1_fyald"]
+[ext_resource type="Script" uid="uid://cqewhhplcgc25" path="res://Scripts/VDebugContainer.gd" id="2_4qakc"]
 
 [sub_resource type="Theme" id="Theme_w7oi7"]
 
@@ -40,13 +40,6 @@ theme = SubResource("Theme_w7oi7")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="DebugSingleDisplay" parent="ScrollContainer/VDebugContainer" instance=ExtResource("2_fyald")]
-layout_mode = 2
-scene_name = "DebugScreenLevel1"
-
-[node name="DebugSingleDisplay2" parent="ScrollContainer/VDebugContainer" instance=ExtResource("2_fyald")]
-layout_mode = 2
-scene_name = "DebugScreenLevel2"
+script = ExtResource("2_4qakc")
 
 [connection signal="pressed" from="DebugMenuButton" to="." method="_on_debug_menu_button_pressed"]
