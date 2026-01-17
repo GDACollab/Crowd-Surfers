@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://byy83xtygkpet"]
+
+[ext_resource type="Script" uid="uid://vruytsvl503q" path="res://player_controller.gd" id="1_j1xti"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_j1xti")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_funet")
