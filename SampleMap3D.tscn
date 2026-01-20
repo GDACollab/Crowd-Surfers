@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cukdiadww6qla"]
+[gd_scene load_steps=3 format=3 uid="uid://cukdiadww6qla"]
 
-[ext_resource type="PackedScene" uid="uid://xon6mfq0jtmd" path="res://Grayboxes/GroundGreybox.tscn" id="1_2clru"]
+[ext_resource type="PackedScene" uid="uid://xon6mfq0jtmd" path="res://GrayboxeComponents/GroundGraybox.tscn" id="1_2clru"]
+[ext_resource type="PackedScene" uid="uid://irjaomapit2b" path="res://GrayboxeComponents/BusGrayBox.tscn" id="2_blwl2"]
 
 [node name="SampleMap3D" type="Node3D"]
 
-[node name="StaticBody3D" parent="." instance=ExtResource("1_2clru")]
+[node name="Ground" parent="." instance=ExtResource("1_2clru")]
+
+[node name="Bus" parent="." instance=ExtResource("2_blwl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49161935, 0, -1)
