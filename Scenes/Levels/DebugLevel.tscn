@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg6glu820r2lw"]
+
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Assets/Scenes/8D Movement/player.tscn" id="1_wjsl7"]
+[ext_resource type="PackedScene" uid="uid://cqs4qds0jq6mo" path="res://Assets/Level Components/Obstacles/Buildings/massive_floor_panel.tscn" id="2_wjsl7"]
+[ext_resource type="PackedScene" uid="uid://bx7dno4diflts" path="res://Assets/Level Components/Obstacles/Vehicles/bus.tscn" id="3_d6mxq"]
+[ext_resource type="PackedScene" uid="uid://cdqb1tb22ijr1" path="res://Assets/Level Components/Obstacles/Buildings/basic_building.tscn" id="4_n4bcv"]
+
+[node name="DebugLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wjsl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
+max_speed = 25.0
+acceleration = 25.0
+friction = 5.0
+allow_left = true
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.442, 15, 0)
+projection = 1
+size = 10.0
+
+[node name="MassiveFloorPanel" parent="." instance=ExtResource("2_wjsl7")]
+
+[node name="MassiveFloorPanel2" parent="." instance=ExtResource("2_wjsl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="MassiveFloorPanel3" parent="." instance=ExtResource("2_wjsl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
+
+[node name="MassiveFloorPanel4" parent="." instance=ExtResource("2_wjsl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 0, 0)
+
+[node name="MassiveFloorPanel5" parent="." instance=ExtResource("2_wjsl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 0)
+
+[node name="MassiveFloorPanel6" parent="." instance=ExtResource("2_wjsl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 0)
+
+[node name="Bus" parent="." instance=ExtResource("3_d6mxq")]
+transform = Transform3D(0.99610883, 0, 0, 0, 0.99610883, 0, 0, 0, 0.99610883, 22.490204, 0.10000001, 2.5541296)
+
+[node name="BasicBuilding" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -20)
+
+[node name="BasicBuilding2" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="BasicBuilding3" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -20)
+
+[node name="BasicBuilding4" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+
+[node name="BasicBuilding5" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -20)
+
+[node name="BasicBuilding6" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -20)
+
+[node name="BasicBuilding7" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -20)
+
+[node name="BasicBuilding8" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -20)
+
+[node name="BasicBuilding9" parent="." instance=ExtResource("4_n4bcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 0)
