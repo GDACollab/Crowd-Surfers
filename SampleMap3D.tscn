@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cukdiadww6qla"]
+
+[ext_resource type="PackedScene" uid="uid://xon6mfq0jtmd" path="res://GrayboxeComponents/GroundGrayBox.tscn" id="1_2clru"]
+[ext_resource type="PackedScene" uid="uid://irjaomapit2b" path="res://GrayboxeComponents/BusGrayBox.tscn" id="2_blwl2"]
+[ext_resource type="PackedScene" uid="uid://dhb8mgfbtd66b" path="res://GrayboxeComponents/PlayerPostJumpGrayBox.tscn" id="3_jelte"]
+[ext_resource type="PackedScene" uid="uid://dwiu4dwbffxj7" path="res://GrayboxeComponents/PlayerPreJumpGrayBox.tscn" id="3_y1733"]
+
+[node name="SampleMap3D" type="Node3D"]
+
+[node name="PlayerPostJump" parent="." instance=ExtResource("3_jelte")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0.07283318, 1.01, -1)
+
+[node name="PlayerPreJump" parent="." instance=ExtResource("3_y1733")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4189377, 0.001, 0.7567408)
+
+[node name="Bus" parent="." instance=ExtResource("2_blwl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49161935, 0, -1)
+
+[node name="Ground" parent="." instance=ExtResource("1_2clru")]
