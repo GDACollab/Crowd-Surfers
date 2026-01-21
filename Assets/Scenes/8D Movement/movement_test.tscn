@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://byy83xtygkpet"]
+
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Assets/Scenes/8D Movement/player.tscn" id="1_j1xti"]
+[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="2_funet"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
+size = Vector3(1.2626953, 1, 1.2119751)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_j1xti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
+max_speed = 25.0
+acceleration = 25.0
+friction = 5.0
+allow_left = true
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.44235992, 4.7670813, 0)
+projection = 1
+size = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(123.92674, 0, 0, 0, 1, 0, 0, 0, 49.682602, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.9999854, 0, 0, 0, 0.9999889, 0, 0, 0, 0.99999976, 0, 0, 0)
+shape = SubResource("BoxShape3D_funet")
+debug_color = Color(0, 0.60008866, 0.70145214, 0.41960785)
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, -0.047472544, 0.9988724, 0, -0.9988724, -0.047472548, 0, 0, 0)
+texture = ExtResource("2_funet")
