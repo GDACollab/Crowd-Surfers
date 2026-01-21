@@ -1,17 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=7 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="2_baiym"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
+[sub_resource type="Animation" id="Animation_baiym"]
+resource_name = "Jumping"
+length = 2.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.96666664, 1, 0, 0, -2, 1.9666667, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_3a0k5"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3a0k5"]
+_data = {
+&"Jumping": SubResource("Animation_baiym"),
+&"RESET": SubResource("Animation_3a0k5")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
+size = Vector3(1, 0.2, 0.2)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_i0hvh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_funet")
-debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
-
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 texture = ExtResource("2_baiym")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3a0k5")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
+shape = SubResource("BoxShape3D_baiym")
+debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
