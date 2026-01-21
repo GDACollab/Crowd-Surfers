@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://budnmwpyhotao"]
+
+[ext_resource type="Texture2D" uid="uid://djgqyjgv5nwyd" path="res://Assets/Art/MenuTempText.jpg" id="1_yyba0"]
+[ext_resource type="Script" uid="uid://dmysnw5j3577e" path="res://Scripts/DebugSingleDisplay.gd" id="2_cepjn"]
+
+[node name="DebugSingleDisplay" type="TextureRect"]
+texture = ExtResource("1_yyba0")
+script = ExtResource("2_cepjn")
+
+[node name="DebugSceneName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 4.0
+offset_right = 332.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 30
+text = "Level 1"
+
+[node name="DebugSceneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 23.0
+offset_right = 427.0
+offset_bottom = 73.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 30
+text = "Select"
+
+[connection signal="pressed" from="DebugSceneButton" to="." method="_on_debug_scene_button_pressed"]
