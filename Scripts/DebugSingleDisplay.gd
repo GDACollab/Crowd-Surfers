@@ -9,5 +9,5 @@ func _ready() -> void:
 
 #changes scene when the associated button is clicked
 func _on_debug_scene_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/" + scene_name)
+	get_tree().change_scene_to_file("res://Scenes/Levels/" + scene_name)
 	pass # Replace with function body.
