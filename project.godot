@@ -8,16 +8,21 @@
 
 config_version=5
 
+[Fmod]
+
+General/banks_path="res://Assets/Sound_Banks"
+
 [application]
 
 config/name="Crowd Surfers V1.0"
 run/main_scene="uid://byy83xtygkpet"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://Assets/Art/icon.svg"
 
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
+DebugMenu="*res://Scripts/Singletons/DebugMenu.tscn"
 
 [dotnet]
 
