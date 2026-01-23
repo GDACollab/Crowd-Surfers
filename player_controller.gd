@@ -50,3 +50,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+	
+	# Handle ability usage
+	if Input.is_action_just_pressed("ability_1"):
+			print("Used Ability1")
