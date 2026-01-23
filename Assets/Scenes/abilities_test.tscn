@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://pnceefxjfjq4"]
+[gd_scene load_steps=5 format=3 uid="uid://pnceefxjfjq4"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Assets/Scenes/8D Movement/player.tscn" id="1_jr8ab"]
-[ext_resource type="Script" uid="uid://dhgm0vxvj34ub" path="res://Scripts/Ability.gd" id="2_nvnny"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="3_giwuj"]
-[ext_resource type="Script" uid="uid://pp6uo5lg1kl5" path="res://Assets/Scenes/speed_mult.gd" id="3_nvnny"]
+[ext_resource type="Script" uid="uid://pp6uo5lg1kl5" path="res://Scripts/speed_mult.gd" id="3_nvnny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
 size = Vector3(1.2626953, 1, 1.2119751)
@@ -23,15 +22,14 @@ projection = 1
 size = 10.0
 
 [node name="Ability" type="Node" parent="Player"]
-script = ExtResource("2_nvnny")
-
-[node name="CountdownTimer" type="Timer" parent="Player/Ability"]
-one_shot = true
 
 [node name="SpeedMult" type="Node" parent="Player/Ability"]
 script = ExtResource("3_nvnny")
 abilityType = 1
 duration = 2.0
+
+[node name="CountdownTimer" type="Timer" parent="Player/Ability"]
+one_shot = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(123.92674, 0, 0, 0, 1, 0, 0, 0, 49.682602, 0, 0, 0)
