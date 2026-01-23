@@ -20,7 +20,8 @@ func _physics_process(delta: float) -> void:
 	# Set player sprite offset
 	var offset = global_position.y
 	player_sprite.position.z = -offset
-	print("Player offset", -offset)
+	#print("Player offset", -offset)
+	print("Max Speed: ",max_speed)
 	
 	# Add the gravity.
 	if not is_on_floor():

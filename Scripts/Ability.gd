@@ -2,9 +2,10 @@
 class_name Ability extends Node
 
 enum AbilityType {ACTIVE, PASSIVE}
-	
-@export var abilityType: AbilityType
-@export var duration: float
+
+# Don't know how to really use the @export values, setting default for placeholder
+@export var abilityType: AbilityType = AbilityType.PASSIVE
+@export var duration: float = 1.0
 	
 # Changes a stat value on the player
 @abstract func Use(playerController)
@@ -14,13 +15,9 @@ enum AbilityType {ACTIVE, PASSIVE}
 	
 # Trigger a timer starting at duration if PASSIVE ability is used
 func Countdown():
-	
 	# Check if the ability is of AbilityType.PASSIVE, if so call the Countdown()
 	if abilityType == AbilityType.PASSIVE:
-		$CountdownTimer.start(duration)
-	
+		pass
 
-func _on_countdown_timer_timeout() -> void:
-	# Replace with call to the Exit() function
-	pass
-	
+func _on_timer_Timeout(player: CharacterBody3D):
+	Exit(player)
