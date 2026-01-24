@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfik16ilynn7l"]
 
-[ext_resource type="Script" uid="uid://vruytsvl503q" path="res://player_controller.gd" id="1_i0hvh"]
+[ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="2_baiym"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
 size = Vector3(1, 0.2, 0.2)
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_i0hvh")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
