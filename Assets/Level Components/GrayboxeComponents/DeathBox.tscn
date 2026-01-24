@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://crv1kl362mg8j"]
+[gd_scene load_steps=3 format=3 uid="uid://crv1kl362mg8j"]
 
 [ext_resource type="Script" uid="uid://247uekx1ngru" path="res://Scripts/deathbox.gd" id="1_wnuck"]
-[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="3_4uflv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
 
@@ -13,9 +12,5 @@ script = ExtResource("1_wnuck")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_v4416")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-texture = ExtResource("3_4uflv")
 
 [connection signal="body_entered" from="." to="." method="_on_area_3d_body_entered"]
