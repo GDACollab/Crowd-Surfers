@@ -15,12 +15,16 @@ extends CharacterBody3D
 
 @export var allow_left: bool = false
 
+#for coyote time it is export 
 @export var coyote_time: float = 0.5
 
+# bool for while in coyote time
 var in_coyote : bool = false 
 
+# bool if jumping
 var jumped : bool = false
 
+# bool if have previously coyote jumped
 var coyoted : bool = false
 
 func coyote_toggle() -> void:
