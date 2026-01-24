@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxlx4w31b7k0k"]
+
+[ext_resource type="Texture2D" uid="uid://tmb0mh5b84ue" path="res://Assets/Art/GrayboxTemplateAssets/LongFloor.jpg" id="1_rqyda"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g54jo"]
+size = Vector3(1, 0.001, 1)
+
+[node name="LargeFloorPanel" type="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(80, 0, 0, 0, 0.19999997, 0, 0, 0, 40, 0, 0, 0)
+shape = SubResource("BoxShape3D_g54jo")
+debug_color = Color(0, 0.6156863, 0.7176471, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D"]
+transform = Transform3D(0.62499994, 0, 0, 0, -2.1855698e-07, -1.0000001, 0, 1.2499999, -1.0927847e-08, 0, 0, 0)
+pixel_size = 0.001
+texture = ExtResource("1_rqyda")
