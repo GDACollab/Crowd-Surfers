@@ -1,21 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://byy83xtygkpet"]
+[gd_scene load_steps=4 format=3 uid="uid://casblxqo2osb"]
 
-[ext_resource type="PackedScene" uid="uid://dgtt7274t5bui" path="res://Scenes/8D Movement/player.tscn" id="1_j1xti"]
-[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="2_funet"]
-[ext_resource type="PackedScene" path="res://Assets/Level Components/GrayboxeComponents/BusGrayBox.tscn" id="3_hghie"]
+[ext_resource type="PackedScene" uid="uid://dgtt7274t5bui" path="res://Scenes/8D Movement/player.tscn" id="1_8w3rb"]
+[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="2_1a8e6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
 size = Vector3(1.2626953, 1, 1.2119751)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_j1xti")]
+[node name="Player" parent="." instance=ExtResource("1_8w3rb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
 max_speed = 25.0
 acceleration = 25.0
 friction = 5.0
 allow_left = true
-coyote_time = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.44235992, 4.7670813, 0)
@@ -32,10 +30,4 @@ debug_color = Color(0, 0.60008866, 0.70145214, 0.41960785)
 
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(0.99999994, 0, 0, 0, -0.047472544, 0.9988724, 0, -0.9988724, -0.047472548, 0, 0, 0)
-texture = ExtResource("2_funet")
-
-[node name="StaticBody3D3" parent="." instance=ExtResource("3_hghie")]
-transform = Transform3D(-0.022914201, 0, -0.9997375, 0, 1, 0, 0.9997375, 0, -0.022914201, 5.3245015, 0.44183075, 4.9042964)
-
-[node name="StaticBody3D2" parent="." instance=ExtResource("3_hghie")]
-transform = Transform3D(-0.002827446, 0, -0.999996, 0, 1, 0, 0.999996, 0, -0.002827446, 4.4913874, 0.030106127, 3.7417562)
+texture = ExtResource("2_1a8e6")
