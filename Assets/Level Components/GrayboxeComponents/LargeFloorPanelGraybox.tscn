@@ -7,12 +7,15 @@ size = Vector3(1, 0.001, 1)
 
 [node name="LargeFloorPanel" type="Node3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(80, 0, 0, 0, 0.19999997, 0, 0, 0, 40, 0, 0, 0)
+[node name="ColllisionBody" type="StaticBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColllisionBody"]
+transform = Transform3D(8, 0, 0, 0, 0.9999999, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("BoxShape3D_g54jo")
 debug_color = Color(0, 0.6156863, 0.7176471, 1)
 
-[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D"]
+[node name="Sprite3D" type="Sprite3D" parent="ColllisionBody/CollisionShape3D"]
 transform = Transform3D(0.62499994, 0, 0, 0, -2.1855698e-07, -1.0000001, 0, 1.2499999, -1.0927847e-08, 0, 0, 0)
 pixel_size = 0.001
 texture = ExtResource("1_rqyda")
