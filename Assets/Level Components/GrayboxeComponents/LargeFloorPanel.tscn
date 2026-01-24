@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cucybe22xhoq1"]
+[gd_scene load_steps=3 format=3 uid="uid://l7yg53uvatjt"]
 
-[ext_resource type="Texture2D" uid="uid://hgj6yukxkybc" path="res://Assets/Art/Floor.jpg" id="1_x2pd3"]
+[ext_resource type="Texture2D" uid="uid://tmb0mh5b84ue" path="res://Assets/Art/GrayboxTemplateAssets/LongFloor.jpg" id="1_5jcor"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ho86e"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_g54jo"]
 
-[node name="BasicFloor" type="Node3D"]
+[node name="LargeFloorPanel" type="Node3D"]
 
 [node name="CollisionBody" type="StaticBody3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionBody"]
-shape = SubResource("BoxShape3D_ho86e")
+transform = Transform3D(8, 0, 0, 0, 0.9999998, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_g54jo")
 debug_color = Color(0, 0.60008866, 0.70145214, 0.41960785)
 
 [node name="Sprite3D" type="Sprite3D" parent="CollisionBody"]
 transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -1, 0, 5, -4.371139e-08, 0, 0, 0)
 pixel_size = 0.001
-texture = ExtResource("1_x2pd3")
+texture = ExtResource("1_5jcor")
