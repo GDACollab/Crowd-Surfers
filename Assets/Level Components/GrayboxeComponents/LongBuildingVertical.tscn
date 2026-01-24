@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://5au0ublk4468"]
+[gd_scene load_steps=3 format=3 uid="uid://c1i55psgtx5et"]
 
 [ext_resource type="Texture2D" uid="uid://cegqk88xlvqpo" path="res://Assets/Art/GrayboxTemplateAssets/LongWallVertical.jpg" id="1_u0p83"]
 
@@ -7,15 +7,12 @@ size = Vector3(1, 5, 1)
 
 [node name="LongBuildingVertical" type="Node3D"]
 
-[node name="ColllisionBody" type="StaticBody3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColllisionBody"]
-transform = Transform3D(0.99999994, 0, 0, 0, 2, 0, 0, 0, 5, 0, 5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(9.999999, 0, 0, 0, 0.4, 0, 0, 0, 50, 0, 1, 0)
 shape = SubResource("BoxShape3D_hndtc")
-debug_color = Color(0, 0.60008866, 0.70145214, 0.41960785)
+debug_color = Color(0, 0.6, 0.7019608, 1)
 
-[node name="Sprite3D" type="Sprite3D" parent="ColllisionBody"]
-transform = Transform3D(-5, -4.371139e-07, 3.821371e-15, 0, -2.1855695e-07, -1, 4.371139e-07, -5, 4.371139e-08, 0, 10, 0)
+[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D"]
+transform = Transform3D(-5.0000005, -4.3711393e-07, 3.8213714e-15, 0, -1.0927847e-07, -0.49999997, 8.742278e-08, -1, 8.742278e-09, 0, 2.4999998, 0)
 pixel_size = 0.001
 texture = ExtResource("1_u0p83")
