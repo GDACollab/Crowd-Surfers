@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2o75g8cskt7h"]
+[gd_scene load_steps=5 format=3 uid="uid://d2o75g8cskt7h"]
 
-[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Assets/Scenes/8D Movement/player.tscn" id="1_jr8ab"]
-[ext_resource type="Script" uid="uid://qwxhv080sjjj" path="res://Scripts/PlayerAbilityManager.gd" id="2_nvnny"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_jr8ab"]
+[ext_resource type="PackedScene" uid="uid://bj6tsmjulbrly" path="res://Scenes/Ability Manager/ability_manager.tscn" id="2_2bulu"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/icon.svg" id="3_giwuj"]
-[ext_resource type="Script" uid="uid://pp6uo5lg1kl5" path="res://Scripts/speed_mult.gd" id="3_nvnny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
 size = Vector3(1.2626953, 1, 1.2119751)
@@ -22,12 +21,8 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.4
 projection = 1
 size = 10.0
 
-[node name="AbilityManager" type="Node" parent="Player" node_paths=PackedStringArray("abilities")]
-script = ExtResource("2_nvnny")
-abilities = [NodePath("SpeedMult")]
-
-[node name="SpeedMult" type="Node" parent="Player/AbilityManager"]
-script = ExtResource("3_nvnny")
+[node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_2bulu")]
+myPlayer = NodePath("..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(123.92674, 0, 0, 0, 1, 0, 0, 0, 49.682602, 0, 0, 0)
