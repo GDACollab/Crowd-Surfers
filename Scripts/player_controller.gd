@@ -18,6 +18,8 @@ extends CharacterBody3D
 #for coyote time it is export 
 @export var coyote_time: float = 0.5
 
+@export var spawnpoint: Vector3 
+	
 # bool for while in coyote time
 var in_coyote : bool = false 
 
@@ -27,6 +29,9 @@ var jumped : bool = false
 # bool if have previously coyote jumped
 var coyoted : bool = false
 
+func _ready() -> void:
+	global_position = spawnpoint
+	
 func coyote_toggle() -> void:
 	if (!coyoted):
 		print("turning on")
@@ -40,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	#print("we bricked it")
 	var offset = global_position.y
 	player_sprite.position.z = -offset
-	print("Player offset", -offset)
+	#print("Player offset", -offset)
 	
 	# Add the gravity.
 	if not is_on_floor() :
@@ -79,6 +84,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
 	
-	
-	
 	move_and_slide()
+	
+#Called by checkpoints
+func set_spawnpoint(new_spawnpoint: Vector3) -> void:
+	spawnpoint = new_spawnpoint
