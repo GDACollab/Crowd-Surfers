@@ -15,15 +15,15 @@ var activated: bool = false
 
 func Use(player: CharacterBody3D):
 	if !activated:
-		originalVal = player.max_speed
-		player.max_speed *= speedMultiplier
+		originalVal = player.base_max_speed
+		player.current_max_speed = player.base_max_speed * speedMultiplier
 		
 		myPlayer = player
 		$Timer.start(duration)
 		activated = true
 
 func Exit(player: CharacterBody3D):
-	player.max_speed = originalVal
+	player.current_max_speed = originalVal
 
 
 func _on_timer_timeout() -> void:
