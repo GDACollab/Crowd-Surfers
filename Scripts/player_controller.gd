@@ -21,8 +21,6 @@ extends CharacterBody3D
 
 #for coyote time it is export 
 @export var coyote_time: float = 0.5
-
-@export var spawnpoint: Vector3 
 	
 # bool for while in coyote time
 var in_coyote : bool = false 
@@ -34,7 +32,7 @@ var jumped : bool = false
 var coyoted : bool = false
 
 func _ready() -> void:
-	global_position = spawnpoint
+	global_position = PlayerSpawn.spawnpoint
 	
 func coyote_toggle() -> void:
 	if (!coyoted):
@@ -86,4 +84,4 @@ func _physics_process(delta: float) -> void:
 	
 #Called by checkpoints
 func set_spawnpoint(new_spawnpoint: Vector3) -> void:
-	spawnpoint = new_spawnpoint
+	PlayerSpawn.spawnpoint = new_spawnpoint
