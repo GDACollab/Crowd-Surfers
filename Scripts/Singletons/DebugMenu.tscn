@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6gtuja0mhmsp"]
+[gd_scene load_steps=5 format=3 uid="uid://c6gtuja0mhmsp"]
 
 [ext_resource type="Script" uid="uid://c50owskimfba1" path="res://Scripts/DebugButton.gd" id="1_fyald"]
 [ext_resource type="Script" uid="uid://cqewhhplcgc25" path="res://Scripts/VDebugContainer.gd" id="2_4qakc"]
+[ext_resource type="PackedScene" uid="uid://dp8gtvy4trdcf" path="res://Scenes/Debug Overlay/debug_overlay.tscn" id="3_my3p2"]
 
 [sub_resource type="Theme" id="Theme_w7oi7"]
 
@@ -41,5 +42,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_4qakc")
+
+[node name="DebugOverlay" parent="." instance=ExtResource("3_my3p2")]
+layout_mode = 1
 
 [connection signal="pressed" from="DebugMenuButton" to="." method="_on_debug_menu_button_pressed"]
