@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg6glu820r2lw"]
+[gd_scene load_steps=9 format=3 uid="uid://bg6glu820r2lw"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_s5k85"]
+[ext_resource type="PackedScene" uid="uid://bj6tsmjulbrly" path="res://Scenes/Ability Manager/ability_manager.tscn" id="2_03jqj"]
 [ext_resource type="PackedScene" uid="uid://bxlx4w31b7k0k" path="res://Assets/Level Components/GrayboxeComponents/LargeFloorPanelGraybox.tscn" id="2_rv1ge"]
 [ext_resource type="PackedScene" uid="uid://b5crw61ebhiac" path="res://Assets/Level Components/Obstacles/Buildings/LongBuildingHorizontal1.tscn" id="3_03jqj"]
 [ext_resource type="PackedScene" uid="uid://3wp78tn115fv" path="res://Assets/Level Components/Obstacles/Buildings/LongBuildingVertical1.tscn" id="4_10ydt"]
@@ -12,7 +13,6 @@
 
 [node name="Player" parent="." instance=ExtResource("1_s5k85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
-current_max_speed = 25.0
 acceleration = 25.0
 friction = 5.0
 allow_left = true
@@ -22,6 +22,9 @@ transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958
 projection = 1
 size = 30.0
 near = 0.425
+
+[node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_03jqj")]
+myPlayer = NodePath("..")
 
 [node name="ObjectsGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)

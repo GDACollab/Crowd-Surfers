@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj6tsmjulbrly"]
+[gd_scene load_steps=4 format=3 uid="uid://bj6tsmjulbrly"]
 
 [ext_resource type="Script" uid="uid://qwxhv080sjjj" path="res://Scripts/PlayerAbilityManager.gd" id="1_re23e"]
 [ext_resource type="PackedScene" uid="uid://bcfxvsqaabt75" path="res://Scenes/Ability Manager/SpeedUpTestAbility.tscn" id="2_b3isy"]
+[ext_resource type="Script" uid="uid://cgdy2l5mcq78r" path="res://Scripts/GlideAbility.gd" id="3_1qfgd"]
 
 [node name="AbilityManager" type="Node" node_paths=PackedStringArray("abilities")]
 script = ExtResource("1_re23e")
@@ -12,3 +13,5 @@ abilities = [NodePath("SpeedUpTestAbility"), NodePath("SpeedUpTestAbility2"), No
 [node name="SpeedUpTestAbility2" parent="." instance=ExtResource("2_b3isy")]
 
 [node name="SpeedUpTestAbility3" parent="." instance=ExtResource("2_b3isy")]
+script = ExtResource("3_1qfgd")
+gravityMultiplier = 4.0
