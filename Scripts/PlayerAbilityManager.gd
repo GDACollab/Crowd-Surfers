@@ -24,6 +24,8 @@ func checkAbilities() -> Array[int]:
 		indices.append(0)
 	if Input.is_action_just_pressed("ability_2"):
 		indices.append(1)
-	if Input.is_action_just_pressed("ability_3"):
+	# currently for gliding with input 3
+	if Input.is_action_just_pressed("ability_3") or Input.is_action_just_released("ability_3"):
 		indices.append(2)
+
 	return indices

@@ -1,7 +1,11 @@
 class_name grav_mult extends Ability
 
 @export var gravityMultiplier: float = 0.0
+@export var speedDropoff: float = 2.0
+@export var dropEnd: float = 0.0
+# note: when the drop in speed occurs, is based on duration
 var originalVal: float
+var originalCurrSpeed: float
 var myPlayer: CharacterBody3D
 var activated: bool = false
 var available: bool = true
@@ -14,27 +18,50 @@ var available: bool = true
 # when a base value and a seperate current value are added:
 # Make sure to save the base value and modify the current value, then revert it later
 
+# initalizer, which makes sure to set _process off
+func _ready():
+	set_process(false)
+	
+# Processes which slowly decreases the speed of the player incremetally
+func _process(delta: float) -> void: 
+	# internal clock to better control speed drop off rate
+		
+	if (activated and myPlayer.current_max_speed <= dropEnd):
+		myPlayer.current_max_speed -= speedDropoff
+	elif (activated): 
+		Exit(myPlayer)
+		# Resets use of ability when player touches the floor
+	if (myPlayer.is_on_floor()) :
+		available = true
+		myPlayer.current_max_speed = originalCurrSpeed
+		set_process(false)
+	
+
+
 func Use(player: CharacterBody3D):
-	if !activated && !player.is_on_floor() && available:
+	if (!activated and !player.is_on_floor() and available):
 		originalVal = player.gravity
+		originalCurrSpeed = player.current_max_speed
 		
 		player.gravity *= gravityMultiplier
 		player.velocity.y = 0
 		
 		myPlayer = player
-		$Timer.start(duration)
 		activated = true
+		available = false
+		$Timer.start(duration)
 	# Checks if the player calls mid-air to cancel flight, won't allow them 
 	# to call it until timer duration is finished.
-	elif activated:
-		available = false
+	elif (!available):
+		$Timer.stop()
+		set_process(true)
+		
 		Exit(myPlayer)
 
 func Exit(player: CharacterBody3D):
 	player.gravity = originalVal
+	activated = false
 
 func _on_timer_timeout() -> void:
-	Exit(myPlayer)
-	available = true
-	activated = false;
-	pass # Replace with function body.
+	# starts the checking process
+	set_process(true)
