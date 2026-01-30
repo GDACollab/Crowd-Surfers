@@ -1,36 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2o75g8cskt7h"]
+[gd_scene format=3 uid="uid://d2o75g8cskt7h"]
 
-[ext_resource type="PackedScene" uid="uid://dgtt7274t5bui" path="res://Scenes/8D Movement/player.tscn" id="1_jr8ab"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_jr8ab"]
 [ext_resource type="PackedScene" uid="uid://bj6tsmjulbrly" path="res://Scenes/Ability Manager/ability_manager.tscn" id="2_2bulu"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_giwuj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
 size = Vector3(1.2626953, 1, 1.2119751)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=401252527]
 
-[node name="Player" parent="." instance=ExtResource("1_jr8ab")]
+[node name="Player" parent="." unique_id=239168922 instance=ExtResource("1_jr8ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
 acceleration = 25.0
 friction = 5.0
 allow_left = true
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=766469868]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.44235992, 4.7670813, 0)
 projection = 1
 size = 10.0
 
-[node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_2bulu")]
+[node name="AbilityManager" parent="Player" unique_id=1137642124 node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_2bulu")]
 myPlayer = NodePath("..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1715614264]
 transform = Transform3D(123.92674, 0, 0, 0, 1, 0, 0, 0, 49.682602, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1284563643]
 transform = Transform3D(0.9999854, 0, 0, 0, 0.9999889, 0, 0, 0, 0.99999976, 0, 0, 0)
 shape = SubResource("BoxShape3D_funet")
 debug_color = Color(0, 0.60008866, 0.70145214, 0.41960785)
 
-[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D" unique_id=161883824]
 transform = Transform3D(0.99999994, 0, 0, 0, -0.047472544, 0.9988724, 0, -0.9988724, -0.047472548, 0, 0, 0)
 texture = ExtResource("3_giwuj")
