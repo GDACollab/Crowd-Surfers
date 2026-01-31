@@ -1,7 +1,9 @@
 class_name grav_mult extends Ability
 
 @export var gravityMultiplier: float = 0.0
-@export var speedDropoff: float = 2.0
+# how fast you lose speed
+@export var speedDropoff: float = 0.2
+# the speed needed to be at before the glide doesn't work
 @export var dropEnd: float = 0.0
 # note: when the drop in speed occurs, is based on duration
 var originalVal: float
@@ -25,15 +27,17 @@ func _ready():
 # Processes which slowly decreases the speed of the player incremetally
 func _process(delta: float) -> void: 
 	# internal clock to better control speed drop off rate
-		
-	if (activated and myPlayer.current_max_speed <= dropEnd):
-		myPlayer.current_max_speed -= speedDropoff
+	
+	
+	if (activated and myPlayer.base_max_speed > dropEnd):
+		myPlayer.base_max_speed -= speedDropoff
+			
 	elif (activated): 
 		Exit(myPlayer)
 		# Resets use of ability when player touches the floor
 	if (myPlayer.is_on_floor()) :
 		available = true
-		myPlayer.current_max_speed = originalCurrSpeed
+		myPlayer.base_max_speed = originalCurrSpeed
 		set_process(false)
 	
 
@@ -41,7 +45,7 @@ func _process(delta: float) -> void:
 func Use(player: CharacterBody3D):
 	if (!activated and !player.is_on_floor() and available):
 		originalVal = player.gravity
-		originalCurrSpeed = player.current_max_speed
+		originalCurrSpeed = player.base_max_speed
 		
 		player.gravity *= gravityMultiplier
 		player.velocity.y = 0
@@ -57,6 +61,7 @@ func Use(player: CharacterBody3D):
 		set_process(true)
 		
 		Exit(myPlayer)
+		
 
 func Exit(player: CharacterBody3D):
 	player.gravity = originalVal
