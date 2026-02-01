@@ -6,9 +6,13 @@
 script = ExtResource("1_16shb")
 dash_cooldown = 3.0
 abilityType = 0
-duration = 1.5
+duration = 2.0
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Duration" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
