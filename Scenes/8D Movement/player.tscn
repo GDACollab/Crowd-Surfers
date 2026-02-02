@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=5 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="2_baiym"]
+[ext_resource type="PackedScene" uid="uid://dyfdu60desgf6" path="res://Scenes/8D Movement/z_orderer.tscn" id="3_adpf1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
 size = Vector3(1, 0.2, 0.2)
@@ -19,3 +20,12 @@ texture = ExtResource("2_baiym")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.92346674)
 shape = SubResource("BoxShape3D_baiym")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
+
+[node name="Z-Orderer" parent="." node_paths=PackedStringArray("raycasts") instance=ExtResource("3_adpf1")]
+raycasts = [NodePath("RayCast3D"), NodePath("RayCast3D2")]
+
+[node name="RayCast3D" type="RayCast3D" parent="Z-Orderer"]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0.8, 0, -1.2158328)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Z-Orderer"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.8, 0, -1.2158328)
