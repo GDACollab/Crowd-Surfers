@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj6tsmjulbrly"]
+[gd_scene format=3 uid="uid://bj6tsmjulbrly"]
 
 [ext_resource type="Script" uid="uid://qwxhv080sjjj" path="res://Scripts/PlayerAbilityManager.gd" id="1_re23e"]
 [ext_resource type="PackedScene" uid="uid://bcfxvsqaabt75" path="res://Scenes/Ability Manager/SpeedUpTestAbility.tscn" id="2_b3isy"]
+[ext_resource type="PackedScene" uid="uid://dps4ikxmty5j2" path="res://Scenes/Ability Manager/StompAbility.tscn" id="3_1qfgd"]
 
-[node name="AbilityManager" type="Node" node_paths=PackedStringArray("abilities")]
+[node name="AbilityManager" type="Node" unique_id=713197827 node_paths=PackedStringArray("abilities")]
 script = ExtResource("1_re23e")
-abilities = [NodePath("SpeedUpTestAbility"), NodePath("SpeedUpTestAbility2"), NodePath("SpeedUpTestAbility3")]
+abilities = [NodePath("SpeedUpTestAbility"), NodePath("SpeedUpTestAbility2"), NodePath("StompAbility")]
 
-[node name="SpeedUpTestAbility" parent="." instance=ExtResource("2_b3isy")]
+[node name="SpeedUpTestAbility" parent="." unique_id=1138229687 instance=ExtResource("2_b3isy")]
 
-[node name="SpeedUpTestAbility2" parent="." instance=ExtResource("2_b3isy")]
+[node name="SpeedUpTestAbility2" parent="." unique_id=2996851 instance=ExtResource("2_b3isy")]
 
-[node name="SpeedUpTestAbility3" parent="." instance=ExtResource("2_b3isy")]
+[node name="SpeedUpTestAbility3" parent="." unique_id=1746003983 instance=ExtResource("2_b3isy")]
+
+[node name="StompAbility" parent="." unique_id=1694872251 instance=ExtResource("3_1qfgd")]

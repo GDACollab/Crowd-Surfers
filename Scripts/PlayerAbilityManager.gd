@@ -5,7 +5,6 @@ extends Node
 @export var myPlayer: CharacterBody3D
 
 func _process(_delta: float) -> void:
-	
 	var inputs = checkAbilities()
 	for i in inputs:
 		# Check to see if the parent of this is the player script, to prevent crashes
@@ -24,6 +23,8 @@ func checkAbilities() -> Array[int]:
 		indices.append(0)
 	if Input.is_action_just_pressed("ability_2"):
 		indices.append(1)
-	if Input.is_action_just_pressed("ability_3"):
-		indices.append(2)
+	if Input.is_action_just_pressed("ability_stomp"):
+		# Player must be midair
+		if not myPlayer.is_on_floor():
+			indices.append(2)
 	return indices
