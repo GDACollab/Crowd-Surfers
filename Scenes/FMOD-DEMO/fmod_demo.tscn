@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://chgyal0xar5ai"]
+[gd_scene load_steps=6 format=3 uid="uid://chgyal0xar5ai"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_jr8ab"]
+[ext_resource type="Script" uid="uid://b3o5revryp5pk" path="res://Scripts/scene_audio.gd" id="1_rc8jh"]
 [ext_resource type="PackedScene" uid="uid://bj6tsmjulbrly" path="res://Scenes/Ability Manager/ability_manager.tscn" id="2_2bulu"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_giwuj"]
 
@@ -12,13 +13,17 @@ size = Vector3(1.2626953, 1, 1.2119751)
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank"]
 
-[node name="SceneAudio" type="FmodEventEmitter3D" parent="."]
+[node name="SceneAudio" type="FmodEventEmitter3D" parent="." node_paths=PackedStringArray("player")]
 event_name = "event:/MUS/TEMP_scene_audio"
 event_guid = "{b9593a85-fccf-440f-966a-97667d88f92a}"
 attached = false
 autoplay = true
 volume = 0.5
-editor_description = "Scene audio will be one event that contains ambience, background music, and scenechange sfx. - Tate M"
+fmod_parameters/player_speed/id = 6106062940437082922
+fmod_parameters/player_speed = 0.0
+fmod_parameters/player_speed/variant_type = 3
+script = ExtResource("1_rc8jh")
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_jr8ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
