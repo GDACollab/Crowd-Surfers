@@ -29,17 +29,27 @@ texture = ExtResource("1_ykwev")
 expand_mode = 1
 
 [node name="CreditsContainer" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
 offset_bottom = 40.000015
+grow_horizontal = 2
 script = ExtResource("2_22rij")
-scroll_speed = 50.0
+scroll_speed = 500.0
 credits_text_file_string = "res://Assets/credits.txt"
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
-layout_mode = 0
-offset_left = 26.5
-offset_right = 1125.5
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -618.5
+offset_right = 618.5
+offset_bottom = 176.0
+grow_horizontal = 2
 
 [node name="Heading" type="Label" parent="CreditsContainer/CreditsTextContainer"]
 visible = false

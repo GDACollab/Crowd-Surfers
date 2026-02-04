@@ -3,16 +3,26 @@ extends Control
 
 @export var scroll_speed: float = 5.0
 @export var separator_size: float = 40.0
+@export var credits_starting_y: float = 700
 
 @export var credits_text_file_string: String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.position.y = credits_starting_y
+	
 	var credits_file: FileAccess = FileAccess.open(credits_text_file_string, FileAccess.READ)
 	
+	# Skip guide lines
+	credits_file.get_line()
+	credits_file.get_line()
+	credits_file.get_line()
+	credits_file.get_line()
+	
 	while (not credits_file.eof_reached()):
-		# Text file must be exactly this format of lines: text, size, empty line
+		# Text file must be exactly this format of lines: text, size
 		var text: String = credits_file.get_line()
+		print(text)
 		# More empty lines = more space between texts 
 		if (text == ""):
 			var separator: Control = Control.new()
@@ -21,8 +31,7 @@ func _ready() -> void:
 			continue
 			
 		var text_size: int = int(credits_file.get_line())
-		credits_file.get_line()
-		
+		print(text_size)
 		# Create the label node set its text
 		var label: Label = Label.new()
 		label.text = text
