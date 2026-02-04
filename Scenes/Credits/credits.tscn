@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=8 format=3 uid="uid://pq5rrrmglvc3"]
 
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/Credits/pitch_art_temp.PNG" id="1_ykwev"]
 [ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/credits.gd" id="2_22rij"]
 [ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="3_4lsct"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="4_ut8rr"]
+[ext_resource type="Script" uid="uid://cpflj5f1t2q2c" path="res://Scripts/credits_text.gd" id="5_4hn7j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4lsct"]
 font_size = 45
@@ -46,14 +47,11 @@ imageScales = Array[float]([0.5, 0.2])
 imagePositions = Array[Vector2]([Vector2(309, 670), Vector2(-521, 1980)])
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -618.5
-offset_right = 618.5
+layout_mode = 0
+offset_left = -556.0
+offset_right = 596.0
 offset_bottom = 176.0
-grow_horizontal = 2
+pivot_offset = Vector2(576, 0)
 
 [node name="Heading" type="Label" parent="CreditsContainer/CreditsTextContainer"]
 visible = false
@@ -81,14 +79,16 @@ horizontal_alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="CreditsContainer/CreditsTextContainer"]
 visible = false
 layout_mode = 2
+size_flags_vertical = 4
 bbcode_enabled = true
-text = "[font_size=50]hello[/font_size]
+text = "[font_size=55.5]hello[/font_size]
 
 [i]italic[/i]
 
 [b]bold[b]"
 fit_content = true
 horizontal_alignment = 1
+script = ExtResource("5_4hn7j")
 
 [node name="TextureRect" type="TextureRect" parent="CreditsContainer"]
 visible = false
@@ -99,3 +99,6 @@ offset_right = 631.0
 offset_bottom = 3316.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_ut8rr")
+
+[connection signal="mouse_entered" from="CreditsContainer/CreditsTextContainer/RichTextLabel" to="CreditsContainer/CreditsTextContainer/RichTextLabel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CreditsContainer/CreditsTextContainer/RichTextLabel" to="CreditsContainer/CreditsTextContainer/RichTextLabel" method="_on_mouse_exited"]

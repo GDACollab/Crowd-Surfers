@@ -21,6 +21,7 @@ var current_scroll_speed: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var credits_text_script: Script = preload("credits_text.gd")
 	current_scroll_speed = slow_scroll_speed
 	self.position.y = credits_starting_y
 	
@@ -46,12 +47,15 @@ func _ready() -> void:
 			credits_text_container.add_child(separator)
 			continue
 			
-		# Create the label node set its text
+		# Create the label node set its text and other properties
 		var label: RichTextLabel = RichTextLabel.new()
 		label.text = text
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.bbcode_enabled = true
 		label.fit_content = true
+		label.set_script(credits_text_script)
+		label.mouse_entered.connect(label._on_mouse_entered)
+		label.mouse_exited.connect(label._on_mouse_exited)
 		# Add label as a child
 		credits_text_container.add_child(label)
 		
@@ -69,4 +73,6 @@ func _process(delta: float):
 	elif (!Input.is_action_pressed("speed_up_credits") and current_scroll_speed > slow_scroll_speed):
 		current_scroll_speed -= scroll_speed_change_rate_per_second * delta
 	self.position.y += current_scroll_speed * -1 * delta
-	#print(current_scroll_speed)
+	# This apparently refreshes godot's hover detection. Without it, when the credits text moves upwards
+	#godot still thinks you are hovering over it
+	Input.warp_mouse(get_viewport().get_mouse_position())
