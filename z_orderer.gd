@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 
 # Check what colliders the raycasts are hitting and add those to dictionaries
 func check_colliders():
+	var hit_list: Array = []
 	#iterate through array of raycasts
 	for raycast in raycasts:
 		#makes sure the raycast is actually detecting something
@@ -34,9 +35,12 @@ func check_colliders():
 			if not stored_colliders.has(hit):
 				stored_colliders[hit] = sprite.position.y
 			hit_colliders[hit] = true
+			hit_list.append(hit)
 			
-			print('Dictionaries: ', stored_colliders, "   -   ", hit_colliders)
-		
+	
+	
+	remove_these(filter_hit_list(hit_list))
+	#print('Dictionaries: ', hit_colliders)
 
 #Finds the collisionObject3D
 func hit_collider(raycast: RayCast3D) -> CollisionShape3D:
@@ -48,3 +52,21 @@ func hit_collider(raycast: RayCast3D) -> CollisionShape3D:
 	#Finds the node related to that index and returns the collisionshape3d were looking for
 	var shape_owner = hit.shape_find_owner(shape_id)
 	return hit.shape_owner_get_owner(shape_owner)
+
+
+func filter_hit_list(hit_list: Array) -> Array:
+	print('hit_list:', hit_list)
+	var filtered_list: Array = []
+	for shape in stored_colliders.keys():
+		if hit_list.find(shape) == -1:
+			filtered_list.append(shape)
+	return filtered_list
+ 
+
+func remove_these(collision_list: Array):
+	#print('Collision List:', collision_list)
+	for shape in collision_list:
+		for hit_shapes in hit_colliders.keys():
+			if shape == hit_shapes:
+				print('Removing:', hit_shapes)
+				hit_colliders.erase(hit_shapes)
