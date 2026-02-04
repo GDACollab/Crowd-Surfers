@@ -25,21 +25,21 @@ func checkAbilities() -> Array[int]:
 	# You may have to modify this for the glide
 	if Input.is_action_just_pressed("ability_1"):
 		indices.append(0)
-	if Input.is_action_just_pressed("ability_2"):
-		indices.append(1)
+	if Input.is_action_just_pressed("ability_3"):
+		indices.append(2)
 	# currently for gliding with input 3
 	# reset glide_jump on floor
 	if myPlayer.is_on_floor() and glide_jump:
 		glide_jump = false
 	# disables glide when jumping the first time
-	if Input.is_action_just_pressed("ability_3") and myPlayer.velocity.y > 0 and !glide_jump and can_glide:
+	if Input.is_action_just_pressed("ability_2") and myPlayer.velocity.y > 0 and !glide_jump and can_glide:
 		glide_jump = true
 		can_glide = false
 	# do glide if can_glide
-	if (Input.is_action_just_pressed("ability_3") or Input.is_action_just_released("ability_3")) and can_glide:
-		indices.append(2)
+	if (Input.is_action_just_pressed("ability_2") or Input.is_action_just_released("ability_2")) and can_glide:
+		indices.append(1)
 	# re-enable after the button is released
-	if Input.is_action_just_released("ability_3"):
+	if Input.is_action_just_released("ability_2"):
 		can_glide = true
 
 	return indices
