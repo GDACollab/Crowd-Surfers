@@ -8,7 +8,7 @@ var is_hovered: bool = false
 var last_scale: Vector2 = Vector2.ONE
 var last_scale_time: float = 0.0
 
-func _process(delta: float):
+func _process(_delta: float):
 	# t should go from 0 to 1 in scale_change_seconds seconds after last_scale_time :thumbsup:
 	var t: float = (float(Time.get_ticks_msec())/1000.0 - last_scale_time) / scale_change_seconds
 	t = smoothstep(0.0, 1.0, t)

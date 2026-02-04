@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=9 format=3 uid="uid://pq5rrrmglvc3"]
 
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/Credits/pitch_art_temp.PNG" id="1_ykwev"]
-[ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/credits.gd" id="2_22rij"]
+[ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/Credits/credits.gd" id="2_22rij"]
 [ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="3_4lsct"]
+[ext_resource type="Script" uid="uid://cmigokryp7r8n" path="res://Scripts/Credits/credits_image_data.gd" id="4_fax7y"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="4_ut8rr"]
 [ext_resource type="PackedScene" uid="uid://dh1oqjfhmcs6c" path="res://Scenes/Credits/credits_text.tscn" id="5_4hn7j"]
+
+[sub_resource type="Resource" id="Resource_8pn86"]
+script = ExtResource("4_fax7y")
+image = ExtResource("3_4lsct")
+imageScale = 0.5
+imagePosition = Vector2(309, 670)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_oug0m"]
+script = ExtResource("4_fax7y")
+image = ExtResource("4_ut8rr")
+imageScale = 0.2
+imagePosition = Vector2(-521, 1980)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -37,9 +52,7 @@ grow_horizontal = 2
 script = ExtResource("2_22rij")
 credits_text_file_string = "res://Assets/credits.txt"
 credits_text_scene = ExtResource("5_4hn7j")
-images = Array[Texture2D]([ExtResource("3_4lsct"), ExtResource("4_ut8rr")])
-imageScales = Array[float]([0.5, 0.2])
-imagePositions = Array[Vector2]([Vector2(309, 670), Vector2(-521, 1980)])
+images = Array[ExtResource("4_fax7y")]([SubResource("Resource_8pn86"), SubResource("Resource_oug0m")])
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
 layout_mode = 0
@@ -48,9 +61,10 @@ offset_right = 596.0
 offset_bottom = 176.0
 pivot_offset = Vector2(576, 0)
 
-[node name="RichTextLabel2" parent="CreditsContainer/CreditsTextContainer" instance=ExtResource("5_4hn7j")]
+[node name="RichTextLabel4" parent="CreditsContainer/CreditsTextContainer" instance=ExtResource("5_4hn7j")]
 visible = false
 layout_mode = 2
+text = "[font_size=45]sample text[/font_size]"
 
 [node name="UseDuringRuntimeToPositionImages" type="TextureRect" parent="CreditsContainer"]
 visible = false

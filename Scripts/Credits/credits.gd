@@ -13,16 +13,13 @@ extends Control
 @export var credits_text_scene: PackedScene
 
 @export_category("Images")
-@export var images: Array[Texture2D]
-@export var imageScales: Array[float]
-@export var imagePositions: Array[Vector2]
+@export var images: Array[CreditsImageData]
 
 #Used for a smooth transition between slow and fast scroll speeds
 var current_scroll_speed: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var credits_text_script: Script = preload("credits_text.gd")
 	current_scroll_speed = slow_scroll_speed
 	self.position.y = credits_starting_y
 	
@@ -57,9 +54,9 @@ func _ready() -> void:
 	# Create images
 	for i in images.size():
 		var image: TextureRect = TextureRect.new()
-		image.texture = images[i]
-		image.scale *= imageScales[i]
-		image.position = imagePositions[i]
+		image.texture = images[i].image
+		image.scale *= images[i].imageScale
+		image.position = images[i].imagePosition
 		self.add_child(image)
 		
 func _process(delta: float):
