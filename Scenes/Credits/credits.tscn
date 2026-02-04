@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=5 format=3 uid="uid://pq5rrrmglvc3"]
 
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/Credits/pitch_art_temp.PNG" id="1_ykwev"]
+[ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/credits.gd" id="2_22rij"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4lsct"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_ut8rr"]
+font_size = 35
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="."]
 modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -20,3 +27,45 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ykwev")
 expand_mode = 1
+
+[node name="CreditsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -549.5
+offset_right = 549.5
+offset_bottom = 55.0
+grow_horizontal = 2
+script = ExtResource("2_22rij")
+credits_text_file_string = "res://Assets/credits.txt"
+
+[node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="CreditsContainer/CreditsTextContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 1286
+text = "me when the when the when thes the whening when the"
+label_settings = SubResource("LabelSettings_4lsct")
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="CreditsContainer/CreditsTextContainer"]
+visible = false
+layout_mode = 2
+text = "me when the when the when thes the whening when the
+t"
+label_settings = SubResource("LabelSettings_ut8rr")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CreditsContainer/CreditsTextContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CreditsContainer/CreditsTextContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "TEXT"
+horizontal_alignment = 1
