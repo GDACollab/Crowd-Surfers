@@ -10,6 +10,7 @@ extends Control
 @export var separator_size: float = 40.0
 @export var credits_starting_y: float = 700
 @export var credits_text_file_string: String = ""
+@export var credits_text_scene: PackedScene
 
 @export_category("Images")
 @export var images: Array[Texture2D]
@@ -48,14 +49,8 @@ func _ready() -> void:
 			continue
 			
 		# Create the label node set its text and other properties
-		var label: RichTextLabel = RichTextLabel.new()
+		var label: RichTextLabel = credits_text_scene.instantiate()
 		label.text = text
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.bbcode_enabled = true
-		label.fit_content = true
-		label.set_script(credits_text_script)
-		label.mouse_entered.connect(label._on_mouse_entered)
-		label.mouse_exited.connect(label._on_mouse_exited)
 		# Add label as a child
 		credits_text_container.add_child(label)
 		
