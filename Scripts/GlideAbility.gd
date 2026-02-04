@@ -1,10 +1,10 @@
 class_name grav_mult extends Ability
 
 @export var gravityMultiplier: float = 0.0
-# how fast you lose speed
+# how fast you lose move speed
 @export var speedDropoff: float = 0.2
-# how fast you lose speed
-@export var glideFriction: float = 50.0
+# how fast you lose passively speed
+@export var glideFriction: float = 20.0
 # the speed needed to be at before the glide doesn't work
 @export var dropEnd: float = 0.0
 # note: when the drop in speed occurs, is based on duration
@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	# internal clock to better control speed drop off rate
 	
 	
-	if (activated and myPlayer.base_max_speed > dropEnd):
+	if (activated and myPlayer.base_max_speed > dropEnd and myPlayer.velocity.length() > dropEnd):
 		myPlayer.base_max_speed -= speedDropoff
 		myPlayer.velocity.x = move_toward(myPlayer.velocity.x, 0, glideFriction * delta)
 		myPlayer.velocity.z = move_toward(myPlayer.velocity.z, 0, glideFriction * delta)
