@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 func checkAbilities() -> Array[int]:
 	var indices: Array[int] = []
 	# You may have to modify this for the glide
-	if Input.is_action_just_pressed("ability_1"):
+	if Input.is_action_just_pressed("ability_dash"):
 		indices.append(0)
 	if Input.is_action_just_pressed("ability_2"):
 		indices.append(1)
