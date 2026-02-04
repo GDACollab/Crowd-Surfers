@@ -18,28 +18,27 @@ func _ready() -> void:
 	credits_file.get_line()
 	credits_file.get_line()
 	credits_file.get_line()
+	credits_file.get_line()
 	
 	while (not credits_file.eof_reached()):
-		# Text file must be exactly this format of lines: text, size
 		var text: String = credits_file.get_line()
+		text = text.replace("[size", "[font_size")
+		if (text.contains("[font_size")):
+			text += "[/font_size]"
 		print(text)
 		# More empty lines = more space between texts 
-		if (text == ""):
+		if (text == "" or text == " "):
 			var separator: Control = Control.new()
 			separator.custom_minimum_size.y = separator_size
 			credits_text_container.add_child(separator)
 			continue
 			
-		var text_size: int = int(credits_file.get_line())
-		print(text_size)
 		# Create the label node set its text
-		var label: Label = Label.new()
+		var label: RichTextLabel = RichTextLabel.new()
 		label.text = text
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		# Set label's font size
-		var new_label_settings: LabelSettings = LabelSettings.new()
-		new_label_settings.font_size = text_size
-		label.label_settings = new_label_settings
+		label.bbcode_enabled = true
+		label.fit_content = true
 		# Add label as a child
 		credits_text_container.add_child(label)
 		

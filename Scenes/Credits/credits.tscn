@@ -38,7 +38,7 @@ offset_right = 20.0
 offset_bottom = 40.000015
 grow_horizontal = 2
 script = ExtResource("2_22rij")
-scroll_speed = 500.0
+scroll_speed = 75.0
 credits_text_file_string = "res://Assets/credits.txt"
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
@@ -76,4 +76,16 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "TEXT"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsContainer/CreditsTextContainer"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=50]hello[/font_size]
+
+[i]italic[/i]
+
+[b]bold[b]"
+fit_content = true
 horizontal_alignment = 1
