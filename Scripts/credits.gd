@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Control
 @onready var credits_text_container: VBoxContainer = $CreditsTextContainer
 
 @export var scroll_speed: float = 5.0
@@ -34,3 +34,5 @@ func _ready() -> void:
 		# Add label as a child
 		credits_text_container.add_child(label)
 		
+func _process(delta: float):
+	self.position.y += scroll_speed * -1 * delta
