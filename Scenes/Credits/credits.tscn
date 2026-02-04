@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=7 format=3 uid="uid://pq5rrrmglvc3"]
 
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/Credits/pitch_art_temp.PNG" id="1_ykwev"]
 [ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/credits.gd" id="2_22rij"]
+[ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="3_4lsct"]
+[ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="4_ut8rr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4lsct"]
 font_size = 45
@@ -39,6 +41,9 @@ offset_bottom = 40.000015
 grow_horizontal = 2
 script = ExtResource("2_22rij")
 credits_text_file_string = "res://Assets/credits.txt"
+images = Array[Texture2D]([ExtResource("3_4lsct"), ExtResource("4_ut8rr")])
+imageScales = Array[float]([0.5, 0.2])
+imagePositions = Array[Vector2]([Vector2(309, 670), Vector2(-521, 1980)])
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
 layout_mode = 1
@@ -66,10 +71,6 @@ t"
 label_settings = SubResource("LabelSettings_ut8rr")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CreditsContainer/CreditsTextContainer"]
-visible = false
-layout_mode = 2
-
 [node name="Label" type="Label" parent="CreditsContainer/CreditsTextContainer"]
 visible = false
 layout_mode = 2
@@ -88,3 +89,13 @@ text = "[font_size=50]hello[/font_size]
 [b]bold[b]"
 fit_content = true
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer"]
+visible = false
+layout_mode = 0
+offset_left = -511.0
+offset_top = 1676.0
+offset_right = 631.0
+offset_bottom = 3316.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_ut8rr")

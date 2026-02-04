@@ -1,13 +1,20 @@
 extends Control
 @onready var credits_text_container: VBoxContainer = $CreditsTextContainer
 
+@export_category("Scroll Settings")
 @export var slow_scroll_speed: float = 50.0
 @export var fast_scroll_speed: float = 250.0
 @export var scroll_speed_change_rate_per_second: float = 250.0
+
+@export_category("Text Settings")
 @export var separator_size: float = 40.0
 @export var credits_starting_y: float = 700
-
 @export var credits_text_file_string: String = ""
+
+@export_category("Images")
+@export var images: Array[Texture2D]
+@export var imageScales: Array[float]
+@export var imagePositions: Array[Vector2]
 
 #Used for a smooth transition between slow and fast scroll speeds
 var current_scroll_speed: float
@@ -31,7 +38,7 @@ func _ready() -> void:
 		text = text.replace("[size", "[font_size")
 		if (text.contains("[font_size")):
 			text += "[/font_size]"
-		print(text)
+		# print(text)
 		# More empty lines = more space between texts 
 		if (text == "" or text == " "):
 			var separator: Control = Control.new()
@@ -47,6 +54,14 @@ func _ready() -> void:
 		label.fit_content = true
 		# Add label as a child
 		credits_text_container.add_child(label)
+		
+	# Create images
+	for i in images.size():
+		var image: TextureRect = TextureRect.new()
+		image.texture = images[i]
+		image.scale *= imageScales[i]
+		image.position = imagePositions[i]
+		self.add_child(image)
 		
 func _process(delta: float):
 	if (Input.is_action_pressed("speed_up_credits") and current_scroll_speed < fast_scroll_speed):
