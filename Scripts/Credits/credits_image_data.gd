@@ -1,5 +1,5 @@
 class_name CreditsImageData extends Resource
 
-@export var image: Texture2D
-@export var imageScale: float
-@export var imagePosition: Vector2
+@export var texture: Texture2D
+@export var scale: float
+@export var position: Vector2

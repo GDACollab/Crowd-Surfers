@@ -54,9 +54,9 @@ func _ready() -> void:
 	# Create images
 	for i in images.size():
 		var image: TextureRect = TextureRect.new()
-		image.texture = images[i].image
-		image.scale *= images[i].imageScale
-		image.position = images[i].imagePosition
+		image.texture = images[i].texture
+		image.scale *= images[i].scale
+		image.position = images[i].position
 		self.add_child(image)
 		
 func _process(delta: float):
