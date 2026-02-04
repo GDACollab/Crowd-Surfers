@@ -2,14 +2,17 @@ class_name stomp_ability extends Ability
 
 @export var stomp_speed: float
 
-var dash_activated_near_ground: bool = false
-
 # Player's momentum in the xz-plane just before activating stomp
+var dash_activated_near_ground: bool = false
 var player_original_momentum: Vector2 = Vector2(0, 0)
+
+# References
+@onready var stomp_sound: FmodEventEmitter3D = $StompSound
 
 func Use(player: CharacterBody3D) -> void:
 	player_original_momentum = Vector2(player.velocity.x, player.velocity.z)
 	player.velocity = Vector3(0,stomp_speed,0)
+	stomp_sound.play()
 	
 func Exit(player: CharacterBody3D) -> void:
 	# Restore player's momentum if the dash was activated close enough to the ground
