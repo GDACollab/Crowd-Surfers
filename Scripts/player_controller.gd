@@ -1,5 +1,7 @@
 extends CharacterBody3D
 @onready var player_sprite: Sprite3D = $Sprite3D
+@onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
+@onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 
 #Export variables (add more if needed)
 #the max amount of speed the player can reach
@@ -45,6 +47,12 @@ func _physics_process(delta: float) -> void:
 	var offset = global_position.y
 	player_sprite.position.z = -offset
 	#print("Player offset", -offset)
+	var height = position.y - raycast.get_collision_point().y
+	# Drop shadow
+	player_shadow.position.z = player_sprite.position.z + 1.5 + height
+	height = clampf(height, 0, 0.5)
+	var scaleMod= 1.28-height #Should be base scale
+	player_shadow.scale = Vector3(scaleMod, scaleMod, scaleMod)
 	
 	# Add the gravity.
 	if not is_on_floor() :
