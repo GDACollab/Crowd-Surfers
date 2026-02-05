@@ -4,6 +4,7 @@ extends Node
 
 @export var myPlayer: CharacterBody3D
 
+var can_glide: bool = true
 var activeAbilities: Array[int]
 
 func _process(_delta: float) -> void:
@@ -22,6 +23,8 @@ func _process(_delta: float) -> void:
 	var abilitiesToDeactivate: Array[int]
 	# Check each active ability
 	for i in activeAbilities:
+
+		
 		# Deactivate stomp is player is on the floor
 		if abilities[i] == $StompAbility and myPlayer.is_on_floor():
 			$StompAbility.Exit(myPlayer)
@@ -39,8 +42,20 @@ func checkAbilities() -> Array[int]:
 	# You may have to modify this for the glide
 	if Input.is_action_just_pressed("ability_1"):
 		indices.append(0)
-	if Input.is_action_just_pressed("ability_2"):
+	# currently for gliding with input 2
+	# disables glide when jumping the first time
+	if Input.is_action_just_released("ability_glide") and !can_glide:
+		can_glide = true
+	# do glide if can_glide
+	elif (Input.is_action_just_pressed("ability_glide") and can_glide):
+		if can_glide && !$GlideAbility.activated:
+			
+			indices.append(1)
+	# re-enable after the button is released
+	elif ((Input.is_action_just_released("ability_glide") and can_glide) or (myPlayer.is_on_floor() and $GlideAbility.available)):
+		can_glide = false
 		indices.append(1)
+
 	if Input.is_action_just_pressed("ability_stomp"):
 		# Player must be midair
 		if not myPlayer.is_on_floor():
