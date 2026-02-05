@@ -90,8 +90,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	print(velocity)
-	
 #Called by checkpoints
 func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 	PlayerSpawn.spawnpoint = new_spawnpoint
