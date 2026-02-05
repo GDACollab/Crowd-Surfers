@@ -12,10 +12,12 @@
 
 [node name="Player" parent="." instance=ExtResource("1_s5k85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
-current_max_speed = 25.0
-acceleration = 25.0
-friction = 5.0
+base_max_speed = 50.0
+current_max_speed = 50.0
+gravity = 17.5
+JUMP_VELOCITY = 8.0
 allow_left = true
+coyote_time = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
