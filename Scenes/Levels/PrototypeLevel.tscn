@@ -13,11 +13,13 @@
 
 [node name="Player" parent="." instance=ExtResource("1_s5k85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
-acceleration = 25.0
-friction = 5.0
-gravity = 40.0
+base_max_speed = 35.0
+acceleration = 15.0
+friction = 10.0
+gravity = 45.0
 JUMP_VELOCITY = 12.0
 allow_left = true
+coyote_time = 0.2
 
 [node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_03jqj")]
 myPlayer = NodePath("..")
