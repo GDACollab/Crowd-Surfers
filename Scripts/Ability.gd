@@ -5,7 +5,7 @@ enum AbilityType {ACTIVE, PASSIVE}
 
 # Don't know how to really use the @export values, setting default for placeholder
 @export var abilityType: AbilityType = AbilityType.PASSIVE
-@export var duration: float = 1.0
+@export var duration: float = 0.7
 	
 # Changes a stat value on the player
 @abstract func Use(playerController)

@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 #Export variables (add more if needed)
 #the max amount of speed the player can reach
-@export var base_max_speed: float = 5.0
+@export var base_max_speed: float = 1.0
 #the speed at which the player speeds up
 
 #speed that can be edited by the abilitys.
@@ -84,11 +84,17 @@ func _physics_process(delta: float) -> void:
 		#
 		velocity.x = move_toward(velocity.x, direction.x * base_max_speed, acceleration * delta)
 		velocity.z = move_toward(velocity.z, direction.z * base_max_speed, acceleration * delta)
+		if (is_on_floor()):
+			base_max_speed += 0.05;
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
+		base_max_speed = max(base_max_speed-1.0,1.0);
 	
 	move_and_slide()
+	
+	if (is_on_wall()):
+		base_max_speed = max(base_max_speed/1.5,1.0);
 	
 #Called by checkpoints
 func set_spawnpoint(new_spawnpoint: Vector3) -> void:

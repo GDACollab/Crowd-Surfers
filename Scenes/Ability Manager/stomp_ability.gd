@@ -11,7 +11,7 @@ var player_original_momentum: Vector2 = Vector2(0, 0)
 
 func Use(player: CharacterBody3D) -> void:
 	player_original_momentum = Vector2(player.velocity.x, player.velocity.z)
-	player.velocity = Vector3(0,stomp_speed,0)
+	player.velocity = Vector3(0,stomp_speed*3,0)
 	stomp_sound.play()
 	
 func Exit(player: CharacterBody3D) -> void:

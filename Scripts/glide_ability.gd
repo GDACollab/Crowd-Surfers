@@ -51,7 +51,8 @@ func Use(player: CharacterBody3D):
 		originalDropoff = speedDropoff
 		
 		player.gravity *= gravityMultiplier
-		player.velocity.y = 0
+		#Player will slowly float downward proportionally to the speed dropoff
+		player.velocity.y = -speedDropoff*2
 		
 		myPlayer = player
 		activated = true
