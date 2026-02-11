@@ -22,10 +22,15 @@ shape = SubResource("BoxShape3D_baiym")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
 [node name="Z-Orderer" parent="." node_paths=PackedStringArray("raycasts") instance=ExtResource("3_adpf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25023675)
+lowered_y = 0.1
 raycasts = [NodePath("RayCast3D"), NodePath("RayCast3D2")]
+raycast_length = -3.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Z-Orderer"]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0.8, 0, -1.2158328)
+target_position = Vector3(0, -2, 0)
 
 [node name="RayCast3D2" type="RayCast3D" parent="Z-Orderer"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.8, 0, -1.2158328)
+target_position = Vector3(0, -2, 0)
