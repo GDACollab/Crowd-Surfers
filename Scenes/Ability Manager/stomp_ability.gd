@@ -1,24 +1,37 @@
 class_name stomp_ability extends Ability
 
+## Speed at which the player stomps
 @export var stomp_speed: float
+## Time it takes (in seconds) for the player to come to a stomp before getting sent downwards. CURRENTLY UNIMPLEMENTED
+@export var windup_time: float
+## Amount to increase speed boost each second the player is falling
+@export var speed_boost_incrementor: float
 
-# Player's momentum in the xz-plane just before activating stomp
-var dash_activated_near_ground: bool = false
-var player_original_momentum: Vector2 = Vector2(0, 0)
+## Speed boost received from the stomp after stomp exits
+var player_speed_boost: float = 0.0
+## Is stomp active?
+var is_active: bool = false
 
 # References
 @onready var stomp_sound: FmodEventEmitter3D = $StompSound
 
 func Use(player: CharacterBody3D) -> void:
-	player_original_momentum = Vector2(player.velocity.x, player.velocity.z)
-	player.velocity = Vector3(0,stomp_speed,0)
+	# Get just the xz-components of the player's velocity into a vector
+	var player_original_momentum := Vector2(player.velocity.x, player.velocity.z)
+	# Get the length of this vector and use it as the baseline for the speed boost
+	player_speed_boost = player_original_momentum.length()
+	# Send the player downwards
+	player.velocity = Vector3.DOWN * stomp_speed
 	stomp_sound.play()
+	is_active = true
+	set_process(true)
 	
-func Exit(player: CharacterBody3D) -> void:
-	# Restore player's momentum if the dash was activated close enough to the ground
-	if dash_activated_near_ground:
-		var original_x_speed: float = player_original_momentum.x
-		var original_z_speed: float = player_original_momentum.y
-		player.velocity = Vector3(original_x_speed, 0.0, original_z_speed)
-		# Turn this flag off since stomp is not active
-		dash_activated_near_ground = false
+func Exit(_player: CharacterBody3D) -> void:
+	player_speed_boost = 0.0
+	is_active = false
+	
+func _ready() -> void:
+	set_process(false)
+
+func _process(delta: float) -> void:
+	player_speed_boost += speed_boost_incrementor * delta
