@@ -14,6 +14,7 @@ extends CharacterBody3D
 @export var acceleration: float = 20.0
 #friction is the speed at which the player decelerates
 @export var friction: float = 20.0
+@export var air_friction: float = 10.0
 #Gravity is currently not doing anything right now
 @export var gravity: float = 9.8
 
@@ -57,8 +58,9 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() :
 		velocity += gravity * Vector3.DOWN * delta
-		# calls a method that toggle
-		# need to make this call once
+		
+		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
+		velocity.z = move_toward(velocity.z, 0, air_friction * delta)
 		coyote_toggle()
 		coyoted = true	
 		#result = move_toward(current, target, delta)
@@ -82,14 +84,16 @@ func _physics_process(delta: float) -> void:
 	
 	if direction:
 		#
-		velocity.x = move_toward(velocity.x, direction.x * base_max_speed, acceleration * delta)
-		velocity.z = move_toward(velocity.z, direction.z * base_max_speed, acceleration * delta)
+		velocity.x = move_toward(velocity.x, direction.x * base_max_speed + bonus(velocity.x), acceleration * delta)
+		velocity.z = move_toward(velocity.z, direction.z * base_max_speed + bonus(velocity.z), acceleration * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
 	
 	move_and_slide()
-	
+
+func bonus(k) -> float:
+	return sqrt(k)
 #Called by checkpoints
 func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 	PlayerSpawn.spawnpoint = new_spawnpoint
