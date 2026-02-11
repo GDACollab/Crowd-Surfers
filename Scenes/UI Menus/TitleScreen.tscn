@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=4 format=3 uid="uid://7uehf4aws4ii"]
 
 [ext_resource type="Texture2D" uid="uid://dr6yn41t2snpd" path="res://Assets/Art/TitleScreen/title_image.PNG" id="1_jt71w"]
+[ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/title_screen.gd" id="1_sjn55"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="2_cwgrq"]
 
 [node name="TitleScreen" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sjn55")
 
 [node name="TitleImage" type="TextureRect" parent="."]
 layout_mode = 0
@@ -29,7 +31,7 @@ offset_bottom = 1691.0
 scale = Vector2(0.4, 0.33)
 texture = ExtResource("2_cwgrq")
 
-[node name="Play" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 54.0
 offset_top = 514.0
@@ -39,7 +41,7 @@ scale = Vector2(2.75, 2.75)
 size_flags_horizontal = 3
 text = "Play"
 
-[node name="Credit" type="Button" parent="."]
+[node name="CreditsButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 392.0
 offset_top = 515.99994
@@ -48,3 +50,5 @@ offset_bottom = 547.0
 scale = Vector2(1.75, 1.75)
 size_flags_horizontal = 3
 text = "Credits"
+
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
