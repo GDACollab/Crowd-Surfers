@@ -5,13 +5,10 @@ extends CharacterBody3D
 
 #Export variables (add more if needed)
 #the max amount of speed the player can reach
-@export var base_max_speed: float = 5.0
+@export var max_speed: float = 5.0
 #the speed at which the player speeds up
 
-#speed that can be edited by the abilitys.
-@export var current_max_speed: float = 5.0
-
-@export var acceleration: float = 20.0
+@export var max_acceleration: float = 20.0
 #friction is the speed at which the player decelerates
 @export var friction: float = 20.0
 #Gravity is currently not doing anything right now
@@ -80,10 +77,17 @@ func _physics_process(delta: float) -> void:
 		
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	# non-linear acceleration
+	# as velocity goes up, acceleration goes down
+	# this means that the player speeds up quickly at first,
+	# then takes a long time to get to max speed
+	# - Tate Maguire
+	var acceleration: Vector3 = (Vector3(1, 1, 1) - (abs(velocity) / max_speed)) * max_acceleration
+	print(acceleration)
+	
 	if direction:
-		#
-		velocity.x = move_toward(velocity.x, direction.x * base_max_speed, acceleration * delta)
-		velocity.z = move_toward(velocity.z, direction.z * base_max_speed, acceleration * delta)
+		velocity.x = move_toward(velocity.x, direction.x * max_speed, acceleration.x * delta)
+		velocity.z = move_toward(velocity.z, direction.z * max_speed, acceleration.z * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
