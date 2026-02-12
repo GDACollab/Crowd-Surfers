@@ -23,6 +23,10 @@ extends CharacterBody3D
 
 #for coyote time it is export 
 @export var coyote_time: float = 0.5
+
+@export var rampingExponent: float = 0.5
+
+@export var slowestSpeed: float = 3.0
 	
 # bool for while in coyote time
 var in_coyote : bool = false 
@@ -32,6 +36,8 @@ var jumped : bool = false
 
 # bool if have previously coyote jumped
 var coyoted : bool = false
+
+var time_onFloor : int = 0;
 
 func _ready() -> void:
 	global_position = PlayerSpawn.spawnpoint
@@ -84,12 +90,23 @@ func _physics_process(delta: float) -> void:
 		#
 		velocity.x = move_toward(velocity.x, direction.x * base_max_speed, acceleration * delta)
 		velocity.z = move_toward(velocity.z, direction.z * base_max_speed, acceleration * delta)
+		if (is_on_floor()):
+			time_onFloor += 1;
+			base_max_speed = max(time_onFloor**rampingExponent,slowestSpeed)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
+		base_max_speed = max(base_max_speed - 2,slowestSpeed)
+		time_onFloor = max(time_onFloor-5,0)
 	
 	move_and_slide()
+	
+	#Lose speed and ramping if hitting a wall
+	if (is_on_wall()):
+		base_max_speed = max(base_max_speed/1.5,slowestSpeed);
+		time_onFloor /= 2;
 	
 #Called by checkpoints
 func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 	PlayerSpawn.spawnpoint = new_spawnpoint
+ 
