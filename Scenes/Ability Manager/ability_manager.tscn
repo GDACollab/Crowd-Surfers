@@ -8,9 +8,15 @@
 [node name="AbilityManager" type="Node" node_paths=PackedStringArray("abilities")]
 script = ExtResource("1_re23e")
 abilities = [NodePath("DashAbility"), NodePath("GlideAbility"), NodePath("StompAbility")]
+dash_and_stomp_margin = 1.0
 
 [node name="DashAbility" parent="." instance=ExtResource("2_b3isy")]
 
 [node name="GlideAbility" parent="." instance=ExtResource("3_b3isy")]
 
 [node name="StompAbility" parent="." instance=ExtResource("3_1qfgd")]
+
+[node name="DashAndStompTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DashAndStompTimer" to="." method="_on_dash_and_stomp_timer_timeout"]
