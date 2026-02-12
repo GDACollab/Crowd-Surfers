@@ -22,7 +22,8 @@ func Use(player: CharacterBody3D):
 		my_player = player
 		# Get the players most recent directional input and their velocity
 		var newest_dir_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		var stored_momentum = player.velocity.length()
+		# Store the player's speed from before the dash and add in the boost from stomp
+		var stored_momentum = player.velocity.length() + speed_boost_from_stomp
 
 		var direction := (player.transform.basis * Vector3(newest_dir_input.x, 0, newest_dir_input.y)).normalized()
 		

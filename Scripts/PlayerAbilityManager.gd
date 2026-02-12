@@ -25,8 +25,7 @@ func _process(_delta: float) -> void:
 			
 	# Deactiveate stomp if player is on the ground
 	if $StompAbility.is_active and myPlayer.is_on_floor():
-		stomp_speed_boost = $StompAbility.player_speed_boost
-		print("Stomp speed boost: " + str(stomp_speed_boost))
+		stomp_speed_boost = $StompAbility.player_speed_boost + $StompAbility.player_original_speed
 		$StompAbility.Exit(myPlayer)
 		# Start the timer for the margin where dash receives the boost from stomp
 		$DashAndStompTimer.start(dash_and_stomp_margin)
