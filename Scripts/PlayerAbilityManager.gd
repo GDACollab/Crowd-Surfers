@@ -52,7 +52,7 @@ func checkAbilities() -> Array[int]:
 			
 			indices.append(1)
 	# re-enable after the button is released
-	elif ((Input.is_action_just_released("ability_glide") and can_glide) or (myPlayer.is_on_floor() and $GlideAbility.available)):
+	elif ((Input.is_action_just_released("ability_glide") and can_glide) or (myPlayer.is_on_floor() and can_glide)):
 		can_glide = false
 		indices.append(1)
 

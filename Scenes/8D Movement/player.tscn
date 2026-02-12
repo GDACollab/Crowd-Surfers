@@ -1,11 +1,8 @@
-[gd_scene format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=5 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="2_baiym"]
-[ext_resource type="Script" uid="uid://qwxhv080sjjj" path="res://Scripts/PlayerAbilityManager.gd" id="3_n136m"]
-[ext_resource type="PackedScene" uid="uid://cctgicibepco6" path="res://Scenes/Ability Manager/DashAbility.tscn" id="7_ku1m0"]
-[ext_resource type="PackedScene" uid="uid://chuqnv50vj3c7" path="res://Scenes/Ability Manager/GlideAbility.tscn" id="8_vn7ud"]
-[ext_resource type="PackedScene" uid="uid://dps4ikxmty5j2" path="res://Scenes/Ability Manager/StompAbility.tscn" id="9_bj3bk"]
+[ext_resource type="PackedScene" uid="uid://dyfdu60desgf6" path="res://Scenes/8D Movement/z_orderer.tscn" id="3_adpf1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
 size = Vector3(1, 0.2, 0.2)
@@ -32,13 +29,16 @@ texture = ExtResource("2_baiym")
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D" unique_id=1699401453]
 target_position = Vector3(0, -50, 0)
 
-[node name="PlayerAbilityManager" type="Node" parent="." unique_id=204428961 node_paths=PackedStringArray("abilities", "myPlayer")]
-script = ExtResource("3_n136m")
-abilities = [NodePath("DashAbility"), NodePath("GlideAbility"), NodePath("StompAbility")]
-myPlayer = NodePath("..")
+[node name="Z-Orderer" parent="." node_paths=PackedStringArray("raycasts") instance=ExtResource("3_adpf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25023675)
+lowered_y = 0.1
+raycasts = [NodePath("RayCast3D"), NodePath("RayCast3D2")]
+raycast_length = -3.0
 
-[node name="DashAbility" parent="PlayerAbilityManager" unique_id=783782585 instance=ExtResource("7_ku1m0")]
+[node name="RayCast3D" type="RayCast3D" parent="Z-Orderer"]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0.8, 0, -1.2158328)
+target_position = Vector3(0, -2, 0)
 
-[node name="GlideAbility" parent="PlayerAbilityManager" unique_id=620598154 instance=ExtResource("8_vn7ud")]
-
-[node name="StompAbility" parent="PlayerAbilityManager" unique_id=385735775 instance=ExtResource("9_bj3bk")]
+[node name="RayCast3D2" type="RayCast3D" parent="Z-Orderer"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.8, 0, -1.2158328)
+target_position = Vector3(0, -2, 0)
