@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bh7s8jcesooi0" path="res://Assets/Level Components/GrayboxeComponents/BusGrayBox.tscn" id="3_hghie"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_funet"]
-size = Vector3(1.2626953, 1, 1.2119751)
+size = Vector3(1.2626953, 1, 1.2563782)
 
 [node name="Node3D" type="Node3D"]
 
@@ -13,7 +13,6 @@ size = Vector3(1.2626953, 1, 1.2119751)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
 acceleration = 25.0
 friction = 5.0
-allow_left = true
 coyote_time = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
@@ -25,12 +24,43 @@ size = 10.0
 transform = Transform3D(123.92674, 0, 0, 0, 1, 0, 0, 0, 49.682602, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.9999854, 0, 0, 0, 0.9999889, 0, 0, 0, 0.99999976, 0, 0, 0)
+transform = Transform3D(10.13339, 0, 0, 0, 0.9999889, 0, 0, 0, 8.463335, 0, 0, 0.18789908)
 shape = SubResource("BoxShape3D_funet")
-debug_color = Color(0, 0.60008866, 0.70145214, 0.41960785)
 
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(0.99999994, 0, 0, 0, -0.047472544, 0.9988724, 0, -0.9988724, -0.047472548, 0, 0, 0)
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123803, 0, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D2" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, 1.1869066, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D3" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, 2.5026326, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D4" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, 3.8702714, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D5" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, 5.2363434, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D6" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, -1.3255967, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D7" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, -2.9033368, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D8" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, -4.189403, 0, 0)
+texture = ExtResource("2_funet")
+
+[node name="Sprite3D9" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.9732875, 0, 0, 0, -0.40461305, 0.97049284, 0, -8.513487, -0.046123806, -5.5204725, 0, 0)
 texture = ExtResource("2_funet")
 
 [node name="StaticBody3D3" parent="." instance=ExtResource("3_hghie")]
