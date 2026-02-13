@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb1nmtan0f6ie"]
+
+[ext_resource type="Texture2D" uid="uid://ci6yidjdojapt" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3.png" id="1_gfknr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
+size = Vector3(2.4960938, 1, 1)
+
+[node name="BusGrayBox01_playtest" type="StaticBody3D" groups=["Metal"]]
+
+[node name="ColllisionBody" type="StaticBody3D" parent="."]
+transform = Transform3D(-1.3113417e-05, 0, -300, 0, 0.04, 0, 300, 0, -1.3113417e-05, 0, 0, -4.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColllisionBody"]
+transform = Transform3D(0.01, 0, 3.3584246e-15, 0, 24.999996, 0, -8.326673e-17, 0, 0.01, 0.00252, 12.499998, 0)
+shape = SubResource("BoxShape3D_v4416")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="ColllisionBody/CollisionShape3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -0.25, 0.5, 0)
+pixel_size = 0.002
+texture = ExtResource("1_gfknr")
