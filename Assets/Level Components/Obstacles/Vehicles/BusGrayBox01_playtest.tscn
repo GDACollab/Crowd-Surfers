@@ -3,18 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://ci6yidjdojapt" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3.png" id="1_gfknr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
-size = Vector3(17.685654, 1, 5.6341705)
+size = Vector3(14, 2, 5.6341705)
 
 [node name="BusGrayBox01_playtest" type="StaticBody3D" groups=["Metal"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 0)
 
 [node name="ColllisionBody" type="StaticBody3D" parent="."]
 transform = Transform3D(-1.3113417e-05, 0, -300, 0, 0.04, 0, 300, 0, -1.3113417e-05, 0, 0, -4.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ColllisionBody"]
-transform = Transform3D(0.01, 0, 3.3861802e-15, 0, 24.999996, 0, -3.0531133e-16, 0, 0.01, -0.0024915114, 12.499998, -0.00063606194)
+transform = Transform3D(0.01, 0, 3.3861802e-15, 0, 24.999996, 0, -3.0531133e-16, 0, 0.01, 0.015936757, 24.999996, -0.00063606194)
 shape = SubResource("BoxShape3D_v4416")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-3, 2.6226823e-07, -1.146411e-14, 0, -4.3711395e-08, -0.9999998, -2.622673e-07, -3, 1.3113416e-07, -2.6231461e-10, 0.9999998, -5.2398844)
+transform = Transform3D(-3, 2.6226823e-07, -1.146411e-14, 0, -4.3711395e-08, -0.9999998, -2.622673e-07, -3, 1.3113416e-07, 0.02845192, 2, -5.24)
 texture = ExtResource("1_gfknr")
