@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://uhqicit2nm5j" path="res://Assets/Art/AlphaSprites/Road Horizontal S3.png" id="1_5suyy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho86e"]
-size = Vector3(1.123169, 0.001, 1.1665039)
+size = Vector3(11.154556, 0.001, 11.408569)
 
 [node name="Road" type="Node3D" groups=["Concrete"]]
 
@@ -11,11 +11,10 @@ size = Vector3(1.123169, 0.001, 1.1665039)
 transform = Transform3D(50, 0, 0, 0, 0.04, 0, 0, 0, 50, 0, 0, -5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ColllisionBody"]
-transform = Transform3D(0.09999999, 0, 0, 0, 4.9999995, 0, 0, 0, 0.09999999, 0.0061584464, 0, 0.008325182)
+transform = Transform3D(0.09999999, 0, 0, 0, 4.9999995, 0, 0, 0, 0.09999999, 0.006484222, 0, 0.010894716)
 shape = SubResource("BoxShape3D_ho86e")
 debug_color = Color(1.540184e-06, 0.5662799, 0.66299176, 1)
 
-[node name="Sprite3D" type="Sprite3D" parent="ColllisionBody/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-pixel_size = 0.001
+[node name="Sprite3D" type="Sprite3D" parent="ColllisionBody"]
+transform = Transform3D(0.09999999, 0, 0, 0, -2.185569e-07, -4.9999995, 0, 0.09999999, -4.371138e-09, 0.0061584464, 0, 0.008325182)
 texture = ExtResource("1_5suyy")
