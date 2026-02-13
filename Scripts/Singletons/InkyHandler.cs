@@ -12,6 +12,7 @@ public partial class InkyHandler : Node
 	private InkStory currentStory;
 	private PackedScene dialogueInterface;
 	private Control interfaceInstance;
+	private CanvasLayer canvasLayer;
 	
 	//Initializes InkyHandler and loads default story
 	public override void _Ready()
@@ -20,7 +21,9 @@ public partial class InkyHandler : Node
 		currentStory = defaultStory;
 		dialogueInterface = GD.Load<PackedScene>("res://Scenes/Dialogue Interface/dialogue_interface.tscn");
 		GD.Print("Inky Handler loaded");
-		PlayStoryFromStart();
+		canvasLayer = new CanvasLayer();
+		canvasLayer.Layer = 1;
+		AddChild(canvasLayer);
 	}
 	
 	public void SetNewStory(InkStory newStory){
@@ -53,7 +56,7 @@ public partial class InkyHandler : Node
 	
 	private void PlayDialogue(){
 		interfaceInstance = (Control) dialogueInterface.Instantiate();
-		AddChild(interfaceInstance);
+		canvasLayer.AddChild(interfaceInstance);
 		EmitSignal(SignalName.DialogueStarted);
 	}
 }

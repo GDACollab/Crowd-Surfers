@@ -1,15 +1,11 @@
-Hey guys, it's me, Slip! #speaker:Slip
-Hello Pavo
-*[Choice 1]
-    Answer 1
-*[Choice 2]
-    Answer 2
--Wait, why did I say that? #speaker:Pavo
-Well uh
-Now we just see how many buttons we can spawn...
-Cool...
-I guess
-
-==Knot==
-Wow, you got a knot
-->END
+Starting convo
+Slipppp. Slipppp. Answer me #speaker:Slug
+Who is it? #speaker:Slip
+Your boss #speaker:Slug
+You are extremely late to work #speaker:Slug
+Um, ok? Who cares? #speaker:Slip
+Bruh #speaker:Slug
+*[Like girl what?]
+*[Ermm okkkk]
+-Guys im so tired #speaker:Slug
+This is the end of the convo

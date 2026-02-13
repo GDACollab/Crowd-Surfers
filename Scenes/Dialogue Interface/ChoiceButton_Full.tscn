@@ -1,14 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://devtvs7rog4mi"]
+[gd_scene load_steps=3 format=3 uid="uid://devtvs7rog4mi"]
 
 [ext_resource type="Script" uid="uid://dq38sb7gjfo0l" path="res://Scripts/Interface/DialogueChoiceButton.gd" id="1_j5l2q"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_j5l2q"]
+font_size = 32
+
 [node name="Panel" type="Panel"]
-custom_minimum_size = Vector2(300, 110)
-offset_left = 136.0
-offset_top = 188.0
-offset_right = 438.0
-offset_bottom = 299.0
-size_flags_vertical = 4
+clip_contents = true
+custom_minimum_size = Vector2(350, 125)
+offset_right = 700.0
+offset_bottom = 250.0
+pivot_offset = Vector2(0, 250)
 script = ExtResource("1_j5l2q")
 transitionType = 6
 
@@ -20,5 +22,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Choice 1"
+label_settings = SubResource("LabelSettings_j5l2q")
 horizontal_alignment = 1
 vertical_alignment = 1

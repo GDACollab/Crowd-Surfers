@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=7 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="3_6em14"]
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="4_6em14"]
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
+[ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="6_o1fea"]
 
 [node name="Dialogue Interface" type="Control" node_paths=PackedStringArray("mainPanels")]
 layout_mode = 3
@@ -14,9 +15,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6mp5d")
-mainPanels = [NodePath("Left Character Portrait")]
+mainPanels = [NodePath("Left Character Portrait"), NodePath("Right Character Portrait")]
 dialoguePanel = ExtResource("5_wemfb")
 choiceButton = ExtResource("2_vriws")
+choiceSelectDelay = 1.0
+speakingPortraitScale = Vector2(1.1, 1.1)
 upperDialogueBoxHeight = 50.0
 
 [node name="Left Character Portrait" type="TextureRect" parent="."]
@@ -24,37 +27,50 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -19.0
-offset_top = -252.0
-offset_right = 263.74628
-offset_bottom = 4.0
+offset_top = -712.0
+offset_right = 550.0
 grow_vertical = 0
+pivot_offset = Vector2(0, 712)
 texture = ExtResource("3_6em14")
 expand_mode = 1
 script = ExtResource("4_6em14")
-showPosition = Vector2(-19, 392)
-hidePosition = Vector2(-19, 700)
+showPosition = Vector2(0, 368)
+hidePosition = Vector2(0, 1200)
+
+[node name="Right Character Portrait" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -525.0
+offset_top = -735.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(525, 735)
+texture = ExtResource("6_o1fea")
+expand_mode = 1
+script = ExtResource("4_6em14")
+showPosition = Vector2(1395, 345)
+hidePosition = Vector2(1637.254, 1200)
 
 [node name="Choice Button Container" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 336.0
-offset_top = 385.0
-offset_right = 815.0
-offset_bottom = 632.0
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -322.0
+offset_top = -858.0
+offset_right = 423.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 130
+alignment = 2
 script = ExtResource("4_6em14")
-showPosition = Vector2(273.5, 392.325)
-hidePosition = Vector2(273.5, 800)
-
-[node name="Dialogue Panel" parent="." instance=ExtResource("5_wemfb")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 271.0
-offset_top = 18.0
-offset_right = 876.0
-offset_bottom = 194.99988
-grow_horizontal = 1
-grow_vertical = 1
+showPosition = Vector2(638, 222)
+hidePosition = Vector2(638, 1200)
