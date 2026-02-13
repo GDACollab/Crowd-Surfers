@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="3_4lsct"]
 [ext_resource type="Script" uid="uid://cmigokryp7r8n" path="res://Scripts/Credits/credits_image_data.gd" id="4_fax7y"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="4_ut8rr"]
-[ext_resource type="PackedScene" uid="uid://dh1oqjfhmcs6c" path="res://Scenes/Credits/credits_text.tscn" id="5_4hn7j"]
+[ext_resource type="PackedScene" uid="uid://dh1oqjfhmcs6c" path="res://Scenes/UI Menus/Credits/credits_text.tscn" id="5_4hn7j"]
 
 [sub_resource type="Resource" id="Resource_8pn86"]
 script = ExtResource("4_fax7y")
@@ -75,3 +75,21 @@ offset_right = 631.0
 offset_bottom = 3316.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_ut8rr")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -93.0
+offset_right = -90.0
+offset_bottom = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]
