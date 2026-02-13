@@ -42,7 +42,8 @@ func Use(player: CharacterBody3D):
 		# Apply speed boost from stomp
 		elif speed_boost_from_stomp > 0.0:
 			print("Stomp Boost", speed_boost_from_stomp)
-			player.velocity = direction * speed_boost_from_stomp
+			player.velocity.x = move_toward(player.velocity.x, player.base_max_speed * direction.x, dash_length)
+			player.velocity.z = move_toward(player.velocity.z, player.base_max_speed * direction.z, dash_length)
 		else:
 			player.velocity.x = move_toward(player.velocity.x, player.base_max_speed * direction.x, dash_length)
 			player.velocity.z = move_toward(player.velocity.z, player.base_max_speed * direction.z, dash_length)
