@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=4 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Texture2D" uid="uid://cg1wbnbync35f" path="res://Assets/Art/MainMenuAssets/SlipImageTemp.png" id="1_g18y6"]
+[ext_resource type="Texture2D" uid="uid://by0k81p0nh5cb" path="res://Assets/Art/MainMenuAssets/TempPhone.png" id="2_mjmdf"]
+[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_72sra"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,9 +12,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="SlipImage" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 621.0
+offset_left = 76.0
+offset_right = 697.0
 offset_bottom = 648.0
 texture = ExtResource("1_g18y6")
 expand_mode = 1
+
+[node name="PhoneImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 530.0
+offset_top = -122.00001
+offset_right = 1296.5002
+offset_bottom = 571.15186
+rotation = 0.29365015
+texture = ExtResource("2_mjmdf")
+
+[node name="OrdersButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 87.0
+offset_right = 983.55695
+offset_bottom = 227.40381
+rotation = 0.31780875
+text = "Orders"
+icon = ExtResource("3_72sra")
+
+[node name="VoiceMailButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 701.0
+offset_top = 231.0
+offset_right = 934.55695
+offset_bottom = 328.33728
+rotation = 0.31780875
+text = "Voicemail"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 333.0
+offset_right = 898.55695
+offset_bottom = 430.33728
+rotation = 0.31780875
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 651.00006
+offset_top = 445.0
+offset_right = 836.7292
+offset_bottom = 489.3048
+rotation = 0.31780875
+text = "Exit"
