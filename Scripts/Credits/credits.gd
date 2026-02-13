@@ -68,3 +68,6 @@ func _process(delta: float):
 	# This apparently refreshes godot's hover detection. Without it, when the credits text moves upwards
 	#godot still thinks you are hovering over it
 	Input.warp_mouse(get_viewport().get_mouse_position())
+
+func _on_back_button_pressed() -> void:
+	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
