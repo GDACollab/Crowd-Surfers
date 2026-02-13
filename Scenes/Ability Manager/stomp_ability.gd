@@ -42,3 +42,4 @@ func _process(delta: float) -> void:
 	player_speed_boost += speed_boost_factor * delta
 	if player_speed_boost > max_speed_boost:
 		player_speed_boost = max_speed_boost
+	print(player_speed_boost)

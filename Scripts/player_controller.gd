@@ -43,6 +43,8 @@ func coyote_toggle() -> void:
 		in_coyote = false
 
 func _physics_process(delta: float) -> void:
+	print("Max speed: ", base_max_speed)
+	print("Current Speed: ", velocity.length())
 	# Set player sprite offset
 	var offset = global_position.y
 	player_sprite.position.z = -offset

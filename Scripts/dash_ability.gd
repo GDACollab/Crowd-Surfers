@@ -32,17 +32,20 @@ func Use(player: CharacterBody3D):
 			return
 
 		# Burst of speed is relative to your current speed
+		# current_max_speed currently unimplemented, using base_max_speed edits
 		original_val = player.base_max_speed
-		player.current_max_speed = player.base_max_speed * dash_speed + stored_momentum
+		print("Original Speed, ", original_val)
+		player.base_max_speed = player.base_max_speed * dash_speed + stored_momentum
 		
 		if not can_dash_midair and not player.is_on_floor() :
 			print("Midair dash disabled")
 		# Apply speed boost from stomp
 		elif speed_boost_from_stomp > 0.0:
+			print("Stomp Boost", speed_boost_from_stomp)
 			player.velocity = direction * speed_boost_from_stomp
 		else:
-			player.velocity.x = move_toward(player.velocity.x, player.current_max_speed * direction.x, dash_length)
-			player.velocity.z = move_toward(player.velocity.z, player.current_max_speed * direction.z, dash_length)
+			player.velocity.x = move_toward(player.velocity.x, player.base_max_speed * direction.x, dash_length)
+			player.velocity.z = move_toward(player.velocity.z, player.base_max_speed * direction.z, dash_length)
 		
 		# Start timers, implemented with seperate timers in case cooldown and duration of the speed boost
 		# are intended to last at different times, (i.e. CD @ 3 seconds, Duration @ 2.5 seconds)
@@ -51,7 +54,8 @@ func Use(player: CharacterBody3D):
 		is_ready = false
 	
 func Exit(player: CharacterBody3D):
-	player.current_max_speed = original_val
+	player.base_max_speed = original_val
+	print(player.current_max_speed)
 	pass
 
 func _on_cooldown_timeout() -> void:
