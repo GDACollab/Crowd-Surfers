@@ -7,26 +7,26 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
 size = Vector3(1, 0.2, 0.2)
 
-[node name="Player" type="CharacterBody3D" unique_id=14463123]
+[node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_i0hvh")
 base_max_speed = 25.0
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=414685271]
+[node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1.28, 0, 0, 0, -5.5950576e-08, 1.28, 0, -1.28, -5.5950576e-08, 0, 0, -0.8234667)
 texture = ExtResource("2_baiym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=725572330]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.92346674)
 shape = SubResource("BoxShape3D_baiym")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
-[node name="Drop Shadow" type="Sprite3D" parent="CollisionShape3D" unique_id=35162616]
+[node name="Drop Shadow" type="Sprite3D" parent="CollisionShape3D"]
 transform = Transform3D(1.28, 0, 0, 0, -5.5950576e-08, 1.28, 0, -1.28, -5.5950576e-08, 0, -0.1, 1)
 modulate = Color(0, 0, 0, 0.49019608)
 texture = ExtResource("2_baiym")
 
-[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D" unique_id=1699401453]
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
 target_position = Vector3(0, -50, 0)
 
 [node name="Z-Orderer" parent="." node_paths=PackedStringArray("raycasts") instance=ExtResource("3_adpf1")]
