@@ -169,11 +169,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.44308, 10, -265.798)
 
 [node name="Player" parent="." instance=ExtResource("1_v7xxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
+base_max_speed = 25.0
+current_max_speed = 5.0
+starting_speed = 5.0
 acceleration = 50.0
 friction = 60.0
 gravity = 40.0
 JUMP_VELOCITY = 14.0
-allow_left = true
 coyote_time = 0.2
 
 [node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_7640a")]
@@ -184,3 +186,6 @@ transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958
 projection = 1
 size = 18.936
 near = 0.425
+
+[editable path="Player"]
+[editable path="Player/AbilityManager"]
