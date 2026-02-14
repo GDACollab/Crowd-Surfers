@@ -57,6 +57,9 @@ func Use(player: CharacterBody3D):
 		activated = true
 		available = false
 		$Timer.start(duration)
+		
+		# Start sfx loop
+		$GlideSoundLoop.play()
 	# Checks if the player calls mid-air to cancel flight, won't allow them 
 	# to call it until timer duration is finished.
 	elif (!available):
@@ -68,6 +71,11 @@ func Use(player: CharacterBody3D):
 
 # exit will start process to exit, best to call to end, but warning, timer still exists and process
 func Exit(player: CharacterBody3D):
+	# End sound effect
+	$GlideSoundLoop.stop()
+	if (activated): 
+		$GlideSoundEnd.play_one_shot()
+	
 	player.gravity = originalVal
 	activated = false
 
