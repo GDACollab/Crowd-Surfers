@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdv770vsglhhu"]
+
+[ext_resource type="Texture2D" uid="uid://dejdiwk26100u" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 1 S3.png" id="1_lggot"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eeg00"]
+size = Vector3(11.47876, 104.5798, 5.4058228)
+
+[node name="BasicBuilding" type="Node3D" groups=["Concrete"]]
+
+[node name="ColllisionBody" type="StaticBody3D" parent="."]
+transform = Transform3D(9.999999, 0, 0, 0, 0.2, 0, 0, 0, 9.999999, 0, 0, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColllisionBody"]
+transform = Transform3D(1.0000001, 0, 0, 0, 2.5, 0, 0, 0, 1.0000001, -0.047241215, -122.874565, 0.012054503)
+shape = SubResource("BoxShape3D_eeg00")
+debug_color = Color(0.3276008, 1.1619871, 0.7100278, 0.85490197)
+
+[node name="FrontSprite" type="Sprite3D" parent="ColllisionBody"]
+transform = Transform3D(-4.3711395e-08, -1, 4.3711395e-08, 0, -1.09278474e-07, -2.5, 1, -4.3711395e-08, 1.9106855e-15, -0.09000569, -4.6112823, 0)
+texture = ExtResource("1_lggot")

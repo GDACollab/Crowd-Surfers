@@ -8,13 +8,18 @@
 [node name="AbilityManager" type="Node" node_paths=PackedStringArray("abilities")]
 script = ExtResource("1_re23e")
 abilities = [NodePath("DashAbility"), NodePath("GlideAbility"), NodePath("StompAbility")]
-dash_and_stomp_margin = 1.0
+dash_and_stomp_margin = 0.1
 
 [node name="DashAbility" parent="." instance=ExtResource("2_b3isy")]
+dash_length = 10.0
+dash_speed = 5.0
+duration = 0.2
 
 [node name="GlideAbility" parent="." instance=ExtResource("3_b3isy")]
+gravityMultiplier = 0.05
 
 [node name="StompAbility" parent="." instance=ExtResource("3_1qfgd")]
+speed_boost_factor = 25.0
 
 [node name="DashAndStompTimer" type="Timer" parent="."]
 one_shot = true
