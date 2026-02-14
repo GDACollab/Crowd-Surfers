@@ -8,4 +8,12 @@ script = ExtResource("1_1s85j")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="GlideSoundLoop" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/glide_loop"
+event_guid = "{8b651845-147a-42e7-ae53-406ca4e52e03}"
+
+[node name="GlideSoundEnd" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/glide_end"
+event_guid = "{cf5c77bb-5593-4f0c-abfe-9b114f3562fb}"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
