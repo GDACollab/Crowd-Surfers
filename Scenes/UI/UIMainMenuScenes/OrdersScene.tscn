@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5rie8boisw4x"]
+
+[ext_resource type="Texture2D" uid="uid://cg1wbnbync35f" path="res://Assets/Art/MainMenuAssets/SlipImageTemp.png" id="1_g5igk"]
+[ext_resource type="Texture2D" uid="uid://by0k81p0nh5cb" path="res://Assets/Art/MainMenuAssets/TempPhone.png" id="2_4cn08"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlipImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 697.0
+offset_bottom = 648.0
+texture = ExtResource("1_g5igk")
+expand_mode = 1
+
+[node name="PhoneImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 530.0
+offset_top = -122.00001
+offset_right = 1296.5002
+offset_bottom = 571.15186
+rotation = 0.29365015
+texture = ExtResource("2_4cn08")
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 0
+offset_left = 753.67896
+offset_top = 69.79434
+offset_right = 984.0526
+offset_bottom = 539.4886
+rotation = 0.29666504
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Container"]
+layout_mode = 2
