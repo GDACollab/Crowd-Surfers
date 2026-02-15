@@ -14,18 +14,53 @@ func transition_to_scene(finalScene: PackedScene):
 	transitioning = true
 	self.visible = true
 	animation_player.play("fade_in")
-	
 	# Wait 1s for animation
 	await get_tree().create_timer(1.0).timeout 
 
 	# Change scenes to finalScene, wait while this happens
-	print("Changing to: ", finalScene.resource_path)
-
 	get_tree().change_scene_to_packed(finalScene)
-	await get_tree().process_frame
+	await get_tree().scene_changed
 
 	animation_player.play("fade_out")
+	# Wait 1s for animation
+	await get_tree().create_timer(1.0).timeout 
 	
+	self.visible = false
+	transitioning = false
+
+func transition_to_scene_with_loading(finalScene: String):
+	if (transitioning):
+		return
+	
+	transitioning = true
+	self.visible = true
+	animation_player.play("fade_in")
+	# Wait 1s for animation
+	await get_tree().create_timer(1.0).timeout 
+
+	# Change scene to loading scene, wait while this happens
+	get_tree().change_scene_to_packed(load("res://Scenes/UI Menus/loading.tscn"))
+	await get_tree().scene_changed
+	
+	animation_player.play("fade_out")
+	# Wait 1s for animation
+	await get_tree().create_timer(1.0).timeout 
+	
+	ResourceLoader.load_threaded_request(finalScene)
+	while ResourceLoader.load_threaded_get_status(finalScene) != ResourceLoader.THREAD_LOAD_LOADED:
+		await get_tree().process_frame
+		
+	var finalSceneLoaded: PackedScene = ResourceLoader.load_threaded_get(finalScene)
+	
+	animation_player.play("fade_in")
+	# Wait 1s for animation
+	await get_tree().create_timer(1.0).timeout 
+	
+	# Change to final scene now that its loaded
+	get_tree().change_scene_to_packed(finalSceneLoaded)
+	await get_tree().scene_changed
+	
+	animation_player.play("fade_out")
 	# Wait 1s for animation
 	await get_tree().create_timer(1.0).timeout 
 	
