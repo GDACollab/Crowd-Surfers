@@ -13,6 +13,7 @@ class_name DialogueInterface
 @export var choiceSelectDelay : float
 @export_category("Portrait Settings")
 @export var speakingPortraitScale := Vector2(1.25, 1.25)
+@export var previousSpeakerColor := Color.DIM_GRAY
 @export_category("Past Dialogue Line Settings")
 @export var upperDialogueBoxHeight : float = 0
 @export var upperDialogueBoxScale := Vector2(0.5, 0.5)
@@ -28,6 +29,9 @@ var choiceButtons : Array[Control]
 var selectedButton : DialogueChoiceButton
 var choicesDisplayed := false
 var slipSpoke := false ##If true, last dialogue box goes left
+var currentSpeakerData : CharacterDialogueData
+var currentSpeaker : Control
+var previousSpeaker : Control
 var awaitingAnimations := false
 
 func _ready() -> void:
@@ -80,14 +84,13 @@ func _get_input():
 ##Loads next line
 func _continue_story():
 	dialogueText = currentStory.Continue()
-	_display_text()
-	_handle_tags(currentStory.GetCurrentTags())
-
-##Displays the current line incrementaly
-func _display_text():
-	
 	#Spawn new dialogue panel
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
+	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
+	_display_text(newDialoguePanel)
+
+##Displays the current line incrementaly
+func _display_text(newDialoguePanel):
 	#Set anchor point
 	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	dialoguePanels.push_front(newDialoguePanel)
@@ -129,10 +132,10 @@ func _animate_panels():
 			var positionTween = create_tween()
 			positionTween.tween_property(currentPanel, "position", Vector2(xPos,yPos),1).set_trans(transitionType)
 			panelIndex += 1
+			#End animations
 			if(panelIndex == dialoguePanels.size()):
 				await positionTween.finished
 				awaitingAnimations = false
-				
 
 func _kill_panel(panel : InterfacePanel):
 	dialoguePanels.remove_at(3)
@@ -153,6 +156,12 @@ func _load_main_panels():
 
 ##Instances correct amount of choice boxes and gets choice index
 func _display_choices():
+	#Adjust portraits
+	$"Left Character Portrait".self_modulate = Color.WHITE
+	$"Left Character Portrait".scale = Vector2(1.2, 1.2)
+	$"Right Character Portrait".self_modulate = previousSpeakerColor
+	$"Right Character Portrait".scale = Vector2.ONE
+
 	awaitingAnimations = true
 	choicesDisplayed = true
 	$"Choice Button Container".showPanel()
@@ -185,21 +194,37 @@ func _find_choice(desiredIndex):
 			return c
 
 ##Handles all Ink tag functions
-func _handle_tags(currentTags):
+func _handle_tags(currentTags, newPanel):
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
 		var tagValue = splitTag[1]
 		match(tagKey):
 			"speaker":
+				#Get speaker data
+				if(currentSpeakerData == null or currentSpeakerData.characterName != tagValue):
+					#Load correct speaker data
+					var resourcePath = "res://Assets/Dialogue/Character Dialogue Data/" + str(tagValue) + "DialogueData.tres"
+					if ResourceLoader.exists(resourcePath):
+						currentSpeakerData = load(resourcePath)
+						print("Loaded speaker data")
+				#Add character data attributes
+				if(currentSpeakerData != null and currentSpeakerData.characterName == tagValue):
+					newPanel.modulate = currentSpeakerData.colour
+				else:
+					print("Could not get speaker data for: " + tagValue)
 				if(tagValue == "Slip"):
 					slipSpoke = true
-					$"Left Character Portrait".scale = speakingPortraitScale
-					$"Right Character Portrait".scale = Vector2.ONE
+					currentSpeaker = $"Left Character Portrait"
+					previousSpeaker = $"Right Character Portrait"
 				else:
 					slipSpoke = false
-					$"Left Character Portrait".scale = Vector2(1, 1)
-					print($"Right Character Portrait".pivot_offset)
-					$"Right Character Portrait".scale = speakingPortraitScale
+					previousSpeaker = $"Left Character Portrait"
+					currentSpeaker = $"Right Character Portrait"
 					#Sets new panel to right side of screen
-					dialoguePanels[0].pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
+					newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
+				#Adjust portraits based on speaker
+				currentSpeaker.scale = speakingPortraitScale
+				currentSpeaker.self_modulate = Color.WHITE
+				previousSpeaker.scale = Vector2.ONE
+				previousSpeaker.self_modulate = previousSpeakerColor
