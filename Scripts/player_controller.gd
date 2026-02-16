@@ -4,26 +4,28 @@ extends CharacterBody3D
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 
 # General movement
+@export_category("General Movement")
 ## The highest value max_speed can be at before modifications
-@export var base_ramping_cap: float = 5.0 #the speed at which the player speeds up
+@export var base_ramping_cap: float = 25.0 #the speed at which the player speeds up
 ## Initial speed when starting from rest
-@export var starting_speed : float = 1.0
+@export var starting_speed : float = 5.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.5
 ## Acceleration before modifications
-@export var base_acceleration: float = 20.0
+@export var base_acceleration: float = 30.0
 ## Rate at which the player decelerates
 @export var friction: float = 30.0
 ## Added to player's vertical speed in states where they can fall
-@export var gravity: float = 9.8
+@export var gravity: float = 40.0
 ## Speed of the player's jump
-@export var jump_speed: float = 4.5
+@export var jump_speed: float = 14.0
 ## Time after walking off a ledge that the player can still jump
-@export var coyote_time: float = 0.5
+@export var coyote_time: float = 0.2
 
 # Stomp
+@export_category("Stomp")
 ## Initial speed of the stomp before gravity is applied
 @export var stomp_speed: float = 10.0
 ## The maximum speed that the player can be at on the first frame of the windup
@@ -36,6 +38,7 @@ extends CharacterBody3D
 @export var max_stomp_dash_boost: float = 40.0
 
 # Dash
+@export_category("Dash")
 ## Time that the dash lasts
 @export var dash_duration: float = 5.0
 ## Minimum time between dasehs
@@ -48,6 +51,7 @@ extends CharacterBody3D
 @export var stomp_dash_margin: float = 0.1
 
 # Glide
+@export_category("Glide")
 ## Ratio for exponential decay of glide speed
 @export var glide_decay_ratio: float = 0.5
 ## The speed at which glide ends
