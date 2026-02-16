@@ -87,16 +87,26 @@ func _update_hitboxes():
 func create_sprites():
 	# Creates top sprite
 	var top_sprite = Sprite3D.new()
+	
+	# add children
+	add_child(top_sprite)
+	_set_owner(top_sprite)
+	
 	top_sprite.texture = texture_top
 	top_sprite.name = "TopSprite"
-	top_sprite.pixel_size = pixel_size
+	top_sprite.pixel_size = pixel_size * 50
 	top_sprite.axis = Vector3.AXIS_Y # lays flat
 	
 	# Creates floor sprite
 	var front_sprite = Sprite3D.new()
+	
+	# add children
+	add_child(front_sprite)
+	_set_owner(front_sprite)
+	
 	front_sprite.texture = texture_front
-	top_sprite.name = "FrontSprite"
-	front_sprite.pixel_size = pixel_size
+	front_sprite.name = "FrontSprite"
+	front_sprite.pixel_size = pixel_size * 50
 	front_sprite.axis = Vector3.AXIS_Y # lays flat
 	
 	# assign top and front vectors with sizes
@@ -112,18 +122,13 @@ func create_sprites():
 	top_sprite.position = Vector3(0, front.y, -front.y / 2.0)
 	front_sprite.position = Vector3(0, 0, top.y/2)
 	
-	# add children
-	add_child(top_sprite)
-	_set_owner(top_sprite)
-	add_child(front_sprite)
-	_set_owner(front_sprite)
 	print("added sprites")
 
 # Creates hitboxes for the main and platform, with customized padding, hopefully it works
 func create_hitboxes():
 	# variable setup, accounting for center of origin, and of course the width and height
 	var box_height = front_length
-	var main_body_depth = top_length - front_length - z_pad
+	var main_body_depth = top_length - front_length/2 - z_pad
 	var effective_width = width - (x_pad * 2)
 	
 	
@@ -134,14 +139,17 @@ func create_hitboxes():
 	
 	# next, creates the main collision shape, with all those nice looks
 	var main_collision = CollisionShape3D.new()
+	
+	add_child(main_collision)
+	_set_owner(main_collision)
+	
 	main_collision.shape = main_box_shape
 	main_collision.name = "MainHitbox"
 	main_collision.debug_color = Color("#ff0000")
 	main_collision.debug_color.a = 1.0
 	main_collision.debug_fill = true
-	main_collision.position = Vector3(0, box_height / 2.0, -front_length - (main_body_depth / 2.0))
-	add_child(main_collision)
-	_set_owner(main_collision)
+	main_collision.position = Vector3(0, box_height / 2.0, z_pad)
+	
 	print("added main")
 	
 	# additional variables for the platform
@@ -155,14 +163,17 @@ func create_hitboxes():
 	
 	# next, creates the platform collision shape, with all those nice looks
 	var platform_collision = CollisionShape3D.new()
-	platform_collision.shape = main_box_shape
+	
+	add_child(platform_collision)
+	_set_owner(platform_collision)
+	
+	platform_collision.shape = plat_box_shape
 	platform_collision.name = "PlatformHitbox"
 	platform_collision.debug_color = Color("#da00e2")
 	platform_collision.debug_color.a = 1.0
 	platform_collision.debug_fill = true
 	platform_collision.position = Vector3(0, platform_y, playform_z)
-	add_child(platform_collision)
-	_set_owner(platform_collision)
+	
 	print("added platform")
 	
 

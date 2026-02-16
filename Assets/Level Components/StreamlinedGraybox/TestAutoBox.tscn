@@ -1,8 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://1w4j6y2sexvg"]
+[gd_scene load_steps=6 format=3 uid="uid://1w4j6y2sexvg"]
 
 [ext_resource type="Script" uid="uid://1e6ekui6dt2u" path="res://Scripts/automated_asset_type_1.gd" id="1_hebd1"]
+[ext_resource type="Texture2D" uid="uid://djb0glookl2du" path="res://Assets/Art/GrayboxTemplateAssets/Top_Test.png" id="2_mhf4h"]
+[ext_resource type="Texture2D" uid="uid://dvxos2c3cga6r" path="res://Assets/Art/GrayboxTemplateAssets/Front_Test.png" id="3_503r7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mhf4h"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_503r7"]
+size = Vector3(1, 0.02, 1)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 script = ExtResource("1_hebd1")
 top_filename = "GrayboxTemplateAssets/Top_Test.png"
 front_filename = "GrayboxTemplateAssets/Front_Test.png"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, -25)
+axis = 1
+texture = ExtResource("2_mhf4h")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+axis = 1
+texture = ExtResource("3_503r7")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+shape = SubResource("BoxShape3D_mhf4h")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 49.5, -25)
+shape = SubResource("BoxShape3D_503r7")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
