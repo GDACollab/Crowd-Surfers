@@ -11,6 +11,10 @@ var can_glide: bool = true
 var activeAbilities: Array[int]
 var stomp_speed_boost: float = 0.0
 
+func _ready() -> void:
+	# Disable ability manager
+	set_process(false)
+
 func _process(_delta: float) -> void:
 	var inputs = checkAbilities()
 	for i in inputs:
@@ -38,7 +42,7 @@ func checkAbilities() -> Array[int]:
 	if Input.is_action_just_pressed("ability_dash"):
 		# Pass the stomp speed boost to the dash ability
 		$DashAbility.speed_boost_from_stomp = stomp_speed_boost
-		#indices.append(0)
+		indices.append(0)
 	# currently for gliding with input 2
 	# disables glide when jumping the first time
 	if Input.is_action_just_released("ability_glide") and !can_glide:
@@ -57,7 +61,7 @@ func checkAbilities() -> Array[int]:
 		# Player must be midair
 		if not myPlayer.is_on_floor():
 			pass
-			#indices.append(2)
+			indices.append(2)
 	return indices
 
 
