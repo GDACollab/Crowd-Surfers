@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh7s8jcesooi0"]
+[gd_scene load_steps=4 format=3 uid="uid://bh7s8jcesooi0"]
 
 [ext_resource type="Texture2D" uid="uid://pfl2e84frr37" path="res://Assets/Art/GrayboxTemplateAssets/Bus.jpg" id="1_jq3c2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
 size = Vector3(2.4960938, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vu7bw"]
+size = Vector3(0.029766083, 1, 0.009933472)
 
 [node name="StaticBody3D" type="StaticBody3D" groups=["Metal"]]
 transform = Transform3D(1.8000001, 0, 0, 0, 0.25, 0, 0, 0, 1.6899998, 0, 0, 0)
@@ -19,3 +22,8 @@ debug_color = Color(1, 0, 0, 1)
 [node name="Sprite3D" type="Sprite3D" parent="ColllisionBody/CollisionShape3D"]
 transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -0.25, 0.5, 0)
 texture = ExtResource("1_jq3c2")
+
+[node name="CollisionShape3DBack" type="CollisionShape3D" parent="ColllisionBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.7763568e-14, 0, 1, 0.00054919906, 23.83419, 7.771322e-06)
+shape = SubResource("BoxShape3D_vu7bw")
+debug_color = Color(0.8548777, 0.0007735574, 0.88692033, 1)
