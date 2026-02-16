@@ -2,15 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_v7xxd"]
 [ext_resource type="PackedScene" uid="uid://bj6tsmjulbrly" path="res://Scenes/Ability Manager/ability_manager.tscn" id="2_7640a"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bkojx8yxl0shy" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding_Playtest.tscn" id="5_jadm0"]
 [ext_resource type="PackedScene" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
+=======
+[ext_resource type="PackedScene" uid="uid://bdv770vsglhhu" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding_Playtest.tscn" id="5_jadm0"]
+[ext_resource type="PackedScene" uid="uid://rsvp8h0ufq0s" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
+>>>>>>> 4e16d41 (State Machine WIP)
 [ext_resource type="PackedScene" uid="uid://y5n5ec6cpnys" path="res://Assets/Level Components/Obstacles/Floors/Road_turn_Alpha.tscn" id="7_asgt7"]
 [ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="8_30i2v"]
 [ext_resource type="PackedScene" uid="uid://b7ey2vwyboxkp" path="res://Assets/Level Components/Obstacles/Vehicles/BusGrayBox01_playtest.tscn" id="8_7640a"]
 [ext_resource type="PackedScene" uid="uid://507eva6q8tab" path="res://Assets/Level Components/Obstacles/Floors/Road_Vertical_Alpha.tscn" id="8_v7xxd"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://ke7hyaldhm05" path="res://Assets/Level Components/Obstacles/Vehicles/Bus_UP_playtest.tscn" id="9_7640a"]
 [ext_resource type="PackedScene" uid="uid://cp64vn3gfu61h" path="res://Assets/Level Components/Obstacles/Buildings/restaurant_Playtest.tscn" id="10_30i2v"]
 [ext_resource type="PackedScene" uid="uid://chebxo65l0rlx" path="res://Assets/Level Components/Obstacles/Buildings/CornerBuilding_playtest.tscn" id="11_yl5ff"]
+=======
+[ext_resource type="PackedScene" uid="uid://byyk70rleupyk" path="res://Assets/Level Components/Obstacles/Vehicles/Bus_UP_playtest.tscn" id="9_7640a"]
+[ext_resource type="PackedScene" uid="uid://cl8svk1sga6cm" path="res://Assets/Level Components/Obstacles/Buildings/restaurant_Playtest.tscn" id="10_30i2v"]
+[ext_resource type="PackedScene" uid="uid://7lsbvnasfd67" path="res://Assets/Level Components/Obstacles/Buildings/CornerBuilding_playtest.tscn" id="11_yl5ff"]
+>>>>>>> 4e16d41 (State Machine WIP)
 
 [node name="DebugLevel2" type="Node3D"]
 
@@ -169,13 +180,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.44308, 10, -265.798)
 
 [node name="Player" parent="." instance=ExtResource("1_v7xxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
-base_max_speed = 25.0
-current_max_speed = 5.0
+base_ramping_cap = 25.0
 starting_speed = 5.0
-acceleration = 50.0
-friction = 60.0
+base_acceleration = 30.0
 gravity = 40.0
-JUMP_VELOCITY = 14.0
+jump_speed = 14.0
 coyote_time = 0.2
 
 [node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_7640a")]

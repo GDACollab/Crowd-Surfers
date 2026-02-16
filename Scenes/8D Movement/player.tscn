@@ -11,6 +11,7 @@ size = Vector3(1, 0.2, 0.2)
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_i0hvh")
+stomp_dash_margin = 1.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0.1, -0.823)
@@ -42,3 +43,20 @@ target_position = Vector3(0, -2, 0)
 [node name="RayCast3D2" type="RayCast3D" parent="Z-Orderer"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.8, 0, -1.2158328)
 target_position = Vector3(0, -2, 0)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompWindupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompDashMargin" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]
