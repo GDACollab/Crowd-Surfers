@@ -220,12 +220,18 @@ func transition_to(new_state: int) -> void:
 			stomp_windup_slowdown.z = abs(velocity.z) / windup_duration
 			# Start the windup timer
 			$StompWindupTimer.start()
+			# Start stomp sound windup
+			$StompSound.set_parameter("stomp_state", "windup")
+			$StompSound.play()
+		States.STOMP_FALL:
+			$StompSound.set_parameter("stomp_state", "loop")
 		States.GLIDE:
 			# Player won't fall during glide
 			velocity.y = 0.0
 			speed_before_gliding = velocity.length()
 			max_speed_before_gliding = max_speed
 			time_gliding = 0.0
+			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
 		States.AIR:
@@ -238,7 +244,10 @@ func transition_to(new_state: int) -> void:
 			# Restore friction when leaving the air
 			friction *= 2.0
 		States.GLIDE:
+			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
+		States.STOMP_FALL:
+			$StompSound.set_parameter("stomp_state", "end")
 	
 	current_state = new_state
 	#print_state()
@@ -275,6 +284,8 @@ func handle_inputs(delta: float) -> void:
 		
 ## Activates the dash, giving the player a temporary speed boost and an instant added speed
 func dash(input_dir: Vector2) -> void:
+	# Play dash sound
+	$DashSound.play()
 	# Increase caps
 	ramping_cap = ramping_cap * dash_speed_multiplier + dash_boost
 	max_speed = move_toward(max_speed * dash_speed_multiplier, ramping_cap, dash_boost)

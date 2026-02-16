@@ -62,6 +62,10 @@ one_shot = true
 [node name="StompSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/stomp"
 event_guid = "{dd67154c-6c88-45be-b2b1-39d11ce1a73d}"
+fmod_parameters/stomp_state/id = -5788517196328637441
+fmod_parameters/stomp_state = "windup"
+fmod_parameters/stomp_state/labels = PackedStringArray("windup", "loop", "end")
+fmod_parameters/stomp_state/variant_type = 4
 
 [node name="GlideSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/glide"
@@ -72,5 +76,7 @@ fmod_parameters/glide_state/labels = PackedStringArray("loop", "end")
 fmod_parameters/glide_state/variant_type = 4
 
 [node name="DashSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/dash"
+event_guid = "{786da779-c31c-46e0-8fd9-49dc9c0ed9f3}"
 
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]
