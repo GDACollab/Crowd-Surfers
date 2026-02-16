@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwnshx4xiskpw"]
+[gd_scene load_steps=11 format=3 uid="uid://cwnshx4xiskpw"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_v7xxd"]
-[ext_resource type="PackedScene" uid="uid://bj6tsmjulbrly" path="res://Scenes/Ability Manager/ability_manager.tscn" id="2_7640a"]
 [ext_resource type="PackedScene" uid="uid://bkojx8yxl0shy" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding_Playtest.tscn" id="5_jadm0"]
-[ext_resource type="PackedScene" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
+[ext_resource type="PackedScene" uid="uid://rsvp8h0ufq0s" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
 [ext_resource type="PackedScene" uid="uid://y5n5ec6cpnys" path="res://Assets/Level Components/Obstacles/Floors/Road_turn_Alpha.tscn" id="7_asgt7"]
 [ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="8_30i2v"]
 [ext_resource type="PackedScene" uid="uid://b7ey2vwyboxkp" path="res://Assets/Level Components/Obstacles/Vehicles/BusGrayBox01_playtest.tscn" id="8_7640a"]
@@ -169,17 +168,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.44308, 10, -265.798)
 
 [node name="Player" parent="." instance=ExtResource("1_v7xxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
-base_max_speed = 25.0
-current_max_speed = 5.0
+base_ramping_cap = 25.0
 starting_speed = 5.0
-acceleration = 50.0
-friction = 60.0
+base_acceleration = 30.0
 gravity = 40.0
-JUMP_VELOCITY = 14.0
+jump_speed = 14.0
 coyote_time = 0.2
-
-[node name="AbilityManager" parent="Player" node_paths=PackedStringArray("myPlayer") instance=ExtResource("2_7640a")]
-myPlayer = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
@@ -188,4 +182,3 @@ size = 18.936
 near = 0.425
 
 [editable path="Player"]
-[editable path="Player/AbilityManager"]
