@@ -226,6 +226,8 @@ func transition_to(new_state: int) -> void:
 			speed_before_gliding = velocity.length()
 			max_speed_before_gliding = max_speed
 			time_gliding = 0.0
+			$GlideSound.set_parameter("glide_state", "loop")
+			$GlideSound.play()
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
@@ -235,6 +237,8 @@ func transition_to(new_state: int) -> void:
 		States.AIR:
 			# Restore friction when leaving the air
 			friction *= 2.0
+		States.GLIDE:
+			$GlideSound.set_parameter("glide_state", "end")
 	
 	current_state = new_state
 	#print_state()

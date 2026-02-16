@@ -2,7 +2,12 @@ extends FmodEventEmitter3D
 
 @export var player: CharacterBody3D = null
 
-@onready var player_max_speed: float = player.base_max_speed
+var player_max_speed: float;
+
+func _ready() -> void:
+	assert(player)
+	player_max_speed = player.base_ramping_cap
+	assert(player_max_speed)
 
 func _process(_delta: float) -> void:
 	# Update FMOD parameter `player_speed`
