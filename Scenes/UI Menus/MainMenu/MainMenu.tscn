@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=5 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Texture2D" uid="uid://cg1wbnbync35f" path="res://Assets/Art/MainMenuAssets/SlipImageTemp.png" id="1_0p7o3"]
+[ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/main_menu.gd" id="1_dsamw"]
 [ext_resource type="Texture2D" uid="uid://by0k81p0nh5cb" path="res://Assets/Art/MainMenuAssets/TempPhone.png" id="2_184yf"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_3ypn2"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_dsamw")
 
 [node name="SlipImage" type="TextureRect" parent="."]
 layout_mode = 0
@@ -65,3 +67,5 @@ offset_right = 836.7292
 offset_bottom = 489.3048
 rotation = 0.31780875
 text = "Exit"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
