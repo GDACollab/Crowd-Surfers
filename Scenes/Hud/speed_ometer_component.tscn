@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjtsjfgecr3i4"]
+
+[ext_resource type="Texture2D" uid="uid://b1pif7ph1u7ns" path="res://Assets/Art/GrayboxTemplateAssets/TopColor.jpg" id="1_bcq7x"]
+[ext_resource type="Script" uid="uid://5frlvuvdir8p" path="res://Scripts/Hud UI/Speedometer.gd" id="1_lau0f"]
+[ext_resource type="Texture2D" uid="uid://euxjd8m0f2v8" path="res://Assets/Art/GrayboxTemplateAssets/FrontColor.jpg" id="2_lau0f"]
+
+[node name="SpeedOmeter Component" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_lau0f")
+
+[node name="SpeedOmeter BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 50.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.74183905, 0.58850306)
+value = 10.0
+fill_mode = 5
+radial_initial_angle = 360.0
+texture_under = ExtResource("1_bcq7x")
+texture_progress = ExtResource("2_lau0f")
