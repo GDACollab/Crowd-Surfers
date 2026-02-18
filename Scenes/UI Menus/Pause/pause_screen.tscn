@@ -38,9 +38,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -375.0
+offset_left = -363.0
 offset_top = -250.0
-offset_right = 375.0
+offset_right = 387.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -54,9 +54,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
+offset_left = -64.0
 offset_top = -115.0
-offset_right = 70.0
+offset_right = 76.0
 offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -87,4 +87,44 @@ text = "Exit Level
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="ControlsContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -188.0
+offset_right = 140.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TempText" type="RichTextLabel" parent="ControlsContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 22
+text = "Controls:
+
+WASD: Move
+Space (on ground): Jump
+Space (midair): Glide
+Shift/J: Dash
+Ctrl/K: Stomp
+Escape: Pause
+ "
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="ControlsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="ControlsContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -11,4 +11,3 @@ func _process(_delta: float) -> void:
 		else:
 			get_tree().paused = false
 			get_child(0).queue_free()
-	
