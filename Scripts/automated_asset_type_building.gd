@@ -7,6 +7,10 @@ extends StaticBody3D
 #    it means the length relative to that dimension
 # 3. The top.z - front.z must not be less than front.z alone
 
+@export var active: bool = false:
+	set(value): 
+		active = value
+		_update_hitboxes()
 
 @export_group("Dimensions")
 # different variables to edit the dimensions
@@ -42,10 +46,6 @@ extends StaticBody3D
 	set(value):
 		top_filename = value
 		_update_hitboxes()
-@export var front_filename: String = 'unknown':
-	set(value):
-		front_filename = value
-		_update_hitboxes()
 
 @export_group("Additional Settings")
 @export var platform_thickness: float = 1.0: # thickness of the platform (since not decided by art asset)
@@ -59,14 +59,17 @@ var main_hitbox_vec = Vector3(0, 0, 0)
 var platform_hitbox_vec = Vector3(0, 0, 0)
 # these are texture variables, they shall hold textures if they exist
 var texture_top: Texture2D
-var texture_front: Texture2D
 
 # reference of size of pixels for the art assets
 var top = Vector2(0, 0)
 var front = Vector2(0, 0)
 
+# extra variables because issues of rendering
+var offset_y: float = 0.01
+
 # updates hitboxes upon every small change
 func _update_hitboxes():
+	if (!active): return
 	# initially makes sure all previous versions are destroyed, careful this will reset everything you worked on
 	var child_list = []
 	for child in get_children():
@@ -84,6 +87,7 @@ func _update_hitboxes():
 		create_hitboxes()
 	
 
+# creates 3 sprites, one for the front, top, and then one specifically for the platform
 func create_sprites():
 	# Creates top sprite
 	var top_sprite = Sprite3D.new()
@@ -94,48 +98,59 @@ func create_sprites():
 	
 	top_sprite.texture = texture_top
 	top_sprite.name = "TopSprite"
-	top_sprite.pixel_size = pixel_size * 50
+	top_sprite.pixel_size = pixel_size
 	top_sprite.axis = Vector3.AXIS_Y # lays flat
+	top_sprite.rotation_degrees.y = 180 # rotates sprite
 	
-	# Creates floor sprite
-	var front_sprite = Sprite3D.new()
+	# Creates platform sprite
+	var plat_sprite = Sprite3D.new()
 	
 	# add children
-	add_child(front_sprite)
-	_set_owner(front_sprite)
+	add_child(plat_sprite)
+	_set_owner(plat_sprite)
 	
-	front_sprite.texture = texture_front
-	front_sprite.name = "FrontSprite"
-	front_sprite.pixel_size = pixel_size * 50
-	front_sprite.axis = Vector3.AXIS_Y # lays flat
+	plat_sprite.texture = texture_top
+	plat_sprite.name = "PlatSprite"
+	plat_sprite.pixel_size = pixel_size
+	plat_sprite.axis = Vector3.AXIS_Y # lays flat
+	plat_sprite.rotation_degrees.y = 180 # rotates sprite
 	
-	# assign top and front vectors with sizes
-	var top_w = texture_top.get_width()
-	var top_h = texture_top.get_height()
-	top = Vector2(top_w, top_h)
+	# assign top and front vectors with sizes compensating for pixel size
+	var base_top_w = texture_top.get_width() * pixel_size
+	var base_top_h = texture_top.get_height() * pixel_size
+	top = Vector2(base_top_w, base_top_h)
 	
-	var front_w = texture_front.get_width()
-	var front_h = texture_front.get_height()
-	front = Vector2(front_w, front_h)
+	# additional code for cropping the top art
+	plat_sprite.region_enabled = true
+	var ratio = top_length / front_length
+	var crop_height_pixels = texture_top.get_height() / ratio
+	print(ratio)
+	print(crop_height_pixels)
+	plat_sprite.region_rect = Rect2(0, 0, texture_top.get_width(), crop_height_pixels)
+	
+	# combines both the front and the top
+	plat_sprite.scale.x = width / base_top_w
+	plat_sprite.scale.z = (front_length / base_front_h) * ratio
+	
+	
+	# assign sizes depending on prior equations
+	top_sprite.scale.x = width / base_top_w
+	top_sprite.scale.z = top_length / base_top_h
 	
 	# assign positions (because I did the math after the x and y were assigned)
-	top_sprite.position = Vector3(0, front.y, -front.y / 2.0)
-	front_sprite.position = Vector3(0, 0, top.y/2)
+	top_sprite.position = Vector3(0, 0 + offset_y, front_length/2)
+	plat_sprite.position = Vector3(0, front_length, (top_length/4)) # opposite of front sprite
+	
+	
 	
 	print("added sprites")
 
 # Creates hitboxes for the main and platform, with customized padding, hopefully it works
 func create_hitboxes():
-	# variable setup, accounting for center of origin, and of course the width and height
-	var box_height = front_length
-	var main_body_depth = top_length - front_length/2 - z_pad
-	var effective_width = width - (x_pad * 2)
-	
-	
 	# Creates the main hitbox (relies on top image)
 	# first creates shape which collision will refer to
 	var main_box_shape = BoxShape3D.new()
-	main_box_shape.size = Vector3(effective_width, box_height, main_body_depth)
+	main_box_shape.size = Vector3(width - x_pad, front_length, top_length - front_length - z_pad) # might need to divide front length by 2
 	
 	# next, creates the main collision shape, with all those nice looks
 	var main_collision = CollisionShape3D.new()
@@ -148,18 +163,14 @@ func create_hitboxes():
 	main_collision.debug_color = Color("#ff0000")
 	main_collision.debug_color.a = 1.0
 	main_collision.debug_fill = true
-	main_collision.position = Vector3(0, box_height / 2.0, z_pad)
+	main_collision.position = Vector3(0, front_length / 2.0, z_pad / 2.0)
 	
 	print("added main")
-	
-	# additional variables for the platform
-	var platform_y = box_height - (platform_thickness / 2.0)
-	var playform_z = -front_length / 2.0
 	
 	# Creates the platform hitbox (relies on front image)
 	# first creates shape which collision will refer to
 	var plat_box_shape = BoxShape3D.new()
-	plat_box_shape.size = Vector3(effective_width, platform_thickness, front_length)
+	plat_box_shape.size = Vector3(width - x_pad, platform_thickness, front_length - z_pad)
 	
 	# next, creates the platform collision shape, with all those nice looks
 	var platform_collision = CollisionShape3D.new()
@@ -172,7 +183,7 @@ func create_hitboxes():
 	platform_collision.debug_color = Color("#da00e2")
 	platform_collision.debug_color.a = 1.0
 	platform_collision.debug_fill = true
-	platform_collision.position = Vector3(0, platform_y, playform_z)
+	platform_collision.position = Vector3(0, front_length - platform_thickness/2, (top_length/2 - z_pad/2))
 	
 	print("added platform")
 	
@@ -188,6 +199,7 @@ func collect_all_assets() -> bool:
 		#var target_front_dir = dir_exists(front_name)
 		texture_top = load("res://Assets/Art/" + top_filename)
 		texture_front = load("res://Assets/Art/" + front_filename)
+
 		print("res://Assets/Art" + front_filename)
 		
 		print('completed getting files')
