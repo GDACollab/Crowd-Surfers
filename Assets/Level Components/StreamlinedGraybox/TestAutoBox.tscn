@@ -5,44 +5,44 @@
 [ext_resource type="Texture2D" uid="uid://dvxos2c3cga6r" path="res://Assets/Art/GrayboxTemplateAssets/Front_Test.png" id="3_503r7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mhf4h"]
-size = Vector3(2, 1, 3)
+size = Vector3(2, 2, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_503r7"]
-size = Vector3(2, 0.1, 1)
+size = Vector3(2, 0.1, 2)
 
 [node name="StaticBody3D" type="StaticBody3D"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.020795107, 0)
 script = ExtResource("1_mhf4h")
 width = 2.0
-top_length = 4.0
-front_length = 1.0
+top_length = 6.0
+front_length = 2.0
 top_filename = "GrayboxTemplateAssets/Top_Test.png"
 front_filename = "GrayboxTemplateAssets/Front_Test.png"
 platform_thickness = 0.1
 
-[node name="TopSprite" type="Sprite3D" parent="."]
-transform = Transform3D(-2, 0, -6.993822e-07, 0, 1, 0, 1.7484555e-07, 0, -8, 0, 0.01, 0.5)
+[node name="TopSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-2, 0, -1.0490733e-06, 0, 1, 0, 1.7484555e-07, 0, -12, 0, 0.01, 1)
 axis = 1
 texture = ExtResource("2_mhf4h")
 
-[node name="FrontSprite" type="Sprite3D" parent="."]
-transform = Transform3D(-2, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, -2, 0, 0.01, -2)
+[node name="FrontSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-2, 0, -3.496911e-07, 0, 1, 0, 1.7484555e-07, 0, -4, 0, 0.01, -3)
 axis = 1
 texture = ExtResource("3_503r7")
 
-[node name="PlatSprite" type="Sprite3D" parent="."]
-transform = Transform3D(-2, 0, -6.993822e-07, 0, 1, 0, 1.7484555e-07, 0, -8, 0, 1, 2)
+[node name="PlatSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-2, 0, -1.0490733e-06, 0, 1, 0, 1.7484555e-07, 0, -12, 0, 2, 3)
 axis = 1
 texture = ExtResource("2_mhf4h")
 region_enabled = true
-region_rect = Rect2(0, 0, 100, 12.5)
+region_rect = Rect2(0, 0, 100, 16.666666)
 
-[node name="MainHitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="MainHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("BoxShape3D_mhf4h")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 2)
+[node name="PlatformHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95, 3)
 shape = SubResource("BoxShape3D_503r7")
 debug_color = Color(0.85490197, 0, 0.8862745, 1)

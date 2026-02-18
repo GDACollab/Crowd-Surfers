@@ -1,12 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs87mog6a7mjt"]
+[gd_scene load_steps=6 format=3 uid="uid://cs87mog6a7mjt"]
 
-[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_x0hpq"]
+[ext_resource type="PackedScene" uid="uid://1w4j6y2sexvg" path="res://Assets/Level Components/StreamlinedGraybox/TestAutoBox.tscn" id="1_x0hpq"]
+[ext_resource type="Texture2D" uid="uid://djb0glookl2du" path="res://Assets/Art/GrayboxTemplateAssets/Top_Test.png" id="2_atabj"]
+[ext_resource type="Texture2D" uid="uid://dvxos2c3cga6r" path="res://Assets/Art/GrayboxTemplateAssets/Front_Test.png" id="3_8aiq5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_atabj"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8aiq5"]
+size = Vector3(2, 0.1, 1)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-script = ExtResource("1_x0hpq")
+[node name="StaticBody3D2" parent="." instance=ExtResource("1_x0hpq")]
+transform = Transform3D(1, 0, 1.7484554e-07, 0, 1, 0, -1.7484554e-07, 0, 1, -2, 0, -1.7484555e-07)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-script = ExtResource("1_x0hpq")
+[node name="StaticBody3D" parent="." instance=ExtResource("1_x0hpq")]
+top_length = 2.0
+
+[node name="TopSprite5" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-2, 0, -3.496911e-07, 0, 1, 0, 1.7484555e-07, 0, -4, 0, 0.01, 0.5)
+axis = 1
+texture = ExtResource("2_atabj")
+
+[node name="FrontSprite5" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, -2, 0, 0.01, -1)
+axis = 1
+texture = ExtResource("3_8aiq5")
+
+[node name="PlatSprite5" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-2, 0, -3.496911e-07, 0, 1, 0, 1.7484555e-07, 0, -4, 0, 1, 1)
+axis = 1
+texture = ExtResource("2_atabj")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 25)
+
+[node name="MainHitbox5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_atabj")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 1)
+shape = SubResource("BoxShape3D_8aiq5")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)

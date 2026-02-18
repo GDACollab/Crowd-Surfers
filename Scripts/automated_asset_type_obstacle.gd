@@ -176,7 +176,7 @@ func create_hitboxes():
 	# Creates the main hitbox (relies on top image)
 	# first creates shape which collision will refer to
 	var main_box_shape = BoxShape3D.new()
-	main_box_shape.size = Vector3(width - x_pad, front_length, top_length - front_length - z_pad) # might need to divide front length by 2
+	main_box_shape.size = Vector3(width - x_pad, front_length, top_length - front_length - z_pad + front_length) # might need to divide front length by 2
 	
 	# next, creates the main collision shape, with all those nice looks
 	var main_collision = CollisionShape3D.new()
@@ -189,7 +189,7 @@ func create_hitboxes():
 	main_collision.debug_color = Color("#ff0000")
 	main_collision.debug_color.a = 1.0
 	main_collision.debug_fill = true
-	main_collision.position = Vector3(0, front_length / 2.0, z_pad / 2.0)
+	main_collision.position = Vector3(0, front_length / 2.0, z_pad / 2.0 - front_length/2)
 	
 	print("added main")
 	
