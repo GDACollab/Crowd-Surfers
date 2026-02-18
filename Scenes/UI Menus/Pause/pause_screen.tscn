@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://i7gpb3ctj5lh"]
+
+[ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/pause_screen.gd" id="1_f6gwv"]
+[ext_resource type="Texture2D" uid="uid://dlqn1mqvvji1i" path="res://Assets/Art/PauseScreen/temp_phone.webp" id="1_nftcf"]
+[ext_resource type="Texture2D" uid="uid://2y5aqlmv0kgk" path="res://Assets/Art/PauseScreen/square.png" id="2_no0yh"]
+
+[node name="PauseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f6gwv")
+
+[node name="FadeBackground" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.29411766)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -940.0
+offset_top = -556.0
+offset_right = 980.0
+offset_bottom = 524.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_no0yh")
+expand_mode = 2
+
+[node name="PhoneBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -250.0
+offset_right = 375.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nftcf")
+expand_mode = 2
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49527782
+anchor_top = 0.30725926
+anchor_right = 0.49527782
+anchor_bottom = 0.30725926
+offset_left = -69.56006
+offset_top = -31.104
+offset_right = 0.4399414
+offset_bottom = -0.10400009
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Resume"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
