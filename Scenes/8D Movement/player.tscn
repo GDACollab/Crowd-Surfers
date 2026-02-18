@@ -11,6 +11,7 @@ size = Vector3(1, 0.2, 0.2)
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_i0hvh")
+stomp_dash_margin = 1.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0.1, -0.823)
@@ -42,3 +43,40 @@ target_position = Vector3(0, -2, 0)
 [node name="RayCast3D2" type="RayCast3D" parent="Z-Orderer"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.8, 0, -1.2158328)
 target_position = Vector3(0, -2, 0)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompWindupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompDashMargin" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/stomp"
+event_guid = "{dd67154c-6c88-45be-b2b1-39d11ce1a73d}"
+fmod_parameters/stomp_state/id = -5788517196328637441
+fmod_parameters/stomp_state = "windup"
+fmod_parameters/stomp_state/labels = PackedStringArray("windup", "loop", "end")
+fmod_parameters/stomp_state/variant_type = 4
+
+[node name="GlideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/glide"
+event_guid = "{8b651845-147a-42e7-ae53-406ca4e52e03}"
+fmod_parameters/glide_state/id = -2259465278480473172
+fmod_parameters/glide_state = "loop"
+fmod_parameters/glide_state/labels = PackedStringArray("loop", "end")
+fmod_parameters/glide_state/variant_type = 4
+
+[node name="DashSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/dash"
+event_guid = "{786da779-c31c-46e0-8fd9-49dc9c0ed9f3}"
+
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]
