@@ -47,21 +47,44 @@ grow_vertical = 2
 texture = ExtResource("1_nftcf")
 expand_mode = 2
 
-[node name="ResumeButton" type="Button" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.49527782
-anchor_top = 0.30725926
-anchor_right = 0.49527782
-anchor_bottom = 0.30725926
-offset_left = -69.56006
-offset_top = -31.104
-offset_right = 0.4399414
-offset_bottom = -0.10400009
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -115.0
+offset_right = 70.0
+offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
+
+[node name="ResumeButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Resume"
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[node name="ControlsButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Controls"
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit Level
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
