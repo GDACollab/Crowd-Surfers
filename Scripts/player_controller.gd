@@ -1,5 +1,6 @@
 extends CharacterBody3D
 @onready var player_sprite: Sprite3D = $Sprite3D
+var player_sprite_starting_pos: float = 0.0
 @onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 
@@ -93,6 +94,7 @@ var current_state: int = States.GROUND
 func _ready() -> void:
 	global_position = PlayerSpawn.spawnpoint
 	# Initialize values
+	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
 	ramping_cap = base_ramping_cap
 	# Initialize timers
@@ -330,7 +332,7 @@ func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 func snap_sprite() -> void:
 	# Set player sprite offset
 	var offset = global_position.y
-	player_sprite.position.z = -offset
+	player_sprite.position.z = player_sprite_starting_pos - offset
 	#print("Player offset", -offset)
 	var height = position.y - raycast.get_collision_point().y
 	# Drop shadow
