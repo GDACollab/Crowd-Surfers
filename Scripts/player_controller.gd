@@ -64,12 +64,15 @@ func _on_dash_duration_timer_timeout() -> void:
 	acceleration = base_acceleration
 	ramping_cap = base_ramping_cap
 	max_speed = min(max_speed, ramping_cap)
+		#Commented out the below code as it caused some issues 
+		#when changing direction shortly after a dash.
+		#Keeping it here incase the removal of the code brings any issues
 	# Get xz-velocity unit vector and its length
-	var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
-	var speed = Vector3(velocity.x, 0.0, velocity.z).length()
+	#var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
+	#var speed = Vector3(velocity.x, 0.0, velocity.z).length()
 	# Lower xz-speed to the maximum if it exceeds it
-	velocity.x = min(dir.x * speed, dir.x * max_speed)
-	velocity.z = min(dir.z * speed, dir.z * max_speed)
+	#velocity.x = min(dir.x * speed, dir.x * max_speed)
+	#velocity.z = min(dir.z * speed, dir.z * max_speed)
 	$DashCooldownTimer.start()
 
 ## The states that the player can be in
@@ -148,7 +151,8 @@ func process_state(delta: float) -> void:
 			# Basing the decay off the player's initial speed ensures the glide lasts longer if the
 			# player is initially faster, but not too much longer
 			velocity = dir * speed_before_gliding * ratio
-			max_speed = max_speed_before_gliding * ratio 
+				#max_speed = max_speed_before_gliding * ratio 
+				#^Commented out because it made the glide very bad since it reduced max speed so drastically
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
