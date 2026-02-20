@@ -6,14 +6,19 @@ class_name DialogueInterface
 @export var dialoguePanel : PackedScene
 ##Type of transition for all tweens
 @export var transitionType : Tween.TransitionType = Tween.TransitionType.TRANS_ELASTIC
+@export var easeType : Tween.EaseType = Tween.EaseType.EASE_IN_OUT
 @export_category("Choices")
 ##Choice Button prefab
 @export var choiceButton : PackedScene
 ##Amount of time the player must wait before selecing a choice
 @export var choiceSelectDelay : float
 @export_category("Portrait Settings")
+@export var defaultPortait : Texture2D
 @export var speakingPortraitScale := Vector2(1.25, 1.25)
 @export var previousSpeakerColor := Color.DIM_GRAY
+##Where the portrait moves when swapping characters
+@export var portraitSwapPosition := Vector2(2000, 345)
+@export var portraitSwapTime := 1.0
 @export_category("Past Dialogue Line Settings")
 @export var upperDialogueBoxHeight : float = 0
 @export var upperDialogueBoxScale := Vector2(0.5, 0.5)
@@ -32,13 +37,16 @@ var slipSpoke := false ##If true, last dialogue box goes left
 var currentSpeakerData : CharacterDialogueData
 var currentSpeaker : Control
 var previousSpeaker : Control
+var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
+var awaitingTags := false
 
 func _ready() -> void:
 	currentStory = Inky.GetCurrentStory()
+	$"Left Character Portrait".find_child("Portrait Image").texture = defaultPortait
 	_load_main_panels()
 	_get_input()
-	
+
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("DialogueInteract")):
 		if(!isTyping):
@@ -87,7 +95,6 @@ func _continue_story():
 	#Spawn new dialogue panel
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
-	_display_text(newDialoguePanel)
 
 ##Displays the current line incrementaly
 func _display_text(newDialoguePanel):
@@ -110,6 +117,7 @@ func _display_text(newDialoguePanel):
 		await get_tree().create_timer(0.05).timeout
 	isTyping = false
 
+##Move old panels
 func _animate_panels():
 	if(dialoguePanels.get(1)):
 		awaitingAnimations = true
@@ -128,9 +136,9 @@ func _animate_panels():
 				yPos = upperDialogueBoxHeight
 				newScale = upperDialogueBoxScale
 			var heightTween = create_tween()
-			heightTween.tween_property(currentPanel, "scale", newScale,1).set_trans(transitionType)
+			heightTween.tween_property(currentPanel, "scale", newScale,1).set_trans(transitionType).set_ease(easeType)
 			var positionTween = create_tween()
-			positionTween.tween_property(currentPanel, "position", Vector2(xPos,yPos),1).set_trans(transitionType)
+			positionTween.tween_property(currentPanel, "position", Vector2(xPos,yPos),1).set_trans(transitionType).set_ease(easeType)
 			panelIndex += 1
 			#End animations
 			if(panelIndex == dialoguePanels.size()):
@@ -157,9 +165,9 @@ func _load_main_panels():
 ##Instances correct amount of choice boxes and gets choice index
 func _display_choices():
 	#Adjust portraits
-	$"Left Character Portrait".self_modulate = Color.WHITE
+	$"Left Character Portrait".find_child("Portrait Image").self_modulate = Color.WHITE
 	$"Left Character Portrait".scale = Vector2(1.2, 1.2)
-	$"Right Character Portrait".self_modulate = previousSpeakerColor
+	$"Right Character Portrait".find_child("Portrait Image").self_modulate = previousSpeakerColor
 	$"Right Character Portrait".scale = Vector2.ONE
 
 	awaitingAnimations = true
@@ -195,6 +203,7 @@ func _find_choice(desiredIndex):
 
 ##Handles all Ink tag functions
 func _handle_tags(currentTags, newPanel):
+	awaitingAnimations = true
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
@@ -221,10 +230,30 @@ func _handle_tags(currentTags, newPanel):
 					slipSpoke = false
 					previousSpeaker = $"Left Character Portrait"
 					currentSpeaker = $"Right Character Portrait"
+					#Switches to new speaker
+					if(lastNonSlipSpeaker != tagValue):
+						print("New speaker detected!")
+						lastNonSlipSpeaker = tagValue
+						var portraitPosition = currentSpeaker.global_position
+						var portraitTween = create_tween()
+						portraitTween.tween_property(currentSpeaker,"global_position", 
+						portraitSwapPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
+						await get_tree().create_timer(portraitSwapTime).timeout
+						if(currentSpeakerData.portraits.size() > 0):
+							currentSpeaker.find_child("Portrait Image").texture = currentSpeakerData.portraits[0]
+						var portraitTween2 = create_tween()
+						portraitTween2.tween_property(currentSpeaker,"global_position", 
+						portraitPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 					#Sets new panel to right side of screen
 					newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
 				#Adjust portraits based on speaker
 				currentSpeaker.scale = speakingPortraitScale
-				currentSpeaker.self_modulate = Color.WHITE
+				currentSpeaker.find_child("Portrait Image").self_modulate = Color.WHITE
 				previousSpeaker.scale = Vector2.ONE
-				previousSpeaker.self_modulate = previousSpeakerColor
+				previousSpeaker.find_child("Portrait Image").self_modulate = previousSpeakerColor
+			"expression":
+				pass
+			"anim":
+				currentSpeaker.find_child("Animator").play(tagValue)
+	awaitingAnimations = false
+	_display_text(newPanel)

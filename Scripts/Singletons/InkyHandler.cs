@@ -52,6 +52,7 @@ public partial class InkyHandler : Node
 	public void EndDialogue(){
 		interfaceInstance.QueueFree();
 		EmitSignal(SignalName.DialogueEnded);
+		GD.Print("Dialogue Ended");
 	}
 	
 	private void PlayDialogue(){
