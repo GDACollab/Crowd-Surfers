@@ -2,7 +2,7 @@ Your phone starts ringing
 Slipppp. Slipppp. Answer me #speaker:Sam
 Who is it? #speaker:Slip #anim:Shake
 Your boss #speaker:Sam #expression:Angry
-And I'm Chef #speaker:Chef #expression:Happy
+And I'm Chef #speaker:Chef #expression:Happy #anim:Shake
 You are extremely late to work #speaker:Sam
 Um, ok? Who cares? #speaker:Slip
 Bruh #speaker:Sam

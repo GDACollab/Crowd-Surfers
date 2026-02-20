@@ -24,6 +24,8 @@ class_name DialogueInterface
 @export var upperDialogueBoxScale := Vector2(0.5, 0.5)
 @export var lowerDialogueBoxHeight : float = 200
 @export var lowerDialogueBoxScale := Vector2(0.75, 0.75)
+@onready var leftPortrait = $"Left Character Portrait/Portrait Image"
+@onready var rightPortrait = $"Right Character Portrait/Portrait Image"
 var dialoguePanels : Array[InterfacePanel]
 var dialogueLabel : Label
 var currentStory : InkStory
@@ -112,7 +114,7 @@ func _display_text(newDialoguePanel):
 	isTyping = true
 	dialogueLabel.visible_characters = 0
 	dialogueLabel.text = dialogueText
-	while dialogueLabel.visible_characters < dialogueText.length():
+	while dialogueLabel.visible_characters < dialogueText.length() - 1:
 		dialogueLabel.visible_characters += 1
 		await get_tree().create_timer(0.05).timeout
 	isTyping = false
@@ -154,7 +156,7 @@ func _kill_panel(panel : InterfacePanel):
 
 ##Skips typing sequence
 func _skip_scroll():
-	dialogueLabel.visible_characters = dialogueText.length()
+	dialogueLabel.visible_characters = dialogueText.length() - 1
 	isTyping = false
 
 ##Reveals all initial interface panels
@@ -165,10 +167,10 @@ func _load_main_panels():
 ##Instances correct amount of choice boxes and gets choice index
 func _display_choices():
 	#Adjust portraits
-	$"Left Character Portrait".find_child("Portrait Image").self_modulate = Color.WHITE
-	$"Left Character Portrait".scale = Vector2(1.2, 1.2)
-	$"Right Character Portrait".find_child("Portrait Image").self_modulate = previousSpeakerColor
-	$"Right Character Portrait".scale = Vector2.ONE
+	leftPortrait.self_modulate = Color.WHITE
+	leftPortrait.scale = Vector2(1.2, 1.2)
+	rightPortrait.self_modulate = previousSpeakerColor
+	rightPortrait.scale = Vector2.ONE
 
 	awaitingAnimations = true
 	choicesDisplayed = true
@@ -224,36 +226,37 @@ func _handle_tags(currentTags, newPanel):
 					print("Could not get speaker data for: " + tagValue)
 				if(tagValue == "Slip"):
 					slipSpoke = true
-					currentSpeaker = $"Left Character Portrait"
-					previousSpeaker = $"Right Character Portrait"
+					currentSpeaker = leftPortrait
+					previousSpeaker = rightPortrait
 				else:
 					slipSpoke = false
-					previousSpeaker = $"Left Character Portrait"
-					currentSpeaker = $"Right Character Portrait"
+					previousSpeaker = leftPortrait
+					currentSpeaker = rightPortrait
 					#Switches to new speaker
 					if(lastNonSlipSpeaker != tagValue):
+						var currentSpeakerPanel = currentSpeaker.get_parent()
 						print("New speaker detected!")
 						lastNonSlipSpeaker = tagValue
-						var portraitPosition = currentSpeaker.global_position
+						var portraitPosition = currentSpeakerPanel.global_position
 						var portraitTween = create_tween()
-						portraitTween.tween_property(currentSpeaker,"global_position", 
+						portraitTween.tween_property(currentSpeakerPanel,"global_position", 
 						portraitSwapPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 						await get_tree().create_timer(portraitSwapTime).timeout
-						if(currentSpeakerData.portraits.size() > 0):
-							currentSpeaker.find_child("Portrait Image").texture = currentSpeakerData.portraits[0]
+						if(currentSpeakerData != null and currentSpeakerData.portraits.size() > 0):
+							currentSpeaker.texture = currentSpeakerData.portraits[0]
 						var portraitTween2 = create_tween()
-						portraitTween2.tween_property(currentSpeaker,"global_position", 
+						portraitTween2.tween_property(currentSpeakerPanel,"global_position", 
 						portraitPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 					#Sets new panel to right side of screen
 					newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
 				#Adjust portraits based on speaker
 				currentSpeaker.scale = speakingPortraitScale
-				currentSpeaker.find_child("Portrait Image").self_modulate = Color.WHITE
+				currentSpeaker.self_modulate = Color.WHITE
 				previousSpeaker.scale = Vector2.ONE
-				previousSpeaker.find_child("Portrait Image").self_modulate = previousSpeakerColor
+				previousSpeaker.self_modulate = previousSpeakerColor
 			"expression":
 				pass
 			"anim":
-				currentSpeaker.find_child("Animator").play(tagValue)
+				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
 	awaitingAnimations = false
 	_display_text(newPanel)

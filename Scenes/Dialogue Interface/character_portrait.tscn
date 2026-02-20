@@ -2,21 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="1_ao6xg"]
 
-[sub_resource type="Animation" id="Animation_ao6xg"]
-resource_name = "Shake"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Portrait Image:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.46666667, 0.76666665),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-2.885, 0), Vector2(5.9, 0), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_4tfkg"]
 length = 0.001
 tracks/0/type = "value"
@@ -30,6 +15,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ao6xg"]
+resource_name = "Shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portrait Image:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.46666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2.885, 0), Vector2(5.9, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4tfkg"]
@@ -58,8 +58,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(275, 712)
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
