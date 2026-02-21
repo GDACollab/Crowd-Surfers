@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://djjk6bqiwfll7"]
+
+[ext_resource type="Texture2D" uid="uid://b1pif7ph1u7ns" path="res://Assets/Art/GrayboxTemplateAssets/TopColor.jpg" id="1_kodhy"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b1s72"]
+points = PackedVector3Array(0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1)
+
+[node name="ramp" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9016638, 0, -0.99968433)
+shape = SubResource("ConvexPolygonShape3D_b1s72")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(0.56294185, 0, 0, 0, -2.653091e-08, -0.48860973, 0, 0.6069565, -2.135781e-08, 0.52021104, 0, -1.590136)
+texture = ExtResource("1_kodhy")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.0067443, 0, 0, 0, -2.1005947e-08, 1, 0, -0.48056006, -4.371139e-08, 0.055808544, 0, -0.49684364)
+texture = ExtResource("1_kodhy")
