@@ -10,7 +10,10 @@ extends StaticBody3D
 @export var active: bool = false:
 	set(value): 
 		active = value
-		_update_hitboxes()
+		
+		# saftey check, to make sure we are in the edtior
+		if is_inside_tree() and Engine.is_editor_hint():
+			_update_hitboxes()
 
 @export_group("Dimensions")
 # different variables to edit the dimensions
@@ -72,16 +75,16 @@ var front = Vector2(0, 0)
 # extra variables because issues of rendering
 var offset_y: float = 0.01
 
+# ready function catches when someone just enters the edtior scene, turning off the editor
+func _ready():
+	if Engine.is_editor_hint():
+		active = false
+
 # updates hitboxes upon every small change
 func _update_hitboxes():
-	if (!active): return
+	if (!active) or !is_inside_tree(): return
 	# initially makes sure all previous versions are destroyed, careful this will reset everything you worked on
-	var child_list = []
-	for child in get_children():
-		if child is CollisionShape3D or child is Sprite3D:
-			child_list.append(child)
-	for child in child_list:
-		child.queue_free()
+	cleanup_generated_nodes()
 		
 	# begins checking if existing and creating assets
 	if (collect_all_assets()): 
@@ -96,6 +99,7 @@ func _update_hitboxes():
 func create_sprites():
 	# Creates top sprite
 	var top_sprite = Sprite3D.new()
+	top_sprite.add_to_group("generated_assets") # tags
 	
 	# add children
 	add_child(top_sprite)
@@ -109,6 +113,7 @@ func create_sprites():
 	
 	# Creates floor sprite
 	var front_sprite = Sprite3D.new()
+	front_sprite.add_to_group("generated_assets") # tags
 	
 	# add children
 	add_child(front_sprite)
@@ -122,6 +127,7 @@ func create_sprites():
 	
 	# Creates platform sprite
 	var plat_sprite = Sprite3D.new()
+	plat_sprite.add_to_group("generated_assets") # tags
 	
 	# add children
 	add_child(plat_sprite)
@@ -144,15 +150,17 @@ func create_sprites():
 	
 	# additional code for cropping the top art
 	plat_sprite.region_enabled = true
+	var ratio_2 = (texture_top.get_height() * 1.0) / texture_front.get_height()
 	var ratio = top_length / front_length
 	var crop_height_pixels = texture_top.get_height() / ratio
 	print(ratio)
+	print(ratio_2)
 	print(crop_height_pixels)
 	plat_sprite.region_rect = Rect2(0, 0, texture_top.get_width(), crop_height_pixels)
 	
 	# combines both the front and the top
 	plat_sprite.scale.x = width / base_top_w
-	plat_sprite.scale.z = (front_length / base_front_h) * ratio
+	plat_sprite.scale.z = (front_length / base_front_h) * ratio / ratio_2
 	
 	
 	# assign sizes depending on prior equations
@@ -180,6 +188,7 @@ func create_hitboxes():
 	
 	# next, creates the main collision shape, with all those nice looks
 	var main_collision = CollisionShape3D.new()
+	main_collision.add_to_group("generated_assets") # tags
 	
 	add_child(main_collision)
 	_set_owner(main_collision)
@@ -200,6 +209,7 @@ func create_hitboxes():
 	
 	# next, creates the platform collision shape, with all those nice looks
 	var platform_collision = CollisionShape3D.new()
+	platform_collision.add_to_group("generated_assets") # tags
 	
 	add_child(platform_collision)
 	_set_owner(platform_collision)
@@ -239,4 +249,16 @@ func collect_all_assets() -> bool:
 # sets the owner of the current node, to make sure the node appears in the scene
 func _set_owner(node):
 	if get_tree():
-		node.owner = get_tree().edited_scene_root
+		if (Engine.is_editor_hint() and is_inside_tree()):
+			var root = get_tree().edited_scene_root
+			if root:
+				node.owner = root
+				
+# cleanup "nuclear" process
+func cleanup_generated_nodes():
+	# finds all nodes in the scene with a tag to delete it
+	var children = get_children()
+	# iterates through, double checking to make sure it doesn't accidentally delete something
+	for child in children:
+		if child.name.begins_with("TopSprite") or child.name.begins_with("FrontSprite") or child.name.begins_with("PlatSprite") or child.name.begins_with("MainHitbox") or child.name.begins_with("PlatformHitbox"):
+			child.free() # frees for instant removal in tool script
