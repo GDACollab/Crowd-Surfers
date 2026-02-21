@@ -1,16 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlgt1uj4dq41k"]
+[gd_scene load_steps=16 format=3 uid="uid://dlgt1uj4dq41k"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_m8bnx"]
-[ext_resource type="PackedScene" uid="uid://b7ey2vwyboxkp" path="res://Assets/Level Components/Obstacles/Vehicles/BusGrayBox01_playtest.tscn" id="2_l5toy"]
 [ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="3_fb40m"]
-[ext_resource type="PackedScene" uid="uid://bkojx8yxl0shy" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding_Playtest.tscn" id="4_0jvoq"]
-[ext_resource type="PackedScene" uid="uid://rsvp8h0ufq0s" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="5_p5kxb"]
+[ext_resource type="PackedScene" uid="uid://dqsd8acginm5s" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Greybox_bus01.tscn" id="6_0bvg7"]
 [ext_resource type="PackedScene" uid="uid://y5n5ec6cpnys" path="res://Assets/Level Components/Obstacles/Floors/Road_turn_Alpha.tscn" id="6_vgops"]
 [ext_resource type="PackedScene" uid="uid://507eva6q8tab" path="res://Assets/Level Components/Obstacles/Floors/Road_Vertical_Alpha.tscn" id="7_mapnt"]
-[ext_resource type="PackedScene" uid="uid://ke7hyaldhm05" path="res://Assets/Level Components/Obstacles/Vehicles/Bus_UP_playtest.tscn" id="8_2afk1"]
-[ext_resource type="PackedScene" uid="uid://cp64vn3gfu61h" path="res://Assets/Level Components/Obstacles/Buildings/restaurant_Playtest.tscn" id="9_tipmy"]
-[ext_resource type="PackedScene" uid="uid://chebxo65l0rlx" path="res://Assets/Level Components/Obstacles/Buildings/CornerBuilding_playtest.tscn" id="10_bqh06"]
+[ext_resource type="PackedScene" uid="uid://dir3tbg3woyst" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Greybox_bus02.tscn" id="7_pmagv"]
+[ext_resource type="PackedScene" uid="uid://ceomufgt71qes" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Greybox_car01.tscn" id="8_lcdf5"]
+[ext_resource type="PackedScene" uid="uid://cpp53bskx1kqs" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Greybox_car02.tscn" id="9_kb1jn"]
+[ext_resource type="PackedScene" uid="uid://cmip1uls3rc1u" path="res://Assets/Level Components/GrayboxeComponents/BasicBuilding.tscn" id="10_6ftai"]
+[ext_resource type="PackedScene" uid="uid://cucybe22xhoq1" path="res://Assets/Level Components/GrayboxeComponents/BasicFloorGraybox.tscn" id="11_12o3i"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="11_joa4t"]
+[ext_resource type="PackedScene" uid="uid://bh7s8jcesooi0" path="res://Assets/Level Components/GrayboxeComponents/BusGrayBox.tscn" id="12_0vree"]
+[ext_resource type="PackedScene" uid="uid://jvkn0727l2pu" path="res://Assets/Level Components/GrayboxeComponents/LongBuildingHorizontal.tscn" id="13_itbvk"]
+[ext_resource type="PackedScene" uid="uid://c1i55psgtx5et" path="res://Assets/Level Components/GrayboxeComponents/LongBuildingVertical.tscn" id="14_kxqha"]
+[ext_resource type="PackedScene" uid="uid://bxlx4w31b7k0k" path="res://Assets/Level Components/GrayboxeComponents/LargeFloorPanelGraybox.tscn" id="15_2h5c4"]
 
 [node name="DebugLevel2" type="Node3D"]
 
@@ -22,9 +26,6 @@ player = NodePath("../Player")
 
 [node name="Level terrian" type="Node3D" parent="."]
 transform = Transform3D(0.167, 0, 0, 0, 0.167, 0, 0, 0, 0.167, 0, 0, 0)
-
-[node name="BusGrayBox01_playtest" parent="Level terrian" instance=ExtResource("2_l5toy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.007687, 0.01, -1.3423185)
 
 [node name="Road2" parent="Level terrian" instance=ExtResource("3_fb40m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 0)
@@ -53,90 +54,6 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 316.
 [node name="Road5" parent="Level terrian" instance=ExtResource("3_fb40m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.69801, 0, 0)
 
-[node name="BusGrayBox01_playtest2" parent="Level terrian" instance=ExtResource("2_l5toy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.87593, 0, 0)
-
-[node name="BusGrayBox01_playtest3" parent="Level terrian" instance=ExtResource("2_l5toy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.86266, 0, -9.731606)
-
-[node name="BusGrayBox01_playtest4" parent="Level terrian" instance=ExtResource("2_l5toy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 377.90613, 0, -110.857254)
-
-[node name="BusGrayBox01_playtest5" parent="Level terrian" instance=ExtResource("2_l5toy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 359.4743, 0, -47.093292)
-
-[node name="BasicBuilding" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.675, 15, -89.298)
-
-[node name="BasicBuilding2" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 34.357, 15, -89.298)
-
-[node name="BasicBuilding3" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 89.37, 15, -89.298)
-
-[node name="BasicBuilding4" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 144.188, 15, -89.298)
-
-[node name="BasicBuilding14" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 144.188, 14.9, -185.55)
-
-[node name="BasicBuilding12" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 416.654, 15, -145.2655)
-
-[node name="BasicBuilding15" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 416.654, 15, -53.769)
-
-[node name="BasicBuilding5" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 253.258, 15, -90.58)
-
-[node name="BasicBuilding8" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 277.238, 15, -257.622)
-
-[node name="BasicBuilding9" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 333.125, 15, -257.622)
-
-[node name="BasicBuilding11" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 389.527, 10, -257.622)
-
-[node name="BasicBuilding6" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 310.413, 15, -90.58)
-
-[node name="BasicBuilding13" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -47.372, 15, 78.97372)
-
-[node name="BasicBuilding16" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.865562, 15, 78.97372)
-
-[node name="BasicBuilding17" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65.01417, 15, 78.97372)
-
-[node name="BasicBuilding18" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 122.25172, 15, 78.97372)
-
-[node name="BasicBuilding19" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 178.65369, 15, 78.97372)
-
-[node name="BasicBuilding20" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 236.309, 15, 78.97372)
-
-[node name="BasicBuilding21" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 293.54657, 15, 78.97372)
-
-[node name="BasicBuilding22" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350.36627, 15, 78.97372)
-
-[node name="BasicBuilding23" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 406.35, 15.2, 78.97372)
-
-[node name="BasicBuilding24" parent="Level terrian" instance=ExtResource("4_0jvoq")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 414.288, 15.1, 27.277)
-
-[node name="CarRed" parent="Level terrian" instance=ExtResource("5_p5kxb")]
-transform = Transform3D(1.8000001, 0, 0, 0, 0.25, 0, 0, 0, 1.6899998, 50.10437, 0.44361562, -8.9086485)
-
-[node name="CarRed2" parent="Level terrian" instance=ExtResource("5_p5kxb")]
-transform = Transform3D(1.8000001, 0, 0, 0, 0.25, 0, 0, 0, 1.6899998, 137.63763, 0.44361562, 8.711701)
-
 [node name="Road6" parent="Level terrian" instance=ExtResource("6_vgops")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205.37755, 0, 0.26839733)
 
@@ -161,18 +78,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 369.08502, 0, -111.851875)
 [node name="Road14" parent="Level terrian" instance=ExtResource("7_mapnt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 369.08502, 0, -57.229424)
 
-[node name="Bus_Up_playtest" parent="Level terrian" instance=ExtResource("8_2afk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 196.3513, 0.00019531247, -58.08683)
-
-[node name="Bus_Up_playtest2" parent="Level terrian" instance=ExtResource("8_2afk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.14322, 0.00019531247, -118.73338)
-
-[node name="BasicBuilding7" parent="Level terrian" instance=ExtResource("9_tipmy")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 218.96155, -37.036617, -237.679)
-
-[node name="BasicBuilding10" parent="Level terrian" instance=ExtResource("10_bqh06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.44308, 10, -265.798)
-
 [node name="Player" parent="." instance=ExtResource("11_joa4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
 
@@ -181,3 +86,33 @@ transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958
 projection = 1
 size = 18.936
 near = 0.425
+
+[node name="GreyboxBus01" parent="." instance=ExtResource("6_0bvg7")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.110675, 2.0764768e-05, -13.771124)
+
+[node name="GreyboxBus02" parent="." instance=ExtResource("7_pmagv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.846397, 2.0764768e-05, -18.301561)
+
+[node name="GreyboxBus03" parent="." instance=ExtResource("8_lcdf5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.110675, 2.0764768e-05, -31.657799)
+
+[node name="GreyboxBus04" parent="." instance=ExtResource("9_kb1jn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.7258167, 2.0764768e-05, -18.301561)
+
+[node name="BasicBuilding" parent="." instance=ExtResource("10_6ftai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.452097, 0, -8.327194)
+
+[node name="BasicFloor" parent="." instance=ExtResource("11_12o3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.452097, 0, -26.037773)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("12_0vree")]
+transform = Transform3D(1.8000001, 0, 0, 0, 0.25, 0, 0, 0, 1.6899998, -4.3681927, 0, -19.566334)
+
+[node name="LongBuildingHorizontal" parent="." instance=ExtResource("13_itbvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.036182, 0, -41.75087)
+
+[node name="LongBuildingVertical" parent="." instance=ExtResource("14_kxqha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.036182, 0, -56.975845)
+
+[node name="LargeFloorPanel" parent="." instance=ExtResource("15_2h5c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.81948, -1.9073486e-06, -3.93824)
