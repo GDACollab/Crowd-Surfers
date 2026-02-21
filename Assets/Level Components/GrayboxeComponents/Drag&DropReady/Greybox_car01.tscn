@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceomufgt71qes"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_g25i5"]
+[ext_resource type="Texture2D" uid="uid://djb0glookl2du" path="res://Assets/Art/GrayboxTemplateAssets/Top_Test.png" id="2_yvp5l"]
+[ext_resource type="Texture2D" uid="uid://dvxos2c3cga6r" path="res://Assets/Art/GrayboxTemplateAssets/Front_Test.png" id="3_ve1rk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ucqvm"]
+size = Vector3(4, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i1y68"]
+size = Vector3(4, 1, 2)
+
+[node name="GreyboxBus01" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_g25i5")
+width = 4.0
+top_length = 10.0
+front_length = 2.0
+top_filename = "GrayboxTemplateAssets/Top_Test.png"
+front_filename = "GrayboxTemplateAssets/Front_Test.png"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-4, 0, -1.7484556e-06, 0, 1, 0, 3.496911e-07, 0, -20, 0, 0.01, 1)
+axis = 1
+texture = ExtResource("2_yvp5l")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, -4, 0, 0.01, -5)
+axis = 1
+texture = ExtResource("3_ve1rk")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-4, 0, -1.7484556e-06, 0, 1, 0, 3.496911e-07, 0, -20, 0, 2, 5)
+axis = 1
+texture = ExtResource("2_yvp5l")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 10)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("BoxShape3D_ucqvm")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+shape = SubResource("BoxShape3D_i1y68")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
