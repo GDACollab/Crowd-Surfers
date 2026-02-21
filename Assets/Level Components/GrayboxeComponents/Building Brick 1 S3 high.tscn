@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b58a8txaovkx"]
+
+[ext_resource type="Script" uid="uid://bgfkmb0fk43wh" path="res://Scripts/automated_asset_type_building.gd" id="1_8irjh"]
+[ext_resource type="Texture2D" uid="uid://dejdiwk26100u" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 1 S3.png" id="2_8irjh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8irjh"]
+size = Vector3(9.5, 50, 20.069)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_8irjh")
+active = true
+width = 10.0
+top_length = 20.069
+x_pad = 0.5
+top_filename = "AlphaSprites/CS Buildings S3/Building Brick 1 S3.png"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.7241379, 0, -1.5072918e-07, 0, 1, 0, 1.5072892e-07, 0, -1.7241409, 0, 0.01, -10.0345)
+axis = 1
+texture = ExtResource("2_8irjh")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.7241379, 0, -1.5072918e-07, 0, 1, 0, 1.5072892e-07, 0, -1.7241409, 0, 50, -5.01725)
+axis = 1
+texture = ExtResource("2_8irjh")
+region_enabled = true
+region_rect = Rect2(0, 0, 580, 582)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -10.0345)
+shape = SubResource("BoxShape3D_8irjh")
+debug_color = Color(1, 0, 0, 1)
