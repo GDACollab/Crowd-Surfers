@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=13 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="Texture2D" uid="uid://2y5aqlmv0kgk" path="res://Assets/Art/PauseScreen/square.png" id="2_no0yh"]
+[ext_resource type="Shader" uid="uid://dbhbs6o4ufvkc" path="res://Scripts/Shaders/blur.gdshader" id="2_p5gsh"]
 [ext_resource type="Texture2D" uid="uid://qeyfipl3hssl" path="res://Assets/Art/PauseScreen/temp_phone.png" id="3_qyxbx"]
 [ext_resource type="Texture2D" uid="uid://uj81v2lnrv0v" path="res://Assets/Art/PauseScreen/temp_phone_outline.png" id="4_r6arl"]
 [ext_resource type="Texture2D" uid="uid://c1hfiodjgkd6p" path="res://Assets/Art/PauseScreen/page_holder.png" id="5_g4tqe"]
 [ext_resource type="Texture2D" uid="uid://hdx1fa75x36k" path="res://Assets/Art/PauseScreen/page_circle.png" id="5_ojd7t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kv7i"]
+shader = ExtResource("2_p5gsh")
+shader_parameter/blur_amount = 1.250000059375
 
 [sub_resource type="Animation" id="Animation_r6arl"]
 length = 0.001
@@ -284,6 +289,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f6gwv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0kv7i")
+layout_mode = 0
+offset_left = -364.0
+offset_top = -232.0
+offset_right = 1556.0
+offset_bottom = 848.0
 
 [node name="FadeBackground" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.29411766)
