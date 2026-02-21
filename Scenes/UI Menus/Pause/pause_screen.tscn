@@ -1,11 +1,99 @@
-[gd_scene load_steps=4 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=8 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="Texture2D" uid="uid://dlqn1mqvvji1i" path="res://Assets/Art/PauseScreen/temp_phone.webp" id="1_nftcf"]
 [ext_resource type="Texture2D" uid="uid://2y5aqlmv0kgk" path="res://Assets/Art/PauseScreen/square.png" id="2_no0yh"]
 
+[sub_resource type="Animation" id="Animation_qyxbx"]
+resource_name = "rotate_landscape"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5707964]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.75, 1.75)]
+}
+
+[sub_resource type="Animation" id="Animation_g4tqe"]
+resource_name = "rotate_portrait"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5707963267948966, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.75, 1.75), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r6arl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
+_data = {
+&"RESET": SubResource("Animation_r6arl"),
+&"rotate_landscape": SubResource("Animation_qyxbx"),
+&"rotate_portrait": SubResource("Animation_g4tqe")
+}
+
 [node name="PauseScreen" type="Control"]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,56 +126,64 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -363.0
+offset_left = -375.0
 offset_top = -250.0
-offset_right = 387.0
+offset_right = 375.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(375, 250)
 texture = ExtResource("1_nftcf")
 expand_mode = 2
 
-[node name="ButtonContainer" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="PhoneBackground"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -115.0
-offset_right = 76.0
-offset_bottom = 115.0
+offset_left = -71.0
+offset_top = -137.0
+offset_right = 69.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResumeButton" type="Button" parent="ButtonContainer"]
+[node name="ResumeButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Resume"
 metadata/_edit_use_anchors_ = true
 
-[node name="ControlsButton" type="Button" parent="ButtonContainer"]
+[node name="ControlsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Controls"
 metadata/_edit_use_anchors_ = true
 
-[node name="SettingsButton" type="Button" parent="ButtonContainer"]
+[node name="SettingsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Settings
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ExitButton" type="Button" parent="ButtonContainer"]
+[node name="RestartLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Restart Level
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit Level
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ControlsContainer" type="VBoxContainer" parent="."]
+[node name="ControlsContainer" type="VBoxContainer" parent="PhoneBackground"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -95,16 +191,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -188.0
-offset_right = 140.0
-offset_bottom = 188.0
+offset_left = -134.0
+offset_top = -175.0
+offset_right = 126.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TempText" type="RichTextLabel" parent="ControlsContainer"]
-modulate = Color(0, 0, 0, 1)
+[node name="TextHolder" type="Control" parent="PhoneBackground/ControlsContainer"]
+custom_minimum_size = Vector2(0, 275)
 layout_mode = 2
+
+[node name="TempText" type="RichTextLabel" parent="PhoneBackground/ControlsContainer/TextHolder"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_top = 4.0
+offset_right = 260.0
+offset_bottom = 283.0
+rotation = 1.5707964
+pivot_offset = Vector2(130, 139)
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 22
 text = "Controls:
@@ -119,12 +224,32 @@ Escape: Pause
 fit_content = true
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="ControlsContainer"]
+[node name="BackButtonHolder" type="Control" parent="PhoneBackground/ControlsContainer"]
 layout_mode = 2
+
+[node name="BackButton" type="Button" parent="PhoneBackground/ControlsContainer/BackButtonHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -33.5
+offset_right = 65.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
 size_flags_vertical = 3
 text = "Back"
-metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
-[connection signal="pressed" from="ControlsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PhoneBackground"]
+libraries = {
+&"": SubResource("AnimationLibrary_ojd7t")
+}
+
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_back_button_pressed"]
