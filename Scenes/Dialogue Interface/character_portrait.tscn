@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvwdknj7n8u5o"]
+[gd_scene load_steps=7 format=3 uid="uid://cvwdknj7n8u5o"]
 
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="1_ao6xg"]
 
@@ -16,6 +16,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Portrait Image:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Portrait Image:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_ao6xg"]
 resource_name = "Shake"
@@ -23,19 +47,51 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Portrait Image:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6333333, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-7.485, 0), Vector2(5.9, 0), Vector2(-3.275, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ie1v2"]
+resource_name = "Spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portrait Image:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.46666667, 0.76666665),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.26666668, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-2.885, 0), Vector2(5.9, 0), Vector2(0, 0)]
+"values": [1.0, -1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_adinc"]
+resource_name = "Laugh"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portrait Image:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.46666667, 0.6, 0.8, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -6.77, 0.0, -4.275, 0.0, -5.655, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4tfkg"]
 _data = {
+&"Laugh": SubResource("Animation_adinc"),
 &"RESET": SubResource("Animation_4tfkg"),
-&"Shake": SubResource("Animation_ao6xg")
+&"Shake": SubResource("Animation_ao6xg"),
+&"Spin": SubResource("Animation_ie1v2")
 }
 
 [node name="Left Character Portrait" type="Panel"]

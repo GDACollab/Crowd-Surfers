@@ -185,6 +185,8 @@ func _display_choices():
 		if(iter == 0):
 			newChoiceButton._highlight()
 			selectedButton = newChoiceButton
+		else:
+			newChoiceButton._unhighlight()
 		iter += 1
 	await get_tree().create_timer(choiceSelectDelay).timeout
 	awaitingAnimations = false
