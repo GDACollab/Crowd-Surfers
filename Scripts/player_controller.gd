@@ -76,7 +76,7 @@ func _on_dash_duration_timer_timeout() -> void:
 	$DashCooldownTimer.start()
 
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE}
 
 # Active values - may change during execution
 var max_speed: float = 0.0
@@ -116,19 +116,14 @@ func _physics_process(delta: float) -> void:
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
 	match current_state:
-		States.GROUND:
+		States.GROUND, States.SLOPE:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
-		States.COYOTE:
-			fall(delta)
-			handle_inputs(delta)
-			if is_on_wall():
-				crash()
-		States.AIR:
+		States.COYOTE, States.AIR:
 			fall(delta)
 			handle_inputs(delta)
 			if is_on_wall():
@@ -171,6 +166,17 @@ func check_state_transitions() -> void:
 			elif not is_on_floor():
 				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
+			elif get_floor_angle() != 0.0:
+				transition_to(States.SLOPE)
+		States.SLOPE:
+			if Input.is_action_just_pressed("move_jump"):
+				jump()
+				transition_to(States.AIR)
+			elif not is_on_floor():
+				$CoyoteTimer.start()
+				transition_to(States.COYOTE)
+			elif get_floor_angle() == 0.0:
+				transition_to(States.GROUND)
 		States.COYOTE:
 			if is_on_floor():
 				transition_to(States.GROUND)
@@ -204,8 +210,23 @@ func check_state_transitions() -> void:
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
-	# If a state transition must do the exact same thing regardless of the starting state,
-	# add it to this match statement
+	# Use this match statement to maintain invariants when leaving states
+	match current_state:
+		States.AIR:
+			# Restore friction when leaving the air
+			friction *= 2.0
+		States.GLIDE:
+			# Stop glide sound
+			$GlideSound.set_parameter("glide_state", "end")
+		States.STOMP_FALL:
+			$StompSound.set_parameter("stomp_state", "end")
+		States.SLOPE:
+			var angle: float = get_floor_angle()
+			# Sloped movement maintains the velocity but internally multiplies it by the angle,
+			# but by default this is not maintained when leaving the slope
+			velocity *= cos(angle)
+
+	# Use this match statement to maintain invariants when entering states
 	match new_state:
 		States.STOMP_WINDUP:
 			# If dash is active as stomp begins, end it
@@ -244,19 +265,10 @@ func transition_to(new_state: int) -> void:
 			# Lower friction in midair
 			friction /= 2.0
 		
-	# Use this match statement to maintain invariants when leaving states
-	match current_state:
-		States.AIR:
-			# Restore friction when leaving the air
-			friction *= 2.0
-		States.GLIDE:
-			# Stop glide sound
-			$GlideSound.set_parameter("glide_state", "end")
-		States.STOMP_FALL:
-			$StompSound.set_parameter("stomp_state", "end")
+	
 	
 	current_state = new_state
-	#print_state()
+	print_state()
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -364,3 +376,5 @@ func print_state() -> void:
 			print("Stomp")
 		States.GLIDE:
 			print("Glide")
+		States.SLOPE:
+			print("Slope")
