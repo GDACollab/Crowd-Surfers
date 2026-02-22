@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dee5k55w3i0oa"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_v8kcr"]
+[ext_resource type="Texture2D" uid="uid://xwce54jrf2ut" path="res://Assets/Art/Chopped Art/Bus 1 Down/bus1_down_TOP(updated).PNG" id="2_wo8k8"]
+[ext_resource type="Texture2D" uid="uid://5xsw6e37ab4t" path="res://Assets/Art/Chopped Art/Bus 1 Down/bus1_down_FRONT(updated).PNG" id="3_cpemr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo8k8"]
+size = Vector3(4, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpemr"]
+size = Vector3(4, 1, 2)
+
+[node name="BusDown01" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_v8kcr")
+active = true
+width = 4.0
+top_length = 10.0
+front_length = 2.0
+top_filename = "Chopped Art/Bus 1 Down/bus1_down_TOP(updated).PNG"
+front_filename = "Chopped Art/Bus 1 Down/bus1_down_FRONT(updated).PNG"
+
+[node name="TopSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-0.6042296, 0, -4.8676377e-08, 0, 1, 0, 5.282343e-08, 0, -0.55679286, 0, 0.01, 1)
+axis = 1
+texture = ExtResource("2_wo8k8")
+
+[node name="FrontSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-0.6042296, 0, -9.735276e-09, 0, 1, 0, 5.282343e-08, 0, -0.111358576, 0, 0.01, -5)
+axis = 1
+texture = ExtResource("3_cpemr")
+
+[node name="PlatSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-0.6042296, 0, -4.8676377e-08, 0, 1, 0, 5.282343e-08, 0, -0.55679286, 0, 2, 5)
+axis = 1
+texture = ExtResource("2_wo8k8")
+region_enabled = true
+region_rect = Rect2(0, 0, 662, 359.2)
+
+[node name="MainHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("BoxShape3D_wo8k8")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+shape = SubResource("BoxShape3D_cpemr")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
