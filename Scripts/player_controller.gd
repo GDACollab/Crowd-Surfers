@@ -58,6 +58,14 @@ var player_sprite_starting_pos: float = 0.0
 ## The speed at which glide ends
 @export var glide_min_speed: float = 5.0
 
+# Shadow
+@export_category("Shadow")
+@export var shadow_base_scale: float = 1.28      # scale on the ground
+@export var shadow_min_scale: float = 0.55       # scale at/above max height
+@export var shadow_max_height: float = 3.0       # meters where shadow reaches min scale
+@export var shadow_lift: float = 1.5             # your +1.5 offset
+@export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
+
 ## When dash ends, reset values and begin the cooldown
 func _on_dash_duration_timer_timeout() -> void:
 	# Lower max speed to the base if it exceeds it
@@ -106,13 +114,14 @@ func _ready() -> void:
 	$DashDurationTimer.wait_time = dash_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
+	raycast.add_exception(self)
 
 func _physics_process(delta: float) -> void:
-	snap_sprite()
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
-
+	snap_sprite()
+	
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
 	match current_state:
@@ -346,16 +355,24 @@ func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
-	# Set player sprite offset
-	var offset = global_position.y
+	# sprite offset
+	var offset := global_position.y
 	player_sprite.position.z = player_sprite_starting_pos - offset
-	#print("Player offset", -offset)
-	var height = position.y - raycast.get_collision_point().y
-	# Drop shadow
-	player_shadow.position.z = player_sprite.position.z + 1.5 + height
-	height = clampf(height, 0, 0.5)
-	var scaleMod= 1.28-height #Should be base scale
-	player_shadow.scale = Vector3(scaleMod, scaleMod, scaleMod)
+	# shadow
+	if not raycast.is_colliding():
+		return
+	var height := global_position.y - raycast.get_collision_point().y
+	# position shadow "under" the sprite (your existing approach)
+	player_shadow.position.z = player_sprite.position.z + shadow_lift + height
+	# normalize height 0..1
+	var t := clampf(height / shadow_max_height, 0.0, 1.0)
+	# non-linear falloff (looks more natural than linear)
+	t = pow(t, shadow_falloff_exp)
+	# scale interpolation
+	var s: float = lerp(shadow_base_scale, shadow_min_scale, t)
+	player_shadow.scale = Vector3(s, s, s)
+	# optional: fade with height if your material supports it
+	# player_shadow.modulate.a = lerp(1.0, 0.15, t)
 
 ## Returns whether the player is currently dashing by checking the status of DashDurationTimer
 func is_dashing() -> bool:
