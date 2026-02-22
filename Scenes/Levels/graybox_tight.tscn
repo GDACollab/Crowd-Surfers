@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccryif6ims03c"]
+
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_xogt5"]
+[ext_resource type="PackedScene" uid="uid://bxlx4w31b7k0k" path="res://Assets/Level Components/GrayboxeComponents/LargeFloorPanelGraybox.tscn" id="2_qu0ww"]
+[ext_resource type="PackedScene" uid="uid://0no0pecfb48j" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding.tscn" id="3_g55rx"]
+[ext_resource type="PackedScene" uid="uid://3wp78tn115fv" path="res://Assets/Level Components/Obstacles/Buildings/LongBuildingVertical1.tscn" id="4_mekdw"]
+[ext_resource type="PackedScene" uid="uid://b5crw61ebhiac" path="res://Assets/Level Components/Obstacles/Buildings/LongBuildingHorizontal1.tscn" id="5_heo4t"]
+
+[node name="GrayboxTight" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_xogt5")]
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
+projection = 1
+size = 30.0
+near = 0.425
+
+[node name="MapObjects" type="Node3D" parent="."]
+
+[node name="LargeFloorPanel" parent="MapObjects" instance=ExtResource("2_qu0ww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.335, 20.082718)
+
+[node name="BasicBuilding" parent="MapObjects" instance=ExtResource("3_g55rx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.628296, -3.335, 65)
+
+[node name="LongBuildingVertical6" parent="MapObjects" instance=ExtResource("4_mekdw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.27701, -3.335148, 14.048767)
+
+[node name="LongBuildingHorizontal" parent="MapObjects" instance=ExtResource("5_heo4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.984406, -3.335, -25)
