@@ -23,13 +23,6 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_ha1v2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
-base_ramping_cap = 35.0
-base_acceleration = 40.0
-friction = 20.0
-stomp_speed = 30.0
-windup_duration = 0.15
-dash_duration = 0.5
-dash_cooldown = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
@@ -41,7 +34,7 @@ near = 0.425
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.197836, 3.335148, 0)
 
 [node name="LargeFloorPanel" parent="ObjectsGroup" instance=ExtResource("3_44o4h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.335, 20.082718)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.334, 20.083)
 
 [node name="LargeFloorPanel2" parent="ObjectsGroup" instance=ExtResource("3_44o4h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, -3.335, 20.082718)
@@ -201,3 +194,4 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26.5
 
 [node name="BusDown01" parent="." instance=ExtResource("12_gje2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.317295, 0.00034337043, -9.258632)
+active = false
