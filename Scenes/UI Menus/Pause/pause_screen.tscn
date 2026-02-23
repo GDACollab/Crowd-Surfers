@@ -1,0 +1,543 @@
+[gd_scene load_steps=13 format=3 uid="uid://i7gpb3ctj5lh"]
+
+[ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/pause_screen.gd" id="1_f6gwv"]
+[ext_resource type="Texture2D" uid="uid://2y5aqlmv0kgk" path="res://Assets/Art/PauseScreen/square.png" id="2_no0yh"]
+[ext_resource type="Shader" uid="uid://dbhbs6o4ufvkc" path="res://Scripts/Shaders/blur.gdshader" id="2_p5gsh"]
+[ext_resource type="Texture2D" uid="uid://qeyfipl3hssl" path="res://Assets/Art/PauseScreen/temp_phone.png" id="3_qyxbx"]
+[ext_resource type="Texture2D" uid="uid://uj81v2lnrv0v" path="res://Assets/Art/PauseScreen/temp_phone_outline.png" id="4_r6arl"]
+[ext_resource type="Texture2D" uid="uid://c1hfiodjgkd6p" path="res://Assets/Art/PauseScreen/page_holder.png" id="5_g4tqe"]
+[ext_resource type="Texture2D" uid="uid://hdx1fa75x36k" path="res://Assets/Art/PauseScreen/page_circle.png" id="5_ojd7t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kv7i"]
+shader = ExtResource("2_p5gsh")
+shader_parameter/blur_amount = 1.250000059375
+
+[sub_resource type="Animation" id="Animation_r6arl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ButtonContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(117.5, 87.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ControlsContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-294, 85)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PhonePage2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PhonePage3:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qyxbx"]
+resource_name = "rotate_landscape"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5707964]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.55, 1.55)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"hide_buttons"
+}, {
+"args": [],
+"method": &"stop_rotating"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonContainer:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(117.5, 87.5), Vector2(-236.5, 87.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ControlsContainer:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(409, 85), Vector2(55, 85)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PhonePage2:modulate")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PhonePage3:modulate")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g4tqe"]
+resource_name = "rotate_portrait"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5707963267948966, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.55, 1.55), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"hide_controls"
+}, {
+"args": [],
+"method": &"stop_rotating"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonContainer:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-236.5, 87.5), Vector2(117.5, 87.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ControlsContainer:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(55, 85), Vector2(409, 85)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PhonePage2:modulate")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PhonePage3:modulate")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
+_data = {
+&"RESET": SubResource("Animation_r6arl"),
+&"rotate_landscape": SubResource("Animation_qyxbx"),
+&"rotate_portrait": SubResource("Animation_g4tqe")
+}
+
+[node name="PauseScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f6gwv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0kv7i")
+layout_mode = 0
+offset_left = -364.0
+offset_top = -232.0
+offset_right = 1556.0
+offset_bottom = 848.0
+
+[node name="FadeBackground" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.29411766)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -940.0
+offset_top = -556.0
+offset_right = 980.0
+offset_bottom = 524.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_no0yh")
+expand_mode = 2
+
+[node name="PhoneBackground" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -275.0
+offset_right = 200.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 275)
+texture = ExtResource("3_qyxbx")
+expand_mode = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="PhoneBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -187.5
+offset_right = 82.50009
+offset_bottom = 187.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="PhoneBackground/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+metadata/_edit_use_anchors_ = true
+
+[node name="ControlsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Controls"
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="RestartLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Restart Level
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit Level
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ControlsContainer" type="VBoxContainer" parent="PhoneBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -494.0
+offset_top = -190.0
+offset_right = -204.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextHolder" type="Control" parent="PhoneBackground/ControlsContainer"]
+custom_minimum_size = Vector2(0, 275)
+layout_mode = 2
+
+[node name="TempText" type="RichTextLabel" parent="PhoneBackground/ControlsContainer/TextHolder"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 17.258076
+offset_top = -28.06451
+offset_right = 297.2581
+offset_bottom = 320.9355
+rotation = 1.5707964
+pivot_offset = Vector2(130, 139)
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[font_size=44]Controls:
+[font_size=26]WASD: Move
+Space (ground): Jump
+Space (midair): Glide
+Shift/J: Dash
+Ctrl/K: Stomp
+Escape: Pause
+ "
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BackButtonHolder" type="Control" parent="PhoneBackground/ControlsContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="PhoneBackground/ControlsContainer/BackButtonHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.87097
+offset_top = -15.451584
+offset_right = 46.12903
+offset_bottom = 51.548416
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+size_flags_vertical = 3
+text = "Back"
+
+[node name="PhoneOutline" type="TextureRect" parent="PhoneBackground"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -275.0
+offset_right = 200.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.01, 1.01)
+pivot_offset = Vector2(200, 275)
+mouse_filter = 2
+texture = ExtResource("4_r6arl")
+expand_mode = 1
+
+[node name="PhonePageHolder" type="TextureRect" parent="PhoneBackground"]
+modulate = Color(0.7121294, 0.7121294, 0.71212924, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -54.0
+offset_right = 30.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(30, 10)
+texture = ExtResource("5_g4tqe")
+expand_mode = 1
+
+[node name="PhonePage1" type="TextureRect" parent="PhoneBackground"]
+modulate = Color(0.78352344, 0.78352344, 0.78352326, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -49.0
+offset_right = -15.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(5, 5)
+texture = ExtResource("5_ojd7t")
+expand_mode = 1
+
+[node name="PhonePage2" type="TextureRect" parent="PhoneBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -49.0
+offset_right = 5.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(5, 5)
+texture = ExtResource("5_ojd7t")
+expand_mode = 1
+
+[node name="PhonePage3" type="TextureRect" parent="PhoneBackground"]
+modulate = Color(0.78352344, 0.78352344, 0.78352326, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -49.0
+offset_right = 25.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(5, 5)
+texture = ExtResource("5_ojd7t")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PhoneBackground"]
+libraries = {
+&"": SubResource("AnimationLibrary_ojd7t")
+}
+
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_back_button_pressed"]
