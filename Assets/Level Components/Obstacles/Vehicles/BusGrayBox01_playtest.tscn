@@ -1,24 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7ey2vwyboxkp"]
+[gd_scene load_steps=5 format=3 uid="uid://b7ey2vwyboxkp"]
 
 [ext_resource type="Texture2D" uid="uid://dupik100mvrd3" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3 Front.png" id="1_cajqu"]
 [ext_resource type="Texture2D" uid="uid://dntxapelb4cyv" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3 Top.png" id="2_xkh4a"]
+[ext_resource type="Texture2D" uid="uid://m25ehyyojlbm" path="res://Assets/Art/AlphaSprites/CS Vehicles S3/Bus 1 Side S3 proper.png" id="3_xkh4a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
-size = Vector3(51.068863, 22.965694, 16.98241)
+size = Vector3(35.8866, 19.968414, 11.306027)
 
 [node name="BusGrayBox01_playtest" type="StaticBody3D" groups=["Metal"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.3711367e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711367e-08, -0.25299984, 11.302186, -4.0513773)
+transform = Transform3D(-4.3711367e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711367e-08, -0.15210736, 6.359849, -3.9092283)
 shape = SubResource("BoxShape3D_v4416")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 4.242, 0, 0, 0, 3, 0, 10.841848, 21.504324)
+transform = Transform3D(2.121, 0, 0, 0, 3, 0, 0, 0, 3, 0, 7.984915, 14.0365505)
 alpha_cut = 1
 texture = ExtResource("1_cajqu")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, -1.8542372e-07, 3, 0, -4.242, -1.3113416e-07, 0.055828094, 22.740133, -4.3040814)
+transform = Transform3D(2.121, 0, 0, 0, -1.3113416e-07, 3, 0, -3, -1.3113416e-07, 0.055828094, 16.431982, -4.3040814)
 alpha_cut = 1
 texture = ExtResource("2_xkh4a")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(4.1862046e-07, 0, -2.15, 0, 4.665, 0, 2.15, 0, 4.1862046e-07, -5.7720566, 6.0487614, -3.7337685)
+alpha_cut = 1
+texture = ExtResource("3_xkh4a")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(-9.397949e-08, 0, 1, 0, 4.665, 0, -2.15, 0, -4.371139e-08, 5.9117527, 6.252388, -3.620203)
+flip_h = true
+alpha_cut = 1
+texture = ExtResource("3_xkh4a")
