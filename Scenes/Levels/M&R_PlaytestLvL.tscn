@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwnshx4xiskpw"]
+[gd_scene load_steps=14 format=3 uid="uid://cwnshx4xiskpw"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_v7xxd"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_yl5ff"]
 [ext_resource type="PackedScene" uid="uid://bkojx8yxl0shy" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding_Playtest.tscn" id="5_jadm0"]
-[ext_resource type="PackedScene" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
+[ext_resource type="PackedScene" uid="uid://rsvp8h0ufq0s" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
 [ext_resource type="PackedScene" uid="uid://y5n5ec6cpnys" path="res://Assets/Level Components/Obstacles/Floors/Road_turn_Alpha.tscn" id="7_asgt7"]
 [ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="8_30i2v"]
 [ext_resource type="PackedScene" uid="uid://b7ey2vwyboxkp" path="res://Assets/Level Components/Obstacles/Vehicles/BusGrayBox01_playtest.tscn" id="8_7640a"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cp64vn3gfu61h" path="res://Assets/Level Components/Obstacles/Buildings/restaurant_Playtest.tscn" id="10_30i2v"]
 [ext_resource type="PackedScene" uid="uid://chebxo65l0rlx" path="res://Assets/Level Components/Obstacles/Buildings/CornerBuilding_playtest.tscn" id="11_yl5ff"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="12_6q1pj"]
+[ext_resource type="Script" uid="uid://bc7v6pbvp7r8y" path="res://Scenes/Levels/camera_3d.gd" id="12_qc8oi"]
 
 [node name="DebugLevel2" type="Node3D"]
 
@@ -25,7 +26,7 @@ player = NodePath("../Player")
 transform = Transform3D(0.167, 0, 0, 0, 0.167, 0, 0, 0, 0.167, 0, 0, 0)
 
 [node name="BusGrayBox01_playtest" parent="Level terrian" instance=ExtResource("8_7640a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.007687, 0.01, -1.3423185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.007687, 0.01, -6.547973)
 
 [node name="Road2" parent="Level terrian" instance=ExtResource("8_30i2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 0)
@@ -55,10 +56,10 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 316.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.69801, 0, 0)
 
 [node name="BusGrayBox01_playtest2" parent="Level terrian" instance=ExtResource("8_7640a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.87593, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.87593, 0, -6.7788286)
 
 [node name="BusGrayBox01_playtest3" parent="Level terrian" instance=ExtResource("8_7640a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.86266, 0, -9.731606)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.86266, 0, -8.377855)
 
 [node name="BusGrayBox01_playtest4" parent="Level terrian" instance=ExtResource("8_7640a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 377.90613, 0, -110.857254)
@@ -67,70 +68,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 377.90613, 0, -110.857254)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 359.4743, 0, -47.093292)
 
 [node name="BasicBuilding" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.675, 15, -89.298)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.675001, 15, -33.627815)
 
 [node name="BasicBuilding2" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 34.357, 15, -89.298)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 34.357, 15, -33.627815)
 
 [node name="BasicBuilding3" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 89.37, 15, -89.298)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 89.37, 15, -33.627815)
 
 [node name="BasicBuilding4" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 144.188, 15, -89.298)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 144.188, 15, -33.627815)
 
 [node name="BasicBuilding14" parent="Level terrian" instance=ExtResource("5_jadm0")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 144.188, 14.9, -185.55)
 
 [node name="BasicBuilding12" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 416.654, 15, -145.2655)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 422.69342, 15, -145.2655)
 
 [node name="BasicBuilding15" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 416.654, 15, -53.769)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 423.29016, 15, -53.769)
 
 [node name="BasicBuilding5" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 253.258, 15, -90.58)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 253.258, 15, -36.000683)
 
 [node name="BasicBuilding8" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 277.238, 15, -257.622)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 277.238, 15, -205.50163)
 
 [node name="BasicBuilding9" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 333.125, 15, -257.622)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 333.125, 15, -205.50163)
 
 [node name="BasicBuilding11" parent="Level terrian" instance=ExtResource("5_jadm0")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 389.527, 10, -257.622)
 
 [node name="BasicBuilding6" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 310.413, 15, -90.58)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 310.41302, 15, -36.000683)
 
 [node name="BasicBuilding13" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -47.372, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -47.372005, 15, 136.83562)
 
 [node name="BasicBuilding16" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.865562, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.865562, 15, 136.83562)
 
 [node name="BasicBuilding17" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65.01417, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 65.01417, 15, 136.83562)
 
 [node name="BasicBuilding18" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 122.25172, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 122.251724, 15, 136.83562)
 
 [node name="BasicBuilding19" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 178.65369, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 178.65369, 15, 136.83562)
 
 [node name="BasicBuilding20" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 236.309, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 236.30902, 15, 136.83562)
 
 [node name="BasicBuilding21" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 293.54657, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 293.54657, 15, 136.83562)
 
 [node name="BasicBuilding22" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350.36627, 15, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350.36627, 15, 136.83562)
 
 [node name="BasicBuilding23" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 406.35, 15.2, 78.97372)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 406.35004, 15.200001, 136.83562)
 
 [node name="BasicBuilding24" parent="Level terrian" instance=ExtResource("5_jadm0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 414.288, 15.1, 27.277)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 422.93185, 15.1, 27.277)
 
 [node name="CarRed" parent="Level terrian" instance=ExtResource("6_vdeg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.453526, 0.44800138, -14.394943)
@@ -169,19 +170,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 196.3513, 0.00019531247, -58.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.14322, 0.00019531247, -118.73338)
 
 [node name="BasicBuilding7" parent="Level terrian" instance=ExtResource("10_30i2v")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 218.96155, -37.036617, -237.679)
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 218.96155, 44.130642, -287.17325)
 
 [node name="BasicBuilding10" parent="Level terrian" instance=ExtResource("11_yl5ff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.44308, 10, -265.798)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 419.4431, 75.37377, -253.5778)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -7.915543, 41.654823, 20)
+projection = 1
+size = 18.936
+near = 0.425
+script = ExtResource("12_qc8oi")
+player_path = NodePath("../Player")
+offset = Vector3(0, 50, 50)
 
 [node name="Player" parent="." instance=ExtResource("1_v7xxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
 jump_speed = 16.0
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
-projection = 1
-size = 18.936
-near = 0.425
-
 [node name="PauseHolder" parent="." instance=ExtResource("12_6q1pj")]
+metadata/_edit_use_anchors_ = true

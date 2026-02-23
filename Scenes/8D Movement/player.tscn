@@ -21,7 +21,7 @@ dash_cooldown = 0.5
 stomp_dash_margin = 1.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 0, 0.1, -0.823)
+transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 1.1866623, -0.095002174)
 texture = ExtResource("2_n136m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -37,11 +37,9 @@ texture = ExtResource("2_baiym")
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
 target_position = Vector3(0, -50, 0)
 
-[node name="Z-Orderer" parent="." node_paths=PackedStringArray("raycasts") instance=ExtResource("3_adpf1")]
+[node name="Z-Orderer" parent="." instance=ExtResource("3_adpf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2166841)
-lowered_y = 0.1
-raycasts = [NodePath("RayCast3D"), NodePath("RayCast3D2")]
-raycast_length = -3.0
+script = null
 
 [node name="RayCast3D" type="RayCast3D" parent="Z-Orderer"]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0.8, 0, -1.2158328)

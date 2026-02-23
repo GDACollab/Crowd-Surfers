@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7ey2vwyboxkp"]
+[gd_scene load_steps=4 format=3 uid="uid://b7ey2vwyboxkp"]
 
-[ext_resource type="Texture2D" uid="uid://ci6yidjdojapt" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3.png" id="1_gfknr"]
+[ext_resource type="Texture2D" uid="uid://dupik100mvrd3" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3 Front.png" id="1_cajqu"]
+[ext_resource type="Texture2D" uid="uid://dntxapelb4cyv" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3 Top.png" id="2_xkh4a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
 size = Vector3(36.540108, 17.361322, 16.98241)
@@ -13,6 +14,11 @@ shape = SubResource("BoxShape3D_v4416")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-3, 4.5298742e-07, -6.600236e-15, 0, -1.3113416e-07, -1, -4.5298742e-07, -3, 4.371139e-08, 0, 17, -5.24)
-flip_h = true
-texture = ExtResource("1_gfknr")
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 8.812979, 21.504324)
+alpha_cut = 1
+texture = ExtResource("1_cajqu")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, 3, 0, -3, -1.3113416e-07, 0.055828094, 17.213644, 3.118885)
+alpha_cut = 1
+texture = ExtResource("2_xkh4a")

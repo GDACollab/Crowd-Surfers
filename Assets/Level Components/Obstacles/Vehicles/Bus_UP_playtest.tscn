@@ -1,18 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://ke7hyaldhm05"]
+[gd_scene load_steps=4 format=3 uid="uid://ke7hyaldhm05"]
 
-[ext_resource type="Texture2D" uid="uid://b10hi3jxwakhy" path="res://Assets/Art/AlphaSprites/CS Vehicles S3/Bus 1 Up S3.png" id="1_8y6k3"]
+[ext_resource type="Texture2D" uid="uid://dupik100mvrd3" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3 Front.png" id="1_3vu1j"]
+[ext_resource type="Texture2D" uid="uid://dntxapelb4cyv" path="res://Assets/Art/AlphaSprites/Bus 1 Down S3 Top.png" id="2_40kck"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v4416"]
-size = Vector3(36.560883, 12.589844, 17.330845)
+[sub_resource type="BoxShape3D" id="BoxShape3D_g6uj5"]
+size = Vector3(36.540108, 17.361322, 16.98241)
 
 [node name="Bus_Up_playtest" type="StaticBody3D" groups=["Metal"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.3711356e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711356e-08, 0.2521162, 6.1570606, 0.8728876)
-shape = SubResource("BoxShape3D_v4416")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.3711367e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711367e-08, -0.25300026, 8.5, 0.93538165)
+shape = SubResource("BoxShape3D_g6uj5")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-3, 4.5298742e-07, -6.600235e-15, 0, -1.3113416e-07, -0.9999998, -4.5298742e-07, -3, 4.371138e-08, 0, 12.5, -5.24)
-texture = ExtResource("1_8y6k3")
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 8.812979, 19.226706)
+alpha_cut = 1
+texture = ExtResource("1_3vu1j")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, 3, 0, -3, -1.3113416e-07, 0.055828094, 17.213644, 0.84126663)
+alpha_cut = 1
+texture = ExtResource("2_40kck")
