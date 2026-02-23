@@ -27,6 +27,7 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_3lxoq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04830551, 2.4012852, 0)
+windup_duration = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
@@ -94,6 +95,10 @@ transform = Transform3D(0.18242103, 0, 0, 0, 0.18242103, 0, 0, 0, 0.18242103, 17
 
 [node name="Road19" parent="LevelFloor" instance=ExtResource("3_qor2u")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 148.32654, 0, 0.104267985)
+
+[node name="CableCarSide" parent="LevelFloor" instance=ExtResource("7_kbco2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 25.18811, 0, -8.192101)
+active = false
 
 [node name="LevelObstacles" type="Node3D" parent="."]
 
@@ -174,6 +179,9 @@ active = false
 [node name="CableCarSide6" parent="LevelObstacles" instance=ExtResource("7_kbco2")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 154.97424, 0, -8.146816)
 active = false
+
+[node name="WaymoConfusedSide3" parent="LevelObstacles" instance=ExtResource("6_4a0ei")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 16.745277, 0, 2.5681095)
 
 [node name="BasicBuilding" parent="." instance=ExtResource("15_hihcs")]
 transform = Transform3D(0.2875883, 0, 0, 0, 0.2875883, 0, 0, 0, 0.2875883, 41.455353, 0, -97.479965)
