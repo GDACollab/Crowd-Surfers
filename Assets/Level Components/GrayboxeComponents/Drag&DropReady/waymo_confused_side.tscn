@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cod5uty8fa75h"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_vcf1w"]
+[ext_resource type="Texture2D" uid="uid://c3xgcjnbtlqq1" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_TOP(UPDATE2).PNG" id="2_dtx8a"]
+[ext_resource type="Texture2D" uid="uid://buf0562seemuj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_FRONT(UPDATE2).PNG" id="3_qmvp7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dtx8a"]
+size = Vector3(5.9, 2, 2.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmvp7"]
+size = Vector3(5.9, 1, 1.85)
+
+[node name="WaymoConfusedSide" type="StaticBody3D"]
+script = ExtResource("1_vcf1w")
+width = 6.0
+top_length = 2.5
+front_length = 2.0
+z_pad = 0.15
+x_pad = 0.1
+top_filename = "/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_TOP(UPDATE2).PNG"
+front_filename = "/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_FRONT(UPDATE2).PNG"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.86206895, 0, -5.9069446e-08, 0, 1, 0, 7.536446e-08, 0, -0.6756757, 0, 0.01, 1)
+axis = 1
+texture = ExtResource("2_dtx8a")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.86206895, 0, -1.1975723e-07, 0, 1, 0, 7.536446e-08, 0, -1.369863, 0, 0.01, -1.25)
+axis = 1
+texture = ExtResource("3_qmvp7")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.86206895, 0, -5.9069446e-08, 0, 1, 0, 7.536446e-08, 0, -0.6756757, 0, 2, 1.25)
+axis = 1
+texture = ExtResource("2_dtx8a")
+region_enabled = true
+region_rect = Rect2(0, 0, 696, 296)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.925)
+shape = SubResource("BoxShape3D_dtx8a")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.175)
+shape = SubResource("BoxShape3D_qmvp7")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
