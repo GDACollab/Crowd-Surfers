@@ -1,18 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkojx8yxl0shy"]
+[gd_scene load_steps=4 format=3 uid="uid://bkojx8yxl0shy"]
 
-[ext_resource type="Texture2D" uid="uid://dejdiwk26100u" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 1 S3.png" id="1_lggot"]
+[ext_resource type="Texture2D" uid="uid://bvovabf7vx5ne" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 1 S3 Top.png" id="1_lggot"]
+[ext_resource type="Texture2D" uid="uid://db3x4clrxtg5o" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 1 S3 Front.png" id="2_guxmp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eeg00"]
-size = Vector3(116.623856, 113.374985, 55.02516)
+size = Vector3(80.70235, 87.1079, 55.02516)
 
 [node name="BasicBuilding" type="StaticBody3D" groups=["Concrete"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -56.796196, 38.123974, -3.6408997)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -43.662655, 20.16322, -3.6408997)
 shape = SubResource("BoxShape3D_eeg00")
 debug_color = Color(0.3276008, 1.1619871, 0.7100278, 0.85490197)
 
-[node name="FrontSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1.9106856e-14, 4.1525814e-07, -0.5, 4.3711393e-07, 9.999999, -4.1525823e-07, 9.999999, -4.3711393e-07, 1.9106853e-14, -0.9222564, 38.00833, -5)
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.152582e-07, -9.5, 4.371139e-08, 0, -4.152582e-07, -1, 9.5, -4.152582e-07, 1.9106855e-15, -14.9194145, 60.292885, -3.8465118)
 alpha_cut = 1
 texture = ExtResource("1_lggot")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-4.152582e-07, 0, 1, 0, 9.5, 0, -9.5, 0, -4.371139e-08, 0, 20.353333, -3.27536)
+alpha_cut = 1
+texture = ExtResource("2_guxmp")
