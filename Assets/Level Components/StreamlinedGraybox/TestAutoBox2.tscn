@@ -1,47 +1,58 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs87mog6a7mjt"]
 
-[ext_resource type="PackedScene" uid="uid://1w4j6y2sexvg" path="res://Assets/Level Components/StreamlinedGraybox/TestAutoBox.tscn" id="1_x0hpq"]
-[ext_resource type="Texture2D" uid="uid://djb0glookl2du" path="res://Assets/Art/GrayboxTemplateAssets/Top_Test.png" id="2_atabj"]
-[ext_resource type="Texture2D" uid="uid://dvxos2c3cga6r" path="res://Assets/Art/GrayboxTemplateAssets/Front_Test.png" id="3_8aiq5"]
+[ext_resource type="Script" uid="uid://bgfkmb0fk43wh" path="res://Scripts/automated_asset_type_building.gd" id="2_w01xr"]
+[ext_resource type="Texture2D" uid="uid://djb0glookl2du" path="res://Assets/Art/GrayboxTemplateAssets/Top_Test.png" id="2_x0hpq"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_atabj"]
-size = Vector3(2, 1, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_w01xr"]
+size = Vector3(1.625, 2.1, 4.24)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8aiq5"]
-size = Vector3(2, 0.1, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_x0hpq"]
+size = Vector3(0.655, 2.1, 3.195)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_atabj"]
+points = PackedVector3Array(-0.3275, 0, 0.5225, -0.3275, 2.1, 0.5225, -0.3275, 0, -0.5225, -0.3275, 2.1, -0.5225, 0.3275, 0, 0.5225, 0.3275, 2.1, 0.5225)
 
 [node name="StaticBody3D" type="StaticBody3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="StaticBody3D2" parent="." instance=ExtResource("1_x0hpq")]
-transform = Transform3D(1, 0, 1.7484554e-07, 0, 1, 0, -1.7484554e-07, 0, 1, -2, 0, -1.7484555e-07)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.467945e-07, 0, -1.6791334)
+script = ExtResource("2_w01xr")
+active = true
+width = 2.125
+top_length = 5.345
+height = 2.1
+offsetZL = 1.045
+offsetXL = 0.655
+offsetZR = -0.53
+offsetXR = 0.49
+z_pad = 1.105
+x_pad = -0.155
+top_filename = "GrayboxTemplateAssets/Top_Test.png"
 
-[node name="StaticBody3D" parent="." instance=ExtResource("1_x0hpq")]
-top_length = 2.0
-
-[node name="TopSprite5" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-2, 0, -3.496911e-07, 0, 1, 0, 1.7484555e-07, 0, -4, 0, 0.01, 0.5)
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-2.125, 0, -9.3454946e-07, 0, 1, 0, 1.857734e-07, 0, -10.69, 0, 0.01, -2.6725)
 axis = 1
-texture = ExtResource("2_atabj")
+texture = ExtResource("2_x0hpq")
 
-[node name="FrontSprite5" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-2, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, -2, 0, 0.01, -1)
+[node name="PlatSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-2.125, 0, -9.3454946e-07, 0, 1, 0, 1.857734e-07, 0, -10.69, 0, 2.1, -1.33625)
 axis = 1
-texture = ExtResource("3_8aiq5")
-
-[node name="PlatSprite5" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-2, 0, -3.496911e-07, 0, 1, 0, 1.7484555e-07, 0, -4, 0, 1, 1)
-axis = 1
-texture = ExtResource("2_atabj")
+texture = ExtResource("2_x0hpq")
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 25)
 
-[node name="MainHitbox5" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_atabj")
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3275, 1.05, -2.6725)
+shape = SubResource("BoxShape3D_w01xr")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="PlatformHitbox5" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 1)
-shape = SubResource("BoxShape3D_8aiq5")
-debug_color = Color(0.85490197, 0, 0.8862745, 1)
+[node name="LeftHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8125, 1.05, -2.15)
+shape = SubResource("BoxShape3D_x0hpq")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="LeftTriHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8125, 0, -4.27)
+shape = SubResource("ConvexPolygonShape3D_atabj")
+debug_color = Color(1, 0, 0, 1)
