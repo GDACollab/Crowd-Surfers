@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwnshx4xiskpw"]
+[gd_scene load_steps=13 format=3 uid="uid://cwnshx4xiskpw"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="1_v7xxd"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_yl5ff"]
 [ext_resource type="PackedScene" uid="uid://bkojx8yxl0shy" path="res://Assets/Level Components/Obstacles/Buildings/BasicBuilding_Playtest.tscn" id="5_jadm0"]
-[ext_resource type="PackedScene" uid="uid://rsvp8h0ufq0s" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
+[ext_resource type="PackedScene" path="res://Assets/Level Components/Obstacles/Vehicles/car_playtest.tscn" id="6_vdeg2"]
 [ext_resource type="PackedScene" uid="uid://y5n5ec6cpnys" path="res://Assets/Level Components/Obstacles/Floors/Road_turn_Alpha.tscn" id="7_asgt7"]
 [ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="8_30i2v"]
 [ext_resource type="PackedScene" uid="uid://b7ey2vwyboxkp" path="res://Assets/Level Components/Obstacles/Vehicles/BusGrayBox01_playtest.tscn" id="8_7640a"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ke7hyaldhm05" path="res://Assets/Level Components/Obstacles/Vehicles/Bus_UP_playtest.tscn" id="9_7640a"]
 [ext_resource type="PackedScene" uid="uid://cp64vn3gfu61h" path="res://Assets/Level Components/Obstacles/Buildings/restaurant_Playtest.tscn" id="10_30i2v"]
 [ext_resource type="PackedScene" uid="uid://chebxo65l0rlx" path="res://Assets/Level Components/Obstacles/Buildings/CornerBuilding_playtest.tscn" id="11_yl5ff"]
+[ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="12_6q1pj"]
 
 [node name="DebugLevel2" type="Node3D"]
 
@@ -132,10 +133,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 406.
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 414.288, 15.1, 27.277)
 
 [node name="CarRed" parent="Level terrian" instance=ExtResource("6_vdeg2")]
-transform = Transform3D(1.8000001, 0, 0, 0, 0.25, 0, 0, 0, 1.6899998, 50.10437, 0.44361562, -8.9086485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.453526, 0.44800138, -14.394943)
 
 [node name="CarRed2" parent="Level terrian" instance=ExtResource("6_vdeg2")]
-transform = Transform3D(1.8000001, 0, 0, 0, 0.25, 0, 0, 0, 1.6899998, 137.63763, 0.44361562, 8.711701)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.79594, 0.9589424, 8.779773)
 
 [node name="Road6" parent="Level terrian" instance=ExtResource("7_asgt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205.37755, 0, 0.26839733)
@@ -175,9 +176,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 419.44308, 10, -265.798)
 
 [node name="Player" parent="." instance=ExtResource("1_v7xxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
+jump_speed = 16.0
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
 projection = 1
 size = 18.936
 near = 0.425
+
+[node name="PauseHolder" parent="." instance=ExtResource("12_6q1pj")]
