@@ -1,6 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2ivuudiacf56"]
+[gd_scene load_steps=6 format=3 uid="uid://b2ivuudiacf56"]
 
 [ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_bjusy"]
+[ext_resource type="Texture2D" uid="uid://tw40jg375tvg" path="res://Assets/Art/Chopped Art (Fixed)/Cable Car Down/cablecar_down_TOP.png" id="2_hxe8n"]
+[ext_resource type="Texture2D" uid="uid://c0srinbi4olmc" path="res://Assets/Art/Chopped Art (Fixed)/Cable Car Down/cablecar_down_FRONT.png" id="3_6ete2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxe8n"]
+size = Vector3(5, 4, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ete2"]
+size = Vector3(5, 1, 4)
 
 [node name="CableCarDown" type="StaticBody3D"]
 script = ExtResource("1_bjusy")
+width = 5.0
+top_length = 8.0
+front_length = 4.0
+top_filename = "/Chopped Art (Fixed)/Cable Car Down/cablecar_down_TOP.png"
+front_filename = "/Chopped Art (Fixed)/Cable Car Down/cablecar_down_FRONT.png"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.9363296, 0, -9.118412e-08, 0, 1, 0, 8.1856534e-08, 0, -1.0430248, 0, 0.01, 2)
+axis = 1
+texture = ExtResource("2_hxe8n")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.9363296, 0, -9.375096e-08, 0, 1, 0, 8.1856534e-08, 0, -1.072386, 0, 0.01, -4)
+axis = 1
+texture = ExtResource("3_6ete2")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.9363296, 0, -9.118412e-08, 0, 1, 0, 8.1856534e-08, 0, -1.0430248, 0, 4, 4)
+axis = 1
+texture = ExtResource("2_hxe8n")
+region_enabled = true
+region_rect = Rect2(0, 0, 534, 383.5)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+shape = SubResource("BoxShape3D_hxe8n")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 4)
+shape = SubResource("BoxShape3D_6ete2")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
