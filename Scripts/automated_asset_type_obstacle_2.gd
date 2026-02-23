@@ -113,6 +113,8 @@ func _update_hitboxes():
 
 # creates sprite, one for the front, top, and then one specifically for the platform
 func create_sprites():
+	
+	
 	# Createsbsprite
 	var top_sprite = Sprite3D.new()
 	
@@ -127,24 +129,67 @@ func create_sprites():
 	top_sprite.rotation_degrees.y = -180 # rotates top_sprite
 	print('initial values')
 	
+	# Creates floor sprite
+	var front_sprite = Sprite3D.new()
+	
+	# add children
+	add_child(front_sprite)
+	_set_owner(front_sprite)
+	
+	front_sprite.texture = texture
+	front_sprite.name = "FrontSprite"
+	front_sprite.pixel_size = pixel_size
+	front_sprite.axis = Vector3.AXIS_Y # lays flat
+	front_sprite.rotation_degrees.y = 180 # rotates sprite
+	
+	# ratio for cutoff
+	var ratio_top = 1.0 - art_z_cutoff
+	var ratio_front = art_z_cutoff
+	
 	# assign top and front vectors with sizes compensating for pixel size
-	var base_top_w = texture.get_width() * pixel_size
-	var base_top_h = texture.get_height() * pixel_size
-	top = Vector2(base_top_w, base_top_h)
+	var text_w = texture.get_width()
+	var text_h = texture.get_height()
+	var crop_h_top = text_h * ratio_top
+	var crop_h_front = text_h * ratio_front
+	
+	
+	
+	# calculates relative size of z of both front and top, and y as well (z is x in this case)
+	top.x = top_length
+	front.x = front_length
+	top.y = (top_length / (top_length + front_length)) * front_length
+	front.y = (front_length / (top_length + front_length)) * front_length
+	#+ top_length * ratio_front
 	
 	# calculates angle
-	var hypo = sqrt(pow(top_length + front_length, 2.0) + pow(front_length, 2.0))
-	var ang_rad = atan2(top_length + front_length, front_length)
+	# hypo top, has ratio_top * front_length is height, and the length is top_length
+	# hypo front, has ratio_front * front_length is height, and the length is front_length
+	var hypo_top = sqrt(pow(top.y, 2.0) + pow(top.x, 2.0))
+	var hypo_front = sqrt(pow(front.y, 2.0) + pow(front.x, 2.0))
+	var ang_rad = atan2(front.x + top.x, front.x)
 	top_sprite.rotation_degrees.x = (90 - rad_to_deg(ang_rad))
+	front_sprite.rotation_degrees.x = (90 - rad_to_deg(ang_rad))
 	print('anngle calc')
 	
+	top_sprite.region_enabled = true
+	front_sprite.region_enabled = true
+	print(ratio_top)
+	print(ratio_front)
+	
+	top_sprite.region_rect = Rect2(0, 0, text_w, crop_h_top)
+	front_sprite.region_rect = Rect2(0, crop_h_top, text_w, crop_h_front)
+	
 	# assign sizes depending on prior equations
-	top_sprite.scale.x = width / base_top_w 
-	top_sprite.scale.z = hypo / base_top_h
+	top_sprite.scale.x = width / (text_w * pixel_size)
+	top_sprite.scale.z = hypo_top / (crop_h_top * pixel_size)
+	
+	front_sprite.scale.x = width/ (text_w * pixel_size)
+	front_sprite.scale.z = hypo_front / (crop_h_front * pixel_size)
 	
 	# assign positions (because I did the math after the x and y were assigned)
-	top_sprite.position = Vector3(0, front_length / 2.0, -top_length / 2.0 - front_length / 2.0)
-	
+	top_sprite.position = Vector3(0, front.y + top.y/2.0, -top_length / 2.0)
+	front_sprite.position = Vector3(0, front.y / 2.0, -top_length - front_length / 2.0)
+
 	
 	
 	print("added sprites")
@@ -154,11 +199,10 @@ func create_hitboxes():
 	# Creates the main hitbox (relies on top image)
 	# first creates shape which collision will refer to
 	var main_box_shape = BoxShape3D.new()
-	main_box_shape.size = Vector3(width - x_pad_hitbox, front_length, top_length - z_pad_bottom) # might need to divide front length by 2
+	main_box_shape.size = Vector3(width - x_pad_hitbox, front_length, top_length - z_pad_bottom - offset_plat) # might need to divide front length by 2
 	
 	# next, creates the main collision shape, with all those nice looks
 	var main_collision = CollisionShape3D.new()
-	main_collision.add_to_group("generated_assets") # tags
 	
 	add_child(main_collision)
 	_set_owner(main_collision)
@@ -168,18 +212,17 @@ func create_hitboxes():
 	main_collision.debug_color = Color("#ff0000")
 	main_collision.debug_color.a = 1.0
 	main_collision.debug_fill = true
-	main_collision.position = Vector3(0, front_length / 2.0, -top_length / 2.0 -front_length + z_pad_bottom/2.0 + offset_plat/2.0)
+	main_collision.position = Vector3(0, front_length / 2.0, -top_length / 2.0 -front_length + z_pad_bottom/2.0 - offset_plat/2.0)
 	
 	print("added main")
 	
 	# Creates the platform hitbox (relies on front image)
 	# first creates shape which collision will refer to
 	var plat_box_shape = BoxShape3D.new()
-	plat_box_shape.size = Vector3(width - x_pad_platform, platform_thickness, front_length - z_pad_top)
+	plat_box_shape.size = Vector3(width - x_pad_platform, platform_thickness, front_length - z_pad_top + offset_plat)
 	
 	# next, creates the platform collision shape, with all those nice looks
 	var platform_collision = CollisionShape3D.new()
-	platform_collision.add_to_group("generated_assets") # tags
 	
 	add_child(platform_collision)
 	_set_owner(platform_collision)
@@ -189,7 +232,7 @@ func create_hitboxes():
 	platform_collision.debug_color = Color("#da00e2")
 	platform_collision.debug_color.a = 1.0
 	platform_collision.debug_fill = true
-	platform_collision.position = Vector3(0, front_length - platform_thickness/2.0, -front_length/2.0 - z_pad_top/2.0 + offset_plat/2.0)
+	platform_collision.position = Vector3(0, front_length - platform_thickness/2.0, -front_length/2.0 - z_pad_top/2.0 - offset_plat/2.0)
 	
 	print("added platform")
 	
