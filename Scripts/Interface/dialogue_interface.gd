@@ -207,6 +207,7 @@ func _find_choice(desiredIndex):
 
 ##Handles all Ink tag functions
 func _handle_tags(currentTags, newPanel):
+	_reset_display()
 	awaitingAnimations = true
 	for t : String in currentTags:
 		var splitTag = t.split(":")
@@ -260,5 +261,13 @@ func _handle_tags(currentTags, newPanel):
 				pass
 			"anim":
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
+			"bg":
+				print("Choosing new background!")
 	awaitingAnimations = false
 	_display_text(newPanel)
+
+func _reset_display():
+	leftPortrait.scale = Vector2.ONE
+	leftPortrait.self_modulate = Color.WHITE
+	rightPortrait.scale = Vector2.ONE
+	leftPortrait.self_modulate = Color.WHITE

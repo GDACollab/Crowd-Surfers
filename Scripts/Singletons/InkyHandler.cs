@@ -8,6 +8,8 @@ public partial class InkyHandler : Node
 	public delegate void DialogueStartedEventHandler();
 	[Signal]
 	public delegate void DialogueEndedEventHandler();
+	[Signal]
+	public delegate void LineStartedEventHandler();
 	private InkStory defaultStory;
 	private InkStory currentStory;
 	private PackedScene dialogueInterface;
