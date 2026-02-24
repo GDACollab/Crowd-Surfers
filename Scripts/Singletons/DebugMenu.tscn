@@ -9,22 +9,21 @@
 [node name="DebugMenu" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -324.0
-offset_right = -507.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 script = ExtResource("1_fyald")
 
 [node name="DebugMenuButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 956.0
-offset_top = -320.0
-offset_right = 1149.0
-offset_bottom = -270.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -193.0
+offset_bottom = 50.0
+grow_horizontal = 0
 focus_mode = 0
 theme_override_font_sizes/font_size = 30
 text = "Debug Menu"
@@ -46,5 +45,10 @@ script = ExtResource("2_4qakc")
 
 [node name="DebugOverlay" parent="." instance=ExtResource("3_my3p2")]
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+grow_horizontal = 1
+grow_vertical = 0
 
 [connection signal="pressed" from="DebugMenuButton" to="." method="_on_debug_menu_button_pressed"]
