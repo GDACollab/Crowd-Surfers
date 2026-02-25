@@ -281,7 +281,7 @@ extends StaticBody3D
 		bottom_b_cutoff = value
 		_update_hitboxes()
 @export var bottom_l_cutoff: float = 0.0:
-	set(value): 
+	set(value):
 		bottom_l_cutoff = value
 		_update_hitboxes()
 @export var bottom_r_cutoff: float = 0.0:
