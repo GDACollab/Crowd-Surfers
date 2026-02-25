@@ -116,7 +116,7 @@ func _ready() -> void:
 	$StompDashMargin.wait_time = stomp_dash_margin
 	raycast.add_exception(self)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
@@ -355,24 +355,20 @@ func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
-	# sprite offset
-	var offset := global_position.y
-	player_sprite.position.z = player_sprite_starting_pos - offset
-	# shadow
+	raycast.force_raycast_update()
+
 	if not raycast.is_colliding():
 		return
-	var height := global_position.y - raycast.get_collision_point().y
-	# position shadow "under" the sprite (your existing approach)
-	player_shadow.position.z = player_sprite.position.z + shadow_lift + height
-	# normalize height 0..1
+
+	var ground_point: Vector3 = raycast.get_collision_point()
+	var height := global_position.y - ground_point.y
+
+	player_shadow.global_position = ground_point + Vector3(0.0, 0.01, 0.0)
+
 	var t := clampf(height / shadow_max_height, 0.0, 1.0)
-	# non-linear falloff (looks more natural than linear)
 	t = pow(t, shadow_falloff_exp)
-	# scale interpolation
 	var s: float = lerp(shadow_base_scale, shadow_min_scale, t)
 	player_shadow.scale = Vector3(s, s, s)
-	# optional: fade with height if your material supports it
-	# player_shadow.modulate.a = lerp(1.0, 0.15, t)
 
 ## Returns whether the player is currently dashing by checking the status of DashDurationTimer
 func is_dashing() -> bool:
