@@ -3,11 +3,8 @@ extends Control
 @onready var timerDisplay: Label = $Timer/Text
 
 func set_time(value: float):
-	var formatted_time = str(value)
+	var value_Int = int(value)
+	var floating_Points = snapped((value - value_Int) * 100,0)
+	var formatted_time = str(value_Int) + ":" + str(floating_Points)
 	timerDisplay.text = formatted_time
-	#print("Done at set_time")
 	
-func _ready() -> void:
-	#print("Testing signal at timer")
-	#set_time(5.0)
-	pass
