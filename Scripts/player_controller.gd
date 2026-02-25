@@ -7,7 +7,7 @@ var player_sprite_starting_pos: float = 0.0
 # General movement
 @export_category("General Movement")
 ## The highest value max_speed can be at before modifications
-@export var base_ramping_cap: float = 25.0 #the speed at which the player speeds up
+@export var base_ramping_cap: float = 35.0 #the speed at which the player speeds up
 ## Initial speed when starting from rest
 @export var starting_speed : float = 5.0
 ## Growth exponent for ramping
@@ -15,24 +15,24 @@ var player_sprite_starting_pos: float = 0.0
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.5
 ## Acceleration before modifications
-@export var base_acceleration: float = 30.0
+@export var base_acceleration: float = 40.0
 ## Rate at which the player decelerates
-@export var friction: float = 30.0
+@export var friction: float = 20.0
 ## Added to player's vertical speed in states where they can fall
 @export var gravity: float = 40.0
 ## Speed of the player's jump
-@export var jump_speed: float = 14.0
+@export var jump_speed: float = 16.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 
 # Stomp
 @export_category("Stomp")
 ## Initial speed of the stomp before gravity is applied
-@export var stomp_speed: float = 10.0
+@export var stomp_speed: float = 30.0
 ## The maximum speed that the player can be at on the first frame of the windup
 @export var max_speed_for_windup: float = 5.0
 ## Time it takes the stomp to windup. This should be tied to an animation in the future
-@export var windup_duration: float = 0.5
+@export var windup_duration: float = 0.15
 ## Rate at which stomp boost accumulates per second
 @export var stomp_dash_boost_factor: float = 25.0
 ## Maximum boost which can be gained from stomp-dashing
@@ -41,15 +41,15 @@ var player_sprite_starting_pos: float = 0.0
 # Dash
 @export_category("Dash")
 ## Time that the dash lasts
-@export var dash_duration: float = 5.0
+@export var dash_duration: float = 0.5
 ## Minimum time between dasehs
-@export var dash_cooldown: float = 3.0
+@export var dash_cooldown: float = 0.5
 ## Multiplier applied to all relevant speed variables by the dash
 @export var dash_speed_multiplier: float = 1.2
 ## Initial speed boost added on by the dash
 @export var dash_boost: float = 5.0
 ## The time after stomp finishes that the player can activate dash and get an extra boost
-@export var stomp_dash_margin: float = 0.1
+@export var stomp_dash_margin: float = 1.0
 
 # Glide
 @export_category("Glide")
@@ -102,8 +102,46 @@ var stomp_boost: float = 0.0
 ## The current state the player is in
 var current_state: int = States.GROUND
 
+# ── Collider scaling ───────────────────────────────────────────────────────
+# The collider height that all exported values are tuned for (0.2 = current size).
+# Update this constant whenever you re-tune the exported values at a new size.
+const REFERENCE_HEIGHT := 2.0
+# Computed once in _ready(); kept here only for debugging / introspection.
+var _collider_scale := 1.0
+
 func _ready() -> void:
 	global_position = PlayerSpawn.spawnpoint
+	# ── Scale all feel values to the actual collider height ────────────────
+	# Only speed/acceleration/distance values are scaled; durations and
+	# dimensionless ratios (exponents, multipliers) are left untouched.
+	var _shape: Shape3D = $CollisionShape3D.shape
+	var _actual_h := REFERENCE_HEIGHT  # safe fallback
+	if   _shape is CapsuleShape3D:   _actual_h = _shape.height
+	elif _shape is BoxShape3D:        _actual_h = _shape.size.y
+	elif _shape is SphereShape3D:     _actual_h = _shape.radius * 2.0
+	elif _shape is CylinderShape3D:   _actual_h = _shape.height
+	_collider_scale = _actual_h / REFERENCE_HEIGHT
+	var s := _collider_scale  # shorthand
+	# General Movement
+	base_ramping_cap          *= s  # units/s
+	starting_speed            *= s  # units/s
+	base_acceleration         *= s  # units/s²
+	friction                  *= s  # units/s²
+	gravity                   *= s  # units/s²
+	jump_speed                *= s  # units/s
+	# Stomp
+	stomp_speed               *= s  # units/s
+	max_speed_for_windup      *= s  # units/s
+	stomp_dash_boost_factor   *= s  # units/s per s
+	max_stomp_dash_boost      *= s  # units/s
+	# Dash
+	dash_boost                *= s  # units/s
+	# Glide
+	glide_min_speed           *= s  # units/s
+	# Shadow
+	shadow_max_height         *= s  # units
+	shadow_lift               *= s  # units
+	# ── End scaling ────────────────────────────────────────────────────────
 	# Initialize values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
@@ -116,7 +154,7 @@ func _ready() -> void:
 	$StompDashMargin.wait_time = stomp_dash_margin
 	raycast.add_exception(self)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
@@ -355,24 +393,20 @@ func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
-	# sprite offset
-	var offset := global_position.y
-	player_sprite.position.z = player_sprite_starting_pos - offset
-	# shadow
+	raycast.force_raycast_update()
+
 	if not raycast.is_colliding():
 		return
-	var height := global_position.y - raycast.get_collision_point().y
-	# position shadow "under" the sprite (your existing approach)
-	player_shadow.position.z = player_sprite.position.z + shadow_lift + height
-	# normalize height 0..1
+
+	var ground_point: Vector3 = raycast.get_collision_point()
+	var height := global_position.y - ground_point.y
+
+	player_shadow.global_position = ground_point + Vector3(0.0, 0.01, 0.0)
+
 	var t := clampf(height / shadow_max_height, 0.0, 1.0)
-	# non-linear falloff (looks more natural than linear)
 	t = pow(t, shadow_falloff_exp)
-	# scale interpolation
 	var s: float = lerp(shadow_base_scale, shadow_min_scale, t)
 	player_shadow.scale = Vector3(s, s, s)
-	# optional: fade with height if your material supports it
-	# player_shadow.modulate.a = lerp(1.0, 0.15, t)
 
 ## Returns whether the player is currently dashing by checking the status of DashDurationTimer
 func is_dashing() -> bool:

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1ewknvdw2hoo"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_1mate"]
+[ext_resource type="Texture2D" uid="uid://duawg6xtkn4iy" path="res://Assets/Art/Chopped Art (Fixed)/Cable Car Side/cablecar_side_TOP.PNG" id="2_1mate"]
+[ext_resource type="Texture2D" uid="uid://c7r3cqhs1h610" path="res://Assets/Art/Chopped Art (Fixed)/Cable Car Side/cablecar_side_FRONT.PNG" id="3_tbcbn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5tdae"]
+size = Vector3(50, 22.5, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvlci"]
+size = Vector3(50, 2.5, 25)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_1mate")
+active = true
+top_filename = ExtResource("2_1mate")
+front_filename = ExtResource("3_tbcbn")
+length = 25.0
+height = 25.0
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(4.553734, 0, 0, 0, 1, 0, 0, 0, 5.2742615, 0, 25, 12.5)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("2_1mate")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(4.553734, 0, 0, 0, -4.371139e-08, -7.6687117, 0, 1, -3.3521005e-07, 0, 12.5, 25)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("3_tbcbn")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 12.5)
+shape = SubResource("BoxShape3D_5tdae")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 12.5)
+shape = SubResource("BoxShape3D_lvlci")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
