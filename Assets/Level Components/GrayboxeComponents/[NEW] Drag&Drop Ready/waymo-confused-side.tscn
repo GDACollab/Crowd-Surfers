@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://balel46fh6clm"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_4ai1i"]
+[ext_resource type="Texture2D" uid="uid://c3xgcjnbtlqq1" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_TOP(UPDATE2).PNG" id="2_pp8t1"]
+[ext_resource type="Texture2D" uid="uid://buf0562seemuj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_FRONT(UPDATE2).PNG" id="3_o5ffo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ai1i"]
+size = Vector3(50, 13.5, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pp8t1"]
+size = Vector3(50, 1.5, 25)
+
+[node name="WaymoConfusedSide" type="StaticBody3D"]
+script = ExtResource("1_4ai1i")
+active = true
+top_filename = ExtResource("2_pp8t1")
+front_filename = ExtResource("3_o5ffo")
+length = 25.0
+height = 15.0
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(7.183908, 0, 0, 0, 1, 0, 0, 0, 6.756757, 0, 15, 12.5)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("2_pp8t1")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(7.183908, 0, 0, 0, -4.371139e-08, -10.2739725, 0, 1, -4.490896e-07, 0, 7.5, 25)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("3_o5ffo")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 12.5)
+shape = SubResource("BoxShape3D_4ai1i")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 12.5)
+shape = SubResource("BoxShape3D_pp8t1")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

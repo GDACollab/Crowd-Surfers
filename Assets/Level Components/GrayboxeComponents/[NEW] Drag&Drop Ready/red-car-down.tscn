@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://g3hlqdq3o64j"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_4omqv"]
+[ext_resource type="Texture2D" uid="uid://ddl562tta1pqh" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Down/redcar_down_TOP(updated).PNG" id="2_ltr2p"]
+[ext_resource type="Texture2D" uid="uid://cfxuu0w004uoq" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Down/redcar_down_FRONT(updated).PNG" id="3_0pefw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ju7o"]
+size = Vector3(25, 9, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twuc8"]
+size = Vector3(25, 1, 40)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_4omqv")
+top_filename = ExtResource("2_ltr2p")
+front_filename = ExtResource("3_0pefw")
+width = 25.0
+length = 40.0
+height = 10.0
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(7.3964496, 0, 0, 0, 1, 0, 0, 0, 8.5470085, 0, 10, 20)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("2_ltr2p")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(7.3964496, 0, 0, 0, -4.371139e-08, -9.9009905, 0, 1, -4.3278604e-07, 0, 5, 40)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("3_0pefw")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 20)
+shape = SubResource("BoxShape3D_8ju7o")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, 20)
+shape = SubResource("BoxShape3D_twuc8")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
