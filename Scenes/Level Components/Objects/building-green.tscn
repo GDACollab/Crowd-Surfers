@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsuo1d1l7ny80"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_8cyog"]
+[ext_resource type="Texture2D" uid="uid://f8cp4omi156u" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Green 1 S3.png" id="2_8cyog"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a4oyg"]
+size = Vector3(100, 225, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2hgda"]
+size = Vector3(100, 25, 100)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_8cyog")
+active = true
+front_filename = ExtResource("2_8cyog")
+width = 100.0
+length = 100.0
+height = 250.0
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(18.761726, 0, 0, 0, -4.371139e-08, -15.733166, 0, 1, -6.877185e-07, 0, 125, 100)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("2_8cyog")
+region_enabled = true
+region_rect = Rect2(0, 0, 533, 1589)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 112.5, 50)
+shape = SubResource("BoxShape3D_a4oyg")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 237.5, 50)
+shape = SubResource("BoxShape3D_2hgda")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
