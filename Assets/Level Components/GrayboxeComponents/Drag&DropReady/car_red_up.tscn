@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://1mtyxmdji8y"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_ksrul"]
+[ext_resource type="Texture2D" uid="uid://chydbtt0sccuo" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Up/redcar_up_TOP(updated).PNG" id="2_ppij4"]
+[ext_resource type="Texture2D" uid="uid://bmsbcjfkeo8s3" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Up/redcar_up_FRONT(updated).PNG" id="3_8m1hr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppij4"]
+size = Vector3(3.95, 1.5, 4.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8m1hr"]
+size = Vector3(3.95, 1, 1.45)
+
+[node name="CarRedUp" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_ksrul")
+width = 4.0
+top_length = 4.5
+front_length = 1.5
+z_pad = 0.05
+x_pad = 0.05
+top_filename = "/Chopped Art (Fixed)/Car Red Up/redcar_up_TOP(updated).PNG"
+front_filename = "/Chopped Art (Fixed)/Car Red Up/redcar_up_FRONT(updated).PNG"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.2195122, 0, -8.880417e-08, 0, 1, 0, 1.0661314e-07, 0, -1.0158013, 0, 0.01, 0.75)
+axis = 1
+texture = ExtResource("2_ppij4")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.2195122, 0, -1.04907336e-07, 0, 1, 0, 1.0661314e-07, 0, -1.2, 0, 0.01, -2.25)
+axis = 1
+texture = ExtResource("3_8m1hr")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.2195122, 0, -8.880417e-08, 0, 1, 0, 1.0661314e-07, 0, -1.0158013, 0, 1.5, 2.25)
+axis = 1
+texture = ExtResource("2_ppij4")
+region_enabled = true
+region_rect = Rect2(0, 0, 328, 147.66667)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.725)
+shape = SubResource("BoxShape3D_ppij4")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.225)
+shape = SubResource("BoxShape3D_8m1hr")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
