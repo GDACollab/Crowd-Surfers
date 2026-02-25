@@ -63,7 +63,7 @@ var player_sprite_starting_pos: float = 0.0
 @export var shadow_base_scale: float = 1.28      # scale on the ground
 @export var shadow_min_scale: float = 0.55       # scale at/above max height
 @export var shadow_max_height: float = 3.0       # meters where shadow reaches min scale
-@export var shadow_lift: float = 1.5             # your +1.5 offset
+@export var shadow_lift: float = 1.5             
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
 ## When dash ends, reset values and begin the cooldown

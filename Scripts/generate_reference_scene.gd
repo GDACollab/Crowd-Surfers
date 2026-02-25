@@ -3,10 +3,10 @@ extends EditorScript
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 # Folder containing your generated .tscn asset files
-const ASSETS_PATH    := "res://Assets/Level Components/GrayboxeComponents/[NEW] Drag&Drop Ready/"
+const ASSETS_PATH    := "res://Scenes/Level Components/Objects/"
 
 # Where to save the finished reference scene
-const OUTPUT_SCENE   := "res://Assets/Level Components/GrayboxeComponents/reference_scene.tscn"
+const OUTPUT_SCENE   := "res://Scenes/Levels/reference_scene.tscn"
 
 # The road tile to use as the ground (must live in ASSETS_PATH)
 const ROAD_SCENE     := "road-horizontal.tscn"
@@ -127,8 +127,9 @@ func _run() -> void:
 				if tile is Node3D:
 					tile.position = Vector3(tile_x, 0.0, tile_z)
 				road_parent.add_child(tile)
+				# Only set owner on the instance root — NOT its children.
+				# This keeps it as a scene reference instead of embedding all child nodes.
 				tile.owner = root
-				_set_owners_recursive(tile, root)
 
 		print("  tiled road ground: %dx%d tiles" % [tiles_x, tiles_z])
 
@@ -159,8 +160,9 @@ func _run() -> void:
 			instance.position = Vector3(col * GRID_SPACING_X, 0.0, row * GRID_SPACING_Z)
 
 		grid_parent.add_child(instance)
+		# Only set owner on the instance root — NOT its children.
+		# This keeps it as a scene reference instead of embedding all child nodes.
 		instance.owner = root
-		_set_owners_recursive(instance, root)
 
 		print("  placed [%d,%d]: %s" % [col, row, file_stem])
 
@@ -189,9 +191,3 @@ func _run() -> void:
 
 	root.free()
 	EditorInterface.get_resource_filesystem().scan()
-
-
-func _set_owners_recursive(node: Node, owner: Node) -> void:
-	for child in node.get_children():
-		child.owner = owner
-		_set_owners_recursive(child, owner)
