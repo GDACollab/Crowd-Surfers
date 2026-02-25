@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpsqaau1y74rg"]
+
+[ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_v2y8g"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="2_3uq2g"]
+[ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="3_o3jt6"]
+[ext_resource type="PackedScene" uid="uid://biglh66531r4d" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Bus01Side.tscn" id="4_3uq2g"]
+[ext_resource type="PackedScene" uid="uid://fxbeava8pkc2" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/cable_car_side.tscn" id="5_o3jt6"]
+[ext_resource type="PackedScene" uid="uid://1mtyxmdji8y" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/car_red_up.tscn" id="7_v3kcc"]
+[ext_resource type="PackedScene" uid="uid://bkovj7df5cxtb" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/MarketStallCyan.tscn" id="8_4prnw"]
+[ext_resource type="PackedScene" uid="uid://ee3i74vmg01t" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/cable_car_down.tscn" id="8_w773i"]
+
+[node name="DebugLevel2" type="Node3D"]
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank"]
+
+[node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_v2y8g")]
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("2_3uq2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
+projection = 1
+size = 30.0
+near = 0.425
+
+[node name="Road" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14, 0, -2.6278687)
+
+[node name="Road2" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 14.647911, 0, -2.6278687)
+
+[node name="Road5" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 41.777718, 0, -2.6278687)
+
+[node name="Road6" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 69.83949, 0, -2.6278687)
+
+[node name="Road3" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14, 0, -30.597363)
+visible = false
+
+[node name="Road4" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 14.647911, 0, -30.597363)
+visible = false
+
+[node name="Road7" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 41.777718, 0, -30.597363)
+visible = false
+
+[node name="Road8" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 69.83949, 0, -30.597363)
+visible = false
+
+[node name="Chain Triple Glide 1" parent="." instance=ExtResource("4_3uq2g")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.932363, 4.9948692e-05, -10.547943)
+active = false
+
+[node name="Chain Triple Glide 2" parent="." instance=ExtResource("8_4prnw")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 28.765266, 5.146861e-05, -11.680431)
+active = false
+
+[node name="Chain Triple Glide 3" parent="." instance=ExtResource("5_o3jt6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 68.00156, 4.9948692e-05, -11.978195)
+active = false
+
+[node name="Chain Triple Glide 4" parent="." instance=ExtResource("5_o3jt6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 68.00156, 4.9948692e-05, -11.978195)
+active = false
+
+[node name="Tight Narrow Jumps 1" parent="." instance=ExtResource("7_v3kcc")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.830902, 4.9948692e-05, -34.99524)
+
+[node name="Tight Narrow Jumps 2" parent="." instance=ExtResource("8_w773i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.357007, 4.9948692e-05, -38.00203)
+
+[node name="Tight Narrow Jumps 3" parent="." instance=ExtResource("8_w773i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.42739, 4.9948692e-05, -38.140354)
+
+[node name="Tight Narrow Jumps 4" parent="." instance=ExtResource("8_w773i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26.61456, 4.9948692e-05, -37.919247)
+
+[node name="Tight Narrow Jumps 5" parent="." instance=ExtResource("8_w773i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 42.981647, 4.839897e-05, -38.154606)
+
+[node name="Tight Narrow Jumps 6" parent="." instance=ExtResource("8_w773i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 58.805656, 5.146861e-05, -38.06131)
