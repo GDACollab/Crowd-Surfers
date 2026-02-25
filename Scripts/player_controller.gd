@@ -287,7 +287,9 @@ func handle_inputs(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	#player_sprite animations
-	#player_sprite.play(action + "_" + direction) I am a mere designer, I require assistance with this.
+	#I am a mere designer, I require assistance with this.
+	#player_sprite.play(action(state?) + "_" + positive direction) (base the animation names off of this "action_direction")
+	
 	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
 	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
 	
