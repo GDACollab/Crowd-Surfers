@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://biglh66531r4d"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_pij6k"]
+[ext_resource type="Texture2D" uid="uid://c535tmc1spfl0" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Side/bus_side_TOP(updated).png" id="2_k6krp"]
+[ext_resource type="Texture2D" uid="uid://cjxyj128cnh4r" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Side/bus_side_FRONT(updated).png" id="3_gfg7y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k6krp"]
+size = Vector3(12, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gfg7y"]
+size = Vector3(12, 1, 2)
+
+[node name="Bus01Side" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_pij6k")
+active = true
+width = 12.0
+top_length = 3.0
+front_length = 2.0
+top_filename = "Chopped Art (Fixed)/Bus 1 Side/bus_side_TOP(updated).png"
+front_filename = "Chopped Art (Fixed)/Bus 1 Side/bus_side_FRONT(updated).png"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.7033998, 0, -6.428145e-08, 0, 1, 0, 6.149316e-08, 0, -0.7352941, 0, 0.01, 1)
+axis = 1
+texture = ExtResource("2_k6krp")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.7033998, 0, -3.9291137e-08, 0, 1, 0, 6.149316e-08, 0, -0.4494382, 0, 0.01, -1.5)
+axis = 1
+texture = ExtResource("3_gfg7y")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-0.7033998, 0, -6.428145e-08, 0, 1, 0, 6.149316e-08, 0, -0.7352941, 0, 2, 1.5)
+axis = 1
+texture = ExtResource("2_k6krp")
+region_enabled = true
+region_rect = Rect2(0, 4.115, 1706, 272)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("BoxShape3D_k6krp")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7609275e-07, 1.5, -0.5142665)
+shape = SubResource("BoxShape3D_gfg7y")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
