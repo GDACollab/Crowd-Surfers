@@ -16,27 +16,27 @@ extends StaticBody3D
 			_update_hitboxes()
 			
 @export_group("File References")
-@export var top_filename: String = 'ex: AlphaSprites/...':
+@export var top_filename: Texture2D:
 	set(value):
 		top_filename = value
 		_update_hitboxes()
-@export var front_filename: String = 'ex: AlphaSprites/...':
+@export var front_filename: Texture2D:
 	set(value):
 		front_filename = value
 		_update_hitboxes()
-@export var left_filename: String = 'ex: AlphaSprites/...':
+@export var left_filename: Texture2D:
 	set(value):
 		left_filename = value
 		_update_hitboxes()
-@export var right_filename: String = 'ex: AlphaSprites/...':
+@export var right_filename: Texture2D:
 	set(value):
 		right_filename = value
 		_update_hitboxes()
-@export var back_filename: String = 'ex: AlphaSprites/...':
+@export var back_filename: Texture2D:
 	set(value):
 		back_filename = value
 		_update_hitboxes()
-@export var bottom_filename: String = 'ex: AlphaSprites/...':
+@export var bottom_filename: Texture2D:
 	set(value):
 		bottom_filename = value
 		_update_hitboxes()
@@ -685,12 +685,12 @@ func collect_all_assets() -> bool:
 	var dir = DirAccess.open("res://Assets/Art")
 	print('completed directory open')
 	if dir:
-		texture_top = load("res://Assets/Art/" + top_filename)
-		texture_front = load("res://Assets/Art/" + front_filename)
-		texture_left = load("res://Assets/Art/" + left_filename)
-		texture_right = load("res://Assets/Art/" + right_filename)
-		texture_back = load("res://Assets/Art/" + back_filename)
-		texture_bottom = load("res://Assets/Art/" + bottom_filename)
+		texture_top = top_filename
+		texture_front = front_filename
+		texture_left = left_filename
+		texture_right = right_filename
+		texture_back = back_filename
+		texture_bottom = bottom_filename
 		
 		# excludes front and top
 		var textures = [ texture_left, texture_right, texture_back, texture_bottom ]
@@ -700,8 +700,7 @@ func collect_all_assets() -> bool:
 		# simple box = 2 sides
 		# slant box = top side only
 		# side box = front side only
-		
-		print("res://Assets/Art" + front_filename)
+	
 		
 		print('completed getting files')
 		
