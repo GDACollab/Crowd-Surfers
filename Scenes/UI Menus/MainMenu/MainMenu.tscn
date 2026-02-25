@@ -31,42 +31,34 @@ offset_bottom = 571.15186
 rotation = 0.29365015
 texture = ExtResource("2_184yf")
 
-[node name="OrdersButton" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 750.0
-offset_top = 87.0
-offset_right = 983.55695
-offset_bottom = 227.40381
-rotation = 0.31780875
+offset_left = 742.1583
+offset_top = 55.88097
+offset_right = 1004.6501
+offset_bottom = 537.9784
+rotation = 0.29994658
+
+[node name="OrdersButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Orders"
 icon = ExtResource("3_3ypn2")
 
-[node name="VoiceMailButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 701.0
-offset_top = 231.0
-offset_right = 934.55695
-offset_bottom = 328.33728
-rotation = 0.31780875
+[node name="VoiceMailButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Voicemail"
 
-[node name="SettingsButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 665.0
-offset_top = 333.0
-offset_right = 898.55695
-offset_bottom = 430.33728
-rotation = 0.31780875
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Settings"
 
-[node name="ExitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 651.00006
-offset_top = 445.0
-offset_right = 836.7292
-offset_bottom = 489.3048
-rotation = 0.31780875
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Exit"
 
-[connection signal="pressed" from="OrdersButton" to="." method="_on_orders_button_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
