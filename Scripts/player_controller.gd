@@ -42,13 +42,13 @@ var player_sprite_starting_pos: float = 0.0
 # Dash
 @export_category("Dash")
 ## Time that the dash lasts
-@export var dash_duration: float = 0.5
+@export var dash_duration: float = 0.1
 ## Minimum time between dasehs
-@export var dash_cooldown: float = 0.5
+@export var dash_cooldown: float = 1.5
 ## Multiplier applied to all relevant speed variables by the dash
-@export var dash_speed_multiplier: float = 1.2
-## Initial speed boost added on by the dash
-@export var dash_boost: float = 5.0
+@export var dash_speed_multiplier: float = 1.5
+## Minimum speed of a dash
+@export var min_dash_speed: float = 25.0
 ## The time after stomp finishes that the player can activate dash and get an extra boost
 @export var stomp_dash_margin: float = 1.0
 
@@ -67,38 +67,28 @@ var player_sprite_starting_pos: float = 0.0
 @export var shadow_lift: float = 1.5             # your +1.5 offset
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
-## When dash ends, reset values and begin the cooldown
+## When dash ends, begin the cooldown
 func _on_dash_duration_timer_timeout() -> void:
-	# Lower max speed to the base if it exceeds it
-	acceleration = base_acceleration
-	ramping_cap = base_ramping_cap
-	max_speed = min(max_speed, ramping_cap)
-		#Commented out the below code as it caused some issues 
-		#when changing direction shortly after a dash.
-		#Keeping it here incase the removal of the code brings any issues
-	# Get xz-velocity unit vector and its length
-	#var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
-	#var speed = Vector3(velocity.x, 0.0, velocity.z).length()
-	# Lower xz-speed to the maximum if it exceeds it
-	#velocity.x = min(dir.x * speed, dir.x * max_speed)
-	#velocity.z = min(dir.z * speed, dir.z * max_speed)
 	$DashCooldownTimer.start()
 
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR}
 
 # Active values - may change during execution
 var max_speed: float = 0.0
 var acceleration: float
 var ramping_cap: float
-var velocity_before_stomp := Vector3(0, 0, 0)
+var velocity_before_stomp: Vector3
 var max_speed_before_stomp: float
 var ramping_cap_before_stomp: float
-var stomp_windup_slowdown := Vector3(0, 0, 0)
+var stomp_windup_slowdown: Vector3
 var time_gliding: float = 0.0
 var speed_before_gliding: float
 var max_speed_before_gliding: float
 var stomp_boost: float = 0.0
+var speed_before_dashing: float
+var dash_dir: Vector3
+var dash_speed: float
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -136,7 +126,7 @@ func _ready() -> void:
 	stomp_dash_boost_factor   *= s  # units/s per s
 	max_stomp_dash_boost      *= s  # units/s
 	# Dash
-	dash_boost                *= s  # units/s
+	#dash_boost                *= s  # units/s
 	# Glide
 	glide_min_speed           *= s  # units/s
 	# Shadow
@@ -182,13 +172,20 @@ func process_state(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0.0, stomp_windup_slowdown.z * delta)
 		States.STOMP_FALL:
 			fall(delta)
-			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta) 	# this is the amount of speed 
-																											# you get when you dash in the stomp
 			# TODO this is the stompy nauty section.
 			# TODO You should be able to dash out of a stomp
 			# (as in, I can press dash while falling and leave the stomp state. 
 			#  This should still apply the currently accumulated stomp-dash boost)
-			 
+			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta)
+		States.DASH_AIR:
+			fall(delta)
+			#dash()
+			if is_on_wall():
+				crash()
+		States.DASH_GROUND:
+			ground_dash_speed_decay()
+			if is_on_wall():
+				crash()
 		States.GLIDE:
 			# Increase total time gliding
 			time_gliding += delta
@@ -216,7 +213,12 @@ func check_state_transitions() -> void:
 		States.GROUND:
 			if Input.is_action_just_pressed("move_jump"):
 				jump()
-				transition_to(States.AIR)
+				if can_dash() and Input.is_action_just_pressed("ability_dash"):
+					transition_to(States.DASH_AIR)
+				else:
+					transition_to(States.AIR)
+			elif can_dash() and Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_GROUND)
 			elif not is_on_floor():
 				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
@@ -246,6 +248,8 @@ func check_state_transitions() -> void:
 				transition_to(States.GROUND)
 			elif Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
+			elif can_dash() and Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
 			elif Input.is_action_just_pressed("ability_glide"):
 				transition_to(States.GLIDE)
 		States.STOMP_WINDUP:
@@ -264,6 +268,35 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_WINDUP)
 			elif velocity.length() <= glide_min_speed or Input.is_action_just_released("ability_glide") or is_on_wall():
 				transition_to(States.AIR)
+		States.DASH_GROUND:
+			if $DashDurationTimer.is_stopped():
+				if is_on_floor():
+					transition_to(States.GROUND)
+				else:
+					transition_to(States.COYOTE)
+			elif is_on_wall():
+				if is_on_floor():
+					transition_to(States.GROUND)
+				else:
+					transition_to(States.AIR)
+			elif Input.is_action_just_pressed("move_jump"):
+				jump()
+				transition_to(States.DASH_AIR)
+			elif not is_on_floor():
+				transition_to(States.DASH_AIR)
+		States.DASH_AIR:
+			if $DashDurationTimer.is_stopped():
+				if is_on_floor():
+					transition_to(States.GROUND)
+				else:
+					transition_to(States.AIR)
+			elif is_on_wall():
+				if is_on_floor():
+					transition_to(States.GROUND)
+				else:
+					transition_to(States.AIR)
+			elif is_on_floor():
+				transition_to(States.DASH_GROUND)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -289,11 +322,9 @@ func transition_to(new_state: int) -> void:
 			# If dash is active as stomp begins, end it
 			$DashDurationTimer.stop() # all the stop() is built in
 			$DashCooldownTimer.stop()
-			 
 			if is_dashing():
 				$DashDurationTimer.stop()
 				$DashDurationTimer.timeout.emit()
-				
 			velocity.y = 0.0
 			stomp_boost = 0.0
 			# Store values needed for the stomp-dash
@@ -325,8 +356,18 @@ func transition_to(new_state: int) -> void:
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
-		
-	
+		States.DASH_GROUND, States.DASH_AIR:
+			# Don't reapply dash boost if going from air dash to ground dash
+			if not is_dashing():
+				speed_before_dashing = Vector2(velocity.x, velocity.z).length()
+				dash_dir = Vector3(velocity.x, 0.0, velocity.z).normalized()
+				# Ensure speed is at least min_dash_speed
+				dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier)
+				# Apply dash to xz-direction and ignore y component of velocity
+				var yspeed := velocity.y
+				velocity = dash_dir * dash_speed
+				velocity.y = yspeed
+				$DashDurationTimer.start()
 	
 	current_state = new_state
 	print(state_to_string())
@@ -349,55 +390,26 @@ func handle_inputs(delta: float) -> void:
 	if (not is_dashing()) and $DashCooldownTimer.is_stopped() and Input.is_action_just_pressed("ability_dash"):
 		dash(input_dir)
 	# If dash wasn't activated this frame, do normal inputs
+
+	# if the player stops moving reset the current speed
+	if(velocity == Vector3.ZERO): 
+		max_speed = starting_speed
+	# If there are inputs this frame, direction isn't null, so we add speed
+	if direction:
+		var factorx: float = acceleration * delta
+		var factorz: float = acceleration * delta
+		# Add friction if direction is opposite the velocity
+		if sign(direction.x) != sign(velocity.x):
+			factorx += friction * delta
+		if sign(direction.z) != sign(velocity.z):
+			factorz += friction * delta
+		# Apply speed
+		velocity.x = move_toward(velocity.x, direction.x * max_speed , factorx)
+		velocity.z = move_toward(velocity.z, direction.z * max_speed , factorz)
+	#Apply friction if no inputs are given
 	else:
-		# if the player stops moving reset the current speed
-		if(velocity == Vector3.ZERO): 
-			max_speed = starting_speed
-			player_sprite.play("ilde") #play sprite's idle animation
-		# If there are inputs this frame, direction isn't null, so we add speed
-		if direction:
-			var factorx: float = acceleration * delta
-			var factorz: float = acceleration * delta
-			# Add friction if direction is opposite the velocity
-			if sign(direction.x) != sign(velocity.x):
-				factorx += friction * delta
-			if sign(direction.z) != sign(velocity.z):
-				factorz += friction * delta
-			# Apply speed
-			velocity.x = move_toward(velocity.x, direction.x * max_speed , factorx)
-			velocity.z = move_toward(velocity.z, direction.z * max_speed , factorz)
-		#Apply friction if no inputs are given
-		else:
-			velocity.x = move_toward(velocity.x, 0, friction * delta)
-			velocity.z = move_toward(velocity.z, 0, friction * delta)
-		
-## Activates the dash, giving the player a temporary speed boost and an instant added speed
-func dash(input_dir: Vector2) -> void:
-	# Play dash sound
-	$DashSound.play()
-	# Increase caps
-	ramping_cap = ramping_cap * dash_speed_multiplier + dash_boost
-	max_speed = move_toward(max_speed * dash_speed_multiplier, ramping_cap, dash_boost)
-	# Increase acceleration
-	acceleration *= dash_speed_multiplier
-	# Apply instant boost (and redirect player) if directional inputs are given
-	if input_dir:
-		var dir := Vector3(input_dir.x, 0.0, input_dir.y).normalized()
-		var speed: float = 0.0
-		# If we just hit the ground after stomping, restore the player's speed from before the
-		# stomp and apply the stomp boost
-		if not $StompDashMargin.is_stopped():
-			speed = velocity_before_stomp.length() + stomp_boost
-			# Make sure the dash boost gets applied to the values stored by the stomp
-			ramping_cap = max(ramping_cap, ramping_cap_before_stomp * dash_speed_multiplier + dash_boost)
-			max_speed = max(max_speed, max_speed_before_stomp * dash_speed_multiplier + dash_boost)
-		else:
-			speed = Vector3(velocity.x, 0.0, velocity.z).length()
-		var boost: float = speed + dash_boost
-		velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
-		velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
-	# Start duration timer
-	$DashDurationTimer.start()
+		velocity.x = move_toward(velocity.x, 0, friction * delta)
+		velocity.z = move_toward(velocity.z, 0, friction * delta)
 
 ## Give the player upwards velocity
 func jump() -> void:
@@ -432,9 +444,31 @@ func snap_sprite() -> void:
 	var s: float = lerp(shadow_base_scale, shadow_min_scale, t)
 	player_shadow.scale = Vector3(s, s, s)
 
-## Returns whether the player is currently dashing by checking the status of DashDurationTimer
+## Returns whether the player is currently dashing
 func is_dashing() -> bool:
-	return not $DashDurationTimer.is_stopped()
+	return current_state == States.DASH_GROUND or current_state == States.DASH_AIR
+	
+## Returns whether the player is able to dash
+func can_dash() -> bool:
+	return not is_dashing() and $DashCooldownTimer.is_stopped()
+	
+func ground_dash_speed_decay() -> void:
+	# Dash begins at the initial dash speed
+	var initial := Vector2(0.0, dash_speed)
+	# Dash ends at the speed before the dash
+	var final := Vector2(1.0, speed_before_dashing)
+	# Control should give a nice easing-out effect
+	var control := Vector2(1.5, dash_speed)
+	# t = time elapsed as a percent of the total wait time
+	var elapsed: float = $DashDurationTimer.wait_time - $DashDurationTimer.time_left
+	var t: float = elapsed / $DashDurationTimer.wait_time
+	# Bezier curve
+	var p0 := initial.lerp(control, t)
+	var p1 := control.lerp(final, t)
+	var yspeed := velocity.y
+	# Height of the bezier curve is the desired speed
+	velocity = dash_dir * p0.lerp(p1, t).y
+	velocity.y = yspeed
 
 ## Returns the current state
 func state_to_string() -> String:
@@ -465,3 +499,4 @@ func direction_to_string() -> String:
 	if input_dir.x != 0 && input_dir.y == 0: return "right"
 	if input_dir.x == 0 && input_dir.y == 0: return "idle"
 	return ""
+
