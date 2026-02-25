@@ -143,7 +143,13 @@ func process_state(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0.0, stomp_windup_slowdown.z * delta)
 		States.STOMP_FALL:
 			fall(delta)
-			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta)
+			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta) 	# this is the amount of speed 
+																											# you get when you dash in the stomp
+			# TODO this is the stompy nauty section.
+			# TODO You should be able to dash out of a stomp
+			# (as in, I can press dash while falling and leave the stomp state. 
+			#  This should still apply the currently accumulated stomp-dash boost)
+			 
 		States.GLIDE:
 			# Increase total time gliding
 			time_gliding += delta
@@ -211,6 +217,9 @@ func check_state_transitions() -> void:
 			if is_on_floor():
 				$StompDashMargin.start()
 				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_dash"):
+				#transition_to(States.)
+				print("dashed in air")
 		States.GLIDE:
 			if Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
@@ -239,9 +248,13 @@ func transition_to(new_state: int) -> void:
 	match new_state:
 		States.STOMP_WINDUP:
 			# If dash is active as stomp begins, end it
+			$DashDurationTimer.stop() # all the stop() is built in
+			$DashCooldownTimer.stop()
+			 
 			if is_dashing():
 				$DashDurationTimer.stop()
 				$DashDurationTimer.timeout.emit()
+				
 			velocity.y = 0.0
 			stomp_boost = 0.0
 			# Store values needed for the stomp-dash
