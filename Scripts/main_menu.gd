@@ -1,7 +1,7 @@
 extends Control
 
-@onready var main_container: VBoxContainer = $MainContainer
-@onready var orders_container: ScrollContainer = $OrdersContainer
+@onready var main_container: VBoxContainer = $PhoneMask/MainContainer
+@onready var orders_container: ScrollContainer = $PhoneMask/OrdersContainer
 
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
