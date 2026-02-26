@@ -9,6 +9,71 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q16ba"]
 
+[sub_resource type="Animation" id="Animation_j0r1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneImage/OrdersScene:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneImage/OrdersScene:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneImage/MainContainer/OrdersButton:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhoneImage/MainContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide_orders_scene"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_q16ba"]
 resource_name = "open_orders"
 length = 0.3
@@ -75,71 +140,6 @@ tracks/4/keys = {
 }, {
 "args": [true],
 "method": &"set_orders_scene_visibility"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_j0r1m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneImage/OrdersScene:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PhoneImage/OrdersScene:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PhoneImage/MainContainer/OrdersButton:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PhoneImage/MainContainer:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"hide_orders_scene"
 }]
 }
 
@@ -233,14 +233,10 @@ text = "Exit"
 [node name="OrdersScene" parent="PhoneImage" instance=ExtResource("5_arkae")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
 offset_left = 419.737
 offset_top = 182.31201
 offset_right = 855.47394
 offset_bottom = 982.593
-grow_horizontal = 1
 
 [node name="MainPhoneMask" type="TextureRect" parent="."]
 visible = false
@@ -261,6 +257,6 @@ libraries = {
 
 [connection signal="pressed" from="PhoneImage/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
 [connection signal="pressed" from="PhoneImage/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="PhoneImage/OrdersScene/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PhoneImage/OrdersScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 
 [editable path="PhoneImage/OrdersScene"]

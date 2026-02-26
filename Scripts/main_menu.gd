@@ -3,7 +3,7 @@ extends Control
 @onready var orders_animation_player : AnimationPlayer = $OrdersAnimationPlayer
 
 @onready var main_container: Control = $PhoneImage/MainContainer
-@onready var orders_scene: ColorRect = $PhoneImage/OrdersScene
+@onready var orders_scene: Control = $PhoneImage/OrdersScene
 
 func _ready() -> void:
 	orders_scene.visible = false
