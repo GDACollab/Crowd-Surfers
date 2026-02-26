@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c26316wye2n1k"]
+[gd_scene load_steps=4 format=3 uid="uid://c26316wye2n1k"]
 
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="1_a6h07"]
 [ext_resource type="LabelSettings" uid="uid://yypp3xogmkhl" path="res://Assets/Dialogue/Font_Dialogue.tres" id="2_ung3r"]
+[ext_resource type="Texture2D" uid="uid://dvfkmlpaisn4e" path="res://Assets/Art/UI/UI_DialogueBubble.png" id="3_241ul"]
 
 [node name="Dialogue Panel" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -11,27 +13,40 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -302.5
 offset_top = -765.0
-offset_right = 302.5
-offset_bottom = -471.00018
+offset_right = 629.69446
+offset_bottom = -312.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_a6h07")
-showPosition = Vector2(657.5, 550)
-hidePosition = Vector2(657.5, 1200)
+showPosition = Vector2(495, 588)
+hidePosition = Vector2(495, 1200)
 metadata/_edit_group_ = true
 
-[node name="Dialogue Text" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "adasdasdasdad
+texture = ExtResource("3_241ul")
+expand_mode = 1
+stretch_mode = 5
 
-"
+[node name="Dialogue Text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 113.48
+offset_top = 34.644993
+offset_right = -132.49997
+offset_bottom = -46.999817
+grow_horizontal = 2
+grow_vertical = 2
+text = " Hello my name is Slip I am twenty one years old"
 label_settings = ExtResource("2_ung3r")
 horizontal_alignment = 1
 vertical_alignment = 1
