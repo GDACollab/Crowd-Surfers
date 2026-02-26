@@ -1,76 +1,99 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=3 format=3 uid="uid://c5rie8boisw4x"]
 
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_yohfk"]
 
-[node name="ScrollContainer" type="ScrollContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
+
+[node name="ScrollMask" type="ColorRect"]
+clip_children = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.86853
+offset_right = 217.86853
+offset_bottom = 800.281
+grow_horizontal = 2
+pivot_offset = Vector2(217.869, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
 offset_right = 435.73703
 offset_bottom = 800.281
-rotation = 0.005785167
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OrdersButton" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 1
+"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton2" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton2" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 2
+"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton3" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton3" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 3"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton4" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton4" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 4"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton5" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton5" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 5"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton6" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton6" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 6"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton7" type="Button" parent="VBoxContainer"]
+[node name="OrdersButton7" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 7"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton8" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Orders"
-icon = ExtResource("3_yohfk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Back
+"
