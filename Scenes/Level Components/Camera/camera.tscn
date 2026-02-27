@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bayc23wdt70ft"]
+
+[ext_resource type="Script" uid="uid://bc7v6pbvp7r8y" path="res://Scripts/camera_3d.gd" id="1_tmrye"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -7.915543, 41.654823, 25.095945)
+projection = 1
+size = 18.936
+near = 0.425
+script = ExtResource("1_tmrye")
+player_path = NodePath("../Player")
+offset = Vector3(0, 50, 50)
