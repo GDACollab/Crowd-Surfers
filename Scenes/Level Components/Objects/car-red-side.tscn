@@ -10,7 +10,9 @@ size = Vector3(50, 13.5, 25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ks1xq"]
 size = Vector3(50, 1.5, 25)
 
-[node name="CarRedSide" type="StaticBody3D"]
+[node name="CarRedSide" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_hs2nn")
 active = true
 top_filename = ExtResource("2_ks1xq")
@@ -18,24 +20,24 @@ front_filename = ExtResource("3_ygd7i")
 length = 25.0
 height = 15.0
 
-[node name="TopSprite" type="Sprite3D" parent="."]
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(6.858711, 0, 0, 0, 1, 0, 0, 0, 9.920635, 0, 15, 12.5)
 axis = 1
 alpha_cut = 1
 texture = ExtResource("2_ks1xq")
 
-[node name="FrontSprite" type="Sprite3D" parent="."]
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(6.858711, 0, 0, 0, -4.371139e-08, -10.56338, 0, 1, -4.6174003e-07, 0, 7.5, 25)
 axis = 1
 alpha_cut = 1
 texture = ExtResource("3_ygd7i")
 
-[node name="MainHitbox" type="CollisionShape3D" parent="."]
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 12.5)
 shape = SubResource("BoxShape3D_hs2nn")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 12.5)
 shape = SubResource("BoxShape3D_ks1xq")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
