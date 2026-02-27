@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ba21dgon6j7ye"]
+[gd_scene load_steps=25 format=3 uid="uid://ba21dgon6j7ye"]
 
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="1_7f610"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_lagl4"]
@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="23_hrias"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="26_3xft7"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="29_uti74"]
-[ext_resource type="PackedScene" uid="uid://g3hlqdq3o64j" path="res://Scenes/Level Components/Objects/red-car-down.tscn" id="32_hwo6r"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="33_n6vdm"]
 [ext_resource type="PackedScene" uid="uid://tghcf3lwvxj8" path="res://Scenes/Level Components/Objects/waymo-confused-down.tscn" id="42_0c0re"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="45_fb8qi"]
@@ -30,7 +29,7 @@
 
 [node name="Camera3D" parent="." instance=ExtResource("1_lagl4")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 190.11348, 120.806206, 555.2209)
-size = 100.0
+size = 200.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
@@ -363,7 +362,6 @@ active = false
 
 [node name="car-red-down" parent="." instance=ExtResource("17_dxsjs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 300)
-active = false
 
 [node name="car-red-side" parent="." instance=ExtResource("20_0wan6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 300)
@@ -380,9 +378,6 @@ active = false
 [node name="market-stall-cyan" parent="." instance=ExtResource("29_uti74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 450)
 active = false
-
-[node name="red-car-down" parent="." instance=ExtResource("32_hwo6r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 450)
 
 [node name="waymo-confused-down" parent="." instance=ExtResource("42_0c0re")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 600)
