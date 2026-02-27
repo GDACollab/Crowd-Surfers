@@ -715,7 +715,6 @@ func create_sprites():
 				back_sprite.region_enabled = true
 				back_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], back_t_cutoff, back_b_cutoff, back_r_cutoff, back_l_cutoff)
 			
-			
 			print('added back')
 			
 		if (texture_bottom):
