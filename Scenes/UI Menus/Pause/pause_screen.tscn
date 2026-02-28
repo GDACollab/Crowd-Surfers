@@ -294,7 +294,9 @@ script = ExtResource("1_f6gwv")
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
-[node name="UIAudio" parent="." instance=ExtResource("2_0kv7i")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_0kv7i")]
+confirm_buttons = [NodePath("../PhoneBackground/ButtonContainer/ResumeButton"), NodePath("../PhoneBackground/ButtonContainer/ControlsButton"), NodePath("../PhoneBackground/ButtonContainer/SettingsButton"), NodePath("../PhoneBackground/ButtonContainer/RestartLevelButton")]
+back_buttons = [NodePath("../PhoneBackground/ButtonContainer/ExitLevelButton"), NodePath("../PhoneBackground/ControlsContainer/BackButtonHolder/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0kv7i")
@@ -540,20 +542,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_ojd7t")
 }
 
-[connection signal="mouse_entered" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="UIAudio" method="play_back_sound"]
-[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/ResumeButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/ControlsButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/SettingsButton" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/SettingsButton" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="UIAudio" method="play_back_sound"]

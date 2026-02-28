@@ -14,7 +14,9 @@ offset_bottom = 40.0
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
-[node name="UIAudio" parent="." instance=ExtResource("1_3bm1j")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
+confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton2"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
+back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -138,20 +140,3 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
 text = "Back
 "
-
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton2" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton2" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="UIAudio" method="play_hover_sound"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="UIAudio" method="play_back_sound"]

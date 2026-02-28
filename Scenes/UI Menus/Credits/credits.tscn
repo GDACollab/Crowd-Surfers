@@ -33,7 +33,8 @@ grow_vertical = 2
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
-[node name="UIAudio" parent="." instance=ExtResource("1_6r17f")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons") instance=ExtResource("1_6r17f")]
+back_buttons = [NodePath("../BackButton")]
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -107,6 +108,4 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(72, 45)
 text = "Back"
 
-[connection signal="mouse_entered" from="BackButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]
-[connection signal="pressed" from="BackButton" to="UIAudio" method="play_back_sound"]

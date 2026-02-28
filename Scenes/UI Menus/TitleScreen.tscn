@@ -17,7 +17,8 @@ script = ExtResource("1_sjn55")
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
-[node name="UIAudio" parent="." instance=ExtResource("2_dl3ah")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons") instance=ExtResource("2_dl3ah")]
+confirm_buttons = [NodePath("../PlayButton"), NodePath("../CreditsButton")]
 
 [node name="TitleImage" type="TextureRect" parent="."]
 layout_mode = 0
@@ -57,9 +58,5 @@ scale = Vector2(1.75, 1.75)
 size_flags_horizontal = 3
 text = "Credits"
 
-[connection signal="mouse_entered" from="PlayButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="PlayButton" to="UIAudio" method="play_confirm_sound"]
-[connection signal="mouse_entered" from="CreditsButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="CreditsButton" to="UIAudio" method="play_confirm_sound"]
