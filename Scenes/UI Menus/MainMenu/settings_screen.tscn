@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://kvs3yueyscim"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.8685
+offset_right = 217.8685
+offset_bottom = 70.0
+grow_horizontal = 2
+pivot_offset = Vector2(217.869, 0)
+color = Color(0.74978, 0.74978, 0.74977994, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = -5.0
+offset_right = 152.0
+offset_bottom = 71.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font_size=55]-- Settings --"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ScrollMask" type="ColorRect" parent="."]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.869
+offset_top = 70.0
+offset_right = 217.868
+offset_bottom = 800.0
+grow_horizontal = 2
+pivot_offset = Vector2(217.869, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollMask"]
+layout_mode = 0
+offset_right = 435.737
+offset_bottom = 730.281
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollMask/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SliderHolder" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SliderHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -8.0
+offset_right = 72.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(72.5, 8)
+
+[node name="SliderHolder2" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SliderHolder2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -8.0
+offset_right = 72.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(72.5, 8)
+
+[node name="SliderHolder3" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SliderHolder3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -8.0
+offset_right = 72.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(72.5, 8)
+
+[node name="BackButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Back
+"
