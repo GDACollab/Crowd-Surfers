@@ -1,5 +1,6 @@
 extends CharacterBody3D
-@onready var player_sprite: Sprite3D = $Sprite3D
+#@onready var player_sprite: Sprite3D = $Sprite3D
+@onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
@@ -322,6 +323,14 @@ func handle_inputs(delta: float) -> void:
 	# Get directional inputs
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	#player_sprite animations
+	#I am a mere designer, I require assistance with this.
+	#player_sprite.play(action(state?) + "_" + positive direction) (base the animation names off of this "action_direction")
+	
+	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
+	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
+	
 	# Activate dash
 	if (not is_dashing()) and $DashCooldownTimer.is_stopped() and Input.is_action_just_pressed("ability_dash"):
 		dash(input_dir)
@@ -330,6 +339,7 @@ func handle_inputs(delta: float) -> void:
 		# if the player stops moving reset the current speed
 		if(velocity == Vector3.ZERO): 
 			max_speed = starting_speed
+			player_sprite.play("ilde") #play sprite's idle animation
 		# If there are inputs this frame, direction isn't null, so we add speed
 		if direction:
 			var factorx: float = acceleration * delta
