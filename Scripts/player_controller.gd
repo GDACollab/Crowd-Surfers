@@ -326,8 +326,8 @@ func handle_inputs(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	#player_sprite animations
-	#I am a mere designer, I require assistance with this.
-	player_sprite.play(state_to_string() + "_" + direction_to_string())
+	#Maybe move this to states? I think it's restarting the animation every frame
+	#player_sprite.play(state_to_string() + "_" + direction_to_string())
 	
 	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
 	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
