@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpsqaau1y74rg"]
+[gd_scene load_steps=10 format=3 uid="uid://bpsqaau1y74rg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_v2y8g"]
-[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_3uq2g"]
-[ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Archive/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="3_o3jt6"]
-[ext_resource type="PackedScene" uid="uid://biglh66531r4d" path="res://Archive/[OLD] Drag&DropReady/Bus01Side.tscn" id="4_3uq2g"]
-[ext_resource type="PackedScene" uid="uid://fxbeava8pkc2" path="res://Archive/[OLD] Drag&DropReady/cable_car_side.tscn" id="5_o3jt6"]
-[ext_resource type="PackedScene" uid="uid://1mtyxmdji8y" path="res://Archive/[OLD] Drag&DropReady/car_red_up.tscn" id="7_v3kcc"]
-[ext_resource type="PackedScene" uid="uid://bkovj7df5cxtb" path="res://Archive/[OLD] Drag&DropReady/MarketStallCyan.tscn" id="8_4prnw"]
-[ext_resource type="PackedScene" uid="uid://ee3i74vmg01t" path="res://Archive/[OLD] Drag&DropReady/cable_car_down.tscn" id="8_w773i"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/8D Movement/player.tscn" id="2_3uq2g"]
+[ext_resource type="PackedScene" uid="uid://c4cpjcdxo7dc2" path="res://Assets/Level Components/Obstacles/Floors/Road_Horizontal_Alpha.tscn" id="3_o3jt6"]
+[ext_resource type="PackedScene" uid="uid://biglh66531r4d" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Bus01Side.tscn" id="4_3uq2g"]
+[ext_resource type="PackedScene" uid="uid://fxbeava8pkc2" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/cable_car_side.tscn" id="5_o3jt6"]
+[ext_resource type="PackedScene" uid="uid://1mtyxmdji8y" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/car_red_up.tscn" id="7_v3kcc"]
+[ext_resource type="PackedScene" uid="uid://bkovj7df5cxtb" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/MarketStallCyan.tscn" id="8_4prnw"]
+[ext_resource type="PackedScene" uid="uid://ee3i74vmg01t" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/cable_car_down.tscn" id="8_w773i"]
+[ext_resource type="PackedScene" uid="uid://d1rq7hbuncqmf" path="res://Assets/Level Components/GrayboxeComponents/Drag&DropReady/Market Stall Amber.tscn" id="9_w773i"]
 
 [node name="DebugLevel2" type="Node3D"]
 
@@ -22,6 +23,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.473543, 2.4012852, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(0.9958608, 0, 0, 0, -4.353046e-08, 0.9958608, 0, -0.9958608, -4.353046e-08, -0.44200003, 15, 0)
+projection = 1
+size = 30.0
+near = 0.425
+
+[node name="Camera3D2" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.4419999, 15, -28.788572)
 projection = 1
 size = 30.0
 near = 0.425
@@ -50,6 +57,18 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 41.777718, 0, -30.59736
 [node name="Road8" parent="." instance=ExtResource("3_o3jt6")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 69.83949, 0, -30.597363)
 
+[node name="Road9" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14, 0, -59.385933)
+
+[node name="Road10" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 14.647911, 0, -59.385933)
+
+[node name="Road11" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 41.777718, 0, -59.385933)
+
+[node name="Road12" parent="." instance=ExtResource("3_o3jt6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 69.83949, 0, -59.385933)
+
 [node name="Chained Glide 1" parent="." instance=ExtResource("4_3uq2g")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.932363, 4.9948692e-05, -10.547943)
 active = false
@@ -62,7 +81,7 @@ active = false
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 68.00156, 4.9948692e-05, -11.978195)
 active = false
 
-[node name="Chain Triple Glide 4" parent="." instance=ExtResource("5_o3jt6")]
+[node name="Chained Glide 4" parent="." instance=ExtResource("5_o3jt6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 68.00156, 4.9948692e-05, -11.978195)
 active = false
 
@@ -83,3 +102,19 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 42.9
 
 [node name="Tight Narrow Jumps 6" parent="." instance=ExtResource("8_w773i")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 58.805656, 5.146861e-05, -38.06131)
+
+[node name="Zigzag 1" parent="." instance=ExtResource("9_w773i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11.3131075, 4.9948692e-05, -60.754993)
+active = false
+
+[node name="Zigzag 2" parent="." instance=ExtResource("8_4prnw")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 14.035141, 4.9948692e-05, -65.085976)
+active = false
+
+[node name="Zigzag 3" parent="." instance=ExtResource("8_4prnw")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 37.07386, 4.9948692e-05, -59.74097)
+active = false
+
+[node name="Zigzag 4" parent="." instance=ExtResource("8_4prnw")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 61.206043, 4.9948692e-05, -64.70824)
+active = false
