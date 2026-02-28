@@ -154,8 +154,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
-size = Vector3(14.190189, 19.472387, 0.8726929)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kbuap"]
+radius = 2.849121
+height = 19.23059
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
@@ -170,8 +171,8 @@ animation = &"skate_right"
 frame_progress = 0.7055122
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012947798, 9.736194, -0.038468838)
-shape = SubResource("BoxShape3D_baiym")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08012009, 9.51897, -0.038468838)
+shape = SubResource("CapsuleShape3D_kbuap")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
 [node name="Drop Shadow" type="Sprite3D" parent="CollisionShape3D"]
