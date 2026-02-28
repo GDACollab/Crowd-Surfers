@@ -14,7 +14,6 @@ size = Vector3(25, 1.5, 50)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_n08fc")
-active = true
 top_filename = ExtResource("2_d8xdu")
 front_filename = ExtResource("3_c63tq")
 width = 25.0
@@ -23,12 +22,14 @@ height = 15.0
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(6.4102564, 0, 0, 0, 1, 0, 0, 0, 10.245902, 0, 15, 25)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_d8xdu")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(6.4102564, 0, 0, 0, -4.371139e-08, -19.736841, 0, 1, -8.6272473e-07, 0, 7.5, 50)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("3_c63tq")
 
