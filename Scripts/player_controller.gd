@@ -389,6 +389,7 @@ func dash(input_dir: Vector2) -> void:
 ## Give the player upwards velocity
 func jump() -> void:
 	velocity.y = jump_speed
+	$JumpSound.play()
 
 ## Applies gravity
 func fall(delta: float) -> void:
