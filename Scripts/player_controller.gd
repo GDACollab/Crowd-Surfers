@@ -1,6 +1,5 @@
 extends CharacterBody3D
-#@onready var player_sprite: Sprite3D = $Sprite3D
-@onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
+@onready var player_sprite: Sprite3D = $Sprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
@@ -8,7 +7,7 @@ var player_sprite_starting_pos: float = 0.0
 # General movement
 @export_category("General Movement")
 ## The highest value max_speed can be at before modifications
-@export var base_ramping_cap: float = 35.0 #the speed at which the player speeds up
+@export var base_ramping_cap: float = 25.0 #the speed at which the player speeds up
 ## Initial speed when starting from rest
 @export var starting_speed : float = 5.0
 ## Growth exponent for ramping
@@ -16,24 +15,24 @@ var player_sprite_starting_pos: float = 0.0
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.5
 ## Acceleration before modifications
-@export var base_acceleration: float = 40.0
+@export var base_acceleration: float = 30.0
 ## Rate at which the player decelerates
-@export var friction: float = 20.0
+@export var friction: float = 30.0
 ## Added to player's vertical speed in states where they can fall
 @export var gravity: float = 40.0
 ## Speed of the player's jump
-@export var jump_speed: float = 16.0
+@export var jump_speed: float = 14.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 
 # Stomp
 @export_category("Stomp")
 ## Initial speed of the stomp before gravity is applied
-@export var stomp_speed: float = 30.0
+@export var stomp_speed: float = 10.0
 ## The maximum speed that the player can be at on the first frame of the windup
 @export var max_speed_for_windup: float = 5.0
 ## Time it takes the stomp to windup. This should be tied to an animation in the future
-@export var windup_duration: float = 0.15
+@export var windup_duration: float = 0.5
 ## Rate at which stomp boost accumulates per second
 @export var stomp_dash_boost_factor: float = 25.0
 ## Maximum boost which can be gained from stomp-dashing
@@ -42,15 +41,15 @@ var player_sprite_starting_pos: float = 0.0
 # Dash
 @export_category("Dash")
 ## Time that the dash lasts
-@export var dash_duration: float = 0.5
+@export var dash_duration: float = 5.0
 ## Minimum time between dasehs
-@export var dash_cooldown: float = 0.5
+@export var dash_cooldown: float = 3.0
 ## Multiplier applied to all relevant speed variables by the dash
 @export var dash_speed_multiplier: float = 1.2
 ## Initial speed boost added on by the dash
 @export var dash_boost: float = 5.0
 ## The time after stomp finishes that the player can activate dash and get an extra boost
-@export var stomp_dash_margin: float = 1.0
+@export var stomp_dash_margin: float = 0.1
 
 # Glide
 @export_category("Glide")
@@ -58,14 +57,6 @@ var player_sprite_starting_pos: float = 0.0
 @export var glide_decay_ratio: float = 0.5
 ## The speed at which glide ends
 @export var glide_min_speed: float = 5.0
-
-# Shadow
-@export_category("Shadow")
-@export var shadow_base_scale: float = 1.28      # scale on the ground
-@export var shadow_min_scale: float = 0.55       # scale at/above max height
-@export var shadow_max_height: float = 3.0       # meters where shadow reaches min scale
-@export var shadow_lift: float = 1.5             # your +1.5 offset
-@export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
 ## When dash ends, reset values and begin the cooldown
 func _on_dash_duration_timer_timeout() -> void:
@@ -85,7 +76,7 @@ func _on_dash_duration_timer_timeout() -> void:
 	$DashCooldownTimer.start()
 
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE}
 
 # Active values - may change during execution
 var max_speed: float = 0.0
@@ -103,46 +94,8 @@ var stomp_boost: float = 0.0
 ## The current state the player is in
 var current_state: int = States.GROUND
 
-# ── Collider scaling ───────────────────────────────────────────────────────
-# The collider height that all exported values are tuned for (0.2 = current size).
-# Update this constant whenever you re-tune the exported values at a new size.
-const REFERENCE_HEIGHT := 2.0
-# Computed once in _ready(); kept here only for debugging / introspection.
-var _collider_scale := 1.0
-
 func _ready() -> void:
 	global_position = PlayerSpawn.spawnpoint
-	# ── Scale all feel values to the actual collider height ────────────────
-	# Only speed/acceleration/distance values are scaled; durations and
-	# dimensionless ratios (exponents, multipliers) are left untouched.
-	var _shape: Shape3D = $CollisionShape3D.shape
-	var _actual_h := REFERENCE_HEIGHT  # safe fallback
-	if   _shape is CapsuleShape3D:   _actual_h = _shape.height
-	elif _shape is BoxShape3D:        _actual_h = _shape.size.y
-	elif _shape is SphereShape3D:     _actual_h = _shape.radius * 2.0
-	elif _shape is CylinderShape3D:   _actual_h = _shape.height
-	_collider_scale = _actual_h / REFERENCE_HEIGHT
-	var s := _collider_scale  # shorthand
-	# General Movement
-	base_ramping_cap          *= s  # units/s
-	starting_speed            *= s  # units/s
-	base_acceleration         *= s  # units/s²
-	friction                  *= s  # units/s²
-	gravity                   *= s  # units/s²
-	jump_speed                *= s  # units/s
-	# Stomp
-	stomp_speed               *= s  # units/s
-	max_speed_for_windup      *= s  # units/s
-	stomp_dash_boost_factor   *= s  # units/s per s
-	max_stomp_dash_boost      *= s  # units/s
-	# Dash
-	dash_boost                *= s  # units/s
-	# Glide
-	glide_min_speed           *= s  # units/s
-	# Shadow
-	shadow_max_height         *= s  # units
-	shadow_lift               *= s  # units
-	# ── End scaling ────────────────────────────────────────────────────────
 	# Initialize values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
@@ -153,25 +106,29 @@ func _ready() -> void:
 	$DashDurationTimer.wait_time = dash_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
-	raycast.add_exception(self)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	snap_sprite()
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
-	snap_sprite()
-	
+
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
 	match current_state:
-		States.GROUND, States.SLOPE:
+		States.GROUND:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
-		States.COYOTE, States.AIR:
+		States.COYOTE:
+			fall(delta)
+			handle_inputs(delta)
+			if is_on_wall():
+				crash()
+		States.AIR:
 			fall(delta)
 			handle_inputs(delta)
 			if is_on_wall():
@@ -214,17 +171,6 @@ func check_state_transitions() -> void:
 			elif not is_on_floor():
 				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
-			elif get_floor_angle() != 0.0:
-				transition_to(States.SLOPE)
-		States.SLOPE:
-			if Input.is_action_just_pressed("move_jump"):
-				jump()
-				transition_to(States.AIR)
-			elif not is_on_floor():
-				$CoyoteTimer.start()
-				transition_to(States.COYOTE)
-			elif get_floor_angle() == 0.0:
-				transition_to(States.GROUND)
 		States.COYOTE:
 			if is_on_floor():
 				transition_to(States.GROUND)
@@ -258,23 +204,8 @@ func check_state_transitions() -> void:
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
-	# Use this match statement to maintain invariants when leaving states
-	match current_state:
-		States.AIR:
-			# Restore friction when leaving the air
-			friction *= 2.0
-		States.GLIDE:
-			# Stop glide sound
-			$GlideSound.set_parameter("glide_state", "end")
-		States.STOMP_FALL:
-			$StompSound.set_parameter("stomp_state", "end")
-		States.SLOPE:
-			var angle: float = get_floor_angle()
-			# Sloped movement maintains the velocity but internally multiplies it by the angle,
-			# but by default this is not maintained when leaving the slope
-			velocity *= cos(angle)
-
-	# Use this match statement to maintain invariants when entering states
+	# If a state transition must do the exact same thing regardless of the starting state,
+	# add it to this match statement
 	match new_state:
 		States.STOMP_WINDUP:
 			# If dash is active as stomp begins, end it
@@ -313,24 +244,25 @@ func transition_to(new_state: int) -> void:
 			# Lower friction in midair
 			friction /= 2.0
 		
-	
+	# Use this match statement to maintain invariants when leaving states
+	match current_state:
+		States.AIR:
+			# Restore friction when leaving the air
+			friction *= 2.0
+		States.GLIDE:
+			# Stop glide sound
+			$GlideSound.set_parameter("glide_state", "end")
+		States.STOMP_FALL:
+			$StompSound.set_parameter("stomp_state", "end")
 	
 	current_state = new_state
-	print_state()
+	#print_state()
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
 	# Get directional inputs
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	#player_sprite animations
-	#I am a mere designer, I require assistance with this.
-	#player_sprite.play(action(state?) + "_" + positive direction) (base the animation names off of this "action_direction")
-	
-	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
-	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
-	
 	# Activate dash
 	if (not is_dashing()) and $DashCooldownTimer.is_stopped() and Input.is_action_just_pressed("ability_dash"):
 		dash(input_dir)
@@ -339,7 +271,6 @@ func handle_inputs(delta: float) -> void:
 		# if the player stops moving reset the current speed
 		if(velocity == Vector3.ZERO): 
 			max_speed = starting_speed
-			player_sprite.play("ilde") #play sprite's idle animation
 		# If there are inputs this frame, direction isn't null, so we add speed
 		if direction:
 			var factorx: float = acceleration * delta
@@ -403,20 +334,16 @@ func set_spawnpoint(new_spawnpoint: Vector3) -> void:
 
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
-	raycast.force_raycast_update()
-
-	if not raycast.is_colliding():
-		return
-
-	var ground_point: Vector3 = raycast.get_collision_point()
-	var height := global_position.y - ground_point.y
-
-	player_shadow.global_position = ground_point + Vector3(0.0, 0.01, 0.0)
-
-	var t := clampf(height / shadow_max_height, 0.0, 1.0)
-	t = pow(t, shadow_falloff_exp)
-	var s: float = lerp(shadow_base_scale, shadow_min_scale, t)
-	player_shadow.scale = Vector3(s, s, s)
+	# Set player sprite offset
+	var offset = global_position.y
+	player_sprite.position.z = player_sprite_starting_pos - offset
+	#print("Player offset", -offset)
+	var height = position.y - raycast.get_collision_point().y
+	# Drop shadow
+	player_shadow.position.z = player_sprite.position.z + 1.5 + height
+	height = clampf(height, 0, 0.5)
+	var scaleMod= 1.28-height #Should be base scale
+	player_shadow.scale = Vector3(scaleMod, scaleMod, scaleMod)
 
 ## Returns whether the player is currently dashing by checking the status of DashDurationTimer
 func is_dashing() -> bool:
@@ -437,5 +364,3 @@ func print_state() -> void:
 			print("Stomp")
 		States.GLIDE:
 			print("Glide")
-		States.SLOPE:
-			print("Slope")
