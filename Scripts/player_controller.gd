@@ -75,8 +75,47 @@ func _on_dash_duration_timer_timeout() -> void:
 	#velocity.z = min(dir.z * speed, dir.z * max_speed)
 	$DashCooldownTimer.start()
 
+## Activates when stomping on a Crowd, boosting the player forward and slightly up
+func crowd_launch() -> void:
+	# Give the player a slight upward bounce so they don't immediately hit the floor
+	velocity.y = jump_speed * 0.8 
+	
+	# Play dash sound (or a unique bounce sound if you add one later)
+	$DashSound.play()
+	
+	# Increase caps using your dash modifiers
+	ramping_cap = ramping_cap * dash_speed_multiplier + dash_boost
+	max_speed = move_toward(max_speed * dash_speed_multiplier, ramping_cap, dash_boost)
+	acceleration *= dash_speed_multiplier
+	
+	# Get directional input to determine launch direction
+	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var dir := Vector3.ZERO
+	
+	if input_dir != Vector2.ZERO:
+		dir = Vector3(input_dir.x, 0.0, input_dir.y).normalized()
+	else:
+		# If no input is given, launch them in the direction they are facing
+		var facing_x: float = -1.0 if player_sprite.flip_h else 1.0
+		dir = Vector3(facing_x, 0.0, 0.0).normalized()
+	
+	# Calculate the boost amount based on the stomp momentum
+	var speed: float = velocity_before_stomp.length() + stomp_boost
+	var boost: float = speed + dash_boost
+	
+	# Apply the forward velocity
+	velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
+	velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
+	
+	# Start duration timer so the speed boost wears off naturally
+	$DashDurationTimer.start()
+	
 ## The states that the player can be in
+<<<<<<< Updated upstream
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE}
+=======
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, STOMP_CROWD_LAUNCH}
+>>>>>>> Stashed changes
 
 # Active values - may change during execution
 var max_speed: float = 0.0
@@ -140,6 +179,18 @@ func process_state(delta: float) -> void:
 		States.STOMP_FALL:
 			fall(delta)
 			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta)
+			# 1. Check if we hit an object in the "Crowd" group during move_and_slide()
+			for i in get_slide_collision_count():
+				var collision = get_slide_collision(i)
+				var collider = collision.get_collider()
+				if collider and collider.is_in_group("Crowd"):
+					transition_to(States.STOMP_CROWD_LAUNCH)
+					return
+					
+			# 2. Normal floor collision
+			if is_on_floor():
+				$StompDashMargin.start()
+				transition_to(States.GROUND)
 		States.GLIDE:
 			# Increase total time gliding
 			time_gliding += delta
@@ -156,6 +207,12 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
+		States.STOMP_CROWD_LAUNCH:
+			fall(delta)
+			handle_inputs(delta)
+			if is_on_wall():
+				crash()
+			
 		
 ## Performs a state transition, if necessary
 func check_state_transitions() -> void:
@@ -201,6 +258,9 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_WINDUP)
 			elif velocity.length() <= glide_min_speed or Input.is_action_just_released("ability_glide") or is_on_wall():
 				transition_to(States.AIR)
+		States.STOMP_CROWD_LAUNCH:
+			if is_on_floor():
+				transition_to(States.GROUND)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -243,6 +303,8 @@ func transition_to(new_state: int) -> void:
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
+		States.STOMP_CROWD_LAUNCH:
+			crowd_launch()
 		
 	# Use this match statement to maintain invariants when leaving states
 	match current_state:
