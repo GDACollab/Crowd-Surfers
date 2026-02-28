@@ -8,21 +8,21 @@ var player_sprite_starting_pos: float = 0.0
 # General movement
 @export_category("General Movement")
 ## The highest value max_speed can be at before modifications
-@export var base_ramping_cap: float = 35.0 #the speed at which the player speeds up
+@export var base_ramping_cap: float = 150.0 #the speed at which the player speeds up
 ## Initial speed when starting from rest
-@export var starting_speed : float = 5.0
+@export var starting_speed : float = 20.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.5
 ## Acceleration before modifications
-@export var base_acceleration: float = 40.0
+@export var base_acceleration: float = 170.0
 ## Rate at which the player decelerates
-@export var friction: float = 20.0
+@export var friction: float = 75.0
 ## Added to player's vertical speed in states where they can fall
-@export var gravity: float = 40.0
+@export var gravity: float = 50.0
 ## Speed of the player's jump
-@export var jump_speed: float = 16.0
+@export var jump_speed: float = 50.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
@@ -123,19 +123,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
-	#region scaling bs
-	# TODO refine scaling based on the player sprite size (which should just be 1.0! But alas
-	# I have to be able to test)
-	var sprite_scale: Vector3 = $Sprite3D.scale
-	var v := velocity
-	# dividing by 2 is a heuristic. Using the full scale makes the player way too fast for some reason
-	velocity.x *= sprite_scale.x / 2.0
-	velocity.y *= sprite_scale.y / 2.0
-	velocity.z *= sprite_scale.z / 2.0
-	#endregion
 	move_and_slide()
-	velocity = v
 	snap_sprite()
+	print(velocity)
 	
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
@@ -254,7 +244,8 @@ func check_state_transitions() -> void:
 				transition_to(States.GROUND)
 		States.DASH_GROUND:
 			var distance_traveled := dash_start_pos.distance_to(position)
-			if distance_traveled >= dash_distance:
+			# Checking for zero velocity accounts for the player hitting dash without a direction
+			if distance_traveled >= dash_distance or velocity == Vector3.ZERO:
 				if is_on_floor():
 					transition_to(States.GROUND)
 				else:
@@ -280,7 +271,8 @@ func check_state_transitions() -> void:
 					transition_to(States.GROUND)
 				else:
 					transition_to(States.AIR)
-			elif distance_traveled >= dash_distance:
+			# Checking for zero velocity accounts for the player hitting dash without a direction
+			elif distance_traveled >= dash_distance or velocity == Vector3.ZERO:
 				if is_on_floor():
 					transition_to(States.GROUND)
 				else:
@@ -400,11 +392,6 @@ func handle_inputs(delta: float) -> void:
 	
 	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
 	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
-	
-	# Activate dash
-	if (not is_dashing()) and $DashCooldownTimer.is_stopped() and Input.is_action_just_pressed("ability_dash"):
-		dash(input_dir)
-	# If dash wasn't activated this frame, do normal inputs
 
 	# if the player stops moving reset the current speed
 	if(velocity == Vector3.ZERO): 
@@ -493,6 +480,10 @@ func state_to_string() -> String:
 			return "Glide"
 		States.SLOPE:
 			return "Slope"
+		States.DASH_GROUND:
+			return "Ground Dash"
+		States.DASH_AIR:
+			return "Air Dash"
 	return ""
 
 ## Returns the current direction
@@ -505,4 +496,3 @@ func direction_to_string() -> String:
 	if input_dir.x != 0 && input_dir.y == 0: return "right"
 	if input_dir.x == 0 && input_dir.y == 0: return "idle"
 	return ""
-
