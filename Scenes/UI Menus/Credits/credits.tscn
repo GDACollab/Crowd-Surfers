@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=10 format=3 uid="uid://pq5rrrmglvc3"]
 
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6r17f"]
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/Credits/pitch_art_temp.PNG" id="1_ykwev"]
 [ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/Credits/credits.gd" id="2_22rij"]
 [ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="3_4lsct"]
@@ -28,6 +29,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." instance=ExtResource("1_6r17f")]
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -101,4 +107,6 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(72, 45)
 text = "Back"
 
+[connection signal="mouse_entered" from="BackButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]
+[connection signal="pressed" from="BackButton" to="UIAudio" method="play_back_sound"]
