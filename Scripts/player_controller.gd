@@ -329,7 +329,8 @@ func transition_to(new_state: int) -> void:
 	
 	
 	current_state = new_state
-	print_state()
+	print(state_to_string())
+	print(direction_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -339,7 +340,7 @@ func handle_inputs(delta: float) -> void:
 	
 	#player_sprite animations
 	#I am a mere designer, I require assistance with this.
-	#player_sprite.play(action(state?) + "_" + positive direction) (base the animation names off of this "action_direction")
+	player_sprite.play(state_to_string() + "_" + direction_to_string())
 	
 	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
 	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
@@ -435,20 +436,32 @@ func snap_sprite() -> void:
 func is_dashing() -> bool:
 	return not $DashDurationTimer.is_stopped()
 
-## Outputs the current state to the console
-func print_state() -> void:
+## Returns the current state
+func state_to_string() -> String:
 	match current_state:
 		States.GROUND:
-			print("Ground")
+			return "Ground"
 		States.COYOTE:
-			print("Coyote")
+			return "Coyote"
 		States.AIR:
-			print("Air")
+			return "Air"
 		States.STOMP_WINDUP:
-			print("Windup")
+			return "Windup"
 		States.STOMP_FALL:
-			print("Stomp")
+			return "Stomp"
 		States.GLIDE:
-			print("Glide")
+			return "Glide"
 		States.SLOPE:
-			print("Slope")
+			return "Slope"
+	return ""
+
+## Returns the current direction
+func direction_to_string() -> String:
+	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if input_dir.x != 0 && input_dir.y <= 0: return "up_right"
+	if input_dir.x != 0 && input_dir.y >= 0: return "down_right"
+	if input_dir.x == 0 && input_dir.y <= 0: return "up"
+	if input_dir.x == 0 && input_dir.y >= 0: return "down"
+	if input_dir.x != 0 && input_dir.y == 0: return "right"
+	if input_dir.x == 0 && input_dir.y == 0: return "idle"
+	return ""
