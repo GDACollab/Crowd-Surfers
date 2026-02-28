@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=14 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/pause_screen.gd" id="1_f6gwv"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_0kv7i"]
 [ext_resource type="Texture2D" uid="uid://2y5aqlmv0kgk" path="res://Assets/Art/PauseScreen/square.png" id="2_no0yh"]
 [ext_resource type="Shader" uid="uid://dbhbs6o4ufvkc" path="res://Scripts/Shaders/blur.gdshader" id="2_p5gsh"]
 [ext_resource type="Texture2D" uid="uid://qeyfipl3hssl" path="res://Assets/Art/PauseScreen/temp_phone.png" id="3_qyxbx"]
@@ -290,6 +291,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f6gwv")
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." instance=ExtResource("2_0kv7i")]
+
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0kv7i")
 layout_mode = 1
@@ -534,8 +540,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_ojd7t")
 }
 
+[connection signal="mouse_entered" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="UIAudio" method="play_back_sound"]
+[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/ResumeButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="UIAudio" method="play_confirm_sound"]
+[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/ControlsButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="UIAudio" method="play_confirm_sound"]
+[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/SettingsButton" to="UIAudio" method="play_hover_sound"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/SettingsButton" to="UIAudio" method="play_confirm_sound"]
+[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="UIAudio" method="play_confirm_sound"]
+[connection signal="mouse_entered" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="UIAudio" method="play_hover_sound"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="UIAudio" method="play_back_sound"]
