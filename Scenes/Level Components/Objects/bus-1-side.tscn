@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8dc1ijuau24f"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_ohmm7"]
+[ext_resource type="Texture2D" uid="uid://c535tmc1spfl0" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Side/bus_side_TOP(updated).png" id="2_cxj5s"]
+[ext_resource type="Texture2D" uid="uid://cjxyj128cnh4r" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Side/bus_side_FRONT(updated).png" id="3_ftufh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ohmm7"]
+size = Vector3(50, 22.5, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxj5s"]
+size = Vector3(50, 2.5, 25)
+
+[node name="Bus1Side" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_ohmm7")
+active = true
+top_filename = ExtResource("2_cxj5s")
+front_filename = ExtResource("3_ftufh")
+length = 25.0
+height = 25.0
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(2.9308324, 0, 0, 0, 1, 0, 0, 0, 6.127451, 0, 25, 12.5)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("2_cxj5s")
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(2.9308324, 0, 0, 0, -4.371139e-08, -5.6179776, 0, 1, -2.455696e-07, 0, 12.5, 25)
+axis = 1
+alpha_cut = 1
+texture = ExtResource("3_ftufh")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 12.5)
+shape = SubResource("BoxShape3D_ohmm7")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 12.5)
+shape = SubResource("BoxShape3D_cxj5s")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
