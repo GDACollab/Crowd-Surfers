@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://rajvj3yel7v3"]
+[gd_scene load_steps=4 format=3 uid="uid://dkg0povodrbho"]
 
-[ext_resource type="Script" uid="uid://cwliuaculvqji" path="res://Scripts/checkpoint.gd" id="1_270ja"]
-[ext_resource type="Texture2D" uid="uid://ci5pjysgvlqfd" path="res://Assets/Art/GrayboxTemplateAssets/Wall.jpg" id="2_tkkdv"]
+[ext_resource type="Script" uid="uid://cwliuaculvqji" path="res://Scripts/checkpoint.gd" id="1_mx10p"]
+[ext_resource type="Texture2D" uid="uid://ci5pjysgvlqfd" path="res://Assets/Art/GrayboxTemplateAssets/Wall.jpg" id="2_xx41d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hl0u2"]
 size = Vector3(2.5, 5, 2.5)
 
 [node name="Checkpoint" type="Node3D"]
-script = ExtResource("1_270ja")
+script = ExtResource("1_mx10p")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -16,7 +16,7 @@ shape = SubResource("BoxShape3D_hl0u2")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-texture = ExtResource("2_tkkdv")
+texture = ExtResource("2_xx41d")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
