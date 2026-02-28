@@ -10,15 +10,15 @@
 [sub_resource type="Resource" id="Resource_8pn86"]
 script = ExtResource("4_fax7y")
 texture = ExtResource("3_4lsct")
-scale = 0.75
-position = Vector2(550.638, 670)
+scale = 0.5
+position = Vector2(309, 670)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
 [sub_resource type="Resource" id="Resource_oug0m"]
 script = ExtResource("4_fax7y")
 texture = ExtResource("4_ut8rr")
-scale = 0.3
-position = Vector2(-844.02, 1980)
+scale = 0.2
+position = Vector2(-521, 1980)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
 [node name="Control" type="Control"]
@@ -50,31 +50,21 @@ offset_right = 20.0
 offset_bottom = 40.000015
 grow_horizontal = 2
 script = ExtResource("2_22rij")
-slow_scroll_speed = 85.0
-fast_scroll_speed = 375.0
-scroll_speed_change_rate_per_second = 375.0
-separator_size = 60.0
-credits_starting_y = 1167.0
 credits_text_file_string = "res://Assets/credits.txt"
 credits_text_scene = ExtResource("5_4hn7j")
 images = Array[ExtResource("4_fax7y")]([SubResource("Resource_8pn86"), SubResource("Resource_oug0m")])
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -576.0
-offset_right = 576.0
+layout_mode = 0
+offset_left = -556.0
+offset_right = 596.0
 offset_bottom = 176.0
-grow_horizontal = 2
 pivot_offset = Vector2(576, 0)
 
 [node name="RichTextLabel4" parent="CreditsContainer/CreditsTextContainer" instance=ExtResource("5_4hn7j")]
 visible = false
 layout_mode = 2
-text = "[font_size=112
-]sample text[/font_size]"
+text = "[font_size=45]sample text[/font_size]"
 
 [node name="UseDuringRuntimeToPositionImages" type="TextureRect" parent="CreditsContainer"]
 visible = false
@@ -93,12 +83,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -45.0
+offset_left = -135.0
+offset_top = -93.0
+offset_right = -90.0
+offset_bottom = -62.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(3, 3)
-pivot_offset = Vector2(72, 45)
 text = "Back"
 
 [connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]

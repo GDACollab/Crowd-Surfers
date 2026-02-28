@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvhhwhanyms2p"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Scripts/automated_asset_type_obstacle.gd" id="1_pu1wo"]
+[ext_resource type="Texture2D" uid="uid://brqxvc0c0w8lj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_TOP(UPDATE2).PNG" id="2_j6jbu"]
+[ext_resource type="Texture2D" uid="uid://bghscf80h4c51" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_FRONT(UPDATE2).PNG" id="3_vv12i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6jbu"]
+size = Vector3(4, 1.5, 4.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vv12i"]
+size = Vector3(4, 1, 1.45)
+
+[node name="WaymoConfusedUp" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_pu1wo")
+width = 4.0
+top_length = 4.5
+front_length = 1.5
+z_pad = 0.05
+top_filename = "/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_TOP(UPDATE2).PNG"
+front_filename = "/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_FRONT(UPDATE2).PNG"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0256411, 0, -8.0615266e-08, 0, 1, 0, 8.966439e-08, 0, -0.9221311, 0, 0.01, 0.75)
+axis = 1
+texture = ExtResource("2_j6jbu")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0256411, 0, -1.7254496e-07, 0, 1, 0, 8.966439e-08, 0, -1.9736842, 0, 0.01, -2.25)
+axis = 1
+texture = ExtResource("3_vv12i")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0256411, 0, -8.0615266e-08, 0, 1, 0, 8.966439e-08, 0, -0.9221311, 0, 1.5, 2.25)
+axis = 1
+texture = ExtResource("2_j6jbu")
+region_enabled = true
+region_rect = Rect2(0, 0, 390, 162.66667)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.725)
+shape = SubResource("BoxShape3D_j6jbu")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.225)
+shape = SubResource("BoxShape3D_vv12i")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)

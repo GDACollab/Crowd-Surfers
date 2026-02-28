@@ -1,44 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6gtuja0mhmsp"]
+[gd_scene load_steps=5 format=3 uid="uid://c6gtuja0mhmsp"]
 
 [ext_resource type="Script" uid="uid://c50owskimfba1" path="res://Scripts/DebugButton.gd" id="1_fyald"]
 [ext_resource type="Script" uid="uid://cqewhhplcgc25" path="res://Scripts/VDebugContainer.gd" id="2_4qakc"]
+[ext_resource type="PackedScene" uid="uid://dp8gtvy4trdcf" path="res://Scenes/Debug Overlay/debug_overlay.tscn" id="3_my3p2"]
 
 [sub_resource type="Theme" id="Theme_w7oi7"]
 
 [node name="DebugMenu" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -324.0
+offset_right = -507.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_fyald")
 
 [node name="DebugMenuButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -193.0
-offset_bottom = 50.0
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 956.0
+offset_top = -320.0
+offset_right = 1149.0
+offset_bottom = -270.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 30
 text = "Debug Menu"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.047000002
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -639.0
-offset_top = 0.23999786
-grow_horizontal = 0
-grow_vertical = 2
+layout_mode = 0
+offset_left = 717.0
+offset_top = -268.0
+offset_right = 1217.0
+offset_bottom = 232.0
 theme = SubResource("Theme_w7oi7")
 
 [node name="VDebugContainer" type="VBoxContainer" parent="ScrollContainer"]
@@ -47,15 +44,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_4qakc")
 
-[node name="BuildVersionLabel" type="Label" parent="."]
+[node name="DebugOverlay" parent="." instance=ExtResource("3_my3p2")]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 1.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Build 1.0"
 
 [connection signal="pressed" from="DebugMenuButton" to="." method="_on_debug_menu_button_pressed"]

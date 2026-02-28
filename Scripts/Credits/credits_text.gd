@@ -17,8 +17,6 @@ func _ready():
 	self.modulate = Color(normal_brightness, normal_brightness, normal_brightness)
 	
 func _process(_delta: float):
-	check_is_hovered()
-	
 	# t should go from 0 to 1 in scale_change_seconds seconds after last_scale_time :thumbsup:
 	var t: float = (float(Time.get_ticks_msec())/1000.0 - last_hover_change_time) / scale_change_seconds
 	t = smoothstep(0.0, 1.0, t)
@@ -35,12 +33,17 @@ func _process(_delta: float):
 		
 	self.pivot_offset = self.size * 0.5
 
-func check_is_hovered() -> void:
-	var is_hovered_new: bool = get_global_rect().has_point(get_global_mouse_position())
-	
-	if (is_hovered_new != is_hovered):
+func _on_mouse_entered() -> void:
+	if (not is_hovered):
+		is_hovered = true
 		last_scale = self.scale
 		last_color_brightness = self.modulate.r
 		last_hover_change_time = float(Time.get_ticks_msec())/1000.0
-		is_hovered = is_hovered_new
-		
+
+func _on_mouse_exited() -> void:
+	if (is_hovered):
+		is_hovered = false
+		last_scale = self.scale
+		last_color_brightness = self.modulate.r
+		last_hover_change_time = float(Time.get_ticks_msec())/1000.0
+		self.modulate = Color(1, 1, 1)
