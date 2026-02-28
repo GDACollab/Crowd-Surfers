@@ -25,6 +25,8 @@ var player_sprite_starting_pos: float = 0.0
 @export var jump_speed: float = 16.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
+## Amount of max speed per second to lose when player is giving no inputs
+@export var max_speed_decay: float = 10.0
 
 # Stomp
 @export_category("Stomp")
@@ -41,23 +43,31 @@ var player_sprite_starting_pos: float = 0.0
 
 # Dash
 @export_category("Dash")
-## Time that the dash lasts
-@export var dash_duration: float = 0.1
-## Minimum time between dasehs
-@export var dash_cooldown: float = 1.5
-## Multiplier applied to all relevant speed variables by the dash
+## The distance a dash travels
+@export var dash_distance: float = 50.0
+## Minimum time between dashes
+@export var dash_cooldown: float = 1.0
+## Amount to multiply speed by during dash
 @export var dash_speed_multiplier: float = 1.5
 ## Minimum speed of a dash
 @export var min_dash_speed: float = 25.0
-## The time after stomp finishes that the player can activate dash and get an extra boost
-@export var stomp_dash_margin: float = 1.0
+## Set to true to always allow air dashing out of stomp
+@export var stomp_resets_air_dash: bool = false
+## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
+@export var stomp_dash_margin: float = 0.2
 
 # Glide
 @export_category("Glide")
 ## Ratio for exponential decay of glide speed
-@export var glide_decay_ratio: float = 0.5
+@export var glide_decay_ratio: float = 0.75
 ## The speed at which glide ends
 @export var glide_min_speed: float = 5.0
+## Whether glide has gravity
+@export var glide_has_gravity: bool = true
+## Factor to reduce gravity by during glide
+@export var glide_gravity_factor: float = 0.05
+## Minimum time (in seconds) that the player can glide for without getting forced out of it
+@export var min_glide_time: float = 0.5
 
 # Shadow
 @export_category("Shadow")
@@ -67,19 +77,20 @@ var player_sprite_starting_pos: float = 0.0
 @export var shadow_lift: float = 1.5             # your +1.5 offset
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
-## When dash ends, begin the cooldown
-func _on_dash_duration_timer_timeout() -> void:
-	$DashCooldownTimer.start()
+func _on_stomp_dash_margin_timeout() -> void:
+	stomp_boost = 0.0
+	max_speed_before_stomp = starting_speed
+	speed_before_stomp = 0.0
 
 ## The states that the player can be in
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR}
 
 # Active values - may change during execution
-var max_speed: float = 0.0
+var max_speed: float = starting_speed
 var acceleration: float
 var ramping_cap: float
-var velocity_before_stomp: Vector3
-var max_speed_before_stomp: float
+var speed_before_stomp: float = 0.0
+var max_speed_before_stomp: float = starting_speed
 var ramping_cap_before_stomp: float
 var stomp_windup_slowdown: Vector3
 var time_gliding: float = 0.0
@@ -89,50 +100,15 @@ var stomp_boost: float = 0.0
 var speed_before_dashing: float
 var dash_dir: Vector3
 var dash_speed: float
+var dash_start_pos: Vector3
+var can_air_dash: bool = true
+var can_glide: bool = true
 
 ## The current state the player is in
 var current_state: int = States.GROUND
 
-# ── Collider scaling ───────────────────────────────────────────────────────
-# The collider height that all exported values are tuned for (0.2 = current size).
-# Update this constant whenever you re-tune the exported values at a new size.
-const REFERENCE_HEIGHT := 2.0
-# Computed once in _ready(); kept here only for debugging / introspection.
-var _collider_scale := 1.0
-
 func _ready() -> void:
 	global_position = PlayerSpawn.spawnpoint
-	# ── Scale all feel values to the actual collider height ────────────────
-	# Only speed/acceleration/distance values are scaled; durations and
-	# dimensionless ratios (exponents, multipliers) are left untouched.
-	var _shape: Shape3D = $CollisionShape3D.shape
-	var _actual_h := REFERENCE_HEIGHT  # safe fallback
-	if   _shape is CapsuleShape3D:   _actual_h = _shape.height
-	elif _shape is BoxShape3D:        _actual_h = _shape.size.y
-	elif _shape is SphereShape3D:     _actual_h = _shape.radius * 2.0
-	elif _shape is CylinderShape3D:   _actual_h = _shape.height
-	_collider_scale = _actual_h / REFERENCE_HEIGHT
-	var s := _collider_scale  # shorthand
-	# General Movement
-	base_ramping_cap          *= s  # units/s
-	starting_speed            *= s  # units/s
-	base_acceleration         *= s  # units/s²
-	friction                  *= s  # units/s²
-	gravity                   *= s  # units/s²
-	jump_speed                *= s  # units/s
-	# Stomp
-	stomp_speed               *= s  # units/s
-	max_speed_for_windup      *= s  # units/s
-	stomp_dash_boost_factor   *= s  # units/s per s
-	max_stomp_dash_boost      *= s  # units/s
-	# Dash
-	#dash_boost                *= s  # units/s
-	# Glide
-	glide_min_speed           *= s  # units/s
-	# Shadow
-	shadow_max_height         *= s  # units
-	shadow_lift               *= s  # units
-	# ── End scaling ────────────────────────────────────────────────────────
 	# Initialize values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
@@ -140,7 +116,6 @@ func _ready() -> void:
 	# Initialize timers
 	$CoyoteTimer.wait_time = coyote_time
 	$StompWindupTimer.wait_time = windup_duration
-	$DashDurationTimer.wait_time = dash_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
 	raycast.add_exception(self)
@@ -148,7 +123,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
+	#region scaling bs
+	# TODO refine scaling based on the player sprite size (which should just be 1.0! But alas
+	# I have to be able to test)
+	var sprite_scale: Vector3 = $Sprite3D.scale
+	var v := velocity
+	# dividing by 2 is a heuristic. Using the full scale makes the player way too fast for some reason
+	velocity.x *= sprite_scale.x / 2.0
+	velocity.y *= sprite_scale.y / 2.0
+	velocity.z *= sprite_scale.z / 2.0
+	#endregion
 	move_and_slide()
+	velocity = v
 	snap_sprite()
 	
 ## Processes the current state. More complicated states have their own child nodes
@@ -161,6 +147,8 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
+			if is_on_floor():
+				velocity.y = 0.0
 		States.COYOTE, States.AIR:
 			fall(delta)
 			handle_inputs(delta)
@@ -172,33 +160,26 @@ func process_state(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0.0, stomp_windup_slowdown.z * delta)
 		States.STOMP_FALL:
 			fall(delta)
-			# TODO this is the stompy nauty section.
-			# TODO You should be able to dash out of a stomp
-			# (as in, I can press dash while falling and leave the stomp state. 
-			#  This should still apply the currently accumulated stomp-dash boost)
 			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta)
 		States.DASH_AIR:
 			fall(delta)
-			#dash()
-			if is_on_wall():
-				crash()
 		States.DASH_GROUND:
-			ground_dash_speed_decay()
-			if is_on_wall():
-				crash()
+			velocity.y = 0.0
 		States.GLIDE:
 			# Increase total time gliding
 			time_gliding += delta
 			# Get the direction vector for the player's velocity
-			# y-speed is always zero during glide, so this is safe
-			var dir := velocity.normalized()
+			var dir := Vector3(velocity.x, 0.0, velocity.z).normalized()
 			# Ratio to apply for exponential decay
 			var ratio: float = pow(glide_decay_ratio, time_gliding)
+			var yspeed := velocity.y
 			# Basing the decay off the player's initial speed ensures the glide lasts longer if the
 			# player is initially faster, but not too much longer
 			velocity = dir * speed_before_gliding * ratio
-				#max_speed = max_speed_before_gliding * ratio 
-				#^Commented out because it made the glide very bad since it reduced max speed so drastically
+			# If glide has gravity, we need to keep storing the vertical speed
+			if glide_has_gravity:
+				velocity.y = yspeed
+				fall(delta)
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
@@ -240,6 +221,8 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_WINDUP)
 			elif $CoyoteTimer.is_stopped():
 				transition_to(States.AIR)
+			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
 			elif Input.is_action_just_pressed("move_jump"):
 				jump()
 				transition_to(States.AIR)
@@ -248,9 +231,9 @@ func check_state_transitions() -> void:
 				transition_to(States.GROUND)
 			elif Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
-			elif can_dash() and Input.is_action_just_pressed("ability_dash"):
+			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_AIR)
-			elif Input.is_action_just_pressed("ability_glide"):
+			elif can_glide and Input.is_action_just_pressed("ability_glide"):
 				transition_to(States.GLIDE)
 		States.STOMP_WINDUP:
 			if $StompWindupTimer.is_stopped():
@@ -261,20 +244,23 @@ func check_state_transitions() -> void:
 				$StompDashMargin.start()
 				transition_to(States.GROUND)
 			elif Input.is_action_just_pressed("ability_dash"):
-				#transition_to(States.)
-				print("dashed in air")
+				transition_to(States.DASH_AIR)
 		States.GLIDE:
 			if Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
-			elif velocity.length() <= glide_min_speed or Input.is_action_just_released("ability_glide") or is_on_wall():
+			elif (velocity.length() <= glide_min_speed and time_gliding >= min_glide_time) or Input.is_action_just_released("ability_glide") or is_on_wall():
 				transition_to(States.AIR)
+			elif is_on_floor():
+				transition_to(States.GROUND)
 		States.DASH_GROUND:
-			if $DashDurationTimer.is_stopped():
+			var distance_traveled := dash_start_pos.distance_to(position)
+			if distance_traveled >= dash_distance:
 				if is_on_floor():
 					transition_to(States.GROUND)
 				else:
 					transition_to(States.COYOTE)
 			elif is_on_wall():
+				crash()
 				if is_on_floor():
 					transition_to(States.GROUND)
 				else:
@@ -285,18 +271,20 @@ func check_state_transitions() -> void:
 			elif not is_on_floor():
 				transition_to(States.DASH_AIR)
 		States.DASH_AIR:
-			if $DashDurationTimer.is_stopped():
-				if is_on_floor():
-					transition_to(States.GROUND)
-				else:
-					transition_to(States.AIR)
+			var distance_traveled := dash_start_pos.distance_to(position)
+			if is_on_floor():
+				transition_to(States.GROUND)
 			elif is_on_wall():
+				crash()
 				if is_on_floor():
 					transition_to(States.GROUND)
 				else:
 					transition_to(States.AIR)
-			elif is_on_floor():
-				transition_to(States.DASH_GROUND)
+			elif distance_traveled >= dash_distance:
+				if is_on_floor():
+					transition_to(States.GROUND)
+				else:
+					transition_to(States.AIR)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -308,6 +296,9 @@ func transition_to(new_state: int) -> void:
 		States.GLIDE:
 			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
+			# Restore gravity
+			if glide_has_gravity:
+				gravity /= glide_gravity_factor
 		States.STOMP_FALL:
 			$StompSound.set_parameter("stomp_state", "end")
 		States.SLOPE:
@@ -315,22 +306,34 @@ func transition_to(new_state: int) -> void:
 			# Sloped movement maintains the velocity but internally multiplies it by the angle,
 			# but by default this is not maintained when leaving the slope
 			velocity *= cos(angle)
+		States.DASH_GROUND:
+			if not new_state == States.DASH_AIR:
+				# Reset speed if ending a ground dash
+				var yspeed := velocity.y
+				velocity = dash_dir * speed_before_dashing
+				velocity.y = yspeed
+				$DashCooldownTimer.start()
+		States.DASH_AIR:
+			$DashCooldownTimer.start()
 
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
+		States.GROUND:
+			can_air_dash = true
+			can_glide = true
 		States.STOMP_WINDUP:
 			# If dash is active as stomp begins, end it
-			$DashDurationTimer.stop() # all the stop() is built in
 			$DashCooldownTimer.stop()
-			if is_dashing():
-				$DashDurationTimer.stop()
-				$DashDurationTimer.timeout.emit()
 			velocity.y = 0.0
 			stomp_boost = 0.0
+			# If this export var is set, then always allow air dashing out of stomp
+			if stomp_resets_air_dash:
+				can_air_dash = true
 			# Store values needed for the stomp-dash
-			velocity_before_stomp = velocity
-			max_speed_before_stomp = max_speed
+			speed_before_stomp = Vector2(velocity.x, velocity.z).length()
+			max_speed_before_stomp = max(max_speed, starting_speed)
 			ramping_cap_before_stomp = ramping_cap
+			max_speed = starting_speed
 			# Decrease the player's speed if it is too large
 			if velocity.length() > max_speed_for_windup:
 				velocity = velocity.normalized() * max_speed_for_windup
@@ -345,11 +348,15 @@ func transition_to(new_state: int) -> void:
 		States.STOMP_FALL:
 			$StompSound.set_parameter("stomp_state", "loop")
 		States.GLIDE:
+			can_glide = false
 			# Player won't fall during glide
 			velocity.y = 0.0
 			speed_before_gliding = velocity.length()
 			max_speed_before_gliding = max_speed
 			time_gliding = 0.0
+			# Decrease gravity
+			if glide_has_gravity:
+				gravity *= glide_gravity_factor
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
@@ -357,17 +364,25 @@ func transition_to(new_state: int) -> void:
 			# Lower friction in midair
 			friction /= 2.0
 		States.DASH_GROUND, States.DASH_AIR:
-			# Don't reapply dash boost if going from air dash to ground dash
-			if not is_dashing():
+			can_air_dash = false
+			# Don't reapply dash boost if going from ground dash to air dash
+			if not current_state == States.DASH_GROUND:
 				speed_before_dashing = Vector2(velocity.x, velocity.z).length()
-				dash_dir = Vector3(velocity.x, 0.0, velocity.z).normalized()
-				# Ensure speed is at least min_dash_speed
-				dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier)
+				dash_start_pos = position
+				# Get directional inputs
+				var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+				dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+				# Ensure speed is at least min_dash_speed and apply stomp_boost
+				# The timer handles resetting these values to 0
+				dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, speed_before_stomp) + stomp_boost
+				max_speed = max(max_speed, max_speed_before_stomp)
+				# If you successfully stomp-dash, retain your speed
+				if not $StompDashMargin.is_stopped():
+					speed_before_dashing = dash_speed
 				# Apply dash to xz-direction and ignore y component of velocity
 				var yspeed := velocity.y
 				velocity = dash_dir * dash_speed
 				velocity.y = yspeed
-				$DashDurationTimer.start()
 	
 	current_state = new_state
 	print(state_to_string())
@@ -410,6 +425,7 @@ func handle_inputs(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		velocity.z = move_toward(velocity.z, 0, friction * delta)
+		max_speed = move_toward(max_speed, starting_speed, max_speed_decay * delta)
 
 ## Give the player upwards velocity
 func jump() -> void:
@@ -422,6 +438,14 @@ func fall(delta: float) -> void:
 ## Applies penalty when crashing into a wall
 func crash() -> void:
 	max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
+	# Reset velocity components based on the wall that the player hit
+	var wall_normal := get_wall_normal()
+	var dir := velocity.normalized()
+	# Components of the player's velocity which were going into the wall are 0 in this vector,
+	# while components which didn't go into the wall are 1 in this vector
+	dir += wall_normal
+	# Multiplying like this preserves directions where the player didn't hit the wall
+	velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
 
 ## Called by checkpoints
 func set_spawnpoint(new_spawnpoint: Vector3) -> void:
@@ -451,24 +475,6 @@ func is_dashing() -> bool:
 ## Returns whether the player is able to dash
 func can_dash() -> bool:
 	return not is_dashing() and $DashCooldownTimer.is_stopped()
-	
-func ground_dash_speed_decay() -> void:
-	# Dash begins at the initial dash speed
-	var initial := Vector2(0.0, dash_speed)
-	# Dash ends at the speed before the dash
-	var final := Vector2(1.0, speed_before_dashing)
-	# Control should give a nice easing-out effect
-	var control := Vector2(1.5, dash_speed)
-	# t = time elapsed as a percent of the total wait time
-	var elapsed: float = $DashDurationTimer.wait_time - $DashDurationTimer.time_left
-	var t: float = elapsed / $DashDurationTimer.wait_time
-	# Bezier curve
-	var p0 := initial.lerp(control, t)
-	var p1 := control.lerp(final, t)
-	var yspeed := velocity.y
-	# Height of the bezier curve is the desired speed
-	velocity = dash_dir * p0.lerp(p1, t).y
-	velocity.y = yspeed
 
 ## Returns the current state
 func state_to_string() -> String:
