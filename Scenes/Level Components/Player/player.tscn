@@ -1,8 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=35 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="2_baiym"]
-[ext_resource type="Texture2D" uid="uid://b02bnlt4evmxu" path="res://Assets/Art/temp player.png" id="2_n136m"]
 [ext_resource type="Texture2D" uid="uid://feu6cendoild" path="res://Assets/Art/PlayerAnimationFrames/Skate/Skate_Front/Skate_Front/skateF0001.png" id="3_0ep3m"]
 [ext_resource type="Texture2D" uid="uid://ducqnwem2x4qj" path="res://Assets/Art/PlayerAnimationFrames/Skate/Skate_Side/Skate_Side/skateS0001.png" id="3_ku1m0"]
 [ext_resource type="Texture2D" uid="uid://blxnjvkpke8b0" path="res://Assets/Art/PlayerAnimationFrames/Skate/Skate_Front/Skate_Front/skateF0002.png" id="4_ocigo"]
@@ -153,25 +152,20 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
-size = Vector3(11.65435, 19.472387, 0.8726929)
+size = Vector3(14.190189, 19.472387, 0.8726929)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_i0hvh")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 1.1866623, -0.095002174)
-visible = false
-texture = ExtResource("2_n136m")
-
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(2.335, 0, 0, 0, 2.335, 0, 0, 0, 2.335, 0.5106926, 12.572291, 0)
+transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
 sprite_frames = SubResource("SpriteFrames_c3qbh")
 animation = &"skate_right"
 frame_progress = 0.7429806
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08012009, 9.736194, -0.038468838)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012947798, 9.736194, -0.038468838)
 shape = SubResource("BoxShape3D_baiym")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
