@@ -112,7 +112,11 @@ func crowd_launch() -> void:
 	
 ## The states that the player can be in
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE}
+=======
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, STOMP_CROWD_LAUNCH}
+>>>>>>> Stashed changes
 =======
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, STOMP_CROWD_LAUNCH}
 >>>>>>> Stashed changes
