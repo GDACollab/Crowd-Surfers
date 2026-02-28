@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://by8otojv1kpco"]
+
+[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_3gbw3"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_fi5fp"]
+[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="3_6cl88"]
+[ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="6_54n8i"]
+
+[node name="ReferenceScene" type="Node3D"]
+
+[node name="Camera3D" parent="." instance=ExtResource("1_3gbw3")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 190.11348, 120.806206, 555.2209)
+size = 100.0
+near = 0.001
+offset = Vector3(0, 1000, 1000)
+
+[node name="Player" parent="." instance=ExtResource("2_fi5fp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 193.935, 23.619705, 502.47644)
+shadow_base_scale = 10.0
+shadow_min_scale = 2.0
+shadow_max_height = 50.0
+shadow_lift = 0.0
+shadow_falloff_exp = 1.1
+
+[node name="Road_0_0" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -50)
+
+[node name="Road_1_0" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50)
+
+[node name="Road_2_0" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -50)
+
+[node name="Road_0_1" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 165.24573, -0.001, -56.28932)
+
+[node name="Road_1_1" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 235.95642, -0.001, -127)
+
+[node name="Road_2_1" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 306.6671, -0.001, -197.71068)
+
+[node name="Road_0_3" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 457.24573, -0.001, -65.28932)
+
+[node name="Road_1_3" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 527.9564, -0.001, -136)
+
+[node name="Road_2_3" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 598.6671, -0.001, -206.71068)
+
+[node name="Road_0_2" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 386.24573, 0, -205.7107)
+
+[node name="Road_1_2" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 456.95642, 0, -135)
+
+[node name="Road_2_2" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 527.6671, 0, -64.28931)
+
+[node name="BrickBuilding" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.749596, 0.99998474, -148.16043)
+
+[node name="BrickBuilding2" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.250404, 0.99998474, -148.16043)
+
+[node name="BrickBuilding3" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.250404, 0.99998474, -148.16043)
+
+[node name="BrickBuilding4" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 126.2504, 0.99998474, -154.16043)
+
+[node name="BrickBuilding5" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 191.2504, 0.99998474, -219.16043)
+
+[node name="BrickBuilding6" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 246.2504, 0.99998474, -275.16043)
+
+[node name="BrickBuilding7" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 454.2504, 0.99998474, -275.16043)
+
+[node name="BrickBuilding8" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.8520638, 0, -0.70710677, 0, 1, 0, 0.8520637, 0, 0.7071068, 519.25037, 0.99998474, -208.16043)
+
+[node name="BrickBuilding9" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.7071066, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071066, 451.25037, 0.99998474, -201.16043)
+
+[node name="BrickBuilding10" parent="." instance=ExtResource("6_54n8i")]
+transform = Transform3D(0.7071066, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071066, 518.25037, 0.99998474, -266.16043)
