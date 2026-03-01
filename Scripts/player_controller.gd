@@ -151,7 +151,12 @@ func process_state(delta: float) -> void:
 			fall(delta)
 			stomp_boost = move_toward(stomp_boost, max_stomp_dash_boost, stomp_dash_boost_factor * delta)
 		States.DASH_AIR:
-			fall(delta)
+			#fall(delta)
+			var magnitude = sqrt(pow(velocity.x,2)+pow(velocity.z,2));
+			if (magnitude <= base_ramping_cap/2):
+				fall(delta)
+			else:
+				velocity.y = 0.0
 		States.DASH_GROUND:
 			velocity.y = 0.0
 		States.GLIDE:
@@ -262,7 +267,9 @@ func check_state_transitions() -> void:
 				transition_to(States.DASH_AIR)
 		States.DASH_AIR:
 			var distance_traveled := dash_start_pos.distance_to(position)
-			if is_on_floor():
+			if Input.is_action_just_pressed("ability_stomp"):
+				transition_to(States.STOMP_WINDUP)
+			elif is_on_floor():
 				transition_to(States.GROUND)
 			elif is_on_wall():
 				crash()
@@ -426,8 +433,10 @@ func fall(delta: float) -> void:
 func crash() -> void:
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
-	var wall_normal := get_wall_normal()
-	var dir := velocity.normalized()
+	#var wall_normal := get_wall_normal()
+	#var dir := velocity.normalized()
+	max_speed /= crash_penalty_mult
+	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
 	# while components which didn't go into the wall are 1 in this vector
 	#dir += wall_normal
