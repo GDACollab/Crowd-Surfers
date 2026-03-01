@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=38 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="2_baiym"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://crhwad4vd0bk7" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0004.png" id="30_oxmbs"]
 [ext_resource type="Texture2D" uid="uid://dmfqjsidwd2hy" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0005.png" id="31_dgjk7"]
 [ext_resource type="Texture2D" uid="uid://c1wju663w3767" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0006.png" id="32_k58i1"]
+[ext_resource type="Script" uid="uid://bxaig5xylpune" path="res://Scripts/player-animations.gd" id="34_dr5kq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3qbh"]
 animations = [{
@@ -179,6 +180,8 @@ alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_c3qbh")
 animation = &"skate_down"
 frame_progress = 0.24211124
+script = ExtResource("34_dr5kq")
+player_path = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.071956635, 10.083466, 0)
