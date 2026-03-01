@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0ijpldiqip64"]
+
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_gl2is"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_4mka8"]
+[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="3_4mka8"]
+[ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="4_ijhq7"]
+[ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="5_b27w2"]
+[ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="6_1aomy"]
+[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="7_dcqtl"]
+[ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="8_25auj"]
+
+[node name="QuincyLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_4mka8")]
+transform = Transform3D(0.9994531, 0, 0.03306799, 0, 1, 0, -0.03306799, 0, 0.9994531, -26.0584, 3.0980263, 11.238461)
+
+[node name="Camera3D" parent="." instance=ExtResource("3_4mka8")]
+transform = Transform3D(0.99996877, -0.0055906363, 0.0055906367, 0, 0.7071068, 0.70710677, -0.007906354, -0.70708466, 0.7070847, 101.367966, 40.10675, 100.766785)
+size = 100.0
+near = 0.001
+offset = Vector3(0, 1000, 1000)
+
+[node name="hroad" parent="." instance=ExtResource("1_gl2is")]
+
+[node name="hroad2" parent="." instance=ExtResource("1_gl2is")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="intersection" parent="." instance=ExtResource("4_ijhq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7047208, 0.7035452, -0.09161233, -0.28393444, 0.39800078, 0.8723398, 0.65019226, -0.588744, 0.48024017, 0, 3.7153816, 168.64107)
+
+[node name="Bus1Up" parent="." instance=ExtResource("5_b27w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.20537, 1, 151.76663)
+
+[node name="Bus1Down" parent="." instance=ExtResource("6_1aomy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.780172, 2.3819313, 77.94454)
+
+[node name="vroad" parent="." instance=ExtResource("7_dcqtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("8_25auj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
