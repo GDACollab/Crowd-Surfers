@@ -108,7 +108,6 @@ var can_glide: bool = true
 var current_state: int = States.GROUND
 
 func _ready() -> void:
-	global_position = PlayerSpawn.spawnpoint
 	# Initialize values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
@@ -433,10 +432,6 @@ func crash() -> void:
 	dir += wall_normal
 	# Multiplying like this preserves directions where the player didn't hit the wall
 	velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
-
-## Called by checkpoints
-func set_spawnpoint(new_spawnpoint: Vector3) -> void:
-	PlayerSpawn.spawnpoint = new_spawnpoint
 
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
