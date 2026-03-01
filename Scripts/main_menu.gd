@@ -42,6 +42,7 @@ func _on_orders_back_button_pressed() -> void:
 		return
 		
 	orders_animation_player.play_backwards("open_orders")
+	orders_animation_player.seek(animation_time * 0.8, true)
 	
 	set_transitioning()
 	
@@ -51,6 +52,7 @@ func _on_settings_back_button_pressed() -> void:
 		return
 		
 	settings_animation_player.play_backwards("open_settings")
+	settings_animation_player.seek(animation_time * 0.8, true)
 	
 	set_transitioning()
 	
