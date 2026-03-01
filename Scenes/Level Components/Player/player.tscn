@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=38 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="2_baiym"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://crhwad4vd0bk7" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0004.png" id="30_oxmbs"]
 [ext_resource type="Texture2D" uid="uid://dmfqjsidwd2hy" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0005.png" id="31_dgjk7"]
 [ext_resource type="Texture2D" uid="uid://c1wju663w3767" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0006.png" id="32_k58i1"]
+[ext_resource type="Script" uid="uid://bxaig5xylpune" path="res://Scripts/player-animations.gd" id="34_dr5kq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3qbh"]
 animations = [{
@@ -164,8 +165,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_baiym"]
-size = Vector3(10.619874, 19.472387, 0.8726929)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4d56n"]
+radius = 2.3608398
+height = 18.293991
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
@@ -178,10 +180,12 @@ alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_c3qbh")
 animation = &"skate_down"
 frame_progress = 0.24211124
+script = ExtResource("34_dr5kq")
+player_path = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.736, 0)
-shape = SubResource("BoxShape3D_baiym")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.071956635, 10.083466, 0)
+shape = SubResource("CapsuleShape3D_4d56n")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
 [node name="Drop Shadow" type="Sprite3D" parent="CollisionShape3D"]
@@ -226,4 +230,5 @@ event_name = "event:/SFX/P/dash"
 event_guid = "{786da779-c31c-46e0-8fd9-49dc9c0ed9f3}"
 
 [node name="JumpSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/jump"
 event_guid = "{37e4c1ff-9cd4-4400-b1c5-8e6f4e784d62}"
