@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://buv8pdmjifjwu"]
+[gd_scene load_steps=14 format=3 uid="uid://buv8pdmjifjwu"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_60iy3"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cximd"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_ogtjv"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="4_vkkpy"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_oxo7y"]
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="6_ioiga"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="6_mt2uc"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="7_lkewj"]
+[ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="9_47op0"]
+[ext_resource type="PackedScene" uid="uid://dw5pqgejh3hvn" path="res://Scenes/Level Components/Objects/building-slug-pizza.tscn" id="9_o4o7s"]
+[ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="10_kky51"]
+[ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="11_kuur0"]
+[ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="11_kx2kb"]
 
 [node name="ReferenceScene" type="Node3D"]
 
@@ -34,6 +40,13 @@ shadow_falloff_exp = 1.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.35355335, -0.8660254, -0.3535534, 0.70710677, -9.835193e-09, 0.7071067, -0.6123724, -0.5, 0.61237246, 0, 0, 0)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.5
+shadow_blur = 3.0
+
 [node name="RoadGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -36)
 
@@ -46,17 +59,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.24898, 0, 0)
 [node name="RoadHorizontal2_0" parent="RoadGroup" instance=ExtResource("5_oxo7y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250.16788, 0, 0)
 
+[node name="RoadHorizontal-1_1" parent="RoadGroup" instance=ExtResource("5_oxo7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.832123, 0, 102.56145)
+
+[node name="RoadVertical0_1" parent="RoadGroup" instance=ExtResource("6_ioiga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 100)
+
+[node name="RoadVertical0_2" parent="RoadGroup" instance=ExtResource("6_ioiga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 199.82227)
+
+[node name="RoadHorizAlley1_1" parent="RoadGroup" instance=ExtResource("5_oxo7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.65468, 0, 99.44325)
+
+[node name="RoadHorizAlley1_2" parent="RoadGroup" instance=ExtResource("5_oxo7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.65468, 0, 199.50847)
+
+[node name="RoadHorizAlley1_3" parent="RoadGroup" instance=ExtResource("5_oxo7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.99802, 0, 299.53775)
+
+[node name="RoadCurve0_3" parent="RoadGroup" instance=ExtResource("4_vkkpy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 50.06254, 0, 399.53882)
+
+[node name="RoadHorizontal2_-1" parent="RoadGroup" instance=ExtResource("5_oxo7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 249.85379, 0, -98.435)
+
 [node name="BuildingGroup" type="Node3D" parent="."]
 
 [node name="BuildingBeige0_-1" parent="BuildingGroup" instance=ExtResource("6_mt2uc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.998978, 0, -130.26923)
 
+[node name="BuildingBeige-1_2" parent="BuildingGroup" instance=ExtResource("6_mt2uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.65231, 0, 163.73077)
+
 [node name="GreenBuilding-1_0" parent="BuildingGroup" instance=ExtResource("7_lkewj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82, 0, -36)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.35355332, -0.8660253, -0.35355335, 0.7071067, -3.0908616e-08, 0.7071067, -0.61237234, -0.49999994, 0.61237234, 0, 0, 0)
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_opacity = 0.5
-shadow_blur = 3.0
+[node name="SlugPizza1_-1" parent="BuildingGroup" instance=ExtResource("9_o4o7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115, 0, -130.2602)
+
+[node name="SlugPizza-1_1" parent="BuildingGroup" instance=ExtResource("9_o4o7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81, 0, 63.739807)
+
+[node name="BuildingBrickComplex2_-1" parent="BuildingGroup" instance=ExtResource("10_kky51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 212.4368, 0, -131.38232)
+
+[node name="BuildingBrickComplex1_1" parent="BuildingGroup" instance=ExtResource("10_kky51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.86749, 0, 64.05484)
+
+[node name="BuildingBrick1_2" parent="BuildingGroup" instance=ExtResource("11_kx2kb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.08093, 0, 178.33371)
+
+[node name="VehiclessGroup" type="Node3D" parent="."]
+
+[node name="Bus1Side1_0" parent="VehiclessGroup" instance=ExtResource("9_47op0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113, 0, -14)
+
+[node name="CarRedSide2_0" parent="VehiclessGroup" instance=ExtResource("11_kuur0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 216, 0, 20)
