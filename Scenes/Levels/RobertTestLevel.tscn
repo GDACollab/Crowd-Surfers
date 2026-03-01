@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://by8otojv1kpco"]
+[gd_scene load_steps=8 format=3 uid="uid://by8otojv1kpco"]
 
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_3gbw3"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_fi5fp"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="3_6cl88"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="6_54n8i"]
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="9_6msfh"]
-[ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="10_4mo8g"]
 [ext_resource type="PackedScene" uid="uid://d1ewknvdw2hoo" path="res://Scenes/Level Components/Objects/cable-car-side.tscn" id="13_8qyes"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="15_72405"]
 
@@ -19,6 +18,12 @@ offset = Vector3(0, 1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("2_fi5fp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 193.935, 23.619705, 502.47644)
+base_ramping_cap = 300.0
+starting_speed = 15.0
+crash_penalty_mult = 0.0
+base_acceleration = 400.0
+gravity = 400.0
+jump_speed = 150.0
 shadow_base_scale = 10.0
 shadow_min_scale = 2.0
 shadow_max_height = 50.0
@@ -33,6 +38,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50)
 
 [node name="Road_2_0" parent="." instance=ExtResource("3_6cl88")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -50)
+
+[node name="Road_0_11" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, -50)
+
+[node name="Road_1_13" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, -50)
+
+[node name="Road_2_4" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, -50)
+
+[node name="Road_0_12" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, -50)
+
+[node name="Road_1_14" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0, -50)
+
+[node name="Road_2_5" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 750, 0, -50)
+
+[node name="Road_0_13" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 849, 0, -50)
+
+[node name="Road_1_15" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 949, 0, -50)
+
+[node name="Road_2_6" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1049, 0, -50)
+
+[node name="Road_0_14" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1149, 0, -50)
+
+[node name="Road_1_16" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1249, 0, -50)
+
+[node name="Road_2_7" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1349, 0, -50)
+
+[node name="Road_0_15" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1449, 0, -50)
+
+[node name="Road_1_17" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1549, 0, -50)
+
+[node name="Road_2_8" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1649, 0, -50)
+
+[node name="Road_0_16" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1749, 0, -50)
+
+[node name="Road_1_18" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1849, 0, -50)
+
+[node name="Road_2_9" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1949, 0, -50)
+
+[node name="Road_0_17" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2048, 0, -50)
+
+[node name="Road_1_19" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2148, 0, -50)
+
+[node name="Road_2_10" parent="." instance=ExtResource("3_6cl88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2248, 0, -50)
 
 [node name="Road_0_4" parent="." instance=ExtResource("3_6cl88")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.8146973e-06, 0, 97)
@@ -160,12 +228,6 @@ transform = Transform3D(0.7071066, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.707
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.12940954, -0.270866, -0.9538788, 0.9659258, -0.1830128, 0.18301268, -0.22414395, -0.9450598, 0.23795295, 0, 185, 15)
 
-[node name="Bus1Down" parent="." instance=ExtResource("9_6msfh")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 186, 1, -29)
-
-[node name="Bus1Side" parent="." instance=ExtResource("10_4mo8g")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 215, 1, -21)
-
 [node name="StaticBody3D" parent="." instance=ExtResource("13_8qyes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94, 16, 348)
 
@@ -183,3 +245,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 75, 348)
 
 [node name="CarRedSide" parent="." instance=ExtResource("15_72405")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 1, 348)
+
+[node name="Bus1Down" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 653, 1, -99)
+
+[node name="Bus1Down17" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 1, -25)
+
+[node name="Bus1Down2" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 753, 1, -99)
+
+[node name="Bus1Down3" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 858, 1, -99)
+
+[node name="Bus1Down4" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 958, 1, -99)
+
+[node name="Bus1Down5" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 1, -99)
+
+[node name="Bus1Down6" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1150, 1, -99)
+
+[node name="Bus1Down7" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1255, 1, -99)
+
+[node name="Bus1Down8" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1355, 1, -99)
+
+[node name="Bus1Down9" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1447, 1, -99)
+
+[node name="Bus1Down10" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1547, 1, -99)
+
+[node name="Bus1Down11" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1652, 1, -99)
+
+[node name="Bus1Down12" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1752, 1, -99)
+
+[node name="Bus1Down13" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1855, 1, -99)
+
+[node name="Bus1Down14" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1955, 1, -99)
+
+[node name="Bus1Down15" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2060, 1, -99)
+
+[node name="Bus1Down16" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2160, 1, -99)
