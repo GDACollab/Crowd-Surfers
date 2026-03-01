@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://disvq0i01qw0b"]
+
+[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_8otms"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_qssw1"]
+[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="3_nvxot"]
+[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="4_55msm"]
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="5_nfbva"]
+
+[node name="ReferenceScene" type="Node3D"]
+
+[node name="Camera3D" parent="." instance=ExtResource("1_8otms")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 190.11348, 120.806206, 555.2209)
+size = 100.0
+near = 0.001
+offset = Vector3(0, 1000, 1000)
+
+[node name="Player" parent="." instance=ExtResource("2_qssw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 536.935, 23.619705, 886.47644)
+shadow_base_scale = 10.0
+shadow_min_scale = 2.0
+shadow_max_height = 50.0
+shadow_lift = 0.0
+shadow_falloff_exp = 1.1
+
+[node name="Road_6_9" parent="." instance=ExtResource("3_nvxot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49)
+
+[node name="Road_6_10" parent="." instance=ExtResource("3_nvxot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, -49)
+
+[node name="Road_6_11" parent="." instance=ExtResource("3_nvxot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 194, 0, -49)
+
+[node name="Road_6_12" parent="." instance=ExtResource("3_nvxot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, -49)
+
+[node name="Road_6_13" parent="." instance=ExtResource("3_nvxot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 386, 0, -49)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.35355332, -0.8660253, -0.35355335, 0.7071067, -3.0908616e-08, 0.7071067, -0.61237234, -0.49999994, 0.61237234, 0, 0, 0)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.5
+shadow_blur = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="StaticBody3D" parent="." instance=ExtResource("4_55msm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 482, 0, -49)
+
+[node name="StaticBody3D2" parent="." instance=ExtResource("5_nfbva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 482, 0, 50)
+
+[node name="StaticBody3D3" parent="." instance=ExtResource("5_nfbva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 482, 0, 149)
