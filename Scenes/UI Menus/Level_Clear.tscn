@@ -1,48 +1,60 @@
-[gd_scene format=3 uid="uid://cg5atjrtrnq3w"]
+[gd_scene load_steps=2 format=3 uid="uid://cg5atjrtrnq3w"]
 
-[node name="LevelClear" type="Node2D"]
-position = Vector2(6, 13)
+[ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/level_clear.gd" id="1_8u14x"]
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8u14x")
 
 [node name="Panel" type="Panel" parent="."]
 clip_contents = true
+layout_mode = 0
 offset_right = 13813.0
 offset_bottom = 7170.0
-scale = Vector2(0.1383745, 0.14807223)
+scale = Vector2(0.13900031, 0.15062712)
 
 [node name="LevelClearText" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 88.0
-offset_right = 643.0
-offset_bottom = 225.0
+offset_left = 614.2751
+offset_top = 310.6592
+offset_right = 1584.2751
+offset_bottom = 550.6592
 scale = Vector2(8.974465, 8.747356)
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 175
 text = "Level Clear!"
 
-[node name="LevelClearText2" type="Label" parent="Panel"]
+[node name="ClearTimeText" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 1310.0
-offset_right = 878.0
-offset_bottom = 1453.1289
+offset_left = 614.275
+offset_top = 2167.8608
+offset_right = 1437.275
+offset_bottom = 2310.9897
 scale = Vector2(8.974465, 8.747356)
 theme_override_font_sizes/font_size = 100
 text = "Clear Time: 00:00"
 
-[node name="ContinueButton" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 5596.0
-offset_top = 5218.0
-offset_right = 13310.0
-offset_bottom = 6603.0
-theme_override_font_sizes/font_size = 700
-text = "Continue/Next Screen"
-
 [node name="RestartButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 5637.0
-offset_top = 3674.0
-offset_right = 13292.0
-offset_bottom = 4816.0
+offset_top = 3717.7898
+offset_right = 13351.0
+offset_bottom = 5102.79
 theme_override_font_sizes/font_size = 700
 text = "Restart Level"
+
+[node name="ContinueButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 5637.0
+offset_top = 5394.752
+offset_right = 13351.0
+offset_bottom = 6779.752
+theme_override_font_sizes/font_size = 700
+text = "Continue
+"
+
+[connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Panel/ContinueButton" to="." method="_on_continue_button_pressed"]
