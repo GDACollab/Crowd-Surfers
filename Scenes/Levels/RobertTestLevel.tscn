@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://by8otojv1kpco"]
+[gd_scene load_steps=7 format=3 uid="uid://by8otojv1kpco"]
 
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_3gbw3"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_fi5fp"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="3_6cl88"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="6_54n8i"]
+[ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="9_6msfh"]
+[ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="10_4mo8g"]
 
 [node name="ReferenceScene" type="Node3D"]
 
@@ -31,22 +33,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -50)
 
 [node name="Road_0_1" parent="." instance=ExtResource("3_6cl88")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 165.24573, -0.001, -56.28932)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 165.24573, 0, -56.28932)
 
 [node name="Road_1_1" parent="." instance=ExtResource("3_6cl88")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 235.95642, -0.001, -127)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 235.95642, 0, -127)
 
 [node name="Road_2_1" parent="." instance=ExtResource("3_6cl88")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 306.6671, -0.001, -197.71068)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 306.667, 0, -197.711)
 
 [node name="Road_0_3" parent="." instance=ExtResource("3_6cl88")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 457.24573, -0.001, -65.28932)
 
 [node name="Road_1_3" parent="." instance=ExtResource("3_6cl88")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 527.9564, -0.001, -136)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 527.956, 0, -136)
 
 [node name="Road_2_3" parent="." instance=ExtResource("3_6cl88")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 598.6671, -0.001, -206.71068)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 598.667, 0, -206.711)
 
 [node name="Road_0_2" parent="." instance=ExtResource("3_6cl88")]
 transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 386.24573, 0, -205.7107)
@@ -86,3 +88,12 @@ transform = Transform3D(0.7071066, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.707
 
 [node name="BrickBuilding10" parent="." instance=ExtResource("6_54n8i")]
 transform = Transform3D(0.7071066, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071066, 518.25037, 0.99998474, -266.16043)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.12940954, -0.270866, -0.9538788, 0.9659258, -0.1830128, 0.18301268, -0.22414395, -0.9450598, 0.23795295, 0, 185, 15)
+
+[node name="Bus1Down" parent="." instance=ExtResource("9_6msfh")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 186, 1, -29)
+
+[node name="Bus1Side" parent="." instance=ExtResource("10_4mo8g")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 215, 1, -21)
