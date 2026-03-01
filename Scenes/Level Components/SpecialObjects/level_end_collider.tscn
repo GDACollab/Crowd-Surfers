@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bstag8o386tuv"]
+
+[ext_resource type="Script" uid="uid://gikjrfpec7qn" path="res://Scripts/level_end_collider.gd" id="1_svuu5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hl0u2"]
+size = Vector3(50, 50, 50)
+
+[node name="LevelEndCollider" type="Node3D"]
+script = ExtResource("1_svuu5")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_hl0u2")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

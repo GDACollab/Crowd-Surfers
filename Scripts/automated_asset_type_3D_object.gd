@@ -552,6 +552,7 @@ func create_sprite3D(given_name, texture, given_rot = Vector3(0, 0, 0), given_po
 	sprite.name = given_name
 	sprite.pixel_size = pixel_size
 	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	sprite.shaded = true
 	sprite.axis = given_axis # lays flat on given axis
 	sprite.rotation_degrees = given_rot # rotates sprite
 	

@@ -44,7 +44,18 @@ func set_Level_Progress(new_Progress: float):
 	level_Display.set_Progress(new_Progress)
 	
 func set_Time(new_Time: float):
-	timer_Display.set_time(new_Time)
+	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time))
+	
+func get_Formatted_Timer_Text(time: float) -> String:
+	var rounded_time: float = snapped(time, 0.01)
+	var seconds: int = int(rounded_time)
+	
+	var centi_seconds: String = str(int((rounded_time - seconds) * 100))
+	if (centi_seconds.length() == 1):
+		centi_seconds += "0"
+		
+	var formatted_time = str(seconds) + ":" + str(centi_seconds)
+	return formatted_time
 
 # Place holder function
 # Haven't decided how to determine visually what will happen when player loses by time
@@ -74,16 +85,7 @@ func _process(delta: float) -> void:
 	
 	## Calculate and display time
 	curr_Time = curr_Time + delta
-	
-	## Handle timer display.
-	# if true, timer should count down from given time limit
-	# should be set in inspector in the scene.
-	if (count_Down):
-		set_Time(snapped(time_Limit - curr_Time, 0.01))
-		if(time_Limit < curr_Time):
-			timer_Done()
-	else:
-		set_Time(snapped(curr_Time, 0.01))
+	set_Time(curr_Time)
 		
 	## Handle Level Progression
 	# Currently not implemented, as end goals aren't finalized

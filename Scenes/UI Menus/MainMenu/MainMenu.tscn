@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cg1wbnbync35f" path="res://Assets/Art/MainMenuAssets/SlipImageTemp.png" id="1_0p7o3"]
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/main_menu.gd" id="1_dsamw"]
 [ext_resource type="Texture2D" uid="uid://by0k81p0nh5cb" path="res://Assets/Art/MainMenuAssets/TempPhone.png" id="2_184yf"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_3ypn2"]
 [ext_resource type="Texture2D" uid="uid://b1j3tyml0fxqy" path="res://Assets/Art/MainMenuAssets/TempPhoneMask.png" id="4_q16ba"]
 [ext_resource type="PackedScene" uid="uid://c5rie8boisw4x" path="res://Scenes/UI Menus/MainMenu/OrdersScene.tscn" id="5_arkae"]
@@ -286,6 +287,13 @@ offset_bottom = -640.039
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dsamw")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_j0r1m")]
+confirm_buttons = [NodePath("../PhoneImage/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainContainer/SettingsButton")]
+back_buttons = [NodePath("../PhoneImage/MainContainer/ExitButton")]
 
 [node name="SlipImage" type="TextureRect" parent="."]
 layout_mode = 0
