@@ -1,7 +1,7 @@
 extends Camera3D
 
 @export var player_path: NodePath
-@export var follow_speed: float = 1.0
+@export var follow_speed: float = 0.5
 
 @onready var player: CharacterBody3D = get_node(player_path)
 
