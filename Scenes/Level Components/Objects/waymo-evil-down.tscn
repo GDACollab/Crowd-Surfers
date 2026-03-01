@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://d2msvbva5e2aj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_TOP(UPDATE2).PNG" id="2_44gos"]
 [ext_resource type="Texture2D" uid="uid://b0qunmxcrygau" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_FRONT(UPDATE2).PNG" id="3_2bsdu"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hpc10"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_egv3e"]
 size = Vector3(25, 13.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_44gos"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tcd4g"]
 size = Vector3(25, 1.5, 50)
 
 [node name="WaymoEvilDown" type="Node3D"]
@@ -18,26 +18,35 @@ active = true
 top_filename = ExtResource("3_2bsdu")
 front_filename = ExtResource("2_44gos")
 width = 25.0
+length = 50.0
 height = 15.0
+top_spr_pad_top = 0.68
+top_spr_pad_left = 4.58
+top_spr_pad_right = 4.78
+front_spr_pad_bottom = 1.11
+front_spr_pad_left = 4.54
+front_spr_pad_right = 5.02
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(6.5445027, 0, 0, 0, 1, 0, 0, 0, 10.593221, 0, 15, 25)
+transform = Transform3D(8.994764, 0, 0, 0, 1, 0, 0, 0, 10.737288, 0.1, 15, 24.66)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("3_2bsdu")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(6.5445027, 0, 0, 0, -4.371139e-08, -14.423077, 0, 1, -6.304527e-07, 0, 7.5, 50)
+transform = Transform3D(9.04712, 0, 6.7710624e-07, 3.9546217e-07, 1.9106855e-15, -15.490385, 0, 1, 2.9597252e-14, 0.24, 6.945, 50)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_44gos")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 25)
-shape = SubResource("BoxShape3D_hpc10")
+shape = SubResource("BoxShape3D_egv3e")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
-shape = SubResource("BoxShape3D_44gos")
+shape = SubResource("BoxShape3D_tcd4g")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

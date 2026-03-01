@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://pdlc4usagjml" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_TOP(updated).png" id="2_fajbu"]
 [ext_resource type="Texture2D" uid="uid://dcfquoapgiqcs" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_FRONT(updated).png" id="3_or0y1"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6xqhd"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_i31bj"]
 size = Vector3(25, 22.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fajbu"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7it5h"]
 size = Vector3(25, 2.5, 50)
 
 [node name="Bus1Up" type="Node3D"]
@@ -18,26 +18,34 @@ active = true
 top_filename = ExtResource("2_fajbu")
 front_filename = ExtResource("3_or0y1")
 width = 25.0
+length = 50.0
 height = 25.0
+top_spr_pad_left = 1.94
+top_spr_pad_right = 2.5
+front_spr_pad_bottom = 0.84
+front_spr_pad_left = 2.22
+front_spr_pad_right = 2.49
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(3.82263, 0, 0, 0, 1, 0, 0, 0, 4.091653, 0, 25, 25)
+transform = Transform3D(4.501529, 0, 0, 0, 1, 0, 0, 0, 4.091653, 0.28, 25, 25)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_fajbu")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(3.82263, 0, 0, 0, -4.371139e-08, -6.038647, 0, 1, -2.6395765e-07, 0, 12.5, 50)
+transform = Transform3D(4.5428133, 0, 2.7282664e-07, 1.9857268e-07, 1.9106855e-15, -6.2415457, 0, 1, 1.1925631e-14, 0.135, 12.08, 50)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("3_or0y1")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 25)
-shape = SubResource("BoxShape3D_6xqhd")
+shape = SubResource("BoxShape3D_i31bj")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 25)
-shape = SubResource("BoxShape3D_fajbu")
+shape = SubResource("BoxShape3D_7it5h")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
