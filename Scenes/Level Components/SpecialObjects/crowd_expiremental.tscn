@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://du3npiwq588ug"]
+
+[ext_resource type="Script" uid="uid://bnxmtu6l6wt1t" path="res://Scripts/crowd_expiremental.gd" id="1_svfnn"]
+[ext_resource type="Texture2D" uid="uid://dgmjq3t4ru45l" path="res://Assets/Art/CrowdTemp.png" id="2_g1ro3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_52qpb"]
+radius = 2.4765625
+height = 7.8632813
+
+[node name="CrowdExpiremental" type="Node3D"]
+script = ExtResource("1_svfnn")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.3408203, 1.4897726e-08, 0)
+shape = SubResource("CapsuleShape3D_52qpb")
+debug_color = Color(0.7490196, 0.6156863, 0, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("2_g1ro3")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
