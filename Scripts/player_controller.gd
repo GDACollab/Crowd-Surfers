@@ -434,10 +434,6 @@ func crash() -> void:
 	# Multiplying like this preserves directions where the player didn't hit the wall
 	#velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
 
-## Called by checkpoints
-func set_spawnpoint(new_spawnpoint: Vector3) -> void:
-	PlayerSpawn.spawnpoint = new_spawnpoint
-
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
 	raycast.force_raycast_update()
