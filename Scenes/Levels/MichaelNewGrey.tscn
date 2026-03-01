@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://disvq0i01qw0b"]
+[gd_scene load_steps=13 format=3 uid="uid://disvq0i01qw0b"]
 
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_8otms"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_qssw1"]
@@ -11,17 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="9_nfbva"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="10_objcq"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="11_hrg5d"]
+[ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="12_wrock"]
 
 [node name="ReferenceScene" type="Node3D"]
 
 [node name="Camera3D" parent="." instance=ExtResource("1_8otms")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 190.11348, 120.806206, 555.2209)
-size = 100.0
+size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("2_qssw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 536.935, 23.619705, 886.47644)
 base_ramping_cap = 300.0
 starting_speed = 15.0
 base_acceleration = 400.0
@@ -179,9 +179,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 250)
 
 [node name="StaticBody3D2" parent="." instance=ExtResource("5_nfbva")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 150)
-
-[node name="StaticBody3D3" parent="." instance=ExtResource("5_nfbva")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 250)
 
 [node name="StaticBody3D8" parent="." instance=ExtResource("4_55msm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -50)
@@ -405,6 +402,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 250)
 [node name="StaticBody3D74" parent="." instance=ExtResource("11_hrg5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 250)
 
+[node name="StaticBody3D112" parent="." instance=ExtResource("11_hrg5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 250)
+
 [node name="StaticBody3D75" parent="." instance=ExtResource("11_hrg5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 250)
 
@@ -473,3 +473,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 50)
 
 [node name="StaticBody3D88" parent="." instance=ExtResource("11_hrg5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 50)
+
+[node name="MarketStallCyan" parent="." instance=ExtResource("12_wrock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 280, 0, 80)
+
+[node name="MarketStallCyan3" parent="." instance=ExtResource("12_wrock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 80)
+
+[node name="MarketStallCyan4" parent="." instance=ExtResource("12_wrock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 80)
+
+[node name="MarketStallCyan2" parent="." instance=ExtResource("12_wrock")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 340, 0, 80)
