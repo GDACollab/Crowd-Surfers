@@ -108,6 +108,7 @@ var can_glide: bool = true
 var current_state: int = States.GROUND
 
 func _ready() -> void:
+	#aglobal_position = PlayerSpawn.spawnpoint
 	# Initialize values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
@@ -236,7 +237,7 @@ func check_state_transitions() -> void:
 		States.GLIDE:
 			if Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
-			elif (velocity.length() <= glide_min_speed and time_gliding >= min_glide_time) or Input.is_action_just_released("ability_glide") or is_on_wall():
+			elif (velocity.length() <= glide_min_speed and time_gliding >= min_glide_time) or Input.is_action_just_released("ability_glide"):# or is_on_wall():
 				transition_to(States.AIR)
 			elif is_on_floor():
 				transition_to(States.GROUND)
@@ -423,15 +424,15 @@ func fall(delta: float) -> void:
 	
 ## Applies penalty when crashing into a wall
 func crash() -> void:
-	max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
+	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	var wall_normal := get_wall_normal()
 	var dir := velocity.normalized()
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
 	# while components which didn't go into the wall are 1 in this vector
-	dir += wall_normal
+	#dir += wall_normal
 	# Multiplying like this preserves directions where the player didn't hit the wall
-	velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
+	#velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
 
 ## Keeps the player's sprite and drop shadow at the correct location
 func snap_sprite() -> void:
