@@ -170,6 +170,22 @@ size = Vector3(10.619874, 19.472387, 0.8726929)
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_i0hvh")
+base_ramping_cap = 300.0
+starting_speed = 30.0
+crash_penalty_mult = 1.05
+base_acceleration = 250.0
+friction = 200.0
+gravity = 500.0
+jump_speed = 150.0
+stomp_speed = 150.0
+windup_duration = 0.08
+stomp_dash_boost_factor = 650.0
+max_stomp_dash_boost = 1000.0
+dash_distance = 40.0
+dash_cooldown = 0.33
+min_dash_speed = 75.0
+stomp_resets_air_dash = true
+stomp_dash_margin = 1.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
