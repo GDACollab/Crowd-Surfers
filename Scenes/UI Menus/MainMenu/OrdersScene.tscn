@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=4 format=3 uid="uid://c5rie8boisw4x"]
 
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_yohfk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
@@ -9,6 +10,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
+confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton2"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
+back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

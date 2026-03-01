@@ -416,6 +416,7 @@ func handle_inputs(delta: float) -> void:
 ## Give the player upwards velocity
 func jump() -> void:
 	velocity.y = jump_speed
+	$JumpSound.play()
 
 ## Applies gravity
 func fall(delta: float) -> void:

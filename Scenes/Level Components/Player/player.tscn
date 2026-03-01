@@ -211,3 +211,9 @@ fmod_parameters/glide_state/variant_type = 4
 [node name="DashSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/dash"
 event_guid = "{786da779-c31c-46e0-8fd9-49dc9c0ed9f3}"
+
+[node name="JumpSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/jump"
+event_guid = "{37e4c1ff-9cd4-4400-b1c5-8e6f4e784d62}"
+
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]
