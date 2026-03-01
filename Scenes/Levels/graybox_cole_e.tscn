@@ -1,8 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bm7jkmbd78qsu"]
+[gd_scene load_steps=30 format=3 uid="uid://bm7jkmbd78qsu"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_3rqtu"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="2_jq2e7"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_kms6c"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/Level_Clear.tscn" id="3_r7imt"]
+[ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/Hud/InGameHud.tscn" id="4_7m3ac"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="4_tgmb2"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="5_g2rwa"]
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="6_gok8u"]
@@ -26,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="22_bhpgb"]
 [ext_resource type="PackedScene" uid="uid://d1ewknvdw2hoo" path="res://Scenes/Level Components/Objects/cable-car-side.tscn" id="25_xct25"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="26_r7imt"]
+[ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="29_qyy1a"]
 
 [node name="GrayboxColeE" type="Node3D"]
 
@@ -40,6 +43,12 @@ base_ramping_cap = 300.0
 base_acceleration = 400.0
 gravity = 400.0
 jump_speed = 150.0
+
+[node name="Hud" parent="." instance=ExtResource("4_7m3ac")]
+
+[node name="LevelClearUi" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("3_r7imt")]
+visible = false
+hud_ui = NodePath("../Hud")
 
 [node name="Roads" type="Node3D" parent="."]
 
@@ -403,9 +412,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 805.6911, 0, -441.25735)
 [node name="MarketStallCyan2" parent="Obstacles" instance=ExtResource("16_ghm6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 909.1407, 0, -392.72653)
 
-[node name="Bus1Down" parent="Obstacles" instance=ExtResource("18_j7y63")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1003.74854, 1, -580.2781)
-
 [node name="CarRedUp" parent="Obstacles" instance=ExtResource("19_rql8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 512.01337, 1.9400005, -273.58545)
 
@@ -413,32 +419,95 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 512.01337, 1.9400005, -273.58
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 534.5035, 1.000001, 72.178116)
 
 [node name="CarRedSide2" parent="Obstacles" instance=ExtResource("14_2mfbh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 645.7193, 1.2899857, 104.17772)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 675.8291, 1.2899857, 104.17772)
 
 [node name="WaymoConfusedSide" parent="Obstacles" instance=ExtResource("17_bhpgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 759.4282, 2.0600014, 9.023033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 769.6121, 2.0600014, 9.023033)
+
+[node name="WaymoEvilDown" parent="Obstacles" instance=ExtResource("21_ghm6m")]
+transform = Transform3D(0.91243476, 0, -0.40922248, 0, 1, 0, 0.40922248, 0, 0.91243476, 405.3766, 2.1100006, -215.83337)
+
+[node name="Bus1Side" parent="Obstacles" instance=ExtResource("15_j7n3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 708.49304, 1.000001, -383.96912)
+
+[node name="CarRedSide3" parent="Obstacles" instance=ExtResource("14_2mfbh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1141.1649, 1.2900009, -719.47156)
+
+[node name="WaymoConfusedUp" parent="Obstacles" instance=ExtResource("22_bhpgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 611.7203, 2.1400003, -364.54178)
+
+[node name="StaticBody3D" parent="Obstacles" instance=ExtResource("25_xct25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 241.89743, 2.3000002, 7.061508)
+
+[node name="Bus1Down2" parent="Obstacles" instance=ExtResource("18_j7y63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.8156, 1, 48.420555)
+
+[node name="Bus1Up" parent="Obstacles" instance=ExtResource("26_r7imt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416.67303, 1.8400154, 38.012154)
+
+[node name="Bus1Side2" parent="Obstacles" instance=ExtResource("15_j7n3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 969.38245, 1.000001, 64.62004)
+
+[node name="CarRedUp2" parent="Obstacles" instance=ExtResource("19_rql8v")]
+transform = Transform3D(0.8657548, 0, -0.5004685, 0, 1, 0, 0.5004685, 0, 0.8657548, 1123.7733, 1.9400005, -31.504234)
+
+[node name="Bus1Side3" parent="Obstacles" instance=ExtResource("15_j7n3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1126.5745, 1.000001, 100.41275)
+
+[node name="MarketStallAmber2" parent="Obstacles" instance=ExtResource("15_6j7ly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1013.1377, 0, -560.00305)
+
+[node name="WaymoEvilSide2" parent="Obstacles" instance=ExtResource("19_8vpa5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 895.81976, 1.000001, 101.30894)
+
+[node name="CarRedSide4" parent="Obstacles" instance=ExtResource("14_2mfbh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 611.75116, 1.2900162, -32.618652)
+
+[node name="WaymoConfusedSide2" parent="Obstacles" instance=ExtResource("17_bhpgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1031.5149, 9.853092, 10.477379)
+
+[node name="Bus1Side4" parent="Obstacles" instance=ExtResource("15_j7n3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 891.12836, 1.0000315, -25.656612)
+
+[node name="CarRedUp3" parent="Obstacles" instance=ExtResource("19_rql8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500.1396, 1.9400005, -194.19492)
+
+[node name="CarRedUp4" parent="Obstacles" instance=ExtResource("19_rql8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1369.3597, 1.9400005, -348.20224)
+
+[node name="Bus1Up2" parent="Obstacles" instance=ExtResource("26_r7imt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1403.972, 1.8399696, -473.89893)
+
+[node name="CarRedSide5" parent="Obstacles" instance=ExtResource("14_2mfbh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1276.7733, 1.2899857, 67.68725)
+
+[node name="WaymoEvilUp" parent="Obstacles" instance=ExtResource("29_qyy1a")]
+transform = Transform3D(0.7397603, 0, -0.6728705, 0, 1, 0, 0.6728705, 0, 0.7397603, 1461.3856, 2.7000012, 31.78225)
+
+[node name="CarRedUp5" parent="Obstacles" instance=ExtResource("19_rql8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1404.5585, 1.9400005, -68.20926)
+
+[node name="WaymoConfusedUp2" parent="Obstacles" instance=ExtResource("22_bhpgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1372.2388, 2.1400008, -205.65991)
+
+[node name="Bus1Up3" parent="Obstacles" instance=ExtResource("26_r7imt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1466.8971, 1.8399696, -343.08075)
+
+[node name="CarRedUp6" parent="Obstacles" instance=ExtResource("19_rql8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1463.7891, 1.9400306, -620.69055)
+
+[node name="WaymoConfusedUp3" parent="Obstacles" instance=ExtResource("22_bhpgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1499.3787, 2.1400003, -730.78143)
+
+[node name="WaymoEvilUp2" parent="Obstacles" instance=ExtResource("29_qyy1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500.885, 2.7000008, -441.5845)
+
+[node name="WaymoEvilUp3" parent="Obstacles" instance=ExtResource("29_qyy1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1367.8076, 2.7000008, -631.5285)
+
+[node name="WaymoConfusedSide3" parent="Obstacles" instance=ExtResource("17_bhpgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.15582, 2.0600014, 65.506874)
 
 [node name="Light" parent="." instance=ExtResource("14_m1ysu")]
 transform = Transform3D(0.3535533, -0.86602527, -0.35355338, 0.70710677, -3.0908616e-08, 0.70710665, -0.6123723, -0.4999999, 0.6123724, 0, 0, 0)
 light_specular = 0.0
-
-[node name="WaymoEvilDown" parent="." instance=ExtResource("21_ghm6m")]
-transform = Transform3D(0.91243476, 0, -0.40922248, 0, 1, 0, 0.40922248, 0, 0.91243476, 405.3766, 2.1100006, -215.83337)
-
-[node name="Bus1Side" parent="." instance=ExtResource("15_j7n3c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 708.49304, 1.000001, -383.96912)
-
-[node name="CarRedSide" parent="." instance=ExtResource("14_2mfbh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1141.1649, 1.2900009, -719.47156)
-
-[node name="WaymoConfusedUp" parent="." instance=ExtResource("22_bhpgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 611.7203, 2.1400003, -364.54178)
-
-[node name="StaticBody3D" parent="." instance=ExtResource("25_xct25")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 241.89743, 2.3000002, 7.061508)
-
-[node name="Bus1Down" parent="." instance=ExtResource("18_j7y63")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.8156, 1, 48.420555)
-
-[node name="Bus1Up" parent="." instance=ExtResource("26_r7imt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 416.67303, 1.8400154, 38.012154)
