@@ -1,6 +1,8 @@
 extends Control
 
-@onready var level_clear_ui: Control = $PhoneImage/MainContainer
+@export var hud_ui: Control
+
+@onready var clear_time_text: Label = $Panel/ClearTimeText
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -14,3 +16,6 @@ func _on_continue_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
 	await get_tree().create_timer(SceneFadeTransition.FADE_TIME - 0.1).timeout 
 	get_tree().paused = false
+
+func open_ui() -> void:
+	clear_time_text.text = "Clear Time: " + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time)

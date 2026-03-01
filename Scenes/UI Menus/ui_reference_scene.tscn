@@ -339,8 +339,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 750)
 
 [node name="Hud" parent="." instance=ExtResource("26_2icx4")]
 
-[node name="LevelClear" parent="." instance=ExtResource("27_slsjy")]
+[node name="LevelClear" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("27_slsjy")]
 visible = false
+hud_ui = NodePath("../Hud")
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("28_slsjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 298.44388, 0, 522.28723)
