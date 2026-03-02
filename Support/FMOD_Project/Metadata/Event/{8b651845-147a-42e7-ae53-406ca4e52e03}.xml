@@ -37,7 +37,7 @@
 			<destination>{25d7fa67-5de5-4e39-a6b4-16c0d5f82794}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{26104eb3-c260-4393-91dc-67c358e0ba27}</destination>
+			<destination>{d4ead677-82c3-495c-b7be-dcb40aa16f7d}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{c9a42594-c78b-46d1-8fc3-2e7e9b0c631c}">
@@ -58,7 +58,7 @@
 			<destination>{767667fa-8973-4d4f-a551-4dcfc79d924e}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{c44a2372-651a-4dd7-a17b-e0efc56f7b49}</destination>
+			<destination>{42af6bb4-189a-466c-b82b-6ce3313b25c3}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{b0a85617-ee94-403f-8fef-9952825d2398}" />
@@ -73,7 +73,7 @@
 	</object>
 	<object class="GroupTrack" id="{3acc8836-7de9-47e4-9bf1-53cfd3434c6a}">
 		<relationship name="modules">
-			<destination>{e8a8a48c-ee35-4c8e-8091-08f22607c8b6}</destination>
+			<destination>{c7d90c92-abd8-4818-976c-efac4ec181a7}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{777edb01-1d6f-4493-a9b3-543fae672380}</destination>
@@ -81,7 +81,7 @@
 	</object>
 	<object class="GroupTrack" id="{7d571140-c1e5-4d7d-a922-166a5265c575}">
 		<relationship name="modules">
-			<destination>{2e9c7b29-0b02-4109-88df-1cebb6c72808}</destination>
+			<destination>{c2b97a82-1a71-471c-9879-9d0a4af11b88}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{215ab7e7-560d-4b8b-8d36-2920159ed53c}</destination>
@@ -95,8 +95,8 @@
 	<object class="ParameterProxy" id="{25d7fa67-5de5-4e39-a6b4-16c0d5f82794}">
 		<relationship name="modules">
 			<destination>{1a01f623-48d3-4b2f-9813-53619dc40d14}</destination>
-			<destination>{e8a8a48c-ee35-4c8e-8091-08f22607c8b6}</destination>
-			<destination>{2e9c7b29-0b02-4109-88df-1cebb6c72808}</destination>
+			<destination>{c2b97a82-1a71-471c-9879-9d0a4af11b88}</destination>
+			<destination>{c7d90c92-abd8-4818-976c-efac4ec181a7}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{cc1a1e6f-2816-4c74-bf9f-ae9e412551ff}</destination>
@@ -126,6 +126,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f74918c0-085a-443e-9751-1371e270a15b}">
+		<property name="volume">
+			<value>-9</value>
+		</property>
 		<property name="name">
 			<value>glide_start</value>
 		</property>
@@ -139,26 +142,20 @@
 			<destination>{96e3bf55-d056-436d-b50b-e273df4609fe}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{e8a8a48c-ee35-4c8e-8091-08f22607c8b6}">
-		<property name="isAsync">
-			<value>true</value>
-		</property>
+	<object class="SingleSound" id="{c7d90c92-abd8-4818-976c-efac4ec181a7}">
 		<property name="isCutoff">
 			<value>true</value>
-		</property>
-		<property name="timelockedOffset">
-			<value>1.5</value>
 		</property>
 		<property name="looping">
 			<value>true</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{d981ef06-09d7-4ef2-9751-92cb6d568e1c}</destination>
+			<destination>{ff730b63-6c41-480b-b791-2b5ed0758dd6}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{777edb01-1d6f-4493-a9b3-543fae672380}">
 		<property name="volume">
-			<value>-6</value>
+			<value>-9</value>
 		</property>
 		<property name="name">
 			<value>glide_loop</value>
@@ -173,15 +170,18 @@
 			<destination>{96e3bf55-d056-436d-b50b-e273df4609fe}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{2e9c7b29-0b02-4109-88df-1cebb6c72808}">
+	<object class="SingleSound" id="{c2b97a82-1a71-471c-9879-9d0a4af11b88}">
 		<property name="start">
 			<value>1</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{a7b68494-03f6-41b1-bfa0-1a82f697ed74}</destination>
+			<destination>{86e3b39b-8f3d-4d7a-976d-481a3f8db1d2}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{215ab7e7-560d-4b8b-8d36-2920159ed53c}">
+		<property name="volume">
+			<value>-10.5</value>
+		</property>
 		<property name="name">
 			<value>glide_end</value>
 		</property>

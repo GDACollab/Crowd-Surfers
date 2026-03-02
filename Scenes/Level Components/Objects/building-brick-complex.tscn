@@ -3,34 +3,39 @@
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_gjkuu"]
 [ext_resource type="Texture2D" uid="uid://dgmixqah1koc6" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 2 S3.png" id="2_ut5kl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gjkuu"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_02xk8"]
 size = Vector3(100, 180, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ic7q5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ael51"]
 size = Vector3(100, 20, 100)
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="StaticBody3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_gjkuu")
 active = true
 front_filename = ExtResource("2_ut5kl")
 width = 100.0
 length = 100.0
 height = 200.0
+front_spr_pad_left = 7.48
+front_spr_pad_right = 19.47
 
-[node name="FrontSprite" type="Sprite3D" parent="."]
-transform = Transform3D(8.818342, 0, 0, 0, -4.371139e-08, -10.689471, 0, 1, -4.6725162e-07, 0, 100, 100)
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(11.194885, 0, 4.6725162e-07, 4.8934396e-07, 1.9106855e-15, -10.689471, 0, 1, 2.0424217e-14, 5.995, 100, 100)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_ut5kl")
 region_enabled = true
 region_rect = Rect2(0, 0, 1134, 1871)
 
-[node name="MainHitbox" type="CollisionShape3D" parent="."]
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, 50)
-shape = SubResource("BoxShape3D_gjkuu")
+shape = SubResource("BoxShape3D_02xk8")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 190, 50)
-shape = SubResource("BoxShape3D_ic7q5")
+shape = SubResource("BoxShape3D_ael51")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

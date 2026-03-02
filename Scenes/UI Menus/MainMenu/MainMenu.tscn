@@ -1,0 +1,270 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsqdn34fhynmr"]
+
+[ext_resource type="Texture2D" uid="uid://cg1wbnbync35f" path="res://Assets/Art/MainMenuAssets/SlipImageTemp.png" id="1_0p7o3"]
+[ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/main_menu.gd" id="1_dsamw"]
+[ext_resource type="Texture2D" uid="uid://by0k81p0nh5cb" path="res://Assets/Art/MainMenuAssets/TempPhone.png" id="2_184yf"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
+[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_3ypn2"]
+[ext_resource type="Texture2D" uid="uid://b1j3tyml0fxqy" path="res://Assets/Art/MainMenuAssets/TempPhoneMask.png" id="4_q16ba"]
+[ext_resource type="PackedScene" uid="uid://c5rie8boisw4x" path="res://Scenes/UI Menus/MainMenu/OrdersScene.tscn" id="5_arkae"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q16ba"]
+
+[sub_resource type="Animation" id="Animation_j0r1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneImage/OrdersScene:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneImage/OrdersScene:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneImage/MainContainer/OrdersButton:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhoneImage/MainContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide_orders_scene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_q16ba"]
+resource_name = "open_orders"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneImage/OrdersScene:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0.245), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneImage/OrdersScene:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneImage/MainContainer/OrdersButton:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 4.055)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhoneImage/MainContainer:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"set_orders_scene_visibility"
+}, {
+"args": [true],
+"method": &"set_orders_scene_visibility"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ahrg2"]
+_data = {
+&"RESET": SubResource("Animation_j0r1m"),
+&"open_orders": SubResource("Animation_q16ba")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -647.61
+offset_bottom = -640.039
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dsamw")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_j0r1m")]
+confirm_buttons = [NodePath("../PhoneImage/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainContainer/SettingsButton")]
+back_buttons = [NodePath("../PhoneImage/MainContainer/ExitButton")]
+
+[node name="SlipImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 1106.86
+offset_bottom = 1085.68
+texture = ExtResource("1_0p7o3")
+expand_mode = 1
+
+[node name="PhoneImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 972.0482
+offset_top = -199.0
+offset_right = 2244.4382
+offset_bottom = 951.63196
+rotation = 0.29365015
+mouse_filter = 2
+texture = ExtResource("2_184yf")
+
+[node name="MainContainer" type="Control" parent="PhoneImage"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OrdersButton" type="Button" parent="PhoneImage/MainContainer"]
+custom_minimum_size = Vector2(0, 197)
+layout_mode = 0
+offset_left = 419.737
+offset_top = 182.31195
+offset_right = 854.737
+offset_bottom = 379.31195
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_q16ba")
+text = "Orders"
+icon = ExtResource("3_3ypn2")
+
+[node name="VoiceMailButton" type="Button" parent="PhoneImage/MainContainer"]
+layout_mode = 0
+offset_left = 419.73688
+offset_top = 383.31192
+offset_right = 854.7369
+offset_bottom = 580.3119
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_q16ba")
+text = "Voicemail"
+
+[node name="SettingsButton" type="Button" parent="PhoneImage/MainContainer"]
+layout_mode = 0
+offset_left = 419.73712
+offset_top = 584.3119
+offset_right = 854.7371
+offset_bottom = 781.3119
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_q16ba")
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="PhoneImage/MainContainer"]
+layout_mode = 0
+offset_left = 419.73688
+offset_top = 785.312
+offset_right = 854.7369
+offset_bottom = 982.312
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_q16ba")
+text = "Exit"
+
+[node name="OrdersScene" parent="PhoneImage" instance=ExtResource("5_arkae")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 419.737
+offset_top = 182.31201
+offset_right = 855.47394
+offset_bottom = 982.593
+
+[node name="MainPhoneMask" type="TextureRect" parent="."]
+visible = false
+clip_children = 1
+layout_mode = 0
+offset_left = 972.0482
+offset_top = -199.0
+offset_right = 2244.4382
+offset_bottom = 951.63196
+rotation = 0.29365015
+mouse_filter = 2
+texture = ExtResource("4_q16ba")
+
+[node name="OrdersAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ahrg2")
+}
+
+[connection signal="pressed" from="PhoneImage/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
+[connection signal="pressed" from="PhoneImage/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PhoneImage/OrdersScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="PhoneImage/OrdersScene"]
