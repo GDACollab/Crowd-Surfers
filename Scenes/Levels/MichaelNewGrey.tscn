@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="16_vq0yr"]
 [ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="17_c1rxa"]
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="17_pu0h3"]
-[ext_resource type="PackedScene" uid="uid://dakmufixpwm3i" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="19_c1rxa"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="19_c1rxa"]
 
 [node name="ReferenceScene" type="Node3D"]
 
@@ -572,7 +572,17 @@ transform = Transform3D(0.97490513, 0, -0.22262059, 0, 1, 0, 0.22262059, 0, 0.97
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1376.8041, 0, 136.88132)
 
 [node name="Bus1Up4" parent="." instance=ExtResource("13_boobc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1376.8041, 0, 338.1261)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1376.8041, 0, 491.91843)
+script = ExtResource("17_c1rxa")
+smoothnessArr = Array[float]([0.1, 0.1])
+isClosed = false
+isRotate = true
+
+[node name="Node3D" type="Node3D" parent="Bus1Up4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -210)
+
+[node name="Node3D2" type="Node3D" parent="Bus1Up4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.5254, 0, -210)
 
 [node name="Bus1Up2" parent="." instance=ExtResource("13_boobc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 920, 0, 360)
