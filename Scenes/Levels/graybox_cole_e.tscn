@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://vxjwy4vwa5gw"]
+[gd_scene load_steps=31 format=3 uid="uid://bm7jkmbd78qsu"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_3rqtu"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="2_jq2e7"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="9_b6anu"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="10_44yhb"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="11_44yhb"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="12_a3slp"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="13_qxbwe"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="12_a3slp"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="13_qxbwe"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="14_2mfbh"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="14_m1ysu"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="15_6j7ly"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="21_ghm6m"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="22_bhpgb"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="26_r7imt"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="28_7m3ac"]
 [ext_resource type="Script" path="res://Scripts/obstacle_movement.gd" id="28_qyy1a"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="29_qyy1a"]
 
@@ -530,17 +531,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1367.8076, 2.7000008, -631.52
 [node name="WaymoConfusedSide3" parent="Obstacles" instance=ExtResource("17_bhpgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.15582, 2.0600014, 65.506874)
 
-[node name="Bus1Side5" parent="Obstacles" instance=ExtResource("15_j7n3c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.11588, 1.0000315, 7.2660255)
+[node name="Bus1Full" parent="Obstacles" instance=ExtResource("28_7m3ac")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 227.28378, 0, 20.050602)
 script = ExtResource("28_qyy1a")
 forward_direction = 4.0
-smoothnessArr = Array[float]([0.0])
+isRotate = true
 
-[node name="Node3D" type="Node3D" parent="Obstacles/Bus1Side5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200.5123, 0, 0)
+[node name="Node3D" type="Node3D" parent="Obstacles/Bus1Full"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.784523, 1.0000315, 1226.3444)
 
-[node name="Node3D2" type="Node3D" parent="Obstacles/Bus1Side5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200.5123, 0, -1091.7748)
+[node name="Node3D2" type="Node3D" parent="Obstacles/Bus1Full"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1104.5593, 1.0000315, 1226.3444)
+
+[node name="Node3D3" type="Node3D" parent="Obstacles/Bus1Full"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1104.5593, 1.0000315, -704.4186)
+
+[node name="Node3D4" type="Node3D" parent="Obstacles/Bus1Full"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.88524246, 1, -704.419)
 
 [node name="Light" parent="." instance=ExtResource("14_m1ysu")]
 transform = Transform3D(0.3535533, -0.86602527, -0.35355338, 0.70710677, -3.0908616e-08, 0.70710665, -0.6123723, -0.4999999, 0.6123724, 0, 0, 0)
