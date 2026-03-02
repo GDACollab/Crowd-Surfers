@@ -4,38 +4,50 @@
 [ext_resource type="Texture2D" uid="uid://c3xgcjnbtlqq1" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_TOP(UPDATE2).PNG" id="2_pp8t1"]
 [ext_resource type="Texture2D" uid="uid://buf0562seemuj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_FRONT(UPDATE2).PNG" id="3_o5ffo"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4ai1i"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bysu5"]
 size = Vector3(50, 13.5, 25)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pp8t1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6edg"]
 size = Vector3(50, 1.5, 25)
 
-[node name="WaymoConfusedSide" type="StaticBody3D"]
+[node name="WaymoConfusedSide" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_4ai1i")
 active = true
 top_filename = ExtResource("2_pp8t1")
 front_filename = ExtResource("3_o5ffo")
+width = 50.0
 length = 25.0
 height = 15.0
+top_spr_pad_top = 5.8
+top_spr_pad_bottom = 0.11
+top_spr_pad_left = 2.16
+top_spr_pad_right = -0.06
+front_spr_pad_bottom = 1.06
+front_spr_pad_left = 2.32
+front_spr_pad_right = -0.19
 
-[node name="TopSprite" type="Sprite3D" parent="."]
-transform = Transform3D(7.183908, 0, 0, 0, 1, 0, 0, 0, 6.756757, 0, 15, 12.5)
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(7.4856324, 0, 0, 0, 1, 0, 0, 0, 8.354054, -1.11, 15, 9.655)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_pp8t1")
 
-[node name="FrontSprite" type="Sprite3D" parent="."]
-transform = Transform3D(7.183908, 0, 0, 0, -4.371139e-08, -10.2739725, 0, 1, -4.490896e-07, 0, 7.5, 25)
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(7.4899426, 0, 4.808253e-07, 3.2739578e-07, 1.9106855e-15, -11, 0, 1, 2.101754e-14, -1.255, 6.97, 25)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("3_o5ffo")
 
-[node name="MainHitbox" type="CollisionShape3D" parent="."]
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 12.5)
-shape = SubResource("BoxShape3D_4ai1i")
+shape = SubResource("BoxShape3D_bysu5")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 12.5)
-shape = SubResource("BoxShape3D_pp8t1")
+shape = SubResource("BoxShape3D_v6edg")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

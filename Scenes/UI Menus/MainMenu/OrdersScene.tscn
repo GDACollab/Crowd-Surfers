@@ -1,0 +1,142 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5rie8boisw4x"]
+
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
+[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_yohfk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
+confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton2"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
+back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.8685
+offset_right = 217.8685
+offset_bottom = 70.0
+grow_horizontal = 2
+pivot_offset = Vector2(217.869, 0)
+color = Color(0.74978, 0.74978, 0.74977994, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = -5.0
+offset_right = 152.0
+offset_bottom = 71.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[font_size=55]-- Orders --"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ScrollMask" type="ColorRect" parent="."]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.869
+offset_top = 70.0
+offset_right = 217.868
+offset_bottom = 800.0
+grow_horizontal = 2
+pivot_offset = Vector2(217.869, 0)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollMask"]
+layout_mode = 0
+offset_right = 435.737
+offset_bottom = 730.281
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollMask/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OrdersButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 1
+"
+icon = ExtResource("3_yohfk")
+
+[node name="OrdersButton2" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 2
+"
+icon = ExtResource("3_yohfk")
+
+[node name="OrdersButton3" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 3"
+icon = ExtResource("3_yohfk")
+
+[node name="OrdersButton4" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 4"
+icon = ExtResource("3_yohfk")
+
+[node name="OrdersButton5" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 5"
+icon = ExtResource("3_yohfk")
+
+[node name="OrdersButton6" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 6"
+icon = ExtResource("3_yohfk")
+
+[node name="OrdersButton7" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Order 7"
+icon = ExtResource("3_yohfk")
+
+[node name="BackButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Back
+"
