@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://dcfquoapgiqcs" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_FRONT(updated).png" id="5_x4tby"]
 [ext_resource type="Texture2D" uid="uid://c14wh6latw436" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Intersection S3.png" id="6_1irwg"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1irwg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_eu5ky"]
 size = Vector3(1.64, 3, 6)
 
 [node name="TestExample" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 script = ExtResource("1_mdunq")
 top_filename = ExtResource("2_ot5d7")
 front_filename = ExtResource("3_1irwg")
@@ -79,5 +80,5 @@ texture = ExtResource("6_1irwg")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
-shape = SubResource("BoxShape3D_1irwg")
+shape = SubResource("BoxShape3D_eu5ky")
 debug_color = Color(1, 0, 0, 1)
