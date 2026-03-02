@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bm7jkmbd78qsu"]
+[gd_scene load_steps=30 format=3 uid="uid://bm7jkmbd78qsu"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_3rqtu"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="2_jq2e7"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="21_ghm6m"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="22_bhpgb"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="26_r7imt"]
+[ext_resource type="Script" path="res://Scripts/obstacle_movement.gd" id="28_qyy1a"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="29_qyy1a"]
 
 [node name="GrayboxColeE" type="Node3D"]
@@ -38,10 +39,8 @@ near = 0.001
 offset = Vector3(0, 1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("1_3rqtu")]
-base_ramping_cap = 300.0
 base_acceleration = 400.0
 gravity = 400.0
-jump_speed = 150.0
 
 [node name="Hud" parent="." instance=ExtResource("4_7m3ac")]
 
@@ -533,6 +532,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.15582, 2.0600014, 65.5068
 
 [node name="Bus1Side5" parent="Obstacles" instance=ExtResource("15_j7n3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.11588, 1.0000315, 7.2660255)
+script = ExtResource("28_qyy1a")
+forward_direction = 4.0
+smoothnessArr = Array[float]([0.0])
+
+[node name="Node3D" type="Node3D" parent="Obstacles/Bus1Side5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200.5123, 0, 0)
+
+[node name="Node3D2" type="Node3D" parent="Obstacles/Bus1Side5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200.5123, 0, -1091.7748)
 
 [node name="Light" parent="." instance=ExtResource("14_m1ysu")]
 transform = Transform3D(0.3535533, -0.86602527, -0.35355338, 0.70710677, -3.0908616e-08, 0.70710665, -0.6123723, -0.4999999, 0.6123724, 0, 0, 0)
