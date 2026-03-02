@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bm7jkmbd78qsu"]
+[gd_scene load_steps=29 format=3 uid="uid://bm7jkmbd78qsu"]
 
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_3rqtu"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="2_jq2e7"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_kms6c"]
-[ext_resource type="PackedScene" path="res://Scenes/UI Menus/Level_Clear.tscn" id="3_r7imt"]
+[ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="3_r7imt"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/Hud/InGameHud.tscn" id="4_7m3ac"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="4_tgmb2"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="5_g2rwa"]
@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="19_rql8v"]
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="21_ghm6m"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="22_bhpgb"]
-[ext_resource type="PackedScene" uid="uid://d1ewknvdw2hoo" path="res://Scenes/Level Components/Objects/cable-car-side.tscn" id="25_xct25"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="26_r7imt"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="29_qyy1a"]
 
@@ -245,19 +244,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1185.1226, 0, -737.9144)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1285.1226, 0, -737.9144)
 
 [node name="RoadV18" parent="Roads" instance=ExtResource("6_gok8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1096, 0, -146)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1090.2599, 0, -146)
 
 [node name="RoadT15" parent="Roads" instance=ExtResource("5_g2rwa")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1046, 0, -192)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1040.2599, 0, -192)
 
 [node name="RoadT16" parent="Roads" instance=ExtResource("5_g2rwa")]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 1243, 0, -191)
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 1237.2599, 0, -191)
 
 [node name="RoadT17" parent="Roads" instance=ExtResource("5_g2rwa")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1143, 0, -291)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1137.2599, 0, -291)
 
 [node name="RoadH31" parent="Roads" instance=ExtResource("2_jq2e7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1287.1226, 0, -340.91446)
+
+[node name="RoadH32" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -47.91445)
+
+[node name="RoadH33" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 51)
+
+[node name="RoadH34" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -47.91445)
+
+[node name="RoadH35" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 51)
+
+[node name="RoadH36" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -47.91445)
+
+[node name="RoadH37" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 51)
+
+[node name="RoadH38" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -47.91445)
+
+[node name="RoadH39" parent="Roads" instance=ExtResource("2_jq2e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 51)
 
 [node name="Buildings" type="Node3D" parent="."]
 
@@ -326,6 +349,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1013.298, 0, -149)
 
 [node name="BuildingBr9" parent="Buildings" instance=ExtResource("10_44yhb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 495.52643, 0, -147)
+
+[node name="BuildingBr10" parent="Buildings" instance=ExtResource("10_44yhb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101, 0, -143)
 
 [node name="InvisWalls" type="Node3D" parent="."]
 
@@ -436,9 +462,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1141.1649, 1.2900009, -719.47
 [node name="WaymoConfusedUp" parent="Obstacles" instance=ExtResource("22_bhpgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 611.7203, 2.1400003, -364.54178)
 
-[node name="StaticBody3D" parent="Obstacles" instance=ExtResource("25_xct25")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 241.89743, 2.3000002, 7.061508)
-
 [node name="Bus1Down2" parent="Obstacles" instance=ExtResource("18_j7y63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.8156, 1, 48.420555)
 
@@ -507,6 +530,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1367.8076, 2.7000008, -631.52
 
 [node name="WaymoConfusedSide3" parent="Obstacles" instance=ExtResource("17_bhpgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.15582, 2.0600014, 65.506874)
+
+[node name="Bus1Side5" parent="Obstacles" instance=ExtResource("15_j7n3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.11588, 1.0000315, 7.2660255)
 
 [node name="Light" parent="." instance=ExtResource("14_m1ysu")]
 transform = Transform3D(0.3535533, -0.86602527, -0.35355338, 0.70710677, -3.0908616e-08, 0.70710665, -0.6123723, -0.4999999, 0.6123724, 0, 0, 0)
