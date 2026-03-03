@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxh4py23vy7ll"]
+
+[ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
+[ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
+[ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="4_6em14"]
+[ext_resource type="Texture2D" uid="uid://dp7dura6byohf" path="res://Assets/Art/Portraits/BlankPortrait.png" id="4_o1fea"]
+[ext_resource type="PackedScene" uid="uid://cvwdknj7n8u5o" path="res://Scenes/Dialogue Interface/character_portrait.tscn" id="4_wemfb"]
+[ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
+
+[node name="Dialogue Interface" type="Control" node_paths=PackedStringArray("mainPanels")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6mp5d")
+mainPanels = [NodePath("Left Character Portrait"), NodePath("Right Character Portrait")]
+dialoguePanel = ExtResource("5_wemfb")
+choiceButton = ExtResource("2_vriws")
+choiceSelectDelay = 1.0
+defaultPortait = ExtResource("4_o1fea")
+speakingPortraitScale = Vector2(1.1, 1.1)
+portraitSwapTime = 0.5
+upperDialogueBoxHeight = 50.0
+upperDialogueBoxScale = Vector2(0.4, 0.4)
+lowerDialogueBoxScale = Vector2(0.65, 0.65)
+
+[node name="Left Character Portrait" parent="." instance=ExtResource("4_wemfb")]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -1.0
+offset_top = 285.1491
+offset_right = 613.0
+offset_bottom = 1080.0
+grow_vertical = 1
+
+[node name="Right Character Portrait" parent="." instance=ExtResource("4_wemfb")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -550.0
+offset_top = -794.8508
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+pivot_offset = Vector2(550, 712)
+showPosition = Vector2(1370, 368)
+hidePosition = Vector2(1637.254, 1200)
+
+[node name="Choice Button Container" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -322.0
+offset_top = -858.0
+offset_right = 423.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 130
+alignment = 2
+script = ExtResource("4_6em14")
+showPosition = Vector2(600, 222)
+hidePosition = Vector2(600, 1200)
+
+[node name="Dialogue Panel" parent="." instance=ExtResource("5_wemfb")]
+layout_mode = 1
+offset_left = -465.0
+offset_top = -492.0
+offset_right = 467.19446
+offset_bottom = -39.0
