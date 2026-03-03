@@ -7,18 +7,16 @@
 radius = 2.4765625
 height = 7.8632813
 
-[node name="CrowdExpiremental" type="Node3D"]
+[node name="CrowdExp" type="Node3D"]
 script = ExtResource("1_svfnn")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.3408203, 1.4897726e-08, 0)
+transform = Transform3D(-2.1855695e-07, 5, 0, -5, -2.1855695e-07, 0, 0, 0, 5, -0.3408203, 1.4897726e-08, 0)
 shape = SubResource("CapsuleShape3D_52qpb")
 debug_color = Color(0.7490196, 0.6156863, 0, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, 5, 0, -5, -2.1855695e-07, 0, 7.9970913, 0)
 texture = ExtResource("2_g1ro3")
-
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
