@@ -82,6 +82,8 @@ func _on_stomp_dash_margin_timeout() -> void:
 	speed_before_stomp = 0.0
 
 ## Activates when stomping on a Crowd, boosting the player forward and slightly up
+@export var dash_boost: float = 5.0
+var velocity_before_stomp := Vector3(0, 0, 0)
 func crowd_launch() -> void:
 	# Give the player a slight upward bounce so they don't immediately hit the floor
 	velocity.y = jump_speed * 0.8 
@@ -117,7 +119,7 @@ func crowd_launch() -> void:
 	$DashDurationTimer.start()
 	
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR,STOMP_CROWD_LAUNCH}
 
 # Active values - may change during execution
 var max_speed: float = starting_speed
