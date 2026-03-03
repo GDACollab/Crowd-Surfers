@@ -2,8 +2,24 @@ extends CharacterBody3D
 #@onready var player_sprite: Sprite3D = $Sprite3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
-@onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
+
+# DEBUG
+@onready var velocityLabel : Label3D = $VelocityLabel
+@onready var stateLabel : Label3D = $StateLabel
+@export var debugLabels := true
+## Associates each State with a color for debug clarity
+var stateColors = {
+	States.GROUND : Color.WHITE,
+	States.COYOTE : Color.BROWN,
+	States.AIR : Color.AQUA,
+	States.STOMP_WINDUP : Color.RED,
+	States.STOMP_FALL : Color.ORANGE,
+	States.GLIDE : Color.BLUE_VIOLET,
+	States.DASH_GROUND : Color.GREEN,
+	States.DASH_AIR : Color.LIGHT_SEA_GREEN,
+	States.SLOPE : Color.BLACK
+}
 
 # General movement
 @export_category("General Movement")
@@ -103,6 +119,7 @@ var dash_speed: float
 var dash_start_pos: Vector3
 var can_air_dash: bool = true
 var can_glide: bool = true
+var player_height : float
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -124,7 +141,9 @@ func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
-	snap_sprite()
+	check_height()
+	if debugLabels:
+		update_labels()
 	
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
@@ -451,22 +470,15 @@ func crash() -> void:
 	# Multiplying like this preserves directions where the player didn't hit the wall
 	#velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
 
-## Keeps the player's sprite and drop shadow at the correct location
-func snap_sprite() -> void:
+## Checks player's current height
+func check_height() -> void:
 	raycast.force_raycast_update()
 
 	if not raycast.is_colliding():
 		return
 
 	var ground_point: Vector3 = raycast.get_collision_point()
-	var height := global_position.y - ground_point.y
-
-	player_shadow.global_position = ground_point + Vector3(0.0, 0.01, 0.0)
-
-	var t := clampf(height / shadow_max_height, 0.0, 1.0)
-	t = pow(t, shadow_falloff_exp)
-	var s: float = lerp(shadow_base_scale, shadow_min_scale, t)
-	player_shadow.scale = Vector3(s, s, s)
+	player_height = global_position.y - ground_point.y
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
@@ -509,3 +521,8 @@ func direction_to_string() -> String:
 	if input_dir.x != 0 && input_dir.y == 0: return "right"
 	if input_dir.x == 0 && input_dir.y == 0: return "idle"
 	return ""
+
+func update_labels():
+	velocityLabel.text = "Velocity: " + str(velocity)
+	stateLabel.text = "State: " + state_to_string()
+	stateLabel.modulate = stateColors[current_state]
