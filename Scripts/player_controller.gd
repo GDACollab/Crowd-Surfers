@@ -265,8 +265,39 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
+				print("STOMP HIT FLOOR")
+				var hit_crowd = false
+				
+				# Loop through everything we collided with this frame
+				for i in get_slide_collision_count():
+					var collision = get_slide_collision(i)
+					var collider = collision.get_collider()
+					
+					print("Collision ", i, " with: ", collider.name)
+					print("  - Groups on this object: ", collider.get_groups())
+					
+					if collider.is_in_group("Crowd"):
+						hit_crowd = true
+						break
+				
+				if hit_crowd:
+					print("SUCCESS! Crowd object detected. Launching!")
+					crowd_launch()
+					transition_to(States.STOMP_CROWD_LAUNCH)
+					return
+				else:
+					print("Normal floor detected. Transitioning to GROUND.")
+			
 				$StompDashMargin.start()
 				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
+				
+				# Original behavior if they hit normal ground
+				$StompDashMargin.start()
+				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
 			elif Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_AIR)
 		States.GLIDE:
@@ -349,6 +380,16 @@ func transition_to(new_state: int) -> void:
 				$DashCooldownTimer.start()
 		States.DASH_AIR:
 			$DashCooldownTimer.start()
+		States.STOMP_CROWD_LAUNCH:
+			# Allow the player to land, dash, or glide after bouncing
+			if is_on_floor():
+				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_stomp"):
+				transition_to(States.STOMP_WINDUP)
+			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
+			elif can_glide and Input.is_action_just_pressed("ability_glide"):
+				transition_to(States.GLIDE)
 
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
