@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://buv8pdmjifjwu"]
+[gd_scene load_steps=26 format=3 uid="uid://buv8pdmjifjwu"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_3ube0"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_qdr3a"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dakmufixpwm3i" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="18_oodhd"]
 [ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="21_o2pmn"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="22_tl6u5"]
+[ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="23_1r2p2"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="23_tl6u5"]
 
 [node name="LevelChunk" type="Node3D"]
@@ -250,19 +251,25 @@ transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.707
 [node name="WaymoEvilSide 3_4" parent="VehiclessGroup" instance=ExtResource("21_o2pmn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 260, 0, 415)
 
-[node name="WaymoConfusedSide 5_4" parent="VehiclessGroup" instance=ExtResource("22_tl6u5")]
+[node name="WaymoConfusedSide 4_4" parent="VehiclessGroup" instance=ExtResource("22_tl6u5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 415, 0, 400)
 
-[node name="Bus1Full 6_4" parent="VehiclessGroup" instance=ExtResource("18_oodhd")]
+[node name="Bus1Full 5_4" parent="VehiclessGroup" instance=ExtResource("18_oodhd")]
 transform = Transform3D(-0.15643433, 0, -0.9876884, 0, 1, 0, 0.9876884, 0, -0.15643433, 500, 0, 395)
 
-[node name="CableCarDown 7_3" parent="VehiclessGroup" instance=ExtResource("16_msu7t")]
+[node name="WaymoEvilDown 6_0" parent="VehiclessGroup" instance=ExtResource("23_1r2p2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 0)
+
+[node name="Bus1Full 6_2" parent="VehiclessGroup" instance=ExtResource("18_oodhd")]
+transform = Transform3D(0.49999988, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.49999988, 585, 0, 205)
+
+[node name="CableCarDown 6_3" parent="VehiclessGroup" instance=ExtResource("16_msu7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 285)
 
-[node name="CarRedUp 7_4" parent="VehiclessGroup" instance=ExtResource("23_tl6u5")]
+[node name="CarRedUp 6_4" parent="VehiclessGroup" instance=ExtResource("23_tl6u5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 630, 0, 330)
 
 [node name="SpecialObjectsGroup" type="Node3D" parent="."]
 
 [node name="Checkpoint 1" parent="SpecialObjectsGroup" instance=ExtResource("18_jn8sa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 612, 2, 213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 612, 2, 168)
