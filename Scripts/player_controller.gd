@@ -1,5 +1,5 @@
 extends CharacterBody3D
-@onready var player_sprite: Sprite3D = $Sprite3D
+@onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
