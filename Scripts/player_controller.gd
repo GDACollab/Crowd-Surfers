@@ -240,7 +240,9 @@ func check_state_transitions() -> void:
 			elif Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_AIR)
 		States.GLIDE:
-			if Input.is_action_just_pressed("ability_stomp"):
+			if can_dash() and Input.is_action_just_pressed("ability_dash"):
+					transition_to(States.DASH_AIR)
+			elif Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
 			elif (velocity.length() <= glide_min_speed and time_gliding >= min_glide_time) or Input.is_action_just_released("ability_glide"):# or is_on_wall():
 				transition_to(States.AIR)
@@ -267,22 +269,26 @@ func check_state_transitions() -> void:
 				transition_to(States.DASH_AIR)
 		States.DASH_AIR:
 			var distance_traveled := dash_start_pos.distance_to(position)
-			if Input.is_action_just_pressed("ability_stomp"):
-				transition_to(States.STOMP_WINDUP)
-			elif is_on_floor():
-				transition_to(States.GROUND)
-			elif is_on_wall():
-				crash()
-				if is_on_floor():
+			#if player is holding space, ignore the below and transition immediately to glide state
+			if Input.is_action_pressed("ability_glide"):
+					transition_to(States.GLIDE)
+			else:
+				if Input.is_action_just_pressed("ability_stomp"):
+					transition_to(States.STOMP_WINDUP)
+				elif is_on_floor():
 					transition_to(States.GROUND)
-				else:
-					transition_to(States.AIR)
-			# Checking for zero velocity accounts for the player hitting dash without a direction
-			elif distance_traveled >= dash_distance or velocity == Vector3.ZERO:
-				if is_on_floor():
-					transition_to(States.GROUND)
-				else:
-					transition_to(States.AIR)
+				elif is_on_wall():
+					crash()
+					if is_on_floor():
+						transition_to(States.GROUND)
+					else:
+						transition_to(States.AIR)
+				# Checking for zero velocity accounts for the player hitting dash without a direction
+				elif distance_traveled >= dash_distance or velocity == Vector3.ZERO:
+					if is_on_floor():
+						transition_to(States.GROUND)
+					else:
+						transition_to(States.AIR)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -376,7 +382,9 @@ func transition_to(new_state: int) -> void:
 				max_speed = max(max_speed, max_speed_before_stomp)
 				# If you successfully stomp-dash, retain your speed
 				if not $StompDashMargin.is_stopped():
-					speed_before_dashing = dash_speed
+					#speed_before_dashing = dash_speed
+					max_speed = min(max_speed+stomp_boost,ramping_cap)
+					new_state = States.DASH_AIR
 				# Apply dash to xz-direction and ignore y component of velocity
 				var yspeed := velocity.y
 				velocity = dash_dir * dash_speed
