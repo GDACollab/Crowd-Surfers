@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjtsjfgecr3i4"]
+[gd_scene format=3 uid="uid://bjtsjfgecr3i4"]
 
 [ext_resource type="Script" uid="uid://5frlvuvdir8p" path="res://Scripts/Hud UI/Speedometer.gd" id="1_lau0f"]
 [ext_resource type="Texture2D" uid="uid://wsxni5g5kvj2" path="res://Scenes/Hud/Place holder Hud background.png" id="2_1p0tb"]
@@ -8,7 +8,7 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l2hir"]
 texture = ExtResource("2_1p0tb")
 
-[node name="SpeedOmeter Component" type="Control"]
+[node name="SpeedOmeter Component" type="Control" unique_id=2121535656]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_lau0f")
 
-[node name="SpeedOmeter BG" type="Panel" parent="."]
+[node name="SpeedOmeter BG" type="Panel" parent="." unique_id=1476257514]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_l2hir")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1133411459]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +42,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_lau0f")
 texture_progress = ExtResource("3_1p0tb")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1844579411]
 position = Vector2(118, 36)
 amount = 20
 lifetime = 2.0

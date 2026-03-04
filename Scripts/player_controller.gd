@@ -141,6 +141,7 @@ func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
+	restart()
 	check_height()
 	if debugLabels:
 		update_labels()
@@ -461,8 +462,8 @@ func crash() -> void:
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	#var wall_normal := get_wall_normal()
-	#var dir := velocity.normalized()
-	max_speed /= crash_penalty_mult
+	var dir := velocity.normalized()
+	#max_speed /= crash_penalty_mult
 	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
 	# while components which didn't go into the wall are 1 in this vector
@@ -526,3 +527,14 @@ func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	stateLabel.modulate = stateColors[current_state]
+
+## Checks when the restart button is pressed.
+func restart():
+	if Input.is_action_just_pressed("restart"):
+		# Safely calls the reload scene function.
+		call_deferred("reload_scene")
+
+## Reloads the scene, might need to move this to a singleton if needed.
+func reload_scene():
+	get_tree().reload_current_scene()
+	
