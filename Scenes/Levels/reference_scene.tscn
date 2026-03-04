@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ba21dgon6j7ye"]
+[gd_scene load_steps=29 format=3 uid="uid://ba21dgon6j7ye"]
 
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="1_7f610"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_ks18i"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="26_3xft7"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="26_vbmse"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="27_m87rb"]
+[ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/soft-object.tscn" id="28_m87rb"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="29_uti74"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="33_n6vdm"]
 [ext_resource type="PackedScene" uid="uid://tghcf3lwvxj8" path="res://Scenes/Level Components/Objects/waymo-confused-down.tscn" id="42_0c0re"]
@@ -327,6 +328,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 750)
 
 [node name="waymo-evil-up" parent="." instance=ExtResource("57_x4cml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 750)
+
+[node name="banana-peel" parent="." instance=ExtResource("28_m87rb")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 329.8379, 1.78, 382.92334)
 
 [node name="Light" parent="." instance=ExtResource("26_vbmse")]
 transform = Transform3D(0.18301262, -0.96592563, -0.18301268, 0.70710665, -3.0908613e-08, 0.7071067, -0.68301255, -0.25881895, 0.6830126, 0, 0, 0)

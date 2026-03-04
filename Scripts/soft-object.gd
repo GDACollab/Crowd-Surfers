@@ -1,0 +1,23 @@
+extends Node3D
+
+## Factor to multiply the player's speed by when hitting this object
+@export var speed_decrease_factor: float = 0.25
+## Time (in seconds) for the object to disappear once touched by the player
+@export var time_to_disappear: float = 0.5
+## Whether or not this object has already tripped the player
+var tripped_player: bool = false
+
+func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
+	if tripped_player: 
+		return
+	player.velocity *= speed_decrease_factor
+	tripped_player = true
+	set_process(true)
+	
+func _ready() -> void:
+	set_process(false)
+	
+func _process(delta: float) -> void:
+	$Sprite3D.modulate.a -= delta / time_to_disappear
+	if $Sprite3D.modulate.a <= 0:
+		queue_free()
