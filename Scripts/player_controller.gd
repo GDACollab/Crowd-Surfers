@@ -168,7 +168,7 @@ func _ready() -> void:
 	$StompDashMargin.wait_time = stomp_dash_margin
 
 func _physics_process(delta: float) -> void:
-	snap_sprite()
+	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
@@ -594,7 +594,7 @@ func direction_to_string() -> String:
 func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
-	stateLabel.modulate = stateColors[current_state]
+	#stateLabel.modulate = stateColors[current_state]
 
 ## Checks when the restart button is pressed.
 func restart():
