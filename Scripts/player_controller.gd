@@ -526,3 +526,12 @@ func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	stateLabel.modulate = stateColors[current_state]
+
+# Handles crowd interactions (Dash + Enter Normally)
+func on_crowd_entered() -> void:
+	if ( is_dashing()):
+		print("Crowd Dash")
+		$DashCooldownTimer.stop()
+		$DashCooldownTimer.start()
+	else:
+		print("Crowd Normal")
