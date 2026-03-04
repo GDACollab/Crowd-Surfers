@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4trltth5ira7"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_n08fc"]
+[ext_resource type="Texture2D" uid="uid://brqxvc0c0w8lj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_TOP(UPDATE2).PNG" id="2_d8xdu"]
+[ext_resource type="Texture2D" uid="uid://bghscf80h4c51" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_FRONT(UPDATE2).PNG" id="3_c63tq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2ecc"]
+size = Vector3(25, 13.5, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvrwc"]
+size = Vector3(25, 1.5, 50)
+
+[node name="WaymoConfusedUp" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_n08fc")
+active = true
+top_filename = ExtResource("2_d8xdu")
+front_filename = ExtResource("3_c63tq")
+width = 25.0
+length = 50.0
+height = 15.0
+top_spr_pad_top = 0.65
+top_spr_pad_left = 3.74
+top_spr_pad_right = 3.95
+front_spr_pad_bottom = 1.1400000000000001
+front_spr_pad_left = 3.74
+front_spr_pad_right = 3.94
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(8.382051, 0, 0, 0, 1, 0, 0, 0, 10.379098, 0.105, 15, 24.675)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_d8xdu")
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(8.379487, 0, 9.282918e-07, 3.66279e-07, 1.9106855e-15, -21.236841, 0, 1, 4.0576924e-14, 0.1, 6.93, 50)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_c63tq")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 25)
+shape = SubResource("BoxShape3D_r2ecc")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
+shape = SubResource("BoxShape3D_kvrwc")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

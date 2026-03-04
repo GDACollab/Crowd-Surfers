@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=10 format=3 uid="uid://pq5rrrmglvc3"]
 
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6r17f"]
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/Credits/pitch_art_temp.PNG" id="1_ykwev"]
 [ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/Credits/credits.gd" id="2_22rij"]
 [ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/Credits/temp_image_1.PNG" id="3_4lsct"]
@@ -10,15 +11,15 @@
 [sub_resource type="Resource" id="Resource_8pn86"]
 script = ExtResource("4_fax7y")
 texture = ExtResource("3_4lsct")
-scale = 0.5
-position = Vector2(309, 670)
+scale = 0.75
+position = Vector2(550.638, 670)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
 [sub_resource type="Resource" id="Resource_oug0m"]
 script = ExtResource("4_fax7y")
 texture = ExtResource("4_ut8rr")
-scale = 0.2
-position = Vector2(-521, 1980)
+scale = 0.3
+position = Vector2(-844.02, 1980)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
 [node name="Control" type="Control"]
@@ -28,6 +29,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons") instance=ExtResource("1_6r17f")]
+back_buttons = [NodePath("../BackButton")]
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -50,21 +57,31 @@ offset_right = 20.0
 offset_bottom = 40.000015
 grow_horizontal = 2
 script = ExtResource("2_22rij")
+slow_scroll_speed = 85.0
+fast_scroll_speed = 375.0
+scroll_speed_change_rate_per_second = 375.0
+separator_size = 60.0
+credits_starting_y = 1167.0
 credits_text_file_string = "res://Assets/credits.txt"
 credits_text_scene = ExtResource("5_4hn7j")
 images = Array[ExtResource("4_fax7y")]([SubResource("Resource_8pn86"), SubResource("Resource_oug0m")])
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
-layout_mode = 0
-offset_left = -556.0
-offset_right = 596.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
 offset_bottom = 176.0
+grow_horizontal = 2
 pivot_offset = Vector2(576, 0)
 
 [node name="RichTextLabel4" parent="CreditsContainer/CreditsTextContainer" instance=ExtResource("5_4hn7j")]
 visible = false
 layout_mode = 2
-text = "[font_size=45]sample text[/font_size]"
+text = "[font_size=112
+]sample text[/font_size]"
 
 [node name="UseDuringRuntimeToPositionImages" type="TextureRect" parent="CreditsContainer"]
 visible = false
@@ -83,13 +100,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -135.0
-offset_top = -93.0
-offset_right = -90.0
-offset_bottom = -62.0
+offset_left = -72.0
+offset_top = -45.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(3, 3)
+pivot_offset = Vector2(72, 45)
 text = "Back"
 
 [connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]

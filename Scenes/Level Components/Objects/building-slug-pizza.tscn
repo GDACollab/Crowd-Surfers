@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw5pqgejh3hvn"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_3cgiy"]
+[ext_resource type="Texture2D" uid="uid://v6tttn83cmdx" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Restaurant Slug Pizza S3.png" id="2_3cgiy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3s3k4"]
+size = Vector3(100, 135, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xqasb"]
+size = Vector3(100, 15, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_3cgiy")
+active = true
+front_filename = ExtResource("2_3cgiy")
+width = 100.0
+length = 100.0
+height = 150.0
+front_spr_pad_bottom = 5.92
+front_spr_pad_left = 4.26
+front_spr_pad_right = 12.03
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(7.160714, 0, 3.5795586e-07, 3.1300476e-07, 1.9106855e-15, -8.189075, 0, 1, 1.5646747e-14, 3.885, 72.04, 100)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_3cgiy")
+region_enabled = true
+region_rect = Rect2(0, 0, 1624, 1904)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.5, 50)
+shape = SubResource("BoxShape3D_3s3k4")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.5, 50)
+shape = SubResource("BoxShape3D_xqasb")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

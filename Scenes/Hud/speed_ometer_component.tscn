@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bjtsjfgecr3i4"]
+
+[ext_resource type="Script" uid="uid://5frlvuvdir8p" path="res://Scripts/Hud UI/Speedometer.gd" id="1_lau0f"]
+[ext_resource type="Texture2D" uid="uid://wsxni5g5kvj2" path="res://Scenes/Hud/Place holder Hud background.png" id="2_1p0tb"]
+[ext_resource type="Texture2D" uid="uid://cgr6f60y0a8gp" path="res://Scenes/Hud/Place holder Hud non-filled.png" id="2_lau0f"]
+[ext_resource type="Texture2D" uid="uid://bkjwnkijkjxap" path="res://Scenes/Hud/Place holder Hud filled.png" id="3_1p0tb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l2hir"]
+texture = ExtResource("2_1p0tb")
+
+[node name="SpeedOmeter Component" type="Control" unique_id=2121535656]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_lau0f")
+
+[node name="SpeedOmeter BG" type="Panel" parent="." unique_id=1476257514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_l2hir")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1133411459]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 10.0
+fill_mode = 5
+radial_initial_angle = 360.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_lau0f")
+texture_progress = ExtResource("3_1p0tb")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1844579411]
+position = Vector2(118, 36)
+amount = 20
+lifetime = 2.0
+speed_scale = 1.5
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 46.72
+spread = 90.0
+gravity = Vector2(-900, 980)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angular_velocity_min = 840.3
+angular_velocity_max = 840.3
+linear_accel_min = 63.16
+linear_accel_max = 63.16
+damping_min = 31.315
+damping_max = 31.635
+angle_min = 720.0
+angle_max = 720.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+color = Color(0.10985383, 0.7270262, 0.7958755, 1)

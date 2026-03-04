@@ -1,0 +1,277 @@
+[gd_scene load_steps=37 format=3 uid="uid://cfik16ilynn7l"]
+
+[ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
+[ext_resource type="Texture2D" uid="uid://feu6cendoild" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0001.png" id="3_0ep3m"]
+[ext_resource type="Texture2D" uid="uid://ducqnwem2x4qj" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0001.png" id="3_ku1m0"]
+[ext_resource type="Texture2D" uid="uid://blxnjvkpke8b0" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0002.png" id="4_ocigo"]
+[ext_resource type="Texture2D" uid="uid://lrjhgtqyyvbd" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0002.png" id="4_vn7ud"]
+[ext_resource type="Texture2D" uid="uid://dnfsubwbncxu7" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0003.png" id="5_0v7k6"]
+[ext_resource type="Texture2D" uid="uid://shv7dga0am1r" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0003.png" id="5_bj3bk"]
+[ext_resource type="Texture2D" uid="uid://b2gudy5snqptm" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0004.png" id="6_5qflf"]
+[ext_resource type="Texture2D" uid="uid://d2nkopt32b6uv" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0004.png" id="6_hkiqr"]
+[ext_resource type="Texture2D" uid="uid://cgjykm0fhjv4n" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0005.png" id="7_0f1wq"]
+[ext_resource type="Texture2D" uid="uid://3cb6q2x74gkm" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0005.png" id="7_kc4aa"]
+[ext_resource type="Texture2D" uid="uid://b7w3yuphmpife" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0006.png" id="8_54x3n"]
+[ext_resource type="Texture2D" uid="uid://4j27d1llrx6q" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0006.png" id="8_dscii"]
+[ext_resource type="Texture2D" uid="uid://bcimu0u8pgouc" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down_right/Skate_FrontSide/skateFS0001.png" id="9_j68vg"]
+[ext_resource type="Texture2D" uid="uid://cf7xkjqyl6gca" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down_right/Skate_FrontSide/skateFS0002.png" id="10_pvbmb"]
+[ext_resource type="Texture2D" uid="uid://c3f1r10hinmh7" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down_right/Skate_FrontSide/skateFS0003.png" id="11_uq4df"]
+[ext_resource type="Texture2D" uid="uid://b3htghljovgk6" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down_right/Skate_FrontSide/skateFS0004.png" id="12_scak4"]
+[ext_resource type="Texture2D" uid="uid://b0kgcunyf7hs8" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down_right/Skate_FrontSide/skateFS0005.png" id="13_0ldun"]
+[ext_resource type="Texture2D" uid="uid://deefpdq10y4i6" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_idle/skate_idle0001.png" id="14_4d56n"]
+[ext_resource type="Texture2D" uid="uid://c064xbpnflcbi" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down_right/Skate_FrontSide/skateFS0006.png" id="14_qejcg"]
+[ext_resource type="Texture2D" uid="uid://bdyg86kr2guq6" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_idle/skate_idle0002.png" id="15_dr5kq"]
+[ext_resource type="Texture2D" uid="uid://dtyhpenawfbat" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up/Skate_Back/skateB0001.png" id="21_we4na"]
+[ext_resource type="Texture2D" uid="uid://c3n6wq7asrpin" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up/Skate_Back/skateB0002.png" id="22_v2uyf"]
+[ext_resource type="Texture2D" uid="uid://if8abfgkeygc" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up/Skate_Back/skateB0003.png" id="23_i2ias"]
+[ext_resource type="Texture2D" uid="uid://cusqlwcd6d3e8" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up/Skate_Back/skateB0004.png" id="24_aic7b"]
+[ext_resource type="Texture2D" uid="uid://dnfvc2cq4i01r" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up/Skate_Back/skateB0005.png" id="25_lxmq1"]
+[ext_resource type="Texture2D" uid="uid://b5m068v513t4n" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up/Skate_Back/skateB0006.png" id="26_0162p"]
+[ext_resource type="Texture2D" uid="uid://dp6578k8djvgw" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0001.png" id="27_fe001"]
+[ext_resource type="Texture2D" uid="uid://cdbk41qoidcy2" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0002.png" id="28_f1p8n"]
+[ext_resource type="Texture2D" uid="uid://bosg5eg0effn2" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0003.png" id="29_fhber"]
+[ext_resource type="Texture2D" uid="uid://crhwad4vd0bk7" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0004.png" id="30_oxmbs"]
+[ext_resource type="Texture2D" uid="uid://dmfqjsidwd2hy" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0005.png" id="31_dgjk7"]
+[ext_resource type="Texture2D" uid="uid://c1wju663w3767" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_up_right/Skate_BackSide/skateBS0006.png" id="32_k58i1"]
+[ext_resource type="Script" uid="uid://bxaig5xylpune" path="res://Scripts/player-animations.gd" id="34_dr5kq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3qbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0ep3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ocigo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0v7k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hkiqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0f1wq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_54x3n")
+}],
+"loop": true,
+"name": &"skate_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_j68vg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pvbmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_uq4df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_scak4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0ldun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qejcg")
+}],
+"loop": true,
+"name": &"skate_down_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_4d56n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dr5kq")
+}],
+"loop": true,
+"name": &"skate_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ku1m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vn7ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bj3bk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5qflf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kc4aa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dscii")
+}],
+"loop": true,
+"name": &"skate_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_we4na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_v2uyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_i2ias")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_aic7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lxmq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_0162p")
+}],
+"loop": true,
+"name": &"skate_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_fe001")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_f1p8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fhber")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_oxmbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_dgjk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_k58i1")
+}],
+"loop": true,
+"name": &"skate_up_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4d56n"]
+radius = 2.3608398
+height = 18.293991
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 3
+script = ExtResource("1_i0hvh")
+base_ramping_cap = 200.0
+starting_speed = 50.0
+crash_penalty_mult = 1.05
+base_acceleration = 250.0
+friction = 200.0
+gravity = 500.0
+jump_speed = 150.0
+stomp_speed = 150.0
+windup_duration = 0.08
+stomp_dash_boost_factor = 650.0
+max_stomp_dash_boost = 1000.0
+dash_distance = 40.0
+dash_cooldown = 0.33
+min_dash_speed = 75.0
+stomp_resets_air_dash = true
+stomp_dash_margin = 1.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
+shaded = true
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_c3qbh")
+animation = &"skate_down"
+frame_progress = 0.24211124
+script = ExtResource("34_dr5kq")
+player_path = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.071956635, 10.083466, 0)
+shape = SubResource("CapsuleShape3D_4d56n")
+debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
+
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
+target_position = Vector3(0, -50, 0)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompWindupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompDashMargin" type="Timer" parent="."]
+one_shot = true
+
+[node name="StompSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/stomp"
+event_guid = "{dd67154c-6c88-45be-b2b1-39d11ce1a73d}"
+fmod_parameters/stomp_state/id = -5788517196328637441
+fmod_parameters/stomp_state = "windup"
+fmod_parameters/stomp_state/labels = PackedStringArray("windup", "loop", "end")
+fmod_parameters/stomp_state/variant_type = 4
+
+[node name="GlideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/glide"
+event_guid = "{8b651845-147a-42e7-ae53-406ca4e52e03}"
+fmod_parameters/glide_state/id = -2259465278480473172
+fmod_parameters/glide_state = "loop"
+fmod_parameters/glide_state/labels = PackedStringArray("loop", "end")
+fmod_parameters/glide_state/variant_type = 4
+
+[node name="DashSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/dash"
+event_guid = "{786da779-c31c-46e0-8fd9-49dc9c0ed9f3}"
+
+[node name="JumpSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/jump"
+event_guid = "{37e4c1ff-9cd4-4400-b1c5-8e6f4e784d62}"
+
+[node name="VelocityLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.188904, 27.012472, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 1
+font_size = 500
+horizontal_alignment = 0
+text_direction = 1
+
+[node name="StateLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.188904, 23.012472, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 1
+font_size = 500
+horizontal_alignment = 0
+text_direction = 1
+
+[node name="Drop Shadow Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 33.309692, 0)
+layers = 1023
+light_energy = 6.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_size = 1.0
+light_negative = true
+light_cull_mask = 4294966785
+shadow_enabled = true
+shadow_transmittance_bias = 0.37
+shadow_caster_mask = 4294966784
+spot_range = 899.945
+spot_attenuation = 0.7
+spot_angle = 7.0

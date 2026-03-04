@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqf7gs7fe3hfc"]
+
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_hs2nn"]
+[ext_resource type="Texture2D" uid="uid://bviaojyhypmwt" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Side/redcar_side_TOP.PNG" id="2_ks1xq"]
+[ext_resource type="Texture2D" uid="uid://co0pbc6wkh6c4" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Side/redcar_side_FRONT.PNG" id="3_ygd7i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uq3ns"]
+size = Vector3(50, 13.5, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gi6sv"]
+size = Vector3(50, 1.5, 25)
+
+[node name="CarRedSide" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_hs2nn")
+active = true
+top_filename = ExtResource("2_ks1xq")
+front_filename = ExtResource("3_ygd7i")
+width = 50.0
+length = 25.0
+height = 15.0
+top_spr_pad_bottom = 0.54
+top_spr_pad_left = 0.42
+top_spr_pad_right = 0.52
+front_spr_pad_top = 0.25
+front_spr_pad_bottom = 0.29
+front_spr_pad_left = 0.26
+front_spr_pad_right = 0.55
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(6.987654, 0, 0, 0, 1, 0, 0, 0, 10.134921, 0.05, 15, 12.77)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_ks1xq")
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(6.9698215, 0, 4.7836267e-07, 3.0466057e-07, 1.9106855e-15, -10.943662, 0, 1, 2.0909896e-14, 0.145, 7.48, 25)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_ygd7i")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 12.5)
+shape = SubResource("BoxShape3D_uq3ns")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 12.5)
+shape = SubResource("BoxShape3D_gi6sv")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

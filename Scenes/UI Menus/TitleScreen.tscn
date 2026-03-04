@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=5 format=3 uid="uid://7uehf4aws4ii"]
 
 [ext_resource type="Texture2D" uid="uid://dr6yn41t2snpd" path="res://Assets/Art/TitleScreen/title_image.PNG" id="1_jt71w"]
 [ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/title_screen.gd" id="1_sjn55"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/Credits/temp_image_2.PNG" id="2_cwgrq"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -13,42 +14,49 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sjn55")
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons") instance=ExtResource("2_dl3ah")]
+confirm_buttons = [NodePath("../PlayButton"), NodePath("../CreditsButton")]
+
 [node name="TitleImage" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 46.0
-offset_right = 1038.0
-offset_bottom = 1126.0
+offset_right = 1768.3635
+offset_bottom = 1925.9924
 scale = Vector2(0.55, 0.4)
 texture = ExtResource("1_jt71w")
 
 [node name="SlipImage" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 647.0
-offset_top = 51.0
-offset_right = 1789.0
-offset_bottom = 1691.0
+offset_left = 1030.0
+offset_top = 39.0
+offset_right = 3129.5
+offset_bottom = 3054.0437
 scale = Vector2(0.4, 0.33)
 texture = ExtResource("2_cwgrq")
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 514.0
-offset_right = 168.0
-offset_bottom = 545.0
+offset_left = 55.999996
+offset_top = 836.0
+offset_right = 262.1818
+offset_bottom = 905.09094
 scale = Vector2(2.75, 2.75)
 size_flags_horizontal = 3
 text = "Play"
 
 [node name="CreditsButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 515.99994
-offset_right = 507.0
-offset_bottom = 547.0
+offset_left = 660.7148
+offset_top = 836.0
+offset_right = 849.5921
+offset_bottom = 914.28564
 scale = Vector2(1.75, 1.75)
 size_flags_horizontal = 3
 text = "Credits"
 
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
