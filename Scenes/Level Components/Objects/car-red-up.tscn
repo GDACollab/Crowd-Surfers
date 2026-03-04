@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://chydbtt0sccuo" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Up/redcar_up_TOP(updated).PNG" id="2_7kvh7"]
 [ext_resource type="Texture2D" uid="uid://bmsbcjfkeo8s3" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Up/redcar_up_FRONT(updated).PNG" id="3_hpkck"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hbosu"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1sfuy"]
 size = Vector3(25, 13.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7kvh7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8oehm"]
 size = Vector3(25, 1.5, 50)
 
 [node name="CarRedUp" type="Node3D"]
@@ -18,26 +18,37 @@ active = true
 top_filename = ExtResource("2_7kvh7")
 front_filename = ExtResource("3_hpkck")
 width = 25.0
+length = 50.0
 height = 15.0
+top_spr_pad_top = 0.89
+top_spr_pad_bottom = 0.71
+top_spr_pad_left = 3.05
+top_spr_pad_right = 3.17
+front_spr_pad_top = 0.23
+front_spr_pad_bottom = 0.94
+front_spr_pad_left = 3.05
+front_spr_pad_right = 3.16
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(7.621951, 0, 0, 0, 1, 0, 0, 0, 11.286682, 0, 15, 25)
+transform = Transform3D(9.518292, 0, 0, 0, 1, 0, 0, 0, 11.647856, 0.06, 15, 24.91)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_7kvh7")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(7.621951, 0, 0, 0, -4.371139e-08, -12, 0, 1, -5.2453663e-07, 0, 7.5, 50)
+transform = Transform3D(9.515244, 0, 5.6545053e-07, 4.1592452e-07, 1.9106855e-15, -12.936, 0, 1, 2.4716626e-14, 0.055, 7.145, 50)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("3_hpkck")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 25)
-shape = SubResource("BoxShape3D_hbosu")
+shape = SubResource("BoxShape3D_1sfuy")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
-shape = SubResource("BoxShape3D_7kvh7")
+shape = SubResource("BoxShape3D_8oehm")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

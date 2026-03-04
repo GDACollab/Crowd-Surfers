@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_8cyog"]
 [ext_resource type="Texture2D" uid="uid://f8cp4omi156u" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Green 1 S3.png" id="2_8cyog"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a4oyg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pm2f6"]
 size = Vector3(100, 225, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2hgda"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhsvu"]
 size = Vector3(100, 25, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -18,10 +18,14 @@ front_filename = ExtResource("2_8cyog")
 width = 100.0
 length = 100.0
 height = 250.0
+front_spr_pad_bottom = 2.14
+front_spr_pad_left = 1.75
+front_spr_pad_right = 6.16
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(18.761726, 0, 0, 0, -4.371139e-08, -15.733166, 0, 1, -6.877185e-07, 0, 125, 100)
+transform = Transform3D(20.245779, 0, 6.936054e-07, 8.849711e-07, 1.9106855e-15, -15.867842, 0, 1, 3.0318453e-14, 2.205, 123.93, 100)
 axis = 1
+shaded = true
 alpha_cut = 1
 texture = ExtResource("2_8cyog")
 region_enabled = true
@@ -29,10 +33,10 @@ region_rect = Rect2(0, 0, 533, 1589)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 112.5, 50)
-shape = SubResource("BoxShape3D_a4oyg")
+shape = SubResource("BoxShape3D_pm2f6")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 237.5, 50)
-shape = SubResource("BoxShape3D_2hgda")
+shape = SubResource("BoxShape3D_uhsvu")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://ba21dgon6j7ye"]
+[gd_scene load_steps=28 format=3 uid="uid://ba21dgon6j7ye"]
 
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="1_7f610"]
+[ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_ks18i"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_lagl4"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_quug7"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="4_vxxiv"]
@@ -16,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="20_0wan6"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="23_hrias"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="26_3xft7"]
+[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="26_vbmse"]
+[ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="27_m87rb"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="29_uti74"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="33_n6vdm"]
 [ext_resource type="PackedScene" uid="uid://tghcf3lwvxj8" path="res://Scenes/Level Components/Objects/waymo-confused-down.tscn" id="42_0c0re"]
@@ -27,14 +30,23 @@
 
 [node name="ReferenceScene" type="Node3D"]
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_ks18i")]
+player = NodePath("../Player")
+
 [node name="Camera3D" parent="." instance=ExtResource("1_lagl4")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 190.11348, 120.806206, 555.2209)
-size = 100.0
+size = 125.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
+[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
+
 [node name="Player" parent="." instance=ExtResource("1_quug7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 193.935, 23.619705, 502.47644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235.56013, 28.71975, 445.21405)
+crash_penalty_mult = 1.05
 shadow_base_scale = 10.0
 shadow_min_scale = 2.0
 shadow_max_height = 50.0
@@ -312,3 +324,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 750)
 
 [node name="waymo-evil-up" parent="." instance=ExtResource("57_x4cml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 750)
+
+[node name="Light" parent="." instance=ExtResource("26_vbmse")]
+transform = Transform3D(0.18301262, -0.96592563, -0.18301268, 0.70710665, -3.0908613e-08, 0.7071067, -0.68301255, -0.25881895, 0.6830126, 0, 0, 0)
+light_specular = 0.0
+
+[node name="Environment" parent="." instance=ExtResource("27_m87rb")]
