@@ -1,7 +1,8 @@
 shader_type canvas_item;
 
 uniform vec4 clr : source_color = vec4(0.1,1.0,1.0,1.0);
-uniform int dist : hint_range(1, 10, 1) = 1;
+uniform int dist : hint_range(1, 10, 1) = 2;
+uniform float threshold = 1;
 
 float avg_alpha(sampler2D tex, vec2 coords, vec2 pixelSize){
   float result = 0.0;
@@ -14,7 +15,7 @@ float avg_alpha(sampler2D tex, vec2 coords, vec2 pixelSize){
 } 
 
 void fragment() {
-  if (COLOR.a<1.0){
+  if (COLOR.a<1.0 && UV.y > threshold){
     COLOR.rgb = mix(clr.rgb,COLOR.rgb,COLOR.a);
     COLOR.a = mix(avg_alpha(TEXTURE,UV,TEXTURE_PIXEL_SIZE),COLOR.a,COLOR.a);
   }

@@ -25,6 +25,7 @@ func transition_to_scene(finalScene: PackedScene):
 	# Change scenes to finalScene, wait while this happens
 	get_tree().change_scene_to_packed(finalScene)
 	await get_tree().scene_changed
+	Settings.update_fmod_volumes()
 
 	animation_player.play("fade_out")
 	# Wait for animation
@@ -46,6 +47,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	# Change scene to loading scene, wait while this happens
 	get_tree().change_scene_to_packed(load(LOAD_SCENE))
 	await get_tree().scene_changed
+	Settings.update_fmod_volumes()
 	
 	animation_player.play("fade_out")
 	# Wait for animation
@@ -66,6 +68,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	# Change to final scene now that its loaded
 	get_tree().change_scene_to_packed(finalSceneLoaded)
 	await get_tree().scene_changed
+	Settings.update_fmod_volumes()
 	
 	animation_player.play("fade_out")
 	# Wait for animation

@@ -1,27 +1,43 @@
 extends CharacterBody3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
-@onready var player_shadow : Sprite3D = $"CollisionShape3D/Drop Shadow"
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
+
+# DEBUG
+@onready var velocityLabel : Label3D = $VelocityLabel
+@onready var stateLabel : Label3D = $StateLabel
+@export var debugLabels := true
+## Associates each State with a color for debug clarity
+var stateColors = {
+	States.GROUND : Color.WHITE,
+	States.COYOTE : Color.BROWN,
+	States.AIR : Color.AQUA,
+	States.STOMP_WINDUP : Color.RED,
+	States.STOMP_FALL : Color.ORANGE,
+	States.GLIDE : Color.BLUE_VIOLET,
+	States.DASH_GROUND : Color.GREEN,
+	States.DASH_AIR : Color.LIGHT_SEA_GREEN,
+	States.SLOPE : Color.BLACK
+}
 
 # General movement
 @export_category("General Movement")
 ## The highest value max_speed can be at before modifications
-@export var base_ramping_cap: float = 150.0 #the speed at which the player speeds up
+@export var base_ramping_cap: float = 250.0 #the speed at which the player speeds up
 ## Initial speed when starting from rest
-@export var starting_speed : float = 20.0
+@export var starting_speed : float = 30.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
-@export var crash_penalty_mult: float = 1.5
+@export var crash_penalty_mult: float = 1.05
 ## Acceleration before modifications
-@export var base_acceleration: float = 170.0
+@export var base_acceleration: float = 250.0
 ## Rate at which the player decelerates
-@export var friction: float = 75.0
+@export var friction: float = 200.0
 ## Added to player's vertical speed in states where they can fall
-@export var gravity: float = 50.0
+@export var gravity: float = 500.0
 ## Speed of the player's jump
-@export var jump_speed: float = 50.0
+@export var jump_speed: float = 150.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
@@ -134,6 +150,7 @@ var dash_speed: float
 var dash_start_pos: Vector3
 var can_air_dash: bool = true
 var can_glide: bool = true
+var player_height : float
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -155,7 +172,11 @@ func _physics_process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
-
+	restart()
+	check_height()
+	if debugLabels:
+		update_labels()
+	
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
 	match current_state:
@@ -509,8 +530,8 @@ func crash() -> void:
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	#var wall_normal := get_wall_normal()
-	#var dir := velocity.normalized()
-	max_speed /= crash_penalty_mult
+	var dir := velocity.normalized()
+	#max_speed /= crash_penalty_mult
 	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
 	# while components which didn't go into the wall are 1 in this vector
@@ -518,18 +539,15 @@ func crash() -> void:
 	# Multiplying like this preserves directions where the player didn't hit the wall
 	#velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
 
-## Keeps the player's sprite and drop shadow at the correct location
-func snap_sprite() -> void:
-	# Set player sprite offset
-	var offset = global_position.y
-	player_sprite.position.z = player_sprite_starting_pos - offset
-	#print("Player offset", -offset)
-	var height = position.y - raycast.get_collision_point().y
-	# Drop shadow
-	player_shadow.position.z = player_sprite.position.z + 1.5 + height
-	height = clampf(height, 0, 0.5)
-	var scaleMod= 1.28-height #Should be base scale
-	player_shadow.scale = Vector3(scaleMod, scaleMod, scaleMod)
+## Checks player's current height
+func check_height() -> void:
+	raycast.force_raycast_update()
+
+	if not raycast.is_colliding():
+		return
+
+	var ground_point: Vector3 = raycast.get_collision_point()
+	player_height = global_position.y - ground_point.y
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
@@ -572,3 +590,19 @@ func direction_to_string() -> String:
 	if input_dir.x != 0 && input_dir.y == 0: return "right"
 	if input_dir.x == 0 && input_dir.y == 0: return "idle"
 	return ""
+
+func update_labels():
+	velocityLabel.text = "Velocity: " + str(velocity)
+	stateLabel.text = "State: " + state_to_string()
+	stateLabel.modulate = stateColors[current_state]
+
+## Checks when the restart button is pressed.
+func restart():
+	if Input.is_action_just_pressed("restart"):
+		# Safely calls the reload scene function.
+		call_deferred("reload_scene")
+
+## Reloads the scene, might need to move this to a singleton if needed.
+func reload_scene():
+	get_tree().reload_current_scene()
+	
