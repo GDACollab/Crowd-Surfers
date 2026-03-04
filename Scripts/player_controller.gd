@@ -324,7 +324,12 @@ func transition_to(new_state: int) -> void:
 			if glide_has_gravity:
 				gravity /= glide_gravity_factor
 		States.STOMP_FALL:
-			$StompSound.set_parameter("stomp_state", "end")
+			if new_state == States.GROUND:
+				# Play end of stomp sound
+				$StompSound.set_parameter("stomp_state", "end")
+			else:
+				# interrupt playback
+				$StompSound.stop()
 		States.SLOPE:
 			var angle: float = get_floor_angle()
 			# Sloped movement maintains the velocity but internally multiplies it by the angle,
@@ -409,6 +414,8 @@ func transition_to(new_state: int) -> void:
 				var yspeed := velocity.y
 				velocity = dash_dir * dash_speed
 				velocity.y = yspeed
+				# Play dash sound
+				$DashSound.play()
 	
 	current_state = new_state
 	print(state_to_string())
