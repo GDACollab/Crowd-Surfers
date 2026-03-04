@@ -141,6 +141,7 @@ func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
+	restart()
 	check_height()
 	if debugLabels:
 		update_labels()
@@ -526,3 +527,14 @@ func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	stateLabel.modulate = stateColors[current_state]
+
+## Checks when the restart button is pressed.
+func restart():
+	if Input.is_action_just_pressed("restart"):
+		# Safely calls the reload scene function.
+		call_deferred("reload_scene")
+
+## Reloads the scene, might need to move this to a singleton if needed.
+func reload_scene():
+	get_tree().reload_current_scene()
+	
