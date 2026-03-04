@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=16 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_0kv7i"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://uj81v2lnrv0v" path="res://Assets/Art/PauseScreen/temp_phone_outline.png" id="4_r6arl"]
 [ext_resource type="Texture2D" uid="uid://c1hfiodjgkd6p" path="res://Assets/Art/PauseScreen/page_holder.png" id="5_g4tqe"]
 [ext_resource type="Texture2D" uid="uid://hdx1fa75x36k" path="res://Assets/Art/PauseScreen/page_circle.png" id="5_ojd7t"]
+[ext_resource type="PackedScene" uid="uid://kvs3yueyscim" path="res://Scenes/UI Menus/MainMenu/settings_screen.tscn" id="6_tmijn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0kv7i"]
 shader = ExtResource("2_p5gsh")
@@ -87,6 +88,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SettingsScene:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-281, -13.500007)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PhonePage1:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_qyxbx"]
 resource_name = "rotate_landscape"
@@ -129,7 +154,7 @@ tracks/2/keys = {
 "method": &"hide_buttons"
 }, {
 "args": [],
-"method": &"stop_rotating"
+"method": &"stop_transitioning"
 }]
 }
 tracks/3/type = "value"
@@ -222,7 +247,7 @@ tracks/2/keys = {
 "method": &"hide_controls"
 }, {
 "args": [],
-"method": &"stop_rotating"
+"method": &"stop_transitioning"
 }]
 }
 tracks/3/type = "value"
@@ -274,9 +299,85 @@ tracks/6/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_tmijn"]
+resource_name = "open_settings"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsScene:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-281, -13.500007), Vector2(288, -13.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(175, 125.5), Vector2(950, 125.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePage1:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePage2:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.78431374, 0.78431374, 0.78431374, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.24, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"stop_transitioning"
+}, {
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
 _data = {
 &"RESET": SubResource("Animation_r6arl"),
+&"open_settings": SubResource("Animation_tmijn"),
 &"rotate_landscape": SubResource("Animation_qyxbx"),
 &"rotate_portrait": SubResource("Animation_g4tqe")
 }
@@ -346,7 +447,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 318.0
 offset_top = -280.0
-offset_right = 733.00073
+offset_right = 733.0011
 offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -407,7 +508,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
 offset_top = -287.0
-offset_right = 124.99988
+offset_right = 124.99985
 offset_bottom = 287.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -445,6 +546,18 @@ size_flags_vertical = 3
 text = "Exit Level
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="SettingsScene" parent="PhoneBackground" instance=ExtResource("6_tmijn")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -581.0
+offset_top = -13.500007
+offset_right = -541.0
+offset_bottom = 26.499992
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
 
 [node name="PhoneOutline" type="TextureRect" parent="PhoneBackground"]
 clip_contents = true
@@ -542,8 +655,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_ojd7t")
 }
 
-[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_controls_back_button_pressed"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
+[connection signal="pressed" from="PhoneBackground/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
+
+[editable path="PhoneBackground/SettingsScene"]
