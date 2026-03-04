@@ -2,21 +2,21 @@ extends Control
 class_name DialogueInterface
 
 @export var mainPanels : Array[InterfacePanel]
-##Dialogue Panel prefab
+## Dialogue Panel prefab
 @export var dialoguePanel : PackedScene
-##Type of transition for all tweens
+## Type of transition for all tweens
 @export var transitionType : Tween.TransitionType = Tween.TransitionType.TRANS_ELASTIC
 @export var easeType : Tween.EaseType = Tween.EaseType.EASE_IN_OUT
 @export_category("Choices")
-##Choice Button prefab
+## Choice Button prefab
 @export var choiceButton : PackedScene
-##Amount of time the player must wait before selecing a choice
+## Amount of time the player must wait before selecing a choice
 @export var choiceSelectDelay : float
 @export_category("Portrait Settings")
 @export var defaultPortait : Texture2D
 @export var speakingPortraitScale := Vector2(1.25, 1.25)
 @export var previousSpeakerColor := Color.DIM_GRAY
-##Where the portrait moves when swapping characters
+## Where the portrait moves when swapping characters
 @export var portraitSwapPosition := Vector2(2000, 345)
 @export var portraitSwapTime := 1.0
 @export_category("Past Dialogue Line Settings")
@@ -24,6 +24,10 @@ class_name DialogueInterface
 @export var upperDialogueBoxScale := Vector2(0.5, 0.5)
 @export var lowerDialogueBoxHeight : float = 200
 @export var lowerDialogueBoxScale := Vector2(0.75, 0.75)
+@export var portraitOutlineMaterial : Material
+@export var outlineSize : int = 5
+## Determines if shader drawing varies in size
+@export var sketchyDraw := true
 @onready var leftPortrait = $"Left Character Portrait/Portrait Image"
 @onready var rightPortrait = $"Right Character Portrait/Portrait Image"
 var dialoguePanels : Array[InterfacePanel]
@@ -38,6 +42,7 @@ var choicesDisplayed := false
 var slipSpoke := false ##If true, last dialogue box goes left
 var currentSpeakerData : CharacterDialogueData
 var currentSpeaker : Control
+var previousSpeakerTag : String
 var previousSpeaker : Control
 var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
@@ -169,8 +174,11 @@ func _display_choices():
 	#Adjust portraits
 	leftPortrait.self_modulate = Color.WHITE
 	leftPortrait.scale = Vector2(1.2, 1.2)
+	leftPortrait.material = portraitOutlineMaterial
+	_draw_outline(leftPortrait.material)
 	rightPortrait.self_modulate = previousSpeakerColor
 	rightPortrait.scale = Vector2.ONE
+	rightPortrait.material = null
 
 	awaitingAnimations = true
 	choicesDisplayed = true
@@ -207,14 +215,18 @@ func _find_choice(desiredIndex):
 
 ##Handles all Ink tag functions
 func _handle_tags(currentTags, newPanel):
-	_reset_display()
+	if(currentTags.size() < 1):
+		_reset_display()
 	awaitingAnimations = true
+	var differentSpeaker := false
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
 		var tagValue = splitTag[1]
 		match(tagKey):
 			"speaker":
+				if(previousSpeakerTag != tagValue):
+					differentSpeaker = true
 				#Get speaker data
 				if(currentSpeakerData == null or currentSpeakerData.characterName != tagValue):
 					#Load correct speaker data
@@ -235,7 +247,7 @@ func _handle_tags(currentTags, newPanel):
 					slipSpoke = false
 					previousSpeaker = leftPortrait
 					currentSpeaker = rightPortrait
-					#Switches to new speaker
+					## Switches to new speaker
 					if(lastNonSlipSpeaker != tagValue):
 						var currentSpeakerPanel = currentSpeaker.get_parent()
 						print("New speaker detected!")
@@ -257,6 +269,14 @@ func _handle_tags(currentTags, newPanel):
 				currentSpeaker.self_modulate = Color.WHITE
 				previousSpeaker.scale = Vector2.ONE
 				previousSpeaker.self_modulate = previousSpeakerColor
+				previousSpeakerTag = tagValue
+				## Portrait Outline
+				if(differentSpeaker):
+					print("This speaker needs an outline")
+					previousSpeaker.material = null
+					if(currentSpeaker.material == null):
+						currentSpeaker.material = portraitOutlineMaterial
+						_draw_outline(currentSpeaker.material)
 			"expression":
 				pass
 			"anim":
@@ -269,5 +289,18 @@ func _handle_tags(currentTags, newPanel):
 func _reset_display():
 	leftPortrait.scale = Vector2.ONE
 	leftPortrait.self_modulate = Color.WHITE
+	leftPortrait.material = null
 	rightPortrait.scale = Vector2.ONE
 	leftPortrait.self_modulate = Color.WHITE
+	rightPortrait.material = null
+
+func _draw_outline(drawMat : ShaderMaterial):
+	var iter := 1.0
+	while iter > 0:
+		drawMat.set_shader_parameter("threshold", iter)
+		if(sketchyDraw):
+			drawMat.set_shader_parameter("dist", randi_range(outlineSize - 3, outlineSize + 3))
+		iter -= 0.1
+		await get_tree().create_timer(0.03).timeout
+	drawMat.set_shader_parameter("dist", outlineSize)
+	return
