@@ -277,6 +277,7 @@ func check_state_transitions() -> void:
 					print("  - Groups on this object: ", collider.get_groups())
 					
 					if collider.is_in_group("Crowd"):
+						print("Detects Crowd")
 						hit_crowd = true
 						break
 				
