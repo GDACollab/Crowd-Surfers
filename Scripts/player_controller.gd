@@ -90,9 +90,9 @@ func crowd_launch() -> void:
 	$DashSound.play()
 	
 	# Increase caps using your dash modifiers
-	ramping_cap = ramping_cap * dash_speed_multiplier + stomp_dash_boost_factor
+	ramping_cap = ramping_cap + stomp_dash_boost_factor
 	max_speed = move_toward(max_stomp_dash_boost * dash_speed_multiplier, ramping_cap, stomp_dash_boost_factor)
-	acceleration *= dash_speed_multiplier
+	#acceleration *= dash_speed_multiplier
 	
 	# Get directional input to determine launch direction
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -106,14 +106,13 @@ func crowd_launch() -> void:
 		dir = Vector3(facing_x, 0.0, 0.0).normalized()
 	
 	# Calculate the boost amount based on the stomp momentum
-	var speed: float = speed_before_stomp + stomp_boost
-	var boost: float = speed + stomp_dash_boost_factor
+	var speed: float = speed_before_stomp + (stomp_boost * 0.5)
+	var boost: float = speed
 	
 	# Apply the forward velocity
 	velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
 	velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
 	
-	# Start duration timer so the speed boost wears off naturally	
 ## The states that the player can be in
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR,STOMP_CROWD_LAUNCH}
 
