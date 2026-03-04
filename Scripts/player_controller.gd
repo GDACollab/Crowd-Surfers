@@ -82,8 +82,6 @@ func _on_stomp_dash_margin_timeout() -> void:
 	speed_before_stomp = 0.0
 
 ## Activates when stomping on a Crowd, boosting the player forward and slightly up
-@export var dash_boost: float = 5.0
-var velocity_before_stomp := Vector3(0, 0, 0)
 func crowd_launch() -> void:
 	# Give the player a slight upward bounce so they don't immediately hit the floor
 	velocity.y = jump_speed * 0.8 
@@ -92,8 +90,8 @@ func crowd_launch() -> void:
 	$DashSound.play()
 	
 	# Increase caps using your dash modifiers
-	ramping_cap = ramping_cap * dash_speed_multiplier + dash_boost
-	max_speed = move_toward(max_speed * dash_speed_multiplier, ramping_cap, dash_boost)
+	ramping_cap = ramping_cap * dash_speed_multiplier + stomp_dash_boost_factor
+	max_speed = move_toward(max_stomp_dash_boost * dash_speed_multiplier, ramping_cap, stomp_dash_boost_factor)
 	acceleration *= dash_speed_multiplier
 	
 	# Get directional input to determine launch direction
@@ -108,16 +106,14 @@ func crowd_launch() -> void:
 		dir = Vector3(facing_x, 0.0, 0.0).normalized()
 	
 	# Calculate the boost amount based on the stomp momentum
-	var speed: float = velocity_before_stomp.length() + stomp_boost
-	var boost: float = speed + dash_boost
+	var speed: float = speed_before_stomp + stomp_boost
+	var boost: float = speed + stomp_dash_boost_factor
 	
 	# Apply the forward velocity
 	velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
 	velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
 	
-	# Start duration timer so the speed boost wears off naturally
-	$DashDurationTimer.start()
-	
+	# Start duration timer so the speed boost wears off naturally	
 ## The states that the player can be in
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR,STOMP_CROWD_LAUNCH}
 
