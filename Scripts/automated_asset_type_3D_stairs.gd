@@ -1,12 +1,6 @@
 @tool
 extends StaticBody3D
 
-# WARNINGS:
-# 1. The x size of the sprites or width, must be the same
-# 2. Whenever I refer to top and front, with following letters, x, y, or z,
-#    it means the length relative to that dimension
-# 3. The top.z - front.z must not be less than front.z alone
-
 @export var active: bool = false:
 	set(value): 
 		active = value
@@ -16,47 +10,66 @@ extends StaticBody3D
 			_update_hitboxes()
 			
 @export_group("File References")
-@export var top_filename: Texture2D:
+@export var stairs_filename: Texture2D:
 	set(value):
-		top_filename = value
+		stairs_filename = value
 		_update_hitboxes()
-@export var front_filename: Texture2D:
+@export var platform_filename: Texture2D:
 	set(value):
-		front_filename = value
+		platform_filename = value
 		_update_hitboxes()
-@export var left_filename: Texture2D:
+@export var left_in_filename: Texture2D:
 	set(value):
-		left_filename = value
+		left_in_filename = value
 		_update_hitboxes()
-@export var right_filename: Texture2D:
+@export var left_out_filename: Texture2D:
 	set(value):
-		right_filename = value
+		left_out_filename = value
+		_update_hitboxes()
+@export var right_in_filename: Texture2D:
+	set(value):
+		right_in_filename = value
+		_update_hitboxes()
+@export var right_out_filename: Texture2D:
+	set(value):
+		right_out_filename = value
 		_update_hitboxes()
 @export var back_filename: Texture2D:
 	set(value):
 		back_filename = value
 		_update_hitboxes()
-@export var bottom_filename: Texture2D:
-	set(value):
-		bottom_filename = value
-		_update_hitboxes()
 
 @export_group("Dimensions")
 # different variables to edit the dimensions
-# the width of the hitbox
+# the width of the overall sprite/hitbox
 @export var width: float = 10.0:
 	set(value):
 		width = value
 		_update_hitboxes()
-# the length of the hitbox
-@export var length: float = 10.0:
+# the length of the stairs sprite/hitbox
+@export var length_stairs: float = 10.0:
 	set(value):
-		length = value
+		length_stairs = value
 		_update_hitboxes()
-# the height of the hitbox
+# the length of the platform sprite/hitbox
+@export var length_platform: float = 0.0:
+	set(value):
+		length_platform = value
+		_update_hitboxes()
+# the height of the overall sprite/hitbox
 @export var height: float = 10.0:
 	set(value): 
 		height = value
+		_update_hitboxes()
+# the split in art between platform and stairs
+@export var split_offset: float = 0.0:
+	set(value): 
+		split_offset = value
+		_update_hitboxes()
+# the split from the stairs (sprite/hitbox) and the top of the overall sprite, used for railings
+@export var stairs_offset: float = 0.0:
+	set(value): 
+		stairs_offset = value
 		_update_hitboxes()
 		
 @export_group("Rotating & Flipping")
@@ -491,12 +504,13 @@ var pixel_size = 0.01 # meters for pixel height (default: 0.01, maybe just never
 var main_hitbox_vec = Vector3(0, 0, 0)
 var platform_hitbox_vec = Vector3(0, 0, 0)
 # these are texture variables, they shall hold textures if they exist
-var texture_top: Texture2D
-var texture_front: Texture2D
-var texture_left: Texture2D
-var texture_right: Texture2D
+var texture_stairs: Texture2D
+var texture_platform: Texture2D
+var texture_left_in: Texture2D
+var texture_left_out: Texture2D
+var texture_right_in: Texture2D
+var texture_right_out: Texture2D
 var texture_back: Texture2D
-var texture_bottom: Texture2D
 
 # procedure currently in use
 var procedure: String = 'none'
@@ -512,6 +526,7 @@ func _ready():
 
 # updates hitboxes upon every small change
 func _update_hitboxes():
+	print('called')
 	if (!active) or !is_inside_tree(): return
 	# initially makes sure all previous versions are destroyed, careful this will reset everything you worked on
 	cleanup_generated_nodes()
@@ -525,7 +540,7 @@ func _update_hitboxes():
 		
 		create_sprites()
 		
-		create_hitboxes()
+		#create_hitboxes()
 	
 
 # creates sprite3D, taking in variables for customization
@@ -577,212 +592,275 @@ func create_sprite3D(given_name, texture, given_rot = Vector3(0, 0, 0), given_po
 
 # creates sprite, one for the front, top, and then one specifically for the platform
 func create_sprites():
-	if (texture_top):
-		# Creates top sprite
-		var sprite_info = create_sprite3D("TopSprite", texture_top, Vector3(top_flip, top_rot, 0), 
-		Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, height + offset_top_box, (length - top_spr_pad_top + top_spr_pad_bottom) / 2.0 + offset_top_side), # dedicated to position
+	if (texture_stairs):
+		var sprite_info = create_sprite3D("StairsSprite", texture_stairs, Vector3(top_flip, top_rot, 0), 
+		Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, (height + stairs_offset + top_spr_pad_top - top_spr_pad_bottom) / 2.0 + offset_top_box, length_platform + (length_stairs + split_offset) / 2.0), # dedicated to position
 		Vector3.AXIS_Y, top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
-		var top_sprite = sprite_info["sprite"]
+		var stairs_sprite = sprite_info["sprite"]
+		var temp_ratio = (length_stairs + split_offset)/height
 		
-		if procedure == 'complex box' or procedure == 'simple box':
-			# assign sizes depending on prior equations
-			top_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
-			top_sprite.scale.z = (length + top_spr_pad_bottom + top_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
-			
-			if check_any_cutoff(top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff):
-				top_sprite.region_enabled = true
-				top_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
-			
-			print('added top')
-			
-		if procedure == 'slant box':
-			var ang_rad = atan2(length , height)
-			var hypo = sqrt(pow(length + top_spr_pad_bottom * ang_rad + top_spr_pad_top * ang_rad, 2.0) + pow(height + top_spr_pad_bottom + top_spr_pad_top, 2.0))
-			top_sprite.rotation_degrees.x = (90 - rad_to_deg(ang_rad))
-			print('anngle calc')
-			
-			# assign sizes depending on prior equations
-			top_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info["text_w"] * pixel_size)
-			top_sprite.scale.z = (hypo + top_spr_pad_bottom + top_spr_pad_top) / (sprite_info["text_h"] * pixel_size)
-			
-			# assign positions (because I did the math after the x and y were assigned)
-			top_sprite.position = Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, (height + top_spr_pad_top - top_spr_pad_bottom) /2.0 + offset_top_box, (length - top_spr_pad_top * (length/height) + top_spr_pad_bottom * (length/height)) / 2.0 + offset_top_side)
-			print('added top')
-	
-	if (texture_front):
-		# Creates front sprite
-		var sprite_info = create_sprite3D("FrontSprite", texture_front, Vector3(90 + front_rot, -90 + front_flip, -90), 
-		Vector3((front_spr_pad_right - front_spr_pad_left)/2.0, (height + front_spr_pad_top - front_spr_pad_bottom) / 2.0 + offset_front_side, length + offset_front_box), # dedicated to position
-		Vector3.AXIS_Y, front_t_cutoff, front_b_cutoff, front_l_cutoff, front_r_cutoff)
-		var front_sprite = sprite_info["sprite"]
+		# assign positions (because I did the math after the x and y were assigned)
+		stairs_sprite.position = Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, (height + stairs_offset + top_spr_pad_top - top_spr_pad_bottom) /2.0 + offset_top_box, length_platform + split_offset + (length_stairs - top_spr_pad_top * temp_ratio + top_spr_pad_bottom * temp_ratio) / 2.0 + offset_top_side)
 		
-		if (procedure == 'complex box' or procedure == 'simple box'):
-			# assign sizes depending on prior equations
-			front_sprite.scale.x = (width + front_spr_pad_left + front_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
-			front_sprite.scale.z = (height + front_spr_pad_bottom + front_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
-			
-			if check_any_cutoff(front_t_cutoff, front_b_cutoff, front_l_cutoff, front_r_cutoff):
-				front_sprite.region_enabled = true
-				front_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], front_t_cutoff, front_b_cutoff, front_l_cutoff, front_r_cutoff)
-			
-			print('added front')
-		if (procedure == 'side box'):
-			# ratio for cutoff
-			var ratio_top = art_z_cutoff
-			var ratio_front = 1 - art_z_cutoff
-			
-			var crop_h_top = sprite_info["h_conv"] * ratio_top
-			var crop_h_front = sprite_info["h_conv"] * ratio_front
-			
-			# creates a top sprite
-			if (texture_front and art_z_cutoff > 0):
-				# Creates sprite
-				var sprite_info_zcut = create_sprite3D("TopSprite", texture_front, Vector3(top_flip, top_rot, 0), 
-				Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, height + offset_top_box, (length * ratio_front) / 2.0 + offset_top_side + ((length - top_spr_pad_top + top_spr_pad_bottom) / 2.0)), # dedicated to position
-		 		Vector3.AXIS_Y, top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
-				
-				var top_sprite = sprite_info_zcut["sprite"]
-				
-				top_sprite.region_enabled = true
-				top_sprite.region_rect = Rect2(0, 0, sprite_info_zcut["text_w"], crop_h_top)
-				
-				# assign sizes depending on prior equations
-				top_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info_zcut["text_w"] * pixel_size)
-				top_sprite.scale.z = ((length + top_spr_pad_bottom + top_spr_pad_top) * ratio_top) / (crop_h_top * pixel_size)
-				print('added top')
-			
-			front_sprite.region_enabled = true
-			print(ratio_top)
-			print(ratio_front)
-	
-			front_sprite.region_rect = Rect2(0, crop_h_top, sprite_info["w_conv"], crop_h_front)
-			# assign sizes depending on prior equations
-			front_sprite.scale.x = (width + front_spr_pad_left + front_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
-			front_sprite.scale.z = (height + front_spr_pad_bottom + front_spr_pad_top) / (crop_h_front * pixel_size)
-			
-			print('added front')
-	
-	
-	print("added sprites")
-	
-	# extra sprites
-	
-	# creates the extra sprites
-	if (procedure == 'complex box'):
+		if check_any_cutoff(top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff):
+			stairs_sprite.region_enabled = true
+			stairs_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
 		
-		if (texture_left):
-			# Creates left sprite
-			var sprite_info = create_sprite3D("LeftSprite", texture_left, Vector3(left_rot, 180 + left_flip, 0), 
-			Vector3((-width)/2.0 - offset_left_box, (height + left_spr_pad_top - left_spr_pad_bottom) / 2.0 + offset_left_side, (length + left_spr_pad_right - left_spr_pad_left) / 2.0), # dedicated to position
-			Vector3.AXIS_X,  left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff)
-			var left_sprite = sprite_info["sprite"]
-			
-			left_sprite.scale.z = (length + left_spr_pad_right + left_spr_pad_left) / (sprite_info["w_conv"] * pixel_size)
-			left_sprite.scale.y = (height + left_spr_pad_top + left_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
-			if check_any_cutoff(left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff):
-				left_sprite.region_enabled = true
-				left_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff)
-			
-			print('added left')
-			
-		if (texture_right):
-			# Creates right sprite
-			var sprite_info = create_sprite3D("RightSprite", texture_right, Vector3(right_rot, right_flip, 0), 
-			Vector3((width)/2.0 + offset_right_box, (height + right_spr_pad_top - right_spr_pad_bottom) / 2.0 + offset_right_side, (length + right_spr_pad_left - right_spr_pad_right) / 2.0), # dedicated to position
-			Vector3.AXIS_X,  right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff)
-			var right_sprite = sprite_info["sprite"]
-			
-			right_sprite.scale.y = (height + right_spr_pad_top + right_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
-			right_sprite.scale.z = (length + right_spr_pad_left + right_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
-			
-			if check_any_cutoff(right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff):
-				right_sprite.region_enabled = true
-				right_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff)
-			
-			
-			print('added right')
-			
-		if (texture_back):
-			# Creates back sprite
-			var sprite_info = create_sprite3D("BackSprite", texture_back, Vector3(90 + back_rot, back_flip, 0), 
-			Vector3((back_spr_pad_left - back_spr_pad_right)/2.0, (height + back_spr_pad_top - back_spr_pad_bottom) / 2.0 + offset_back_side, -offset_back_box ), # dedicated to position
-			Vector3.AXIS_Y,  back_t_cutoff, back_b_cutoff, back_l_cutoff, back_r_cutoff)
-			var back_sprite = sprite_info["sprite"]
-			
-			back_sprite.scale.z = (height + back_spr_pad_top + back_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
-			back_sprite.scale.x = (width + back_spr_pad_left + back_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
-			
-			if check_any_cutoff(back_t_cutoff, back_b_cutoff, back_l_cutoff, back_r_cutoff):
-				back_sprite.region_enabled = true
-				back_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], back_t_cutoff, back_b_cutoff, back_r_cutoff, back_l_cutoff)
-			
-			print('added back')
-			
-		if (texture_bottom):
-			# Creates bottom sprite
-			var sprite_info = create_sprite3D("BottomSprite", texture_bottom, Vector3(bottom_flip, bottom_rot, 0), 
-			Vector3((-bottom_spr_pad_left + bottom_spr_pad_right)/2.0, offset_bottom_box, (length + bottom_spr_pad_top - bottom_spr_pad_bottom) / 2.0 -offset_bottom_side), # dedicated to position
-			Vector3.AXIS_Y,  bottom_t_cutoff, bottom_b_cutoff, bottom_l_cutoff, bottom_r_cutoff)
-			var bottom_sprite = sprite_info["sprite"]
-			
-			bottom_sprite.scale.z = (length + bottom_spr_pad_top + bottom_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
-			bottom_sprite.scale.x = (width + bottom_spr_pad_left + bottom_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
-			
-			if check_any_cutoff(bottom_t_cutoff, bottom_b_cutoff, bottom_l_cutoff, bottom_r_cutoff):
-				bottom_sprite.region_enabled = true
-				bottom_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], bottom_t_cutoff, bottom_b_cutoff, bottom_r_cutoff, bottom_l_cutoff)
-			
-			print('added bottom')
-			
-			
+		var ang_rad = atan2((length_stairs - split_offset), (height + stairs_offset))
+		var hypo = sqrt(pow((length_stairs - split_offset) + (top_spr_pad_bottom * ang_rad) + (top_spr_pad_top * ang_rad), 2.0) + pow(height + stairs_offset + top_spr_pad_bottom + top_spr_pad_top, 2.0))
+		stairs_sprite.rotation_degrees.x = (90 - rad_to_deg(ang_rad))
+		print('angle calc')
+		
+		# assign sizes depending on prior equations
+		stairs_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+		stairs_sprite.scale.z = (hypo + top_spr_pad_bottom + top_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
+		
+		print('added stairs')
+		
+	
+	if (texture_right_out):
+		var sprite_info = create_sprite3D("RightOutSprite", texture_right_out, Vector3(top_flip + 90, top_rot + 180, 90), 
+		Vector3((width + right_spr_pad_right - right_spr_pad_left)/2.0, (height + right_spr_pad_right - right_spr_pad_bottom) /2.0 + offset_right_box, (length_platform + length_stairs + split_offset - right_spr_pad_top + right_spr_pad_bottom) / 2.0 + offset_right_side), # dedicated to position
+		Vector3.AXIS_Y, right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff)
+		var sprite = sprite_info["sprite"]
+		
+		if check_any_cutoff(right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff):
+			sprite.region_enabled = true
+			sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
+
+		print('angle calc')
+		
+		# assign sizes depending on prior equations
+		sprite.scale.z = (height + right_spr_pad_left + right_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+		sprite.scale.x = (length_stairs + length_platform + right_spr_pad_bottom + right_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
+		
+		print('added right_out')
+		
+	if (texture_left_out):
+		var sprite_info = create_sprite3D("LeftOutSprite", texture_left_out, Vector3(left_flip + 90, left_rot + 180, 90), 
+		Vector3((-width + left_spr_pad_right - left_spr_pad_left)/2.0, (height + left_spr_pad_left - left_spr_pad_bottom) /2.0 + offset_left_box, (length_platform + length_stairs + split_offset - left_spr_pad_top + left_spr_pad_bottom) / 2.0 + offset_left_side), # dedicated to position
+		Vector3.AXIS_Y, left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff)
+		var sprite = sprite_info["sprite"]
+		
+		if check_any_cutoff(left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff):
+			sprite.region_enabled = true
+			sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
+
+		print('angle calc')
+		
+		# assign sizes depending on prior equations
+		sprite.scale.z = (height + left_spr_pad_left + left_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+		sprite.scale.x = (length_stairs + length_platform + left_spr_pad_bottom + left_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
+		
+		print('added left_out')
+		
+		
+	#if (texture_top):
+		## Creates top sprite
+		#var sprite_info = create_sprite3D("TopSprite", texture_top, Vector3(top_flip, top_rot, 0), 
+		#Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, height + offset_top_box, (length - top_spr_pad_top + top_spr_pad_bottom) / 2.0 + offset_top_side), # dedicated to position
+		#Vector3.AXIS_Y, top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
+		#var top_sprite = sprite_info["sprite"]
+		#
+		#if procedure == 'complex box' or procedure == 'simple box':
+			## assign sizes depending on prior equations
+			#top_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+			#top_sprite.scale.z = (length + top_spr_pad_bottom + top_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
+			#
+			#if check_any_cutoff(top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff):
+				#top_sprite.region_enabled = true
+				#top_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
+			#
+			#print('added top')
+			#
+		#if procedure == 'slant box':
+			#var ang_rad = atan2(length , height)
+			#var hypo = sqrt(pow(length + top_spr_pad_bottom * ang_rad + top_spr_pad_top * ang_rad, 2.0) + pow(height + top_spr_pad_bottom + top_spr_pad_top, 2.0))
+			#top_sprite.rotation_degrees.x = (90 - rad_to_deg(ang_rad))
+			#print('anngle calc')
+			#
+			## assign sizes depending on prior equations
+			#top_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info["text_w"] * pixel_size)
+			#top_sprite.scale.z = (hypo + top_spr_pad_bottom + top_spr_pad_top) / (sprite_info["text_h"] * pixel_size)
+			#
+			## assign positions (because I did the math after the x and y were assigned)
+			#top_sprite.position = Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, (height + top_spr_pad_top - top_spr_pad_bottom) /2.0 + offset_top_box, (length - top_spr_pad_top * (length/height) + top_spr_pad_bottom * (length/height)) / 2.0 + offset_top_side)
+			#print('added top')
+	#
+	#if (texture_front):
+		## Creates front sprite
+		#var sprite_info = create_sprite3D("FrontSprite", texture_front, Vector3(90 + front_rot, -90 + front_flip, -90), 
+		#Vector3((front_spr_pad_right - front_spr_pad_left)/2.0, (height + front_spr_pad_top - front_spr_pad_bottom) / 2.0 + offset_front_side, length + offset_front_box), # dedicated to position
+		#Vector3.AXIS_Y, front_t_cutoff, front_b_cutoff, front_l_cutoff, front_r_cutoff)
+		#var front_sprite = sprite_info["sprite"]
+		#
+		#if (procedure == 'complex box' or procedure == 'simple box'):
+			## assign sizes depending on prior equations
+			#front_sprite.scale.x = (width + front_spr_pad_left + front_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+			#front_sprite.scale.z = (height + front_spr_pad_bottom + front_spr_pad_top) / (sprite_info["h_conv"] * pixel_size)
+			#
+			#if check_any_cutoff(front_t_cutoff, front_b_cutoff, front_l_cutoff, front_r_cutoff):
+				#front_sprite.region_enabled = true
+				#front_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], front_t_cutoff, front_b_cutoff, front_l_cutoff, front_r_cutoff)
+			#
+			#print('added front')
+		#if (procedure == 'side box'):
+			## ratio for cutoff
+			#var ratio_top = art_z_cutoff
+			#var ratio_front = 1 - art_z_cutoff
+			#
+			#var crop_h_top = sprite_info["h_conv"] * ratio_top
+			#var crop_h_front = sprite_info["h_conv"] * ratio_front
+			#
+			## creates a top sprite
+			#if (texture_front and art_z_cutoff > 0):
+				## Creates sprite
+				#var sprite_info_zcut = create_sprite3D("TopSprite", texture_front, Vector3(top_flip, top_rot, 0), 
+				#Vector3((top_spr_pad_right - top_spr_pad_left)/2.0, height + offset_top_box, (length * ratio_front) / 2.0 + offset_top_side + ((length - top_spr_pad_top + top_spr_pad_bottom) / 2.0)), # dedicated to position
+		 		#Vector3.AXIS_Y, top_t_cutoff, top_b_cutoff, top_l_cutoff, top_r_cutoff)
+				#
+				#var top_sprite = sprite_info_zcut["sprite"]
+				#
+				#top_sprite.region_enabled = true
+				#top_sprite.region_rect = Rect2(0, 0, sprite_info_zcut["text_w"], crop_h_top)
+				#
+				## assign sizes depending on prior equations
+				#top_sprite.scale.x = (width + top_spr_pad_left + top_spr_pad_right) / (sprite_info_zcut["text_w"] * pixel_size)
+				#top_sprite.scale.z = ((length + top_spr_pad_bottom + top_spr_pad_top) * ratio_top) / (crop_h_top * pixel_size)
+				#print('added top')
+			#
+			#front_sprite.region_enabled = true
+			#print(ratio_top)
+			#print(ratio_front)
+	#
+			#front_sprite.region_rect = Rect2(0, crop_h_top, sprite_info["w_conv"], crop_h_front)
+			## assign sizes depending on prior equations
+			#front_sprite.scale.x = (width + front_spr_pad_left + front_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+			#front_sprite.scale.z = (height + front_spr_pad_bottom + front_spr_pad_top) / (crop_h_front * pixel_size)
+			#
+			#print('added front')
+	#
+	#
+	#print("added sprites")
+	#
+	## extra sprites
+	#
+	## creates the extra sprites
+	#if (procedure == 'complex box'):
+		#
+		#if (texture_left):
+			## Creates left sprite
+			#var sprite_info = create_sprite3D("LeftSprite", texture_left, Vector3(left_rot, 180 + left_flip, 0), 
+			#Vector3((-width)/2.0 - offset_left_box, (height + left_spr_pad_top - left_spr_pad_bottom) / 2.0 + offset_left_side, (length + left_spr_pad_right - left_spr_pad_left) / 2.0), # dedicated to position
+			#Vector3.AXIS_X,  left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff)
+			#var left_sprite = sprite_info["sprite"]
+			#
+			#left_sprite.scale.z = (length + left_spr_pad_right + left_spr_pad_left) / (sprite_info["w_conv"] * pixel_size)
+			#left_sprite.scale.y = (height + left_spr_pad_top + left_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
+			#if check_any_cutoff(left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff):
+				#left_sprite.region_enabled = true
+				#left_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], left_t_cutoff, left_b_cutoff, left_l_cutoff, left_r_cutoff)
+			#
+			#print('added left')
+			#
+		#if (texture_right):
+			## Creates right sprite
+			#var sprite_info = create_sprite3D("RightSprite", texture_right, Vector3(right_rot, right_flip, 0), 
+			#Vector3((width)/2.0 + offset_right_box, (height + right_spr_pad_top - right_spr_pad_bottom) / 2.0 + offset_right_side, (length + right_spr_pad_left - right_spr_pad_right) / 2.0), # dedicated to position
+			#Vector3.AXIS_X,  right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff)
+			#var right_sprite = sprite_info["sprite"]
+			#
+			#right_sprite.scale.y = (height + right_spr_pad_top + right_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
+			#right_sprite.scale.z = (length + right_spr_pad_left + right_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+			#
+			#if check_any_cutoff(right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff):
+				#right_sprite.region_enabled = true
+				#right_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], right_t_cutoff, right_b_cutoff, right_l_cutoff, right_r_cutoff)
+			#
+			#
+			#print('added right')
+			#
+		#if (texture_back):
+			## Creates back sprite
+			#var sprite_info = create_sprite3D("BackSprite", texture_back, Vector3(90 + back_rot, back_flip, 0), 
+			#Vector3((back_spr_pad_left - back_spr_pad_right)/2.0, (height + back_spr_pad_top - back_spr_pad_bottom) / 2.0 + offset_back_side, -offset_back_box ), # dedicated to position
+			#Vector3.AXIS_Y,  back_t_cutoff, back_b_cutoff, back_l_cutoff, back_r_cutoff)
+			#var back_sprite = sprite_info["sprite"]
+			#
+			#back_sprite.scale.z = (height + back_spr_pad_top + back_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
+			#back_sprite.scale.x = (width + back_spr_pad_left + back_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+			#
+			#if check_any_cutoff(back_t_cutoff, back_b_cutoff, back_l_cutoff, back_r_cutoff):
+				#back_sprite.region_enabled = true
+				#back_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], back_t_cutoff, back_b_cutoff, back_r_cutoff, back_l_cutoff)
+			#
+			#print('added back')
+			#
+		#if (texture_bottom):
+			## Creates bottom sprite
+			#var sprite_info = create_sprite3D("BottomSprite", texture_bottom, Vector3(bottom_flip, bottom_rot, 0), 
+			#Vector3((-bottom_spr_pad_left + bottom_spr_pad_right)/2.0, offset_bottom_box, (length + bottom_spr_pad_top - bottom_spr_pad_bottom) / 2.0 -offset_bottom_side), # dedicated to position
+			#Vector3.AXIS_Y,  bottom_t_cutoff, bottom_b_cutoff, bottom_l_cutoff, bottom_r_cutoff)
+			#var bottom_sprite = sprite_info["sprite"]
+			#
+			#bottom_sprite.scale.z = (length + bottom_spr_pad_top + bottom_spr_pad_bottom) / (sprite_info["h_conv"] * pixel_size)
+			#bottom_sprite.scale.x = (width + bottom_spr_pad_left + bottom_spr_pad_right) / (sprite_info["w_conv"] * pixel_size)
+			#
+			#if check_any_cutoff(bottom_t_cutoff, bottom_b_cutoff, bottom_l_cutoff, bottom_r_cutoff):
+				#bottom_sprite.region_enabled = true
+				#bottom_sprite.region_rect = rect_2_creation(sprite_info["w_conv"], sprite_info["h_conv"], bottom_t_cutoff, bottom_b_cutoff, bottom_r_cutoff, bottom_l_cutoff)
+			#
+			#print('added bottom')
+			#
+			#
 
 # Creates hitboxes for the main and platform, with customized padding, hopefully it works
-func create_hitboxes():
-	# platform thickness size
-	var actual_thickness = platform_thickness * height
-	
-	# Creates the main hitbox (relies on top image)
-	# first creates shape which collision will refer to
-	var main_box_shape = BoxShape3D.new()
-	main_box_shape.size = Vector3(width - x_pad_main_left - x_pad_main_right, height - actual_thickness, length - z_pad_main_top - z_pad_main_bottom) # might need to divide front length by 2
-	
-	# next, creates the main collision shape, with all those nice looks
-	var main_collision = CollisionShape3D.new()
-	
-	add_child(main_collision)
-	_set_owner(main_collision)
-	
-	main_collision.shape = main_box_shape
-	main_collision.name = "MainHitbox"
-	main_collision.debug_color = Color("#ff0000")
-	main_collision.debug_color.a = 1.0
-	main_collision.debug_fill = true
-	main_collision.position = Vector3(x_pad_main_left / 2.0 - x_pad_main_right / 2.0, height / 2.0 - (actual_thickness / 2.0), length / 2.0 + z_pad_main_top/2.0 - z_pad_main_bottom/2.0)
-	
-	print("added main")
-	
-	if (platform_thickness > 0.0):
-		# Creates the platform hitbox (relies on front image)
-		# first creates shape which collision will refer to
-		var plat_box_shape = BoxShape3D.new()
-		plat_box_shape.size = Vector3(width - x_pad_plat_left - x_pad_plat_right, actual_thickness, length - z_pad_plat_top - z_pad_plat_bottom)
-		
-		# next, creates the platform collision shape, with all those nice looks
-		var platform_collision = CollisionShape3D.new()
-		
-		add_child(platform_collision)
-		_set_owner(platform_collision)
-		
-		platform_collision.shape = plat_box_shape
-		platform_collision.name = "PlatformHitbox"
-		platform_collision.debug_color = Color("f841ffff")
-		platform_collision.debug_color.a = 1.0
-		platform_collision.debug_fill = true
-		platform_collision.position = Vector3(x_pad_plat_left / 2.0 - x_pad_plat_right / 2.0, height - (actual_thickness / 2.0), length / 2.0 + z_pad_plat_top/2.0 - z_pad_plat_bottom/2.0 + offset_plat)
-		
-		print("added platform")
-	
-	# extra optional
+#func create_hitboxes():
+	## platform thickness size
+	#var actual_thickness = platform_thickness * height
+	#
+	## Creates the main hitbox (relies on top image)
+	## first creates shape which collision will refer to
+	#var main_box_shape = BoxShape3D.new()
+	#main_box_shape.size = Vector3(width - x_pad_main_left - x_pad_main_right, height - actual_thickness, length - z_pad_main_top - z_pad_main_bottom) # might need to divide front length by 2
+	#
+	## next, creates the main collision shape, with all those nice looks
+	#var main_collision = CollisionShape3D.new()
+	#
+	#add_child(main_collision)
+	#_set_owner(main_collision)
+	#
+	#main_collision.shape = main_box_shape
+	#main_collision.name = "MainHitbox"
+	#main_collision.debug_color = Color("#ff0000")
+	#main_collision.debug_color.a = 1.0
+	#main_collision.debug_fill = true
+	#main_collision.position = Vector3(x_pad_main_left / 2.0 - x_pad_main_right / 2.0, height / 2.0 - (actual_thickness / 2.0), length / 2.0 + z_pad_main_top/2.0 - z_pad_main_bottom/2.0)
+	#
+	#print("added main")
+	#
+	#if (platform_thickness > 0.0):
+		## Creates the platform hitbox (relies on front image)
+		## first creates shape which collision will refer to
+		#var plat_box_shape = BoxShape3D.new()
+		#plat_box_shape.size = Vector3(width - x_pad_plat_left - x_pad_plat_right, actual_thickness, length - z_pad_plat_top - z_pad_plat_bottom)
+		#
+		## next, creates the platform collision shape, with all those nice looks
+		#var platform_collision = CollisionShape3D.new()
+		#
+		#add_child(platform_collision)
+		#_set_owner(platform_collision)
+		#
+		#platform_collision.shape = plat_box_shape
+		#platform_collision.name = "PlatformHitbox"
+		#platform_collision.debug_color = Color("f841ffff")
+		#platform_collision.debug_color.a = 1.0
+		#platform_collision.debug_fill = true
+		#platform_collision.position = Vector3(x_pad_plat_left / 2.0 - x_pad_plat_right / 2.0, height - (actual_thickness / 2.0), length / 2.0 + z_pad_plat_top/2.0 - z_pad_plat_bottom/2.0 + offset_plat)
+		#
+		#print("added platform")
+	#
+	## extra optional
 	
 	
 
@@ -793,15 +871,16 @@ func collect_all_assets() -> bool:
 	var dir = DirAccess.open("res://Assets/Art")
 	print('completed directory open')
 	if dir:
-		texture_top = top_filename
-		texture_front = front_filename
-		texture_left = left_filename
-		texture_right = right_filename
+		texture_stairs = stairs_filename
+		texture_platform = platform_filename
+		texture_left_in = left_in_filename
+		texture_left_out = left_out_filename
+		texture_right_in = right_in_filename
+		texture_right_out = right_out_filename
 		texture_back = back_filename
-		texture_bottom = bottom_filename
 		
 		# excludes front and top
-		var textures = [ texture_left, texture_right, texture_back, texture_bottom ]
+		var textures = [ texture_left_in, texture_left_out, texture_right_in, texture_right_out, texture_back ]
 		
 		# context again
 		# complex box = 3 or more sides
@@ -812,24 +891,19 @@ func collect_all_assets() -> bool:
 		
 		print('completed getting files')
 		
-		if texture_top and texture_front and textures.any(func(v): return v):
+		if texture_stairs and texture_platform and textures.any(func(v): return v):
 			print('completed verification complex')
-			procedure = 'complex box'
+			procedure = 'complex stairs'
 			
 			return true
-		if texture_front and texture_top:
+		if texture_stairs and texture_platform:
 			print('completed verification simple')
-			procedure = 'simple box'
+			procedure = 'semi-complex stairs'
 			
 			return true
-		if texture_top:
+		if texture_stairs:
 			print('completed verification slant')
-			procedure = 'slant box'
-			
-			return true
-		if texture_front:
-			print('completed verification side')
-			procedure = 'side box'
+			procedure = 'simple stairs'
 			
 			return true
 	return false
@@ -848,7 +922,7 @@ func cleanup_generated_nodes():
 	var children = get_children()
 	
 	# list of potentially named sprites
-	var list_names = ["TopSprite", "FrontSprite", "LeftSprite", "RightSprite", "BackSprite", "BottomSprite", "PlatSprite", "MainHitbox", "PlatformHitbox"]
+	var list_names = ["StairsSprite", "PlatformSprite", "LeftInSprite", "LeftOutSprite", "RightInSprite", "RightOutSprite", "BackSprite", "PlatSprite", "MainHitbox", "PlatformHitbox"]
 
 	# iterates through, double checking to make sure it doesn't accidentally delete something
 	for child in children:

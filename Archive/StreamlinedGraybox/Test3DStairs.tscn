@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfvrksgpmli4n"]
+
+[ext_resource type="Script" uid="uid://wrbi18jbsim8" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_jiw1s"]
+[ext_resource type="Texture2D" uid="uid://dj3cjh8sndtoi" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Horizontal S3.png" id="2_0s8fo"]
+[ext_resource type="Texture2D" uid="uid://cirr6t01rth6q" path="res://Assets/Art/GrayboxTemplateAssets/ShitStairTop.png" id="2_hqg1j"]
+[ext_resource type="Texture2D" uid="uid://b4efmd5hqdoq5" path="res://Assets/Art/GrayboxTemplateAssets/ShitStairSide.png" id="3_oy55j"]
+[ext_resource type="Texture2D" uid="uid://chqve3er1jgue" path="res://Archive/StreamlinedGraybox/height_map_temp.png" id="5_4ul6h"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oy55j"]
+load_path = "res://.godot/imported/ShitStairTop.png-beecc6a8a24ad8f21fe5aca0a8c4930c.s3tc.ctex"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n56xv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy55j"]
+albedo_texture = ExtResource("2_0s8fo")
+normal_enabled = true
+heightmap_scale = 2.538
+heightmap_texture = ExtResource("5_4ul6h")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4ul6h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phkan"]
+albedo_texture = ExtResource("2_hqg1j")
+uv1_triplanar = true
+stencil_flags = 2
+
+[node name="Test3dStairs" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_jiw1s")
+active = true
+stairs_filename = SubResource("CompressedTexture2D_oy55j")
+left_out_filename = ExtResource("3_oy55j")
+right_out_filename = ExtResource("3_oy55j")
+length_stairs = 4.0
+length_platform = 2.0
+height = 4.0
+stairs_offset = -1.815
+
+[node name="StairsSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(1.953125, 0, 0, 0, 0.8776019, -0.4267578, 0, 0.47939005, 0.78125, 0, 1.0925, 4)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = SubResource("CompressedTexture2D_oy55j")
+
+[node name="RightOutSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-5.1224283e-08, 1, 2.985446e-15, -5.1224283e-08, 1.9106855e-15, -0.78125, -1.171875, -4.371139e-08, 3.4149522e-08, 5, 2, 3)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_oy55j")
+
+[node name="LeftOutSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-5.1224283e-08, 1, 2.985446e-15, -5.1224283e-08, 1.9106855e-15, -0.78125, -1.171875, -4.371139e-08, 3.4149522e-08, -5, 2, 3)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_oy55j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, -0.005331993)
+mesh = SubResource("PlaneMesh_n56xv")
+skeleton = NodePath("../StaticBody3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5191375, 0, -0.005331993)
+visible = false
+material_overlay = SubResource("StandardMaterial3D_oy55j")
+mesh = SubResource("PlaneMesh_4ul6h")
+skeleton = NodePath("../StaticBody3D")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1.5, 1.5, 1.5, 1.5, 1.45, 1.05, 1.45, 1.05, 0.95, 0.55, 0.95, 0.55, 0.45, 0.05, 0.45, 0.05, 0)
+material = SubResource("StandardMaterial3D_phkan")
