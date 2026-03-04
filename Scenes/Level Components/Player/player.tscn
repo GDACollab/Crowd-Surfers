@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=37 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
-[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="2_baiym"]
 [ext_resource type="Texture2D" uid="uid://feu6cendoild" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0001.png" id="3_0ep3m"]
 [ext_resource type="Texture2D" uid="uid://ducqnwem2x4qj" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_right/Skate_Side/skateS0001.png" id="3_ku1m0"]
 [ext_resource type="Texture2D" uid="uid://blxnjvkpke8b0" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_down/Skate_Front/skateF0002.png" id="4_ocigo"]
@@ -204,12 +203,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.071956635, 10.083466, 0)
 shape = SubResource("CapsuleShape3D_4d56n")
 debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
-[node name="Drop Shadow" type="Sprite3D" parent="CollisionShape3D"]
-transform = Transform3D(8, 0, 0, 0, -3.496911e-07, 8, 0, -8, -3.496911e-07, 0, -7.3651805, 0.20455003)
-layers = 0
-modulate = Color(0, 0, 0, 0.49019608)
-texture = ExtResource("2_baiym")
-
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
 target_position = Vector3(0, -50, 0)
 
@@ -248,3 +241,37 @@ event_guid = "{786da779-c31c-46e0-8fd9-49dc9c0ed9f3}"
 [node name="JumpSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/jump"
 event_guid = "{37e4c1ff-9cd4-4400-b1c5-8e6f4e784d62}"
+
+[node name="VelocityLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.188904, 27.012472, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 1
+font_size = 500
+horizontal_alignment = 0
+text_direction = 1
+
+[node name="StateLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.188904, 23.012472, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 1
+font_size = 500
+horizontal_alignment = 0
+text_direction = 1
+
+[node name="Drop Shadow Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 33.309692, 0)
+layers = 1023
+light_energy = 6.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_size = 1.0
+light_negative = true
+light_cull_mask = 4294966785
+shadow_enabled = true
+shadow_transmittance_bias = 0.37
+shadow_caster_mask = 4294966784
+spot_range = 899.945
+spot_attenuation = 0.7
+spot_angle = 7.0
