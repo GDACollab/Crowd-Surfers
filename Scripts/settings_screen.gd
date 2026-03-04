@@ -8,10 +8,15 @@ func _ready() -> void:
 	master_slider.set_value_no_signal(Settings.master_volume)
 	music_slider.set_value_no_signal(Settings.music_volume)
 	sfx_slider.set_value_no_signal(Settings.sfx_volume)
+	Settings.update_fmod_volumes()
+	# print("settings ready")
 
 func _on_master_slider_value_changed(value: float) -> void:
+	# print(Settings.master_volume)
 	Settings.master_volume = value
 	Settings.update_fmod_volumes()
+	# print("change master volume")
+	# print(Settings.master_volume)
 
 func _on_music_slider_value_changed(value: float) -> void:
 	Settings.music_volume = value
