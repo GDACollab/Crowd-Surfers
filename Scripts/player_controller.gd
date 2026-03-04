@@ -347,6 +347,16 @@ func check_state_transitions() -> void:
 						transition_to(States.GROUND)
 					else:
 						transition_to(States.AIR)
+		States.STOMP_CROWD_LAUNCH:
+			# Allow the player to land, dash, or glide after bouncing
+			if is_on_floor():
+				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_stomp"):
+				transition_to(States.STOMP_WINDUP)
+			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
+			elif can_glide and Input.is_action_just_pressed("ability_glide"):
+				transition_to(States.GLIDE)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -377,16 +387,6 @@ func transition_to(new_state: int) -> void:
 				$DashCooldownTimer.start()
 		States.DASH_AIR:
 			$DashCooldownTimer.start()
-		States.STOMP_CROWD_LAUNCH:
-			# Allow the player to land, dash, or glide after bouncing
-			if is_on_floor():
-				transition_to(States.GROUND)
-			elif Input.is_action_just_pressed("ability_stomp"):
-				transition_to(States.STOMP_WINDUP)
-			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
-				transition_to(States.DASH_AIR)
-			elif can_glide and Input.is_action_just_pressed("ability_glide"):
-				transition_to(States.GLIDE)
 
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
