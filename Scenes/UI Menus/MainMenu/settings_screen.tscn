@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://kvs3yueyscim"]
+[gd_scene load_steps=4 format=3 uid="uid://kvs3yueyscim"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6kqvo"]
+[ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/settings_screen.gd" id="1_p0nga"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
+bg_color = Color(0.4817894, 0.48178953, 0.4817894, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,6 +12,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(0, 533.333)
+script = ExtResource("1_p0nga")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -56,7 +59,7 @@ offset_right = 217.868
 offset_bottom = 800.0
 grow_horizontal = 2
 pivot_offset = Vector2(217.869, 0)
-color = Color(0.89059, 0.89059, 0.8905901, 1)
+color = Color(0.59717655, 0.5971761, 0.5971756, 1)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ScrollMask"]
 layout_mode = 0
@@ -67,11 +70,18 @@ offset_bottom = 730.281
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SliderHolder" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+[node name="MasterVolumeText" type="RichTextLabel" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=45]Master Volume"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="MasterSliderHolder" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SliderHolder"]
+[node name="MasterSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/MasterSliderHolder"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,12 +96,21 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 pivot_offset = Vector2(54.375, 8)
+max_value = 1.0
+step = 0.0
 
-[node name="SliderHolder2" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+[node name="MusicVolumeText" type="RichTextLabel" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=45]Music Volume"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="MusicSliderHolder" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SliderHolder2"]
+[node name="MusicSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/MusicSliderHolder"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -106,12 +125,21 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 pivot_offset = Vector2(54.375, 8)
+max_value = 1.0
+step = 0.0
 
-[node name="SliderHolder3" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+[node name="SFXVolumeText" type="RichTextLabel" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=45]SFX Volume"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="SFXSliderHolder" type="Control" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SliderHolder3"]
+[node name="SFXSlider" type="HSlider" parent="ScrollMask/ScrollContainer/VBoxContainer/SFXSliderHolder"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -126,6 +154,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 pivot_offset = Vector2(54.375, 8)
+max_value = 1.0
+step = 0.0
 
 [node name="BackButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
@@ -135,3 +165,7 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
 text = "Back
 "
+
+[connection signal="value_changed" from="ScrollMask/ScrollContainer/VBoxContainer/MasterSliderHolder/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="ScrollMask/ScrollContainer/VBoxContainer/MusicSliderHolder/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="ScrollMask/ScrollContainer/VBoxContainer/SFXSliderHolder/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
