@@ -24,21 +24,21 @@ var stateColors = {
 # General movement
 @export_category("General Movement")
 ## The highest value max_speed can be at before modifications
-@export var base_ramping_cap: float = 150.0 #the speed at which the player speeds up
+@export var base_ramping_cap: float = 250.0 #the speed at which the player speeds up
 ## Initial speed when starting from rest
-@export var starting_speed : float = 20.0
+@export var starting_speed : float = 30.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
-@export var crash_penalty_mult: float = 1.5
+@export var crash_penalty_mult: float = 1.05
 ## Acceleration before modifications
-@export var base_acceleration: float = 170.0
+@export var base_acceleration: float = 250.0
 ## Rate at which the player decelerates
-@export var friction: float = 75.0
+@export var friction: float = 200.0
 ## Added to player's vertical speed in states where they can fall
-@export var gravity: float = 50.0
+@export var gravity: float = 500.0
 ## Speed of the player's jump
-@export var jump_speed: float = 50.0
+@export var jump_speed: float = 150.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
@@ -141,6 +141,7 @@ func _process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
+	restart()
 	check_height()
 	if debugLabels:
 		update_labels()
@@ -461,8 +462,8 @@ func crash() -> void:
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	#var wall_normal := get_wall_normal()
-	#var dir := velocity.normalized()
-	max_speed /= crash_penalty_mult
+	var dir := velocity.normalized()
+	#max_speed /= crash_penalty_mult
 	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
 	# while components which didn't go into the wall are 1 in this vector
@@ -526,3 +527,14 @@ func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	stateLabel.modulate = stateColors[current_state]
+
+## Checks when the restart button is pressed.
+func restart():
+	if Input.is_action_just_pressed("restart"):
+		# Safely calls the reload scene function.
+		call_deferred("reload_scene")
+
+## Reloads the scene, might need to move this to a singleton if needed.
+func reload_scene():
+	get_tree().reload_current_scene()
+	
