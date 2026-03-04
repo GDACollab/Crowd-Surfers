@@ -461,8 +461,8 @@ func crash() -> void:
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	#var wall_normal := get_wall_normal()
-	#var dir := velocity.normalized()
-	max_speed /= crash_penalty_mult
+	var dir := velocity.normalized()
+	#max_speed /= crash_penalty_mult
 	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
 	# while components which didn't go into the wall are 1 in this vector
