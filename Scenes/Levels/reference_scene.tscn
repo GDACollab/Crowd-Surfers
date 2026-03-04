@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ba21dgon6j7ye"]
+[gd_scene load_steps=30 format=3 uid="uid://ba21dgon6j7ye"]
 
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="1_7f610"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_ks18i"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="6_im3sx"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="8_im3sx"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="8_kvhjf"]
+[ext_resource type="PackedScene" uid="uid://cli3lkdjwsu0l" path="res://Scenes/Levels/crowd_placeholder.tscn" id="10_m87rb"]
 [ext_resource type="PackedScene" uid="uid://y0q7l77qkvxi" path="res://Scenes/Level Components/Objects/cable-car-down.tscn" id="11_ady41"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="11_noi2a"]
 [ext_resource type="PackedScene" uid="uid://dw5pqgejh3hvn" path="res://Scenes/Level Components/Objects/building-slug-pizza.tscn" id="13_ahlhi"]
@@ -29,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="54_kc3sa"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="57_x4cml"]
 
-[node name="ReferenceScene" type="Node3D"]
+[node name="ReferenceScene" type="Node3D" groups=["Crowd"]]
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -47,7 +48,6 @@ offset = Vector3(0, 1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("1_quug7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235.56013, 28.71975, 445.21405)
-crash_penalty_mult = 1.05
 shadow_base_scale = 10.0
 shadow_min_scale = 2.0
 shadow_max_height = 50.0
@@ -287,43 +287,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 150)
 [node name="bus-1-up" parent="." instance=ExtResource("8_im3sx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 150)
 
-[node name="cable-car-down" parent="." instance=ExtResource("11_ady41")]
+[node name="cable-car-down" parent="." groups=["Crowd"] instance=ExtResource("11_ady41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 300)
 
-[node name="cable-car-side" parent="." instance=ExtResource("14_e7fi7")]
+[node name="cable-car-side" parent="." groups=["Crowd"] instance=ExtResource("14_e7fi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 300)
 
-[node name="car-red-down" parent="." instance=ExtResource("17_dxsjs")]
+[node name="car-red-down" parent="." groups=["Crowd"] instance=ExtResource("17_dxsjs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 300)
 
-[node name="car-red-side" parent="." instance=ExtResource("20_0wan6")]
+[node name="car-red-side" parent="." groups=["Crowd"] instance=ExtResource("20_0wan6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 300)
 
-[node name="car-red-up" parent="." instance=ExtResource("23_hrias")]
+[node name="car-red-up" parent="." groups=["Crowd"] instance=ExtResource("23_hrias")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 450)
 
-[node name="market-stall-amber" parent="." instance=ExtResource("26_3xft7")]
+[node name="market-stall-amber" parent="." groups=["Crowd"] instance=ExtResource("26_3xft7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 450)
 
-[node name="market-stall-cyan" parent="." instance=ExtResource("29_uti74")]
+[node name="market-stall-cyan" parent="." groups=["Crowd"] instance=ExtResource("29_uti74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 450)
 
-[node name="waymo-confused-down" parent="." instance=ExtResource("42_0c0re")]
+[node name="Node3D" parent="." instance=ExtResource("10_m87rb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.44714, 2.853897, 276.0668)
+
+[node name="waymo-confused-down" parent="." groups=["Crowd"] instance=ExtResource("42_0c0re")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 600)
 
-[node name="waymo-confused-side" parent="." instance=ExtResource("45_fb8qi")]
+[node name="waymo-confused-side" parent="." groups=["Crowd"] instance=ExtResource("45_fb8qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 600)
 
-[node name="waymo-confused-up" parent="." instance=ExtResource("48_xdqsk")]
+[node name="waymo-confused-up" parent="." groups=["Crowd"] instance=ExtResource("48_xdqsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 600)
 
-[node name="waymo-evil-down" parent="." instance=ExtResource("51_5lgdi")]
+[node name="waymo-evil-down" parent="." groups=["Crowd"] instance=ExtResource("51_5lgdi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 750)
 
-[node name="waymo-evil-side" parent="." instance=ExtResource("54_kc3sa")]
+[node name="waymo-evil-side" parent="." groups=["Crowd"] instance=ExtResource("54_kc3sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 750)
 
-[node name="waymo-evil-up" parent="." instance=ExtResource("57_x4cml")]
+[node name="waymo-evil-up" parent="." groups=["Crowd"] instance=ExtResource("57_x4cml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 750)
 
 [node name="banana-peel" parent="." instance=ExtResource("28_m87rb")]

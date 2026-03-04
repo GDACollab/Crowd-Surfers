@@ -1,5 +1,4 @@
 extends CharacterBody3D
-#@onready var player_sprite: Sprite3D = $Sprite3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
@@ -47,11 +46,11 @@ var stateColors = {
 # Stomp
 @export_category("Stomp")
 ## Initial speed of the stomp before gravity is applied
-@export var stomp_speed: float = 30.0
+@export var stomp_speed: float = 10.0
 ## The maximum speed that the player can be at on the first frame of the windup
 @export var max_speed_for_windup: float = 5.0
 ## Time it takes the stomp to windup. This should be tied to an animation in the future
-@export var windup_duration: float = 0.15
+@export var windup_duration: float = 0.5
 ## Rate at which stomp boost accumulates per second
 @export var stomp_dash_boost_factor: float = 25.0
 ## Maximum boost which can be gained from stomp-dashing
@@ -98,8 +97,40 @@ func _on_stomp_dash_margin_timeout() -> void:
 	max_speed_before_stomp = starting_speed
 	speed_before_stomp = 0.0
 
+## Activates when stomping on a Crowd, boosting the player forward and slightly up
+func crowd_launch() -> void:
+	# Give the player a slight upward bounce so they don't immediately hit the floor
+	velocity.y = jump_speed * 0.8 
+	
+	# Play dash sound (or a unique bounce sound if you add one later)
+	$DashSound.play()
+	
+	# Increase caps using your dash modifiers
+	ramping_cap = ramping_cap + stomp_dash_boost_factor
+	max_speed = move_toward(max_stomp_dash_boost * dash_speed_multiplier, ramping_cap, stomp_dash_boost_factor)
+	#acceleration *= dash_speed_multiplier
+	
+	# Get directional input to determine launch direction
+	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var dir := Vector3.ZERO
+	
+	if input_dir != Vector2.ZERO:
+		dir = Vector3(input_dir.x, 0.0, input_dir.y).normalized()
+	else:
+		# If no input is given, launch them in the direction they are facing
+		var facing_x: float = -1.0 if player_sprite.flip_h else 1.0
+		dir = Vector3(facing_x, 0.0, 0.0).normalized()
+	
+	# Calculate the boost amount based on the stomp momentum
+	var speed: float = speed_before_stomp + (stomp_boost * 0.5)
+	var boost: float = speed
+	
+	# Apply the forward velocity
+	velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
+	velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
+	
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR,STOMP_CROWD_LAUNCH}
 
 # Active values - may change during execution
 var max_speed: float = starting_speed
@@ -135,9 +166,9 @@ func _ready() -> void:
 	$StompWindupTimer.wait_time = windup_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
-	raycast.add_exception(self)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
@@ -149,7 +180,7 @@ func _process(delta: float) -> void:
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
 	match current_state:
-		States.GROUND, States.SLOPE:
+		States.GROUND:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
@@ -197,6 +228,12 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
+		States.STOMP_CROWD_LAUNCH:
+			fall(delta)
+			handle_inputs(delta)
+			if is_on_wall():
+				crash()
+			
 		
 ## Performs a state transition, if necessary
 func check_state_transitions() -> void:
@@ -217,17 +254,6 @@ func check_state_transitions() -> void:
 			elif not is_on_floor():
 				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
-			elif get_floor_angle() != 0.0:
-				transition_to(States.SLOPE)
-		States.SLOPE:
-			if Input.is_action_just_pressed("move_jump"):
-				jump()
-				transition_to(States.AIR)
-			elif not is_on_floor():
-				$CoyoteTimer.start()
-				transition_to(States.COYOTE)
-			elif get_floor_angle() == 0.0:
-				transition_to(States.GROUND)
 		States.COYOTE:
 			if is_on_floor():
 				transition_to(States.GROUND)
@@ -255,8 +281,40 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
+				print("STOMP HIT FLOOR")
+				var hit_crowd = false
+				
+				# Loop through everything we collided with this frame
+				for i in get_slide_collision_count():
+					var collision = get_slide_collision(i)
+					var collider = collision.get_collider()
+					
+					print("Collision ", i, " with: ", collider.name)
+					print("  - Groups on this object: ", collider.get_groups())
+					
+					if collider.is_in_group("Crowd"):
+						print("Detects Crowd")
+						hit_crowd = true
+						break
+				
+				if hit_crowd:
+					print("SUCCESS! Crowd object detected. Launching!")
+					crowd_launch()
+					transition_to(States.STOMP_CROWD_LAUNCH)
+					return
+				else:
+					print("Normal floor detected. Transitioning to GROUND.")
+			
 				$StompDashMargin.start()
 				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
+				
+				# Original behavior if they hit normal ground
+				$StompDashMargin.start()
+				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
 			elif Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_AIR)
 		States.GLIDE:
@@ -309,6 +367,16 @@ func check_state_transitions() -> void:
 						transition_to(States.GROUND)
 					else:
 						transition_to(States.AIR)
+		States.STOMP_CROWD_LAUNCH:
+			# Allow the player to land, dash, or glide after bouncing
+			if is_on_floor():
+				transition_to(States.GROUND)
+			elif Input.is_action_just_pressed("ability_stomp"):
+				transition_to(States.STOMP_WINDUP)
+			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
+				transition_to(States.DASH_AIR)
+			elif can_glide and Input.is_action_just_pressed("ability_glide"):
+				transition_to(States.GLIDE)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -533,7 +601,7 @@ func direction_to_string() -> String:
 func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
-	stateLabel.modulate = stateColors[current_state]
+	#stateLabel.modulate = stateColors[current_state]
 
 ## Checks when the restart button is pressed.
 func restart():
