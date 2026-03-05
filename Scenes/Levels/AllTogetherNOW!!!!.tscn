@@ -1,10 +1,13 @@
-[gd_scene load_steps=39 format=3 uid="uid://cco8nwympi4ph"]
+[gd_scene load_steps=42 format=3 uid="uid://cco8nwympi4ph"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_pnkcb"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_ppsfy"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_iexd5"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="4_ahtcf"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="5_ci14y"]
+[ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="5_h0m14"]
+[ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="5_r67ii"]
+[ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="5_uopym"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="6_378rg"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="7_yqaqw"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="8_mudcb"]
@@ -22,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="20_fdtib"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="21_88g5p"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="22_mcmyx"]
-[ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/Hud/InGameHud.tscn" id="23_r5rak"]
+[ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="23_r5rak"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="24_olea3"]
 [ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="25_yqaqw"]
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="26_mudcb"]
@@ -66,6 +69,18 @@ shadow_min_scale = 2.0
 shadow_max_height = 50.0
 shadow_lift = 0.0
 shadow_falloff_exp = 1.1
+
+[node name="Hud" parent="." instance=ExtResource("23_r5rak")]
+
+[node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("5_r67ii")]
+transform = Transform3D(1, 0, 0, 0, 3.995, 0, 0, 0, 5.17, 2652.1477, 0, -1239.727)
+level_clear_ui = NodePath("../LevelClearUI")
+
+[node name="LevelClearUI" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("5_uopym")]
+visible = false
+hud_ui = NodePath("../Hud")
+
+[node name="PauseHolder" parent="." instance=ExtResource("5_h0m14")]
 
 [node name="Road_1_4" parent="." instance=ExtResource("4_ahtcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -457.29907, 0, -1143.9137)
@@ -1068,8 +1083,6 @@ transform = Transform3D(1.9470718e-07, 0, 1, 0, 1, 0, -1, 0, 1.9470718e-07, 892.
 
 [node name="StaticBody3D46" parent="." instance=ExtResource("22_mcmyx")]
 transform = Transform3D(1.9470718e-07, 0, 1, 0, 1, 0, -1, 0, 1.9470718e-07, 692.7009, 0, -2093.9136)
-
-[node name="Hud" parent="." instance=ExtResource("23_r5rak")]
 
 [node name="StaticBody3D" parent="." instance=ExtResource("24_olea3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1742.7009, 0, -2043.9136)
