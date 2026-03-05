@@ -87,7 +87,7 @@
 	</object>
 	<object class="GroupTrack" id="{32c78f71-758f-42fd-92d0-110c7a5a0f63}">
 		<relationship name="modules">
-			<destination>{94f45e9b-5a1e-40cf-851a-7321df07dc7b}</destination>
+			<destination>{709ca1a4-f069-4bb5-8fe9-e5b48f6b99f7}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{55e63837-b586-4126-a718-30a80882cc06}</destination>
@@ -102,7 +102,7 @@
 		<relationship name="modules">
 			<destination>{176a228e-46eb-4d7d-befa-e974b60b8f0e}</destination>
 			<destination>{0da9c7ae-3ad7-426d-bbcf-10656639e138}</destination>
-			<destination>{94f45e9b-5a1e-40cf-851a-7321df07dc7b}</destination>
+			<destination>{709ca1a4-f069-4bb5-8fe9-e5b48f6b99f7}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{1a785404-8062-4ee0-bf61-e8e4ebe41921}</destination>
@@ -212,13 +212,16 @@
 			<destination>{8896c916-abd9-4387-96ae-267f82c0ba42}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{94f45e9b-5a1e-40cf-851a-7321df07dc7b}">
+	<object class="SingleSound" id="{709ca1a4-f069-4bb5-8fe9-e5b48f6b99f7}">
 		<property name="start">
 			<value>2</value>
 		</property>
 		<property name="volume">
 			<value>6.5</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{eba1823b-ccdc-415d-a7af-dbbf0f510a09}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{0d3c2c0e-2a19-4489-8c7d-d939387878fd}</destination>
 		</relationship>
@@ -295,6 +298,14 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{24f4b076-01cc-42dc-a2b9-ffd8a8c04f93}" />
+	<object class="RandomizerModulator" id="{eba1823b-ccdc-415d-a7af-dbbf0f510a09}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>3.5</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{89a202c7-2416-4e68-9329-7aaaea45e59b}">
 		<relationship name="effects">
 			<destination>{58243716-9e6b-4504-832f-2770fac8006c}</destination>
