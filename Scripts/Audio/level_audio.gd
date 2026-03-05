@@ -1,16 +1,20 @@
-extends FmodEventEmitter3D
+extends Node2D
 
-@export var player: CharacterBody3D = null
+@export var player: CharacterBody3D
 
-var player_max_speed: float;
+@onready var music: FmodEventEmitter2D = $Music
+@onready var city_ambience: FmodEventEmitter2D = $CityAmbience
 
 func _ready() -> void:
 	assert(player)
-	player_max_speed = player.base_ramping_cap
-	assert(player_max_speed)
+	music.play()
+	city_ambience.play()
+	
 
 func _process(_delta: float) -> void:
-	# Update FMOD parameter `player_speed`
-	var speed_ratio = player.velocity.length() / player_max_speed
-	speed_ratio = clamp(speed_ratio, 0, 1)
-	self.set_parameter("player_speed", speed_ratio)
+	# fuckass player variable names like are you fr
+	var speed_range = player.base_ramping_cap - player.starting_speed
+	var ratio_of_max_speed = (player.max_speed - player.starting_speed) / speed_range
+	ratio_of_max_speed = clamp(ratio_of_max_speed, 0, 1)
+	# Update FMOD global parameter `player_speed` -- effects city amb and music
+	FmodServer.set_global_parameter_by_name("player_speed", ratio_of_max_speed)
