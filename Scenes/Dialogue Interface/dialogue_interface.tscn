@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="4_6em14"]
-[ext_resource type="Texture2D" uid="uid://dp7dura6byohf" path="res://Assets/Art/Portraits/BlankPortrait.png" id="4_o1fea"]
+[ext_resource type="Texture2D" uid="uid://b7v87j50h3x7o" path="res://Assets/Art/Portraits/P_Slip_Default.png" id="4_tk2da"]
 [ext_resource type="PackedScene" uid="uid://cvwdknj7n8u5o" path="res://Scenes/Dialogue Interface/character_portrait.tscn" id="4_wemfb"]
 [ext_resource type="Material" uid="uid://di7ysi5m6lg7" path="res://Scenes/Dialogue Interface/character_portrait_material.tres" id="5_tk2da"]
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
@@ -20,7 +20,7 @@ mainPanels = [NodePath("Left Character Portrait"), NodePath("Right Character Por
 dialoguePanel = ExtResource("5_wemfb")
 choiceButton = ExtResource("2_vriws")
 choiceSelectDelay = 1.0
-defaultPortait = ExtResource("4_o1fea")
+defaultPortait = ExtResource("4_tk2da")
 speakingPortraitScale = Vector2(1.1, 1.1)
 portraitSwapTime = 0.5
 upperDialogueBoxHeight = 50.0
@@ -73,9 +73,8 @@ script = ExtResource("4_6em14")
 showPosition = Vector2(600, 222)
 hidePosition = Vector2(600, 1200)
 
-[node name="Dialogue Panel" parent="." instance=ExtResource("5_wemfb")]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
-offset_left = -465.0
-offset_top = -492.0
-offset_right = 467.19446
-offset_bottom = -39.0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PRESS X TO SKIP SCENE"
