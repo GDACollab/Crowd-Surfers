@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=5 format=3 uid="uid://c5rie8boisw4x"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
+[ext_resource type="Script" uid="uid://b5jkrrd2dj5sp" path="res://Scripts/orders_screen.gd" id="1_day0g"]
 [ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_yohfk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
 
-[node name="Control" type="Control"]
+[node name="Orders" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_day0g")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
-confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton2"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
+confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
 back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -67,24 +69,23 @@ offset_bottom = 730.281
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OrdersButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+[node name="VerticalSliceButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 1
+text = "Vertical Slice
 "
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton2" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+[node name="ParkingLotButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 2
-"
+text = "Parking Lot"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton3" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
@@ -93,10 +94,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 3"
+text = "More levels
+soon!"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton4" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
@@ -106,6 +109,7 @@ text = "Order 4"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton5" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
@@ -115,6 +119,7 @@ text = "Order 5"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton6" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
@@ -124,6 +129,7 @@ text = "Order 6"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton7" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
@@ -140,3 +146,6 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
 text = "Back
 "
+
+[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton" to="." method="_on_vertical_slice_button_pressed"]
+[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton" to="." method="_on_parking_lot_button_pressed"]
