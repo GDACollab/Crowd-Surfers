@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerGroup" id="{bccac8f7-66e2-40a5-b42d-1f8ac4d6c315}">
+		<property name="note">
+			<value>Sidechain drives a compressor with extremely high attack and release</value>
+		</property>
+		<property name="name">
+			<value>Glide</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{cebcf1f2-6f13-4713-8d40-d7be1ba75202}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{1d5622b6-7519-4def-a1fc-0f276a6d174c}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{42af6bb4-189a-466c-b82b-6ce3313b25c3}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{cebcf1f2-6f13-4713-8d40-d7be1ba75202}">
+		<relationship name="effects">
+			<destination>{fe578ebd-689d-4a43-806a-366dc2bec1e2}</destination>
+			<destination>{10c6ce6c-39d5-447f-ad67-7f19da00b7b2}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{1d5622b6-7519-4def-a1fc-0f276a6d174c}" />
+	<object class="MixerBusFader" id="{fe578ebd-689d-4a43-806a-366dc2bec1e2}" />
+	<object class="Sidechain" id="{10c6ce6c-39d5-447f-ad67-7f19da00b7b2}" />
+</objects>
