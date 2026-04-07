@@ -1,0 +1,65 @@
+[gd_scene load_steps=14 format=3 uid="uid://dnble8x3bgr7y"]
+
+[ext_resource type="Texture2D" uid="uid://ceu0ym0blkaok" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-1.png" id="1_qtexh"]
+[ext_resource type="Texture2D" uid="uid://bq4u1urftxo45" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-2.png" id="2_0g6o1"]
+[ext_resource type="Texture2D" uid="uid://3ku4i7807k7x" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-3.png" id="3_gg0du"]
+[ext_resource type="Texture2D" uid="uid://b562slgt4ex4q" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-4.png" id="4_n8rhc"]
+[ext_resource type="Texture2D" uid="uid://cot3vho038bbo" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-5.png" id="5_r3ht6"]
+[ext_resource type="Texture2D" uid="uid://c7t35cfaqrb8e" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-6.png" id="6_npwrr"]
+[ext_resource type="Texture2D" uid="uid://soqrcbn6xd0j" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-7.png" id="7_g8etk"]
+[ext_resource type="Texture2D" uid="uid://boyihs6vxk8iu" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-8.png" id="8_tbxfi"]
+[ext_resource type="Texture2D" uid="uid://daua482r22kg1" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-9.png" id="9_q0mr7"]
+[ext_resource type="Texture2D" uid="uid://c3j5w7g8b04y6" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-10.png" id="10_mxpud"]
+[ext_resource type="Texture2D" uid="uid://bkj3kgjsn2jp4" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-11.png" id="11_8paae"]
+[ext_resource type="Texture2D" uid="uid://bs0jomnwba5n3" path="res://Assets/Art/PlayerVFX/StompAbility/Untitled_Artwork-12.png" id="12_fc6ek"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwvxm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qtexh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0g6o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gg0du")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n8rhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r3ht6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_npwrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g8etk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tbxfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q0mr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mxpud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8paae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fc6ek")
+}],
+"loop": true,
+"name": &"Stomp",
+"speed": 12.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fwvxm")
+animation = &"Stomp"
+frame_progress = 0.17147005
