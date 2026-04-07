@@ -113,6 +113,81 @@ tracks/7/keys = {
 "values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_tmijn"]
+resource_name = "open_settings"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsScene:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-281, -13.500007), Vector2(288, -13.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(175, 125.5), Vector2(950, 125.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePage1:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePage2:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.78431374, 0.78431374, 0.78431374, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.24, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"stop_transitioning"
+}, {
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_qyxbx"]
 resource_name = "rotate_landscape"
 length = 1.2
@@ -299,81 +374,6 @@ tracks/6/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_tmijn"]
-resource_name = "open_settings"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SettingsScene:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-281, -13.500007), Vector2(288, -13.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonContainer:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(175, 125.5), Vector2(950, 125.5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage1:modulate")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage2:modulate")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.78431374, 0.78431374, 0.78431374, 1)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("..")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.24, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"stop_transitioning"
-}, {
-"args": [],
-"method": &"start_transitioning"
-}, {
-"args": [],
-"method": &"start_transitioning"
-}, {
-"args": [],
-"method": &"stop_transitioning"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
 _data = {
 &"RESET": SubResource("Animation_r6arl"),
@@ -497,6 +497,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5707964
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [node name="ButtonContainer" type="VBoxContainer" parent="PhoneBackground"]
@@ -517,18 +518,21 @@ pivot_offset = Vector2(125, 287.5)
 [node name="ResumeButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "Resume"
 metadata/_edit_use_anchors_ = true
 
 [node name="ControlsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "Controls"
 metadata/_edit_use_anchors_ = true
 
 [node name="SettingsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "Settings
 "
 metadata/_edit_use_anchors_ = true
@@ -536,6 +540,7 @@ metadata/_edit_use_anchors_ = true
 [node name="RestartLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "Restart Level
 "
 metadata/_edit_use_anchors_ = true
@@ -543,6 +548,7 @@ metadata/_edit_use_anchors_ = true
 [node name="ExitLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "Exit Level
 "
 metadata/_edit_use_anchors_ = true
