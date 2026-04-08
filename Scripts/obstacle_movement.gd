@@ -12,6 +12,7 @@ extends Node3D
 @export var startFromSelf: bool = true # Doesnt work right now
 @export var isClosed: bool = true
 @export var isRotate: bool = false
+@export var isVehicle : bool = true
 
 var follow_node: PathFollow3D
 var travel_speed: float = 0.0
@@ -34,7 +35,10 @@ func _ready() -> void:
 #	if Engine.is_editor_hint():
 #		active = false
 	await get_tree().process_frame
+	if isVehicle:
+		self.add_to_group("Vehicles")
 	create_obstacle_path()
+	
 
 func create_obstacle_path() -> void:
 	

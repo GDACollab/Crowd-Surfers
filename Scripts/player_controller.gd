@@ -157,7 +157,7 @@ var current_state: int = States.GROUND
 
 func _ready() -> void:
 	#aglobal_position = PlayerSpawn.spawnpoint
-	# Initialize values
+	# Initiali"res://Scripts/player_controller.gd"ze values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
 	ramping_cap = base_ramping_cap
@@ -172,6 +172,21 @@ func _physics_process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		# Did we bump into a car?
+		if collider != null and collider.is_in_group("Vehicles"):
+			
+			# Get the angle of the collision
+			var hit_normal = collision.get_normal()
+			
+			# If the normal's Y value is low, it means we got hit from the SIDE (bumper)
+			if hit_normal.y < 0.5: 
+				# Call Slip's damage function here! 
+				print("Slip got hit by the bumper!")
+				# take_damage(1)d
 	restart()
 	check_height()
 	if debugLabels:
@@ -527,6 +542,15 @@ func handle_inputs(delta: float) -> void:
 func jump() -> void:
 	velocity.y = jump_speed
 	$JumpSound.play()
+
+## Called by external objects (like the Wind Box) to force the player into the air
+func apply_wind_launch(launch_speed: float) -> void:
+	# 1. Apply the speed
+	velocity.y = launch_speed
+	
+	# 2. Force the state machine into the AIR state immediately!
+	# This prevents the GROUND state from resetting his y-velocity to 0.0
+	transition_to(States.AIR)
 
 ## Applies gravity
 func fall(delta: float) -> void:
