@@ -1,4 +1,12 @@
-[gd_resource type="VisualShader" format=3 uid="uid://kwt7rvpawq6x"]
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://kwt7rvpawq6x"]
+
+[ext_resource type="Texture2D" uid="uid://bc41lhcjpkodl" path="res://Archive/StreamlinedGraybox/ShitStairTop.png" id="1_gtgq3"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tjqvf"]
+texture = ExtResource("1_gtgq3")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kr5gv"]
+texture = ExtResource("1_gtgq3")
 
 [resource]
 code = "shader_type spatial;
@@ -7,3 +15,7 @@ render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse
 
 
 "
+nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_tjqvf")
+nodes/vertex/2/position = Vector2(-340, 220)
+nodes/vertex/3/node = SubResource("VisualShaderNodeTexture_kr5gv")
+nodes/vertex/3/position = Vector2(-320, 520)

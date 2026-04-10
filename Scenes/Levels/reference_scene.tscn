@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ba21dgon6j7ye"]
+[gd_scene load_steps=26 format=3 uid="uid://ba21dgon6j7ye"]
 
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="1_7f610"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_lagl4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="17_dxsjs"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="20_0wan6"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="23_hrias"]
+[ext_resource type="PackedScene" uid="uid://dfvrksgpmli4n" path="res://Archive/StreamlinedGraybox/Test3DStairs.tscn" id="25_lagl4"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="26_3xft7"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="29_uti74"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="33_n6vdm"]
@@ -35,6 +36,7 @@ offset = Vector3(0, 1000, 1000)
 
 [node name="Player" parent="." instance=ExtResource("1_quug7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 193.935, 23.619705, 502.47644)
+floor_snap_length = 1.0
 shadow_base_scale = 10.0
 shadow_min_scale = 2.0
 shadow_max_height = 50.0
@@ -321,3 +323,6 @@ shadow_opacity = 0.5
 shadow_blur = 3.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="Test3dStairs" parent="." instance=ExtResource("25_lagl4")]
+transform = Transform3D(4.6086054, 0, -1.9392672, 0, 5, 0, 1.9392672, 0, 4.6086054, 215, 0, 244)

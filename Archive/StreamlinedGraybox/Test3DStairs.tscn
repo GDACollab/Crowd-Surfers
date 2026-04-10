@@ -1,13 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfvrksgpmli4n"]
+[gd_scene load_steps=13 format=3 uid="uid://dfvrksgpmli4n"]
 
 [ext_resource type="Script" uid="uid://wrbi18jbsim8" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_jiw1s"]
 [ext_resource type="Texture2D" uid="uid://dj3cjh8sndtoi" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Horizontal S3.png" id="2_0s8fo"]
-[ext_resource type="Texture2D" uid="uid://cirr6t01rth6q" path="res://Assets/Art/GrayboxTemplateAssets/ShitStairTop.png" id="2_hqg1j"]
-[ext_resource type="Texture2D" uid="uid://b4efmd5hqdoq5" path="res://Assets/Art/GrayboxTemplateAssets/ShitStairSide.png" id="3_oy55j"]
+[ext_resource type="Texture2D" uid="uid://bdvlpeu78kqhu" path="res://Assets/Art/GrayboxTemplateAssets/StairTest.jpg" id="2_0te6x"]
+[ext_resource type="Texture2D" uid="uid://c14wh6latw436" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Intersection S3.png" id="3_4ul6h"]
+[ext_resource type="Texture2D" uid="uid://4y7f4wmj2kup" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Vertical S3.png" id="3_n56xv"]
+[ext_resource type="Texture2D" uid="uid://b4efmd5hqdoq5" path="res://Assets/Art/GrayboxTemplateAssets/ShitStairSide.png" id="4_hqg1j"]
 [ext_resource type="Texture2D" uid="uid://chqve3er1jgue" path="res://Archive/StreamlinedGraybox/height_map_temp.png" id="5_4ul6h"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oy55j"]
-load_path = "res://.godot/imported/ShitStairTop.png-beecc6a8a24ad8f21fe5aca0a8c4930c.s3tc.ctex"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqg1j"]
+albedo_texture = ExtResource("2_0te6x")
+uv1_scale = Vector3(1, -23, 1)
+uv1_offset = Vector3(0, -0.005, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phkan"]
+albedo_texture = ExtResource("3_n56xv")
+uv1_scale = Vector3(1, 2.65, 1)
+stencil_flags = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n56xv"]
 
@@ -19,47 +28,83 @@ heightmap_texture = ExtResource("5_4ul6h")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4ul6h"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phkan"]
-albedo_texture = ExtResource("2_hqg1j")
-uv1_triplanar = true
-stencil_flags = 2
-
 [node name="Test3dStairs" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_jiw1s")
-active = true
-stairs_filename = SubResource("CompressedTexture2D_oy55j")
-left_out_filename = ExtResource("3_oy55j")
-right_out_filename = ExtResource("3_oy55j")
-length_stairs = 4.0
-length_platform = 2.0
-height = 4.0
-stairs_offset = -1.815
+stairs_filename = ExtResource("2_0te6x")
+platform_filename = ExtResource("3_4ul6h")
+left_filename = ExtResource("4_hqg1j")
+right_filename = ExtResource("4_hqg1j")
+back_filename = ExtResource("3_4ul6h")
+length = 12.0
+stairs_ratio = 0.6875
+height = 6.0
+stairs_offset = 0.5625
+railings_height = 1.0
+platform_thickness = 1.0
 
-[node name="StairsSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(1.953125, 0, 0, 0, 0.8776019, -0.4267578, 0, 0.47939005, 0.78125, 0, 1.0925, 4)
+[node name="StairsSprite" type="CSGPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 12)
+polygon = PackedVector2Array(0, 0, 0, 0.3375, 0.825, 0.3375, 0.825, 0.675, 1.65, 0.675, 1.65, 1.0125, 2.475, 1.0125, 2.475, 1.35, 3.3, 1.35, 3.3, 1.6875, 4.125, 1.6875, 4.125, 2.025, 4.95, 2.025, 4.95, 2.3625, 5.775, 2.3625, 5.775, 2.7, 6.6, 2.7, 6.6, 3.0375, 7.425, 3.0375, 7.425, 3.375, 8.25, 3.375, 8.25, 2.375, 0.825, 0)
+depth = 10.0
+material = SubResource("StandardMaterial3D_hqg1j")
+
+[node name="PlatformSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.8795075, 0, 0, 0, 1, 0, 0, 0, 0.3283713, 0, 3.375, 1.875)
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = SubResource("CompressedTexture2D_oy55j")
+texture = ExtResource("3_4ul6h")
 
-[node name="RightOutSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-5.1224283e-08, 1, 2.985446e-15, -5.1224283e-08, 1.9106855e-15, -0.78125, -1.171875, -4.371139e-08, 3.4149522e-08, 5, 2, 3)
+[node name="RightSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-1.0244857e-07, 1, 4.478169e-15, -1.0244857e-07, 1.9106855e-15, -1.171875, -2.34375, -4.371139e-08, 5.1224283e-08, 5.0005, 3, 6)
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("3_oy55j")
+texture = ExtResource("4_hqg1j")
 
-[node name="LeftOutSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-5.1224283e-08, 1, 2.985446e-15, -5.1224283e-08, 1.9106855e-15, -0.78125, -1.171875, -4.371139e-08, 3.4149522e-08, -5, 2, 3)
+[node name="LeftSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-1.0244857e-07, 1, 4.478169e-15, -1.0244857e-07, 1.9106855e-15, -1.171875, -2.34375, -4.371139e-08, 5.1224283e-08, -5.0005, 3, 6)
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("3_oy55j")
+texture = ExtResource("4_hqg1j")
+
+[node name="BackSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-0.8795075, -8.742278e-08, 1.1293456e-15, 0, -4.371139e-08, -0.29553416, 7.688899e-08, -1, 1.2918209e-08, 0, 1.6875, 0)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_4ul6h")
+
+[node name="MainHitbox" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+depth = 10.0
+polygon = PackedVector2Array(0, 3.375, 3.75, 3.375, 12, 0, 11.175, 0, 3.75, 2.375, 0, 2.375)
+debug_color = Color(1, 0, 0, 1)
+
+[node name="RailingLeftHitbox" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.01, 0, 0)
+depth = 0.01
+polygon = PackedVector2Array(0, 4.375, 4.575, 4.375, 12, 1.3375, 12, 0, 11.175, 0, 3.75, 2.375, 0, 2.375)
+debug_color = Color(1, 0, 0, 1)
+
+[node name="RailingRightHitbox" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.01, 0, 0)
+depth = 0.01
+polygon = PackedVector2Array(0, 4.375, 4.575, 4.375, 12, 1.3375, 12, 0, 11.175, 0, 3.75, 2.375, 0, 2.375)
+debug_color = Color(1, 0, 0, 1)
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.656613e-10)
+visible = false
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1.5, 1.5, 1.5, 1.5, 1.45)
+material = SubResource("StandardMaterial3D_phkan")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, -0.005331993)
+visible = false
 mesh = SubResource("PlaneMesh_n56xv")
 skeleton = NodePath("../StaticBody3D")
 
@@ -70,6 +115,4 @@ material_overlay = SubResource("StandardMaterial3D_oy55j")
 mesh = SubResource("PlaneMesh_4ul6h")
 skeleton = NodePath("../StaticBody3D")
 
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
-polygon = PackedVector2Array(0, 0, 0, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1.5, 1.5, 1.5, 1.5, 1.45, 1.05, 1.45, 1.05, 0.95, 0.55, 0.95, 0.55, 0.45, 0.05, 0.45, 0.05, 0)
-material = SubResource("StandardMaterial3D_phkan")
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
