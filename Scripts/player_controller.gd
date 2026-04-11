@@ -342,13 +342,13 @@ func check_state_transitions() -> void:
 					transition_to(States.AIR)
 			elif Input.is_action_just_pressed("move_jump"):
 				jump()
-				transition_to(States.DASH_AIR)
+				transition_to(States.AIR)
 			elif not is_on_floor():
-				transition_to(States.DASH_AIR)
+				transition_to(States.AIR)
 		States.DASH_AIR:
 			var distance_traveled := dash_start_pos.distance_to(position)
 			#if player is holding space, ignore the below and transition immediately to glide state
-			if Input.is_action_pressed("ability_glide"):
+			if can_glide and Input.is_action_just_pressed("ability_glide"):
 					transition_to(States.GLIDE)
 			else:
 				if Input.is_action_just_pressed("ability_stomp"):
