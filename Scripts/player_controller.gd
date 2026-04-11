@@ -106,8 +106,8 @@ func crowd_launch() -> void:
 	$DashSound.play()
 	
 	# Increase caps using your dash modifiers
-	ramping_cap = ramping_cap + stomp_dash_boost_factor
-	max_speed = move_toward(max_stomp_dash_boost * dash_speed_multiplier, ramping_cap, stomp_dash_boost_factor)
+	#ramping_cap = ramping_cap + stomp_dash_boost_factor
+	#max_speed = move_toward(max_stomp_dash_boost * dash_speed_multiplier, ramping_cap, stomp_dash_boost_factor)
 	#acceleration *= dash_speed_multiplier
 	
 	# Get directional input to determine launch direction
@@ -129,8 +129,10 @@ func crowd_launch() -> void:
 	velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
 	velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
 	
+	transition_to(States.DASH_AIR)
+	##TODO
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR,STOMP_CROWD_LAUNCH}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR, STOMP_CROWD_LAUNCH}
 
 # Active values - may change during execution
 var max_speed: float = starting_speed
@@ -182,7 +184,10 @@ func process_state(delta: float) -> void:
 	match current_state:
 		States.GROUND:
 			# Ramping
+			print(ramping_cap)
 			if max_speed < ramping_cap: 
+				print("we are adding the max speed")
+				
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_wall():
@@ -326,6 +331,8 @@ func check_state_transitions() -> void:
 				transition_to(States.AIR)
 			elif is_on_floor():
 				transition_to(States.GROUND)
+			elif is_on_wall():
+				transition_to(States.AIR)
 		States.DASH_GROUND:
 			var distance_traveled := dash_start_pos.distance_to(position)
 			# Checking for zero velocity accounts for the player hitting dash without a direction
