@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnv5g81eiyl4a"]
+
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_r58da"]
+[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="2_vkdie"]
+[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="3_bi364"]
+
+[node name="LvlConcept-Stage2" type="Node3D"]
+
+[node name="RoadContainer" type="Node3D" parent="."]
+
+[node name="HornRoad(2 Start))" parent="RoadContainer" instance=ExtResource("3_bi364")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+
+[node name="VertRoad(2 End)" parent="RoadContainer" instance=ExtResource("1_r58da")]
+
+[node name="VertRoad2" parent="RoadContainer" instance=ExtResource("1_r58da")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="CornRoad" parent="RoadContainer" instance=ExtResource("2_vkdie")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 0, -50)
+
+[node name="HornRoad" parent="RoadContainer" instance=ExtResource("3_bi364")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -100)
