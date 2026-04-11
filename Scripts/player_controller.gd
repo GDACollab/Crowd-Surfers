@@ -250,7 +250,7 @@ func check_state_transitions() -> void:
 				else:
 					transition_to(States.AIR)
 			elif can_dash() and Input.is_action_just_pressed("ability_dash"):
-				transition_to(States.DASH_GROUND)
+				transition_to(States.DASH_AIR)
 			elif not is_on_floor():
 				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
