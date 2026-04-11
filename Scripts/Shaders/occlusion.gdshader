@@ -1,15 +1,19 @@
 shader_type spatial;
 uniform sampler2D tex: source_color;
-uniform vec3 player_view_pos;
+global uniform vec3 player_view_pos;
 
 void fragment() {
 	float alpha = 1.0F;
-	if (player_view_pos.z == 0.0F) {
-		alpha = 0.1F;
-	}
+	//if (player_view_pos.z == 0.0F) {
+		//alpha = 0.1F;
+	//}
 	//if (distance(VERTEX.xy, player_view_pos.xy) < 25.0F) {
 		//alpha = 0.1;
 	//}
+	
+	if (distance(VERTEX.y, player_view_pos.y) < 25.0F && abs(player_view_pos.z) + 25.0 > abs(VERTEX.z)) {
+		alpha = 0.1;
+	}
 	
 	vec4 color = texture(tex, UV);
 	ALPHA = alpha * color.a;
