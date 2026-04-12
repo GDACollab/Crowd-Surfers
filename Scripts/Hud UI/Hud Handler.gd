@@ -2,7 +2,7 @@ extends Control
 
 ## Get references to all components
 ## I Couldn't figure out signals and did this method lol
-@onready var speed_O_Meter = $"HBoxContainer/SpeedOmeter Component"
+@onready var speed_O_Meter = $"HBoxContainer/Speedometer Component"
 @onready var timer_Display = $"HBoxContainer/VBoxContainer/Timer Component"
 @onready var level_Display = $"HBoxContainer/VBoxContainer/Level Progress Component"
 
