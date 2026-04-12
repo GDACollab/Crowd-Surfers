@@ -2,15 +2,23 @@ extends Control
 
 ## Get references to all components
 ## I Couldn't figure out signals and did this method lol
-@onready var speedometer = $"HudContainer/Speedometer Component"
-@onready var timer_Display = $"HudContainer/Timer Component"
-@onready var level_Display = $"HudContainer/Level Progress Component"
+@onready var speedometer = $"Hud Container/Speedometer Component"
+@onready var timer_Display = $"Hud Container/Timer Component"
+@onready var level_Display = $"Hud Container/Level Progress Component"
+@onready var hud_container = $"Hud Container/Stars Container"
 
 # Get reference without actually editing the player script
 @onready var player: Node = get_parent().get_node("Player")
 
 # track time passed so far
 @onready var curr_Time : float = 0.0
+
+@export_category("Stars")
+@export var stars: Array[HudStarData]
+@export var star_scale: float
+@export var star_alpha_fade_per_second: float
+
+var starImages: Array[TextureRect]
 
 signal change_Lvl_Progress(new_speed: float)
 
@@ -23,6 +31,15 @@ func _ready():
 	set_Max_Speed(player.base_ramping_cap)
 	change_Lvl_Progress.connect(set_Level_Progress)
 	set_Level_Progress(30)
+	
+	# Create stars
+	for i in stars.size():
+		var star: TextureRect = TextureRect.new()
+		star.texture = stars[i].texture
+		star.position = stars[i].position
+		star.scale = Vector2(star_scale, star_scale)
+		hud_container.add_child(star)
+		starImages.append(star)
 	
 func set_Max_Speed(new_Speed: float):
 	speedometer.set_Max_Speed(new_Speed)
@@ -54,7 +71,7 @@ func get_Formatted_Timer_Text(time: float, sprites: bool = false) -> String:
 	var formatted_time: String = seconds + ":" + str(centi_seconds)
 	
 	if (minutes != 0):
-		formatted_time = str(minutes) + ":" + formatted_time;
+		formatted_time = str(minutes) + ":" + formatted_time
 		
 	if (sprites):
 		var sprite_formatted_time: String = ""
@@ -63,7 +80,7 @@ func get_Formatted_Timer_Text(time: float, sprites: bool = false) -> String:
 				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img]"
 			else:
 				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/" + character + ".png[/img]"
-		formatted_time = sprite_formatted_time;
+		formatted_time = sprite_formatted_time
 		
 	return formatted_time
 
@@ -78,6 +95,16 @@ func _process(delta: float) -> void:
 	var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
 	set_Player_speed(hypotenuse)
 	
+	## Handle Stars
+	var index: int = 0
+	for star in starImages:
+		if (stars[index].speed_percent_to_show < hypotenuse):
+			if (star.modulate.a < 1):
+				star.modulate.a += star_alpha_fade_per_second * delta
+		elif (star.modulate.a > 0):
+				star.modulate.a -= star_alpha_fade_per_second * delta
+		index += 1
+	
 	## Calculate and display time
 	curr_Time = curr_Time + delta
 	set_Time(curr_Time)
@@ -85,4 +112,6 @@ func _process(delta: float) -> void:
 	## Handle Level Progression
 	# Currently not implemented, as end goals aren't finalized
 	# And I would need a demo level to see how to connect endgoal to hud
+	
+	
 	
