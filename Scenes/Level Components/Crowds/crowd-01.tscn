@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://du5e3m4wa23pk"]
+
+[ext_resource type="Script" uid="uid://cn6tdkcjmek1b" path="res://Scripts/crowd_ai.gd" id="1_monwt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_monwt"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2vc04"]
+radius = 2.0
+height = 10.0
+
+[node name="Crowd01" type="CharacterBody3D"]
+wall_min_slide_angle = 1.0471976
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 1.0471976
+safe_margin = 5.0
+script = ExtResource("1_monwt")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+path_max_distance = 1.01
+avoidance_enabled = true
+height = 10.0
+radius = 2.0
+max_speed = 50.0
+keep_y_velocity = false
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_monwt")
+debug_color = Color(0.5846711, 0.36032858, 0.78864294, 0.7019608)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2vc04")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
