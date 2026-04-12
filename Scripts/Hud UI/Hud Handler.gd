@@ -7,16 +7,10 @@ extends Control
 @onready var level_Display = $"HudContainer/Level Progress Component"
 
 # Get reference without actually editing the player script
-@onready var player = get_parent().get_node("Player")
+@onready var player: Node = get_parent().get_node("Player")
 
 # track time passed so far
-@onready var curr_Time :float = 0.0
-
-# Adds functionality to make the timer count down instead
-# of counting up like a stop watch
-@export var count_Down: bool = false
-@export var time_Limit: float = 30.0
-
+@onready var curr_Time : float = 0.0
 
 signal change_Lvl_Progress(new_speed: float)
 
@@ -44,9 +38,9 @@ func set_Level_Progress(new_Progress: float):
 	level_Display.set_Progress(new_Progress)
 	
 func set_Time(new_Time: float):
-	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time))
+	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, true))
 	
-func get_Formatted_Timer_Text(time: float) -> String:
+func get_Formatted_Timer_Text(time: float, sprites: bool = false) -> String:
 	var rounded_time: float = snapped(time, 0.01)
 	var seconds: String = str(int(rounded_time) % 60)
 	var minutes: int = int(rounded_time / 60)
@@ -57,37 +51,32 @@ func get_Formatted_Timer_Text(time: float) -> String:
 	if (centi_seconds.length() == 1):
 		centi_seconds += "0"
 		
-	var formatted_time = seconds + "." + str(centi_seconds)
+	var formatted_time: String = seconds + ":" + str(centi_seconds)
 	
 	if (minutes != 0):
 		formatted_time = str(minutes) + ":" + formatted_time;
+		
+	if (sprites):
+		var sprite_formatted_time: String = ""
+		for character in formatted_time:
+			if (character == ':'):
+				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img]"
+			else:
+				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/" + character + ".png[/img]"
+		formatted_time = sprite_formatted_time;
+		
 	return formatted_time
 
-# Place holder function
-# Haven't decided how to determine visually what will happen when player loses by time
-# so program wise I left a place holder function so easy modiiblity.
-# Maybe a signal would be better here?
-# gonna wait for some time until a better idea is drawn up or something.
-func timer_Done():
-	print("timer finished in Hud Handler.gd")
 func _process(delta: float) -> void:
 	
 	## Find player velocity
 	# Since player velocity is normalized and reduced if going in two directions
 	# we need to find the hypotenuse, aka the real speed.
 	
-	# First if statement to check if player is
-	# only going in a cardinal direction
-	# if this is true, then no need to calculate the hypotenuse
-	if((player.velocity.x == 0) || (player.velocity.z == 0)):
-		set_Player_speed(max(abs(player.velocity.x),abs(player.velocity.z)))
-	# if this else statement runs, that means
-	# there is a velocity in both X and Z currently
-	else:
-		# This is just the pythagorthem theorem lol
-		# ty eric :thumbs_up:
-		var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
-		set_Player_speed(hypotenuse)
+	# This is just the pythagorthem theorem lol
+	# ty eric :thumbs_up:
+	var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
+	set_Player_speed(hypotenuse)
 	
 	## Calculate and display time
 	curr_Time = curr_Time + delta
