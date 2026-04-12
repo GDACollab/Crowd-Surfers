@@ -2,9 +2,9 @@ extends Control
 
 ## Get references to all components
 ## I Couldn't figure out signals and did this method lol
-@onready var speed_O_Meter = $"HBoxContainer/Speedometer Component"
-@onready var timer_Display = $"HBoxContainer/VBoxContainer/Timer Component"
-@onready var level_Display = $"HBoxContainer/VBoxContainer/Level Progress Component"
+@onready var speedometer = $"HudContainer/Speedometer Component"
+@onready var timer_Display = $"HudContainer/Timer Component"
+@onready var level_Display = $"HudContainer/Level Progress Component"
 
 # Get reference without actually editing the player script
 @onready var player = get_parent().get_node("Player")
@@ -31,12 +31,12 @@ func _ready():
 	set_Level_Progress(30)
 	
 func set_Max_Speed(new_Speed: float):
-	speed_O_Meter.set_Max_Speed(new_Speed)
+	speedometer.set_Max_Speed(new_Speed)
 
 # Send a call to the script attached to the speed_O_Meter component
 # that script handles changing the bar value display
 func set_Player_speed(new_Speed: float):
-	speed_O_Meter.set_speed(new_Speed)
+	speedometer.set_speed(new_Speed)
 	
 # send a call to the component with the script attached.
 # that script handles changing the display.
@@ -48,13 +48,19 @@ func set_Time(new_Time: float):
 	
 func get_Formatted_Timer_Text(time: float) -> String:
 	var rounded_time: float = snapped(time, 0.01)
-	var seconds: int = int(rounded_time)
-	
-	var centi_seconds: String = str(int((rounded_time - seconds) * 100))
+	var seconds: String = str(int(rounded_time) % 60)
+	var minutes: int = int(rounded_time / 60)
+	if (seconds.length() == 1 && minutes > 0):
+		seconds = "0" + seconds
+
+	var centi_seconds: String = str(int((rounded_time - int(rounded_time)) * 100))
 	if (centi_seconds.length() == 1):
 		centi_seconds += "0"
 		
-	var formatted_time = str(seconds) + ":" + str(centi_seconds)
+	var formatted_time = seconds + "." + str(centi_seconds)
+	
+	if (minutes != 0):
+		formatted_time = str(minutes) + ":" + formatted_time;
 	return formatted_time
 
 # Place holder function

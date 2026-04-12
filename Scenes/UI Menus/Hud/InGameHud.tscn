@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://6g62uuswf0m5"]
+[gd_scene load_steps=7 format=3 uid="uid://6g62uuswf0m5"]
 
 [ext_resource type="Script" uid="uid://drrrorsu46rwu" path="res://Scripts/Hud UI/Hud Handler.gd" id="1_60t2x"]
 [ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/UI Menus/Hud/speedometer_component.tscn" id="2_60t2x"]
+[ext_resource type="Texture2D" uid="uid://ddh5rvamb333v" path="res://Assets/Art/UI/HUD/hud_bg.PNG" id="2_ck5tu"]
 [ext_resource type="PackedScene" uid="uid://s4k1yymmwky1" path="res://Scenes/UI Menus/Hud/timer_component.tscn" id="3_uqmuc"]
 [ext_resource type="PackedScene" uid="uid://crxtf2cx4pai4" path="res://Scenes/UI Menus/Hud/level_progress_component.tscn" id="4_8ms62"]
 [ext_resource type="Script" uid="uid://b0horolsbjtj3" path="res://Scripts/Hud UI/level_progress_component.gd" id="5_uqmuc"]
@@ -16,31 +17,44 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_60t2x")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+[node name="HudContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 880.0
+offset_right = 40.0
+offset_bottom = 920.0
+
+[node name="Hud Background" type="TextureRect" parent="HudContainer"]
+layout_mode = 0
+offset_left = -13.999999
+offset_top = -38.999996
+offset_right = 2350.0
+offset_bottom = 1025.0
+scale = Vector2(0.224, 0.224)
+texture = ExtResource("2_ck5tu")
+
+[node name="Speedometer Component" parent="HudContainer" instance=ExtResource("2_60t2x")]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Timer Component" parent="HudContainer" instance=ExtResource("3_uqmuc")]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 45.0
+offset_right = 186.0
+offset_bottom = 45.0
+
+[node name="Level Progress Component" parent="HudContainer" instance=ExtResource("4_8ms62")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 1.0
-offset_top = -200.0
 offset_right = 401.0
-grow_vertical = 0
-theme_override_constants/separation = 10
-
-[node name="Speedometer Component" parent="HBoxContainer" instance=ExtResource("2_60t2x")]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="Timer Component" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_uqmuc")]
-layout_mode = 2
-
-[node name="Level Progress Component" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_8ms62")]
-layout_mode = 2
+offset_bottom = 200.0
+grow_horizontal = 1
+grow_vertical = 1
 script = ExtResource("5_uqmuc")
-
-[editable path="HBoxContainer/Speedometer Component"]
