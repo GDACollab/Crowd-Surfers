@@ -141,7 +141,11 @@ func _physics_process(delta: float) -> void:
 	if follow_node.progress >= path_length:
 		follow_node.progress -= path_length
 	
-	#var dir = follow_node.global_position - self_node.global_position
+	"""
+	Code Devs Blood Writing Left On The Castle Walls:
+	ASHTON, THIS IS THE TANGENCY. TAKE IT. MAKE TITANFALL 2 LIKE WE WERE MEANT TO
+	"""
+	var dir = follow_node.global_position - self_node.global_position
 	#var dir = curve.sample_baked_with_rotation(follow_node.progress).basis.z #Asks the forward direction at the point
 	#self_node.rotation.y = atan2(dir.x, dir.z) + deg_to_rad(forward_direction)
 	self_node.global_position = follow_node.global_position #For animatablebody3d
