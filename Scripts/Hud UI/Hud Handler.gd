@@ -55,29 +55,35 @@ func set_Level_Progress(new_Progress: float):
 	level_Display.set_Progress(new_Progress)
 	
 func set_Time(new_Time: float):
-	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, true))
+	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, false, true), get_Formatted_Timer_Text(new_Time, true, true))
 	
-func get_Formatted_Timer_Text(time: float, sprites: bool = false) -> String:
+func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: bool = false) -> String:
 	var rounded_time: float = snapped(time, 0.01)
 	var seconds: String = str(int(rounded_time) % 60)
-	var minutes: int = int(rounded_time / 60)
-	if (seconds.length() == 1 && minutes > 0):
+	if (seconds.length() == 1):
 		seconds = "0" + seconds
-
+		
+	var minutes: String = str(int(rounded_time / 60))
+	if (minutes.length() == 1):
+		minutes = "0" + minutes
+		
 	var centi_seconds: String = str(int((rounded_time - int(rounded_time)) * 100))
 	if (centi_seconds.length() == 1):
 		centi_seconds += "0"
 		
-	var formatted_time: String = seconds + ":" + str(centi_seconds)
-	
-	if (minutes != 0):
-		formatted_time = str(minutes) + ":" + formatted_time
+	var formatted_time: String
+	if (centiseconds):
+		formatted_time = "." + str(centi_seconds)
+	else:
+		formatted_time = minutes + ":" + seconds
 		
 	if (sprites):
 		var sprite_formatted_time: String = ""
 		for character in formatted_time:
 			if (character == ':'):
 				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img]"
+			elif (character == '.'):
+				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/period.png[/img]" 
 			else:
 				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/" + character + ".png[/img]"
 		formatted_time = sprite_formatted_time

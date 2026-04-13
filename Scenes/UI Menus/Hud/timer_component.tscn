@@ -18,13 +18,14 @@ offset_bottom = 40.0
 scale = Vector2(0.224, 0.224)
 texture = ExtResource("2_vjs8d")
 
-[node name="Timer Text" type="RichTextLabel" parent="Timer BG"]
+[node name="Main Timer Text" type="RichTextLabel" parent="Timer BG"]
 layout_mode = 0
-offset_left = 80.35715
-offset_top = 89.28571
-offset_right = 1611.3572
-offset_bottom = 377.2857
-scale = Vector2(0.8, 0.8)
+offset_left = 120.53571
+offset_top = 129.46426
+offset_right = 1651.5358
+offset_bottom = 417.46426
+rotation = -0.04256006
+scale = Vector2(1.05, 1.05)
 theme_override_colors/font_outline_color = Color(0.87058824, 0.87058824, 0.87058824, 0.45490196)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
 theme_override_constants/shadow_offset_x = 2
@@ -32,7 +33,26 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[img]res://Assets/Art/UI/HUD/TimerNumbers/1.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/1.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/1.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/1.png[/img]"
+text = "[img]res://Assets/Art/UI/HUD/TimerNumbers/0.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/0.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/0.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/0.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Centiseconds Timer Text" type="RichTextLabel" parent="Timer BG"]
+layout_mode = 0
+offset_left = 741.0714
+offset_top = 178.57141
+offset_right = 2272.0713
+offset_bottom = 466.57147
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_outline_color = Color(0.87058824, 0.87058824, 0.87058824, 0.45490196)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[img]res://Assets/Art/UI/HUD/TimerNumbers/period.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/1.png[/img][img]res://Assets/Art/UI/HUD/TimerNumbers/1.png[/img]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
