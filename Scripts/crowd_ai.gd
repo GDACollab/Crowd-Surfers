@@ -3,7 +3,7 @@ extends Node3D
 # EXPORT VARIABLES
 @export var circum: float = 10.0
 @export var crowd_size: float = 1.0
-@export var max_speed: float = 30.0
+@export var max_speed: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0
 
 # CONSTANTS
@@ -21,6 +21,9 @@ var state : State = State.IDLE
 var search_wait_time: float = 1.5 
 var search_timer_count: float = 0
 
+# ANCHOR VARIABLES
+var anchor_velocity = Vector3(0, 0, 0)
+
 # TARGETS
 var curr_point = 0
 @export var route: Array[Vector3] = [
@@ -35,13 +38,20 @@ var curr_point = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print('start')
+	navigation_agent_3d.max_speed = max_speed
+	var anchor_mesh = $Anchor/MeshInstance3D
+	var area = CylinderMesh.new()
+	area.top_radius = circum / 2.0
+	area.bottom_radius = circum / 2.0
+	
+	anchor_mesh.mesh = area
+	
 	group_brain(crowd_size, circum)
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
 	
 	match state: 
 		State.IDLE:
@@ -55,9 +65,6 @@ func _physics_process(delta: float) -> void:
 		if child is CharacterBody3D:
 			child.move_and_slide()
 			child.velocity += child.get_gravity()*1.5 * delta
-			print('child')
-			print(child.velocity)
-			print(child.position)
 	
 	
 	
@@ -128,7 +135,8 @@ func create_char(append_target) -> void:
 	character.wall_min_slide_angle = 65.0
 	character.floor_constant_speed = true
 	character.floor_max_angle = 65.0
-	character.safe_margin = 3.0
+	character.safe_margin = 0.5
+	character.add_collision_exception_with(anchor)
 	
 	# sets position of body
 	print('posit')
@@ -169,9 +177,9 @@ func moving_behav() -> void:
 	var current_position = anchor.global_position
 	var next_position = navigation_agent_3d.get_next_path_position()
 	var direction = (next_position - current_position).normalized()
-	var new_velocity = direction * max_speed
+	var new_velocity = direction * SPEED
 	navigation_agent_3d.velocity = new_velocity
-	anchor.global_position += direction * max_speed * get_process_delta_time()
+	print('move behav')
 	print(new_velocity)
 	print(current_position)
 	print(next_position)
@@ -214,9 +222,14 @@ func _on_navigation_agent_3d_target_reached() -> void:
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	var clamp_vel = anchor.velocity.move_toward(safe_velocity, 0.25)
+	#var nav_vec = anchor.velocity.move_toward(clamp_vel, 0.25)
+	print('velll')
 	for child in get_children():
 		if child is CharacterBody3D:
-			var move_vec = child.velocity.move_toward(safe_velocity, 0.25)
-			child.velocity.x = move_vec.x
-			child.velocity.z = move_vec.z
+			#var move_vec = child.velocity.move_toward(clamp_vel, 0.25)
+			child.velocity.x = clamp_vel.x
+			child.velocity.y = clamp_vel.y
+			child.velocity.z = clamp_vel.z
+			print(child.velocity)
 			
