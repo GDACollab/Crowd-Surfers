@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6g62uuswf0m5"]
+[gd_scene load_steps=18 format=3 uid="uid://6g62uuswf0m5"]
 
 [ext_resource type="Script" uid="uid://drrrorsu46rwu" path="res://Scripts/Hud UI/Hud Handler.gd" id="1_60t2x"]
 [ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/UI Menus/Hud/speedometer_component.tscn" id="2_60t2x"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b0horolsbjtj3" path="res://Scripts/Hud UI/level_progress_component.gd" id="5_uqmuc"]
 [ext_resource type="Texture2D" uid="uid://drnbeui74qe4m" path="res://Assets/Art/UI/HUD/Stars/star4.PNG" id="6_8al6q"]
 [ext_resource type="Texture2D" uid="uid://brask1luwu0ql" path="res://Assets/Art/UI/HUD/Stars/star1.PNG" id="6_bwla4"]
+[ext_resource type="Texture2D" uid="uid://cshhmcenigqrl" path="res://Assets/Art/UI/HUD/Stars/star5.PNG" id="7_nlhqq"]
 
 [sub_resource type="Resource" id="Resource_tbtus"]
 script = ExtResource("2_a4duu")
@@ -24,6 +25,13 @@ script = ExtResource("2_a4duu")
 texture = ExtResource("4_kniuw")
 position = Vector2(207, -23)
 speed_percent_to_show = 25.0
+metadata/_custom_type_script = "uid://cewh1ultsgo40"
+
+[sub_resource type="Resource" id="Resource_n7o7w"]
+script = ExtResource("2_a4duu")
+texture = ExtResource("7_nlhqq")
+position = Vector2(225, -1)
+speed_percent_to_show = 87.0
 metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
 [sub_resource type="Resource" id="Resource_8al6q"]
@@ -49,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_60t2x")
-stars = Array[ExtResource("2_a4duu")]([SubResource("Resource_tbtus"), SubResource("Resource_bwla4"), SubResource("Resource_8al6q"), SubResource("Resource_nlhqq")])
+stars = Array[ExtResource("2_a4duu")]([SubResource("Resource_tbtus"), SubResource("Resource_bwla4"), SubResource("Resource_n7o7w"), SubResource("Resource_8al6q"), SubResource("Resource_nlhqq")])
 star_scale = 0.224
 star_alpha_fade_per_second = 2.0
 
@@ -74,12 +82,12 @@ anchors_preset = 0
 [node name="TextureRect" type="TextureRect" parent="Hud Container/Stars Container"]
 visible = false
 layout_mode = 0
-offset_left = 368.00003
-offset_top = -7.0000076
-offset_right = 632.0
-offset_bottom = 225.0
+offset_left = 225.0
+offset_top = -1.0000079
+offset_right = 737.0
+offset_bottom = 465.0
 scale = Vector2(0.224, 0.224)
-texture = ExtResource("6_8al6q")
+texture = ExtResource("7_nlhqq")
 
 [node name="Speedometer Component" parent="Hud Container" instance=ExtResource("2_60t2x")]
 layout_mode = 0
