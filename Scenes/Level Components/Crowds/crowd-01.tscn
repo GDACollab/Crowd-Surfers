@@ -21,11 +21,12 @@ script = ExtResource("1_monwt")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 10.0
 target_desired_distance = 5.0
-path_max_distance = 1.01
+path_max_distance = 10.01
+simplify_path = true
 avoidance_enabled = true
 height = 10.0
 radius = 2.0
-max_speed = 50.0
+max_speed = 30.0
 keep_y_velocity = false
 debug_enabled = true
 
@@ -33,8 +34,9 @@ debug_enabled = true
 shape = SubResource("CapsuleShape3D_monwt")
 debug_color = Color(0.5846711, 0.36032858, 0.78864294, 0.7019608)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_2vc04")
+skeleton = NodePath("../..")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

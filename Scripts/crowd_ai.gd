@@ -1,10 +1,17 @@
-extends CharacterBody3D
+extends Node3D
+
+# EXPORT VARIABLES
+@export var circum: float = 10.0
+@export var crowd_size: float = 1.0
+@export var max_speed: float = 30.0
+@export var height_recalc_sensitivity: float = 10.0
 
 # CONSTANTS
-const SPEED = 50.0
+const SPEED = 200.0
 
 # LIST INDIVIDUALS
 var agents: Array = []
+var agents_main: Array = []
 
 # STATES
 enum State { IDLE, MOVE, SEARCH, MERGE }
@@ -21,18 +28,20 @@ var curr_point = 0
 	]
 
 # NODE REFERENCE
-@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
-
+@onready var navigation_agent_3d: NavigationAgent3D = $Anchor/NavigationAgent3D
+@onready var anchor: Node3D = $Anchor
+@onready var nav_map = get_world_3d().navigation_map
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print('start')
-	pass # Replace with function body.
+	group_brain(crowd_size, circum)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	velocity += get_gravity() * delta
+	
 	
 	match state: 
 		State.IDLE:
@@ -41,7 +50,14 @@ func _physics_process(delta: float) -> void:
 		State.MOVE:
 			moving_behav()
 			print('move')
-	move_and_slide()
+	
+	for child in get_children():
+		if child is CharacterBody3D:
+			child.move_and_slide()
+			child.velocity += child.get_gravity()*1.5 * delta
+			print('child')
+			print(child.velocity)
+			print(child.position)
 	
 	
 	
@@ -66,7 +82,10 @@ func _physics_process(delta: float) -> void:
 # - either point list which is static, or dynamic point? Most likely, we can find some balance
 # - (best solution to the above) toggle for group main or sub
 # Return: maybe the list of indivs
-func group_brain(individuals, circum, type = 1) -> void:
+func group_brain(count, size, type = 1) -> void:
+	if (type == 1):
+		for i in range(count):
+			create_char(agents)
 	print('work')
 
 # main brain
@@ -82,24 +101,57 @@ func group_main() -> void:
 # - Ah
 func group_sub() -> void:
 	print('work')
+
+# creates a little char body
+func create_char(append_target) -> void:
+	var character = CharacterBody3D.new()
+	var mesh = MeshInstance3D.new()
+	var collision = CollisionShape3D.new()
+	add_child(character)
+	character.add_child(mesh)
+	character.add_child(collision)
+	
+	
+	# create for collision box
+	var cap = CapsuleShape3D.new()
+	cap.radius = 2.0
+	cap.height = 10.0
+	collision.shape = cap
+	
+	# create for mesh
+	var cap_mesh = CapsuleMesh.new()
+	cap_mesh.radius = 2.0
+	cap_mesh.height = 10.0
+	mesh.mesh = cap_mesh
+	
+	# create for character
+	character.wall_min_slide_angle = 65.0
+	character.floor_constant_speed = true
+	character.floor_max_angle = 65.0
+	character.safe_margin = 3.0
+	
+	# sets position of body
+	print('posit')
+	var radi = circum / 2.0
+	character.global_position.z = randi_range(global_position.z-radi, global_position.z+radi)
+	character.global_position.x = randi_range(global_position.x-radi, global_position.x+radi)
+	character.global_position.y = global_position.y
+	print(character)
+	print(character.position)
+	append_target.append(character)
+	
 	
 
 func get_new_loc() -> void:
-	curr_point += 1
-	print(curr_point)
+	if (navigation_agent_3d.is_navigation_finished()): curr_point += 1
 	if (curr_point > route.size()-1): curr_point = 0
+	print('get new loc')
+	print(curr_point)
+	print(route[curr_point])
+	navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(nav_map, route[curr_point])
 	
-	#var target = route[curr_point]
-	#print('target')
-	#print(target)
-	#var nav_map = navigation_agent_3d.get_navigation_map()
-	#var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target)
-	#print(safe_target)
-	
-	#navigation_agent_3d.target_position = safe_target
-	navigation_agent_3d.target_position = route[curr_point]
 	print(navigation_agent_3d.target_position)
-	state = State.MOVE
+	if (navigation_agent_3d.target_position != Vector3.ZERO): state = State.MOVE
 
 
 # moving to hte points (moving behavior)
@@ -112,19 +164,19 @@ func get_new_loc() -> void:
 # moving_behav
 # depending on type (might make two functions with same name or override) will move to the given target goal with pathfinding (probably just given points individually for modularity)
 func moving_behav() -> void: 
-	var nav_map = navigation_agent_3d.get_navigation_map()
-	navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(get_world_3d().navigation_map, route[curr_point])
-	var current_position = global_transform.origin
+	#var nav_map = navigation_agent_3d.get_navigation_map()
+	#navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(get_world_3d().navigation_map, route[curr_point])
+	var current_position = anchor.global_position
 	var next_position = navigation_agent_3d.get_next_path_position()
 	var direction = (next_position - current_position).normalized()
-	var new_velocity = direction * SPEED
+	var new_velocity = direction * max_speed
 	navigation_agent_3d.velocity = new_velocity
+	anchor.global_position += direction * max_speed * get_process_delta_time()
 	print(new_velocity)
 	print(current_position)
 	print(next_position)
-	#if abs(current_position.y - next_position.y) > 10.0:
-		#var nav_map = navigation_agent_3d.get_navigation_map()
-		#navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(get_world_3d().navigation_map, route[curr_point])
+	if abs(abs(current_position.y) - abs(next_position.y)) > height_recalc_sensitivity: 
+		get_new_loc()
 
 
 # find_group_behav
@@ -162,5 +214,9 @@ func _on_navigation_agent_3d_target_reached() -> void:
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
-	velocity = velocity.move_toward(safe_velocity, 0.25)
-	print(velocity)
+	for child in get_children():
+		if child is CharacterBody3D:
+			var move_vec = child.velocity.move_toward(safe_velocity, 0.25)
+			child.velocity.x = move_vec.x
+			child.velocity.z = move_vec.z
+			
