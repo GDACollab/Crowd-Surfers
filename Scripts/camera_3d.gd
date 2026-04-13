@@ -13,7 +13,6 @@ extends Camera3D
 
 var lead_smoothed: Vector3 = Vector3.ZERO
 
-
 func _process(delta: float) -> void:
 	var v: Vector3 = player.velocity
 	var lead_target: Vector3 = v.normalized() * sqrt(v.length() + 1.0) * 3.0
