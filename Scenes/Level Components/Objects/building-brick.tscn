@@ -15,10 +15,10 @@ render_priority = 0
 shader = ExtResource("4_kqh42")
 shader_parameter/tex = ExtResource("3_ljue0")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kenpf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4rp0t"]
 size = Vector3(100, 90, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kqh42"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4ok5"]
 size = Vector3(100, 10, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -26,6 +26,7 @@ size = Vector3(100, 10, 100)
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_ve1x3")
 active = true
+do_occlusion = true
 top_filename = ExtResource("2_kqh42")
 front_filename = ExtResource("3_ljue0")
 width = 100.0
@@ -52,10 +53,10 @@ texture = ExtResource("3_ljue0")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 50)
-shape = SubResource("BoxShape3D_kenpf")
+shape = SubResource("BoxShape3D_4rp0t")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95, 50)
-shape = SubResource("BoxShape3D_kqh42")
+shape = SubResource("BoxShape3D_d4ok5")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
