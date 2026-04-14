@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvgh0o3qritog"]
+[gd_scene load_steps=12 format=3 uid="uid://cvgh0o3qritog"]
 
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_7ikem"]
+[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="2_8ah0k"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_8ah0k"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="4_hd4ct"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="5_tqh1b"]
@@ -11,8 +13,216 @@
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="9_6qom4"]
 
 [node name="ActThreeConcept" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 
 [node name="RoadGroup" type="Node3D" parent="."]
+
+[node name="MainVerticalRoadGroup" type="Node3D" parent="RoadGroup"]
+
+[node name="MainVerticalRoad" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="MainVerticalRoad12" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+
+[node name="MainVerticalRoad13" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="MainVerticalRoad14" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
+
+[node name="MainVerticalRoad2" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+
+[node name="MainVerticalRoad3" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -300)
+
+[node name="MainVerticalRoad4" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -400)
+
+[node name="MainVerticalRoad5" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
+
+[node name="MainVerticalRoad6" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
+
+[node name="MainVerticalRoad7" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
+
+[node name="MainVerticalRoad8" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800)
+
+[node name="MainVerticalRoad9" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900)
+
+[node name="MainVerticalRoad10" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000)
+
+[node name="MainVerticalRoad11" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1100)
+
+[node name="DiagonalRoadGroup1" type="Node3D" parent="RoadGroup"]
+transform = Transform3D(-5.9604645e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -5.9604645e-08, -300, 0, -550)
+
+[node name="MainVerticalRoad" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 353.55338, 0, -246.44656)
+
+[node name="MainVerticalRoad12" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 424.26407, 0, -175.73587)
+
+[node name="MainVerticalRoad13" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 494.97473, 0, -105.02518)
+
+[node name="MainVerticalRoad14" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 565.6854, 0, -34.31453)
+
+[node name="MainVerticalRoad15" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 636.3961, 0, 36.396164)
+
+[node name="MainVerticalRoad16" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 707.1068, 0, 107.10683)
+
+[node name="MainVerticalRoad2" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 282.8427, 0, -317.1573)
+
+[node name="MainVerticalRoad3" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 212.13202, 0, -387.86798)
+
+[node name="MainVerticalRoad4" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 141.42136, 0, -458.5786)
+
+[node name="MainVerticalRoad5" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 70.71069, 0, -529.2893)
+
+[node name="MainVerticalRoad6" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 3.0517578e-05, 0, -600)
+
+[node name="MainVerticalRoad7" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -70.71066, 0, -670.71063)
+
+[node name="MainVerticalRoad8" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -141.42133, 0, -741.4213)
+
+[node name="MainVerticalRoad9" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -212.13202, 0, -812.13196)
+
+[node name="MainVerticalRoad10" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -282.8427, 0, -882.84265)
+
+[node name="MainVerticalRoad11" parent="RoadGroup/DiagonalRoadGroup1" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -353.55344, 0, -953.55334)
+
+[node name="DiagonalRoadGroup2" type="Node3D" parent="RoadGroup"]
+transform = Transform3D(-5.9604645e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -5.9604645e-08, -300, 0, -1350)
+
+[node name="MainVerticalRoad" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 353.55338, 0, -246.44656)
+
+[node name="MainVerticalRoad12" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 424.26407, 0, -175.73587)
+
+[node name="MainVerticalRoad13" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 494.97473, 0, -105.02518)
+
+[node name="MainVerticalRoad14" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 565.6854, 0, -34.31453)
+
+[node name="MainVerticalRoad15" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 636.3961, 0, 36.396164)
+
+[node name="MainVerticalRoad16" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 707.1068, 0, 107.10683)
+
+[node name="MainVerticalRoad2" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 282.8427, 0, -317.1573)
+
+[node name="MainVerticalRoad3" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 212.13202, 0, -387.86798)
+
+[node name="MainVerticalRoad4" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 141.42136, 0, -458.5786)
+
+[node name="MainVerticalRoad5" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 70.71069, 0, -529.2893)
+
+[node name="MainVerticalRoad6" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 3.0517578e-05, 0, -600)
+
+[node name="MainVerticalRoad7" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -70.71066, 0, -670.71063)
+
+[node name="MainVerticalRoad8" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -141.42133, 0, -741.4213)
+
+[node name="MainVerticalRoad9" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -212.13202, 0, -812.13196)
+
+[node name="MainVerticalRoad10" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -282.8427, 0, -882.84265)
+
+[node name="MainVerticalRoad11" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -353.55344, 0, -953.55334)
+
+[node name="HighwayOnRampGroup" type="Node3D" parent="RoadGroup"]
+
+[node name="VerticalRoad" parent="RoadGroup/HighwayOnRampGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 443.62976, 0, -1674.9469)
+
+[node name="VerticalRoad2" parent="RoadGroup/HighwayOnRampGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 443.62976, 0, -1574.9469)
+
+[node name="ONRamp" parent="RoadGroup/HighwayOnRampGroup" instance=ExtResource("2_8ah0k")]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 443.6298, 0, -1774.9469)
+
+[node name="ONRamp4" parent="RoadGroup/HighwayOnRampGroup" instance=ExtResource("2_8ah0k")]
+transform = Transform3D(-0.99999994, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -0.99999994, 343.6298, 0, -1674.947)
+
+[node name="ONRamp5" parent="RoadGroup/HighwayOnRampGroup" instance=ExtResource("2_8ah0k")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 343.62982, 0, -1874.9469)
+
+[node name="HighwayGroup" type="Node3D" parent="RoadGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="MainVerticalRoad" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -105, 0, -1825)
+
+[node name="MainVerticalRoad12" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, -1825)
+
+[node name="MainVerticalRoad13" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 95, 0, -1825)
+
+[node name="MainVerticalRoad14" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 195, 0, -1825)
+
+[node name="MainVerticalRoad2" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -205, 0, -1825)
+
+[node name="MainVerticalRoad3" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -305, 0, -1825)
+
+[node name="MainVerticalRoad4" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -405, 0, -1825)
+
+[node name="MainVerticalRoad5" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -505, 0, -1825)
+
+[node name="MainVerticalRoad6" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -605, 0, -1825)
+
+[node name="MainVerticalRoad7" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -705, 0, -1825)
+
+[node name="MainVerticalRoad8" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -805, 0, -1825)
+
+[node name="MainVerticalRoad9" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -905, 0, -1825)
+
+[node name="MainVerticalRoad10" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1005, 0, -1825)
+
+[node name="MainVerticalRoad11" parent="RoadGroup/HighwayGroup" instance=ExtResource("1_7ikem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1105, 0, -1825)
 
 [node name="VehicleGroup" type="Node3D" parent="."]
 
