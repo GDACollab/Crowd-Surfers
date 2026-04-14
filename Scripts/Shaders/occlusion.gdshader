@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode depth_prepass_alpha; 
 uniform sampler2D tex: source_color;
 global uniform vec3 transparency_window_pos;
 global uniform vec2 transparency_window_scale;
