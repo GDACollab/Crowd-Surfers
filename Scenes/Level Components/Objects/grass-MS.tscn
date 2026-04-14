@@ -5,15 +5,15 @@
 [ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_bh8mg"]
 [ext_resource type="Texture2D" uid="uid://ckltgaew6op5" path="res://Assets/Art/AlphaSprites/grassMS.png" id="3_ec61x"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5es6f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bh8mg"]
 render_priority = 0
 shader = ExtResource("3_bh8mg")
 shader_parameter/tex = ExtResource("3_ec61x")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a5s1h"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5es6f"]
 size = Vector3(100, 0, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7jjl5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5s1h"]
 size = Vector3(100, 1, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -21,6 +21,7 @@ script = ExtResource("1_bh8mg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_cfa4n")
+active = true
 top_filename = ExtResource("3_ec61x")
 width = 100.0
 length = 100.0
@@ -30,7 +31,7 @@ platform_thickness = 1.0
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(19.53125, 0, 0, 0, 0.99995, -0.1953125, 0, 0.0099995, 19.53125, 0, 0.5, 50)
-material_override = SubResource("ShaderMaterial_5es6f")
+material_override = SubResource("ShaderMaterial_bh8mg")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -38,10 +39,10 @@ texture = ExtResource("3_ec61x")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("BoxShape3D_a5s1h")
+shape = SubResource("BoxShape3D_5es6f")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
-shape = SubResource("BoxShape3D_7jjl5")
+shape = SubResource("BoxShape3D_a5s1h")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

@@ -1,12 +1,14 @@
 shader_type spatial;
+render_mode depth_prepass_alpha; 
 uniform sampler2D tex: source_color;
 global uniform vec3 transparency_window_pos;
 global uniform vec2 transparency_window_scale;
 global uniform vec3 player_pos;
-instance uniform bool do_transparency = true;
+instance uniform bool do_transparency = false;
 
 void fragment() {
 	float alpha = 1.0f;
+	//ALPHA_HASH_SCALE = 0.25f;
 	if(do_transparency) {
 		vec3 top_left = transparency_window_pos - vec3(transparency_window_scale, 0.0f);
 		vec3 bottom_right = transparency_window_pos + vec3(transparency_window_scale, 0.0f);
@@ -19,11 +21,12 @@ void fragment() {
 			&& VERTEX.x >= top_left_view.x 
 			&& VERTEX.x <= bottom_right_view.x) 
 		{
-			alpha = 0.1f;
+			alpha = 0.5f;
 		}
 	}
 	
 	vec4 color = texture(tex, UV);
 	ALPHA = alpha * color.a;
+	DEPTH = FRAGCOORD.z;
 	ALBEDO = color.rgb;
 }
