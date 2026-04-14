@@ -17,7 +17,7 @@ script = ExtResource("1_day0g")
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
-confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton3"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
+confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ActThreeConcept"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
 back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -89,24 +89,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
 text = "Parking Lot"
 icon = ExtResource("3_yohfk")
 
-[node name="OrdersButton3" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+[node name="ActThreeConcept" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "More levels
-soon!"
+text = "Act 3
+Concept"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton4" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 4"
+text = "More Levels
+Soon!"
 icon = ExtResource("3_yohfk")
 
 [node name="OrdersButton5" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
@@ -150,3 +150,4 @@ text = "Back
 
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton" to="." method="_on_vertical_slice_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton" to="." method="_on_parking_lot_button_pressed"]
+[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ActThreeConcept" to="." method="_on_act_three_concept_button_pressed"]
