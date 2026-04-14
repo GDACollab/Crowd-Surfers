@@ -40,6 +40,7 @@ func _process(delta: float) -> void:
 	
 	RenderingServer.global_shader_parameter_set("transparency_window_pos", transparency_window_pos)
 	RenderingServer.global_shader_parameter_set("transparency_window_scale", transparency_window_scale)
+	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
 	
 	#
 	#ray.force_raycast_update()

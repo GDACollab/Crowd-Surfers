@@ -13,12 +13,16 @@ extends Node3D
 @export var isClosed: bool = true
 @export var isRotate: bool = false
 @export var isVehicle : bool = true
+@export var do_transparency: bool = false
 
 var isMoving: bool = false
 var travel_speed: float = 0.0
 
 var follow_node: PathFollow3D
 var curve: Curve3D
+
+## Handles the transparency for this node
+@onready var transparency := Transparency.new($StaticBody3D/TopSprite, $StaticBody3D/FrontSprite)
 
 #@export var active: bool = false:
 #	set(value): 
@@ -42,6 +46,9 @@ func _ready() -> void:
 		self.add_to_group("Vehicles")
 	create_obstacle_path()
 	
+
+func _process(_delta: float) -> void:
+	transparency.set_do_transparency(do_transparency)
 
 func create_obstacle_path() -> void:
 	
