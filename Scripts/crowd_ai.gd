@@ -8,16 +8,17 @@ extends Node3D
 @export var acceleration: float = 5.0
 @export var height_recalc_sensitivity: float = 10.0
 
-# LIST INDIVIDUALS
+# ARRAY
 var agents_main: Array = []
 var agents_sub: Array = []
+var deletion_queue: Array = []
 
 # STATES
 enum State { IDLE, MOVE, SEARCH, MERGE }
 var state : State = State.IDLE
 
 # TIMER
-var check_update_time: float = 5.0
+var check_update_time: float = 2.0
 var check_timer_count: float = 0.0
 
 var sub_update_time: float = 3.0
@@ -51,7 +52,7 @@ func _ready() -> void:
 	agents_main.append(anchor)
 	anchor.set_meta("curr_circum", circum)
 	
-	group_brain(crowd_size, circum)
+	group_brain(crowd_size, circum, 1)
 	#group_brain(1, circum, 0)
 	
 
@@ -77,16 +78,24 @@ func _physics_process(delta: float) -> void:
 	
 	
 	# agent behavior
-	for agt in agents_main:
+	#var pre_subarray_range = range(agents_main.size()-1,-1,-1)
+	checkAmor(agents_main)
+	for agt_idx in range(agents_main.size()-1,-1,-1):
+		var agt = agents_main[agt_idx]
 		agt.move_and_slide()
 		agt.velocity += agt.get_gravity()*10 * delta
-	for idx in range(agents_sub.size()):
+		if (agt_idx != 0): checkWall(agents_main, agt_idx)
+	for idx in range(agents_sub.size()-1,-1,-1):
 		var agt_array = agents_sub[idx]
-		checkAmor(agt_array, idx)
-		for agt in agt_array:
+		checkAmor(agt_array)
+		for agt_idx in range(agt_array.size()-1,-1,-1):
+			var agt = agt_array[agt_idx]
 			agt.move_and_slide()
 			agt.velocity += agt.get_gravity()*10 * delta
-			checkWall(agt, idx)
+			if (agt_idx != 0): checkWall(agt_array, agt_idx)
+	
+	# deletion for all in queue
+	delete_queue()
 	
 
 	
@@ -113,15 +122,18 @@ func _physics_process(delta: float) -> void:
 # - either point list which is static, or dynamic point? Most likely, we can find some balance
 # - (best solution to the above) toggle for group main or sub
 # Return: maybe the list of indivs
-func group_brain(count, size, type = 1) -> void:
+func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	if (type == 1):
 		for i in range(count):
 			create_char_mesh(create_char(agents_main), 2.0)
-			
+		
+		return []
 	else:
-		create_sub_group(agents_sub.size())
-		for i in range(count):
-			create_char_mesh(create_char(agents_sub.size()-1), 2.0)
+		var new_idx = agents_sub.size()
+		var new_sub = create_sub_group(position, new_idx)
+		print(new_sub)
+		return new_sub
+	return []
 
 # main brain
 # Main loop for where to go and what to update
@@ -140,9 +152,11 @@ func group_main(safe_velocity) -> void:
 # Parameters:
 # - Sub_index: reference to where sub brain is placed in array
 # - Safe_velocity: Velocity to apply to the agents
-func group_sub(sub_index, safe_velocity) -> void:
-	var vel = agents_sub[sub_index][0].velocity.move_toward(safe_velocity, acceleration * get_physics_process_delta_time())
-	for agt in agents_sub[sub_index]:
+func group_sub(sub_array, safe_velocity) -> void:
+	if (sub_array.is_empty()): return
+	var vel = sub_array[0].velocity.move_toward(safe_velocity, acceleration * get_physics_process_delta_time())
+	for agt in sub_array:
+		if (not is_instance_valid(agt)): continue
 		agt.velocity.x = vel.x
 		agt.velocity.z = vel.z
 		print(agt.velocity)
@@ -150,7 +164,10 @@ func group_sub(sub_index, safe_velocity) -> void:
 ## collision detection
 # checkWall
 # Checks if the current collisions of member given satisfies checking distance from group
-func checkWall(member, origin_idx) -> void:
+func checkWall(origin, origin_idx) -> void:
+	print(origin)
+	print(origin_idx)
+	var member = origin[origin_idx]
 	if (!member.is_on_wall()): return
 	for curr_hit in member.get_slide_collision_count():
 		var collision = member.get_slide_collision(curr_hit)
@@ -158,20 +175,23 @@ func checkWall(member, origin_idx) -> void:
 		var local_hit = member.to_local(hit_point)
 		
 		if (local_hit.z < -0.1 or local_hit.x > 0.1 or local_hit.x < -0.1):
-			find_group_behav(member, origin_idx, 0)
+			if (member.global_position.distance_squared_to(anchor.global_position) >= circum): 
+				print('checked wall')
+				find_group_behav(member, origin, 0)
 # checkAmor
 # Checks the given array, through amortization
-func checkAmor(array, origin_idx) -> void:
-	var check_limit = ceil(array.size() / check_update_time)
-	var check_index = (check_timer_count * check_limit)
+func checkAmor(array) -> void:
+	if array.size() <= 1: return
+	var check_freq = Time.get_ticks_msec() / 100
+	var check_limit = 2
 	# will never be 0 (good for anchor)
 	for i in range(check_limit):
-		if array.size() <= 1 || check_index >= array.size(): break
-		
-		if (array[check_index].global_position.distance_squared_to(anchor.global_position) >= circum):
-			find_group_behav(array[check_index], origin_idx, 0)
-		
-		check_index+=1
+		var check_index = (check_freq + i) % array.size()
+		if check_index == 0: continue
+		var agt = array[check_index]
+		if (is_instance_valid(agt) and agt.global_position.distance_to(anchor.global_position) >= circum):
+			print('checked amor')
+			find_group_behav(array[check_index], array, 0)
 
 
 
@@ -219,37 +239,60 @@ func moving_behav(anchor_given, agent) -> void:
 # find_group_behav
 # Finds the closest (with given size of current subgroup) subgroup and if combined doesn't exceed max size of subgroup
 func find_group_behav(member, origin, crowd_size) -> void:
+	print('find')
 	for agt_array in agents_sub:
-		var dist = member.global_position.distance_squared_to(agt_array[0])
+		var dist = member.global_position.distance_to(agt_array[0].global_position)
 		var temp_circum = circum * ratio_circum
 		var new_circum = agt_array[0].get_meta("curr_circum") + dist
 		# check if objectect is close and combining doesn't exceed limit
 		if (dist <= temp_circum) and new_circum <= temp_circum:
-			swap_member_behav(origin, member, agents_sub[origin].findIndex(member.name), agt_array)
+			swap_member_behav(origin, member, origin.find(member.name), agt_array)
 			agt_array[0].set_meta("curr_circum", new_circum)
-	var new_idx = agents_sub.size()
-	create_sub_group(new_idx)
-	swap_member_behav(origin, member, agents_sub[origin].findIndex(member.name), agents_sub[new_idx]) # possibly optimize this
+			return
+	var new_sub = group_brain(0, 0, 0, member.global_position)
+	print(member.global_position)
+	
+	swap_member_behav(origin, member, origin.find(member), new_sub) # possibly optimize this
 
 # delete_group_behav
 # Deletes the a group, only call when it either merging with sub group or main group
 func delete_group_behav(target) -> void:
-	for child in target.get_children():
-		if is_instance_valid(child):
-			child.queue_free()
-	target.queue_free()
-	print('work')
+	if (target == agents_main or target.size() > 1): return
+	
+	if target.is_empty():
+		agents_sub.erase(target)
+		return
+	
+	var nav_agent = target[0]
+	var nav_node = nav_agent.get_node_or_null("SubNav")
+	if (is_instance_valid(nav_node) and nav_node.velocity_computed.is_connected(_on_velocity_computed)):
+		nav_node.velocity_computed.disconnect(_on_velocity_computed)
+	if (is_instance_valid(nav_agent)):
+		nav_agent.queue_free()
+	
+	agents_sub.erase(target)
+	print('delete')
+	
+# delete_queue
+# Goes through the queue to call deletion on groups
+func delete_queue() -> void:
+	for del in deletion_queue:
+		delete_group_behav(del)
+	deletion_queue.clear()
 
 # remove_member_behav
 # Removes a member 
 func remove_member_behav(member_idx, target) -> void:
 	target.remove_at(member_idx)
+	print(target)
 	print('remove')
 
 # add_member_behav
 # Adds a member
 func add_member_behav(member, target) -> void:
 	target.append(member)
+	target[0].add_collision_exception_with(member)
+	print(target)
 	print('add')
 
 # swap_member_behav
@@ -257,15 +300,20 @@ func add_member_behav(member, target) -> void:
 func swap_member_behav(source, member, member_idx, target) -> void:
 	var temp = member
 	var temp_idx = member_idx
-	remove_member_behav(member_idx, source)
 	add_member_behav(member, target)
+	remove_member_behav(member_idx, source)
 	
-	if (source.size() == 1): delete_group_behav(source)
+	#if (source.size() == 1 and source != agents_main): delete_group_behav(source) # safety to prevent deleting an anchor yet
+	if (source.size() == 1 and source != agents_main): deletion_queue.append(source)
+	print(deletion_queue)
+	print(source)
+	print(target)
 	print('swapped')
 
 
-#agent.signal_name.connect(_function_name)
-func create_sub_group(sub_idx = 0) -> void:
+# creats a sub group array with an anchor
+func create_sub_group(location, sub_idx = 0) -> Array:
+	print('sub group')
 	var nav_agent = navigation_agent_3d.duplicate()
 	nav_agent.name = "SubNav"
 	nav_agent.max_speed = max_speed * 1.5
@@ -276,9 +324,14 @@ func create_sub_group(sub_idx = 0) -> void:
 	add_child(sub_anchor)
 	sub_anchor.add_child(nav_agent)
 	sub_anchor.set_meta("curr_circum", 0)
+	sub_anchor.global_position = location
 	nav_agent.velocity_computed.connect(
 		func(safe_velocity: Vector3):
-			_on_velocity_computed(safe_velocity, sub_idx))
+			_on_velocity_computed(safe_velocity, sub_array))
+	print(sub_array)
+	print(sub_idx)
+	print('subgroup done')
+	return sub_array
 
 
 
@@ -324,7 +377,7 @@ func create_char(append_target, name = "crowd") -> MeshInstance3D:
 	
 	# sets position of body
 	print('posit')
-	var radi = circum / 2.0
+	var radi = circum / 4.0
 	character.global_position.z = randi_range(global_position.z-radi, global_position.z+radi)
 	character.global_position.x = randi_range(global_position.x-radi, global_position.x+radi)
 	character.global_position.y = global_position.y + 1
@@ -337,7 +390,7 @@ func create_char(append_target, name = "crowd") -> MeshInstance3D:
 func create_char_mesh(mesh, cir) -> void:
 	# create for mesh
 	var cap_mesh = CapsuleMesh.new()
-	cap_mesh.radius = cir / 2.0
+	cap_mesh.radius = 2.0
 	cap_mesh.height = 10.0
 	mesh.mesh = cap_mesh
 	
@@ -360,7 +413,5 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	group_main(safe_velocity)
 
 # relative sub nav agent
-func _on_velocity_computed(safe_velocity: Vector3, sub_idx) -> void:
-	print('vel comp')
-	print(safe_velocity)
-	group_sub(sub_idx, safe_velocity)
+func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
+	group_sub(sub_array, safe_velocity)
