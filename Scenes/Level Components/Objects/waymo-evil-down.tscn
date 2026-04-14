@@ -1,20 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://deollg5t5wxfp"]
+[gd_scene load_steps=10 format=3 uid="uid://deollg5t5wxfp"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_hpc10"]
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_le1te"]
 [ext_resource type="Texture2D" uid="uid://d2msvbva5e2aj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_TOP(UPDATE2).PNG" id="2_44gos"]
 [ext_resource type="Texture2D" uid="uid://b0qunmxcrygau" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_FRONT(UPDATE2).PNG" id="3_2bsdu"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_tcd4g"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_egv3e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_le1te"]
+render_priority = 0
+shader = ExtResource("4_tcd4g")
+shader_parameter/tex = ExtResource("3_2bsdu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w8md"]
+render_priority = 0
+shader = ExtResource("4_tcd4g")
+shader_parameter/tex = ExtResource("2_44gos")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rhyr5"]
 size = Vector3(25, 13.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tcd4g"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4qrnx"]
 size = Vector3(25, 1.5, 50)
 
 [node name="WaymoEvilDown" type="Node3D"]
+script = ExtResource("1_le1te")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_hpc10")
-active = true
 top_filename = ExtResource("3_2bsdu")
 front_filename = ExtResource("2_44gos")
 width = 25.0
@@ -29,6 +41,7 @@ front_spr_pad_right = 5.02
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.994764, 0, 0, 0, 1, 0, 0, 0, 10.737288, 0.1, 15, 24.66)
+material_override = SubResource("ShaderMaterial_le1te")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -36,6 +49,7 @@ texture = ExtResource("3_2bsdu")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(9.04712, 0, 6.7710624e-07, 3.9546217e-07, 1.9106855e-15, -15.490385, 0, 1, 2.9597252e-14, 0.24, 6.945, 50)
+material_override = SubResource("ShaderMaterial_0w8md")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -43,10 +57,10 @@ texture = ExtResource("2_44gos")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 25)
-shape = SubResource("BoxShape3D_egv3e")
+shape = SubResource("BoxShape3D_rhyr5")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
-shape = SubResource("BoxShape3D_tcd4g")
+shape = SubResource("BoxShape3D_4qrnx")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
