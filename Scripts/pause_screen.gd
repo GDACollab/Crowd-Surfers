@@ -4,8 +4,9 @@ extends Control
 
 @onready var controls_container: VBoxContainer = $PhoneBackground/ControlsContainer
 @onready var buttons_container: VBoxContainer = $PhoneBackground/ButtonContainer
+@onready var settings_scene: Control = $PhoneBackground/SettingsScene
 
-var rotating: bool = false
+var transitioning: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -15,20 +16,37 @@ func _on_resume_button_pressed() -> void:
 	queue_free()
 
 func _on_controls_button_pressed() -> void:
-	if (rotating):
+	if (transitioning):
 		return
 	
-	rotating = true
+	transitioning = true
 	controls_container.visible = true
+	settings_scene.visible = false
 	phone_animation_player.play("rotate_landscape")
 
-func _on_back_button_pressed() -> void:
-	if (rotating):
+func _on_controls_back_button_pressed() -> void:
+	if (transitioning):
 		return
 		
-	rotating = true
+	transitioning = true
 	buttons_container.visible = true
 	phone_animation_player.play("rotate_portrait")
+	
+func _on_settings_button_pressed() -> void:
+	if (transitioning):
+		return
+	
+	transitioning = true
+	settings_scene.visible = true
+	phone_animation_player.play("open_settings")
+	
+func _on_settings_back_button_pressed() -> void:
+	if (transitioning):
+		return
+		
+	transitioning = true
+	buttons_container.visible = true
+	phone_animation_player.play_backwards("open_settings")
 
 func _on_restart_level_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
@@ -41,11 +59,15 @@ func _on_exit_level_button_pressed() -> void:
 	get_tree().paused = false
 	
 # Following functions called by animation player
-func stop_rotating() -> void:
-	rotating = false
+func stop_transitioning() -> void:
+	transitioning = false
+	
+func start_transitioning() -> void:
+	transitioning = true
 	
 func hide_buttons() -> void:
 	buttons_container.visible = false
 	
 func hide_controls() -> void:
 	controls_container.visible = false
+	

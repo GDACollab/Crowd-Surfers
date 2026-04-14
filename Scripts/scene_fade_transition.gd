@@ -1,7 +1,7 @@
 extends Node
 
 const LOAD_SCENE: String = "res://Scenes/UI Menus/loading.tscn"
-const MINIMUM_LOAD_SCENE_TIME: float = 1.0
+const MINIMUM_LOAD_SCENE_TIME: float = 0.5
 const FADE_TIME: float = 1.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -25,6 +25,7 @@ func transition_to_scene(finalScene: PackedScene):
 	# Change scenes to finalScene, wait while this happens
 	get_tree().change_scene_to_packed(finalScene)
 	await get_tree().scene_changed
+	Settings.update_fmod_volumes()
 
 	animation_player.play("fade_out")
 	# Wait for animation
@@ -46,6 +47,8 @@ func transition_to_scene_with_loading(finalScene: String):
 	# Change scene to loading scene, wait while this happens
 	get_tree().change_scene_to_packed(load(LOAD_SCENE))
 	await get_tree().scene_changed
+	# Enable this if/when loading screen gets sound
+	# Settings.update_fmod_volumes()
 	
 	animation_player.play("fade_out")
 	# Wait for animation
@@ -66,6 +69,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	# Change to final scene now that its loaded
 	get_tree().change_scene_to_packed(finalSceneLoaded)
 	await get_tree().scene_changed
+	Settings.update_fmod_volumes()
 	
 	animation_player.play("fade_out")
 	# Wait for animation

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://6g62uuswf0m5"]
 
 [ext_resource type="Script" uid="uid://drrrorsu46rwu" path="res://Scripts/Hud UI/Hud Handler.gd" id="1_60t2x"]
-[ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/Hud/speed_ometer_component.tscn" id="2_60t2x"]
-[ext_resource type="PackedScene" uid="uid://s4k1yymmwky1" path="res://Scenes/Hud/timer_component.tscn" id="3_uqmuc"]
-[ext_resource type="PackedScene" uid="uid://crxtf2cx4pai4" path="res://Scenes/Hud/level_progress_component.tscn" id="4_8ms62"]
+[ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/UI Menus/Hud/speed_ometer_component.tscn" id="2_60t2x"]
+[ext_resource type="PackedScene" uid="uid://s4k1yymmwky1" path="res://Scenes/UI Menus/Hud/timer_component.tscn" id="3_uqmuc"]
+[ext_resource type="PackedScene" uid="uid://crxtf2cx4pai4" path="res://Scenes/UI Menus/Hud/level_progress_component.tscn" id="4_8ms62"]
 [ext_resource type="Script" uid="uid://b0horolsbjtj3" path="res://Scripts/Hud UI/level_progress_component.gd" id="5_uqmuc"]
 
 [node name="Hud" type="Control"]
@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_60t2x")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

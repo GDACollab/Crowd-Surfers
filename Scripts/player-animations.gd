@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	var z := v.z
 
 	if abs(x) < deadzone and abs(z) < deadzone:
+		speed_scale = 1.0
 		play("skate_idle")
 		return
 
@@ -18,6 +19,8 @@ func _process(delta: float) -> void:
 		flip_h = false
 	if x < 0:
 		flip_h = true
+
+	speed_scale = 0.5 + v.length()/125
 
 	if abs(x) > deadzone and abs(z) > deadzone:
 		if z > 0:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg5atjrtrnq3w"]
+[gd_scene load_steps=3 format=3 uid="uid://cg5atjrtrnq3w"]
 
 [ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/level_clear.gd" id="1_8u14x"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_ashpn"]
 
 [node name="Control" type="Control"]
 process_mode = 3
@@ -9,6 +10,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_8u14x")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_ashpn")]
+confirm_buttons = [NodePath("../Panel/RestartButton")]
+back_buttons = [NodePath("../Panel/ContinueButton")]
 
 [node name="Panel" type="Panel" parent="."]
 clip_contents = true

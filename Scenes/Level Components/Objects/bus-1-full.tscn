@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cjxyj128cnh4r" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Side/bus_side_FRONT(updated).png" id="4_ywgpp"]
 [ext_resource type="Texture2D" uid="uid://dcfquoapgiqcs" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_FRONT(updated).png" id="5_0ix6c"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ykd5o"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ywgpp"]
 size = Vector3(25, 22.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jn2nw"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ix6c"]
 size = Vector3(25, 2.5, 50)
 
 [node name="Bus1Full" type="Node3D"]
@@ -20,21 +20,31 @@ script = ExtResource("1_l304s")
 active = true
 top_filename = ExtResource("2_qpk3b")
 front_filename = ExtResource("3_ywgpp")
+left_filename = ExtResource("4_ywgpp")
+right_filename = ExtResource("4_ywgpp")
+back_filename = ExtResource("5_0ix6c")
 width = 25.0
 length = 50.0
 height = 25.0
+right_flip = 180.0
 top_spr_pad_left = 2.1
 top_spr_pad_right = 2.63
+front_spr_pad_top = -0.14
+front_spr_pad_bottom = -4.475
 front_spr_pad_left = 2.28
 front_spr_pad_right = 2.73
-
-[node name="SideSprite1" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-1.297728e-07, 0, -3, 0, 6.2669244, 0, 2.9688559, 0, -1.3113416e-07, -12.596733, 11.2183, 25.128479)
-texture = ExtResource("4_ywgpp")
-
-[node name="SideSprite2" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(-1.297728e-07, 0, -3, 0, 6.2669244, 0, 2.9688559, 0, -1.3113416e-07, 11.116228, 11.2183, 25.128479)
-texture = ExtResource("4_ywgpp")
+left_spr_pad_top = 0.05
+left_spr_pad_bottom = 0.77
+left_spr_pad_left = 0.16
+left_spr_pad_right = 1.58
+right_spr_pad_top = 0.025
+right_spr_pad_bottom = 0.815
+right_spr_pad_left = 1.58
+right_spr_pad_right = 0.225
+back_spr_pad_top = 0.03
+back_spr_pad_bottom = -8.065
+back_spr_pad_left = 2.455
+back_spr_pad_right = 2.595
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.4909368, 0, 0, 0, 1, 0, 0, 0, 4.128819, 0.265, 25, 25)
@@ -44,22 +54,39 @@ alpha_cut = 1
 texture = ExtResource("2_qpk3b")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(4.5332327, 0, 1.9619115e-07, 1.981539e-07, 1.9106855e-15, -4.4883304, 0, 1, 8.575788e-15, 0.225, 12.5, 50)
+transform = Transform3D(4.5332327, 0, 1.5997426e-07, 1.981539e-07, 1.9106855e-15, -3.6597846, 0, 1, 6.992697e-15, 0.225, 14.6675, 50)
 axis = 1
 shaded = true
 alpha_cut = 1
 texture = ExtResource("3_ywgpp")
 
+[node name="LeftSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-1, 0, -2.65138e-07, 0, 5.802247, 0, 8.742278e-08, 0, -3.0328252, -12.5, 12.14, 25.71)
+axis = 0
+shaded = true
+alpha_cut = 1
+texture = ExtResource("4_ywgpp")
+
+[node name="RightSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-1, 0, -2.654711e-07, 0, 5.8067417, 0, 8.742278e-08, 0, -3.0366354, 12.5, 12.105, 25.6775)
+axis = 0
+shaded = true
+alpha_cut = 1
+texture = ExtResource("4_ywgpp")
+
+[node name="BackSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(4.5948014, 0, 0, 0, -4.371139e-08, -4.097826, 0, 1, -1.7912167e-07, -0.07, 16.5475, 0)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("5_0ix6c")
+
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 25)
-shape = SubResource("BoxShape3D_ykd5o")
+shape = SubResource("BoxShape3D_ywgpp")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 25)
-shape = SubResource("BoxShape3D_jn2nw")
+shape = SubResource("BoxShape3D_0ix6c")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="backSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(4.5555067, 0, 0, 0, 4.8348145, 0, 0, 0, 1, 0, 14.716591, 1.5477543)
-texture = ExtResource("5_0ix6c")
