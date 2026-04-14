@@ -53,14 +53,26 @@ light_specular = 0.0
 
 [node name="Roads" type="Node" parent="Uncategorized Level"]
 
-[node name="road3" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+[node name="road_horizontal" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="StaticBody3D4" parent="Uncategorized Level/Roads" instance=ExtResource("23_wbhui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
+[node name="road_horizontal2" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
 
-[node name="StaticBody3D5" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+[node name="road_horizontal3" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
+
+[node name="road_horizontal4" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
+
+[node name="road_intersection" parent="Uncategorized Level/Roads" instance=ExtResource("23_wbhui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 100)
+
+[node name="road_vertical" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 100)
+
+[node name="road_curve" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 0)
 
 [node name="Vehicles" type="Node" parent="Uncategorized Level"]
 
@@ -73,7 +85,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 [node name="Grass" type="Node" parent="Uncategorized Level"]
 
 [node name="StaticBody3D6" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
+
+[node name="StaticBody3D7" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 200)
+
+[node name="StaticBody3D8" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 200)
 
 [node name="Arrows" type="Node" parent="."]
 
@@ -90,6 +108,3 @@ visible = false
 hud_ui = NodePath("../Hud")
 
 [node name="PauseHolder" parent="." instance=ExtResource("42_5l05s")]
-
-[node name="StaticBody3D" parent="." instance=ExtResource("22_3tfrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
