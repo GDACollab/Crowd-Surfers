@@ -4,7 +4,7 @@ extends Node3D
 @export var speed: float = 250.0
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print(body.name)
+	#print(body.name)
 	if (body.name == "Player"):
 		if direction.y != 0:
 			if body.can_dash() and Input.is_action_just_pressed("ability_dash") or body.is_dashing():
