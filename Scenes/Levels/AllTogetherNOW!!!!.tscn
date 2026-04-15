@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="19_wc3d2"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="20_fdtib"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="21_88g5p"]
-[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="22_mcmyx"]
+[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="22_mcmyx"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="23_r5rak"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="24_olea3"]
 [ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="25_yqaqw"]
@@ -68,7 +68,6 @@ player = NodePath("../Player")
 
 [node name="Camera3D" parent="." instance=ExtResource("2_ppsfy")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)
-size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
@@ -87,7 +86,7 @@ shadow_lift = 0.0
 shadow_falloff_exp = 1.1
 
 [node name="Light" parent="." instance=ExtResource("19_wc3d2")]
-transform = Transform3D(0.18301266, -0.9659259, -0.1830127, 0.7071068, -3.090862e-08, 0.7071068, -0.6830127, -0.258819, 0.6830127, -507.29907, 0, -1493.9137)
+transform = Transform3D(-0.5996605, -0.5299192, 0.5996606, 0.7071067, -3.0908616e-08, 0.70710677, -0.37470943, 0.84804803, 0.3747095, -507.29907, 0, -1493.9137)
 light_specular = 0.0
 
 [node name="Environment" parent="." instance=ExtResource("20_fdtib")]
