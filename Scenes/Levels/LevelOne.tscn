@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=22 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cnki7"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="4_5g6rg"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="5_bki04"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="6_hntgb"]
+[ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="10_3xhpq"]
+[ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="11_uymm0"]
+[ext_resource type="PackedScene" uid="uid://dw5pqgejh3hvn" path="res://Scenes/Level Components/Objects/building-slug-pizza.tscn" id="12_f045n"]
+[ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="14_ulmir"]
+[ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="15_fjcpu"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="15_uymm0"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="16_f045n"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="21_iuqee"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn.tscn" id="22_3tfrk"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="23_wbhui"]
@@ -62,8 +69,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
 [node name="road_horizontal3" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
 
+[node name="road_horizontal9" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -300)
+
+[node name="road_horizontal10" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, 0)
+
+[node name="road_horizontal11" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 0)
+
+[node name="road_horizontal12" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 0)
+
+[node name="road_horizontal13" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 0)
+
+[node name="road_horizontal14" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 0)
+
 [node name="road_horizontal4" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
+
+[node name="road_horizontal5" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 0)
+
+[node name="road_horizontal6" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
+
+[node name="road_horizontal7" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 0)
+
+[node name="road_horizontal8" parent="Uncategorized Level/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -300)
 
 [node name="road_intersection" parent="Uncategorized Level/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 100)
@@ -71,8 +108,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 100)
 [node name="road_vertical" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 100)
 
+[node name="road_vertical3" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -200)
+
+[node name="road_vertical2" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -100)
+
+[node name="road_vertical4" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -200)
+
+[node name="road_vertical5" parent="Uncategorized Level/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -100)
+
 [node name="road_curve" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -100)
+
+[node name="road_curve7" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -300)
+
+[node name="road_curve2" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -350, 0, -50)
+
+[node name="road_curve6" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 650, 0, -250)
+
+[node name="road_curve3" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -300, 0, 100)
+
+[node name="road_curve8" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 1000, 0, 100)
+
+[node name="road_curve4" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 4.3711392e-08, -150, 0, 50)
+
+[node name="road_curve5" parent="Uncategorized Level/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 4.3711392e-08, 750, 0, 50)
 
 [node name="Vehicles" type="Node" parent="Uncategorized Level"]
 
@@ -80,18 +150,174 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 0)
 
 [node name="Stalls" type="Node" parent="Uncategorized Level/Buildings"]
 
+[node name="building-brick" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -100)
+
+[node name="building-brick2" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -100)
+
+[node name="building-brick3" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -100)
+
+[node name="building-brick4" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -100)
+
+[node name="building-brick5" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -100)
+
+[node name="building-brick6" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -100)
+
+[node name="building-brick7" parent="Uncategorized Level/Buildings" instance=ExtResource("10_3xhpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -100)
+
+[node name="building-green" parent="Uncategorized Level/Buildings" instance=ExtResource("11_uymm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -100)
+
+[node name="building-green3" parent="Uncategorized Level/Buildings" instance=ExtResource("11_uymm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -100)
+
+[node name="building-green2" parent="Uncategorized Level/Buildings" instance=ExtResource("11_uymm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -100)
+
+[node name="building-slug-pizza" parent="Uncategorized Level/Buildings" instance=ExtResource("12_f045n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -100)
+
+[node name="building-brick-complex" parent="Uncategorized Level/Buildings" instance=ExtResource("14_ulmir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -100)
+
+[node name="building-beige" parent="Uncategorized Level/Buildings" instance=ExtResource("15_fjcpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, -100)
+
+[node name="building-beige2" parent="Uncategorized Level/Buildings" instance=ExtResource("15_fjcpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -400)
+
+[node name="building-beige3" parent="Uncategorized Level/Buildings" instance=ExtResource("15_fjcpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -400)
+
+[node name="building-beige4" parent="Uncategorized Level/Buildings" instance=ExtResource("15_fjcpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -400)
+
+[node name="building-beige5" parent="Uncategorized Level/Buildings" instance=ExtResource("15_fjcpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -400)
+
 [node name="Boundaries" type="Node" parent="Uncategorized Level"]
+
+[node name="InvisibleWall" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 50, -200)
+
+[node name="InvisibleWall2" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 50, -200)
+
+[node name="InvisibleWall3" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 100, 50, -50)
+
+[node name="InvisibleWall4" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 100, 50, 150)
+
+[node name="InvisibleWall5" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 400, 50, 150)
+
+[node name="InvisibleWall6" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 700, 50, 150)
+
+[node name="InvisibleWall7" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1000, 50, 150)
+
+[node name="InvisibleWall8" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1300, 50, 150)
+
+[node name="InvisibleWall9" parent="Uncategorized Level/Boundaries" instance=ExtResource("15_uymm0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1400, 50, -50)
+
+[node name="InvisibleWallSmall" parent="Uncategorized Level/Boundaries" instance=ExtResource("16_f045n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 50, -150)
+
+[node name="InvisibleWallSmall2" parent="Uncategorized Level/Boundaries" instance=ExtResource("16_f045n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 50, -150)
 
 [node name="Grass" type="Node" parent="Uncategorized Level"]
 
-[node name="StaticBody3D6" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
+[node name="Grass" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 
-[node name="StaticBody3D7" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 200)
+[node name="Grass2" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
 
-[node name="StaticBody3D8" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 200)
+[node name="Grass3" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 100)
+
+[node name="Grass4" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 100)
+
+[node name="Grass5" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 100)
+
+[node name="Grass6" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 100)
+
+[node name="Grass7" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 100)
+
+[node name="Grass8" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 100)
+
+[node name="Grass9" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 100)
+
+[node name="Grass10" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 0)
+
+[node name="Grass11" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 0)
+
+[node name="Grass12" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 100)
+
+[node name="Grass13" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 100)
+
+[node name="Grass14" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, 100)
+
+[node name="Grass15" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 100)
+
+[node name="Grass16" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 100)
+
+[node name="Grass17" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 100)
+
+[node name="Grass18" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 100)
+
+[node name="Grass19" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -100)
+
+[node name="Grass20" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -100)
+
+[node name="Grass21" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -100)
+
+[node name="Grass22" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -100)
+
+[node name="Grass23" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+
+[node name="Grass24" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="Grass25" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+
+[node name="Grass26" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -200)
+
+[node name="Grass27" parent="Uncategorized Level/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -200)
 
 [node name="Arrows" type="Node" parent="."]
 
