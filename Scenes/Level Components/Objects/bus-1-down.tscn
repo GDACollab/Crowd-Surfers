@@ -14,6 +14,7 @@ size = Vector3(25, 2.5, 50)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_42tln")
+active = true
 top_filename = ExtResource("2_wa3ib")
 front_filename = ExtResource("3_c5npa")
 width = 25.0
@@ -27,6 +28,13 @@ front_spr_pad_right = 2.73
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.4909368, 0, 0, 0, 1, 0, 0, 0, 4.128819, 0.265, 25, 25)
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_wa3ib")
+
+[node name="SideSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-1.3987645e-07, -1, 0, 3.2, -4.371139e-08, 0, 0, 0, 4.129, 0.265, 14.348385, 25)
 axis = 1
 shaded = true
 alpha_cut = 1
