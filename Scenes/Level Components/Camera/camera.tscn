@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bayc23wdt70ft"]
+[gd_scene load_steps=4 format=3 uid="uid://bayc23wdt70ft"]
 
 [ext_resource type="Script" uid="uid://bc7v6pbvp7r8y" path="res://Scripts/camera_3d.gd" id="1_tmrye"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="2_xub3v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xub3v"]
+render_priority = 0
+shader = ExtResource("2_xub3v")
 
 [node name="Camera3D" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -7.915543, 41.654823, 25.095945)
@@ -11,3 +16,4 @@ script = ExtResource("1_tmrye")
 player_path = NodePath("../Player")
 follow_speed = 2.0
 offset = Vector3(0, 50, 50)
+occlusionShader = SubResource("ShaderMaterial_xub3v")
