@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://diq2s5sarpdk2"]
+[gd_scene load_steps=7 format=3 uid="uid://diq2s5sarpdk2"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_gjkuu"]
 [ext_resource type="Texture2D" uid="uid://dgmixqah1koc6" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 2 S3.png" id="2_ut5kl"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_ael51"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_02xk8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ael51"]
+render_priority = 0
+shader = ExtResource("3_ael51")
+shader_parameter/tex = ExtResource("2_ut5kl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kut53"]
 size = Vector3(100, 180, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ael51"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fq01n"]
 size = Vector3(100, 20, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -14,6 +20,7 @@ size = Vector3(100, 20, 100)
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_gjkuu")
 active = true
+do_occlusion = true
 front_filename = ExtResource("2_ut5kl")
 width = 100.0
 length = 100.0
@@ -23,6 +30,7 @@ front_spr_pad_right = 19.47
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(11.194885, 0, 4.6725162e-07, 4.8934396e-07, 1.9106855e-15, -10.689471, 0, 1, 2.0424217e-14, 5.995, 100, 100)
+material_override = SubResource("ShaderMaterial_ael51")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -32,10 +40,10 @@ region_rect = Rect2(0, 0, 1134, 1871)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, 50)
-shape = SubResource("BoxShape3D_02xk8")
+shape = SubResource("BoxShape3D_kut53")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 190, 50)
-shape = SubResource("BoxShape3D_ael51")
+shape = SubResource("BoxShape3D_fq01n")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
