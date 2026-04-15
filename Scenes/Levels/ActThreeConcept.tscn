@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvgh0o3qritog"]
+[gd_scene load_steps=17 format=3 uid="uid://cvgh0o3qritog"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="3_tqh1b"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="4_hd4ct"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="4_v7jmr"]
+[ext_resource type="PackedScene" uid="uid://dw5pqgejh3hvn" path="res://Scenes/Level Components/Objects/building-slug-pizza.tscn" id="5_spvyn"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="5_tqh1b"]
+[ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="6_6qom4"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="6_v7jmr"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="7_vn3cp"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="8_spvyn"]
@@ -474,33 +476,105 @@ transform = Transform3D(0.92050487, 0, -0.39073113, 0, 1, 0, 0.39073113, 0, 0.92
 [node name="TempAirport3" parent="BuildingGroup/HighwayBuildings" instance=ExtResource("4_v7jmr")]
 transform = Transform3D(0.92050487, 0, -0.39073113, 0, 1, 0, 0.39073113, 0, 0.92050487, 1639, 0, -2774)
 
+[node name="StraightRouteBuildings" type="Node3D" parent="BuildingGroup"]
+
+[node name="GreenBuilding -1_0" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94, 0, 495)
+
+[node name="SlugPizza -1_1" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 0, 594.7398)
+
+[node name="BuildingBeige -1_2" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.65231, 0, 699.7308)
+
+[node name="GreenBuilding -1_3" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94, 0, -375)
+
+[node name="SlugPizza -1_6" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 0, -275.2602)
+
+[node name="BuildingBeige -1_7" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.65231, 0, -170.26923)
+
+[node name="GreenBuilding -1_5" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 0, -585)
+
+[node name="SlugPizza -1_7" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107, 0, -485.2602)
+
+[node name="BuildingBeige -1_8" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.34769, 0, -380.26923)
+
+[node name="GreenBuilding -1_6" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 0, -885)
+
+[node name="SlugPizza -1_8" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107, 0, -785.2602)
+
+[node name="BuildingBeige -1_9" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.34769, 0, -680.2692)
+
+[node name="GreenBuilding -1_1" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 495)
+
+[node name="SlugPizza -1_2" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 0, 594.7398)
+
+[node name="BuildingBeige -1_3" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.34769, 0, 699.7308)
+
+[node name="GreenBuilding -1_2" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 195)
+
+[node name="SlugPizza -1_3" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 0, 294.7398)
+
+[node name="BuildingBeige -1_4" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.34769, 0, 399.73077)
+
+[node name="SlugPizza -1_4" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 0, -5.260193)
+
+[node name="BuildingBeige -1_5" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.34769, 0, 99.730774)
+
+[node name="GreenBuilding -1_4" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94, 0, 195)
+
+[node name="SlugPizza -1_5" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 0, 294.7398)
+
+[node name="BuildingBeige -1_6" parent="BuildingGroup/StraightRouteBuildings" instance=ExtResource("6_6qom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.65231, 0, 399.73077)
+
 [node name="SpecialComponentsGroup" type="Node3D" parent="."]
 
-[node name="AlleywayInvisWallGroup" type="Node3D" parent="SpecialComponentsGroup"]
+[node name="DiagonalInvisWallGroup" type="Node3D" parent="SpecialComponentsGroup"]
 
-[node name="InvisibleWall" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, -1095, 0, 905)
 
-[node name="InvisibleWall2" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall2" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, -955, 0, 1045)
 
-[node name="InvisibleWall3" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall3" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, -747, 1, 837)
 
-[node name="InvisibleWall4" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall4" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, -537.19995, 0, 625.9)
 
-[node name="InvisibleWall5" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall5" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, -329.19998, 1, 417.9)
 
-[node name="InvisibleWall6" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall6" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, -194.19998, 1, 278.9)
 
-[node name="InvisibleWall7" parent="SpecialComponentsGroup/AlleywayInvisWallGroup" instance=ExtResource("3_hd4ct")]
+[node name="InvisibleWall7" parent="SpecialComponentsGroup/DiagonalInvisWallGroup" instance=ExtResource("3_hd4ct")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -99.19998, 1, 319.9)
 
-[node name="LevelEndCollider" parent="SpecialComponentsGroup" instance=ExtResource("7_vn3cp")]
+[node name="LevelEndCollider" parent="SpecialComponentsGroup" node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("7_vn3cp")]
 transform = Transform3D(0.39073107, 0, 4.7590103, 0, 3.995, 0, -0.92050487, 0, 2.0200796, 1663.1477, 0, -2560.727)
+level_clear_ui = NodePath("../../LevelClearUI")
 
 [node name="DecorationsGroup" type="Node3D" parent="."]
 
@@ -537,7 +611,8 @@ light_specular = 0.0
 
 [node name="Hud" parent="." instance=ExtResource("6_v7jmr")]
 
-[node name="LevelClearUI" parent="." instance=ExtResource("8_spvyn")]
+[node name="LevelClearUI" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("8_spvyn")]
 visible = false
+hud_ui = NodePath("../Hud")
 
 [node name="PauseHolder" parent="." instance=ExtResource("9_6qom4")]
