@@ -26,6 +26,8 @@ var travel_speed: float = 0.0
 var follow_node: PathFollow3D
 var curve: Curve3D
 
+#This serves to scale the velocity being applied to the player
+@export var jumpVelocityRatio: float = 0.8 
 var myVelocity: Vector3 = Vector3.ZERO
 
 #@export var active: bool = false:
@@ -169,4 +171,4 @@ func get_player_jumped_velocity() -> Vector3:
 	#but it's easier overall.
 	#Oh also, player velocity seems to multiply overtime,
 	#So we multiply the velocity added here to balance it out.
-	return myVelocity * 0.8
+	return myVelocity * jumpVelocityRatio
