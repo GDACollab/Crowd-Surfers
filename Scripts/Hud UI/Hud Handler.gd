@@ -96,15 +96,14 @@ func _process(delta: float) -> void:
 	# Since player velocity is normalized and reduced if going in two directions
 	# we need to find the hypotenuse, aka the real speed.
 	
-	# This is just the pythagorthem theorem lol
-	# ty eric :thumbs_up:
-	var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
-	set_Player_speed(hypotenuse)
-	
+	# This gets the actual speed of the player, not the max speed. No longer used
+	#var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
+	set_Player_speed(player.max_speed)
+
 	## Handle Stars
 	var index: int = 0
 	for star in starImages:
-		if (stars[index].speed_percent_to_show < hypotenuse):
+		if (stars[index].speed_percent_to_show < player.max_speed):
 			if (star.modulate.a < 1):
 				star.modulate.a += star_alpha_fade_per_second * delta
 		elif (star.modulate.a > 0):
