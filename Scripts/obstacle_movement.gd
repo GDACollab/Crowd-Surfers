@@ -1,5 +1,11 @@
 extends Node3D
 
+## README NERDS
+# Hi, Ashton here! If your car for some reason isn't moving the player with it,
+# Make sure that you've changed the 'staticbody3D' to an 'animatablebody3D'
+# in the prefab!
+# Once you've done that, the rest of everything should work fine!
+
 ######################################
 # DYNAMIC MOVEMENT STUFFS WITH AARON #
 ######################################
@@ -19,6 +25,8 @@ var travel_speed: float = 0.0
 
 var follow_node: PathFollow3D
 var curve: Curve3D
+
+var myVelocity: Vector3 = Vector3.ZERO
 
 #@export var active: bool = false:
 #	set(value): 
@@ -149,8 +157,16 @@ func _physics_process(delta: float) -> void:
 	#var dir = curve.sample_baked_with_rotation(follow_node.progress).basis.z #Asks the forward direction at the point
 	#self_node.rotation.y = atan2(dir.x, dir.z) + deg_to_rad(forward_direction)
 	self_node.global_position = follow_node.global_position #For animatablebody3d
-	##physicsBody.apply_central_force(apply_force()) #For RigidBody3d
+	#physicsBody.apply_central_force(apply_force()) #For RigidBody3d
 	#var self_2d = Vector2(self.global_position.x, self.global_position.z)
 	#var target_2d = Vector2(follow_node.global_position.x, follow_node.global_position.z)
 	#var theta = self_2d.angle_to(target_2d)
-	#self.velocity = Vector3(cos(theta)*100.0, 0.0, sin(theta) * 100.0)
+	#myVelocity = Vector3(cos(theta)*100.0, 0.0, sin(theta) * 100.0)
+	myVelocity = dir / delta #The distance traveled, divided by delta for average per second
+
+func get_player_jumped_velocity() -> Vector3:
+	#Calcing this every frame instead of on jump may be inefficient,
+	#but it's easier overall.
+	#Oh also, player velocity seems to multiply overtime,
+	#So we multiply the velocity added here to balance it out.
+	return myVelocity * 0.8

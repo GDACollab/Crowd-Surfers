@@ -542,6 +542,22 @@ func handle_inputs(delta: float) -> void:
 func jump() -> void:
 	velocity.y = jump_speed
 	$JumpSound.play()
+	#Hijacking this to add a check for if you jump off a moving car
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(position, position + 3 * Vector3.DOWN)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if(!result.is_empty()):
+		#We hit something! check if it's an animatablebody,
+		#ie could possibly be a moving car
+		if(result["collider"].get_class() == "AnimatableBody3D"):
+			#Grab it's parent to check if it is a moving car
+			var carMover = result["collider"].get_parent()
+			if(carMover.has_method("get_player_jumped_velocity")):
+				#If it is a moving car, apply the velocity from the car to the player
+				var addVelocity = carMover.get_player_jumped_velocity()
+				velocity += addVelocity
+	
 
 ## Called by external objects (like the Wind Box) to force the player into the air
 func apply_wind_launch(launch_speed: float) -> void:
