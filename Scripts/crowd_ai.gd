@@ -5,13 +5,16 @@ extends Node3D
 @export var ratio_circum: float = 0.5 # area of subgroups max, and max find distance
 @export var crowd_size: float = 1.0
 @export var max_speed: float = 20.0
-@export var acceleration: float = 5.0
+@export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0
+@export var check_rate: int = 200
 
 # ARRAY
 var agents_main: Array = []
 var agents_sub: Array = []
 var deletion_queue: Array = []
+var moved_data: Array = []
+var call_queue: Array = []
 
 # STATES
 enum State { IDLE, MOVE, SEARCH, MERGE }
@@ -21,8 +24,8 @@ var state : State = State.IDLE
 var check_update_time: float = 2.0
 var check_timer_count: float = 0.0
 
-var sub_update_time: float = 3.0
-var sub_timer_count: float = 2.0
+var sub_update_time: float = 2.0
+var sub_timer_count: float = 1.0
 
 # ANCHOR VARIABLES
 var anchor_velocity = Vector3(0, 0, 0)
@@ -42,7 +45,10 @@ var curr_point = 0
 func _ready() -> void:
 	print('start')
 	navigation_agent_3d.max_speed = max_speed
+	navigation_agent_3d.radius = circum / 2.0
 	var anchor_mesh = $Anchor/MeshInstance3D
+	var anchor_box = $Anchor/CollisionShape3D
+	anchor_box.shape.radius = circum / 4.0
 	var area = CylinderMesh.new()
 	area.top_radius = circum / 2.0
 	area.bottom_radius = circum / 2.0
@@ -79,7 +85,7 @@ func _physics_process(delta: float) -> void:
 	
 	# agent behavior
 	#var pre_subarray_range = range(agents_main.size()-1,-1,-1)
-	checkAmor(agents_main)
+	checkAmor(agents_main, false)
 	for agt_idx in range(agents_main.size()-1,-1,-1):
 		var agt = agents_main[agt_idx]
 		agt.move_and_slide()
@@ -87,15 +93,23 @@ func _physics_process(delta: float) -> void:
 		if (agt_idx != 0): checkWall(agents_main, agt_idx)
 	for idx in range(agents_sub.size()-1,-1,-1):
 		var agt_array = agents_sub[idx]
-		checkAmor(agt_array)
+		checkAmor(agt_array, true)
 		for agt_idx in range(agt_array.size()-1,-1,-1):
 			var agt = agt_array[agt_idx]
+			if (agt.get_meta("moved") == true): continue
 			agt.move_and_slide()
 			agt.velocity += agt.get_gravity()*10 * delta
 			if (agt_idx != 0): checkWall(agt_array, agt_idx)
 	
+	# call all swaps (maybe do this before find instead of swap)
+	for c in call_queue:
+		if c.is_valid():
+			c.call()
+	call_queue.clear()
+	
 	# deletion for all in queue
 	delete_queue()
+	# reset move_data ref and clear currently checked references
 	
 
 	
@@ -131,7 +145,6 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	else:
 		var new_idx = agents_sub.size()
 		var new_sub = create_sub_group(position, new_idx)
-		print(new_sub)
 		return new_sub
 	return []
 
@@ -141,11 +154,10 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 # - Safe_velocity: Velocity to apply to the agents
 func group_main(safe_velocity) -> void:
 	var vel = anchor.velocity.move_toward(safe_velocity, acceleration * get_physics_process_delta_time())
-	print('velll')
 	for agt in agents_main:
 		agt.velocity.x = vel.x
 		agt.velocity.z = vel.z
-		print(agt.velocity)
+
 
 # sub brain
 # Sub loop for remerging, what needs to be initially made and what to follow? (might need to split up again)
@@ -159,14 +171,11 @@ func group_sub(sub_array, safe_velocity) -> void:
 		if (not is_instance_valid(agt)): continue
 		agt.velocity.x = vel.x
 		agt.velocity.z = vel.z
-		print(agt.velocity)
 
 ## collision detection
 # checkWall
 # Checks if the current collisions of member given satisfies checking distance from group
 func checkWall(origin, origin_idx) -> void:
-	print(origin)
-	print(origin_idx)
 	var member = origin[origin_idx]
 	if (!member.is_on_wall()): return
 	for curr_hit in member.get_slide_collision_count():
@@ -176,23 +185,27 @@ func checkWall(origin, origin_idx) -> void:
 		
 		if (local_hit.z < -0.1 or local_hit.x > 0.1 or local_hit.x < -0.1):
 			if (member.global_position.distance_squared_to(anchor.global_position) >= circum): 
-				print('checked wall')
 				find_group_behav(member, origin, 0)
 # checkAmor
-# Checks the given array, through amortization
-func checkAmor(array) -> void:
+# Checks the given array, through amortization. Searches for missing from the main group, or if it is near the main group
+func checkAmor(array, non_main) -> void:
 	if array.size() <= 1: return
-	var check_freq = Time.get_ticks_msec() / 100
+	var check_freq = Time.get_ticks_msec() / check_rate
 	var check_limit = 2
 	# will never be 0 (good for anchor)
 	for i in range(check_limit):
 		var check_index = (check_freq + i) % array.size()
 		if check_index == 0: continue
 		var agt = array[check_index]
-		if (is_instance_valid(agt) and agt.global_position.distance_to(anchor.global_position) >= circum):
-			print('checked amor')
+		
+		if not is_instance_valid(array[0]): return
+		if (is_instance_valid(agt) and agt.global_position.distance_to(array[0].global_position) >= circum / 2.0):
 			find_group_behav(array[check_index], array, 0)
-
+			return
+		if (is_instance_valid(agt) and non_main and agt.global_position.distance_to(anchor.global_position) < circum / 4.0):
+			#call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member), new_sub))
+			call_queue.append(Callable(self, "swap_member_behav").bind(array, agt, check_index, agents_main))
+			return
 
 
 # finds a new location for nav agent with a given point to point system
@@ -204,7 +217,6 @@ func get_new_loc() -> void:
 	print('get new loc')
 	navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(nav_map, route[curr_point])
 	
-	print(navigation_agent_3d.target_position)
 	if (navigation_agent_3d.target_position != Vector3.ZERO): state = State.MOVE
 
 
@@ -230,7 +242,7 @@ func moving_behav(anchor_given, agent) -> void:
 	var current_position = anchor_given.global_position
 	var next_position = agent.get_next_path_position()
 	var direction = (next_position - current_position).normalized()
-	var new_velocity = direction * max_speed
+	var new_velocity = direction * agent.max_speed
 	agent.set_velocity(new_velocity)
 	if anchor_given == anchor and abs(abs(current_position.y) - abs(next_position.y)) > height_recalc_sensitivity: 
 		get_new_loc()
@@ -246,13 +258,11 @@ func find_group_behav(member, origin, crowd_size) -> void:
 		var new_circum = agt_array[0].get_meta("curr_circum") + dist
 		# check if objectect is close and combining doesn't exceed limit
 		if (dist <= temp_circum) and new_circum <= temp_circum:
-			swap_member_behav(origin, member, origin.find(member.name), agt_array)
+			call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member.name), agt_array))
 			agt_array[0].set_meta("curr_circum", new_circum)
 			return
 	var new_sub = group_brain(0, 0, 0, member.global_position)
-	print(member.global_position)
-	
-	swap_member_behav(origin, member, origin.find(member), new_sub) # possibly optimize this
+	call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member), new_sub))
 
 # delete_group_behav
 # Deletes the a group, only call when it either merging with sub group or main group
@@ -284,7 +294,6 @@ func delete_queue() -> void:
 # Removes a member 
 func remove_member_behav(member_idx, target) -> void:
 	target.remove_at(member_idx)
-	print(target)
 	print('remove')
 
 # add_member_behav
@@ -292,22 +301,18 @@ func remove_member_behav(member_idx, target) -> void:
 func add_member_behav(member, target) -> void:
 	target.append(member)
 	target[0].add_collision_exception_with(member)
-	print(target)
 	print('add')
 
 # swap_member_behav
 # Swaps a member with another group, essentially remove and adding, and possibly deleting if none exist
 func swap_member_behav(source, member, member_idx, target) -> void:
 	var temp = member
-	var temp_idx = member_idx
+	var temp_idx = source.find(member)
 	add_member_behav(member, target)
-	remove_member_behav(member_idx, source)
+	remove_member_behav(temp_idx, source)
 	
 	#if (source.size() == 1 and source != agents_main): delete_group_behav(source) # safety to prevent deleting an anchor yet
 	if (source.size() == 1 and source != agents_main): deletion_queue.append(source)
-	print(deletion_queue)
-	print(source)
-	print(target)
 	print('swapped')
 
 
@@ -317,6 +322,7 @@ func create_sub_group(location, sub_idx = 0) -> Array:
 	var nav_agent = navigation_agent_3d.duplicate()
 	nav_agent.name = "SubNav"
 	nav_agent.max_speed = max_speed * 1.5
+	nav_agent.neighbor_distance = 0
 	var sub_array = []
 	create_anchor_mesh(create_char(sub_array, "AnchorSub"), circum * ratio_circum)
 	agents_sub.insert(sub_idx, sub_array)
@@ -373,7 +379,7 @@ func create_char(append_target, name = "crowd") -> MeshInstance3D:
 	character.floor_constant_speed = true
 	character.floor_max_angle = 65.0
 	character.safe_margin = 0.5
-	character.add_collision_exception_with(anchor)
+	character.add_collision_exception_with($Anchor)
 	
 	# sets position of body
 	print('posit')

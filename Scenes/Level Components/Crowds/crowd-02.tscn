@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cn6tdkcjmek1b" path="res://Scripts/crowd_ai.gd" id="1_1ls1x"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1ls1x"]
+height = 5.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ls1x"]
 radius = 2.0
@@ -20,12 +21,12 @@ safe_margin = 0.5
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Anchor"]
 path_desired_distance = 10.0
-target_desired_distance = 5.0
-path_max_distance = 10.01
-simplify_path = true
+target_desired_distance = 10.0
+path_max_distance = 20.01
 avoidance_enabled = true
 height = 10.0
-radius = 2.0
+radius = 10.0
+neighbor_distance = 0.1
 max_speed = 30.0
 keep_y_velocity = false
 debug_enabled = true
@@ -37,6 +38,7 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor"]
 shape = SubResource("CapsuleShape3D_1ls1x")
+debug_color = Color(0.827451, 0.16470589, 0.047058824, 0.7490196)
 
 [connection signal="target_reached" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
