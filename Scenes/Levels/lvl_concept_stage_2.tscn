@@ -1,23 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=13 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_wef7b"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_omilu"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="3_bi364"]
 [ext_resource type="PackedScene" uid="uid://duybqcqdfpvk7" path="res://Scenes/Levels/stage_2_concept_intro.tscn" id="5_wef7b"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://c1xw1x5562w3b" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://bdycrobbag4ww" path="res://Scenes/Levels/mid_density_start.tscn" id="7_b76c4"]
 [ext_resource type="PackedScene" uid="uid://b7d8epeebr0h6" path="res://Scenes/Levels/mid_density_act_2.tscn" id="8_aj0jd"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://dmkrxxqd6thbx" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="9_pwmad"]
 [ext_resource type="PackedScene" uid="uid://taf3lipoxj0x" path="res://Scenes/Levels/stage_2_concept_FalseStart.tscn" id="10_aj0jd"]
+[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="12_pwmad"]
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 
 [node name="Misc" type="Node3D" parent="."]
 
 [node name="Camera3D" parent="Misc" instance=ExtResource("2_omilu")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 532.8144, 120.806206, 411.30725)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 411.30725)
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
@@ -25,7 +26,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Misc/Camera3D"]
 
 [node name="Player" parent="Misc" instance=ExtResource("1_wef7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, 350)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, 350)
 
 [node name="Environment" parent="Misc" instance=ExtResource("3_bi364")]
 
@@ -35,7 +36,8 @@ light_specular = 0.0
 
 [node name="Scenes" type="Node3D" parent="."]
 
-[node name="stage-2-concept" parent="Scenes" instance=ExtResource("5_wef7b")]
+[node name="stage-2-Start" parent="Scenes" instance=ExtResource("5_wef7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
 
 [node name="LowDensityAct2" parent="Scenes" instance=ExtResource("6_ipv6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -250)
@@ -49,10 +51,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4200, 0, -150)
 [node name="stage_2_concept_end" parent="Scenes" instance=ExtResource("9_ipv6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5400, 0, 550)
 
-[node name="stage-2-concept2" parent="Scenes" instance=ExtResource("10_aj0jd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6900, 0, 0)
+[node name="stage-2-FalseEnd" parent="Scenes" instance=ExtResource("10_aj0jd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7200, 0, -500)
 
 [node name="AddedAssests" type="Node3D" parent="."]
 
 [node name="RoadTurnL" parent="AddedAssests" instance=ExtResource("9_pwmad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, -100)
+
+[node name="RoadHori" parent="AddedAssests" instance=ExtResource("12_pwmad")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3000, 0, -100)
