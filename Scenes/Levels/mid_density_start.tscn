@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdycrobbag4ww"]
+[gd_scene load_steps=8 format=3 uid="uid://bdycrobbag4ww"]
 
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_8jwlg"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_bjry4"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="3_aam8r"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="4_rs3b5"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_bjry4"]
+[ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="6_rs3b5"]
+[ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="7_v4vw7"]
 
 [node name="MidDensityStart" type="Node3D"]
 
@@ -66,5 +68,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 50)
 [node name="BuildCont" type="Node3D" parent="."]
 
 [node name="PropCont" type="Node3D" parent="."]
+
+[node name="MarketStallAmber" parent="PropCont" instance=ExtResource("6_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -50)
+
+[node name="MarketStallCyan" parent="PropCont" instance=ExtResource("7_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="MarketStallAmber2" parent="PropCont" instance=ExtResource("6_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="MarketStallCyan2" parent="PropCont" instance=ExtResource("7_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -50)
+
+[node name="MarketStallCyan3" parent="PropCont" instance=ExtResource("7_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 100)
+
+[node name="MarketStallAmber3" parent="PropCont" instance=ExtResource("6_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 100)
 
 [node name="ArrowCont" type="Node3D" parent="."]
