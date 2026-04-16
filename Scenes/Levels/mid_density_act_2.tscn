@@ -1,9 +1,5 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7d8epeebr0h6"]
+[gd_scene load_steps=20 format=3 uid="uid://b7d8epeebr0h6"]
 
-[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_q8b5c"]
-[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_biagt"]
-[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="3_1j3xu"]
-[ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="4_jyobe"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_lrgld"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="6_urfa4"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="7_jyobe"]
@@ -25,31 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="23_5m2at"]
 
 [node name="MidDensityAct2" type="Node3D"]
-
-[node name="Camera3D" parent="." instance=ExtResource("1_q8b5c")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 500, 120.806, 73.95337)
-near = 0.001
-offset = Vector3(0, 1000, 1000)
-
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
-
-[node name="Player" parent="." instance=ExtResource("2_biagt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
-ramping_exponent = 0.525
-stomp_dash_boost_factor = 400.0
-max_stomp_dash_boost = 700.0
-dash_cooldown = 1.0
-shadow_base_scale = 10.0
-shadow_min_scale = 2.0
-shadow_max_height = 50.0
-shadow_lift = 0.0
-shadow_falloff_exp = 1.1
-
-[node name="Light" parent="." instance=ExtResource("3_1j3xu")]
-transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 0, -1493.9137)
-light_specular = 0.0
-
-[node name="Environment" parent="." instance=ExtResource("4_jyobe")]
 
 [node name="GroundCont" type="Node3D" parent="."]
 
