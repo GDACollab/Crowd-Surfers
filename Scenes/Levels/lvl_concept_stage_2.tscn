@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_omilu"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="3_bi364"]
 [ext_resource type="PackedScene" uid="uid://duybqcqdfpvk7" path="res://Scenes/Levels/stage_2_concept_intro.tscn" id="5_wef7b"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://c1xw1x5562w3b" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://bdycrobbag4ww" path="res://Scenes/Levels/mid_density_start.tscn" id="7_b76c4"]
 [ext_resource type="PackedScene" uid="uid://b7d8epeebr0h6" path="res://Scenes/Levels/mid_density_act_2.tscn" id="8_aj0jd"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://dmkrxxqd6thbx" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="9_pwmad"]
 [ext_resource type="PackedScene" uid="uid://taf3lipoxj0x" path="res://Scenes/Levels/stage_2_concept_FalseStart.tscn" id="10_aj0jd"]
 
@@ -17,7 +17,7 @@
 [node name="Misc" type="Node3D" parent="."]
 
 [node name="Camera3D" parent="Misc" instance=ExtResource("2_omilu")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 532.8144, 120.806206, 411.30725)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 411.30725)
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
@@ -25,7 +25,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Misc/Camera3D"]
 
 [node name="Player" parent="Misc" instance=ExtResource("1_wef7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, 350)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, 350)
 
 [node name="Environment" parent="Misc" instance=ExtResource("3_bi364")]
 
@@ -36,6 +36,7 @@ light_specular = 0.0
 [node name="Scenes" type="Node3D" parent="."]
 
 [node name="stage-2-concept" parent="Scenes" instance=ExtResource("5_wef7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
 
 [node name="LowDensityAct2" parent="Scenes" instance=ExtResource("6_ipv6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -250)
