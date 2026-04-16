@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1xw1x5562w3b"]
+[gd_scene load_steps=15 format=3 uid="uid://c1xw1x5562w3b"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="1_sowhy"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="2_6hqax"]
@@ -8,9 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="5_6hqax"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="6_s6jld"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="7_0ntw3"]
-[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="9_fbgh6"]
-[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="10_7ralt"]
-[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="11_qynht"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="12_0na1c"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="12_7piyj"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="13_gdh5n"]
@@ -19,13 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="17_snqwb"]
 
 [node name="LowDensityAct2" type="Node3D"]
-
-[node name="Player" parent="." instance=ExtResource("9_fbgh6")]
-
-[node name="Camera3D" parent="." instance=ExtResource("10_7ralt")]
-
-[node name="DirectionalLight3D" parent="." instance=ExtResource("11_qynht")]
-transform = Transform3D(0.35355335, -0.8660254, -0.3535534, 0.70710677, -9.835193e-09, 0.7071067, -0.6123724, -0.5, 0.61237246, 0, 0, 0)
 
 [node name="Segment1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, -500)
