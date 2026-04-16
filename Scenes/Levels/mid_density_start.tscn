@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdycrobbag4ww"]
+
+[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_8jwlg"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_bjry4"]
+[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="3_aam8r"]
+[ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="4_rs3b5"]
+
+[node name="MidDensityStart" type="Node3D"]
+
+[node name="Camera3D" parent="." instance=ExtResource("1_8jwlg")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 120.806, 73.95337)
+near = 0.001
+offset = Vector3(0, 1000, 1000)
+
+[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_bjry4")]
+ramping_exponent = 0.525
+stomp_dash_boost_factor = 400.0
+max_stomp_dash_boost = 700.0
+dash_cooldown = 1.0
+shadow_base_scale = 10.0
+shadow_min_scale = 2.0
+shadow_max_height = 50.0
+shadow_lift = 0.0
+shadow_falloff_exp = 1.1
+
+[node name="Light" parent="." instance=ExtResource("3_aam8r")]
+transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 0, -1493.9137)
+light_specular = 0.0
+
+[node name="Environment" parent="." instance=ExtResource("4_rs3b5")]

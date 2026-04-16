@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b7d8epeebr0h6"]
+[gd_scene load_steps=24 format=3 uid="uid://b7d8epeebr0h6"]
 
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_q8b5c"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_biagt"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="7_jyobe"]
 [ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="7_onjya"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="7_yacnu"]
-[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="8_5m2at"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="8_lrgld"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="8_onjya"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="9_urfa4"]
@@ -284,9 +283,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -50)
 [node name="RoadHor32" parent="GroundCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -50)
 
-[node name="RoadVert" parent="GroundCont" instance=ExtResource("8_5m2at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, 650)
-
 [node name="BuildCont" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
 
@@ -410,9 +406,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -150)
 [node name="BrickBuild11" parent="BuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, 450)
 
-[node name="BeigeBuild15" parent="BuildCont" instance=ExtResource("9_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, 550)
-
 [node name="PropCont" type="Node3D" parent="."]
 
 [node name="FenceToBe" type="Sprite3D" parent="PropCont"]
@@ -529,9 +522,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 550)
 [node name="MarketStallCyan4" parent="PropCont" instance=ExtResource("17_j7m4k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 550)
 
-[node name="InvisibleWallSmall4" parent="PropCont" instance=ExtResource("12_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 50, 700)
-
 [node name="ArrowCont" type="Node3D" parent="."]
 
 [node name="ArrowStraight" type="Sprite3D" parent="ArrowCont"]
@@ -580,8 +570,4 @@ texture = ExtResource("22_uu56x")
 
 [node name="ArrowCurve4" type="Sprite3D" parent="ArrowCont"]
 transform = Transform3D(1.788732e-07, 14.999999, -1.788732e-07, 0, 1.788732e-07, 14.999999, 14.999999, -1.788732e-07, 2.1330416e-15, -232.80609, 2, 554.9488)
-texture = ExtResource("23_5m2at")
-
-[node name="ArrowCurve5" type="Sprite3D" parent="ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -1033.9802, 2, 600)
 texture = ExtResource("23_5m2at")
