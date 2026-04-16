@@ -1,38 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdycrobbag4ww"]
+[gd_scene load_steps=7 format=3 uid="uid://bdycrobbag4ww"]
 
-[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_8jwlg"]
-[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_bjry4"]
-[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="3_aam8r"]
-[ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="4_rs3b5"]
+[ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="2_aam8r"]
+[ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="3_rs3b5"]
+[ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="4_v4vw7"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_bjry4"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="6_rs3b5"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="7_v4vw7"]
 
 [node name="MidDensityStart" type="Node3D"]
-
-[node name="Camera3D" parent="." instance=ExtResource("1_8jwlg")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 120.806, 73.95337)
-near = 0.001
-offset = Vector3(0, 1000, 1000)
-
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
-
-[node name="Player" parent="." instance=ExtResource("2_bjry4")]
-ramping_exponent = 0.525
-stomp_dash_boost_factor = 400.0
-max_stomp_dash_boost = 700.0
-dash_cooldown = 1.0
-shadow_base_scale = 10.0
-shadow_min_scale = 2.0
-shadow_max_height = 50.0
-shadow_lift = 0.0
-shadow_falloff_exp = 1.1
-
-[node name="Light" parent="." instance=ExtResource("3_aam8r")]
-transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 0, -1493.9137)
-light_specular = 0.0
-
-[node name="Environment" parent="." instance=ExtResource("4_rs3b5")]
 
 [node name="RoadCont" type="Node3D" parent="."]
 
@@ -66,6 +41,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -50)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 50)
 
 [node name="BuildCont" type="Node3D" parent="."]
+
+[node name="StaticBody3D" parent="BuildCont" instance=ExtResource("2_aam8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -150)
+
+[node name="StaticBody3D2" parent="BuildCont" instance=ExtResource("3_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -150)
+
+[node name="StaticBody3D3" parent="BuildCont" instance=ExtResource("4_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -150)
+
+[node name="StaticBody3D4" parent="BuildCont" instance=ExtResource("4_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -150)
+
+[node name="StaticBody3D5" parent="BuildCont" instance=ExtResource("2_aam8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -150)
 
 [node name="PropCont" type="Node3D" parent="."]
 
