@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=13 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_wef7b"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmkrxxqd6thbx" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="9_pwmad"]
 [ext_resource type="PackedScene" uid="uid://taf3lipoxj0x" path="res://Scenes/Levels/stage_2_concept_FalseStart.tscn" id="10_aj0jd"]
+[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="12_pwmad"]
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 
@@ -35,7 +36,7 @@ light_specular = 0.0
 
 [node name="Scenes" type="Node3D" parent="."]
 
-[node name="stage-2-concept" parent="Scenes" instance=ExtResource("5_wef7b")]
+[node name="stage-2-Start" parent="Scenes" instance=ExtResource("5_wef7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
 
 [node name="LowDensityAct2" parent="Scenes" instance=ExtResource("6_ipv6h")]
@@ -56,4 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7200, 0, -500)
 [node name="AddedAssests" type="Node3D" parent="."]
 
 [node name="RoadTurnL" parent="AddedAssests" instance=ExtResource("9_pwmad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, -100)
+
+[node name="RoadHori" parent="AddedAssests" instance=ExtResource("12_pwmad")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3000, 0, -100)
