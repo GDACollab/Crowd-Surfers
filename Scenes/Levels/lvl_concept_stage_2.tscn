@@ -1,65 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=12 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
-[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_r58da"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_wef7b"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_omilu"]
-[ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="3_bi364"]
-[ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="7_omilu"]
+[ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="3_bi364"]
+[ext_resource type="PackedScene" uid="uid://duybqcqdfpvk7" path="res://Scenes/Levels/stage_2_concept_intro.tscn" id="5_wef7b"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://bdycrobbag4ww" path="res://Scenes/Levels/mid_density_start.tscn" id="7_b76c4"]
+[ext_resource type="PackedScene" uid="uid://b7d8epeebr0h6" path="res://Scenes/Levels/mid_density_act_2.tscn" id="8_aj0jd"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="9_pwmad"]
+[ext_resource type="PackedScene" uid="uid://taf3lipoxj0x" path="res://Scenes/Levels/stage_2_concept_FalseStart.tscn" id="10_aj0jd"]
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 
-[node name="DirectionalLight3D" parent="." instance=ExtResource("1_omilu")]
+[node name="Misc" type="Node3D" parent="."]
 
-[node name="Camera3D" parent="." instance=ExtResource("2_omilu")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -17.185608, 120.806206, 61.30725)
+[node name="Camera3D" parent="Misc" instance=ExtResource("2_omilu")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 532.8144, 120.806206, 411.30725)
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
+[node name="FmodListener3D" type="FmodListener3D" parent="Misc/Camera3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_wef7b")]
+[node name="Player" parent="Misc" instance=ExtResource("1_wef7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, 350)
 
-[node name="ArrowContainer" type="Node3D" parent="."]
+[node name="Environment" parent="Misc" instance=ExtResource("3_bi364")]
 
-[node name="ArrowStraight" type="Sprite3D" parent="ArrowContainer"]
-transform = Transform3D(-6.556708e-07, -15, 6.556708e-07, 0, -6.556708e-07, -15, 15, -6.556708e-07, 2.866028e-14, 0, 2, 100)
-texture = ExtResource("7_omilu")
+[node name="Light" parent="Misc" instance=ExtResource("1_omilu")]
+transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 0, -1493.9137)
+light_specular = 0.0
 
-[node name="ArrowStraight2" type="Sprite3D" parent="ArrowContainer"]
-transform = Transform3D(-15, -1.3113416e-06, 5.732056e-14, 0, -6.556708e-07, -15, 1.3113416e-06, -15, 6.556708e-07, 200, 2, -50)
-texture = ExtResource("7_omilu")
+[node name="Scenes" type="Node3D" parent="."]
 
-[node name="RoadContainer" type="Node3D" parent="."]
+[node name="stage-2-concept" parent="Scenes" instance=ExtResource("5_wef7b")]
 
-[node name="VertRoad" parent="RoadContainer" instance=ExtResource("1_r58da")]
+[node name="LowDensityAct2" parent="Scenes" instance=ExtResource("6_ipv6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -250)
 
-[node name="VertRoad2" parent="RoadContainer" instance=ExtResource("1_r58da")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+[node name="MidDensityStart" parent="Scenes" instance=ExtResource("7_b76c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3100, 0, -150)
 
-[node name="CornRoad" parent="RoadContainer"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 0, -50)
-script = null
+[node name="MidDensityAct2" parent="Scenes" instance=ExtResource("8_aj0jd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4200, 0, -150)
 
-[node name="HornRoad" parent="RoadContainer" instance=ExtResource("3_bi364")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -100)
+[node name="stage_2_concept_end" parent="Scenes" instance=ExtResource("9_ipv6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5400, 0, 550)
 
-[node name="HornRoad2" parent="RoadContainer" instance=ExtResource("3_bi364")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+[node name="stage-2-concept2" parent="Scenes" instance=ExtResource("10_aj0jd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6900, 0, 0)
 
-[node name="VertRoad3" parent="RoadContainer" instance=ExtResource("1_r58da")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+[node name="AddedAssests" type="Node3D" parent="."]
 
-[node name="StairContainer" type="Node3D" parent="."]
-
-[node name="VechileContainer" type="Node3D" parent="."]
+[node name="RoadTurnL" parent="AddedAssests" instance=ExtResource("9_pwmad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3000, 0, -100)
