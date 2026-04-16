@@ -121,37 +121,19 @@ func _display_text(newDialoguePanel):
 	isTyping = true
 	dialogueLabel.visible_characters = 0
 	dialogueLabel.text = dialogueText
-	var alphanumerics_count = 0;
+	var alphanumerics_count = 0
 	
 	while dialogueLabel.visible_characters < dialogueText.length() - 1:
-		var i = dialogueLabel.visible_characters; 
-		var animalese_frequency = 2; # animalese sound plays every n characters
-		var voice = "marlowe"
-		
-		if (alphanumerics_count % animalese_frequency == 0):
-			var c = dialogueLabel.text[i]
-			var animalese_sound = FmodServer.create_event_instance("event:/SFX/CHAR/animalese/DialogueTest");
-			
-			animalese_sound.set_parameter_by_name_with_label("voice", voice, false)
-			
-			# print(alphanumerics_count, " % ", animalese_frequency, " = ", alphanumerics_count % animalese_frequency)
-			
-			# regex match
-			if (RegEx.create_from_string("[A-Za-z]").search(c)): 
-				animalese_sound.set_parameter_by_name_with_label("letter", dialogueLabel.text[i].to_lower(), false)
-			
-			elif (RegEx.create_from_string("[0-9]").search(c)): 
-				animalese_sound.set_parameter_by_name_with_label("letter", dialogueLabel.text[i], false)
-				
-			else:
-				animalese_sound.set_parameter_by_name_with_label("letter", "punc", false)
-				alphanumerics_count -= 1
-			
-			animalese_sound.start()
+		var letter = dialogueLabel.visible_characters; 
+		var character_name = currentSpeakerData.characterName
+
+		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter_voice(dialogueLabel.text, character_name, letter, alphanumerics_count)
 			
 		dialogueLabel.visible_characters += 1
-		alphanumerics_count += 1
+		if (should_increment_alphanumeric_counter): alphanumerics_count += 1
+		
 		await get_tree().create_timer(0.05).timeout
+		
 	isTyping = false
 
 ##Move old panels
