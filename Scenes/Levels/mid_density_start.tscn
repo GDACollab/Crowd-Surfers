@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdycrobbag4ww"]
+[gd_scene load_steps=11 format=3 uid="uid://bdycrobbag4ww"]
 
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="2_aam8r"]
+[ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="2_yedu2"]
+[ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="3_fev7k"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="3_rs3b5"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="4_v4vw7"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_bjry4"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="6_rs3b5"]
+[ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="7_73t2t"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="7_v4vw7"]
+[ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="8_yedu2"]
 
 [node name="MidDensityStart" type="Node3D"]
 
@@ -40,6 +44,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -50)
 [node name="RoadHor10" parent="RoadCont" instance=ExtResource("5_bjry4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 50)
 
+[node name="RoadHor11" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -50)
+
+[node name="RoadHor12" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 50)
+
+[node name="RoadHor13" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 50)
+
+[node name="RoadHor14" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 150)
+
+[node name="RoadHor15" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 50)
+
+[node name="RoadHor16" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 150)
+
+[node name="RoadHor17" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 50)
+
+[node name="RoadHor18" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 150)
+
+[node name="RoadHor19" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 50)
+
+[node name="RoadHor20" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 150)
+
+[node name="StaticBody3D" parent="RoadCont" instance=ExtResource("2_yedu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -50)
+
+[node name="StaticBody3D2" parent="RoadCont" instance=ExtResource("3_fev7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 150)
+
+[node name="RoadHor25" parent="RoadCont" instance=ExtResource("5_bjry4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 50)
+
 [node name="BuildCont" type="Node3D" parent="."]
 
 [node name="StaticBody3D" parent="BuildCont" instance=ExtResource("2_aam8r")]
@@ -56,6 +99,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -150)
 
 [node name="StaticBody3D5" parent="BuildCont" instance=ExtResource("2_aam8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -150)
+
+[node name="StaticBody3D6" parent="BuildCont" instance=ExtResource("2_aam8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -150)
+
+[node name="StaticBody3D7" parent="BuildCont" instance=ExtResource("3_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -50)
+
+[node name="StaticBody3D8" parent="BuildCont" instance=ExtResource("4_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, -50)
+
+[node name="StaticBody3D9" parent="BuildCont" instance=ExtResource("4_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, -50)
+
+[node name="StaticBody3D10" parent="BuildCont" instance=ExtResource("2_aam8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -50)
+
+[node name="StaticBody3D13" parent="BuildCont" instance=ExtResource("4_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, -50)
 
 [node name="PropCont" type="Node3D" parent="."]
 
@@ -77,4 +138,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 100)
 [node name="MarketStallAmber3" parent="PropCont" instance=ExtResource("6_rs3b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 100)
 
+[node name="MarketStallAmber4" parent="PropCont" instance=ExtResource("6_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 50)
+
+[node name="MarketStallCyan4" parent="PropCont" instance=ExtResource("7_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 50)
+
+[node name="MarketStallAmber5" parent="PropCont" instance=ExtResource("6_rs3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 200)
+
+[node name="MarketStallCyan6" parent="PropCont" instance=ExtResource("7_v4vw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 200)
+
 [node name="ArrowCont" type="Node3D" parent="."]
+
+[node name="ArrowStraight" type="Sprite3D" parent="ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -39.650238, 2, 50)
+texture = ExtResource("7_73t2t")
+
+[node name="ArrowStraight3" type="Sprite3D" parent="ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -689.65027, 2, 150)
+texture = ExtResource("7_73t2t")
+
+[node name="ArrowStraight4" type="Sprite3D" parent="ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -889.65027, 2, 150)
+texture = ExtResource("7_73t2t")
+
+[node name="ArrowCurve" type="Sprite3D" parent="ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -1083.9802, 2, 150)
+texture = ExtResource("8_yedu2")
+
+[node name="ArrowCurve2" type="Sprite3D" parent="ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -433.98022, 2, 50)
+texture = ExtResource("8_yedu2")
+
+[node name="ArrowStraight2" type="Sprite3D" parent="ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -239.65024, 2, 50)
+texture = ExtResource("7_73t2t")
