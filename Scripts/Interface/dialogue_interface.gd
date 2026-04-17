@@ -1,5 +1,5 @@
-extends Control
 class_name DialogueInterface
+extends Control
 
 @export var mainPanels : Array[InterfacePanel]
 ## Dialogue Panel prefab
@@ -105,30 +105,36 @@ func _continue_story():
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
-##Displays the current line incrementaly
-func _display_text(newDialoguePanel):
+## Displays the current line 
+func _handle_panel_text(newDialoguePanel):
 	#Set anchor point
 	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	dialoguePanels.push_front(newDialoguePanel)
+	
 	#Ensures panels do not overflow
 	if(dialoguePanels.size() > 3):
 		_kill_panel(dialoguePanels[3])
+		
 	dialogueLabel = newDialoguePanel.find_child("Dialogue Text")
 	add_child(newDialoguePanel)
 	newDialoguePanel.showPanel()
 	_animate_panels()
+	_do_typewriter_text()
 	
+# Displays text incrementally with a typewriter effect and calls typewriter voice sounds (animalese)
+func _do_typewriter_text():
 	isTyping = true
 	dialogueLabel.visible_characters = 0
 	dialogueLabel.text = dialogueText
-	var alphanumerics_count = 0
+	var alphanumerics_count = 0 # count of every non-punctuation character because those are the only characters play animalese sounds for
 	
 	while dialogueLabel.visible_characters < dialogueText.length() - 1:
-		var letter = dialogueLabel.visible_characters; 
-		var character_name = currentSpeakerData.characterName
-
-		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter_voice(dialogueLabel.text, character_name, letter, alphanumerics_count)
-			
+		var letter_index = dialogueLabel.visible_characters; 
+		var character_name = currentSpeakerData.characterName if (currentSpeakerData != null) else "Slip"
+		var should_increment_alphanumeric_counter = true
+		
+		should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter_voice(dialogueText, character_name, letter_index, alphanumerics_count)
+		
 		dialogueLabel.visible_characters += 1
 		if (should_increment_alphanumeric_counter): alphanumerics_count += 1
 		
@@ -296,7 +302,7 @@ func _handle_tags(currentTags, newPanel):
 			"bg":
 				print("Choosing new background!")
 	awaitingAnimations = false
-	_display_text(newPanel)
+	_handle_panel_text(newPanel)
 
 func _reset_display():
 	leftPortrait.scale = Vector2.ONE
