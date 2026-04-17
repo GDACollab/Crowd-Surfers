@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0yxmc0r0nog"]
+
+[ext_resource type="Script" uid="uid://ccr1tc3w830q4" path="res://Scripts/slow_pad_collider.gd" id="1_46viw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
+
+[node name="SlowPadCollider" type="Node3D"]
+script = ExtResource("1_46viw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_elp6e")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
