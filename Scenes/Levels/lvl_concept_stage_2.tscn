@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=21 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="15_njsij"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="17_4gi21"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="18_njsij"]
+[ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="18_r2b5i"]
+[ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="19_7y7j4"]
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 
@@ -91,6 +93,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2800, 0, 1050)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, 1050)
 
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
+
+[node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("18_r2b5i")]
+transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 5.51, 250, 0, 1200)
+level_clear_ui = NodePath("../LevelClearUI")
+
+[node name="LevelClearUI" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("19_7y7j4")]
+visible = false
+hud_ui = NodePath("../Hud")
 
 [node name="PauseHolder" parent="." instance=ExtResource("18_njsij")]
 visible = false
