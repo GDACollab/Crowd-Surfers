@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdycrobbag4ww"]
+[gd_scene load_steps=11 format=3 uid="uid://bdycrobbag4ww"]
 
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="2_aam8r"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="2_yedu2"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="3_fev7k"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="3_rs3b5"]
-[ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="4_fev7k"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="4_v4vw7"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_bjry4"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="6_rs3b5"]
@@ -75,15 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 50)
 [node name="RoadHor20" parent="RoadCont" instance=ExtResource("5_bjry4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 150)
 
-[node name="RoadHor21" parent="RoadCont" instance=ExtResource("5_bjry4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 50)
-
-[node name="RoadHor22" parent="RoadCont" instance=ExtResource("5_bjry4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 150)
-
-[node name="RoadHor23" parent="RoadCont" instance=ExtResource("5_bjry4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 50)
-
 [node name="StaticBody3D" parent="RoadCont" instance=ExtResource("2_yedu2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -50)
 
@@ -92,9 +82,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 150)
 
 [node name="RoadHor25" parent="RoadCont" instance=ExtResource("5_bjry4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 50)
-
-[node name="StaticBody3D3" parent="RoadCont" instance=ExtResource("4_fev7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 150)
 
 [node name="BuildCont" type="Node3D" parent="."]
 
