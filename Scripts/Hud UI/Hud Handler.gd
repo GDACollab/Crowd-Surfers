@@ -2,21 +2,23 @@ extends Control
 
 ## Get references to all components
 ## I Couldn't figure out signals and did this method lol
-@onready var speed_O_Meter = $"HBoxContainer/SpeedOmeter Component"
-@onready var timer_Display = $"HBoxContainer/VBoxContainer/Timer Component"
-@onready var level_Display = $"HBoxContainer/VBoxContainer/Level Progress Component"
+@onready var speedometer = $"Hud Container/Speedometer Component"
+@onready var timer_Display = $"Hud Container/Timer Component"
+@onready var level_Display = $"Hud Container/Level Progress Component"
+@onready var hud_container = $"Hud Container/Stars Container"
 
 # Get reference without actually editing the player script
-@onready var player = get_parent().get_node("Player")
+@onready var player: Node = get_parent().get_node("Player")
 
 # track time passed so far
-@onready var curr_Time :float = 0.0
+@onready var curr_Time : float = 0.0
 
-# Adds functionality to make the timer count down instead
-# of counting up like a stop watch
-@export var count_Down: bool = false
-@export var time_Limit: float = 30.0
+@export_category("Stars")
+@export var stars: Array[HudStarData]
+@export var star_scale: float
+@export var star_alpha_fade_per_second: float
 
+var starImages: Array[TextureRect]
 
 signal change_Lvl_Progress(new_speed: float)
 
@@ -30,13 +32,22 @@ func _ready():
 	change_Lvl_Progress.connect(set_Level_Progress)
 	set_Level_Progress(30)
 	
+	# Create stars
+	for i in stars.size():
+		var star: TextureRect = TextureRect.new()
+		star.texture = stars[i].texture
+		star.position = stars[i].position
+		star.scale = Vector2(star_scale, star_scale)
+		hud_container.add_child(star)
+		starImages.append(star)
+	
 func set_Max_Speed(new_Speed: float):
-	speed_O_Meter.set_Max_Speed(new_Speed)
+	speedometer.set_Max_Speed(new_Speed)
 
 # Send a call to the script attached to the speed_O_Meter component
 # that script handles changing the bar value display
 func set_Player_speed(new_Speed: float):
-	speed_O_Meter.set_speed(new_Speed)
+	speedometer.set_speed(new_Speed)
 	
 # send a call to the component with the script attached.
 # that script handles changing the display.
@@ -44,44 +55,60 @@ func set_Level_Progress(new_Progress: float):
 	level_Display.set_Progress(new_Progress)
 	
 func set_Time(new_Time: float):
-	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time))
+	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, false, true), get_Formatted_Timer_Text(new_Time, true, true))
 	
-func get_Formatted_Timer_Text(time: float) -> String:
+func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: bool = false) -> String:
 	var rounded_time: float = snapped(time, 0.01)
-	var seconds: int = int(rounded_time)
-	
-	var centi_seconds: String = str(int((rounded_time - seconds) * 100))
+	var seconds: String = str(int(rounded_time) % 60)
+	if (seconds.length() == 1):
+		seconds = "0" + seconds
+		
+	var minutes: String = str(int(rounded_time / 60))
+	if (minutes.length() == 1):
+		minutes = "0" + minutes
+		
+	var centi_seconds: String = str(int((rounded_time - int(rounded_time)) * 100))
 	if (centi_seconds.length() == 1):
 		centi_seconds += "0"
 		
-	var formatted_time = str(seconds) + ":" + str(centi_seconds)
+	var formatted_time: String
+	if (centiseconds):
+		formatted_time = "." + str(centi_seconds)
+	else:
+		formatted_time = minutes + ":" + seconds
+		
+	if (sprites):
+		var sprite_formatted_time: String = ""
+		for character in formatted_time:
+			if (character == ':'):
+				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img]"
+			elif (character == '.'):
+				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/period.png[/img]" 
+			else:
+				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/" + character + ".png[/img]"
+		formatted_time = sprite_formatted_time
+		
 	return formatted_time
 
-# Place holder function
-# Haven't decided how to determine visually what will happen when player loses by time
-# so program wise I left a place holder function so easy modiiblity.
-# Maybe a signal would be better here?
-# gonna wait for some time until a better idea is drawn up or something.
-func timer_Done():
-	print("timer finished in Hud Handler.gd")
 func _process(delta: float) -> void:
 	
 	## Find player velocity
 	# Since player velocity is normalized and reduced if going in two directions
 	# we need to find the hypotenuse, aka the real speed.
 	
-	# First if statement to check if player is
-	# only going in a cardinal direction
-	# if this is true, then no need to calculate the hypotenuse
-	if((player.velocity.x == 0) || (player.velocity.z == 0)):
-		set_Player_speed(max(abs(player.velocity.x),abs(player.velocity.z)))
-	# if this else statement runs, that means
-	# there is a velocity in both X and Z currently
-	else:
-		# This is just the pythagorthem theorem lol
-		# ty eric :thumbs_up:
-		var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
-		set_Player_speed(hypotenuse)
+	# This gets the actual speed of the player, not the max speed. No longer used
+	#var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
+	set_Player_speed(player.max_speed)
+
+	## Handle Stars
+	var index: int = 0
+	for star in starImages:
+		if (stars[index].speed_percent_to_show < player.max_speed):
+			if (star.modulate.a < 1):
+				star.modulate.a += star_alpha_fade_per_second * delta
+		elif (star.modulate.a > 0):
+				star.modulate.a -= star_alpha_fade_per_second * delta
+		index += 1
 	
 	## Calculate and display time
 	curr_Time = curr_Time + delta
@@ -90,4 +117,6 @@ func _process(delta: float) -> void:
 	## Handle Level Progression
 	# Currently not implemented, as end goals aren't finalized
 	# And I would need a demo level to see how to connect endgoal to hud
+	
+	
 	
