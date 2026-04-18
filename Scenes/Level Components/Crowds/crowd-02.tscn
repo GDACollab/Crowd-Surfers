@@ -1,9 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://s5mseyvnfuqc"]
+[gd_scene load_steps=4 format=3 uid="uid://kc2va7uohqqi"]
 
-[ext_resource type="Script" uid="uid://cn6tdkcjmek1b" path="res://Scripts/crowd_ai.gd" id="1_1ls1x"]
+[ext_resource type="Script" uid="uid://bnonkgk7oq8x4" path="res://Scripts/crowd_ai.gd" id="1_1ls1x"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1ls1x"]
-height = 5.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ls1x"]
 radius = 2.0
@@ -13,26 +12,33 @@ height = 10.0
 script = ExtResource("1_1ls1x")
 
 [node name="Anchor" type="CharacterBody3D" parent="."]
+collision_layer = 7
+collision_mask = 7
 wall_min_slide_angle = 1.134464
 floor_constant_speed = true
 floor_max_angle = 1.134464
-floor_snap_length = 1.0
-safe_margin = 0.5
+floor_snap_length = 0.0
+platform_on_leave = 2
+safe_margin = 0.01
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Anchor"]
 path_desired_distance = 10.0
 target_desired_distance = 10.0
-path_max_distance = 20.01
+path_max_distance = 5.01
+navigation_layers = 7
 avoidance_enabled = true
 height = 10.0
-radius = 10.0
+radius = 2.0
 neighbor_distance = 0.1
+max_neighbors = 1
 max_speed = 30.0
 keep_y_velocity = false
+avoidance_layers = 7
+avoidance_mask = 7
 debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Anchor"]
-transparency = 0.8
+transparency = 0.5
 mesh = SubResource("CylinderMesh_1ls1x")
 skeleton = NodePath("")
 
