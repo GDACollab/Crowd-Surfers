@@ -8,9 +8,13 @@ extends Node3D
 @export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0
 @export var check_rate: int = 200
+<<<<<<< Updated upstream
 @export var check_limit: int = 5
 @export var crowd_image: Texture2D
 
+=======
+@export var check_limit: int = 2
+>>>>>>> Stashed changes
 # ARRAY
 var agents_main: Array = []
 var agents_sub: Array = []
@@ -47,11 +51,15 @@ var curr_point = 0
 func _ready() -> void:
 	print('start')
 	navigation_agent_3d.max_speed = max_speed
-	navigation_agent_3d.radius = circum / 2.0
+	#navigation_agent_3d.radius = circum / 2.0
 	var anchor_mesh = $Anchor/MeshInstance3D
 	anchor_mesh.transparency = 1.0
 	var anchor_box = $Anchor/CollisionShape3D
+<<<<<<< Updated upstream
 	anchor_box.shape.radius = circum / 2.0
+=======
+	#anchor_box.shape.radius = circum / 4.0
+>>>>>>> Stashed changes
 	var area = CylinderMesh.new()
 	area.top_radius = circum / 2.0
 	area.bottom_radius = circum / 2.0
@@ -80,8 +88,12 @@ func _physics_process(delta: float) -> void:
 				#print(get_node(nav[0].name + "/SubNav"))
 				get_new_sub_loc(get_node(nav[0].name + "/SubNav"))
 		State.MOVE:
+<<<<<<< Updated upstream
 			#print('movee')
 			moving_behav(anchor, navigation_agent_3d)
+=======
+			group_main(moving_behav(anchor, navigation_agent_3d))
+>>>>>>> Stashed changes
 			for nav in agents_sub:
 				var nav_agent = get_node(nav[0].name + "/SubNav")
 				
@@ -123,7 +135,8 @@ func _physics_process(delta: float) -> void:
 	# deletion for all in queue
 	delete_queue()
 	# reset move_data ref and clear currently checked references
-	
+	#print(agents_main)
+	#print(agents_sub)
 
 	
 	
@@ -239,12 +252,14 @@ func checkAmor(array, non_main) -> void:
 	if array.size() <= 1: return
 	var check_freq = Time.get_ticks_msec() / check_rate
 	# will never be 0 (good for anchor)
+	# check through member in given freq, to see if member is outside of given group or at anchor
 	for i in range(check_limit):
 		var check_index = (check_freq + i) % array.size()
 		if check_index == 0: continue
-		var agt = array[check_index]
+		var member = array[check_index]
 		
 		if not is_instance_valid(array[0]): return
+<<<<<<< Updated upstream
 		
 		
 		
@@ -255,7 +270,46 @@ func checkAmor(array, non_main) -> void:
 		if (is_instance_valid(agt) and non_main and agt.global_position.distance_to(anchor.global_position) < circum / 2.0):
 			#call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member), new_sub))
 			call_queue.append(Callable(self, "swap_member_behav").bind(array, agt, check_index, agents_main))
+=======
+		var member_position = Vector2(member.global_position.x, member.global_position.z)
+		if (is_instance_valid(member) and member_position.distance_to(Vector2(array[0].global_position.x, array[0].global_position.z)) >= circum / 2.0):
+			find_group_behav(array[check_index], array, 0)
 			return
+		if (is_instance_valid(member) and non_main and member_position.distance_to(Vector2(anchor.global_position.x, anchor.global_position.z)) < circum / 2.0):
+			call_queue.append(Callable(self, "swap_member_behav").bind(array, member, agents_main))
+>>>>>>> Stashed changes
+			return
+	# returns if main anchor, since main anchor should not merge
+	if (!non_main and agents_sub.size() <= 0): return
+	
+	# check through each sub anchor to see if the sub groups can merge
+	var check_size = check_limit % agents_sub.size()
+	for i in range(check_size):
+		#print(check_size)
+		#print(agents_sub.size())
+		var check_index = (check_freq + i) % agents_sub.size()
+		var sub_group = agents_sub[i]
+		
+		if not is_instance_valid(array[0]): return
+		var given_anchor_position = Vector2(array[0].global_position.x, array[0].global_position.z)
+		#print('sub_anc')
+		#print(given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)))
+		if (given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 2.0):
+			#print('working anchor given')
+			call_queue.append(Callable(self, "mass_swap_behav").bind(array, sub_group))
+			return
+	
+	
+# checkMerge
+func checkMerge(member, array) -> void: 
+	if (member.global_position.distance_to(anchor.global_position) < circum):
+		call_queue.append(Callable(self, "swap_member_behav").bind(array, member, agents_main))
+		
+	else:
+		for sub_array in agents_sub:
+			if (member.global_position.distance_to(sub_array[0].global_position) < circum):
+				call_queue.append(Callable(self, "swap_member_behav").bind(array, member, sub_array))
+				break
 
 # checkAnchor
 # Checks the given anchor to all sub_anchors to determine if a merge is acceptable
@@ -313,6 +367,7 @@ func moving_behav(anchor_given, agent) -> Vector3:
 	#anchor_given.velocity = anchor_given.velocity.move_toward(new_velocity, acceleration * get_physics_process_delta_time())
 	if anchor_given == anchor and abs(abs(current_position.y) - abs(next_position.y)) > height_recalc_sensitivity: 
 		get_new_loc()
+<<<<<<< Updated upstream
 	
 	return new_velocity
 		
@@ -325,6 +380,9 @@ func moving_behav(anchor_given, agent) -> Vector3:
 # - calculated bounce velocity of given object
 func bounce_behav(member, collision) -> void:
 	member.velocity = member.velocity.bounce(collision.get_normal())
+=======
+	return new_velocity
+>>>>>>> Stashed changes
 
 # slide_behav
 # Applies a slide when hitting either a wall, floor, other member, etc. Everything but a player.
@@ -358,11 +416,11 @@ func find_group_behav(member, origin, crowd_size) -> void:
 		var new_circum = agt_array[0].get_meta("curr_circum") + dist
 		# check if objectect is close and combining doesn't exceed limit
 		if (dist <= temp_circum) and new_circum <= temp_circum:
-			call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member.name), agt_array))
+			call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, agt_array))
 			agt_array[0].set_meta("curr_circum", new_circum)
 			return
 	var new_sub = group_brain(0, 0, 0, member.global_position)
-	call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member), new_sub))
+	call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, new_sub))
 
 # delete_group_behav
 # Deletes the a group, only call when it either merging with sub group or main group
@@ -405,15 +463,28 @@ func add_member_behav(member, target) -> void:
 
 # swap_member_behav
 # Swaps a member with another group, essentially remove and adding, and possibly deleting if none exist
-func swap_member_behav(source, member, member_idx, target) -> void:
-	var temp = member
+func swap_member_behav(source, member, target) -> void:
+	if (!member or !source): return
 	var temp_idx = source.find(member)
 	add_member_behav(member, target)
 	remove_member_behav(temp_idx, source)
 	
 	#if (source.size() == 1 and source != agents_main): delete_group_behav(source) # safety to prevent deleting an anchor yet
 	if (source.size() == 1 and source != agents_main): deletion_queue.append(source)
+<<<<<<< Updated upstream
 	#print('swapped')
+=======
+	print('swapped')
+	
+# mass_swap_behav
+# Swaps massive group, calling the swap member, but does so without needing to store tons of function calls
+func mass_swap_behav(array, target) -> void:
+	if (!array or !target): return
+	print('workingagh')
+	for member_idx in range(array.size() -1, 0, -1):
+		var member = array[member_idx]
+		swap_member_behav(array, member, target)
+>>>>>>> Stashed changes
 
 
 # creats a sub group array with an anchor
@@ -478,11 +549,20 @@ func create_char(append_target, name = "crowd") -> CharacterBody3D:
 	character.wall_min_slide_angle = 70.0
 	character.floor_constant_speed = true
 	character.floor_max_angle = 65.0
+<<<<<<< Updated upstream
 	character.safe_margin = 0.01
 	#character.max_slides = 20
 	character.floor_snap_length = 0.1
 	character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	#character.platform_floor_layers = 0
+=======
+	character.safe_margin = 0.5
+	character.floor_snap_length = 0.1
+	character.max_slides = 2
+	character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
+	character.platform_floor_layers = 0
+
+>>>>>>> Stashed changes
 	character.add_collision_exception_with($Anchor)
 	
 	# sets position of body
@@ -536,8 +616,13 @@ func _on_navigation_agent_3d_target_reached() -> void:
 
 # main nav agent 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+<<<<<<< Updated upstream
 	group_main(safe_velocity)
 	#print("applying vel")
+=======
+	#group_main(safe_velocity)
+	pass
+>>>>>>> Stashed changes
 
 # relative sub nav agent
 func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
