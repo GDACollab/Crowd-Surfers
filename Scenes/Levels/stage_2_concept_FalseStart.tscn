@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://taf3lipoxj0x"]
+
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_ewkbk"]
+[ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="6_1nxbw"]
+[ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="8_hc84h"]
+[ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="9_xc11u"]
+[ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="15_gf4r8"]
+[ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="16_bt2ln"]
+
+[node name="stage-2-concept" type="Node3D"]
+
+[node name="Level2-intro" type="Node3D" parent="."]
+
+[node name="alleyway1" parent="Level2-intro" instance=ExtResource("6_1nxbw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 0)
+
+[node name="intersection2" parent="Level2-intro" instance=ExtResource("9_xc11u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -1)
+
+[node name="road17" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -101)
+
+[node name="road18" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -201)
+
+[node name="road19" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -101)
+
+[node name="intersection3" parent="Level2-intro" instance=ExtResource("9_xc11u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -1)
+
+[node name="road21" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, 99)
+
+[node name="road22" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, 99)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Level2-intro"]
+transform = Transform3D(-2.111098e-06, -12.940952, 48.29629, -5.65667e-07, 48.29629, 12.940952, -50, 0, -2.1855694e-06, 453.89337, 44.212543, 27.352936)
+texture = ExtResource("8_hc84h")
+
+[node name="Buildings" type="Node3D" parent="Level2-intro"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -2, 0)
+
+[node name="brick-building7" parent="Level2-intro/Buildings" instance=ExtResource("15_gf4r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, -100)
+
+[node name="brick-building19" parent="Level2-intro/Buildings" instance=ExtResource("15_gf4r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, -200)
+
+[node name="green-building1" parent="Level2-intro/Buildings" instance=ExtResource("16_bt2ln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.43839, 2, -100.99229)
+
+[node name="green-building5" parent="Level2-intro/Buildings" instance=ExtResource("16_bt2ln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, 100)
+
+[node name="road23" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, 199)
+
+[node name="road24" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, 199)
+
+[node name="road25" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, 299)
+
+[node name="road26" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, 299)
+
+[node name="road27" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, -501)
+
+[node name="road28" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, -501)
+
+[node name="road29" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, -401)
+
+[node name="road30" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, -401)
+
+[node name="road31" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, -301)
+
+[node name="road32" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, -301)
+
+[node name="road33" parent="Level2-intro" instance=ExtResource("1_ewkbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, -201)
