@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="20_xl122"]
 [ext_resource type="Texture2D" uid="uid://bjs8ibks1h50m" path="res://Assets/Art/ColeDevArt/TutorialBillboard.png" id="21_3ndpm"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="21_iuqee"]
-[ext_resource type="PackedScene" uid="uid://cusunlrqidlcj" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="22_3tfrk"]
+[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="22_3tfrk"]
 [ext_resource type="Texture2D" uid="uid://cn54ml3lh6bq1" path="res://Assets/Art/ColeDevArt/TutorialBillboard (3).png" id="22_6mby3"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="22_pnf6m"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="23_bjm7j"]
@@ -35,9 +35,9 @@
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="25_vsd3l"]
 [ext_resource type="Texture2D" uid="uid://c1h5ccp0ncq8f" path="res://Assets/Art/ColeDevArt/TutorialBillboard (5).png" id="26_tp666"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="26_w8alc"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="28_hntgb"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="28_hntgb"]
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="32_74y4r"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="33_6mby3"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="33_6mby3"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="39_2al6p"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="40_fs1go"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="41_t6fm4"]
@@ -82,7 +82,6 @@ light_specular = 0.0
 [node name="Roads" type="Node" parent="Level Components"]
 
 [node name="roadHorizontal" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="roadHorizontal2" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
@@ -452,7 +451,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3130, -200, 250)
 [node name="CarRedUp" parent="Level Components/Vehicles" instance=ExtResource("16_cnki7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2920, -200, 390)
 script = ExtResource("17_nusql")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 1.0
 smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = true
+isRotate = false
+isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/CarRedUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
@@ -460,8 +466,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
 [node name="StaticBody3D2" parent="Level Components/Vehicles" instance=ExtResource("18_5g6rg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3180, -200, -300)
 script = ExtResource("17_nusql")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 1.0
 smoothnessArr = Array[float]([0.0])
+startFromSelf = true
 isClosed = false
+isRotate = false
+isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 700)
@@ -778,9 +790,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, 0)
 
 [node name="StaticBody3D57" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, -100)
+do_transparency = true
 
 [node name="StaticBody3D63" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -100)
+do_transparency = true
 
 [node name="StaticBody3D13" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -300)
