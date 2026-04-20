@@ -8,13 +8,9 @@ extends Node3D
 @export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0
 @export var check_rate: int = 200
-<<<<<<< Updated upstream
-@export var check_limit: int = 5
+@export var check_limit: int = 2
 @export var crowd_image: Texture2D
 
-=======
-@export var check_limit: int = 2
->>>>>>> Stashed changes
 # ARRAY
 var agents_main: Array = []
 var agents_sub: Array = []
@@ -51,15 +47,12 @@ var curr_point = 0
 func _ready() -> void:
 	print('start')
 	navigation_agent_3d.max_speed = max_speed
-	#navigation_agent_3d.radius = circum / 2.0
+	navigation_agent_3d.radius = circum / 2.0
 	var anchor_mesh = $Anchor/MeshInstance3D
-	anchor_mesh.transparency = 1.0
 	var anchor_box = $Anchor/CollisionShape3D
-<<<<<<< Updated upstream
-	anchor_box.shape.radius = circum / 2.0
-=======
+	#anchor_box.shape.radius = circum / 2.0
 	#anchor_box.shape.radius = circum / 4.0
->>>>>>> Stashed changes
+
 	var area = CylinderMesh.new()
 	area.top_radius = circum / 2.0
 	area.bottom_radius = circum / 2.0
@@ -88,12 +81,9 @@ func _physics_process(delta: float) -> void:
 				#print(get_node(nav[0].name + "/SubNav"))
 				get_new_sub_loc(get_node(nav[0].name + "/SubNav"))
 		State.MOVE:
-<<<<<<< Updated upstream
 			#print('movee')
-			moving_behav(anchor, navigation_agent_3d)
-=======
 			group_main(moving_behav(anchor, navigation_agent_3d))
->>>>>>> Stashed changes
+			#moving_behav(anchor, navigation_agent_3d)
 			for nav in agents_sub:
 				var nav_agent = get_node(nav[0].name + "/SubNav")
 				
@@ -165,7 +155,7 @@ func _physics_process(delta: float) -> void:
 func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	if (type == 1):
 		for i in range(count):
-			create_char_image(create_char(agents_main))
+			create_char_mesh(create_char(agents_main), 2)
 		
 		return []
 	else:
@@ -229,7 +219,7 @@ func checkCollision(source, target, collision) -> void:
 		
 	else:
 		print("world, basic slide")
-		slide_behav(source, collision)
+		#slide_behav(source, collision)
 
 # checkWall
 # Checks if the current collisions of member given satisfies checking distance from group
@@ -259,25 +249,12 @@ func checkAmor(array, non_main) -> void:
 		var member = array[check_index]
 		
 		if not is_instance_valid(array[0]): return
-<<<<<<< Updated upstream
-		
-		
-		
-		# below code checks for distance from the main group for either divergence or remerging
-		if (is_instance_valid(agt) and agt.global_position.distance_to(array[0].global_position) >= circum / 2.0):
-			find_group_behav(array[check_index], array, 0)
-			return
-		if (is_instance_valid(agt) and non_main and agt.global_position.distance_to(anchor.global_position) < circum / 2.0):
-			#call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, origin.find(member), new_sub))
-			call_queue.append(Callable(self, "swap_member_behav").bind(array, agt, check_index, agents_main))
-=======
 		var member_position = Vector2(member.global_position.x, member.global_position.z)
 		if (is_instance_valid(member) and member_position.distance_to(Vector2(array[0].global_position.x, array[0].global_position.z)) >= circum / 2.0):
 			find_group_behav(array[check_index], array, 0)
 			return
 		if (is_instance_valid(member) and non_main and member_position.distance_to(Vector2(anchor.global_position.x, anchor.global_position.z)) < circum / 2.0):
 			call_queue.append(Callable(self, "swap_member_behav").bind(array, member, agents_main))
->>>>>>> Stashed changes
 			return
 	# returns if main anchor, since main anchor should not merge
 	if (!non_main and agents_sub.size() <= 0): return
@@ -367,8 +344,6 @@ func moving_behav(anchor_given, agent) -> Vector3:
 	#anchor_given.velocity = anchor_given.velocity.move_toward(new_velocity, acceleration * get_physics_process_delta_time())
 	if anchor_given == anchor and abs(abs(current_position.y) - abs(next_position.y)) > height_recalc_sensitivity: 
 		get_new_loc()
-<<<<<<< Updated upstream
-	
 	return new_velocity
 		
 # bounce_behav
@@ -378,33 +353,9 @@ func moving_behav(anchor_given, agent) -> Vector3:
 # - collision: reference to the move_and_collide
 # Returns:
 # - calculated bounce velocity of given object
-func bounce_behav(member, collision) -> void:
+func bounce_behav(member, collision) -> Vector3:
 	member.velocity = member.velocity.bounce(collision.get_normal())
-=======
-	return new_velocity
->>>>>>> Stashed changes
-
-# slide_behav
-# Applies a slide when hitting either a wall, floor, other member, etc. Everything but a player.
-# Parameters:
-# - member: crowd individual to be affected
-# - collision: reference to the move_and_collide
-# Returns:
-# - calculated slide behavior
-func slide_behav(member, collision) -> void:
-	member.velocity = member.velocity.slide(collision.get_normal())
-
-# push_behav
-# Applies a pushing force when hitting another crowd member only when applying force from the front, not sides
-# Parameters:
-# - member_source: crowd individual causing the push
-# - member_target: crowd individual being pushed
-# - collision: reference to the move_and_collide
-# Returns:
-# - calculates given push behavior for both two objects referenced
-func push_behav(member_source, member_target, collision) -> void:
-	member_source.velocity = member_source.velocity
-	# NOT WORKING
+	return member.velocity
 
 # find_group_beh=v
 # Finds the closest (with given size of current subgroup) subgroup and if combined doesn't exceed max size of subgroup
@@ -471,9 +422,6 @@ func swap_member_behav(source, member, target) -> void:
 	
 	#if (source.size() == 1 and source != agents_main): delete_group_behav(source) # safety to prevent deleting an anchor yet
 	if (source.size() == 1 and source != agents_main): deletion_queue.append(source)
-<<<<<<< Updated upstream
-	#print('swapped')
-=======
 	print('swapped')
 	
 # mass_swap_behav
@@ -484,7 +432,6 @@ func mass_swap_behav(array, target) -> void:
 	for member_idx in range(array.size() -1, 0, -1):
 		var member = array[member_idx]
 		swap_member_behav(array, member, target)
->>>>>>> Stashed changes
 
 
 # creats a sub group array with an anchor
@@ -492,6 +439,7 @@ func create_sub_group(location, sub_idx = 0) -> Array:
 	#print('sub group')
 	var nav_agent = navigation_agent_3d.duplicate()
 	nav_agent.name = "SubNav"
+	nav_agent.avoidance_enabled = true
 	nav_agent.max_speed = max_speed * 1.5
 	nav_agent.neighbor_distance = 0
 	#nav_agent.avoidance_priority = 0.0
@@ -533,7 +481,6 @@ func check_timer() -> bool:
 # creates a little char body
 func create_char(append_target, name = "crowd") -> CharacterBody3D:
 	var character = CharacterBody3D.new()
-	character.name = name
 	var collision = CollisionShape3D.new()
 	add_child(character)
 	character.add_child(collision)
@@ -549,20 +496,11 @@ func create_char(append_target, name = "crowd") -> CharacterBody3D:
 	character.wall_min_slide_angle = 70.0
 	character.floor_constant_speed = true
 	character.floor_max_angle = 65.0
-<<<<<<< Updated upstream
-	character.safe_margin = 0.01
-	#character.max_slides = 20
-	character.floor_snap_length = 0.1
-	character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
-	#character.platform_floor_layers = 0
-=======
 	character.safe_margin = 0.5
 	character.floor_snap_length = 0.1
 	character.max_slides = 2
 	character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	character.platform_floor_layers = 0
-
->>>>>>> Stashed changes
 	character.add_collision_exception_with($Anchor)
 	
 	# sets position of body
@@ -616,13 +554,9 @@ func _on_navigation_agent_3d_target_reached() -> void:
 
 # main nav agent 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
-<<<<<<< Updated upstream
-	group_main(safe_velocity)
-	#print("applying vel")
-=======
 	#group_main(safe_velocity)
+	#print("applying vel")
 	pass
->>>>>>> Stashed changes
 
 # relative sub nav agent
 func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
