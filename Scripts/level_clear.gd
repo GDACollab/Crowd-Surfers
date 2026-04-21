@@ -18,4 +18,4 @@ func _on_continue_button_pressed() -> void:
 	get_tree().paused = false
 
 func open_ui() -> void:
-	clear_time_text.text = "Clear Time: " + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time)
+	clear_time_text.text = "Clear Time: " + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, false, false) + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, true, false)

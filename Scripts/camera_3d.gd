@@ -9,9 +9,17 @@ extends Camera3D
 
 @export var offset: Vector3 = Vector3(0, 10000, 10000)
 
+@export_category("Building Occlusion")
 @export var occlusionShader: ShaderMaterial
+@export var transparency_window_lead_distance := Vector3(50.0, 0.0, 0.0)
+@export var transparency_window_scale := Vector2(100.0, 25.0)
+@export var transparency_window_speed : float = 15.0
 
 var lead_smoothed: Vector3 = Vector3.ZERO
+var transparency_window_pos := Vector3.ZERO
+
+func _ready() -> void:
+	transparency_window_pos = player.global_position
 
 func _process(delta: float) -> void:
 	var v: Vector3 = player.velocity
@@ -22,10 +30,17 @@ func _process(delta: float) -> void:
 	)
 	global_position = player.global_position + offset + lead_smoothed
 	
-	var player_view_pos = self.global_transform.affine_inverse() * player.global_position
-
-	RenderingServer.global_shader_parameter_set("player_view_pos", player_view_pos)
+	var transparency_window_target_pos : Vector3 = player.global_position + \
+		transparency_window_lead_distance * sign(player.velocity.x)
+		
+	transparency_window_pos = transparency_window_pos.lerp(
+		transparency_window_target_pos,
+		1.0 - exp(-transparency_window_speed * delta)
+	)
 	
+	RenderingServer.global_shader_parameter_set("transparency_window_pos", transparency_window_pos)
+	RenderingServer.global_shader_parameter_set("transparency_window_scale", transparency_window_scale)
+	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
 	
 	#
 	#ray.force_raycast_update()

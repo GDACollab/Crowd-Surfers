@@ -17,7 +17,7 @@ script = ExtResource("1_day0g")
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
-confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ActThreeConcept"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton4"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton5"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton6"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/OrdersButton7")]
+confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act2Button")]
 back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -70,6 +70,26 @@ offset_bottom = 730.281
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Act1Button" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Act One
+"
+icon = ExtResource("3_yohfk")
+
+[node name="Act2Button" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Act Two
+"
+icon = ExtResource("3_yohfk")
+
 [node name="VerticalSliceButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -89,56 +109,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
 text = "Parking Lot"
 icon = ExtResource("3_yohfk")
 
-[node name="ActThreeConcept" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Act 3
-Concept"
-icon = ExtResource("3_yohfk")
-
-[node name="OrdersButton4" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "More Levels
-Soon!"
-icon = ExtResource("3_yohfk")
-
-[node name="OrdersButton5" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 5"
-icon = ExtResource("3_yohfk")
-
-[node name="OrdersButton6" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 6"
-icon = ExtResource("3_yohfk")
-
-[node name="OrdersButton7" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Order 7"
-icon = ExtResource("3_yohfk")
-
 [node name="BackButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -148,6 +118,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
 text = "Back
 "
 
+[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act1Button" to="." method="_on_act_1_button_pressed"]
+[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act2Button" to="." method="_on_act_2_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton" to="." method="_on_vertical_slice_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton" to="." method="_on_parking_lot_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ActThreeConcept" to="." method="_on_act_three_concept_button_pressed"]
