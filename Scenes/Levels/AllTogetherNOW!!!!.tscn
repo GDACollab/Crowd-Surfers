@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="19_wc3d2"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="20_fdtib"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="21_88g5p"]
-[ext_resource type="PackedScene" uid="uid://cusunlrqidlcj" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="22_mcmyx"]
+[ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="22_mcmyx"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="23_r5rak"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="24_olea3"]
 [ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="25_yqaqw"]
@@ -33,15 +33,15 @@
 [ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="28_8g4r7"]
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="29_v7rb6"]
 [ext_resource type="PackedScene" uid="uid://dakmufixpwm3i" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="30_58o40"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="31_58o40"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="32_jur0m"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="31_58o40"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="32_jur0m"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="33_3y4tu"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="34_cx84v"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="35_h0m14"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="36_jur0m"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="37_3y4tu"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="38_cx84v"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/soft-object.tscn" id="38_wc3d2"]
+[ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/soft-object.tscn" id="38_wc3d2"]
 [ext_resource type="PackedScene" uid="uid://bex31giyfuavs" path="res://Archive/StreamlinedGraybox/Ramp.tscn" id="43_fdtib"]
 [ext_resource type="PackedScene" uid="uid://s5mseyvnfuqc" path="res://Scenes/Level Components/Crowds/crowd-02.tscn" id="44_88g5p"]
 
@@ -1205,6 +1205,7 @@ isClosed = true
 isRotate = false
 isVehicle = true
 do_transparency = true
+jumpVelocityRatio = 0.8
 
 [node name="Node3D" type="Node3D" parent="Uncategorized Level/CarRedDown"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 210)
@@ -1219,6 +1220,7 @@ startFromSelf = true
 isClosed = true
 isRotate = false
 isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Node3D" type="Node3D" parent="Uncategorized Level/CarRedDown2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 190)
@@ -1640,6 +1642,7 @@ startFromSelf = true
 isClosed = false
 isRotate = true
 isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Node3D" type="Node3D" parent="Uncategorized Level/Bus1Up4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -210)
@@ -1684,6 +1687,7 @@ startFromSelf = true
 isClosed = true
 isRotate = true
 isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Bus1Side11" parent="Uncategorized Level" instance=ExtResource("11_v7rb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4289.8457, 0, 620.5836)
@@ -1695,6 +1699,7 @@ startFromSelf = true
 isClosed = true
 isRotate = true
 isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Bus1Side12" parent="Uncategorized Level" instance=ExtResource("11_v7rb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3614.7312, 0, 239.63538)
@@ -1742,6 +1747,7 @@ startFromSelf = true
 isClosed = true
 isRotate = true
 isVehicle = true
+jumpVelocityRatio = 0.8
 
 [node name="Node3D" type="Node3D" parent="Uncategorized Level/Bus1Full"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -370)
