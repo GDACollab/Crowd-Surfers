@@ -59,7 +59,7 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	transparency.set_do_transparency(do_transparency)
+	transparency.set_do_transparency(do_transparency, global_position.z)
 
 func create_obstacle_path() -> void:
 	
