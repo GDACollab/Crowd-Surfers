@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 				var nav_agent = get_node(nav[0].name + "/SubNav")
 				
 				var vel = moving_behav(nav[0], nav_agent)
-				print(vel)
+				#print(vel)
 				
 				# timer for new position
 				if (sub_timer()): get_new_sub_loc(nav_agent)
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 		agt.move_and_slide()
 		agt.velocity += agt.get_gravity()*10 * delta
 		#print(agt_idx)
-		#if (agt_idx != 0): checkWall(agents_main, agt_idx)
+		#if (agt_idx != 0): checkWall(agents_main, agt)
 	
 	for idx in range(agents_sub.size()-1,-1,-1):
 		var agt_array = agents_sub[idx]
@@ -114,7 +114,7 @@ func _physics_process(delta: float) -> void:
 			agt.move_and_slide()
 			agt.velocity += agt.get_gravity()*10 * delta
 			#print(agt_idx)
-			#if (agt_idx != 0): checkWall(agt_array, agt_idx)
+			#if (agt_idx != 0): checkWall(agt_array, agt)
 	
 	# call all swaps (maybe do this before find instead of swap)
 	for c in call_queue:
@@ -153,9 +153,10 @@ func _physics_process(delta: float) -> void:
 # - (best solution to the above) toggle for group main or sub
 # Return: maybe the list of indivs
 func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
+	const member_rad = 2
 	if (type == 1):
 		for i in range(count):
-			create_char_mesh(create_char(agents_main), 2)
+			create_char_mesh(create_char(agents_main), member_rad)
 		
 		return []
 	else:
@@ -189,7 +190,7 @@ func group_sub(sub_array, safe_velocity) -> void:
 	#var target_vel = safe_velocity
 	#if target_vel.length() < 0.1:
 		#target_vel = (sub_array[0].get_node_or_null("SubNav").get_next_path_position() - sub_array[0].global_position).normalized() * max_speed
-	var vel = sub_array[0].velocity.move_toward(safe_velocity, acceleration * get_physics_process_delta_time())
+	var vel = sub_array[0].velocity.move_toward(safe_velocity, acceleration * 1.25 * get_physics_process_delta_time())
 	
 	for agt in sub_array:
 		if (not is_instance_valid(agt)): continue
@@ -223,18 +224,19 @@ func checkCollision(source, target, collision) -> void:
 
 # checkWall
 # Checks if the current collisions of member given satisfies checking distance from group
-func checkWall(origin, origin_idx) -> void:
-	var member = origin[origin_idx]
-	if (!member.is_on_wall()): return
+func checkWall(origin, member) -> void:
+	#if (!member.is_on_wall()): return
 	for curr_hit in member.get_slide_collision_count():
 		var collision = member.get_slide_collision(curr_hit)
+		var target = collision.get_collider()
 		var hit_point = collision.get_position()
 		var local_hit = member.to_local(hit_point)
-		checkCollision(origin, curr_hit, collision)
+		print(collision)
+		checkCollision(origin, target, collision)
 		
-		if (local_hit.z < -0.1 or local_hit.x > 0.1 or local_hit.x < -0.1):
-			if (member.global_position.distance_squared_to(anchor.global_position) >= circum): 
-				find_group_behav(member, origin, 0)
+		#if (local_hit.z < -0.1 or local_hit.x > 0.1 or local_hit.x < -0.1):
+			#if (member.global_position.distance_squared_to(anchor.global_position) >= circum): 
+				#find_group_behav(member, origin, 0)
 # checkAmor
 # Checks the given array, through amortization. Searches for missing from the main group, or if it is near the main group
 # convert to multi functions
@@ -271,7 +273,7 @@ func checkAmor(array, non_main) -> void:
 		var given_anchor_position = Vector2(array[0].global_position.x, array[0].global_position.z)
 		#print('sub_anc')
 		#print(given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)))
-		if (given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 2.0):
+		if (array.size() > sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 3.0):
 			#print('working anchor given')
 			call_queue.append(Callable(self, "mass_swap_behav").bind(array, sub_group))
 			return
@@ -336,8 +338,8 @@ func moving_behav(anchor_given, agent) -> Vector3:
 	var current_position = anchor_given.global_position
 	var next_position = agent.get_next_path_position()
 	var direction = (next_position - current_position).normalized()
-	print(current_position)
-	print(next_position)
+	#print(current_position)
+	#print(next_position)
 	var new_velocity = direction * agent.max_speed
 	agent.set_velocity(new_velocity)
 	#agent.target_velocity = new_velocity
@@ -354,6 +356,8 @@ func moving_behav(anchor_given, agent) -> Vector3:
 # Returns:
 # - calculated bounce velocity of given object
 func bounce_behav(member, collision) -> Vector3:
+	print('bounce')
+	print(collision)
 	member.velocity = member.velocity.bounce(collision.get_normal())
 	return member.velocity
 
@@ -428,10 +432,17 @@ func swap_member_behav(source, member, target) -> void:
 # Swaps massive group, calling the swap member, but does so without needing to store tons of function calls
 func mass_swap_behav(array, target) -> void:
 	if (!array or !target): return
-	print('workingagh')
+	
+	# only swap if the member is in range of target's cirucm
+	var target_anchor = Vector2(target[0].global_position.x, target[0].global_position.z)
 	for member_idx in range(array.size() -1, 0, -1):
 		var member = array[member_idx]
-		swap_member_behav(array, member, target)
+		if (target_anchor.distance_to(Vector2(member.global_position.x, member.global_position.z)) < circum / 2.0):
+			swap_member_behav(array, member, target)
+	
+	# reposition the current anchor to the last unswapped member if it exists
+	if (target.size() > 1):
+		target[0].global_position = target[1].global_position
 
 
 # creats a sub group array with an anchor
@@ -543,7 +554,7 @@ func create_anchor_mesh(character, cir) -> void:
 	area.bottom_radius = cir / 2.0
 	
 	mesh.mesh = area
-	mesh.transparency = 0.5
+	mesh.transparency = 0.8
 	character.add_child(mesh)
 	
 
