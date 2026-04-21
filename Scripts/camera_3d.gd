@@ -29,8 +29,9 @@ func _process(delta: float) -> void:
 		1.0 - exp(-follow_speed * delta)
 	)
 	global_position = player.global_position + offset + lead_smoothed
-	
-	var transparency_window_target_pos : Vector3 = player.global_position + \
+	var player_collision_height = player.get_node("CollisionShape3D").shape.height
+	var player_center_pos := player.global_position + Vector3(0, player_collision_height / 2.0, 0)
+	var transparency_window_target_pos : Vector3 = player_center_pos + \
 		transparency_window_lead_distance * sign(player.velocity.x)
 		
 	transparency_window_pos = transparency_window_pos.lerp(
@@ -40,7 +41,10 @@ func _process(delta: float) -> void:
 	
 	RenderingServer.global_shader_parameter_set("transparency_window_pos", transparency_window_pos)
 	RenderingServer.global_shader_parameter_set("transparency_window_scale", transparency_window_scale)
+	
 	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
+	RenderingServer.global_shader_parameter_set("far_plane", far)
+	RenderingServer.global_shader_parameter_set("near_plane", near)
 	
 	#
 	#ray.force_raycast_update()
