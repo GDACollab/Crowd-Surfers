@@ -34,7 +34,6 @@ var curve: Curve3D
 
 var myVelocity: Vector3 = Vector3.ZERO
 
-
 #@export var active: bool = false:
 #	set(value): 
 #		active = value
