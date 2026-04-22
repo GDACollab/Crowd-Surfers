@@ -55,6 +55,19 @@ var stateColors = {
 @export var stomp_dash_boost_factor: float = 25.0
 ## Maximum boost which can be gained from stomp-dashing
 @export var max_stomp_dash_boost: float = 40.0
+#All tese valuse are for the stomp-launch
+#Distance the launch travels
+@export var launch_distance: float = 50.0
+## Minimum time between dashes
+#@export var stomp_launch_cooldown: float = 1.0
+## Amount to multiply speed by during dash
+@export var launch_speed_multiplier: float = 1.5
+## Minimum speed of a dash
+@export var min_launch_speed: float = 25.0
+## Set to true to always allow air dashing out of stomp
+#@export var stomp_resets_air_dash: bool = false
+## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
+#@export var stomp_dash_margin: float = 0.2
 
 # Dash
 @export_category("Dash")
@@ -102,35 +115,25 @@ func crowd_launch() -> void:
 	# Give the player a slight upward bounce so they don't immediately hit the floor
 	velocity.y = jump_speed * 0.8 
 	
-	# Play dash sound (or a unique bounce sound if you add one later)
-	$DashSound.play()
-	
-	# Increase caps using your dash modifiers
-	ramping_cap = ramping_cap + stomp_dash_boost_factor
-	max_speed = move_toward(max_stomp_dash_boost * dash_speed_multiplier, ramping_cap, stomp_dash_boost_factor)
-	#acceleration *= dash_speed_multiplier
-	
-	# Get directional input to determine launch direction
-	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var dir := Vector3.ZERO
-	
-	if input_dir != Vector2.ZERO:
-		dir = Vector3(input_dir.x, 0.0, input_dir.y).normalized()
-	else:
-		# If no input is given, launch them in the direction they are facing
-		var facing_x: float = -1.0 if player_sprite.flip_h else 1.0
-		dir = Vector3(facing_x, 0.0, 0.0).normalized()
-	
-	# Calculate the boost amount based on the stomp momentum
-	var speed: float = speed_before_stomp + (stomp_boost * 0.5)
-	var boost: float = speed
-	
-	# Apply the forward velocity
-	velocity.x = move_toward(0.0, dir.x * max_speed, abs(dir.x) * boost)
-	velocity.z = move_toward(0.0, dir.z * max_speed, abs(dir.z) * boost)
-	
+	if not current_state == States.DASH_GROUND:
+		speed_before_dashing = Vector2(velocity.x, velocity.z).length()
+		stomp_dash_start_pos = position
+		# Get directional inputs
+		var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		stomp_dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		# Ensure speed is at least min_dash_speed and apply stomp_boost
+		# The timer handles resetting these values to 0
+		stomp_dash_speed = max(min_launch_speed, max_speed * launch_speed_multiplier, speed_before_stomp) + stomp_boost
+		max_speed = max(max_speed, max_speed_before_stomp)
+		# If you successfully stomp-dash, retain your speed
+		# Apply dash to xz-direction and ignore y component of velocity
+		var yspeed := velocity.y
+		velocity = stomp_dash_dir * stomp_dash_speed
+		velocity.y = yspeed
+		# Play dash sound
+		$DashSound.play()
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR,STOMP_CROWD_LAUNCH}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR, STOMP_CROWD_LAUNCH}
 
 # Active values - may change during execution
 var max_speed: float = starting_speed
@@ -148,6 +151,9 @@ var speed_before_dashing: float
 var dash_dir: Vector3
 var dash_speed: float
 var dash_start_pos: Vector3
+var stomp_dash_speed: float
+var stomp_dash_dir: Vector3
+var stomp_dash_start_pos: Vector3
 var can_air_dash: bool = true
 var can_glide: bool = true
 var player_height : float
@@ -157,7 +163,7 @@ var current_state: int = States.GROUND
 
 func _ready() -> void:
 	#aglobal_position = PlayerSpawn.spawnpoint
-	# Initialize values
+	# Initiali"res://Scripts/player_controller.gd"ze values
 	player_sprite_starting_pos = player_sprite.position.z
 	acceleration = base_acceleration
 	ramping_cap = base_ramping_cap
@@ -172,6 +178,21 @@ func _physics_process(delta: float) -> void:
 	process_state(delta)
 	check_state_transitions()
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		# Did we bump into a car?
+		if collider != null and collider.is_in_group("Vehicles"):
+			
+			# Get the angle of the collision
+			var hit_normal = collision.get_normal()
+			
+			# If the normal's Y value is low, it means we got hit from the SIDE (bumper)
+			if hit_normal.y < 0.5: 
+				# Call Slip's damage function here! 
+				print("Slip got hit by the bumper!")
+				# take_damage(1)d
 	restart()
 	check_height()
 	if debugLabels:
@@ -182,7 +203,10 @@ func process_state(delta: float) -> void:
 	match current_state:
 		States.GROUND:
 			# Ramping
+			print(ramping_cap)
 			if max_speed < ramping_cap: 
+				print("we are adding the max speed")
+				
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_wall():
@@ -299,7 +323,6 @@ func check_state_transitions() -> void:
 				
 				if hit_crowd:
 					print("SUCCESS! Crowd object detected. Launching!")
-					crowd_launch()
 					transition_to(States.STOMP_CROWD_LAUNCH)
 					return
 				else:
@@ -326,6 +349,8 @@ func check_state_transitions() -> void:
 				transition_to(States.AIR)
 			elif is_on_floor():
 				transition_to(States.GROUND)
+			elif is_on_wall():
+				transition_to(States.AIR)
 		States.DASH_GROUND:
 			var distance_traveled := dash_start_pos.distance_to(position)
 			# Checking for zero velocity accounts for the player hitting dash without a direction
@@ -342,13 +367,13 @@ func check_state_transitions() -> void:
 					transition_to(States.AIR)
 			elif Input.is_action_just_pressed("move_jump"):
 				jump()
-				transition_to(States.DASH_AIR)
+				transition_to(States.AIR)
 			elif not is_on_floor():
-				transition_to(States.DASH_AIR)
+				transition_to(States.AIR)
 		States.DASH_AIR:
 			var distance_traveled := dash_start_pos.distance_to(position)
 			#if player is holding space, ignore the below and transition immediately to glide state
-			if Input.is_action_pressed("ability_glide"):
+			if can_glide and Input.is_action_just_pressed("ability_glide"):
 					transition_to(States.GLIDE)
 			else:
 				if Input.is_action_just_pressed("ability_stomp"):
@@ -484,6 +509,8 @@ func transition_to(new_state: int) -> void:
 				velocity.y = yspeed
 				# Play dash sound
 				$DashSound.play()
+		States.STOMP_CROWD_LAUNCH:
+			crowd_launch()
 	
 	current_state = new_state
 	print(state_to_string())
@@ -527,6 +554,31 @@ func handle_inputs(delta: float) -> void:
 func jump() -> void:
 	velocity.y = jump_speed
 	$JumpSound.play()
+	#Hijacking this to add a check for if you jump off a moving car
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(position, position + 3 * Vector3.DOWN)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if(!result.is_empty()):
+		#We hit something! check if it's an animatablebody,
+		#ie could possibly be a moving car
+		if(result["collider"].get_class() == "AnimatableBody3D"):
+			#Grab it's parent to check if it is a moving car
+			var carMover = result["collider"].get_parent()
+			if(carMover.has_method("get_player_jumped_velocity")):
+				#If it is a moving car, apply the velocity from the car to the player
+				var addVelocity = carMover.get_player_jumped_velocity()
+				velocity += addVelocity
+	
+
+## Called by external objects (like the Wind Box) to force the player into the air
+func apply_wind_launch(launch_speed: float) -> void:
+	# 1. Apply the speed
+	velocity.y = launch_speed
+	
+	# 2. Force the state machine into the AIR state immediately!
+	# This prevents the GROUND state from resetting his y-velocity to 0.0
+	transition_to(States.AIR)
 
 ## Applies gravity
 func fall(delta: float) -> void:
@@ -585,6 +637,8 @@ func state_to_string() -> String:
 			return "Ground Dash"
 		States.DASH_AIR:
 			return "Air Dash"
+		States.STOMP_CROWD_LAUNCH:
+			return "Stomp Dash"
 	return ""
 
 ## Returns the current direction

@@ -38,6 +38,8 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/resizable=false
 window/size/borderless=true
+window/size/window_width_override=960
+window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 
 [dotnet]
@@ -53,6 +55,11 @@ enabled=PackedStringArray("res://addons/GodotInk/plugin.cfg", "res://addons/fmod
 Concrete="The ground component which will likely be streets and sidewalks will be made of concrete "
 Metal="Obstacles such as vehicles, trashcans, smacking into street lamps/poles, firehydrants, cars, etc"
 Crowd=""
+Vehicles=""
+
+[gui]
+
+theme/custom_font="uid://dm26d870h8e4d"
 
 [input]
 
@@ -144,3 +151,22 @@ DialogueCancel={
 3d_physics/layer_2="Player"
 3d_physics/layer_4="4"
 3d_physics/layer_8="8"
+
+[shader_globals]
+
+transparency_window_pos={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+transparency_window_scale={
+"type": "vec2",
+"value": Vector2(0, 0)
+}
+player_pos={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+alpha_amount={
+"type": "float",
+"value": 0.0
+}
