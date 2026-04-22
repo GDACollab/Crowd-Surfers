@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=45 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cnki7"]
@@ -36,9 +36,9 @@
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="25_vsd3l"]
 [ext_resource type="Texture2D" uid="uid://c1h5ccp0ncq8f" path="res://Assets/Art/ColeDevArt/TutorialBillboard (5).png" id="26_tp666"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="26_w8alc"]
-[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="28_hntgb"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="28_hntgb"]
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="32_74y4r"]
-[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="33_6mby3"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="33_6mby3"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="39_2al6p"]
 [ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="39_cnki7"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="40_fs1go"]
@@ -755,6 +755,10 @@ do_transparency = true
 [node name="StaticBody3D83" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 400)
 
+[node name="StaticBody3D94" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 400)
+do_transparency = true
+
 [node name="StaticBody3D92" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, 400)
 do_transparency = true
@@ -923,6 +927,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, -200)
 
 [node name="StaticBody3D24" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, -100, 0)
+do_transparency = true
+
+[node name="StaticBody3D26" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 0)
 do_transparency = true
 
 [node name="StaticBody3D54" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
