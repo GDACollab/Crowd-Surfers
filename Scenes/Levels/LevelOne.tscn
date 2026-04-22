@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="32_74y4r"]
 [ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="33_6mby3"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="39_2al6p"]
+[ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="39_cnki7"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="40_fs1go"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="41_t6fm4"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="42_5l05s"]
@@ -292,6 +293,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, 0)
 [node name="roadVertical18" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, 100)
 
+[node name="roadVertical20" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, 200)
+
 [node name="roadVertical6" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 100)
 
@@ -442,6 +446,12 @@ transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4
 
 [node name="StaticBody3D" parent="Level Components/Vehicles" instance=ExtResource("14_25gcb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, 250)
+
+[node name="StaticBody3D55" parent="Level Components/Vehicles" instance=ExtResource("14_25gcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2080, -100, 240)
+
+[node name="StaticBody3D56" parent="Level Components/Vehicles" instance=ExtResource("14_25gcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2120, -100, 270)
 
 [node name="CarRedSide" parent="Level Components/Vehicles" instance=ExtResource("15_bjeon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2790, -200, 250)
@@ -957,6 +967,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -100, -300)
 [node name="StaticBody3D36" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, -200)
 
+[node name="StaticBody3D121" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, 200)
+
+[node name="StaticBody3D122" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 200)
+
+[node name="StaticBody3D123" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, 200)
+
+[node name="StaticBody3D124" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -100, 200)
+
 [node name="StaticBody3D37" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, -200)
 
@@ -1111,6 +1133,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2200
 
 [node name="InvisibleWall13" parent="Level Components/Boundaries" instance=ExtResource("33_6mby3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2500, -49, 150)
+
+[node name="InvisibleWall19" parent="Level Components/Boundaries" instance=ExtResource("33_6mby3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2100, -49, 350)
 
 [node name="InvisibleWall14" parent="Level Components/Boundaries" instance=ExtResource("33_6mby3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2700, -149, 150)
@@ -1430,9 +1455,17 @@ transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 2970, -199, -150)
 [node name="SoftObject15" parent="Level Components/Bananas" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 3050, -199, -130)
 
+[node name="Windboxes" type="Node" parent="Level Components"]
+
+[node name="WindBoxCollider2" parent="Level Components/Windboxes" instance=ExtResource("32_74y4r")]
+transform = Transform3D(16.22, 0, 0, 0, 16.22, 0, 0, 0, 16.22, 2510, -99, -90)
+
+[node name="SlowPadCollider" parent="Level Components/Windboxes" instance=ExtResource("39_cnki7")]
+transform = Transform3D(23.325, 0, 0, 0, 23.325, 0, 0, 0, 23.325, 2480, -98.5, -50)
+
 [node name="Hud" parent="." instance=ExtResource("39_2al6p")]
 
-[node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("40_fs1go")]
+[node name="LevelEndColliderf" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("40_fs1go")]
 transform = Transform3D(1, 0, 0, 0, 3.995, 0, 0, 0, 5.17, 4859.446, -6.1035156e-05, 158.88281)
 level_clear_ui = NodePath("../LevelClearUI")
 
@@ -1441,9 +1474,6 @@ visible = false
 hud_ui = NodePath("../Hud")
 
 [node name="PauseHolder" parent="." instance=ExtResource("42_5l05s")]
-
-[node name="WindBoxCollider" parent="." instance=ExtResource("32_74y4r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -100, 0)
 
 [node name="LevelEndCollider2" parent="." instance=ExtResource("40_fs1go")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, 300)
