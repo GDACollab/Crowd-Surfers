@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6e14c1o1p1c7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0qlng"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 50, 0, 50, 0, 0, 50, 50, 0, 50, 0, -50, 50, 50, -50)
+
+[node name="InvisibleWall" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_0qlng")
+debug_color = Color(1, 0, 0.12156863, 1)
