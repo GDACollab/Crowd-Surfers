@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=47 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cnki7"]
@@ -42,8 +42,10 @@
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="39_2al6p"]
 [ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="39_cnki7"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="40_fs1go"]
+[ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="41_5g6rg"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="41_t6fm4"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="42_5l05s"]
+[ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="42_bki04"]
 
 [node name="ReferenceScene" type="Node3D"]
 
@@ -369,9 +371,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 200)
 [node name="roadRightDown3" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, -100)
 
-[node name="roadRightDown4" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, 0)
-
 [node name="roadLeftDown" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -200)
 
@@ -408,6 +407,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -400)
 [node name="roadIntersection4" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -100)
 
+[node name="roadIntersection9" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, 0)
+
 [node name="roadIntersection5" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 200)
 
@@ -415,12 +417,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 200)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 200)
 
 [node name="Vehicles" type="Node" parent="Level Components"]
-
-[node name="Bus1Full" parent="Level Components/Vehicles" instance=ExtResource("15_ubpxh")]
-transform = Transform3D(0.915016, 0, 0.40341753, 0, 1, 0, -0.40341753, 0, 0.915016, 676.3945, 0, 4.6852226)
-
-[node name="Bus1Full2" parent="Level Components/Vehicles" instance=ExtResource("15_ubpxh")]
-transform = Transform3D(0.7005358, 0, -0.7136174, 0, 1, 0, 0.7136174, 0, 0.7005358, 684.4287, 0, 52.51883)
 
 [node name="Bus1Full3" parent="Level Components/Vehicles" instance=ExtResource("15_ubpxh")]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 220, 0, 50)
@@ -441,7 +437,7 @@ transform = Transform3D(-4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -4
 transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 2730, -199, 230)
 
 [node name="StaticBody3D" parent="Level Components/Vehicles" instance=ExtResource("14_25gcb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, 250)
+transform = Transform3D(1, 0, 0, 0, 0.99921113, 0.03971325, 0, -0.03971325, 0.99921113, 2880, -200, 250)
 
 [node name="StaticBody3D55" parent="Level Components/Vehicles" instance=ExtResource("14_25gcb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2080, -100, 240)
@@ -499,6 +495,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, -230)
 
 [node name="CarRedDown" parent="Level Components/Vehicles" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, -20)
+
+[node name="CarRedDown2" parent="Level Components/Vehicles" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 680, 1, -2.7306137)
+
+[node name="CarRedDown3" parent="Level Components/Vehicles" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 680, 1, 48.08156)
 
 [node name="StaticBody3D3" parent="Level Components/Vehicles" instance=ExtResource("18_5g6rg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, -230)
@@ -753,10 +755,6 @@ do_transparency = true
 [node name="StaticBody3D83" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 400)
 
-[node name="StaticBody3D94" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 400)
-do_transparency = true
-
 [node name="StaticBody3D92" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, 400)
 do_transparency = true
@@ -872,8 +870,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
 [node name="StaticBody3D32" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100)
 
+[node name="StaticBody3D94" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -300)
+
+[node name="StaticBody3D125" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -300)
+
+[node name="StaticBody3D126" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -200)
+
 [node name="StaticBody3D8" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -100)
+
+[node name="StaticBody3D26" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -200)
+
+[node name="StaticBody3D128" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -300)
+
+[node name="StaticBody3D129" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -300)
+
+[node name="StaticBody3D130" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -400)
+
+[node name="StaticBody3D131" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -400)
+
+[node name="StaticBody3D132" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -400)
+
+[node name="StaticBody3D133" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, -400)
+
+[node name="StaticBody3D134" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, -400)
+
+[node name="StaticBody3D135" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, -400)
+
+[node name="StaticBody3D136" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, 0, -400)
+
+[node name="StaticBody3D137" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, 0, -300)
 
 [node name="StaticBody3D20" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, -100, -200)
@@ -883,10 +923,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, -200)
 
 [node name="StaticBody3D24" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, -100, 0)
-do_transparency = true
-
-[node name="StaticBody3D26" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 0)
 do_transparency = true
 
 [node name="StaticBody3D54" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
@@ -903,6 +939,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, -500)
 
 [node name="StaticBody3D62" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -500)
+
+[node name="StaticBody3D127" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -500)
 
 [node name="StaticBody3D76" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(0.99980897, -0.019546444, 0, 0.019546444, 0.99980897, 0, 0, 0, 1, 3600, -200, 400)
@@ -927,9 +966,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 100)
 
 [node name="StaticBody3D112" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 100)
-
-[node name="StaticBody3D107" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 200)
 
 [node name="StaticBody3D97" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4300, -100, 100)
@@ -957,6 +993,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3600, -200, 0)
 
 [node name="StaticBody3D91" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -200, 0)
+
+[node name="StaticBody3D107" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -200, 0)
 
 [node name="StaticBody3D25" parent="Level Components/Buildings" instance=ExtResource("24_w7sx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, -100, 100)
@@ -1146,6 +1185,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, -300)
 [node name="grass44" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 100)
 
+[node name="grass80" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 0)
+
+[node name="grass81" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 0.9080044, -0.41896093, 0, 0.41896093, 0.9080044, 2000, -90.13895, -1.0217543)
+
+[node name="grass82" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(0.8632635, 0.0067303283, -0.5047088, -0.50475377, 0.01151066, -0.863187, 3.6239797e-10, 0.9999112, 0.013333888, 1963.8212, -63.72986, -1.7785482)
+
+[node name="grass83" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(0.8632635, 0.0067303283, -0.5047088, -0.50475377, 0.01151066, -0.863187, 3.6239797e-10, 0.9999112, 0.013333888, 1893.2408, -24.327393, -1.7785482)
+
 [node name="grass45" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, 100)
 
@@ -1211,6 +1262,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3700, -100, 300)
 
 [node name="grass78" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3700, -100, 100)
+
+[node name="grass79" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 200)
 
 [node name="grass63" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 300)
@@ -1280,7 +1334,7 @@ transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 1798.8616, 39.01384, -99.3
 texture = ExtResource("25_rblmd")
 
 [node name="Billboard6" type="Sprite3D" parent="Level Components/Billboards"]
-transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 2200, 100, -90)
+transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 2200, 33.528877, -90)
 texture = ExtResource("26_tp666")
 
 [node name="Bananas" type="Node" parent="Level Components"]
@@ -1337,6 +1391,61 @@ transform = Transform3D(16.22, 0, 0, 0, 16.22, 0, 0, 0, 16.22, 2510, -99, -90)
 
 [node name="SlowPadCollider" parent="Level Components/Windboxes" instance=ExtResource("39_cnki7")]
 transform = Transform3D(23.325, 0, 0, 0, 23.325, 0, 0, 0, 23.325, 2480, -98.5, -50)
+
+[node name="Arrows" type="Node" parent="Level Components"]
+
+[node name="curve-arrow1" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(4.158048, -9.09454, 3.9753493e-07, 1.5383699e-14, -4.3711393e-07, -10, 9.094539, 4.1580486, -1.8175402e-07, 503.7211, 1.2924623, 50.200577)
+texture = ExtResource("41_5g6rg")
+
+[node name="curve-arrow2" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(8.796569, 4.756091, -2.0789525e-07, 6.706199e-14, -4.3711395e-07, -10, -4.7560906, 8.79657, -3.8451023e-07, 175.68251, 1.2924623, 50.200577)
+texture = ExtResource("41_5g6rg")
+
+[node name="curve-arrow3" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(-8.2065115, 5.714299, -2.4978002e-07, 6.7061984e-14, -4.3711393e-07, -9.999999, -5.7142982, -8.2065115, 3.5871793e-07, 3183.2913, -197.12404, -35.868332)
+flip_h = true
+texture = ExtResource("41_5g6rg")
+
+[node name="curve-arrow4" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(7.4941845, -6.6209707, 2.8941167e-07, -1.17122735e-14, -4.3711398e-07, -9.999999, 6.62097, 7.4941845, -3.2758112e-07, 3218.997, -197.12404, 247.77058)
+texture = ExtResource("41_5g6rg")
+
+[node name="arrow4" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(11.928038, 0.21783032, -4.0662447e-09, 3.704867e-21, -1.023562e-06, -10, -0.11096515, 23.415354, -4.37095e-07, 356.88702, 1.2359209, -150)
+texture = ExtResource("42_bki04")
+
+[node name="arrow5" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(11.928038, 0.21783032, -4.0662447e-09, 3.704867e-21, -1.023562e-06, -10, -0.11096515, 23.415354, -4.37095e-07, 798.2128, 1.2359209, 48.729263)
+texture = ExtResource("42_bki04")
+
+[node name="arrow6" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(10.329984, 0.18864709, 5, 5.964019, 0.10891427, -8.660254, -0.11096515, 23.415354, -4.37095e-07, 1109.25, 37.268238, 48.729263)
+texture = ExtResource("42_bki04")
+
+[node name="arrow7" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(-0.11096567, 23.415354, -4.317462e-07, -4.769093e-07, -1.0129457e-06, -9.999999, -11.928036, -0.21783133, -4.768372e-07, 1399.4406, 1.6298447, 11.399364)
+texture = ExtResource("42_bki04")
+
+[node name="arrow8" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(0.110966705, -23.415352, 4.3174623e-07, -4.769092e-07, -1.0129455e-06, -9.999997, 11.928035, 0.21783337, 4.7683713e-07, 1403.1001, 1.6298447, 94.62242)
+texture = ExtResource("42_bki04")
+
+[node name="arrow9" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(11.928035, 0.2178344, 4.7683716e-07, -4.769092e-07, -1.0129454e-06, -9.999997, -0.11096724, 23.415354, -4.317463e-07, 1711.4431, 1.6298447, -50.93361)
+texture = ExtResource("42_bki04")
+
+[node name="arrow10" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(11.928035, 0.2178344, 4.7683716e-07, -4.769092e-07, -1.0129454e-06, -9.999997, -0.11096724, 23.415354, -4.317463e-07, 2102.896, -31.007805, -50.93361)
+texture = ExtResource("42_bki04")
+
+[node name="arrow11" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(11.928035, 0.2178344, 4.7683716e-07, -4.769092e-07, -1.0129454e-06, -9.999997, -0.11096724, 23.415354, -4.317463e-07, 2505.9336, -98.03578, -50.93361)
+texture = ExtResource("42_bki04")
+
+[node name="arrow12" type="Sprite3D" parent="Level Components/Arrows"]
+transform = Transform3D(10.550537, 0.19267844, 4.6651015, 5.5645485, 0.10162103, -8.845158, -0.11096721, 23.41535, -4.347064e-07, 3523.397, -155.8098, 242.43575)
+texture = ExtResource("42_bki04")
 
 [node name="Hud" parent="." instance=ExtResource("39_2al6p")]
 
