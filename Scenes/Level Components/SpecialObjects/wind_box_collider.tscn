@@ -5,11 +5,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
 
 [node name="WindBoxCollider" type="Node3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_elp6e")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_elp6e")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
