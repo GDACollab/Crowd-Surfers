@@ -32,6 +32,9 @@ var sub_timer_count: float = 2.0
 # ANCHOR VARIABLES
 var anchor_velocity = Vector3(0, 0, 0)
 
+# INTERNAL VARIABLES
+var gravity_force_for_velocity = Vector3.ZERO
+
 # TARGETS
 var curr_point = 0
 @export var route: Array[Vector3] = [
@@ -68,6 +71,7 @@ func _ready() -> void:
 	group_brain(crowd_size, circum, 1)
 	#group_brain(1, circum, 0)
 	
+	gravity_force_for_velocity = ProjectSettings.get_setting("physics/3d/default_gravity_vector")*10
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -98,10 +102,11 @@ func _physics_process(delta: float) -> void:
 	# agent behavior
 #	# possibly move move_and_collide to group main/sub calls for velocity
 	checkAmor(agents_main, false)
+	var agent_force_addition = gravity_force_for_velocity * delta
 	for agt_idx in range(agents_main.size()-1,-1,-1):
 		var agt = agents_main[agt_idx]
 		agt.move_and_slide()
-		agt.velocity += agt.get_gravity()*10 * delta
+		agt.velocity += agent_force_addition
 		#print(agt_idx)
 		#if (agt_idx != 0): checkWall(agents_main, agt)
 	
@@ -112,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		for agt_idx in range(agt_array.size()-1,-1,-1):
 			var agt = agt_array[agt_idx]
 			agt.move_and_slide()
-			agt.velocity += agt.get_gravity()*10 * delta
+			agt.velocity += agent_force_addition
 			#print(agt_idx)
 			#if (agt_idx != 0): checkWall(agt_array, agt)
 	
