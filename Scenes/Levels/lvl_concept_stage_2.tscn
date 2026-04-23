@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 50)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -200)
 
 [node name="MidDensityStart" parent="Scenes" instance=ExtResource("7_b76c4")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3000, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3000, 0, -100)
 
 [node name="stage_2_concept_end" parent="Scenes" instance=ExtResource("9_ipv6h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -900, 0, 500)
@@ -71,26 +71,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, 1150)
 [node name="RoadHori" parent="AddedRoads" instance=ExtResource("12_pwmad")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2800, 0, 1150)
 
-[node name="RoadVert" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, 50)
-
-[node name="RoadVert2" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2200, 0, 250)
-
-[node name="RoadRD" parent="AddedRoads" instance=ExtResource("13_os25n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2200, 0, 150)
-
-[node name="RoadLU" parent="AddedRoads" instance=ExtResource("14_kbt2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, 150)
-
-[node name="RoadHori2" parent="AddedRoads" instance=ExtResource("12_pwmad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2100, 0, 150)
-
 [node name="RoadInt" parent="AddedRoads" instance=ExtResource("15_njsij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2800, 0, 1050)
 
 [node name="RoadVert3" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, 1050)
+
+[node name="RoadVert3D" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, 50)
+
+[node name="TurnLU" parent="AddedRoads" instance=ExtResource("13_os25n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2200, 0, 150)
+
+[node name="TurnRU" parent="AddedRoads" instance=ExtResource("14_kbt2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, 150)
+
+[node name="RoadHori2" parent="AddedRoads" instance=ExtResource("12_pwmad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2100, 0, 150)
+
+[node name="RoadVert" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2200, 0, 250)
+
+[node name="RoadVert2" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2200, 0, 350)
 
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
 

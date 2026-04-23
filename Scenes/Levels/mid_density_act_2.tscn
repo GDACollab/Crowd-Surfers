@@ -1,15 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7d8epeebr0h6"]
+[gd_scene load_steps=18 format=3 uid="uid://b7d8epeebr0h6"]
 
-[ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="4_gkc2n"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_lrgld"]
-[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="5_r4iu2"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="6_urfa4"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="7_jyobe"]
 [ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="7_onjya"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="7_yacnu"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="8_lrgld"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="9_urfa4"]
-[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_lrgld"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_lrgld"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="16_3au38"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="16_fuigj"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="17_fuigj"]
@@ -285,12 +283,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 0)
 [node name="StaticBody3D93" parent="FixedRoadCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 0)
 
-[node name="StaticBody3D78" parent="FixedRoadCont" instance=ExtResource("4_gkc2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 0)
-
-[node name="StaticBody3D79" parent="FixedRoadCont" instance=ExtResource("5_r4iu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, -100)
-
 [node name="StaticBody3D80" parent="FixedRoadCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 550)
 
@@ -302,6 +294,7 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400,
 
 [node name="StaticBody3D83" parent="FixedRoadCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 250)
+do_transparency = true
 
 [node name="StaticBody3D94" parent="FixedRoadCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 0)
@@ -315,10 +308,17 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400,
 [node name="StaticBody3D97" parent="FixedRoadCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 650)
 
+[node name="StaticBody3D98" parent="FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 0)
+
+[node name="StaticBody3D99" parent="FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 0)
+
 [node name="FixedBuildCont" type="Node3D" parent="."]
 
 [node name="StaticBody3D" parent="FixedBuildCont" instance=ExtResource("8_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 500)
+do_transparency = true
 
 [node name="StaticBody3D2" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 500)
@@ -328,12 +328,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 500)
 
 [node name="StaticBody3D4" parent="FixedBuildCont" instance=ExtResource("8_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 500)
+do_transparency = true
 
 [node name="StaticBody3D5" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 500)
 
 [node name="StaticBody3D6" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 500)
+do_transparency = true
 
 [node name="StaticBody3D7" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 500)
@@ -349,6 +351,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, -100)
 
 [node name="StaticBody3D11" parent="FixedBuildCont" instance=ExtResource("8_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 100)
+do_transparency = true
 
 [node name="StaticBody3D12" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -100)
@@ -357,7 +360,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -100)
 
 [node name="StaticBody3D14" parent="FixedBuildCont" instance=ExtResource("8_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, -100)
 
 [node name="StaticBody3D15" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -100)
@@ -376,33 +379,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 500)
 
 [node name="StaticBody3D20" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 100)
+do_transparency = true
 
 [node name="StaticBody3D21" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 200)
+do_transparency = true
 
 [node name="StaticBody3D22" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 450)
+do_transparency = true
 
 [node name="StaticBody3D23" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -100)
 
 [node name="StaticBody3D24" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 100)
+do_transparency = true
 
 [node name="StaticBody3D25" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 150)
+do_transparency = true
 
 [node name="StaticBody3D26" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 250)
+do_transparency = true
 
 [node name="StaticBody3D27" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 350)
+do_transparency = true
 
 [node name="StaticBody3D28" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 450)
+do_transparency = true
 
 [node name="StaticBody3D29" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, -100)
+
+[node name="StaticBody3D30" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, -100)
+
+[node name="StaticBody3D98" parent="FixedBuildCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 0)
+
+[node name="StaticBody3D99" parent="FixedBuildCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 0)
+
+[node name="StaticBody3D100" parent="FixedBuildCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 0)
+
+[node name="StaticBody3D101" parent="FixedBuildCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 0)
 
 [node name="FixedPropCont" type="Node3D" parent="."]
 
