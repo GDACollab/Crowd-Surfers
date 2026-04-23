@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1xw1x5562w3b"]
+[gd_scene load_steps=21 format=3 uid="uid://c1xw1x5562w3b"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="1_sowhy"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="2_6hqax"]
@@ -12,9 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="12_7piyj"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="12_a6a0s"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="13_gdh5n"]
+[ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="14_k2cax"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="15_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="15_k2cax"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="16_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="17_snqwb"]
+[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="18_snqwb"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="19_clv1d"]
+[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="19_okc15"]
 
 [node name="LowDensityAct2" type="Node3D"]
 
@@ -25,6 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, -500)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 500)
 
 [node name="rt1" parent="Segment1/Roads" instance=ExtResource("1_sowhy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="rt2" parent="Segment1/Roads" instance=ExtResource("1_sowhy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -50)
@@ -255,7 +261,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -540)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 30)
 
 [node name="msa7" parent="Segment1/MarketStalls" instance=ExtResource("6_s6jld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -470)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -500.066)
 
 [node name="msc1" parent="Segment1/MarketStalls" instance=ExtResource("7_0ntw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -40)
@@ -276,7 +282,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -140)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 30)
 
 [node name="msc7" parent="Segment1/MarketStalls" instance=ExtResource("7_0ntw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -470)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -500.066)
 
 [node name="Buildings" type="Node3D" parent="Segment1"]
 
@@ -306,9 +312,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 350)
 
 [node name="b9" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 250)
+do_transparency = true
 
 [node name="b10" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 150)
+do_transparency = true
 
 [node name="b11" parent="Segment1/Buildings" instance=ExtResource("12_a6a0s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -150)
@@ -348,42 +356,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 350)
 
 [node name="b23" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 650)
+do_transparency = true
 
 [node name="b24" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 650)
+do_transparency = true
 
 [node name="b25" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 650)
+do_transparency = true
 
 [node name="b26" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 650)
+do_transparency = true
 
 [node name="b27" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 650)
+do_transparency = true
 
 [node name="b28" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 650)
+do_transparency = true
 
 [node name="b29" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, 650)
+do_transparency = true
 
 [node name="b30" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, 650)
+do_transparency = true
 
 [node name="b31" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, 650)
+do_transparency = true
 
 [node name="b32" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 650)
+do_transparency = true
 
 [node name="b33" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 650)
+do_transparency = true
 
 [node name="b34" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 150)
+do_transparency = true
 
 [node name="b35" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 150)
+do_transparency = true
 
 [node name="arrow1" type="Sprite3D" parent="Segment1"]
 transform = Transform3D(-16.361464, -8.846611, -3.8669765e-07, 0, -8.130318e-07, 18.6, -8.846611, 16.361464, 7.151823e-07, 1400, 2, 500)
@@ -392,6 +413,13 @@ texture = ExtResource("12_0na1c")
 [node name="arrow2" type="Sprite3D" parent="Segment1"]
 transform = Transform3D(-17.233433, -6.9977717, -3.0588234e-07, 0, -8.130318e-07, 18.6, -6.9977717, 17.233433, 7.532973e-07, 1000, 2, 200)
 texture = ExtResource("12_0na1c")
+
+[node name="FenceSprite" type="Sprite3D" parent="Segment1"]
+transform = Transform3D(15, 3.3940017e-07, 2.578e-06, -3.3940017e-07, 15, -5.833158e-14, -2.578e-06, 6.352747e-21, 15, 803.57745, 28.302673, 667.21045)
+texture = ExtResource("14_k2cax")
+
+[node name="InvisibleWallSmall" parent="Segment1/FenceSprite" instance=ExtResource("15_jvmnx")]
+transform = Transform3D(-0.066666655, -4.8525577e-30, -5.828185e-09, 4.1647727e-30, 0.06666666, -1.6062254e-23, 5.828184e-09, 1.7646503e-24, -0.06666666, 0, 0.8394623, 3.2903624)
 
 [node name="Segment2" type="Node3D" parent="."]
 
@@ -489,13 +517,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, -250)
 [node name="g6" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, -150)
 
+[node name="g7" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -150)
+
+[node name="g8" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -150)
+
+[node name="g9" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -150)
+
+[node name="g10" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -150)
+
+[node name="g11" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -50)
+
+[node name="g12" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -50)
+
+[node name="g13" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -150)
+
+[node name="g14" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -250)
+
+[node name="g15" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -250)
+
+[node name="g16" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -250)
+
+[node name="g17" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -250)
+
+[node name="g18" parent="Segment2/Grass" instance=ExtResource("5_6hqax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -250)
+
 [node name="MarketStalls" type="Node3D" parent="Segment2"]
 
 [node name="msc1" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, -400)
 
+[node name="msc2" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -200)
+
+[node name="msc3" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -200)
+
+[node name="msc4" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -200)
+
+[node name="msc5" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -64.311325)
+
 [node name="msa1" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, -200)
+
+[node name="msa2" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -200)
+
+[node name="msa3" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -200)
+
+[node name="msa4" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, 27.74054)
 
 [node name="Buildings" type="Node3D" parent="Segment2"]
 
@@ -534,6 +619,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2100, 0, -50)
 
 [node name="b12" parent="Segment2/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1700, 0, -350)
+do_transparency = true
 
 [node name="b13" parent="Segment2/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1700, 0, -250)
@@ -543,9 +629,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1700, 0, -150)
 
 [node name="b15" parent="Segment2/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -350)
+do_transparency = true
 
 [node name="b16" parent="Segment2/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -350)
+do_transparency = true
 
 [node name="arrow1" type="Sprite3D" parent="Segment2"]
 transform = Transform3D(-18.6, 1.6260636e-06, 7.10775e-14, 0, -8.130318e-07, 18.6, 1.6260636e-06, 18.6, 8.130318e-07, -1600, 2, -400)
@@ -554,3 +642,33 @@ texture = ExtResource("12_0na1c")
 [node name="arrow2" type="Sprite3D" parent="Segment2"]
 transform = Transform3D(-4.8140354, 17.96622, 7.8532844e-07, 0, -8.130318e-07, 18.6, 17.96622, 4.8140354, 2.1042814e-07, -1900, 2, -100)
 texture = ExtResource("12_0na1c")
+
+[node name="FenceSprite" type="Sprite3D" parent="Segment2"]
+transform = Transform3D(-14.999999, -4.105224e-07, -2.1877609e-06, 1.6970006e-07, 14.488885, -3.8822856, 2.2194658e-06, -3.8822856, -14.488885, -1600, 28.059334, -551.35944)
+texture = ExtResource("14_k2cax")
+
+[node name="InvisibleWallSmall" parent="Segment2/FenceSprite" instance=ExtResource("15_jvmnx")]
+transform = Transform3D(-0.06666667, 7.542229e-10, 5.728889e-09, -7.542229e-10, 0.06439506, -0.017254606, -5.7288894e-09, -0.017254606, -0.06439506, 0, 0.8394623, 3.1329155)
+
+[node name="Camera3D" parent="." instance=ExtResource("18_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)
+near = 0.001
+offset = Vector3(0, 1000, 1000)
+
+[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
+
+[node name="Light" parent="." instance=ExtResource("19_okc15")]
+transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 100, -1493.9137)
+light_specular = 0.0
+
+[node name="Player" parent="." instance=ExtResource("19_clv1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+ramping_exponent = 0.525
+stomp_dash_boost_factor = 400.0
+max_stomp_dash_boost = 700.0
+dash_cooldown = 1.0
+shadow_base_scale = 10.0
+shadow_min_scale = 2.0
+shadow_max_height = 50.0
+shadow_lift = 0.0
+shadow_falloff_exp = 1.1
