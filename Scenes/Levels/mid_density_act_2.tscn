@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7d8epeebr0h6"]
+[gd_scene load_steps=19 format=3 uid="uid://b7d8epeebr0h6"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_lrgld"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="6_urfa4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_lrgld"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="16_3au38"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="16_fuigj"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="16_j7m4k"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="17_fuigj"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="17_j7m4k"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="18_j7m4k"]
@@ -360,7 +361,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -100)
 
 [node name="StaticBody3D14" parent="FixedBuildCont" instance=ExtResource("8_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, -100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, -100)
 
 [node name="StaticBody3D15" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -100)
@@ -429,6 +430,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 0)
 
 [node name="StaticBody3D101" parent="FixedBuildCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 0)
+
+[node name="StaticBody3D31" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, -100)
+
+[node name="StaticBody3D32" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, -100)
+
+[node name="StaticBody3D33" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, -100)
+
+[node name="StaticBody3D34" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, -100)
 
 [node name="FixedPropCont" type="Node3D" parent="."]
 
@@ -536,6 +549,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -665, 0, 10)
 
 [node name="Bus1Up" parent="FixedPropCont" instance=ExtResource("17_fuigj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -625, 0, 10)
+
+[node name="InvisibleWall" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150, 50, 850)
+
+[node name="InvisibleWall2" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -150, 50, 850)
+
+[node name="InvisibleWall3" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -450, 50, 850)
+
+[node name="InvisibleWall4" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -750, 50, 850)
+
+[node name="InvisibleWall5" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1050, 50, 850)
+
+[node name="InvisibleWall6" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1350, 50, 850)
+
+[node name="InvisibleWall7" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -850, 50, 150)
+
+[node name="InvisibleWall8" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150, 50, 150)
+
+[node name="InvisibleWall9" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350, 50, 150)
+
+[node name="InvisibleWallSmall" parent="FixedPropCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 50, -50)
 
 [node name="ArrowCont" type="Node3D" parent="."]
 
