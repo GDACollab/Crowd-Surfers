@@ -1,6 +1,10 @@
 shader_type spatial;
 
 global uniform vec3 player_pos;
+global uniform vec3 fog_color;
+global uniform float fog_height_minimum_distance;
+global uniform float fog_height_maximum_distance;
+global uniform float fog_max_alpha;
 
 uniform sampler2D tex : source_color;
 
@@ -12,11 +16,11 @@ void fragment() {
 		//Height of the pixel in world space
 		float fragment_height = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0f)).y;
 		float height_diff = fragment_height - player_pos.y;
-		if(height_diff > 50.0f) {
-			//Transparency decreases with height, maxxing out at a difference of 100
-			alpha = 0.25f * (height_diff - 50.0f) / 100.0f;
+		if(height_diff > fog_height_minimum_distance) {
+			//Transparency decreases with height, maxxing out at the max difference
+			alpha = fog_max_alpha * min(height_diff - fog_height_minimum_distance, fog_height_maximum_distance) / fog_height_maximum_distance;
 		}
 		ALPHA = alpha;
-		ALBEDO = vec3(0.65f, 0.91f, 0.90f);
+		ALBEDO = fog_color;
 	}
 }
