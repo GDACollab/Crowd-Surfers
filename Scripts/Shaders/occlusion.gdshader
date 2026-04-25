@@ -2,12 +2,12 @@ shader_type spatial;
 
 render_mode depth_prepass_alpha; 
 
-uniform sampler2D tex: source_color;
-
 global uniform vec3 transparency_window_pos;
 global uniform vec2 transparency_window_scale;
 global uniform vec3 player_pos;
 global uniform float alpha_amount;
+
+uniform sampler2D tex: source_color;
 
 instance uniform bool do_transparency = true;
 instance uniform float object_back_depth = 0.0f;
