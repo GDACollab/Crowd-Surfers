@@ -1,20 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwfwoc6s5cbjn"]
+[gd_scene load_steps=13 format=3 uid="uid://dwfwoc6s5cbjn"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_6xqhd"]
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_65lph"]
 [ext_resource type="Texture2D" uid="uid://pdlc4usagjml" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_TOP(updated).png" id="2_fajbu"]
 [ext_resource type="Texture2D" uid="uid://dcfquoapgiqcs" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_FRONT(updated).png" id="3_or0y1"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_7it5h"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="6_7513w"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i31bj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4nwe"]
+render_priority = 0
+shader = ExtResource("4_7it5h")
+shader_parameter/tex = ExtResource("2_fajbu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64kr8"]
+render_priority = 0
+shader = ExtResource("6_7513w")
+shader_parameter/tex = ExtResource("2_fajbu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pp5q"]
+render_priority = 0
+shader = ExtResource("4_7it5h")
+shader_parameter/tex = ExtResource("3_or0y1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8coxu"]
+render_priority = 0
+shader = ExtResource("6_7513w")
+shader_parameter/tex = ExtResource("3_or0y1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_15s5v"]
 size = Vector3(25, 22.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7it5h"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_afgvh"]
 size = Vector3(25, 2.5, 50)
 
 [node name="Bus1Up" type="Node3D"]
+script = ExtResource("1_65lph")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_6xqhd")
-active = true
 top_filename = ExtResource("2_fajbu")
 front_filename = ExtResource("3_or0y1")
 width = 25.0
@@ -28,6 +51,8 @@ front_spr_pad_right = 2.49
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.501529, 0, 0, 0, 1, 0, 0, 0, 4.091653, 0.28, 25, 25)
+material_override = SubResource("ShaderMaterial_r4nwe")
+material_overlay = SubResource("ShaderMaterial_64kr8")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -35,6 +60,8 @@ texture = ExtResource("2_fajbu")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.5428133, 0, 2.1670924e-07, 1.9857268e-07, 1.9106855e-15, -4.9577293, 0, 1, 9.472662e-15, 0.135, 14.7375, 50)
+material_override = SubResource("ShaderMaterial_2pp5q")
+material_overlay = SubResource("ShaderMaterial_8coxu")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -42,10 +69,10 @@ texture = ExtResource("3_or0y1")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 25)
-shape = SubResource("BoxShape3D_i31bj")
+shape = SubResource("BoxShape3D_15s5v")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 25)
-shape = SubResource("BoxShape3D_7it5h")
+shape = SubResource("BoxShape3D_afgvh")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6ipg1n8uf8sa"]
+[gd_scene load_steps=4 format=3 uid="uid://c6ipg1n8uf8sa"]
 
 [ext_resource type="Script" uid="uid://df1k8ebao2g3p" path="res://Scripts/wind_box_collider.gd" id="1_elp6e"]
+[ext_resource type="Texture2D" uid="uid://fusyp6ijm2nu" path="res://Assets/Art/ColeDevArt/Alleyway-DevArt.png" id="2_8eexc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
 
 [node name="WindBoxCollider" type="Node3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_elp6e")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_elp6e")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.095, 0, 0, 0, -5.6824803e-09, 0.095, 0, -0.13, -4.152582e-09, 0, 0, 0)
+texture = ExtResource("2_8eexc")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
