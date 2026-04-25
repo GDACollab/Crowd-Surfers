@@ -36,12 +36,19 @@ var stateColors = {
 @export var friction: float = 200.0
 ## Added to player's vertical speed in states where they can fall
 @export var gravity: float = 500.0
-## Speed of the player's jump
-@export var jump_speed: float = 150.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
+
+# Jumping
+@export_category("Jumping")
+## Speed of the player's jump
+@export var jump_speed: float = 180.0
+## Gravity during the jump
+@export var jump_gravity: float = 350.0
+## When jump is let go, set vertical speed to this
+@export var jump_end_speed: float = 45.0
 
 # Stomp
 @export_category("Stomp")
@@ -592,7 +599,12 @@ func apply_wind_launch(launch_speed: float) -> void:
 
 ## Applies gravity
 func fall(delta: float) -> void:
-	velocity += gravity * Vector3.DOWN * delta
+	var gravity_effect := gravity
+	if Input.is_action_pressed("move_jump") and not velocity.y <= 0.0:
+		gravity_effect = jump_gravity
+	elif Input.is_action_just_released("move_jump") and velocity.y >= jump_end_speed:
+		velocity.y = jump_end_speed
+	velocity += gravity_effect * Vector3.DOWN * delta
 	
 ## Applies penalty when crashing into a wall
 func crash() -> void:
