@@ -1,15 +1,21 @@
 extends Node3D
 
 # EXPORT VARIABLES
+@export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
-@export var ratio_circum: float = 0.5 # area ratio of subgroups max, and max find distance
+@export var ratio_circum: float = 0.7 # area ratio of subgroups max, and max find distance
 @export var crowd_size: float = 1.0
 @export var max_speed: float = 20.0
 @export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0
 @export var check_rate: int = 200
 @export var check_limit: int = 2
-@export var crowd_image: Texture2D
+@export var crowd_frame_array: Array[Texture2D]  = []
+
+
+# CONSTANTS
+const CAP_RADIUS = 4
+const CAP_HEIGHT = 16
 
 # ARRAY
 var agents_main: Array = []
@@ -19,7 +25,7 @@ var moved_data: Array = []
 var call_queue: Array = []
 
 # STATES
-enum State { IDLE, MOVE, SEARCH, MERGE }
+enum State { IDLE, WAIT, MOVE, DISPERSE }
 var state : State = State.IDLE
 
 # TIMER
@@ -34,6 +40,8 @@ var anchor_velocity = Vector3(0, 0, 0)
 
 # INTERNAL VARIABLES
 var gravity_force_for_velocity = Vector3.ZERO
+#var angle_radians = atan2(CAP_HEIGHT, CAP_RADIUS)
+#var angle_degrees = rad_to_deg(angle_radians)
 
 # TARGETS
 var curr_point = 0
@@ -61,6 +69,10 @@ func _ready() -> void:
 	area.bottom_radius = circum / 2.0
 	
 	anchor_mesh.mesh = area
+	# Transparency temporary debug
+	if (!debug):
+		anchor_mesh.transparency = 1.0
+		anchor_mesh.cast_shadow = false
 	
 	agents_main.append(anchor)
 	anchor.set_meta("curr_circum", circum)
@@ -161,7 +173,7 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	const member_rad = 2
 	if (type == 1):
 		for i in range(count):
-			create_char_mesh(create_char(agents_main), member_rad)
+			create_char_sprite(create_char(agents_main))
 		
 		return []
 	else:
@@ -318,7 +330,7 @@ func get_new_loc() -> void:
 	#print('get new loc')
 	navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(nav_map, route[curr_point])
 	
-	if (navigation_agent_3d.target_position != Vector3.ZERO): state = State.MOVE
+	if (navigation_agent_3d.target_position != Vector3.ZERO and state != State.MOVE): state = State.MOVE
 
 
 # simplier nav locator for sub groups
@@ -504,8 +516,8 @@ func create_char(append_target, name = "crowd") -> CharacterBody3D:
 	
 	# create for collision box
 	var cap = CapsuleShape3D.new()
-	cap.radius = 2.0
-	cap.height = 10.0
+	cap.radius = CAP_RADIUS
+	cap.height = CAP_HEIGHT
 	collision.shape = cap
 	
 	# create for character
@@ -536,19 +548,33 @@ func create_char_mesh(character, cir) -> void:
 	var mesh = MeshInstance3D.new()
 	character.add_child(mesh)
 	var cap_mesh = CapsuleMesh.new()
-	cap_mesh.radius = 2.0
-	cap_mesh.height = 10.0
+	cap_mesh.radius = CAP_RADIUS
+	cap_mesh.height = CAP_HEIGHT
 	mesh.mesh = cap_mesh
+
+# creates a sprite for the given character body
+func create_char_sprite(character) -> void:
+	var sprite = AnimatedSprite3D.new()
+	character.add_child(sprite)
 	
-func create_char_image(character) -> void:
-	var mesh = MeshInstance3D.new()
-	character.add_child(mesh)
-	var plane = QuadMesh.new()
-	plane.size = Vector2(10, 10)
-	plane.material = crowd_image
-	mesh.rotation = Vector3(-90, 0, 0)
-	mesh.position = Vector3(0, 10, 0)
-	mesh.mesh = plane
+	var sprite_frames = SpriteFrames.new()
+	sprite_frames.add_animation("walk")
+	sprite_frames.set_animation_speed("walk", 6)
+	
+	var texture_paths = crowd_frame_array
+	
+	for tex_path in texture_paths:
+		var tex: = load(tex_path.resource_path)
+		if tex:
+			sprite_frames.add_frame("walk", tex)
+	
+	sprite.frames = sprite_frames
+	sprite.play("walk")
+	
+	#sprite.rotation = Vector3(-90, 0, 0)
+	#sprite.position = Vector3(0, 10, 0)
+	sprite.scale = Vector3(16, 16, 16)
+	sprite.rotation = Vector3(0, 0, 0)
 	
 	
 func create_anchor_mesh(character, cir) -> void:
@@ -559,7 +585,11 @@ func create_anchor_mesh(character, cir) -> void:
 	area.bottom_radius = cir / 2.0
 	
 	mesh.mesh = area
-	mesh.transparency = 0.8
+	if (!debug):
+		mesh.transparency = 1.0
+		mesh.cast_shadow = false
+	else:
+		mesh.transparency = 0.9
 	character.add_child(mesh)
 	
 
@@ -577,3 +607,8 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 # relative sub nav agent
 func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
 	group_sub(sub_array, safe_velocity)
+
+
+func _on_navigation_agent_3d_waypoint_reached(details: Dictionary) -> void:
+	print('ah')
+	pass # Replace with function body.
