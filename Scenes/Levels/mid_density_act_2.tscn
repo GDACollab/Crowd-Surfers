@@ -1,9 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7d8epeebr0h6"]
+[gd_scene load_steps=31 format=3 uid="uid://b7d8epeebr0h6"]
 
+[ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_ihe6m"]
+[ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="2_dfckt"]
+[ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="2_q74j5"]
+[ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="3_uu56x"]
+[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="4_3q2qt"]
+[ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="4_5m2at"]
+[ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="5_3q2qt"]
+[ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="5_60twm"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_lrgld"]
+[ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="6_n4o7x"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="6_urfa4"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="7_jyobe"]
 [ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="7_onjya"]
+[ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/BananaPeel.tscn" id="7_w268i"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="7_yacnu"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="8_lrgld"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="9_urfa4"]
@@ -18,8 +28,264 @@
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="21_uu56x"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="22_uu56x"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="23_5m2at"]
+[ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="24_w268i"]
+[ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="30_n4o7x"]
 
 [node name="MidDensityAct2" type="Node3D"]
+
+[node name="Camera3D" parent="." instance=ExtResource("1_ihe6m")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -1517.1855, 120.806206, -413.69275)
+visible = false
+size = 150.0
+near = 0.001
+offset = Vector3(0, 1000, 1000)
+
+[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_q74j5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -475)
+visible = false
+
+[node name="Light" parent="." instance=ExtResource("4_3q2qt")]
+transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -7.305547e-08, 0.7071068, -0.37470946, 0.8480481, 0.3747096, -507.29907, 0, -1493.9137)
+visible = false
+light_specular = 0.0
+
+[node name="InteractionCont" type="Node3D" parent="."]
+
+[node name="WindBoxCollider" parent="InteractionCont" instance=ExtResource("5_3q2qt")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -1225, 2, -475)
+
+[node name="SlowPadCollider" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1125, 2, -475)
+
+[node name="Banana" parent="InteractionCont" instance=ExtResource("7_w268i")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1175, 2, -475)
+
+[node name="WindBoxCollider2" parent="InteractionCont" instance=ExtResource("5_3q2qt")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -1575, 2, -495)
+
+[node name="SlowPadCollider2" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1120, 2, 40)
+
+[node name="WindBoxCollider3" parent="InteractionCont" instance=ExtResource("5_3q2qt")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -1375, 2, 25)
+
+[node name="SlowPadCollider3" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -925, 2, 50)
+
+[node name="SlowPadCollider4" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -820, 2, 20)
+
+[node name="SlowPadCollider5" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -765, 2, 75)
+
+[node name="SlowPadCollider6" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1025, 2, 70)
+
+[node name="MidDensityStart" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1550, 0, -550)
+
+[node name="RoadCont" type="Node3D" parent="MidDensityStart"]
+
+[node name="RoadHor" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -50)
+
+[node name="RoadHor2" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 50)
+
+[node name="RoadHor3" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -50)
+
+[node name="RoadHor4" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 50)
+
+[node name="RoadHor5" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -50)
+
+[node name="RoadHor6" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 50)
+
+[node name="RoadHor7" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -50)
+
+[node name="RoadHor8" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 50)
+
+[node name="RoadHor9" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -50)
+
+[node name="RoadHor10" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 50)
+
+[node name="RoadHor13" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 50)
+
+[node name="RoadHor14" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 150)
+
+[node name="RoadHor15" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 50)
+
+[node name="RoadHor16" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 150)
+
+[node name="RoadHor17" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 50)
+
+[node name="RoadHor18" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 150)
+
+[node name="RoadHor19" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 50)
+
+[node name="RoadHor20" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 150)
+
+[node name="StaticBody3D" parent="MidDensityStart/RoadCont" instance=ExtResource("2_dfckt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -50)
+
+[node name="RoadHor25" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 50)
+
+[node name="RoadHor21" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, 50)
+
+[node name="RoadHor22" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, 150)
+
+[node name="StaticBody3D2" parent="MidDensityStart/RoadCont" instance=ExtResource("3_uu56x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 150)
+
+[node name="RoadLD" parent="MidDensityStart/RoadCont" instance=ExtResource("4_5m2at")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1250, 0, 100.000244)
+
+[node name="RoadHori" parent="MidDensityStart/RoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1250.0002, 0, 200.00024)
+
+[node name="RoadInt" parent="MidDensityStart/RoadCont" instance=ExtResource("3_uu56x")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150.0002, 0, 200.00024)
+
+[node name="RoadVert3" parent="MidDensityStart/RoadCont" instance=ExtResource("5_60twm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150, 0, 100.000244)
+
+[node name="BuildCont" type="Node3D" parent="MidDensityStart"]
+
+[node name="StaticBody3D" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -150)
+
+[node name="StaticBody3D2" parent="MidDensityStart/BuildCont" instance=ExtResource("8_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -150)
+
+[node name="StaticBody3D3" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -150)
+
+[node name="StaticBody3D4" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -150)
+
+[node name="StaticBody3D5" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -150)
+
+[node name="StaticBody3D6" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -150)
+do_transparency = true
+
+[node name="StaticBody3D7" parent="MidDensityStart/BuildCont" instance=ExtResource("8_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -50)
+do_transparency = true
+
+[node name="StaticBody3D8" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, -50)
+do_transparency = true
+
+[node name="StaticBody3D9" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, -50)
+
+[node name="StaticBody3D10" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -50)
+
+[node name="StaticBody3D13" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, -50)
+
+[node name="StaticBody3D11" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -50)
+
+[node name="StaticBody3D12" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -50)
+
+[node name="StaticBody3D14" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -450, 0, 200)
+do_transparency = true
+
+[node name="PropCont" type="Node3D" parent="MidDensityStart"]
+
+[node name="MarketStallCyan" parent="MidDensityStart/PropCont" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -100, 0, -25)
+
+[node name="MarketStallAmber2" parent="MidDensityStart/PropCont" instance=ExtResource("16_fuigj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -100, 0, 125)
+
+[node name="MarketStallCyan2" parent="MidDensityStart/PropCont" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -300, 0, 125)
+
+[node name="MarketStallAmber3" parent="MidDensityStart/PropCont" instance=ExtResource("16_fuigj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -300, 0, -25)
+
+[node name="MarketStallCyan3" parent="MidDensityStart/PropCont" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -500, 0, -25)
+
+[node name="MarketStallAmber4" parent="MidDensityStart/PropCont" instance=ExtResource("16_fuigj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -500, 0, 125)
+
+[node name="MarketStallCyan4" parent="MidDensityStart/PropCont" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -550, 0, 225)
+
+[node name="MarketStallAmber5" parent="MidDensityStart/PropCont" instance=ExtResource("16_fuigj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -725, 0, 75)
+
+[node name="MarketStallCyan5" parent="MidDensityStart/PropCont" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -875, 0, 225)
+
+[node name="MarketStallAmber6" parent="MidDensityStart/PropCont" instance=ExtResource("16_fuigj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1050, 0, 75)
+
+[node name="InvisibleWall" parent="MidDensityStart/PropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -300, 50, 200)
+
+[node name="InvisibleWallSmall" parent="MidDensityStart/PropCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 50, 200)
+
+[node name="InvisibleWall3" parent="MidDensityStart/PropCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1000, 50, 300)
+
+[node name="InvisibleWallSmall2" parent="MidDensityStart/PropCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 50, 300)
+
+[node name="ArrowCont" type="Node3D" parent="MidDensityStart"]
+
+[node name="ArrowStraight" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -139.65024, 2, 50)
+texture = ExtResource("22_uu56x")
+
+[node name="ArrowStraight3" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -689.65027, 2, 150)
+texture = ExtResource("22_uu56x")
+
+[node name="ArrowStraight4" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -889.65027, 2, 150)
+texture = ExtResource("22_uu56x")
+
+[node name="ArrowCurve" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -1083.9802, 2, 150)
+texture = ExtResource("23_5m2at")
+
+[node name="ArrowCurve2" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -533.9802, 2, 50)
+texture = ExtResource("23_5m2at")
+
+[node name="ArrowStraight2" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
+transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -339.65024, 2, 50)
+texture = ExtResource("22_uu56x")
 
 [node name="FixedRoadCont" type="Node3D" parent="."]
 
@@ -315,6 +581,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 0)
 [node name="StaticBody3D99" parent="FixedRoadCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 0)
 
+[node name="StaticBody3D78" parent="FixedRoadCont" instance=ExtResource("8_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 100)
+do_transparency = true
+
+[node name="StairTest" parent="FixedRoadCont" instance=ExtResource("24_w268i")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -600, -50, 50)
+
 [node name="FixedBuildCont" type="Node3D" parent="."]
 
 [node name="StaticBody3D" parent="FixedBuildCont" instance=ExtResource("8_lrgld")]
@@ -395,10 +668,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -100)
 
 [node name="StaticBody3D24" parent="FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 100)
-do_transparency = true
-
-[node name="StaticBody3D25" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 150)
 do_transparency = true
 
 [node name="StaticBody3D26" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
@@ -505,17 +774,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 550)
 [node name="WaymoConfusedSide" parent="FixedPropCont" instance=ExtResource("19_r4iu2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 450)
 
-[node name="WaymoConfusedSide2" parent="FixedPropCont" instance=ExtResource("19_r4iu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 250)
-
 [node name="Bus1Down" parent="FixedPropCont" instance=ExtResource("21_uu56x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 450)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 520)
 
 [node name="Bus1Down2" parent="FixedPropCont" instance=ExtResource("21_uu56x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 350)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 420)
 
 [node name="Bus1Down3" parent="FixedPropCont" instance=ExtResource("21_uu56x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 250)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 320)
 
 [node name="FenceTemp2" type="Sprite3D" parent="FixedPropCont"]
 transform = Transform3D(-1.0927847e-06, 6.470476, -24.148146, 0, 24.148144, 6.4704757, 24.999998, 2.8283347e-07, -1.0555489e-06, -100, -10, 650)
@@ -540,15 +806,6 @@ transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933
 
 [node name="CarRedDown" parent="FixedPropCont" instance=ExtResource("16_3au38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 0, 625)
-
-[node name="CarRedSide4" parent="FixedPropCont" instance=ExtResource("18_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -665, 0, 35)
-
-[node name="CarRedSide5" parent="FixedPropCont" instance=ExtResource("18_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -665, 0, 10)
-
-[node name="Bus1Up" parent="FixedPropCont" instance=ExtResource("17_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -625, 0, 10)
 
 [node name="InvisibleWall" parent="FixedPropCont" instance=ExtResource("16_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150, 50, 850)
@@ -579,6 +836,25 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350,
 
 [node name="InvisibleWallSmall" parent="FixedPropCont" instance=ExtResource("12_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 50, -50)
+
+[node name="FenceTemp5" type="Sprite3D" parent="FixedPropCont"]
+transform = Transform3D(-9.463794e-07, 6.470476, 24.148148, 5.463923e-07, 24.14814, -6.4704747, -24.999994, 2.8283353e-07, -1.0555491e-06, -1300, -10, 50)
+texture = ExtResource("7_yacnu")
+
+[node name="InvisibleWallSmall2" parent="FixedPropCont/FenceTemp5" instance=ExtResource("12_lrgld")]
+transform = Transform3D(0.04, 6.119595e-10, 2.342486e-11, -9.050672e-10, 0.027045922, 0.0010352755, 2.220446e-16, -0.0072469315, 0.0038637007, 0, 0, 0)
+
+[node name="CarRedSide6" parent="FixedPropCont" instance=ExtResource("18_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -915, 0, 5)
+
+[node name="CarRedSide7" parent="FixedPropCont" instance=ExtResource("18_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -925, 0, 65)
+
+[node name="Bus1Side" parent="FixedPropCont" instance=ExtResource("30_n4o7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 35)
+
+[node name="InvisibleWallSmall2" parent="FixedPropCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 50, 150)
 
 [node name="ArrowCont" type="Node3D" parent="."]
 
@@ -649,3 +925,9 @@ texture = ExtResource("22_uu56x")
 [node name="ArrowStraight14" type="Sprite3D" parent="ArrowCont"]
 transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -250, 2, 50)
 texture = ExtResource("22_uu56x")
+
+[node name="Bus1Side" parent="." instance=ExtResource("30_n4o7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145, 0, 70)
+
+[node name="Bus1Up" parent="." instance=ExtResource("17_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1025, 0, 0)

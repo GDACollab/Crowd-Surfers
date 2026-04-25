@@ -10,8 +10,6 @@ extends Camera3D
 @export var offset: Vector3 = Vector3(0, 10000, 10000)
 
 @export_category("Building Occlusion")
-## A reference to the shader which provides transparency to the objects
-@export var occlusionShader: ShaderMaterial
 ## The distance in front of the player that the transparency window's center should be at
 @export var transparency_window_lead_distance := Vector3(50.0, 0.0, 0.0)
 ## The (x, y) distances of either end of the transparency window from its center

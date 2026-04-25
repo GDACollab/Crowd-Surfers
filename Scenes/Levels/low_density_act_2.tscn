@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="12_a6a0s"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="13_gdh5n"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="14_k2cax"]
-[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="15_jvmnx"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="15_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="15_k2cax"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="16_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="16_okc15"]
@@ -859,6 +859,7 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1626.2573, 2, -4.214203)
 
 [node name="Camera3D" parent="." instance=ExtResource("18_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)
+visible = false
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
@@ -866,10 +867,12 @@ offset = Vector3(0, 1000, 1000)
 
 [node name="Light" parent="." instance=ExtResource("19_okc15")]
 transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 100, -1493.9137)
+visible = false
 light_specular = 0.0
 
 [node name="Player" parent="." instance=ExtResource("19_clv1d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+visible = false
 ramping_exponent = 0.525
 stomp_dash_boost_factor = 400.0
 max_stomp_dash_boost = 700.0
