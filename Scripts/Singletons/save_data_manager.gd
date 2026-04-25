@@ -14,7 +14,7 @@ var level_times:Array[float] = [0.0,0.0,0.0]
 
 ##If a save file exists, load it, otherwise create it
 func _ready() -> void:
-	if DirAccess.dir_exists_absolute(SAVE_PATH.get_base_dir()):
+	if FileAccess.file_exists(SAVE_PATH):
 		load_data()
 	else:
 		save_data()
