@@ -536,11 +536,21 @@ func handle_inputs(delta: float) -> void:
 	if direction:
 		var factorx: float = acceleration * delta
 		var factorz: float = acceleration * delta
-		# Add friction if direction is opposite the velocity
+		
+		# Add friction if direction is opposite the velocity for x direction
 		if sign(direction.x) != sign(velocity.x):
 			factorx += friction * delta
+		# Prevents speed loss on any 45 degree turn increments on the x direction
+		elif (abs(velocity.x) > abs(direction.x * max_speed) and direction.x != 0):
+			velocity.x = direction.x * max_speed
+			velocity.z = direction.z * max_speed
+		# Add friction if direction is opposite the velocity for z direction
 		if sign(direction.z) != sign(velocity.z):
 			factorz += friction * delta
+		# Prevents speed loss on any 45 degree turn increments on the z direction
+		elif (abs(velocity.z) > abs(direction.z * max_speed) and direction.z != 0):
+			velocity.x = direction.x * max_speed
+			velocity.z = direction.z * max_speed
 		# Apply speed
 		velocity.x = move_toward(velocity.x, direction.x * max_speed , factorx)
 		velocity.z = move_toward(velocity.z, direction.z * max_speed , factorz)
