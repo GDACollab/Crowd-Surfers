@@ -65,7 +65,7 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1175, 2, -475)
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -1575, 2, -495)
 
 [node name="SlowPadCollider2" parent="InteractionCont" instance=ExtResource("6_n4o7x")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1145, 2, 30)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1120, 2, 40)
 
 [node name="WindBoxCollider3" parent="InteractionCont" instance=ExtResource("5_3q2qt")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -1375, 2, 25)
@@ -666,10 +666,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 100)
 do_transparency = true
 
-[node name="StaticBody3D25" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 150)
-do_transparency = true
-
 [node name="StaticBody3D26" parent="FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 250)
 do_transparency = true
@@ -774,17 +770,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 550)
 [node name="WaymoConfusedSide" parent="FixedPropCont" instance=ExtResource("19_r4iu2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 450)
 
-[node name="WaymoConfusedSide2" parent="FixedPropCont" instance=ExtResource("19_r4iu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 250)
-
 [node name="Bus1Down" parent="FixedPropCont" instance=ExtResource("21_uu56x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 450)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 520)
 
 [node name="Bus1Down2" parent="FixedPropCont" instance=ExtResource("21_uu56x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 350)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 420)
 
 [node name="Bus1Down3" parent="FixedPropCont" instance=ExtResource("21_uu56x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 250)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 320)
 
 [node name="FenceTemp2" type="Sprite3D" parent="FixedPropCont"]
 transform = Transform3D(-1.0927847e-06, 6.470476, -24.148146, 0, 24.148144, 6.4704757, 24.999998, 2.8283347e-07, -1.0555489e-06, -100, -10, 650)
@@ -865,6 +858,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -925, 0, 65)
 [node name="Bus1Side" parent="FixedPropCont" instance=ExtResource("30_n4o7x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 35)
 
+[node name="InvisibleWallSmall2" parent="FixedPropCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 50, 150)
+
 [node name="ArrowCont" type="Node3D" parent="."]
 
 [node name="ArrowStraight" type="Sprite3D" parent="ArrowCont"]
@@ -936,7 +932,7 @@ transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, 
 texture = ExtResource("22_uu56x")
 
 [node name="Bus1Side" parent="." instance=ExtResource("30_n4o7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145, 0, 70)
 
 [node name="Bus1Up" parent="." instance=ExtResource("17_fuigj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1025, 0, 0)
