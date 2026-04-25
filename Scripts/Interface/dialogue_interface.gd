@@ -288,7 +288,7 @@ func _handle_tags(currentTags, newPanel):
 				print("Choosing new background!")
 			"voiced":
 				##TODO Play next voice line. If already playing a line, make sure to cut if off.
-				pass
+				print("This line needs to be voiced")
 	awaitingAnimations = false
 	_display_text(newPanel)
 
