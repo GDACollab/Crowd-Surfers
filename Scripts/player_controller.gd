@@ -133,7 +133,7 @@ func crowd_launch() -> void:
 		# Play dash sound
 		$DashSound.play()
 ## The states that the player can be in
-enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR, STOMP_CROWD_LAUNCH}
+enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR}
 
 # Active values - may change during execution
 var max_speed: float = starting_speed
@@ -252,12 +252,12 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
-		States.STOMP_CROWD_LAUNCH:
-			fall(delta)
-			handle_inputs(delta)
-			if is_on_wall():
-				crash()
-			
+		#States.STOMP_CROWD_LAUNCH:
+			#fall(delta)
+			#handle_inputs(delta)
+			#if is_on_wall():
+				#crash()
+			#
 		
 ## Performs a state transition, if necessary
 func check_state_transitions() -> void:
@@ -323,7 +323,7 @@ func check_state_transitions() -> void:
 				
 				if hit_crowd:
 					print("SUCCESS! Crowd object detected. Launching!")
-					transition_to(States.STOMP_CROWD_LAUNCH)
+					transition_to(States.DASH_GROUND)
 					return
 				else:
 					print("Normal floor detected. Transitioning to GROUND.")
@@ -392,16 +392,16 @@ func check_state_transitions() -> void:
 						transition_to(States.GROUND)
 					else:
 						transition_to(States.AIR)
-		States.STOMP_CROWD_LAUNCH:
-			# Allow the player to land, dash, or glide after bouncing
-			if is_on_floor():
-				transition_to(States.GROUND)
-			elif Input.is_action_just_pressed("ability_stomp"):
-				transition_to(States.STOMP_WINDUP)
-			elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
-				transition_to(States.DASH_AIR)
-			elif can_glide and Input.is_action_just_pressed("ability_glide"):
-				transition_to(States.GLIDE)
+		#States.STOMP_CROWD_LAUNCH:
+			## Allow the player to land, dash, or glide after bouncing
+			#if is_on_floor():
+				#transition_to(States.GROUND)
+			#elif Input.is_action_just_pressed("ability_stomp"):
+				#transition_to(States.STOMP_WINDUP)
+			#elif can_dash() and can_air_dash and Input.is_action_just_pressed("ability_dash"):
+				#transition_to(States.DASH_AIR)
+			#elif can_glide and Input.is_action_just_pressed("ability_glide"):
+				#transition_to(States.GLIDE)
 
 ## Actually changes the state, and maintains invariants for each state transition
 func transition_to(new_state: int) -> void:
@@ -488,6 +488,32 @@ func transition_to(new_state: int) -> void:
 		States.DASH_GROUND, States.DASH_AIR:
 			can_air_dash = false
 			# Don't reapply dash boost if going from ground dash to air dash
+			if is_on_floor():
+				print("STOMP HIT FLOOR")
+				var hit_crowd = false
+				
+				# Loop through everything we collided with this frame
+				for i in get_slide_collision_count():
+					var collision = get_slide_collision(i)
+					var collider = collision.get_collider()
+					
+					print("Collision ", i, " with: ", collider.name)
+					print("  - Groups on this object: ", collider.get_groups())
+					
+					if collider.is_in_group("Crowd"):
+						print("Detects Crowd")
+						hit_crowd = true
+						break
+				
+				if hit_crowd:
+					print("SUCCESS! Crowd object detected. Launching!")
+					crowd_launch();
+					return
+				else:
+					print("Normal floor detected. Transitioning to GROUND.")
+			
+				$StompDashMargin.start()
+				transition_to(States.GROUND)
 			if not current_state == States.DASH_GROUND:
 				speed_before_dashing = Vector2(velocity.x, velocity.z).length()
 				dash_start_pos = position
@@ -509,8 +535,8 @@ func transition_to(new_state: int) -> void:
 				velocity.y = yspeed
 				# Play dash sound
 				$DashSound.play()
-		States.STOMP_CROWD_LAUNCH:
-			crowd_launch()
+		#States.STOMP_CROWD_LAUNCH:
+			#crowd_launch()
 	
 	current_state = new_state
 	print(state_to_string())
@@ -637,8 +663,8 @@ func state_to_string() -> String:
 			return "Ground Dash"
 		States.DASH_AIR:
 			return "Air Dash"
-		States.STOMP_CROWD_LAUNCH:
-			return "Stomp Dash"
+		#States.STOMP_CROWD_LAUNCH:
+			#return "Stomp Dash"
 	return ""
 
 ## Returns the current direction
