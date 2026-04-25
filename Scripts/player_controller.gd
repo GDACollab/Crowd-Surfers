@@ -37,12 +37,19 @@ var stateColors = {
 @export var friction: float = 200.0
 ## Added to player's vertical speed in states where they can fall
 @export var gravity: float = 500.0
-## Speed of the player's jump
-@export var jump_speed: float = 150.0
 ## Time after walking off a ledge that the player can still jump
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
+
+# Jumping
+@export_category("Jumping")
+## Speed of the player's jump
+@export var jump_speed: float = 180.0
+## Gravity during the jump
+@export var jump_gravity: float = 350.0
+## When jump is let go, set vertical speed to this
+@export var jump_end_speed: float = 45.0
 
 # Stomp
 @export_category("Stomp")
@@ -543,11 +550,21 @@ func handle_inputs(delta: float) -> void:
 	if direction:
 		var factorx: float = acceleration * delta
 		var factorz: float = acceleration * delta
-		# Add friction if direction is opposite the velocity
+		
+		# Add friction if direction is opposite the velocity for x direction
 		if sign(direction.x) != sign(velocity.x):
 			factorx += friction * delta
+		# Prevents speed loss on any 45 degree turn increments on the x direction
+		elif (abs(velocity.x) > abs(direction.x * max_speed) and direction.x != 0):
+			velocity.x = direction.x * max_speed
+			velocity.z = direction.z * max_speed
+		# Add friction if direction is opposite the velocity for z direction
 		if sign(direction.z) != sign(velocity.z):
 			factorz += friction * delta
+		# Prevents speed loss on any 45 degree turn increments on the z direction
+		elif (abs(velocity.z) > abs(direction.z * max_speed) and direction.z != 0):
+			velocity.x = direction.x * max_speed
+			velocity.z = direction.z * max_speed
 		# Apply speed
 		velocity.x = move_toward(velocity.x, direction.x * max_speed , factorx)
 		velocity.z = move_toward(velocity.z, direction.z * max_speed , factorz)
@@ -590,7 +607,12 @@ func apply_wind_launch(launch_speed: float) -> void:
 
 ## Applies gravity
 func fall(delta: float) -> void:
-	velocity += gravity * Vector3.DOWN * delta
+	var gravity_effect := gravity
+	if Input.is_action_pressed("move_jump") and not velocity.y <= jump_end_speed:
+		gravity_effect = jump_gravity
+	elif Input.is_action_just_released("move_jump") and velocity.y >= jump_end_speed:
+		velocity.y = jump_end_speed
+	velocity += gravity_effect * Vector3.DOWN * delta
 	
 ## Applies penalty when crashing into a wall
 func crash() -> void:

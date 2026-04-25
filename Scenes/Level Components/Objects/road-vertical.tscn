@@ -1,19 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqntn010cffo4"]
+[gd_scene load_steps=10 format=3 uid="uid://dqntn010cffo4"]
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_0ja4t"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_x5sv6"]
 [ext_resource type="Texture2D" uid="uid://4y7f4wmj2kup" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Vertical S3.png" id="2_x5sv6"]
 [ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_87w70"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_jwdsp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ja4t"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g165"]
 render_priority = 0
 shader = ExtResource("3_87w70")
 shader_parameter/tex = ExtResource("2_x5sv6")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jwdsp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_215y1"]
+render_priority = 0
+shader = ExtResource("5_jwdsp")
+shader_parameter/tex = ExtResource("2_x5sv6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwrel"]
 size = Vector3(100, 0, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8g165"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2uvqk"]
 size = Vector3(100, 1, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -21,7 +27,6 @@ script = ExtResource("1_0ja4t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_x5sv6")
-active = true
 top_filename = ExtResource("2_x5sv6")
 width = 100.0
 length = 100.0
@@ -31,7 +36,8 @@ platform_thickness = 1.0
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.605852, 0, 0, 0, 0.99995, -0.08928571, 0, 0.0099995, 8.928572, 0, 0.5, 50)
-material_override = SubResource("ShaderMaterial_0ja4t")
+material_override = SubResource("ShaderMaterial_8g165")
+material_overlay = SubResource("ShaderMaterial_215y1")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -39,10 +45,10 @@ texture = ExtResource("2_x5sv6")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("BoxShape3D_jwdsp")
+shape = SubResource("BoxShape3D_fwrel")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
-shape = SubResource("BoxShape3D_8g165")
+shape = SubResource("BoxShape3D_2uvqk")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
