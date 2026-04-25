@@ -600,7 +600,7 @@ func apply_wind_launch(launch_speed: float) -> void:
 ## Applies gravity
 func fall(delta: float) -> void:
 	var gravity_effect := gravity
-	if Input.is_action_pressed("move_jump") and not velocity.y <= 0.0:
+	if Input.is_action_pressed("move_jump") and not velocity.y <= jump_end_speed:
 		gravity_effect = jump_gravity
 	elif Input.is_action_just_released("move_jump") and velocity.y >= jump_end_speed:
 		velocity.y = jump_end_speed
