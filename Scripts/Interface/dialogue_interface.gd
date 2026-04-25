@@ -264,8 +264,9 @@ func _handle_tags(currentTags, newPanel):
 						var portraitTween2 = create_tween()
 						portraitTween2.tween_property(currentSpeakerPanel,"global_position", 
 						portraitPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
-					#Sets new panel to right side of screen
+					##Sets new panel to right side of screen
 					newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
+					##TODO Change panel sprite if speaking from right
 				#Adjust portraits based on speaker
 				currentSpeaker.scale = speakingPortraitScale
 				currentSpeaker.self_modulate = Color.WHITE
@@ -285,6 +286,9 @@ func _handle_tags(currentTags, newPanel):
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
 			"bg":
 				print("Choosing new background!")
+			"voiced":
+				##TODO Play next voice line. If already playing a line, make sure to cut if off.
+				pass
 	awaitingAnimations = false
 	_display_text(newPanel)
 
