@@ -15,10 +15,15 @@ extends Control
 
 @export_category("Stars")
 @export var stars: Array[HudStarData]
-@export var star_scale: float
 @export var star_alpha_fade_per_second: float
+@export var star_move_distance: float
+@export var star_animation_time: float
+@export var star_animation_fade_in_multiplier: float = 5.0;
+@export var hud_star_scene: PackedScene
 
-var starImages: Array[TextureRect]
+var star_images: Array[TextureRect]
+var star_base_modulate: Array[float]
+var saved_ramping_cap: float
 
 signal change_Lvl_Progress(new_speed: float)
 
@@ -28,26 +33,27 @@ signal change_Lvl_Progress(new_speed: float)
 # stay on other scenes and reinitialize
 func _ready():
 	#initialize on scene start up
-	set_Max_Speed(player.base_ramping_cap)
+	saved_ramping_cap = player.base_ramping_cap
+	set_max_speed(saved_ramping_cap)
 	change_Lvl_Progress.connect(set_Level_Progress)
 	set_Level_Progress(30)
 	
 	# Create stars
 	for i in stars.size():
-		var star: TextureRect = TextureRect.new()
+		var star: TextureRect = hud_star_scene.instantiate()
 		star.texture = stars[i].texture
 		star.position = stars[i].position
-		star.scale = Vector2(star_scale, star_scale)
 		hud_container.add_child(star)
-		starImages.append(star)
+		star_images.append(star)
+		star_base_modulate.append(0.0)
 	
-func set_Max_Speed(new_Speed: float):
-	speedometer.set_Max_Speed(new_Speed)
+func set_max_speed(new_speed: float):
+	speedometer.set_Max_Speed(new_speed)
 
-# Send a call to the script attached to the speed_O_Meter component
+# Send a call to the script attached to the speedometer component
 # that script handles changing the bar value display
-func set_Player_speed(new_Speed: float):
-	speedometer.set_speed(new_Speed)
+func set_player_speed(new_speed: float):
+	speedometer.set_speed(new_speed)
 	
 # send a call to the component with the script attached.
 # that script handles changing the display.
@@ -98,16 +104,34 @@ func _process(delta: float) -> void:
 	
 	# This gets the actual speed of the player, not the max speed. No longer used
 	#var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
-	set_Player_speed(player.max_speed)
+	var max_speed = player.max_speed
+	set_player_speed(max_speed)
 
 	## Handle Stars
+	var modified_star_animation_time = 0.7 * star_animation_time#(0.5 * star_animation_time) + 0.5 * (1 - (max_speed / saved_ramping_cap))
+	#print("mod time: " + str(modified_star_animation_time));
+	print("max speed: " + str(max_speed));
+		
 	var index: int = 0
-	for star in starImages:
-		if (stars[index].speed_percent_to_show < player.max_speed):
-			if (star.modulate.a < 1):
-				star.modulate.a += star_alpha_fade_per_second * delta
+	for star in star_images:
+		if (stars[index].speed_percent_to_show < max_speed):
+			if (star_base_modulate[index] < 1):
+				star_base_modulate[index] += star_alpha_fade_per_second * delta
 		elif (star.modulate.a > 0):
-				star.modulate.a -= star_alpha_fade_per_second * delta
+				star_base_modulate[index] -= star_alpha_fade_per_second * delta
+
+		var rng = RandomNumberGenerator.new()
+		rng.seed = index
+		var seconds = Time.get_ticks_msec()/1000.0 + rng.randf_range(-10.0, 10.0)
+		#should go from 0 to 1 every modified_star_animation_time seconds
+		var time_based_multiplier = fmod(seconds, modified_star_animation_time) * (1 / modified_star_animation_time)
+		
+		star.position = stars[index].position + Vector2(1, -1) * star_move_distance * time_based_multiplier
+		
+		# Refer to desmos screenshot, but in short, this is zero at both ends, and quickly changes to 1 in the middle
+		time_based_multiplier = min(star_animation_fade_in_multiplier * (-abs(time_based_multiplier - 0.5) + 0.5), 1)
+		star.modulate.a = star_base_modulate[index] * time_based_multiplier
+	
 		index += 1
 	
 	## Calculate and display time

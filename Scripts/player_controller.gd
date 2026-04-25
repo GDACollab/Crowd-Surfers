@@ -203,9 +203,9 @@ func process_state(delta: float) -> void:
 	match current_state:
 		States.GROUND:
 			# Ramping
-			print(ramping_cap)
+			#print(ramping_cap)
 			if max_speed < ramping_cap: 
-				print("we are adding the max speed")
+				#print("we are adding the max speed")
 				
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
 			handle_inputs(delta)
