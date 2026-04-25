@@ -14,8 +14,6 @@ extends StaticBody3D
 		# saftey check, to make sure we are in the edtior
 		if is_inside_tree() and Engine.is_editor_hint():
 			_update_hitboxes()
-@export_group("Occlusion")
-@export var do_occlusion: bool = false
 			
 @export_group("File References")
 @export var top_filename: Texture2D:
@@ -557,14 +555,19 @@ func create_sprite3D(given_name, texture, given_rot = Vector3(0, 0, 0), given_po
 	sprite.shaded = true
 	sprite.axis = given_axis # lays flat on given axis
 	sprite.rotation_degrees = given_rot # rotates sprite
-	if(do_occlusion):
-		# Load the transparecy script
-		var material := ShaderMaterial.new()
-		material.shader = load("res://Scripts/Shaders/occlusion.gdshader")
-		# Pass the texture to the shader for drawing
-		var tex: CompressedTexture2D = load(texture.resource_path)
-		material.set_shader_parameter("tex", tex)
-		sprite.material_override = material
+	# Load the transparecy script
+	var material := ShaderMaterial.new()
+	material.shader = load("res://Scripts/Shaders/occlusion.gdshader")
+	# Pass the texture to the shader for drawing
+	var tex: CompressedTexture2D = load(texture.resource_path)
+	material.set_shader_parameter("tex", tex)
+	sprite.material_override = material
+	# Load the height fog script
+	var overlay := ShaderMaterial.new()
+	overlay.shader = load("res://Scripts/Shaders/height_fog.gdshader")
+	# Pass the texture to the shader
+	overlay.set_shader_parameter("tex", tex)
+	sprite.material_overlay = overlay
 	
 	# assign top and front vectors with sizes compensating for pixel size
 	var text_w = texture.get_width()

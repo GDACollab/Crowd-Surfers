@@ -1,10 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://6g62uuswf0m5"]
+[gd_scene load_steps=18 format=3 uid="uid://6g62uuswf0m5"]
 
 [ext_resource type="Script" uid="uid://drrrorsu46rwu" path="res://Scripts/Hud UI/Hud Handler.gd" id="1_60t2x"]
-[ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/UI Menus/Hud/speed_ometer_component.tscn" id="2_60t2x"]
+[ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/UI Menus/Hud/speedometer_component.tscn" id="2_60t2x"]
+[ext_resource type="Script" uid="uid://cewh1ultsgo40" path="res://Scripts/Hud UI/hud_star_data.gd" id="2_a4duu"]
+[ext_resource type="Texture2D" uid="uid://ddh5rvamb333v" path="res://Assets/Art/UI/HUD/hud_bg.png" id="2_ck5tu"]
+[ext_resource type="Texture2D" uid="uid://b1xii2nm6dbjw" path="res://Assets/Art/UI/HUD/Stars/star2.png" id="3_tbtus"]
 [ext_resource type="PackedScene" uid="uid://s4k1yymmwky1" path="res://Scenes/UI Menus/Hud/timer_component.tscn" id="3_uqmuc"]
 [ext_resource type="PackedScene" uid="uid://crxtf2cx4pai4" path="res://Scenes/UI Menus/Hud/level_progress_component.tscn" id="4_8ms62"]
+[ext_resource type="Texture2D" uid="uid://m6ufyf1s6ubh" path="res://Assets/Art/UI/HUD/Stars/star3.png" id="4_kniuw"]
 [ext_resource type="Script" uid="uid://b0horolsbjtj3" path="res://Scripts/Hud UI/level_progress_component.gd" id="5_uqmuc"]
+[ext_resource type="Texture2D" uid="uid://drnbeui74qe4m" path="res://Assets/Art/UI/HUD/Stars/star4.png" id="6_8al6q"]
+[ext_resource type="Texture2D" uid="uid://brask1luwu0ql" path="res://Assets/Art/UI/HUD/Stars/star1.png" id="6_bwla4"]
+[ext_resource type="Texture2D" uid="uid://cshhmcenigqrl" path="res://Assets/Art/UI/HUD/Stars/star5.png" id="7_nlhqq"]
+
+[sub_resource type="Resource" id="Resource_tbtus"]
+script = ExtResource("2_a4duu")
+texture = ExtResource("3_tbtus")
+position = Vector2(68, -28)
+speed_percent_to_show = 150.0
+metadata/_custom_type_script = "uid://cewh1ultsgo40"
+
+[sub_resource type="Resource" id="Resource_bwla4"]
+script = ExtResource("2_a4duu")
+texture = ExtResource("4_kniuw")
+position = Vector2(207, -23)
+speed_percent_to_show = 50.0
+metadata/_custom_type_script = "uid://cewh1ultsgo40"
+
+[sub_resource type="Resource" id="Resource_n7o7w"]
+script = ExtResource("2_a4duu")
+texture = ExtResource("7_nlhqq")
+position = Vector2(225, -1)
+speed_percent_to_show = 100.0
+metadata/_custom_type_script = "uid://cewh1ultsgo40"
+
+[sub_resource type="Resource" id="Resource_8al6q"]
+script = ExtResource("2_a4duu")
+texture = ExtResource("6_bwla4")
+position = Vector2(319, -12)
+speed_percent_to_show = 125.0
+metadata/_custom_type_script = "uid://cewh1ultsgo40"
+
+[sub_resource type="Resource" id="Resource_nlhqq"]
+script = ExtResource("2_a4duu")
+texture = ExtResource("6_8al6q")
+position = Vector2(368, -7)
+speed_percent_to_show = 75.0
+metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -15,30 +57,61 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_60t2x")
+stars = Array[ExtResource("2_a4duu")]([SubResource("Resource_tbtus"), SubResource("Resource_bwla4"), SubResource("Resource_n7o7w"), SubResource("Resource_8al6q"), SubResource("Resource_nlhqq")])
+star_scale = 0.224
+star_alpha_fade_per_second = 2.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -160.0
-offset_right = 401.0
-grow_vertical = 0
-theme_override_constants/separation = 10
+[node name="Hud Container" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 880.0
+offset_right = 40.0
+offset_bottom = 920.0
 
-[node name="SpeedOmeter Component" parent="HBoxContainer" instance=ExtResource("2_60t2x")]
-layout_mode = 2
+[node name="Hud Background" type="TextureRect" parent="Hud Container"]
+layout_mode = 0
+offset_left = -13.999999
+offset_top = -38.999996
+offset_right = 2350.0
+offset_bottom = 1025.0
+scale = Vector2(0.224, 0.224)
+texture = ExtResource("2_ck5tu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
+[node name="Stars Container" type="Control" parent="Hud Container"]
+anchors_preset = 0
 
-[node name="Timer Component" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_uqmuc")]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="Hud Container/Stars Container"]
+visible = false
+layout_mode = 0
+offset_left = 225.0
+offset_top = -1.0000079
+offset_right = 737.0
+offset_bottom = 465.0
+scale = Vector2(0.224, 0.224)
+texture = ExtResource("7_nlhqq")
 
-[node name="Level Progress Component" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_8ms62")]
-layout_mode = 2
+[node name="Speedometer Component" parent="Hud Container" instance=ExtResource("2_60t2x")]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Timer Component" parent="Hud Container" instance=ExtResource("3_uqmuc")]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 45.0
+offset_right = 186.0
+offset_bottom = 45.0
+
+[node name="Level Progress Component" parent="Hud Container" instance=ExtResource("4_8ms62")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 167.0
+offset_top = 113.0
+offset_right = 167.0
+offset_bottom = 113.0
+grow_horizontal = 1
+grow_vertical = 1
 script = ExtResource("5_uqmuc")
