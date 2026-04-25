@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1xw1x5562w3b"]
+[gd_scene load_steps=23 format=3 uid="uid://c1xw1x5562w3b"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="1_sowhy"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="2_6hqax"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="15_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="15_k2cax"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="16_jvmnx"]
+[ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="16_okc15"]
+[ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="17_b4dd1"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="17_snqwb"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="18_snqwb"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="19_clv1d"]
@@ -312,10 +314,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 350)
 
 [node name="b9" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 250)
+visible = false
 do_transparency = true
 
 [node name="b10" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 150)
+visible = false
 do_transparency = true
 
 [node name="b11" parent="Segment1/Buildings" instance=ExtResource("12_a6a0s")]
@@ -356,54 +360,158 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 350)
 
 [node name="b23" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b24" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b25" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b26" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b27" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b28" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b29" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b30" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b31" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b32" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b33" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 650)
+visible = false
 do_transparency = true
 
 [node name="b34" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 150)
+visible = false
 do_transparency = true
 
 [node name="b35" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 150)
+visible = false
+do_transparency = true
+
+[node name="b36" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 250)
+do_transparency = true
+
+[node name="b37" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 250)
+do_transparency = true
+
+[node name="b38" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 250)
+do_transparency = true
+
+[node name="b39" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 750)
+do_transparency = true
+
+[node name="b40" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 750)
+do_transparency = true
+
+[node name="b41" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 750)
+do_transparency = true
+
+[node name="b42" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 750)
+do_transparency = true
+
+[node name="b43" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 750)
+do_transparency = true
+
+[node name="b44" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 750)
+do_transparency = true
+
+[node name="b45" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, 750)
+do_transparency = true
+
+[node name="b46" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, 750)
+do_transparency = true
+
+[node name="b47" parent="Segment1/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, 750)
+do_transparency = true
+
+[node name="b48" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 750)
+do_transparency = true
+
+[node name="b49" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 750)
+do_transparency = true
+
+[node name="b50" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 650)
+visible = false
+do_transparency = true
+
+[node name="b51" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 650)
+visible = false
+do_transparency = true
+
+[node name="b52" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 650)
+visible = false
+do_transparency = true
+
+[node name="b53" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 550)
+visible = false
+do_transparency = true
+
+[node name="b54" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 550)
+visible = false
+do_transparency = true
+
+[node name="b55" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 550)
+visible = false
+do_transparency = true
+
+[node name="b56" parent="Segment1/Buildings" instance=ExtResource("17_snqwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 550)
+visible = false
 do_transparency = true
 
 [node name="arrow1" type="Sprite3D" parent="Segment1"]
@@ -420,6 +528,45 @@ texture = ExtResource("14_k2cax")
 
 [node name="InvisibleWallSmall" parent="Segment1/FenceSprite" instance=ExtResource("15_jvmnx")]
 transform = Transform3D(-0.066666655, -4.8525577e-30, -5.828185e-09, 4.1647727e-30, 0.06666666, -1.6062254e-23, 5.828184e-09, 1.7646503e-24, -0.06666666, 0, 0.8394623, 3.2903624)
+visible = false
+
+[node name="WindBoxColliders" type="Node3D" parent="Segment1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, 500)
+
+[node name="wbc1" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -9.897583, 2, 45.792053)
+
+[node name="wbc2" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -520.15015, 2, -9.248688)
+
+[node name="wbc3" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -520.15015, 2, -168.29814)
+
+[node name="wbc4" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -821.63654, 2, -127.923004)
+
+[node name="wbc5" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -721.03735, 2, -387.2345)
+
+[node name="wbc6" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1114.4441, 2, -450.1114)
+
+[node name="wbc7" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1311.4338, 2, -455.6112)
+
+[node name="wbc8" parent="Segment1/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -648.8615, 2, 57.75003)
+
+[node name="SlowPads" type="Node3D" parent="Segment1"]
+
+[node name="sp1" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1602.0898, 2, 497.25446)
+
+[node name="sp2" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1602.0898, 2, 610.2893)
+
+[node name="sp3" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 802.4058, 2, 338.47034)
 
 [node name="Segment2" type="Node3D" parent="."]
 
@@ -559,25 +706,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -250)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, -400)
 
 [node name="msc2" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -133.21783)
 
 [node name="msc3" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -133.21783)
 
 [node name="msc4" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -133.21783)
 
 [node name="msc5" parent="Segment2/MarketStalls" instance=ExtResource("7_0ntw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -64.311325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1554.4174, 0, -37.270554)
 
 [node name="msa1" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, -200)
 
 [node name="msa2" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -133.21783)
 
 [node name="msa3" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -133.21783)
 
 [node name="msa4" parent="Segment2/MarketStalls" instance=ExtResource("6_s6jld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, 27.74054)
@@ -619,6 +766,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2100, 0, -50)
 
 [node name="b12" parent="Segment2/Buildings" instance=ExtResource("17_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1700, 0, -350)
+visible = false
 do_transparency = true
 
 [node name="b13" parent="Segment2/Buildings" instance=ExtResource("17_snqwb")]
@@ -629,11 +777,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1700, 0, -150)
 
 [node name="b15" parent="Segment2/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -350)
+visible = false
 do_transparency = true
 
 [node name="b16" parent="Segment2/Buildings" instance=ExtResource("16_jvmnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -350)
+visible = false
 do_transparency = true
+
+[node name="b17" parent="Segment2/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -250)
+do_transparency = true
+
+[node name="b18" parent="Segment2/Buildings" instance=ExtResource("16_jvmnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, -250)
+do_transparency = true
+
+[node name="b19" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, 277.79263)
+
+[node name="b20" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, 277.79263)
+
+[node name="b21" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, 277.79263)
+
+[node name="b22" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1600, 0, 177.79263)
+
+[node name="b23" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, 177.79263)
+
+[node name="b24" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1700, 0, 177.79263)
+
+[node name="b25" parent="Segment2/Buildings" instance=ExtResource("12_a6a0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1800, 0, 177.79263)
 
 [node name="arrow1" type="Sprite3D" parent="Segment2"]
 transform = Transform3D(-18.6, 1.6260636e-06, 7.10775e-14, 0, -8.130318e-07, 18.6, 1.6260636e-06, 18.6, 8.130318e-07, -1600, 2, -400)
@@ -649,6 +828,34 @@ texture = ExtResource("14_k2cax")
 
 [node name="InvisibleWallSmall" parent="Segment2/FenceSprite" instance=ExtResource("15_jvmnx")]
 transform = Transform3D(-0.06666667, 7.542229e-10, 5.728889e-09, -7.542229e-10, 0.06439506, -0.017254606, -5.7288894e-09, -0.017254606, -0.06439506, 0, 0.8394623, 3.1329155)
+
+[node name="WindBoxColliders" type="Node3D" parent="Segment2"]
+
+[node name="wbc1" parent="Segment2/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1918.0459, 2, -379.36707)
+
+[node name="wbc2" parent="Segment2/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1804.0215, 2, -258.57004)
+
+[node name="wbc3" parent="Segment2/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1219.3201, 2, 79.78757)
+
+[node name="wbc4" parent="Segment2/WindBoxColliders" instance=ExtResource("16_okc15")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1478.7664, 2, -3.8406448)
+
+[node name="SlowPads" type="Node3D" parent="Segment2"]
+
+[node name="sp1" parent="Segment2/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1400, 2, 0)
+
+[node name="sp2" parent="Segment2/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1400, 2, 84.52554)
+
+[node name="sp3" parent="Segment2/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1298.7273, 2, -4.214203)
+
+[node name="sp4" parent="Segment2/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1626.2573, 2, -4.214203)
 
 [node name="Camera3D" parent="." instance=ExtResource("18_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)
