@@ -338,8 +338,6 @@ func check_state_transitions() -> void:
 				transition_to(States.GROUND)
 			elif Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_AIR)
-			elif Input.is_action_just_pressed("ability_dash"):
-				transition_to(States.DASH_AIR)
 		States.GLIDE:
 			if can_dash() and Input.is_action_just_pressed("ability_dash"):
 					transition_to(States.DASH_AIR)
