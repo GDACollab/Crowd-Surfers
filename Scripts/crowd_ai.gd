@@ -54,6 +54,9 @@ var curr_point = 0
 @onready var anchor: Node3D = $Anchor
 @onready var nav_map = get_world_3d().navigation_map
 
+# SCENE/PREFAB REFERENCES
+@onready var crowd_man = preload("res://Scenes/Level Components/Crowds/crowd-man.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print('start')
@@ -508,27 +511,28 @@ func check_timer() -> bool:
 ## creation functions
 # creates a little char body
 func create_char(append_target, name = "crowd") -> CharacterBody3D:
-	var character = CharacterBody3D.new()
-	var collision = CollisionShape3D.new()
-	add_child(character)
-	character.add_child(collision)
-	
-	
-	# create for collision box
-	var cap = CapsuleShape3D.new()
-	cap.radius = CAP_RADIUS
-	cap.height = CAP_HEIGHT
-	collision.shape = cap
-	
-	# create for character
-	character.wall_min_slide_angle = 70.0
-	character.floor_constant_speed = true
-	character.floor_max_angle = 65.0
-	character.safe_margin = 0.5
-	character.floor_snap_length = 0.1
-	character.max_slides = 2
-	character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
-	character.platform_floor_layers = 0
+	var character = crowd_man.instantiate()
+	#var character = CharacterBody3D.new()
+	#var collision = CollisionShape3D.new()
+	#add_child(character)
+	#character.add_child(collision)
+	#
+	#
+	## create for collision box
+	#var cap = CapsuleShape3D.new()
+	#cap.radius = CAP_RADIUS
+	#cap.height = CAP_HEIGHT
+	#collision.shape = cap
+	#
+	## create for character
+	#character.wall_min_slide_angle = 70.0
+	#character.floor_constant_speed = true
+	#character.floor_max_angle = 65.0
+	#character.safe_margin = 0.5
+	#character.floor_snap_length = 0.1
+	#character.max_slides = 2
+	#character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
+	#character.platform_floor_layers = 0
 	character.add_collision_exception_with($Anchor)
 	
 	# sets position of body

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://5ftfucj75dps"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aurj2"]
+radius = 4.0
+height = 16.0
+
+[node name="CrowdMan" type="CharacterBody3D"]
+wall_min_slide_angle = 1.2217305
+floor_constant_speed = true
+floor_max_angle = 1.134464
+platform_on_leave = 2
+safe_margin = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_aurj2")
