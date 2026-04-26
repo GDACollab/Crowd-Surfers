@@ -14,7 +14,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# interesting player variable names like are you fr
 	var speed_range = player.base_ramping_cap
-	var ratio_of_max_speed = (player.velocity.length()) / speed_range
+	var horizontal_vel = Vector2(player.velocity.x, player.velocity.z)
+	var ratio_of_max_speed = (horizontal_vel.length()) / speed_range
 	ratio_of_max_speed = clamp(ratio_of_max_speed, 0, 1)
 	# Update FMOD global parameter `player_speed` -- effects city amb and music
 	FmodServer.set_global_parameter_by_name("player_speed", ratio_of_max_speed)
