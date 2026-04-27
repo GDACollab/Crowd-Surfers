@@ -414,7 +414,7 @@ func delete_group_behav(target) -> void:
 		nav_agent.queue_free()
 	
 	agents_sub.erase(target)
-	#print('delete')
+	#print('delete group')
 	
 # delete_queue
 # Goes through the queue to call deletion on groups
@@ -511,10 +511,12 @@ func check_timer() -> bool:
 ## creation functions
 # creates a little char body
 func create_char(append_target, name = "crowd") -> CharacterBody3D:
+	#print("create group (member)")
+	
 	var character = crowd_man.instantiate()
 	#var character = CharacterBody3D.new()
 	#var collision = CollisionShape3D.new()
-	#add_child(character)
+	add_child(character)
 	#character.add_child(collision)
 	#
 	#
