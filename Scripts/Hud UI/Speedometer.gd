@@ -7,6 +7,3 @@ func set_speed(value: float):
 
 func set_Max_Speed(value:float):
 	bar.max_value = value
-
-func _process(_delta: float):
-	print("bar value: " + str(bar.value))

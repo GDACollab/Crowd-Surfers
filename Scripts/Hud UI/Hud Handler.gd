@@ -19,10 +19,13 @@ extends Control
 @export var star_move_distance: float
 @export var star_animation_time: float
 @export var star_animation_fade_in_multiplier: float = 5.0;
+@export var star_animation_time_change_per_second: float = 0.7
 @export var hud_star_scene: PackedScene
 
 var star_images: Array[TextureRect]
 var star_base_modulate: Array[float]
+var current_animation_time: float
+var animation_timer: float = 0
 var saved_ramping_cap: float
 
 signal change_Lvl_Progress(new_speed: float)
@@ -37,6 +40,7 @@ func _ready():
 	set_max_speed(saved_ramping_cap)
 	change_Lvl_Progress.connect(set_Level_Progress)
 	set_Level_Progress(30)
+	current_animation_time = star_animation_time
 	
 	# Create stars
 	for i in stars.size():
@@ -107,10 +111,19 @@ func _process(delta: float) -> void:
 	var max_speed = player.max_speed
 	set_player_speed(max_speed)
 
-	## Handle Stars
-	var modified_star_animation_time = 0.7 * star_animation_time#(0.5 * star_animation_time) + 0.5 * (1 - (max_speed / saved_ramping_cap))
-	#print("mod time: " + str(modified_star_animation_time));
-	print("max speed: " + str(max_speed));
+	##  ------- Handle Stars ---------------
+	
+	# Slowly ease animation time to account for quick changes to max speed
+	var modified_star_animation_time = (0.5 * star_animation_time) + (0.5 * star_animation_time) * (1 - (max_speed / saved_ramping_cap))
+	if (current_animation_time < modified_star_animation_time):
+		current_animation_time += star_animation_time_change_per_second * delta
+		current_animation_time = min(current_animation_time, modified_star_animation_time)
+	else:
+		current_animation_time -= star_animation_time_change_per_second * delta
+		current_animation_time = max(current_animation_time, modified_star_animation_time)
+		
+	# Timer progresses slower for a longer animation time and faster for a slower animation time
+	animation_timer += delta / current_animation_time;
 		
 	var index: int = 0
 	for star in star_images:
@@ -122,16 +135,17 @@ func _process(delta: float) -> void:
 
 		var rng = RandomNumberGenerator.new()
 		rng.seed = index
-		var seconds = Time.get_ticks_msec()/1000.0 + rng.randf_range(-10.0, 10.0)
-		#should go from 0 to 1 every modified_star_animation_time seconds
-		var time_based_multiplier = fmod(seconds, modified_star_animation_time) * (1 / modified_star_animation_time)
+		var animation_timer_offset = animation_timer + rng.randf_range(0.0, 1.0)
+		# should go from 0 to 1 every current_animation_time seconds
+		# (fmod is float modulo, not the sound thing)
+		var time_based_multiplier = fmod(animation_timer_offset, 1.0)
 		
 		star.position = stars[index].position + Vector2(1, -1) * star_move_distance * time_based_multiplier
 		
 		# Refer to desmos screenshot, but in short, this is zero at both ends, and quickly changes to 1 in the middle
 		time_based_multiplier = min(star_animation_fade_in_multiplier * (-abs(time_based_multiplier - 0.5) + 0.5), 1)
 		star.modulate.a = star_base_modulate[index] * time_based_multiplier
-	
+		
 		index += 1
 	
 	## Calculate and display time
