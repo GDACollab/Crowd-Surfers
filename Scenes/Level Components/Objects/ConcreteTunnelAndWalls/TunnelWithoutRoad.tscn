@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://syay2qxcg1ea"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_eu4d5"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_bij5e"]
+[ext_resource type="Texture2D" uid="uid://bnvf6ipxnqjec" path="res://Assets/Art/AlphaSprites/CS ConcreteTunnelAndWalls S6/Concrete_Tunnel_S6.png" id="3_bij5e"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_cri18"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/height_fog.gdshader" id="5_yfbqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu4d5"]
+render_priority = 0
+shader = ExtResource("4_cri18")
+shader_parameter/tex = ExtResource("3_bij5e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bij5e"]
+render_priority = 0
+shader = ExtResource("5_yfbqy")
+shader_parameter/tex = ExtResource("3_bij5e")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mu32u"]
+size = Vector3(100, 90, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cri18"]
+size = Vector3(100, 10, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_eu4d5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_bij5e")
+front_filename = ExtResource("3_bij5e")
+width = 100.0
+length = 100.0
+height = 100.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(19.53125, 0, 8.537381e-07, 8.537381e-07, 1.9106855e-15, -19.53125, 0, 1, 3.7318076e-14, 0, 50, 100)
+material_override = SubResource("ShaderMaterial_eu4d5")
+material_overlay = SubResource("ShaderMaterial_bij5e")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_bij5e")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 50)
+shape = SubResource("BoxShape3D_mu32u")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95, 50)
+shape = SubResource("BoxShape3D_cri18")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
