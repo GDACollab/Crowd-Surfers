@@ -56,6 +56,8 @@ func _on_settings_back_button_pressed() -> void:
 	
 	set_transitioning()
 	
+	SaveDataManager.save_data()
+	
 #Trigged by OrdersAnimationPlayer
 func set_orders_scene_visibility(new_visible: bool) -> void:
 	orders_scene.visible = new_visible
