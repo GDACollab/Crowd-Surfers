@@ -1,6 +1,7 @@
-[gd_scene load_steps=47 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=48 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
+[ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hntgb"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cnki7"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_nusql"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="4_5g6rg"]
@@ -48,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="42_bki04"]
 
 [node name="ReferenceScene" type="Node3D"]
+script = ExtResource("1_hntgb")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -1449,18 +1451,16 @@ texture = ExtResource("42_bki04")
 
 [node name="Hud" parent="." instance=ExtResource("39_2al6p")]
 
-[node name="LevelEndColliderf" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("40_fs1go")]
+[node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("40_fs1go")]
 transform = Transform3D(1, 0, 0, 0, 3.995, 0, 0, 0, 5.17, 4859.446, -6.1035156e-05, 158.88281)
 level_clear_ui = NodePath("../LevelClearUI")
 
 [node name="LevelClearUI" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("41_t6fm4")]
 visible = false
 hud_ui = NodePath("../Hud")
+level_number = 1
 
 [node name="PauseHolder" parent="." instance=ExtResource("42_5l05s")]
-
-[node name="LevelEndCollider2" parent="." instance=ExtResource("40_fs1go")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, 300)
 
 [node name="WindBoxCollider" parent="." instance=ExtResource("32_74y4r")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 50.049717, 2.8781815, 31.415785)

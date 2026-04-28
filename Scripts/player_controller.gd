@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
@@ -139,6 +140,7 @@ func crowd_launch() -> void:
 		velocity.y = yspeed
 		# Play dash sound
 		$DashSound.play()
+		player_sprite.dash_animation(velocity.x, velocity.z)
 ## The states that the player can be in
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR, STOMP_CROWD_LAUNCH}
 
@@ -210,10 +212,7 @@ func process_state(delta: float) -> void:
 	match current_state:
 		States.GROUND:
 			# Ramping
-			print(ramping_cap)
 			if max_speed < ramping_cap: 
-				print("we are adding the max speed")
-				
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_wall():
@@ -417,12 +416,15 @@ func transition_to(new_state: int) -> void:
 		States.AIR:
 			# Restore friction when leaving the air
 			friction *= 2.0
+			player_sprite.can_play = true
 		States.GLIDE:
 			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
 			# Restore gravity
 			if glide_has_gravity:
 				gravity /= glide_gravity_factor
+			#allows to play other animations
+			player_sprite.can_play = true
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
@@ -451,6 +453,7 @@ func transition_to(new_state: int) -> void:
 			can_air_dash = true
 			can_glide = true
 		States.STOMP_WINDUP:
+			player_sprite.stomp_animation(velocity.x, velocity.z)
 			# If dash is active as stomp begins, end it
 			$DashCooldownTimer.stop()
 			velocity.y = 0.0
@@ -474,6 +477,7 @@ func transition_to(new_state: int) -> void:
 			# Start stomp sound windup
 			$StompSound.set_parameter("stomp_state", "windup")
 			$StompSound.play()
+			
 		States.STOMP_FALL:
 			$StompSound.set_parameter("stomp_state", "loop")
 		States.GLIDE:
@@ -489,6 +493,7 @@ func transition_to(new_state: int) -> void:
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
+			player_sprite.glide_animation(velocity.x, velocity.z)
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
@@ -516,6 +521,8 @@ func transition_to(new_state: int) -> void:
 				velocity.y = yspeed
 				# Play dash sound
 				$DashSound.play()
+				#play dash animation
+				player_sprite.dash_animation(velocity.x, velocity.z)
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	
@@ -548,14 +555,14 @@ func handle_inputs(delta: float) -> void:
 		if sign(direction.x) != sign(velocity.x):
 			factorx += friction * delta
 		# Prevents speed loss on any 45 degree turn increments on the x direction
-		elif (abs(velocity.x) > abs(direction.x * max_speed) and direction.x != 0):
+		elif (abs(velocity.x) > abs(direction.x * max_speed) and direction.x != 0 and current_state == States.GROUND):
 			velocity.x = direction.x * max_speed
 			velocity.z = direction.z * max_speed
 		# Add friction if direction is opposite the velocity for z direction
 		if sign(direction.z) != sign(velocity.z):
 			factorz += friction * delta
 		# Prevents speed loss on any 45 degree turn increments on the z direction
-		elif (abs(velocity.z) > abs(direction.z * max_speed) and direction.z != 0):
+		elif (abs(velocity.z) > abs(direction.z * max_speed) and direction.z != 0 and current_state == States.GROUND):
 			velocity.x = direction.x * max_speed
 			velocity.z = direction.z * max_speed
 		# Apply speed
@@ -569,6 +576,7 @@ func handle_inputs(delta: float) -> void:
 
 ## Give the player upwards velocity
 func jump() -> void:
+	player_sprite.jump_animation(velocity.x, velocity.z)
 	velocity.y = jump_speed
 	$JumpSound.play()
 	#Hijacking this to add a check for if you jump off a moving car
@@ -600,10 +608,11 @@ func apply_wind_launch(launch_speed: float) -> void:
 ## Applies gravity
 func fall(delta: float) -> void:
 	var gravity_effect := gravity
-	if Input.is_action_pressed("move_jump") and not velocity.y <= jump_end_speed:
-		gravity_effect = jump_gravity
-	elif Input.is_action_just_released("move_jump") and velocity.y >= jump_end_speed:
-		velocity.y = jump_end_speed
+	if not current_state == States.GLIDE:
+		if Input.is_action_pressed("move_jump") and not velocity.y <= jump_end_speed:
+			gravity_effect = jump_gravity
+		elif Input.is_action_just_released("move_jump") and velocity.y >= jump_end_speed:
+			velocity.y = jump_end_speed
 	velocity += gravity_effect * Vector3.DOWN * delta
 	
 ## Applies penalty when crashing into a wall

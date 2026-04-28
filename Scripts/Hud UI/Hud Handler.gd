@@ -4,7 +4,7 @@ extends Control
 ## I Couldn't figure out signals and did this method lol
 @onready var speedometer = $"Hud Container/Speedometer Component"
 @onready var timer_Display = $"Hud Container/Timer Component"
-@onready var level_Display = $"Hud Container/Level Progress Component"
+@onready var level_progress_Display = $"Hud Container/Level Progress Component"
 @onready var hud_container = $"Hud Container/Stars Container"
 
 # Get reference without actually editing the player script
@@ -19,6 +19,9 @@ extends Control
 @export var star_alpha_fade_per_second: float
 
 var starImages: Array[TextureRect]
+var player_start_pos: Vector2
+var level_end_pos: Vector2
+var has_level_end_pos: bool = false
 
 signal change_Lvl_Progress(new_speed: float)
 
@@ -30,7 +33,7 @@ func _ready():
 	#initialize on scene start up
 	set_Max_Speed(player.base_ramping_cap)
 	change_Lvl_Progress.connect(set_Level_Progress)
-	set_Level_Progress(30)
+	set_Level_Progress(0)
 	
 	# Create stars
 	for i in stars.size():
@@ -40,6 +43,9 @@ func _ready():
 		star.scale = Vector2(star_scale, star_scale)
 		hud_container.add_child(star)
 		starImages.append(star)
+	
+	#Initialize player start position
+	player_start_pos = Vector2(player.position.x, player.position.z)
 	
 func set_Max_Speed(new_Speed: float):
 	speedometer.set_Max_Speed(new_Speed)
@@ -52,7 +58,7 @@ func set_Player_speed(new_Speed: float):
 # send a call to the component with the script attached.
 # that script handles changing the display.
 func set_Level_Progress(new_Progress: float):
-	level_Display.set_Progress(new_Progress)
+	level_progress_Display.set_Progress(new_Progress)
 	
 func set_Time(new_Time: float):
 	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, false, true), get_Formatted_Timer_Text(new_Time, true, true))
@@ -91,7 +97,6 @@ func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: 
 	return formatted_time
 
 func _process(delta: float) -> void:
-	
 	## Find player velocity
 	# Since player velocity is normalized and reduced if going in two directions
 	# we need to find the hypotenuse, aka the real speed.
@@ -115,8 +120,14 @@ func _process(delta: float) -> void:
 	set_Time(curr_Time)
 		
 	## Handle Level Progression
-	# Currently not implemented, as end goals aren't finalized
-	# And I would need a demo level to see how to connect endgoal to hud
+	if(has_level_end_pos):
+		var player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
+		# Fraction of player distance to total distance, * 100 makes it a percent
+		var progress = player_dist_to_start / (level_end_pos.distance_to(player_start_pos)) * 100
+		set_Level_Progress(progress)
+	# Error message to let level designer know to attach the script
+	else:
+		print("Error: Level end position not passed to the HUD! Either 1: you didn't attach the \"level.gd\" script to the root node for this scene, or you didn't add a \"LevelEndCollider\" as a child to the root node")
 	
 	
 	
