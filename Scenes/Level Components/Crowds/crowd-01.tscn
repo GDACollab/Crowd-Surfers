@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://du5e3m4wa23pk"]
+[gd_scene load_steps=6 format=3 uid="uid://du5e3m4wa23pk"]
 
-[ext_resource type="Script" uid="uid://cn6tdkcjmek1b" path="res://Scripts/crowd_ai.gd" id="1_monwt"]
+[ext_resource type="Script" uid="uid://bnonkgk7oq8x4" path="res://Scripts/crowd_ai.gd" id="1_monwt"]
+[ext_resource type="Texture2D" uid="uid://b02bnlt4evmxu" path="res://Assets/Art/temp player.png" id="2_monwt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_monwt"]
 radius = 2.0
 height = 10.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2vc04"]
-radius = 2.0
-height = 10.0
+radius = 4.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qq3y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_monwt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Crowd01" type="CharacterBody3D"]
 wall_min_slide_angle = 1.0471976
@@ -37,6 +49,10 @@ debug_color = Color(0.5846711, 0.36032858, 0.78864294, 0.7019608)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_2vc04")
 skeleton = NodePath("../..")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 14.593922, 6.5587687, 0, -6.5587687, 14.593922, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_qq3y7")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
