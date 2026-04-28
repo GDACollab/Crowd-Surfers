@@ -52,10 +52,12 @@ var curr_point = 0
 # NODE REFERENCE
 @onready var navigation_agent_3d: NavigationAgent3D = $Anchor/NavigationAgent3D
 @onready var anchor: Node3D = $Anchor
+@onready var player: CharacterBody3D = get_tree().root.find_child("Player")
 @onready var nav_map = get_world_3d().navigation_map
 
 # SCENE/PREFAB REFERENCES
 @onready var crowd_man = preload("res://Scenes/Level Components/Crowds/crowd-man.tscn")
+@onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -476,10 +478,9 @@ func create_sub_group(location, sub_idx = 0) -> Array:
 	#nav_agent.avoidance_priority = 0.0
 	#nav_agent.avoidance_mask = 0b10
 	var sub_array = []
-	create_anchor_mesh(create_char(sub_array, "AnchorSub"), circum * ratio_circum)
+	create_anchor(sub_array, circum * ratio_circum)
 	agents_sub.insert(sub_idx, sub_array)
 	var sub_anchor = agents_sub[sub_idx][0]
-	add_child(sub_anchor)
 	sub_anchor.add_child(nav_agent)
 	sub_anchor.set_meta("curr_circum", 0)
 	sub_anchor.global_position = location
@@ -510,7 +511,7 @@ func check_timer() -> bool:
 	
 ## creation functions
 # creates a little char body
-func create_char(append_target, name = "crowd") -> CharacterBody3D:
+func create_char(append_target) -> CharacterBody3D:
 	#print("create group (member)")
 	
 	var character = crowd_man.instantiate()
@@ -583,20 +584,21 @@ func create_char_sprite(character) -> void:
 	sprite.rotation = Vector3(0, 0, 0)
 	
 	
-func create_anchor_mesh(character, cir) -> void:
-	var mesh = MeshInstance3D.new()
-	character.add_child(mesh)
-	var area = CylinderMesh.new()
-	area.top_radius = cir / 2.0
-	area.bottom_radius = cir / 2.0
+func create_anchor(append_target, cir) -> void:
+	var sub_anchor = anchor_type.instantiate()
+	add_child(sub_anchor)
+	var mesh_instant = sub_anchor.find_child("MeshInstance3D", false)
+	var mesh = mesh_instant.mesh
+	mesh.top_radius = cir / 2.0
+	mesh.bottom_radius = cir / 2.0
 	
-	mesh.mesh = area
 	if (!debug):
-		mesh.transparency = 1.0
-		mesh.cast_shadow = false
+		mesh_instant.transparency = 1.0
+		mesh_instant.cast_shadow = false
 	else:
-		mesh.transparency = 0.9
-	character.add_child(mesh)
+		mesh_instant.transparency = 0.9
+		
+	append_target.append(sub_anchor)
 	
 
 

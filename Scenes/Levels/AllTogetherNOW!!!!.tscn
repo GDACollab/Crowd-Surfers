@@ -43,7 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="38_cx84v"]
 [ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/BananaPeel.tscn" id="38_wc3d2"]
 [ext_resource type="PackedScene" uid="uid://bex31giyfuavs" path="res://Archive/StreamlinedGraybox/Ramp.tscn" id="43_fdtib"]
-[ext_resource type="PackedScene" uid="uid://s5mseyvnfuqc" path="res://Scenes/Level Components/Crowds/crowd-02.tscn" id="44_88g5p"]
+[ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd-02.tscn" id="44_88g5p"]
 [ext_resource type="Texture2D" uid="uid://b02bnlt4evmxu" path="res://Assets/Art/temp player.png" id="45_mcmyx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wc3d2"]
@@ -2757,7 +2757,9 @@ transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, -2
 
 [node name="Crowd02" parent="." instance=ExtResource("44_88g5p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2574, 6, 519)
-circum = 50.0
-crowd_size = 10.0
+debug = true
+circum = 80.0
+crowd_size = 100.0
+check_rate = 100
 crowd_frame_array = Array[Texture2D]([ExtResource("45_mcmyx")])
 route = Array[Vector3]([Vector3(-2420, 6, 490), Vector3(-2345, 36, 519), Vector3(-1630, 6, -209), Vector3(-2442, 6, 75)])
