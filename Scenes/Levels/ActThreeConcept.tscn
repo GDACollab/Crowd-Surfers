@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://boaamtpsale8k"]
+[gd_scene load_steps=26 format=3 uid="uid://boaamtpsale8k"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -593,6 +593,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1000)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -900)
 
 [node name="BuildingGroup" type="Node3D" parent="."]
+visible = false
 
 [node name="AlleyWayBuildingsGroup" type="Node3D" parent="BuildingGroup"]
 
@@ -933,16 +934,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1387.8252, 0, -289.91394)
 [node name="Corner1Group" type="Node3D" parent="SpecialComponentsGroup/CornerInvisWallGroup"]
 
 [node name="InvisibleWall" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner1Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -50, 0, 210)
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -50, 0, 210)
 
 [node name="InvisibleWall4" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner1Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -50, 0, 300)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -50, 0, 300)
 
 [node name="InvisibleWall2" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner1Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-0.309017, 0, -0.9510564, 0, 1, 0, 0.9510564, 0, -0.309017, -50, 0, 210)
+transform = Transform3D(-0.95105636, 0, 0.3090169, 0, 1, 0, -0.3090169, 0, -0.95105636, -50.213867, 0, 209.70724)
 
 [node name="InvisibleWall3" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner1Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-0.309017, 0, -0.9510564, 0, 1, 0, 0.9510564, 0, -0.309017, -70, 0, 230)
+transform = Transform3D(-0.95105636, 0, 0.309017, 0, 1, 0, -0.309017, 0, -0.95105636, -70, 0, 230)
 
 [node name="Corner2Group" type="Node3D" parent="SpecialComponentsGroup/CornerInvisWallGroup"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 100, 0, -61)
@@ -990,25 +991,16 @@ transform = Transform3D(-0.9510565, 0, 0.30901703, 0, 1, 0, -0.30901703, 0, -0.9
 transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 134, 0, -184)
 
 [node name="InvisibleWall" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -50, 0, 210)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -50, 0, 210)
 
 [node name="InvisibleWall4" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -50, 0, 300)
-
-[node name="InvisibleWall2" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-0.309017, 0, -0.9510564, 0, 1, 0, 0.9510564, 0, -0.309017, -50, 0, 210)
-
-[node name="InvisibleWall3" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-0.309017, 0, -0.9510564, 0, 1, 0, 0.9510564, 0, -0.309017, -70, 0, 230)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -50, 0, 300)
 
 [node name="InvisibleWall5" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -49.486755, 0, 209.50822)
-
-[node name="InvisibleWall7" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-0.9510565, 0, 0.30901703, 0, 1, 0, -0.30901703, 0, -0.9510565, -49.486755, 0, 209.50822)
+transform = Transform3D(0.30901697, 0, 0.95105654, 0, 1, 0, -0.95105654, 0, 0.30901697, -49.486755, 0, 209.50822)
 
 [node name="InvisibleWall8" parent="SpecialComponentsGroup/CornerInvisWallGroup/Corner4Group" instance=ExtResource("7_spvyn")]
-transform = Transform3D(-0.9510565, 0, 0.30901703, 0, 1, 0, -0.30901703, 0, -0.9510565, -69.48674, 0, 189.50822)
+transform = Transform3D(0.30901694, 0, 0.9510565, 0, 1, 0, -0.9510565, 0, 0.30901694, -69.48674, 0, 189.50822)
 
 [node name="LevelEndCollider" parent="SpecialComponentsGroup" node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("7_vn3cp")]
 transform = Transform3D(0.39073107, 0, 4.7590103, 0, 3.995, 0, -0.92050487, 0, 2.0200796, 1663.1477, 0, -2560.727)
