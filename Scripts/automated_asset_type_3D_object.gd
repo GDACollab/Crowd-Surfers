@@ -562,6 +562,12 @@ func create_sprite3D(given_name, texture, given_rot = Vector3(0, 0, 0), given_po
 	var tex: CompressedTexture2D = load(texture.resource_path)
 	material.set_shader_parameter("tex", tex)
 	sprite.material_override = material
+	# Load the height fog script
+	var overlay := ShaderMaterial.new()
+	overlay.shader = load("res://Scripts/Shaders/height_fog.gdshader")
+	# Pass the texture to the shader
+	overlay.set_shader_parameter("tex", tex)
+	sprite.material_overlay = overlay
 	
 	# assign top and front vectors with sizes compensating for pixel size
 	var text_w = texture.get_width()
