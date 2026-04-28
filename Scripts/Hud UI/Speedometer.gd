@@ -5,5 +5,5 @@ extends Control
 func set_speed(value: float):
 	bar.value = value
 
-func set_Max_Speed(value:float):
+func set_max_speed(value:float):
 	bar.max_value = value
