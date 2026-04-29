@@ -555,14 +555,14 @@ func handle_inputs(delta: float) -> void:
 		if sign(direction.x) != sign(velocity.x):
 			factorx += friction * delta
 		# Prevents speed loss on any 45 degree turn increments on the x direction
-		elif (abs(velocity.x) > abs(direction.x * max_speed) and direction.x != 0):
+		elif (abs(velocity.x) > abs(direction.x * max_speed) and direction.x != 0 and current_state == States.GROUND):
 			velocity.x = direction.x * max_speed
 			velocity.z = direction.z * max_speed
 		# Add friction if direction is opposite the velocity for z direction
 		if sign(direction.z) != sign(velocity.z):
 			factorz += friction * delta
 		# Prevents speed loss on any 45 degree turn increments on the z direction
-		elif (abs(velocity.z) > abs(direction.z * max_speed) and direction.z != 0):
+		elif (abs(velocity.z) > abs(direction.z * max_speed) and direction.z != 0 and current_state == States.GROUND):
 			velocity.x = direction.x * max_speed
 			velocity.z = direction.z * max_speed
 		# Apply speed
