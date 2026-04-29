@@ -21,6 +21,8 @@ extends Control
 @export var star_animation_fade_in_multiplier: float = 5.0;
 @export var star_animation_time_change_per_second: float = 0.7
 @export var hud_star_scene: PackedScene
+@export var star_rotation_speed: float = 5
+@export var star_rotation_magnitude: float = 4
 
 @export_category("Shake")
 @export var speed_change_to_shake: float = 50
@@ -168,6 +170,8 @@ func _process(delta: float) -> void:
 		# Refer to desmos screenshot, but in short, this is zero at both ends, and quickly changes to 1 in the middle
 		time_based_multiplier = min(star_animation_fade_in_multiplier * (-abs(time_based_multiplier - 0.5) + 0.5), 1)
 		star.modulate.a = star_base_modulate[index] * time_based_multiplier
+		
+		star.rotation_degrees = star_rotation_magnitude * sin(star_rotation_speed * animation_timer_offset)
 		
 		index += 1
 	
