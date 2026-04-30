@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct0bchhuqimhb"]
+[gd_scene load_steps=3 format=3 uid="uid://dvf8jyalkad2s"]
 
-[ext_resource type="Script" uid="uid://dquwv5u4a0an0" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_pfnlt"]
-[ext_resource type="Texture2D" uid="uid://4y7f4wmj2kup" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Vertical S3.png" id="2_bua80"]
+[ext_resource type="Script" uid="uid://dquwv5u4a0an0" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_xqcef"]
+[ext_resource type="Texture2D" uid="uid://ckltgaew6op5" path="res://Assets/Art/AlphaSprites/grassMS.png" id="3_5xtwg"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 50, 1, -50)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-script = ExtResource("1_pfnlt")
-stairs_filename = ExtResource("2_bua80")
+script = ExtResource("1_xqcef")
+stairs_filename = ExtResource("3_5xtwg")
 width = 100.0
 length = 100.0
 height = 100.0
@@ -16,13 +16,13 @@ steps = 0.0
 platform_thickness = 1.0
 
 [node name="StairsSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(8.605852, 0, 0, 0, 0.70710677, -8.928571, 0, 0.70710677, 8.928571, 0, 50, 50)
+transform = Transform3D(19.53125, 0, 0, 0, 0.70710677, -19.53125, 0, 0.70710677, 19.53125, 0, 50, 50)
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("2_bua80")
+texture = ExtResource("3_5xtwg")
 region_enabled = true
-region_rect = Rect2(0, 0, 1162, 1120)
+region_rect = Rect2(0, 0, 512, 512)
 
 [node name="MainHitbox" type="CollisionPolygon3D" parent="StaticBody3D"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

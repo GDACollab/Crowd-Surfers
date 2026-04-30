@@ -4,13 +4,12 @@ extends Node3D
 @export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
 @export var ratio_circum: float = 0.7 # area ratio of subgroups max, and max find distance
-@export var crowd_size: float = 1.0
+@export var crowd_size: int = 1.0
 @export var max_speed: float = 20.0
 @export var acceleration: float = 20.0
-@export var height_recalc_sensitivity: float = 10.0
-@export var check_rate: int = 200
-@export var check_limit: int = 2
-@export var crowd_frame_array: Array[Texture2D]  = []
+@export var height_recalc_sensitivity: float = 10.0 # this is amount of difference in height lost before recalculating
+@export var check_rate: int = 50
+@export var check_limit: int = 4
 
 
 # CONSTANTS
@@ -52,7 +51,12 @@ var curr_point = 0
 # NODE REFERENCE
 @onready var navigation_agent_3d: NavigationAgent3D = $Anchor/NavigationAgent3D
 @onready var anchor: Node3D = $Anchor
+@onready var player: CharacterBody3D = get_tree().root.find_child("Player")
 @onready var nav_map = get_world_3d().navigation_map
+
+# SCENE/PREFAB REFERENCES
+@onready var crowd_man = preload("res://Scenes/Level Components/Crowds/crowd-man.tscn")
+@onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -173,7 +177,7 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	const member_rad = 2
 	if (type == 1):
 		for i in range(count):
-			create_char_sprite(create_char(agents_main))
+			create_char(agents_main)
 		
 		return []
 	else:
@@ -411,7 +415,7 @@ func delete_group_behav(target) -> void:
 		nav_agent.queue_free()
 	
 	agents_sub.erase(target)
-	#print('delete')
+	#print('delete group')
 	
 # delete_queue
 # Goes through the queue to call deletion on groups
@@ -473,10 +477,9 @@ func create_sub_group(location, sub_idx = 0) -> Array:
 	#nav_agent.avoidance_priority = 0.0
 	#nav_agent.avoidance_mask = 0b10
 	var sub_array = []
-	create_anchor_mesh(create_char(sub_array, "AnchorSub"), circum * ratio_circum)
+	create_anchor(sub_array, circum * ratio_circum)
 	agents_sub.insert(sub_idx, sub_array)
 	var sub_anchor = agents_sub[sub_idx][0]
-	add_child(sub_anchor)
 	sub_anchor.add_child(nav_agent)
 	sub_anchor.set_meta("curr_circum", 0)
 	sub_anchor.global_position = location
@@ -507,28 +510,31 @@ func check_timer() -> bool:
 	
 ## creation functions
 # creates a little char body
-func create_char(append_target, name = "crowd") -> CharacterBody3D:
-	var character = CharacterBody3D.new()
-	var collision = CollisionShape3D.new()
+func create_char(append_target) -> CharacterBody3D:
+	#print("create group (member)")
+	
+	var character = crowd_man.instantiate()
+	#var character = CharacterBody3D.new()
+	#var collision = CollisionShape3D.new()
 	add_child(character)
-	character.add_child(collision)
-	
-	
-	# create for collision box
-	var cap = CapsuleShape3D.new()
-	cap.radius = CAP_RADIUS
-	cap.height = CAP_HEIGHT
-	collision.shape = cap
-	
-	# create for character
-	character.wall_min_slide_angle = 70.0
-	character.floor_constant_speed = true
-	character.floor_max_angle = 65.0
-	character.safe_margin = 0.5
-	character.floor_snap_length = 0.1
-	character.max_slides = 2
-	character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
-	character.platform_floor_layers = 0
+	#character.add_child(collision)
+	#
+	#
+	## create for collision box
+	#var cap = CapsuleShape3D.new()
+	#cap.radius = CAP_RADIUS
+	#cap.height = CAP_HEIGHT
+	#collision.shape = cap
+	#
+	## create for character
+	#character.wall_min_slide_angle = 70.0
+	#character.floor_constant_speed = true
+	#character.floor_max_angle = 65.0
+	#character.safe_margin = 0.5
+	#character.floor_snap_length = 0.1
+	#character.max_slides = 2
+	#character.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
+	#character.platform_floor_layers = 0
 	character.add_collision_exception_with($Anchor)
 	
 	# sets position of body
@@ -553,44 +559,43 @@ func create_char_mesh(character, cir) -> void:
 	mesh.mesh = cap_mesh
 
 # creates a sprite for the given character body
-func create_char_sprite(character) -> void:
-	var sprite = AnimatedSprite3D.new()
-	character.add_child(sprite)
-	
-	var sprite_frames = SpriteFrames.new()
-	sprite_frames.add_animation("walk")
-	sprite_frames.set_animation_speed("walk", 6)
-	
-	var texture_paths = crowd_frame_array
-	
-	for tex_path in texture_paths:
-		var tex: = load(tex_path.resource_path)
-		if tex:
-			sprite_frames.add_frame("walk", tex)
-	
-	sprite.frames = sprite_frames
-	sprite.play("walk")
-	
-	#sprite.rotation = Vector3(-90, 0, 0)
-	#sprite.position = Vector3(0, 10, 0)
-	sprite.scale = Vector3(16, 16, 16)
-	sprite.rotation = Vector3(0, 0, 0)
+#func create_char_sprite(character) -> void:
+	#var sprite = AnimatedSprite3D.new()
+	#character.add_child(sprite)
+	#
+	#var sprite_frames = SpriteFrames.new()
+	#sprite_frames.add_animation("walk")
+	#sprite_frames.set_animation_speed("walk", 6)
+	#
+	#for tex_path in texture_paths:
+		#var tex: = load(tex_path.resource_path)
+		#if tex:
+			#sprite_frames.add_frame("walk", tex)
+	#
+	#sprite.frames = sprite_frames
+	#sprite.play("walk")
+	#
+	##sprite.rotation = Vector3(-90, 0, 0)
+	##sprite.position = Vector3(0, 10, 0)
+	#sprite.scale = Vector3(16, 16, 16)
+	#sprite.rotation = Vector3(0, 0, 0)
 	
 	
-func create_anchor_mesh(character, cir) -> void:
-	var mesh = MeshInstance3D.new()
-	character.add_child(mesh)
-	var area = CylinderMesh.new()
-	area.top_radius = cir / 2.0
-	area.bottom_radius = cir / 2.0
+func create_anchor(append_target, cir) -> void:
+	var sub_anchor = anchor_type.instantiate()
+	add_child(sub_anchor)
+	var mesh_instant = sub_anchor.find_child("MeshInstance3D", false)
+	var mesh = mesh_instant.mesh
+	mesh.top_radius = cir / 2.0
+	mesh.bottom_radius = cir / 2.0
 	
-	mesh.mesh = area
 	if (!debug):
-		mesh.transparency = 1.0
-		mesh.cast_shadow = false
+		mesh_instant.transparency = 1.0
+		mesh_instant.cast_shadow = false
 	else:
-		mesh.transparency = 0.9
-	character.add_child(mesh)
+		mesh_instant.transparency = 0.9
+		
+	append_target.append(sub_anchor)
 	
 
 
@@ -610,5 +615,5 @@ func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
 
 
 func _on_navigation_agent_3d_waypoint_reached(details: Dictionary) -> void:
-	print('ah')
+
 	pass # Replace with function body.
