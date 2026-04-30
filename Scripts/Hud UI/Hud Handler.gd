@@ -165,7 +165,8 @@ func _process(delta: float) -> void:
 		# (fmod is float modulo, not the sound thing)
 		var time_based_multiplier = fmod(animation_timer_offset, 1.0)
 		
-		star.position = stars[index].position + Vector2(1, -1) * star_move_distance * time_based_multiplier
+		var modified_star_move_distance = (0.5 * star_move_distance) + (0.5 * star_move_distance * (max_speed / saved_ramping_cap))
+		star.position = stars[index].position + Vector2(1, -1) * modified_star_move_distance * time_based_multiplier
 		
 		# Refer to desmos screenshot, but in short, this is zero at both ends, and quickly changes to 1 in the middle
 		time_based_multiplier = min(star_animation_fade_in_multiplier * (-abs(time_based_multiplier - 0.5) + 0.5), 1)
