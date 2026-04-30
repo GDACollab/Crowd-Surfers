@@ -454,6 +454,10 @@ func transition_to(new_state: int) -> void:
 		States.GROUND:
 			can_air_dash = true
 			can_glide = true
+			# Check if landing sound needs to be played
+			if current_state == States.AIR or current_state == States.GLIDE:
+				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
+				$LandingSound.play()
 		States.STOMP_WINDUP:
 			player_sprite.stomp_animation(velocity.x, velocity.z)
 			# If dash is active as stomp begins, end it
