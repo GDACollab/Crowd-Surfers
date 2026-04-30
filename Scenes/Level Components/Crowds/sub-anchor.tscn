@@ -4,14 +4,16 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8iaam"]
 radius = 4.0
-height = 10.0
+height = 16.0
 
 [node name="SubAnchor" type="CharacterBody3D"]
+collision_layer = 2
 wall_min_slide_angle = 1.134464
 floor_constant_speed = true
 floor_max_angle = 1.134464
 floor_snap_length = 0.0
 platform_on_leave = 2
+safe_margin = 0.01
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 10.0

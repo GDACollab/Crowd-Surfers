@@ -4,13 +4,12 @@ extends Node3D
 @export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
 @export var ratio_circum: float = 0.7 # area ratio of subgroups max, and max find distance
-@export var crowd_size: float = 1.0
+@export var crowd_size: int = 1.0
 @export var max_speed: float = 20.0
 @export var acceleration: float = 20.0
-@export var height_recalc_sensitivity: float = 10.0
-@export var check_rate: int = 200
-@export var check_limit: int = 2
-@export var crowd_frame_array: Array[Texture2D]  = []
+@export var height_recalc_sensitivity: float = 10.0 # this is amount of difference in height lost before recalculating
+@export var check_rate: int = 50
+@export var check_limit: int = 4
 
 
 # CONSTANTS
@@ -178,7 +177,7 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	const member_rad = 2
 	if (type == 1):
 		for i in range(count):
-			create_char_sprite(create_char(agents_main))
+			create_char(agents_main)
 		
 		return []
 	else:
@@ -560,28 +559,26 @@ func create_char_mesh(character, cir) -> void:
 	mesh.mesh = cap_mesh
 
 # creates a sprite for the given character body
-func create_char_sprite(character) -> void:
-	var sprite = AnimatedSprite3D.new()
-	character.add_child(sprite)
-	
-	var sprite_frames = SpriteFrames.new()
-	sprite_frames.add_animation("walk")
-	sprite_frames.set_animation_speed("walk", 6)
-	
-	var texture_paths = crowd_frame_array
-	
-	for tex_path in texture_paths:
-		var tex: = load(tex_path.resource_path)
-		if tex:
-			sprite_frames.add_frame("walk", tex)
-	
-	sprite.frames = sprite_frames
-	sprite.play("walk")
-	
-	#sprite.rotation = Vector3(-90, 0, 0)
-	#sprite.position = Vector3(0, 10, 0)
-	sprite.scale = Vector3(16, 16, 16)
-	sprite.rotation = Vector3(0, 0, 0)
+#func create_char_sprite(character) -> void:
+	#var sprite = AnimatedSprite3D.new()
+	#character.add_child(sprite)
+	#
+	#var sprite_frames = SpriteFrames.new()
+	#sprite_frames.add_animation("walk")
+	#sprite_frames.set_animation_speed("walk", 6)
+	#
+	#for tex_path in texture_paths:
+		#var tex: = load(tex_path.resource_path)
+		#if tex:
+			#sprite_frames.add_frame("walk", tex)
+	#
+	#sprite.frames = sprite_frames
+	#sprite.play("walk")
+	#
+	##sprite.rotation = Vector3(-90, 0, 0)
+	##sprite.position = Vector3(0, 10, 0)
+	#sprite.scale = Vector3(16, 16, 16)
+	#sprite.rotation = Vector3(0, 0, 0)
 	
 	
 func create_anchor(append_target, cir) -> void:
@@ -618,5 +615,5 @@ func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
 
 
 func _on_navigation_agent_3d_waypoint_reached(details: Dictionary) -> void:
-	print('ah')
+
 	pass # Replace with function body.
