@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxx858xvfuc4g"]
+[gd_scene load_steps=4 format=3 uid="uid://b3drn68hqluks"]
 
 [ext_resource type="Script" uid="uid://dquwv5u4a0an0" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_gf32f"]
 [ext_resource type="Texture2D" uid="uid://fusyp6ijm2nu" path="res://Assets/Art/ColeDevArt/Alleyway-DevArt.png" id="2_akh0m"]
@@ -11,9 +11,8 @@ uv1_offset = Vector3(0, -0.005, 0)
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 50, 0, -50)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
 script = ExtResource("1_gf32f")
-active = true
 stairs_filename = ExtResource("2_akh0m")
 width = 100.0
 length = 200.0
