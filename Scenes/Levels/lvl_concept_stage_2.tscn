@@ -22,6 +22,21 @@
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="18_r2b5i"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="19_7y7j4"]
 
+[sub_resource type="Animation" id="Animation_7y7j4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Freeway_01:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5604814, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_r2b5i"]
 resource_name = "freeway_spotlights"
 length = 30.0
@@ -85,21 +100,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(0.5323171, 0.5323171, 0.5323171, 0.5323171, 0.5323171, 0.5323171),
 "update": 0,
 "values": [Vector3(-1.5604814, 0, 0), Vector3(-1.2112585, -1.9006636, 0), Vector3(-1.8360864, -1.9093902, 0), Vector3(-1.813397, 1.8989183, 0), Vector3(-1.6999507, -2.6651177, 0), Vector3(-1.5604814, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_7y7j4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Freeway_01:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5604814, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7y7j4"]
@@ -266,7 +266,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314715, 0.9999468, 0, -0.9999468, 0.010314715, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314714, 0.9999467, 0, -0.9999467, 0.010314714, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -275,7 +275,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.110436514, -0.0007302321, 0, 0.00661209, 0.9999781, 0.11043893, -0.99386114, 0.006571643, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043651, -0.0007304823, 0, 0.0066143544, 0.9999781, 0.11043893, -0.9938611, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -284,7 +284,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.03981319, -0.00026537103, 0, 0.006665256, 0.99997777, 0.039814077, -0.99918485, 0.006659971, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813194, -0.00026512894, 0, 0.0066591757, 0.99997777, 0.03981408, -0.99918485, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -293,7 +293,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_04" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9986913, 0.05114355, 3.0400814e-05, 0, -0.0005944212, 0.9999998, 0.051143557, -0.99869114, -0.0005936433, -175.61652, 0, -124.91382)
+transform = Transform3D(0.9986913, 0.05114355, 2.2355555e-09, 0, -4.371139e-08, 1, 0.05114355, -0.9986913, -4.3654182e-08, -175.61652, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -302,7 +302,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_05" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9681772, 0.2501711, 0.0068763257, 0, -0.027476115, 0.99962246, 0.25026557, -0.9678117, -0.026601749, 185.90393, 0, -124.91382)
+transform = Transform3D(0.96817714, 0.2501711, 0.006875739, -2.4018323e-09, -0.027473763, 0.99962246, 0.25026554, -0.96781176, -0.026599469, 185.90393, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
