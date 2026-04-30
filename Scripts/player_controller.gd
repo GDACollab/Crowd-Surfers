@@ -166,6 +166,7 @@ var stomp_dash_start_pos: Vector3
 var can_air_dash: bool = true
 var can_glide: bool = true
 var player_height : float
+var floor_sound_material: String
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -476,6 +477,7 @@ func transition_to(new_state: int) -> void:
 			# Start the windup timer
 			$StompWindupTimer.start()
 			# Start stomp sound windup
+			FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 			$StompSound.set_parameter("stomp_state", "windup")
 			$StompSound.play()
 			
@@ -648,11 +650,14 @@ func update_fmod_floor_material() -> void:
 	
 	var floor_collider = raycast.get_collider()
 	if floor_collider.is_in_group("Concrete"):
-		FmodServer.set_global_parameter_by_name_with_label("floor_material", "concrete")
+		floor_sound_material = "concrete"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "concrete")
 	elif floor_collider.is_in_group("Metal"):
-		FmodServer.set_global_parameter_by_name_with_label("floor_material", "metal")
+		floor_sound_material = "metal"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "metal")
 	elif floor_collider.is_in_group("Grass"):
-		FmodServer.set_global_parameter_by_name_with_label("floor_material", "grass")
+		floor_sound_material = "grass"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "grass")
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
