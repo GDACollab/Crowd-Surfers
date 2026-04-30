@@ -6,14 +6,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ls1x"]
 radius = 4.0
-height = 10.0
+height = 16.0
 
-[node name="Crowd02" type="Node3D"]
+[node name="Crowd" type="Node3D"]
 script = ExtResource("1_1ls1x")
 
 [node name="Anchor" type="CharacterBody3D" parent="."]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 2
 wall_min_slide_angle = 1.134464
 floor_constant_speed = true
 floor_max_angle = 1.134464
@@ -26,8 +25,8 @@ path_desired_distance = 10.0
 target_desired_distance = 10.0
 path_max_distance = 50.01
 simplify_path = true
-height = 10.0
-radius = 2.0
+height = 16.0
+radius = 4.0
 neighbor_distance = 0.1
 max_neighbors = 1
 max_speed = 30.0

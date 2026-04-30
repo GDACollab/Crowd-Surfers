@@ -720,5 +720,5 @@ func restart():
 
 ## Reloads the scene, might need to move this to a singleton if needed.
 func reload_scene():
-	get_tree().reload_current_scene()
+	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
 	
