@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1xw1x5562w3b"]
+[gd_scene load_steps=24 format=3 uid="uid://c1xw1x5562w3b"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="1_sowhy"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="2_6hqax"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="12_a6a0s"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="13_gdh5n"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="14_k2cax"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="15_jvmnx"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="15_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="15_k2cax"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="16_jvmnx"]
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="16_okc15"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="18_snqwb"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="19_clv1d"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="19_okc15"]
+[ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/BananaPeel.tscn" id="20_r2nto"]
 
 [node name="LowDensityAct2" type="Node3D"]
 
@@ -568,6 +569,68 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1602.0898, 2, 610.2893)
 [node name="sp3" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 802.4058, 2, 338.47034)
 
+[node name="sp4" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 674.9092, 2, 602.11115)
+
+[node name="sp5" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 896.97974, 2, 602.11115)
+
+[node name="sp6" parent="Segment1/SlowPads" instance=ExtResource("17_b4dd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1400.2571, 2, 602.11115)
+
+[node name="BananaPeels" type="Node3D" parent="Segment1"]
+
+[node name="bp1" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 782.84973, 0, 607.8747)
+
+[node name="bp2" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 824.9176, 0, 574.47534)
+
+[node name="bp3" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1028.4547, 0, 585.84875)
+
+[node name="bp4" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1215.3008, 0, 613.38525)
+
+[node name="bp5" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1297.1417, 0, 583.58636)
+
+[node name="bp6" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1297.1417, 0, 583.58636)
+
+[node name="bp7" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1297.1417, 0, 408.80945)
+
+[node name="bp8" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 1120.6707, 0, 380.02203)
+
+[node name="bp9" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 986.6403, 0, 273.81555)
+
+[node name="bp10" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 1130.8159, 0, 167.76898)
+
+[node name="bp11" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 779.9097, 0, 204.94763)
+
+[node name="bp12" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 779.9097, 0, 109.666565)
+
+[node name="bp13" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 584.0027, 0, 83.66666)
+
+[node name="bp14" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 930.3913, 0, 168.60733)
+
+[node name="bp15" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 1197.5507, 0, 88.98404)
+
+[node name="bp16" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 4.9972134, 0.16690972, 0, -0.16690972, 4.9972134, 1314.2943, 0, 200.61755)
+
+[node name="bp17" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9959965, 0, 0.2000486, 0, 5, 0, -0.2000486, 0, 4.9959965, 716.34045, 0, 591.15735)
+
 [node name="Segment2" type="Node3D" parent="."]
 
 [node name="Roads" type="Node3D" parent="Segment2"]
@@ -857,9 +920,82 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1298.7273, 2, -4.214203)
 [node name="sp4" parent="Segment2/SlowPads" instance=ExtResource("17_b4dd1")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1626.2573, 2, -4.214203)
 
+[node name="BananaPeels" type="Node3D" parent="Segment2"]
+
+[node name="bp1" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1884.1569, 0, -19.238853)
+
+[node name="bp2" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1912.891, 0, 12.6143875)
+
+[node name="bp3" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1878.8851, 0, 23.379555)
+
+[node name="bp4" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1988.3901, 0, -117.953636)
+
+[node name="bp5" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1932.6934, 0, -99.81185)
+
+[node name="bp6" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1981.4182, 0, -67.84796)
+
+[node name="bp7" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1941.4327, 0, -43.38261)
+
+[node name="bp8" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -2007.4923, 0, -27.811676)
+
+[node name="bp9" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1979.8964, 0, 10.924351)
+
+[node name="bp10" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1725.9419, 0, -16.571552)
+
+[node name="bp11" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1690.5541, 0, 12.434589)
+
+[node name="bp12" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1805.3267, 0, 6.233616)
+
+[node name="bp13" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1883.0382, 0, -271.01285)
+
+[node name="bp14" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1711.5225, 0, -390.27533)
+
+[node name="bp15" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1505.1134, 0, -423.9126)
+
+[node name="bp16" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1432.8716, 0, -388.5294)
+
+[node name="bp17" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1991.9175, 0, -256.4649)
+
+[node name="bp18" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1565.7579, 0, -497.10388)
+
+[node name="bp19" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1908.5, 0, 71.435684)
+
+[node name="bp20" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1314.4521, 0, 109.42404)
+
+[node name="bp21" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1220.2435, 0, 15.783104)
+
+[node name="bp22" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1182.3712, 0, 110.25072)
+
+[node name="bp23" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1566.8588, 0, 28.598812)
+
+[node name="bp24" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
+transform = Transform3D(4.9517646, 0.6928408, 0, -0.6928408, 4.9517646, 0, 0, 0, 5, -1416.7412, 0, 34.21069)
+
 [node name="Camera3D" parent="." instance=ExtResource("18_snqwb")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)
-visible = false
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
@@ -867,12 +1003,10 @@ offset = Vector3(0, 1000, 1000)
 
 [node name="Light" parent="." instance=ExtResource("19_okc15")]
 transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -3.090862e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 100, -1493.9137)
-visible = false
 light_specular = 0.0
 
 [node name="Player" parent="." instance=ExtResource("19_clv1d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
-visible = false
 ramping_exponent = 0.525
 stomp_dash_boost_factor = 400.0
 max_stomp_dash_boost = 700.0
