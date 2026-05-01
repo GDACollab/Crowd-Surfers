@@ -107,6 +107,21 @@ func jump_animation(x_dir, z_dir):
 		else:
 			play("jump_back")
 
+func fall_animation(x_dir, z_dir):
+	can_play = false
+	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
+		if z_dir >= 0:
+			play("fall_front_side")
+		else:
+			play("fall_back_side")
+	elif abs(x_dir) > deadzone:
+		play("fall_side")
+	else:
+		if z_dir >= 0:
+			play("fall_front")
+		else:
+			play("fall_back")
+
 func crash_animation(x_dir, z_dir):
 	can_play = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:

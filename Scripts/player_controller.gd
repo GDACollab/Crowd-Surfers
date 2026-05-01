@@ -494,6 +494,8 @@ func transition_to(new_state: int) -> void:
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
 			player_sprite.glide_animation(velocity.x, velocity.z)
+		States.COYOTE:
+			player_sprite.fall_animation(velocity.x, velocity.z)
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
@@ -617,10 +619,11 @@ func fall(delta: float) -> void:
 	
 ## Applies penalty when crashing into a wall
 func crash() -> void:
+	pass
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	#var wall_normal := get_wall_normal()
-	var dir := velocity.normalized()
+	#var dir := velocity.normalized()
 	#max_speed /= crash_penalty_mult
 	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
