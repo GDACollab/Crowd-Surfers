@@ -5,18 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://c14wh6latw436" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Intersection S3.png" id="2_gmrtk"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_k3oxu"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3oxu"]
+render_priority = 0
+shader = ExtResource("4_k3oxu")
+shader_parameter/tex = ExtResource("2_gmrtk")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwj0v"]
 render_priority = 0
 shader = ExtResource("4_k3oxu")
+shader_parameter/tex = ExtResource("2_gmrtk")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0kw4"]
-render_priority = 0
-shader = ExtResource("4_k3oxu")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mf3to"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0kw4"]
 size = Vector3(100, 0, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_py6to"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mf3to"]
 size = Vector3(100, 1, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -33,7 +35,7 @@ platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.795074, 0, inf, 3.8444492e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_overlay = SubResource("ShaderMaterial_jwj0v")
+material_overlay = SubResource("ShaderMaterial_k3oxu")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -43,7 +45,7 @@ region_rect = Rect2(0, 1142, 1137, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.795074, 0, 0, 0, 1, 0, 0, 0, 8.756567, 0, 1, 50)
-material_overlay = SubResource("ShaderMaterial_s0kw4")
+material_overlay = SubResource("ShaderMaterial_jwj0v")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -53,10 +55,10 @@ region_rect = Rect2(0, 0, 1137, 1142)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("BoxShape3D_mf3to")
+shape = SubResource("BoxShape3D_s0kw4")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
-shape = SubResource("BoxShape3D_py6to")
+shape = SubResource("BoxShape3D_mf3to")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

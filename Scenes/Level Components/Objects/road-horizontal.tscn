@@ -5,18 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://uhqicit2nm5j" path="res://Assets/Art/AlphaSprites/Road Horizontal S3.png" id="2_pecqp"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_d7ali"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7ali"]
+render_priority = 0
+shader = ExtResource("4_d7ali")
+shader_parameter/tex = ExtResource("2_pecqp")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ioq0"]
 render_priority = 0
 shader = ExtResource("4_d7ali")
+shader_parameter/tex = ExtResource("2_pecqp")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nc262"]
-render_priority = 0
-shader = ExtResource("4_d7ali")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ygm1j"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nc262"]
 size = Vector3(100, 0, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jcjjn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ygm1j"]
 size = Vector3(100, 1, 100)
 
 [node name="StaticBody3D2" type="Node3D"]
@@ -33,7 +35,7 @@ platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.928572, 0, inf, 3.9028026e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_overlay = SubResource("ShaderMaterial_5ioq0")
+material_overlay = SubResource("ShaderMaterial_d7ali")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -43,7 +45,7 @@ region_rect = Rect2(0, 1163, 1120, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.928572, 0, 0, 0, 1, 0, 0, 0, 8.598453, 0, 1, 50)
-material_overlay = SubResource("ShaderMaterial_nc262")
+material_overlay = SubResource("ShaderMaterial_5ioq0")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -53,10 +55,10 @@ region_rect = Rect2(0, 0, 1120, 1163)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("BoxShape3D_ygm1j")
+shape = SubResource("BoxShape3D_nc262")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
-shape = SubResource("BoxShape3D_jcjjn")
+shape = SubResource("BoxShape3D_ygm1j")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
