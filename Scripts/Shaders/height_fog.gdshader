@@ -10,7 +10,7 @@ uniform sampler2D tex : source_color;
 
 void fragment() {
 	//Don't apply this overlay to portions of a sprite that are already transparent
-	if(abs(texture(tex, UV).a) < 0.1f) ALPHA = 0.0f;
+	if(abs(texture(tex, UV).a) < 0.5f) ALPHA = 0.0f;
 	else {
 		float alpha = 0.0f;
 		//Height of the pixel in world space
