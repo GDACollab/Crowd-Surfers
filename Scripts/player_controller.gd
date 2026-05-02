@@ -224,6 +224,8 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
+			if velocity.y < 0.0:
+				player_sprite.fall_animation(velocity.x, velocity.z)
 		States.STOMP_WINDUP:
 			# Slow the player down
 			velocity.x = move_toward(velocity.x, 0.0, stomp_windup_slowdown.x * delta)

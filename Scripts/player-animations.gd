@@ -7,11 +7,13 @@ extends AnimatedSprite3D
 @onready var player: CharacterBody3D = get_node(player_path)
 
 var can_play := true
+var is_playing_fall := false
 
 func _process(_delta: float) -> void:
 	var v := player.velocity
 	speed_scale = 0.5 + v.length()/125
-	if can_play:
+	if player.current_state == player.States.GROUND:
+	#if can_play:
 		skate_animation(v.x, v.z)
 	set_speeds()
 
@@ -23,6 +25,7 @@ func set_speeds():
 	sprite_frames.set_animation_speed('stomp_front_side',stomp_speed)
 	sprite_frames.set_animation_speed('stomp_side',stomp_speed)
 func skate_animation(x, z):
+	is_playing_fall = false
 	if abs(x) < deadzone and abs(z) < deadzone:
 		speed_scale = 1.0
 		play("skate_idle")
@@ -49,6 +52,7 @@ func skate_animation(x, z):
 #plays the dash_animation depending on direction
 func dash_animation(x_dir, z_dir):
 	can_play = false
+	is_playing_fall = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir > 0:
 			play("dash_front_side")
@@ -64,6 +68,7 @@ func dash_animation(x_dir, z_dir):
 
 func glide_animation(x_dir, z_dir):
 	can_play = false
+	is_playing_fall = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir > 0:
 			play("glide_front_side")
@@ -79,6 +84,7 @@ func glide_animation(x_dir, z_dir):
 
 func stomp_animation(x_dir, z_dir):
 	can_play = false
+	is_playing_fall = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir > 0:
 			play("stomp_front_side")
@@ -94,6 +100,7 @@ func stomp_animation(x_dir, z_dir):
 
 func jump_animation(x_dir, z_dir):
 	can_play = false
+	is_playing_fall = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir >= 0:
 			play("jump_front_side")
@@ -108,6 +115,9 @@ func jump_animation(x_dir, z_dir):
 			play("jump_back")
 
 func fall_animation(x_dir, z_dir):
+	if is_playing_fall: 
+		return
+	is_playing_fall = true
 	can_play = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir >= 0:
@@ -124,6 +134,7 @@ func fall_animation(x_dir, z_dir):
 
 func crash_animation(x_dir, z_dir):
 	can_play = false
+	is_playing_fall = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir > 0:
 			play("crash_front_side")
