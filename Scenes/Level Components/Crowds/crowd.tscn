@@ -25,6 +25,7 @@ path_desired_distance = 10.0
 target_desired_distance = 10.0
 path_max_distance = 50.01
 simplify_path = true
+path_return_max_length = 100.0
 height = 16.0
 radius = 4.0
 neighbor_distance = 0.1
@@ -44,5 +45,6 @@ skeleton = NodePath("")
 shape = SubResource("CapsuleShape3D_1ls1x")
 debug_color = Color(0.827451, 0.16470589, 0.047058824, 0.7490196)
 
+[connection signal="navigation_finished" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
 [connection signal="target_reached" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

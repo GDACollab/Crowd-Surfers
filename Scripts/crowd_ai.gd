@@ -4,6 +4,7 @@ extends Node3D
 @export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
 @export var ratio_circum: float = 0.7 # area ratio of subgroups max, and max find distance
+@export var merge_ratio: float = 1.0 # default is radisu, increase distance beyond 2.0 exceeds circum, I do not recommend. Decreasing makes the distance less than the radius.
 @export var crowd_size: int = 1.0
 @export var max_speed: float = 20.0
 @export var acceleration: float = 20.0
@@ -194,11 +195,13 @@ func group_main(safe_velocity) -> void:
 	#var target_vel = safe_velocity
 	#if target_vel.length() < 0.1:
 	#	target_vel = (navigation_agent_3d.get_next_path_position() - anchor.global_position).normalized() * max_speed
+	var delta_time = get_physics_process_delta_time()
+	var accel_delta = delta_time * acceleration;
 	var vel = anchor.velocity.move_toward(safe_velocity, acceleration * get_physics_process_delta_time())
-	#print(vel)
-	for agt in agents_main:
-		agt.velocity.x = vel.x
-		agt.velocity.z = vel.z
+
+	for member in agents_main:
+		member.velocity.x = lerp(member.velocity.x, vel.x, accel_delta)
+		member.velocity.z = lerp(member.velocity.z, vel.z, accel_delta)
 
 
 # sub brain
@@ -208,15 +211,15 @@ func group_main(safe_velocity) -> void:
 # - Safe_velocity: Velocity to apply to the agents
 func group_sub(sub_array, safe_velocity) -> void:
 	if (sub_array.is_empty()): return
-	#var target_vel = safe_velocity
-	#if target_vel.length() < 0.1:
-		#target_vel = (sub_array[0].get_node_or_null("SubNav").get_next_path_position() - sub_array[0].global_position).normalized() * max_speed
-	var vel = sub_array[0].velocity.move_toward(safe_velocity, acceleration * 1.25 * get_physics_process_delta_time())
 	
-	for agt in sub_array:
-		if (not is_instance_valid(agt)): continue
-		agt.velocity.x = vel.x
-		agt.velocity.z = vel.z
+	var delta_time = get_physics_process_delta_time()
+	var accel_delta = delta_time * acceleration;
+	var vel = sub_array[0].velocity.move_toward(safe_velocity, acceleration * 1.25 * delta_time)
+	
+	for member in sub_array:
+		if (not is_instance_valid(member)): continue
+		member.velocity.x = lerp(member.velocity.x, vel.x, accel_delta)
+		member.velocity.z = lerp(member.velocity.z, vel.z, accel_delta)
 
 ## collision detection
 # checkCollision
@@ -236,9 +239,10 @@ func checkCollision(source, target, collision) -> void:
 		
 	elif target is CharacterBody3D:
 		print("crowd, may involve either slide or none?")
+		bounce_behav(target, collision)
+		bounce_behav(source, collision)
 		# calculate the vector of velocity in relation to one another
 		# depending on velocity direction, either push or slide, or no connection
-		
 	else:
 		print("world, basic slide")
 		#slide_behav(source, collision)
@@ -252,8 +256,7 @@ func checkWall(origin, member) -> void:
 		var target = collision.get_collider()
 		var hit_point = collision.get_position()
 		var local_hit = member.to_local(hit_point)
-		print(collision)
-		checkCollision(origin, target, collision)
+		checkCollision(member, target, collision)
 		
 		#if (local_hit.z < -0.1 or local_hit.x > 0.1 or local_hit.x < -0.1):
 			#if (member.global_position.distance_squared_to(anchor.global_position) >= circum): 
@@ -329,7 +332,7 @@ func checkAnchor(array) -> void:
 # Bug:
 # - Currently, it will need to recalculate the path if it is underneath the current height, since often times it doesn't recalculate when it needs to
 func get_new_loc() -> void:
-	if (navigation_agent_3d.is_navigation_finished()): curr_point += 1
+	if (navigation_agent_3d.is_target_reached()): curr_point += 1
 	if (curr_point > route.size()-1): curr_point = 0
 	#print('get new loc')
 	navigation_agent_3d.target_position = NavigationServer3D.map_get_closest_point(nav_map, route[curr_point])
@@ -458,7 +461,7 @@ func mass_swap_behav(array, target) -> void:
 	var target_anchor = Vector2(target[0].global_position.x, target[0].global_position.z)
 	for member_idx in range(array.size() -1, 0, -1):
 		var member = array[member_idx]
-		if (target_anchor.distance_to(Vector2(member.global_position.x, member.global_position.z)) < circum / 2.0):
+		if (target_anchor.distance_to(Vector2(member.global_position.x, member.global_position.z)) < (circum / 2.0) * merge_ratio):
 			swap_member_behav(array, member, target)
 	
 	# reposition the current anchor to the last unswapped member if it exists
@@ -486,9 +489,10 @@ func create_sub_group(location, sub_idx = 0) -> Array:
 	nav_agent.velocity_computed.connect(
 		func(safe_velocity: Vector3):
 			_on_velocity_computed(safe_velocity, sub_array))
-	#print(sub_array)
-	#print(sub_idx)
-	#print('subgroup done')
+
+	nav_agent.navigation_finished.connect(
+		func():
+			_on_navigation_finished(nav_agent))
 	return sub_array
 
 
@@ -615,5 +619,13 @@ func _on_velocity_computed(safe_velocity: Vector3, sub_array) -> void:
 
 
 func _on_navigation_agent_3d_waypoint_reached(details: Dictionary) -> void:
-
 	pass # Replace with function body.
+	
+
+
+
+func _on_navigation_agent_3d_navigation_finished() -> void:
+	get_new_loc()
+
+func _on_navigation_finished(sub_nav) -> void:
+	get_new_sub_loc(sub_nav)
