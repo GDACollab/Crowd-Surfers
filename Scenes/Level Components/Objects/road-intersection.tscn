@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_2r04h"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_k3oxu"]
-[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_5cuq4"]
-[ext_resource type="Texture2D" uid="uid://c4gevmhph374b" path="res://Assets/Art/AlphaSprites/CS UpdatedRoadTiles S6/Road Intersection S6.png" id="3_jwj0v"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/height_fog.gdshader" id="5_s0kw4"]
+[ext_resource type="Texture2D" uid="uid://c14wh6latw436" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Intersection S3.png" id="2_gmrtk"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_k3oxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mf3to"]
 render_priority = 0
-shader = ExtResource("3_5cuq4")
-shader_parameter/tex = ExtResource("3_jwj0v")
+shader = ExtResource("4_k3oxu")
+shader_parameter/tex = ExtResource("2_gmrtk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_py6to"]
 render_priority = 0
@@ -18,13 +17,8 @@ shader_parameter/tex = ExtResource("3_jwj0v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nckuh"]
 render_priority = 0
-shader = ExtResource("3_5cuq4")
-shader_parameter/tex = ExtResource("3_jwj0v")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdal2"]
-render_priority = 0
-shader = ExtResource("5_s0kw4")
-shader_parameter/tex = ExtResource("3_jwj0v")
+shader = ExtResource("4_k3oxu")
+shader_parameter/tex = ExtResource("2_gmrtk")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c8xiq"]
 size = Vector3(100, 0, 100)
@@ -45,9 +39,8 @@ art_z_cutoff = 1.0
 platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(19.53125, 0, inf, 8.537381e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_override = SubResource("ShaderMaterial_mf3to")
-material_overlay = SubResource("ShaderMaterial_py6to")
+transform = Transform3D(8.795074, 0, inf, 3.8444492e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
+material_overlay = SubResource("ShaderMaterial_k3oxu")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -56,9 +49,8 @@ region_enabled = true
 region_rect = Rect2(0, 512, 512, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(19.53125, 0, 0, 0, 1, 0, 0, 0, 19.53125, 0, 1, 50)
-material_override = SubResource("ShaderMaterial_nckuh")
-material_overlay = SubResource("ShaderMaterial_gdal2")
+transform = Transform3D(8.795074, 0, 0, 0, 1, 0, 0, 0, 8.756567, 0, 1, 50)
+material_overlay = SubResource("ShaderMaterial_jwj0v")
 axis = 1
 shaded = true
 alpha_cut = 1
