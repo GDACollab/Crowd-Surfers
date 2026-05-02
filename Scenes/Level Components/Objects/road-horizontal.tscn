@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_d7ali"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_ltdve"]
-[ext_resource type="Texture2D" uid="uid://uhqicit2nm5j" path="res://Assets/Art/AlphaSprites/Road Horizontal S3.png" id="2_pecqp"]
-[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_d7ali"]
+[ext_resource type="Texture2D" uid="uid://bsd7d77l4vqig" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS UpdatedRoadTiles S6/Road Straight S6.png" id="3_5ioq0"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_nc262"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7ali"]
 render_priority = 0
-shader = ExtResource("4_d7ali")
-shader_parameter/tex = ExtResource("2_pecqp")
+shader = ExtResource("5_nc262")
+shader_parameter/tex = ExtResource("3_5ioq0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ioq0"]
 render_priority = 0
-shader = ExtResource("4_d7ali")
-shader_parameter/tex = ExtResource("2_pecqp")
+shader = ExtResource("5_nc262")
+shader_parameter/tex = ExtResource("3_5ioq0")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc262"]
 size = Vector3(100, 0, 100)
@@ -26,7 +26,7 @@ script = ExtResource("1_d7ali")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_ltdve")
-front_filename = ExtResource("2_pecqp")
+front_filename = ExtResource("3_5ioq0")
 width = 100.0
 length = 100.0
 height = 1.0
@@ -34,24 +34,24 @@ art_z_cutoff = 1.0
 platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(8.928572, 0, inf, 3.9028026e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
+transform = Transform3D(19.53125, 0, inf, 8.537381e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
 material_overlay = SubResource("ShaderMaterial_d7ali")
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("2_pecqp")
+texture = ExtResource("3_5ioq0")
 region_enabled = true
-region_rect = Rect2(0, 1163, 1120, 0)
+region_rect = Rect2(0, 512, 512, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(8.928572, 0, 0, 0, 1, 0, 0, 0, 8.598453, 0, 1, 50)
+transform = Transform3D(19.53125, 0, 0, 0, 1, 0, 0, 0, 19.53125, 0, 1, 50)
 material_overlay = SubResource("ShaderMaterial_5ioq0")
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("2_pecqp")
+texture = ExtResource("3_5ioq0")
 region_enabled = true
-region_rect = Rect2(0, 0, 1120, 1163)
+region_rect = Rect2(0, 0, 512, 512)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)

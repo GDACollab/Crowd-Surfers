@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_0ja4t"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_x5sv6"]
-[ext_resource type="Texture2D" uid="uid://4y7f4wmj2kup" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Vertical S3.png" id="2_x5sv6"]
+[ext_resource type="Texture2D" uid="uid://bbj2oqhq27mv0" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS UpdatedRoadTiles S6/Road Vertical S6.png" id="3_jwdsp"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_jwdsp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ja4t"]
 render_priority = 0
 shader = ExtResource("5_jwdsp")
-shader_parameter/tex = ExtResource("2_x5sv6")
+shader_parameter/tex = ExtResource("3_jwdsp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jwdsp"]
 size = Vector3(100, 0, 100)
@@ -21,7 +21,7 @@ script = ExtResource("1_0ja4t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_x5sv6")
-top_filename = ExtResource("2_x5sv6")
+top_filename = ExtResource("3_jwdsp")
 width = 100.0
 length = 100.0
 height = 1.0
@@ -29,12 +29,12 @@ art_z_cutoff = 1.0
 platform_thickness = 1.0
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(8.605852, 0, 0, 0, 0.99995, -0.08928571, 0, 0.0099995, 8.928572, 0, 0.5, 50)
+transform = Transform3D(19.53125, 0, 0, 0, 0.99995, -0.1953125, 0, 0.0099995, 19.53125, 0, 0.5, 50)
 material_overlay = SubResource("ShaderMaterial_0ja4t")
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("2_x5sv6")
+texture = ExtResource("3_jwdsp")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)

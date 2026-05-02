@@ -1,18 +1,18 @@
 [gd_scene load_steps=8 format=3 uid="uid://8wdcd3rve455"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_eu4xi"]
-[ext_resource type="Texture2D" uid="uid://bmgok38tu5dsd" path="res://Assets/Art/AlphaSprites/CS Roads S3/Turn Up R Road S4.png" id="2_6cqd6"]
+[ext_resource type="Texture2D" uid="uid://b2ij7p7638p2y" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS UpdatedRoadTiles S6/Road Turn 4.png" id="2_0gxy6"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_0gxy6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjrwk"]
 render_priority = 0
 shader = ExtResource("4_0gxy6")
-shader_parameter/tex = ExtResource("2_6cqd6")
+shader_parameter/tex = ExtResource("2_0gxy6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0gxy6"]
 render_priority = 0
 shader = ExtResource("4_0gxy6")
-shader_parameter/tex = ExtResource("2_6cqd6")
+shader_parameter/tex = ExtResource("2_0gxy6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_boumb"]
 size = Vector3(100, 0, 100)
@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_eu4xi")
-front_filename = ExtResource("2_6cqd6")
+front_filename = ExtResource("2_0gxy6")
 width = 100.0
 length = 100.0
 height = 1.0
@@ -38,7 +38,7 @@ material_overlay = SubResource("ShaderMaterial_qjrwk")
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("2_6cqd6")
+texture = ExtResource("2_0gxy6")
 region_enabled = true
 region_rect = Rect2(0, 512, 512, 0)
 
@@ -48,7 +48,7 @@ material_overlay = SubResource("ShaderMaterial_0gxy6")
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("2_6cqd6")
+texture = ExtResource("2_0gxy6")
 region_enabled = true
 region_rect = Rect2(0, 0, 512, 512)
 
