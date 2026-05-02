@@ -1,35 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://f5tu4a8y4ybq"]
+[gd_scene load_steps=9 format=3 uid="uid://f5tu4a8y4ybq"]
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_f1jpy"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_fhq3e"]
 [ext_resource type="Texture2D" uid="uid://dmqdnmwvml3p" path="res://Assets/Art/AlphaSprites/CS GrassVariants S6/Grass Corner 4 S6.png" id="3_f1jpy"]
-[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_5ygmf"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/height_fog.gdshader" id="5_gwun5"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_gwun5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhq3e"]
-render_priority = 0
-shader = ExtResource("4_5ygmf")
-shader_parameter/tex = ExtResource("3_f1jpy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0c31"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_olnfs"]
 render_priority = 0
 shader = ExtResource("5_gwun5")
 shader_parameter/tex = ExtResource("3_f1jpy")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ygmf"]
-render_priority = 0
-shader = ExtResource("4_5ygmf")
-shader_parameter/tex = ExtResource("3_f1jpy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwun5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1jpy"]
 render_priority = 0
 shader = ExtResource("5_gwun5")
 shader_parameter/tex = ExtResource("3_f1jpy")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6cgn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fhq3e"]
 size = Vector3(100, 0, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2iopq"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_c0c31"]
 size = Vector3(100, 1, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -46,8 +35,7 @@ platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(19.53125, 0, inf, 8.537381e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_override = SubResource("ShaderMaterial_fhq3e")
-material_overlay = SubResource("ShaderMaterial_c0c31")
+material_overlay = SubResource("ShaderMaterial_olnfs")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -57,8 +45,7 @@ region_rect = Rect2(0, 512, 512, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(19.53125, 0, 0, 0, 1, 0, 0, 0, 19.53125, 0, 1, 50)
-material_override = SubResource("ShaderMaterial_5ygmf")
-material_overlay = SubResource("ShaderMaterial_gwun5")
+material_overlay = SubResource("ShaderMaterial_f1jpy")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -68,10 +55,10 @@ region_rect = Rect2(0, 0, 512, 512)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("BoxShape3D_o6cgn")
+shape = SubResource("BoxShape3D_fhq3e")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
-shape = SubResource("BoxShape3D_2iopq")
+shape = SubResource("BoxShape3D_c0c31")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
