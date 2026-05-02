@@ -4,16 +4,16 @@
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_kr4un"]
 [ext_resource type="Texture2D" uid="uid://b1norg1m8vx2u" path="res://Assets/Art/Chopped Art (Fixed)/Market Stall Amber/amberstall_TOP.png" id="2_tpn6k"]
 [ext_resource type="Texture2D" uid="uid://mddvhtllm6gy" path="res://Assets/Art/Chopped Art (Fixed)/Market Stall Amber/amberstall_FRONT.png" id="3_4610g"]
-[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_ffssr"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_vkskn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ffssr"]
 render_priority = 0
-shader = ExtResource("5_ffssr")
+shader = ExtResource("4_vkskn")
 shader_parameter/tex = ExtResource("2_tpn6k")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mayqa"]
 render_priority = 0
-shader = ExtResource("5_ffssr")
+shader = ExtResource("4_vkskn")
 shader_parameter/tex = ExtResource("3_4610g")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_op3mi"]
@@ -39,7 +39,7 @@ front_spr_pad_right = 9.48
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(7.3918066, 0, 0, 0, 1, 0, 0, 0, 4.8496604, -0.635, 35, 25)
-material_overlay = SubResource("ShaderMaterial_ffssr")
+material_override = SubResource("ShaderMaterial_ffssr")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -47,7 +47,7 @@ texture = ExtResource("2_tpn6k")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(7.3308825, 0, 3.4302658e-07, 3.2044306e-07, 1.9106855e-15, -7.8475337, 0, 1, 1.4994169e-14, -0.415, 17.5, 50)
-material_overlay = SubResource("ShaderMaterial_mayqa")
+material_override = SubResource("ShaderMaterial_mayqa")
 axis = 1
 shaded = true
 alpha_cut = 1
