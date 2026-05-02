@@ -1,110 +1,61 @@
 extends Camera3D
 
+@export var ray_path: NodePath
 @export var player_path: NodePath
 @export var follow_speed: float = 0.5
-@export var offset: Vector3 = Vector3(0, 100, 100)
-
-@export_category("Sprite Occlusion")
-@export var occlusion_material: ShaderMaterial
-@export var occlusion_alpha: float = 0.35
-@export var fade_duration: float = 0.2
-@export var player_half_width: float = 0.5
-@export var player_half_height: float = 7.5
-@export var occlusion_push: float = 1.0
 
 @onready var player: CharacterBody3D = get_node(player_path)
+@onready var ray: RayCast3D = get_node(ray_path)
 
-var lead_smoothed := Vector3.ZERO
-var occluding := {}
-var pyramid_shape := ConvexPolygonShape3D.new()
-var query := PhysicsShapeQueryParameters3D.new()
+@export var offset: Vector3 = Vector3(0, 10000, 10000)
+
+@export_category("Building Occlusion")
+## The distance in front of the player that the transparency window's center should be at
+@export var transparency_window_lead_distance := Vector3(50.0, 0.0, 0.0)
+## The (x, y) distances of either end of the transparency window from its center
+@export var transparency_window_scale := Vector2(100.0, 25.0)
+## The speed at which the transparency window travels towards its lead position
+@export var transparency_window_speed : float = 15.0
+## The amount of transparency buildings should provide, where 0.0 means full transparency and 1.0 means full opacity
+@export_range(0.0, 1.0) var alpha_amount : float = 0.5
+
+var lead_smoothed: Vector3 = Vector3.ZERO
+var transparency_window_pos := Vector3.ZERO
 
 func _ready() -> void:
-	query.collide_with_bodies = true
-	query.collide_with_areas = false
-	query.exclude = [player.get_rid()]
+	transparency_window_pos = player.global_position
 
 func _process(delta: float) -> void:
-	var v := player.velocity
-	lead_smoothed = lead_smoothed.lerp(v.normalized() * sqrt(v.length() + 1.0) * 3.0, 1.0 - exp(-follow_speed * delta))
+	var v: Vector3 = player.velocity
+	# Calculate the camera's lead
+	var lead_target: Vector3 = v.normalized() * sqrt(v.length() + 1.0) * 3.0
+	lead_smoothed = lead_smoothed.lerp(
+		lead_target,
+		1.0 - exp(-follow_speed * delta)
+	)
 	global_position = player.global_position + offset + lead_smoothed
-
-	# build a pyramid from the camera down to the player to catch anything blocking the view
-	var center := player.global_position + Vector3.UP * occlusion_push
-	var r := global_transform.basis.x * player_half_width
-	var h := Vector3.UP * player_half_height
-	pyramid_shape.points = PackedVector3Array([
-		global_position,
-		center + r + h, center - r + h,
-		center - r - h, center + r - h,
-	])
-
-	query.shape = pyramid_shape
-	var results := get_world_3d().direct_space_state.intersect_shape(query, 32)
-
-	var newly_occluding := {}
-	for hit in results:
-		var collider := hit["collider"] as Node
-		if collider == null:
-			continue
-		for child in collider.get_children():
-			if child is Sprite3D or child is AnimatedSprite3D:
-				var sprite := child as GeometryInstance3D
-				newly_occluding[sprite] = true
-				if not occluding.has(sprite):
-					apply_occlusion(sprite)
-
-	# anything that was occluding last frame but isn't anymore gets faded back in
-	for sprite in occluding.keys().duplicate():
-		if not is_instance_valid(sprite):
-			occluding.erase(sprite)
-		elif not newly_occluding.has(sprite):
-			remove_occlusion(sprite)
-
-func get_sprite_texture(sprite: GeometryInstance3D) -> Texture2D:
-	if sprite is Sprite3D:
-		return (sprite as Sprite3D).texture
-	if sprite is AnimatedSprite3D:
-		var a := sprite as AnimatedSprite3D
-		if a.sprite_frames:
-			return a.sprite_frames.get_frame_texture(a.animation, a.frame)
-	return null
-
-func apply_occlusion(sprite: GeometryInstance3D) -> void:
-	if not occlusion_material:
-		return
-	var mat := occlusion_material.duplicate() as ShaderMaterial
-	mat.set_shader_parameter("tex", get_sprite_texture(sprite))
-	mat.set_shader_parameter("alpha_amount", 1.0)
-	occluding[sprite] = { "original": sprite.material_override, "material": mat, "tween": null }
-	sprite.material_override = mat
-	tween_occlusion(sprite, occlusion_alpha, false)
-
-func remove_occlusion(sprite: GeometryInstance3D) -> void:
-	tween_occlusion(sprite, 1.0, true)
-
-func tween_occlusion(sprite: GeometryInstance3D, target_alpha: float, restore_after: bool) -> void:
-	if not occluding.has(sprite):
-		return
-	var data: Dictionary = occluding[sprite]
-	var mat := data["material"] as ShaderMaterial
-	if not mat:
-		return
-
-	# if a fade is already running, stop it before starting a new one
-	if data["tween"]:
-		(data["tween"] as Tween).kill()
-
-	var tween := create_tween()
-	tween.tween_property(mat, "shader_parameter/alpha_amount", target_alpha, fade_duration)
-
-	if restore_after:
-		# once faded back in, swap the occlusion material out for the original
-		tween.tween_callback(restore_sprite.bind(sprite, data["original"]))
-
-	data["tween"] = tween
-
-func restore_sprite(sprite: GeometryInstance3D, original: Material) -> void:
-	if is_instance_valid(sprite):
-		sprite.material_override = original
-	occluding.erase(sprite)
+	# Get the player's center
+	var player_collision_height = player.get_node("CollisionShape3D").shape.height
+	var player_center_pos := player.global_position + Vector3(0, player_collision_height / 2.0, 0)
+	# Get the target position for the transparency window
+	var transparency_window_target_pos : Vector3 = player_center_pos + \
+		transparency_window_lead_distance * sign(player.velocity.x)
+	# Move the transparency window towards its target
+	transparency_window_pos = transparency_window_pos.lerp(
+		transparency_window_target_pos,
+		1.0 - exp(-transparency_window_speed * delta)
+	)
+	
+	# Pass values to the shader
+	RenderingServer.global_shader_parameter_set("transparency_window_pos", transparency_window_pos)
+	RenderingServer.global_shader_parameter_set("transparency_window_scale", transparency_window_scale)
+	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
+	RenderingServer.global_shader_parameter_set("alpha_amount", alpha_amount)
+	
+	#
+	#ray.force_raycast_update()
+	#var collider = ray.get_collider()
+	#if collider:
+		#for child in collider.get_children():
+			#if child is Sprite3D:
+				#child.hide()

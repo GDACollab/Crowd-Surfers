@@ -1,21 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsuo1d1l7ny80"]
+[gd_scene load_steps=10 format=3 uid="uid://bsuo1d1l7ny80"]
 
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_2ctq2"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_8cyog"]
 [ext_resource type="Texture2D" uid="uid://f8cp4omi156u" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Green 1 S3.png" id="2_8cyog"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_uhsvu"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_fidvn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhsvu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ayit"]
+render_priority = 0
+shader = ExtResource("3_uhsvu")
+shader_parameter/tex = ExtResource("2_8cyog")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wwmd"]
 render_priority = 0
 shader = ExtResource("5_fidvn")
 shader_parameter/tex = ExtResource("2_8cyog")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2ctq2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ymfs"]
 size = Vector3(100, 225, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fidvn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8up0"]
 size = Vector3(100, 25, 100)
 
 [node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_2ctq2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_8cyog")
@@ -29,7 +37,8 @@ front_spr_pad_right = 6.16
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(20.245779, 0, 6.936054e-07, 8.849711e-07, 1.9106855e-15, -15.867842, 0, 1, 3.0318453e-14, 2.205, 123.93, 100)
-material_overlay = SubResource("ShaderMaterial_uhsvu")
+material_override = SubResource("ShaderMaterial_8ayit")
+material_overlay = SubResource("ShaderMaterial_5wwmd")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -39,10 +48,10 @@ region_rect = Rect2(0, 0, 533, 1589)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 112.5, 50)
-shape = SubResource("BoxShape3D_2ctq2")
+shape = SubResource("BoxShape3D_3ymfs")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 237.5, 50)
-shape = SubResource("BoxShape3D_fidvn")
+shape = SubResource("BoxShape3D_p8up0")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

@@ -8,7 +8,7 @@ extends AnimatedSprite3D
 
 var can_play := true
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var v := player.velocity
 	speed_scale = 0.5 + v.length()/125
 	if can_play:
@@ -95,14 +95,14 @@ func stomp_animation(x_dir, z_dir):
 func jump_animation(x_dir, z_dir):
 	can_play = false
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
-		if z_dir >= 0:
+		if z_dir > 0:
 			play("jump_front_side")
 		else:
 			play("jump_back_side")
 	elif abs(x_dir) > deadzone:
 		play("jump_side")
 	else:
-		if z_dir >= 0:
+		if z_dir > 0:
 			play("jump_front")
 		else:
 			play("jump_back")

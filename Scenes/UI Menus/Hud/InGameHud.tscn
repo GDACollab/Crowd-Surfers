@@ -1,40 +1,22 @@
-[gd_scene load_steps=25 format=3 uid="uid://6g62uuswf0m5"]
+[gd_scene load_steps=18 format=3 uid="uid://6g62uuswf0m5"]
 
 [ext_resource type="Script" uid="uid://drrrorsu46rwu" path="res://Scripts/Hud UI/Hud Handler.gd" id="1_60t2x"]
 [ext_resource type="PackedScene" uid="uid://bjtsjfgecr3i4" path="res://Scenes/UI Menus/Hud/speedometer_component.tscn" id="2_60t2x"]
 [ext_resource type="Script" uid="uid://cewh1ultsgo40" path="res://Scripts/Hud UI/hud_star_data.gd" id="2_a4duu"]
-[ext_resource type="Texture2D" uid="uid://d1qsq1oee28rq" path="res://Assets/Art/UI/HUD/hud_bg.png" id="2_ck5tu"]
+[ext_resource type="Texture2D" uid="uid://ddh5rvamb333v" path="res://Assets/Art/UI/HUD/hud_bg.png" id="2_ck5tu"]
+[ext_resource type="Texture2D" uid="uid://b1xii2nm6dbjw" path="res://Assets/Art/UI/HUD/Stars/star2.png" id="3_tbtus"]
 [ext_resource type="PackedScene" uid="uid://s4k1yymmwky1" path="res://Scenes/UI Menus/Hud/timer_component.tscn" id="3_uqmuc"]
 [ext_resource type="PackedScene" uid="uid://crxtf2cx4pai4" path="res://Scenes/UI Menus/Hud/level_progress_component.tscn" id="4_8ms62"]
-[ext_resource type="Texture2D" uid="uid://bb72v4iexcqft" path="res://Assets/Art/UI/HUD/Stars/star3.png" id="4_kniuw"]
+[ext_resource type="Texture2D" uid="uid://m6ufyf1s6ubh" path="res://Assets/Art/UI/HUD/Stars/star3.png" id="4_kniuw"]
 [ext_resource type="Script" uid="uid://b0horolsbjtj3" path="res://Scripts/Hud UI/level_progress_component.gd" id="5_uqmuc"]
-[ext_resource type="Texture2D" uid="uid://5itr7wfrr5ei" path="res://Assets/Art/UI/HUD/Stars/star4.png" id="6_8al6q"]
-[ext_resource type="Texture2D" uid="uid://yi56xtm1aduc" path="res://Assets/Art/UI/HUD/Stars/star1.PNG" id="6_n7o7w"]
-[ext_resource type="PackedScene" uid="uid://dy5w2oabxx7k2" path="res://Scenes/UI Menus/Hud/hud_star.tscn" id="8_n7o7w"]
-[ext_resource type="Texture2D" uid="uid://cxkcaf8xilvr4" path="res://Assets/Art/UI/HUD/Stars/star6.PNG" id="8_tn0bw"]
-[ext_resource type="Texture2D" uid="uid://c2noru701rowu" path="res://Assets/Art/UI/HUD/Stars/star7.PNG" id="9_let00"]
-[ext_resource type="Texture2D" uid="uid://chi0iwcsod5wb" path="res://Assets/Art/UI/HUD/Stars/star2.PNG" id="10_6ylgd"]
-[ext_resource type="Texture2D" uid="uid://dmdhs6i7ymsr0" path="res://Assets/Art/UI/HUD/Stars/star8.PNG" id="10_b7wga"]
-[ext_resource type="Texture2D" uid="uid://f6r1e8prnt3j" path="res://Assets/Art/UI/HUD/Stars/star5.PNG" id="12_let00"]
+[ext_resource type="Texture2D" uid="uid://drnbeui74qe4m" path="res://Assets/Art/UI/HUD/Stars/star4.png" id="6_8al6q"]
+[ext_resource type="Texture2D" uid="uid://brask1luwu0ql" path="res://Assets/Art/UI/HUD/Stars/star1.png" id="6_bwla4"]
+[ext_resource type="Texture2D" uid="uid://cshhmcenigqrl" path="res://Assets/Art/UI/HUD/Stars/star5.png" id="7_nlhqq"]
 
 [sub_resource type="Resource" id="Resource_tbtus"]
 script = ExtResource("2_a4duu")
-texture = ExtResource("10_6ylgd")
-position = Vector2(68, -35)
-speed_percent_to_show = 170.0
-metadata/_custom_type_script = "uid://cewh1ultsgo40"
-
-[sub_resource type="Resource" id="Resource_let00"]
-script = ExtResource("2_a4duu")
-texture = ExtResource("8_tn0bw")
-position = Vector2(95, -21)
-speed_percent_to_show = 85.0
-metadata/_custom_type_script = "uid://cewh1ultsgo40"
-
-[sub_resource type="Resource" id="Resource_b7wga"]
-script = ExtResource("2_a4duu")
-texture = ExtResource("9_let00")
-position = Vector2(144, -1)
+texture = ExtResource("3_tbtus")
+position = Vector2(68, -28)
 speed_percent_to_show = 150.0
 metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
@@ -42,35 +24,28 @@ metadata/_custom_type_script = "uid://cewh1ultsgo40"
 script = ExtResource("2_a4duu")
 texture = ExtResource("4_kniuw")
 position = Vector2(207, -23)
-speed_percent_to_show = 130.0
+speed_percent_to_show = 50.0
 metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
 [sub_resource type="Resource" id="Resource_n7o7w"]
 script = ExtResource("2_a4duu")
-texture = ExtResource("12_let00")
-position = Vector2(232, 6)
+texture = ExtResource("7_nlhqq")
+position = Vector2(225, -1)
 speed_percent_to_show = 100.0
 metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
 [sub_resource type="Resource" id="Resource_8al6q"]
 script = ExtResource("2_a4duu")
-texture = ExtResource("6_n7o7w")
-position = Vector2(287, -5)
-speed_percent_to_show = 190.0
+texture = ExtResource("6_bwla4")
+position = Vector2(319, -12)
+speed_percent_to_show = 125.0
 metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
 [sub_resource type="Resource" id="Resource_nlhqq"]
 script = ExtResource("2_a4duu")
 texture = ExtResource("6_8al6q")
 position = Vector2(368, -7)
-speed_percent_to_show = 60.0
-metadata/_custom_type_script = "uid://cewh1ultsgo40"
-
-[sub_resource type="Resource" id="Resource_0lena"]
-script = ExtResource("2_a4duu")
-texture = ExtResource("10_b7wga")
-position = Vector2(302, 42)
-speed_percent_to_show = 70.0
+speed_percent_to_show = 75.0
 metadata/_custom_type_script = "uid://cewh1ultsgo40"
 
 [node name="Hud" type="Control"]
@@ -82,14 +57,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_60t2x")
-stars = Array[ExtResource("2_a4duu")]([SubResource("Resource_tbtus"), SubResource("Resource_let00"), SubResource("Resource_b7wga"), SubResource("Resource_bwla4"), SubResource("Resource_n7o7w"), SubResource("Resource_8al6q"), SubResource("Resource_nlhqq"), SubResource("Resource_0lena")])
+stars = Array[ExtResource("2_a4duu")]([SubResource("Resource_tbtus"), SubResource("Resource_bwla4"), SubResource("Resource_n7o7w"), SubResource("Resource_8al6q"), SubResource("Resource_nlhqq")])
+star_scale = 0.224
 star_alpha_fade_per_second = 2.0
-star_move_distance = 150.0
-star_animation_time = 1.2
-star_animation_time_change_per_second = 0.3
-hud_star_scene = ExtResource("8_n7o7w")
-star_rotation_speed = 5.5
-star_rotation_magnitude = 3.0
 
 [node name="Hud Container" type="Control" parent="."]
 anchors_preset = 0
@@ -109,16 +79,15 @@ texture = ExtResource("2_ck5tu")
 [node name="Stars Container" type="Control" parent="Hud Container"]
 anchors_preset = 0
 
-[node name="TextureRect2" type="TextureRect" parent="Hud Container/Stars Container"]
+[node name="TextureRect" type="TextureRect" parent="Hud Container/Stars Container"]
 visible = false
 layout_mode = 0
-offset_left = 302.0
-offset_top = 41.999996
-offset_right = 1260.0
-offset_bottom = 884.0
+offset_left = 225.0
+offset_top = -1.0000079
+offset_right = 737.0
+offset_bottom = 465.0
 scale = Vector2(0.224, 0.224)
-texture = ExtResource("10_b7wga")
-stretch_mode = 2
+texture = ExtResource("7_nlhqq")
 
 [node name="Speedometer Component" parent="Hud Container" instance=ExtResource("2_60t2x")]
 layout_mode = 0

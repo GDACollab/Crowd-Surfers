@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_d7ali"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_ltdve"]
-[ext_resource type="Texture2D" uid="uid://uhqicit2nm5j" path="res://Assets/Art/AlphaSprites/Road Horizontal S3.png" id="2_pecqp"]
-[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_d7ali"]
+[ext_resource type="Texture2D" uid="uid://bsd7d77l4vqig" path="res://Assets/Art/AlphaSprites/CS UpdatedRoadTiles S6/Road Straight S6.png" id="3_5ioq0"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_sligb"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/height_fog.gdshader" id="5_nc262"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygm1j"]
 render_priority = 0
-shader = ExtResource("4_d7ali")
-shader_parameter/tex = ExtResource("2_pecqp")
+shader = ExtResource("3_sligb")
+shader_parameter/tex = ExtResource("3_5ioq0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcjjn"]
 render_priority = 0
@@ -17,8 +18,8 @@ shader_parameter/tex = ExtResource("3_5ioq0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c0ev6"]
 render_priority = 0
-shader = ExtResource("4_d7ali")
-shader_parameter/tex = ExtResource("2_pecqp")
+shader = ExtResource("3_sligb")
+shader_parameter/tex = ExtResource("3_5ioq0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vdb8k"]
 render_priority = 0
@@ -44,8 +45,9 @@ art_z_cutoff = 1.0
 platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(8.928572, 0, inf, 3.9028026e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_overlay = SubResource("ShaderMaterial_d7ali")
+transform = Transform3D(19.53125, 0, inf, 8.537381e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
+material_override = SubResource("ShaderMaterial_ygm1j")
+material_overlay = SubResource("ShaderMaterial_jcjjn")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -54,8 +56,9 @@ region_enabled = true
 region_rect = Rect2(0, 512, 512, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(8.928572, 0, 0, 0, 1, 0, 0, 0, 8.598453, 0, 1, 50)
-material_overlay = SubResource("ShaderMaterial_5ioq0")
+transform = Transform3D(19.53125, 0, 0, 0, 1, 0, 0, 0, 19.53125, 0, 1, 50)
+material_override = SubResource("ShaderMaterial_c0ev6")
+material_overlay = SubResource("ShaderMaterial_vdb8k")
 axis = 1
 shaded = true
 alpha_cut = 1

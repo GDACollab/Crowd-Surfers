@@ -50,10 +50,7 @@ func load_data() -> void:
 	Settings.update_fmod_volumes()
 	print("Save Data loaded")
 
-func reset_data() -> void:
-	levels_complete = [false,false,false]
-	level_times = [0.0,0.0,0.0]
-	save_data()
+
 
 #######################
 ###  FILE HANDLING  ###

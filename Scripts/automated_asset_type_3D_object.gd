@@ -555,15 +555,19 @@ func create_sprite3D(given_name, texture, given_rot = Vector3(0, 0, 0), given_po
 	sprite.shaded = true
 	sprite.axis = given_axis # lays flat on given axis
 	sprite.rotation_degrees = given_rot # rotates sprite
-	sprite.material_override = null
+	# Load the transparecy script
+	var material := ShaderMaterial.new()
+	material.shader = load("res://Scripts/Shaders/occlusion.gdshader")
+	# Pass the texture to the shader for drawing
+	var tex: CompressedTexture2D = load(texture.resource_path)
+	material.set_shader_parameter("tex", tex)
+	sprite.material_override = material
 	# Load the height fog script
 	var overlay := ShaderMaterial.new()
 	overlay.shader = load("res://Scripts/Shaders/height_fog.gdshader")
 	# Pass the texture to the shader
-	var tex: CompressedTexture2D = load(texture.resource_path)
 	overlay.set_shader_parameter("tex", tex)
 	sprite.material_overlay = overlay
-	sprite.material_override = null
 	
 	# assign top and front vectors with sizes compensating for pixel size
 	var text_w = texture.get_width()
