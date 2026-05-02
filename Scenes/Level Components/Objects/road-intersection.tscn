@@ -3,16 +3,16 @@
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_2r04h"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_k3oxu"]
 [ext_resource type="Texture2D" uid="uid://c14wh6latw436" path="res://Assets/Art/AlphaSprites/CS Roads S3/Road Intersection S3.png" id="2_gmrtk"]
-[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_5cuq4"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_k3oxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k3oxu"]
 render_priority = 0
-shader = ExtResource("3_5cuq4")
+shader = ExtResource("4_k3oxu")
 shader_parameter/tex = ExtResource("2_gmrtk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwj0v"]
 render_priority = 0
-shader = ExtResource("3_5cuq4")
+shader = ExtResource("4_k3oxu")
 shader_parameter/tex = ExtResource("2_gmrtk")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0kw4"]
@@ -35,7 +35,7 @@ platform_thickness = 1.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.795074, 0, inf, 3.8444492e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_override = SubResource("ShaderMaterial_k3oxu")
+material_overlay = SubResource("ShaderMaterial_k3oxu")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -45,7 +45,7 @@ region_rect = Rect2(0, 1142, 1137, 0)
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(8.795074, 0, 0, 0, 1, 0, 0, 0, 8.756567, 0, 1, 50)
-material_override = SubResource("ShaderMaterial_jwj0v")
+material_overlay = SubResource("ShaderMaterial_jwj0v")
 axis = 1
 shaded = true
 alpha_cut = 1
