@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhatcveh4uk3t"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_pl3w0"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_oh4xo"]
+[ext_resource type="Texture2D" uid="uid://dgy1mnok437n5" path="res://Assets/Art/AlphaSprites/CS PathVariants S6/Path T Flipped S6.png" id="3_pl3w0"]
+[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_8iih4"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/height_fog.gdshader" id="5_m1m3x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oh4xo"]
+render_priority = 0
+shader = ExtResource("4_8iih4")
+shader_parameter/tex = ExtResource("3_pl3w0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jm7h8"]
+render_priority = 0
+shader = ExtResource("5_m1m3x")
+shader_parameter/tex = ExtResource("3_pl3w0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8iih4"]
+render_priority = 0
+shader = ExtResource("4_8iih4")
+shader_parameter/tex = ExtResource("3_pl3w0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1m3x"]
+render_priority = 0
+shader = ExtResource("5_m1m3x")
+shader_parameter/tex = ExtResource("3_pl3w0")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g7pac"]
+size = Vector3(100, 0, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3ilv"]
+size = Vector3(100, 1, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_pl3w0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_oh4xo")
+front_filename = ExtResource("3_pl3w0")
+width = 100.0
+length = 100.0
+height = 1.0
+art_z_cutoff = 1.0
+platform_thickness = 1.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(19.53125, 0, inf, 8.537381e-07, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
+material_override = SubResource("ShaderMaterial_oh4xo")
+material_overlay = SubResource("ShaderMaterial_jm7h8")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_pl3w0")
+region_enabled = true
+region_rect = Rect2(0, 512, 512, 0)
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(19.53125, 0, 0, 0, 1, 0, 0, 0, 19.53125, 0, 1, 50)
+material_override = SubResource("ShaderMaterial_8iih4")
+material_overlay = SubResource("ShaderMaterial_m1m3x")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_pl3w0")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+shape = SubResource("BoxShape3D_g7pac")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
+shape = SubResource("BoxShape3D_r3ilv")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
