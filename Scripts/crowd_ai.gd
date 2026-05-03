@@ -54,9 +54,11 @@ var curr_point = 0
 @onready var anchor: Node3D = $Anchor
 @onready var player: CharacterBody3D = get_tree().root.find_child("Player")
 @onready var nav_map = get_world_3d().navigation_map
+var multi_mesh_instance: MultiMeshInstance3D
 
 # SCENE/PREFAB REFERENCES
 @onready var crowd_man = preload("res://Scenes/Level Components/Crowds/crowd-man.tscn")
+@onready var crowd_rid_man = preload("res://Scenes/Level Components/Crowds/crowd-multi-mesh-man.tscn")
 @onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -118,25 +120,26 @@ func _physics_process(delta: float) -> void:
 	#print(agents_sub)
 	# agent behavior
 #	# possibly move move_and_collide to group main/sub calls for velocity
-	checkAmor(agents_main, false)
-	var agent_force_addition = gravity_force_for_velocity * delta
-	for agt_idx in range(agents_main.size()-1,-1,-1):
-		var agt = agents_main[agt_idx]
-		agt.move_and_slide()
-		agt.velocity += agent_force_addition
-		#print(agt_idx)
-		#if (agt_idx != 0): checkWall(agents_main, agt)
-	
-	for idx in range(agents_sub.size()-1,-1,-1):
-		var agt_array = agents_sub[idx]
-		checkAmor(agt_array, true)
-		
-		for agt_idx in range(agt_array.size()-1,-1,-1):
-			var agt = agt_array[agt_idx]
-			agt.move_and_slide()
-			agt.velocity += agent_force_addition
-			#print(agt_idx)
-			#if (agt_idx != 0): checkWall(agt_array, agt)
+	multi_mesh_process(delta)
+	#checkAmor(agents_main, false)
+	#var agent_force_addition = gravity_force_for_velocity * delta
+	#for agt_idx in range(agents_main.size()-1,-1,-1):
+		#var agt = agents_main[agt_idx]
+		#apply_move_and_slide(agt)
+		#agt.velocity += agent_force_addition
+		##print(agt_idx)
+		##if (agt_idx != 0): checkWall(agents_main, agt)
+	#
+	#for idx in range(agents_sub.size()-1,-1,-1):
+		#var agt_array = agents_sub[idx]
+		#checkAmor(agt_array, true)
+		#
+		#for agt_idx in range(agt_array.size()-1,-1,-1):
+			#var agt = agt_array[agt_idx]
+			#apply_move_and_slide(agt)
+			#agt.velocity += agent_force_addition
+			##print(agt_idx)
+			##if (agt_idx != 0): checkWall(agt_array, agt)
 	
 	# call all swaps (maybe do this before find instead of swap)
 	for c in call_queue:
@@ -149,6 +152,26 @@ func _physics_process(delta: float) -> void:
 	# reset move_data ref and clear currently checked references
 	#print(agents_main)
 	#print(agents_sub)
+	
+# mutli_mesh_process
+# physics appliance for multi mesh experiment
+func multi_mesh_process(delta) -> void:
+
+	#checkAmor(agents_main, false)
+	var agent_force_addition = gravity_force_for_velocity * delta
+	for member_idx in range(agents_main.size()-1,0,-1):
+		var member = agents_main[member_idx]
+		var transform = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_TRANSFORM)
+		var current_vel = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY)
+		
+		var direction = (navigation_agent_3d.get_next_path_position() - transform.origin).normalized()
+		var desired_vel = direction * max_speed
+		print(PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_TRANSFORM).origin)
+		var force = (desired_vel - current_vel) * acceleration # replace acceleration
+		PhysicsServer3D.body_apply_central_force(member, force)
+		multi_mesh_instance.multimesh.set_instance_transform(member_idx, transform)
+	
+
 
 	
 	
@@ -177,8 +200,11 @@ func _physics_process(delta: float) -> void:
 func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 	const member_rad = 2
 	if (type == 1):
+		multi_mesh_instance = multi_mesh_instantialize()
+		create_rids(multi_mesh_instance.global_position)
+		pass
 		for i in range(count):
-			create_char(agents_main)
+			pass
 		
 		return []
 	else:
@@ -199,9 +225,13 @@ func group_main(safe_velocity) -> void:
 	var accel_delta = delta_time * acceleration;
 	var vel = anchor.velocity.move_toward(safe_velocity, acceleration * get_physics_process_delta_time())
 
-	for member in agents_main:
-		member.velocity.x = lerp(member.velocity.x, vel.x, accel_delta)
-		member.velocity.z = lerp(member.velocity.z, vel.z, accel_delta)
+
+	var member = agents_main[0]
+	member.velocity.x = lerp(member.velocity.x, vel.x, accel_delta)
+	member.velocity.z = lerp(member.velocity.z, vel.z, accel_delta)
+	#for member in agents_main:
+		#member.velocity.x = lerp(member.velocity.x, vel.x, accel_delta)
+		#member.velocity.z = lerp(member.velocity.z, vel.z, accel_delta)
 
 
 # sub brain
@@ -562,27 +592,31 @@ func create_char_mesh(character, cir) -> void:
 	cap_mesh.height = CAP_HEIGHT
 	mesh.mesh = cap_mesh
 
-# creates a sprite for the given character body
-#func create_char_sprite(character) -> void:
-	#var sprite = AnimatedSprite3D.new()
-	#character.add_child(sprite)
-	#
-	#var sprite_frames = SpriteFrames.new()
-	#sprite_frames.add_animation("walk")
-	#sprite_frames.set_animation_speed("walk", 6)
-	#
-	#for tex_path in texture_paths:
-		#var tex: = load(tex_path.resource_path)
-		#if tex:
-			#sprite_frames.add_frame("walk", tex)
-	#
-	#sprite.frames = sprite_frames
-	#sprite.play("walk")
-	#
-	##sprite.rotation = Vector3(-90, 0, 0)
-	##sprite.position = Vector3(0, 10, 0)
-	#sprite.scale = Vector3(16, 16, 16)
-	#sprite.rotation = Vector3(0, 0, 0)
+func multi_mesh_instantialize() -> MultiMeshInstance3D:
+	var multimesh = crowd_rid_man.instantiate()
+	add_child(multimesh)
+	multimesh.multimesh.instance_count = crowd_size
+	
+	
+	return multimesh
+	
+
+
+func create_rids(position) -> void:
+	for i in range(crowd_size):
+		var rid = PhysicsServer3D.body_create()
+		PhysicsServer3D.body_set_mode(rid, PhysicsServer3D.BODY_MODE_RIGID)
+		PhysicsServer3D.body_set_space(rid, get_world_3d().space)
+		
+		var shape = PhysicsServer3D.capsule_shape_create() # I'm not too sure on this
+		PhysicsServer3D.shape_set_data(shape, {"radius": 4.0, "height": 16.0})
+		PhysicsServer3D.body_add_shape(rid, shape)
+
+		var start_pos = Transform3D(Basis(), Vector3(position.x + randf_range(-10, 10), position.y + 20, position.z + randf_range(-10, 10)))
+		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, start_pos)
+
+		# Add to main group and map to the visual instance ID
+		agents_main.append(rid)
 	
 	
 func create_anchor(append_target, cir) -> void:
@@ -629,3 +663,7 @@ func _on_navigation_agent_3d_navigation_finished() -> void:
 
 func _on_navigation_finished(sub_nav) -> void:
 	get_new_sub_loc(sub_nav)
+	
+	
+func apply_move_and_slide(member) -> void:
+	member.move_and_slide()
