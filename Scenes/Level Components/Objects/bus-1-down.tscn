@@ -1,42 +1,31 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsfl8ygkejn3w"]
+[gd_scene load_steps=10 format=3 uid="uid://bsfl8ygkejn3w"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_42tln"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_khc7b"]
 [ext_resource type="Texture2D" uid="uid://dxkpymn4hrm2d" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Down/bus1_down_TOP(updated).png" id="2_wa3ib"]
 [ext_resource type="Texture2D" uid="uid://dc4kymgahle1x" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Down/bus1_down_FRONT(updated).png" id="3_c5npa"]
-[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="4_7134p"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="6_ibt32"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0svu"]
-render_priority = 0
-shader = ExtResource("4_7134p")
-shader_parameter/tex = ExtResource("2_wa3ib")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_24xph"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khc7b"]
 render_priority = 0
 shader = ExtResource("6_ibt32")
 shader_parameter/tex = ExtResource("2_wa3ib")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ah2gi"]
-render_priority = 0
-shader = ExtResource("4_7134p")
-shader_parameter/tex = ExtResource("3_c5npa")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a8px"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibt32"]
 render_priority = 0
 shader = ExtResource("6_ibt32")
 shader_parameter/tex = ExtResource("3_c5npa")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cke55"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0svu"]
 size = Vector3(25, 22.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_boost"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_24xph"]
 size = Vector3(25, 2.5, 50)
 
 [node name="Bus1Down" type="Node3D"]
 script = ExtResource("1_khc7b")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 script = ExtResource("1_42tln")
 top_filename = ExtResource("2_wa3ib")
 front_filename = ExtResource("3_c5npa")
@@ -58,8 +47,7 @@ texture = ExtResource("2_wa3ib")
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.4909368, 0, 0, 0, 1, 0, 0, 0, 4.128819, 0.265, 25, 25)
-material_override = SubResource("ShaderMaterial_m0svu")
-material_overlay = SubResource("ShaderMaterial_24xph")
+material_overlay = SubResource("ShaderMaterial_khc7b")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -67,8 +55,7 @@ texture = ExtResource("2_wa3ib")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.5332327, 0, 1.6107293e-07, 1.981539e-07, 1.9106855e-15, -3.684919, 0, 1, 7.0407212e-15, 0.225, 14.7375, 50)
-material_override = SubResource("ShaderMaterial_ah2gi")
-material_overlay = SubResource("ShaderMaterial_1a8px")
+material_overlay = SubResource("ShaderMaterial_ibt32")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -76,10 +63,10 @@ texture = ExtResource("3_c5npa")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 25)
-shape = SubResource("BoxShape3D_cke55")
+shape = SubResource("BoxShape3D_m0svu")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 25)
-shape = SubResource("BoxShape3D_boost")
+shape = SubResource("BoxShape3D_24xph")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

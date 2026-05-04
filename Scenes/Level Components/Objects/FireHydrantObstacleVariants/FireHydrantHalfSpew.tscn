@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://catbkchh3ken8"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_6gaco"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_wyg5p"]
+[ext_resource type="Texture2D" uid="uid://ctacvvc5g5jy7" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS FireHydrantVariants S6/Fire_Hydrant_Spewing_Water_Half_Up_S6.png" id="3_6gaco"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_qbdng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyg5p"]
+render_priority = 0
+shader = ExtResource("4_qbdng")
+shader_parameter/tex = ExtResource("3_6gaco")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_312ma"]
+size = Vector3(20, 18, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbdng"]
+size = Vector3(20, 2, 10)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_6gaco")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_wyg5p")
+front_filename = ExtResource("3_6gaco")
+width = 20.0
+height = 20.0
+front_spr_pad_top = 25.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(32.786884, 0, 1.1502997e-06, 1.4331603e-06, 1.9106855e-15, -26.31579, 0, 1, 5.0281197e-14, 0, 22.5, 10)
+material_overlay = SubResource("ShaderMaterial_wyg5p")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_6gaco")
+region_enabled = true
+region_rect = Rect2(0, 0, 61, 171)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 5)
+shape = SubResource("BoxShape3D_312ma")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 5)
+shape = SubResource("BoxShape3D_qbdng")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

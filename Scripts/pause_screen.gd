@@ -47,6 +47,8 @@ func _on_settings_back_button_pressed() -> void:
 	transitioning = true
 	buttons_container.visible = true
 	phone_animation_player.play_backwards("open_settings")
+	
+	SaveDataManager.save_data()
 
 func _on_restart_level_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
