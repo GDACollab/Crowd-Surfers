@@ -9,22 +9,26 @@ extends Node3D
 @export var max_speed: float = 20.0
 @export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0 # this is amount of difference in height lost before recalculating
-@export var check_rate: int = 50
 @export var check_limit: int = 4
 
 
 # CONSTANTS
 const CAP_RADIUS = 4
 const CAP_HEIGHT = 16
+
+# VARIABLES RIDS
 var visual_scale = 1.0
 var crowd_basis = Basis.IDENTITY.scaled(Vector3(visual_scale, visual_scale, visual_scale))
+var check_rate: int = crowd_size / check_limit # integer may be bad
+var check_freq: int = 0
 
 # ARRAY
 var agents_main: Array = []
 var agents_sub: Array = []
 var deletion_queue: Array = []
 var call_queue: Array = []
-var rid_to_mesh_index = {}
+var rid_dictionary = {}
+var agents: Array = []
 
 # STATES
 enum State { IDLE, WAIT, MOVE, DISPERSE }
@@ -102,7 +106,7 @@ func _physics_process(delta: float) -> void:
 			get_new_loc()
 			for nav in agents_sub:
 				#print(get_node(nav[0].name + "/SubNav"))
-				get_new_sub_loc(get_node(nav[0].name + "/SubNav"))
+				get_new_sub_loc(nav[0].find_child("NavigationAgent3D", false))
 		State.MOVE:
 			#print('movee')
 			group_main(moving_behav(anchor, navigation_agent_3d))
@@ -117,6 +121,7 @@ func _physics_process(delta: float) -> void:
 				# timer for new position
 				if (sub_timer()): get_new_sub_loc(nav_agent)
 
+	checkMemberAmor()
 	#print(agents_main)
 	#print(agents_sub)
 	# agent behavior
@@ -150,6 +155,12 @@ func _physics_process(delta: float) -> void:
 	
 	# deletion for all in queue
 	delete_queue()
+	print('freq')
+	print(check_freq)
+	check_freq += check_limit
+	check_freq = check_freq % crowd_size
+	print('freq update')
+	print(check_freq)
 	# reset move_data ref and clear currently checked references
 	#print(agents_main)
 	#print(agents_sub)
@@ -157,8 +168,6 @@ func _physics_process(delta: float) -> void:
 # mutli_mesh_process
 # physics appliance for multi mesh experiment
 func multi_mesh_process(array, vel, non_main = true) -> void:
-	
-	checkAmor(array, non_main)
 	for member_idx in range(array.size()-1,0,-1):
 		var member = array[member_idx]
 		var member_transform = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_TRANSFORM)
@@ -167,7 +176,7 @@ func multi_mesh_process(array, vel, non_main = true) -> void:
 		var velocity_change = (vel - current_vel)
 		
 		PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
-		var mesh_index = rid_to_mesh_index[member]
+		var mesh_index = rid_dictionary[member].rid_to_mesh_index
 		multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 		
 	
@@ -224,9 +233,9 @@ func group_main(safe_velocity) -> void:
 	anchor.velocity.x = lerp(anchor.velocity.x, vel.x, accel_delta)
 	anchor.velocity.z = lerp(anchor.velocity.z, vel.z, accel_delta)
 	anchor.velocity.y +=  gravity_force_for_velocity.y * get_physics_process_delta_time()
-	
 	# call its members
 	multi_mesh_process(agents_main, vel, false)
+	
 
 
 # sub brain
@@ -245,9 +254,8 @@ func group_sub(sub_array, safe_velocity) -> void:
 	sub_anchor.velocity.x = lerp(sub_anchor.velocity.x, vel.x, accel_delta)
 	sub_anchor.velocity.z = lerp(sub_anchor.velocity.z, vel.z, accel_delta)
 	sub_anchor.velocity.y +=  gravity_force_for_velocity.y * get_physics_process_delta_time()
-	
-	# call its members
 	multi_mesh_process(sub_array, vel)
+	checkSubAmor(sub_array, vel)
 
 ## collision detection
 # checkCollision
@@ -289,18 +297,24 @@ func checkWall(origin, member) -> void:
 		#if (local_hit.z < -0.1 or local_hit.x > 0.1 or local_hit.x < -0.1):
 			#if (member.global_position.distance_squared_to(anchor.global_position) >= circum): 
 				#find_group_behav(member, origin, 0)
-# checkAmor
+# checkMemberAmor
 # Checks the given array, through amortization. Searches for missing from the main group, or if it is near the main group
 # convert to multi functions
-func checkAmor(array, non_main) -> void:
-	if array.size() <= 1: return
-	var check_freq = Time.get_ticks_msec() / check_rate
+func checkMemberAmor() -> void:
+	#print(array)
+
 	# will never be 0 (good for anchor)
+	var curr_check_rate = floor(crowd_size / check_limit)
+	var curr_relative_index = (curr_check_rate + check_freq)
+	
 	# check through member in given freq, to see if member is outside of given group or at anchor
 	for i in range(check_limit):
-		var check_index = (check_freq + i) % array.size()
+		#print(array)
+		var check_index = (curr_relative_index + i) % crowd_size
+		var array = rid_dictionary[agents[check_index]].group_reference
+		var non_main = !(array == agents_main)
 		if check_index == 0: continue
-		var member = array[check_index]
+		var member = agents[check_index]
 		print(check_index)
 		
 		if (not is_instance_valid(array[0]) and check_index != 0): return
@@ -308,23 +322,25 @@ func checkAmor(array, non_main) -> void:
 		var member_position = Vector2(temp_position.x, temp_position.z)
 		
 		if (member.is_valid() and member_position.distance_to(Vector2(array[0].global_position.x, array[0].global_position.z)) >= circum / 2.0):
-			find_group_behav(array[check_index], array, 0)
-			return
+			find_group_behav(member, array, 0)
+			continue
 		
 		elif (member.is_valid() and non_main and member_position.distance_to(Vector2(anchor.global_position.x, anchor.global_position.z)) < circum / 2.0):
 			call_queue.append(Callable(self, "swap_member_behav").bind(array, member, agents_main))
-			return
+			continue
+	
+# checkSubAmor
+# Checks the given array with every sub anchor to see for potential mass swap
+# convert to multi functions
+func checkSubAmor(array, non_main) -> void:
 	# returns if main anchor, since main anchor should not merge
 	if (!non_main or agents_sub.size() <= 0): return
-	
-	
+	var curr_check_rate = floor(array.size() / check_limit)
+	var curr_relative_index = (curr_check_rate + check_freq)
 	# check through each sub anchor to see if the sub groups can merge
-	var check_size = check_limit % agents_sub.size()
-	for i in range(check_size):
-		#print(check_size)
-		#print(agents_sub.size())
-		var check_index = (check_freq + i) % agents_sub.size()
-		var sub_group = agents_sub[i]
+	for i in range(check_limit):
+		var check_index = (curr_relative_index + i) % agents_sub.size()
+		var sub_group = agents_sub[check_index]
 		
 		if not is_instance_valid(array[0]): return
 		var given_anchor_position = Vector2(array[0].global_position.x, array[0].global_position.z)
@@ -375,7 +391,6 @@ func get_new_loc() -> void:
 
 # simplier nav locator for sub groups
 func get_new_sub_loc(given_agent) -> void:
-	#print('get new sub loc')
 	given_agent.target_position = NavigationServer3D.map_get_closest_point(nav_map, anchor.global_position)
 	#if (navigation_agent_3d.target_position != Vector3.ZERO): state = State.MOVE
 	
@@ -478,7 +493,7 @@ func swap_member_behav(source, member, target) -> void:
 	remove_member_behav(member, source)
 	add_member_behav(member, target)
 	
-	
+	rid_dictionary[member].group_reference = target
 	#if (source.size() == 1 and source != agents_main): delete_group_behav(source) # safety to prevent deleting an anchor yet
 	if (source.size() == 1 and source != agents_main): deletion_queue.append(source)
 	
@@ -668,7 +683,8 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_collision_mask(rid, mask_1_and_3)
 		
 		# assign rid for reference
-		rid_to_mesh_index[rid] = i
+		rid_dictionary[rid] = CrowdData.new(i, agents_main)
+		agents.append(rid)
 		
 		# Add to main group and map to the visual instance ID
 		agents_main.append(rid)
