@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_gjkuu"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_kut53"]
-[ext_resource type="Texture2D" uid="uid://dgmixqah1koc6" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Building Brick 2 S3.png" id="2_ut5kl"]
+[ext_resource type="Texture2D" uid="uid://dgmixqah1koc6" path="res://Assets/Art/AlphaSprites/SprintThreeAssets/CS Buildings S3/Building Brick 2 S3.png" id="2_ut5kl"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_fq01n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kut53"]
@@ -19,7 +19,7 @@ size = Vector3(100, 20, 100)
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_kut53")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
 script = ExtResource("1_gjkuu")
 front_filename = ExtResource("2_ut5kl")
 width = 100.0

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://5ftwlpfd7ty8"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_sniry"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_lqaa6"]
+[ext_resource type="Texture2D" uid="uid://dwct6333ddc2q" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS RoadBlockAssets S6/Chain_Linked_Fence_S6.png" id="3_ese8s"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_v5hui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10wcf"]
+render_priority = 0
+shader = ExtResource("4_v5hui")
+shader_parameter/tex = ExtResource("3_ese8s")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3k8k"]
+size = Vector3(100, 45, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0wn1"]
+size = Vector3(100, 5, 30)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_sniry")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_lqaa6")
+front_filename = ExtResource("3_ese8s")
+width = 100.0
+length = 30.0
+height = 50.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(39.0625, 0, 8.537381e-07, 1.7074761e-06, 1.9106855e-15, -19.53125, 0, 1, 3.7318076e-14, 0, 25, 30)
+material_overlay = SubResource("ShaderMaterial_10wcf")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_ese8s")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, 15)
+shape = SubResource("BoxShape3D_i3k8k")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.5, 15)
+shape = SubResource("BoxShape3D_s0wn1")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

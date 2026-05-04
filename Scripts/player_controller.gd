@@ -166,6 +166,7 @@ var stomp_dash_start_pos: Vector3
 var can_air_dash: bool = true
 var can_glide: bool = true
 var player_height : float
+var floor_sound_material: String
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -204,6 +205,7 @@ func _physics_process(delta: float) -> void:
 				# take_damage(1)d
 	restart()
 	check_height()
+	update_fmod_floor_material()
 	if debugLabels:
 		update_labels()
 	
@@ -454,6 +456,10 @@ func transition_to(new_state: int) -> void:
 		States.GROUND:
 			can_air_dash = true
 			can_glide = true
+			# Check if landing sound needs to be played
+			if current_state == States.AIR or current_state == States.GLIDE:
+				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
+				$LandingSound.play()
 		States.STOMP_WINDUP:
 			player_sprite.stomp_animation(velocity.x, velocity.z)
 			# If dash is active as stomp begins, end it
@@ -477,6 +483,7 @@ func transition_to(new_state: int) -> void:
 			# Start the windup timer
 			$StompWindupTimer.start()
 			# Start stomp sound windup
+			FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 			$StompSound.set_parameter("stomp_state", "windup")
 			$StompSound.play()
 			
@@ -643,6 +650,23 @@ func check_height() -> void:
 
 	var ground_point: Vector3 = raycast.get_collision_point()
 	player_height = global_position.y - ground_point.y
+
+## Update FMOD floor material parameter based on raycast
+func update_fmod_floor_material() -> void:
+	
+	if not raycast.is_colliding():
+		return
+	
+	var floor_collider = raycast.get_collider()
+	if floor_collider.is_in_group("Concrete"):
+		floor_sound_material = "concrete"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "concrete")
+	elif floor_collider.is_in_group("Metal"):
+		floor_sound_material = "metal"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "metal")
+	elif floor_collider.is_in_group("Grass"):
+		floor_sound_material = "grass"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "grass")
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
