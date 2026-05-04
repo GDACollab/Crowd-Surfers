@@ -39,7 +39,7 @@ Now get to work! The clock's ticking! #speaker:Sam
 \*You return to the pizzeria, worn out from a long day of work*
 I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #speaker:Slip #anim:Shake #voiced:yes
 Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #voiced:yes
-But sir, I was supposed to be clocking out... #speaker:Slip
+But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous
 Now why would you say that? It is only 6 P.M- #speaker:Sam
 ... #speaker:Sam
 Ahem, as I was saying! #speaker:Sam #anim:Laugh

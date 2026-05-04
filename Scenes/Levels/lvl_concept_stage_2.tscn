@@ -121,6 +121,8 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
+occlusion_material = null
+occlusion_push = 1.0
 
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
@@ -196,6 +198,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2800, 0, 1050)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, 1050)
 
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
+star_move_distance = 0.0
+star_animation_time = 0.0
+star_animation_time_change_per_second = 0.7
+hud_star_scene = null
+star_rotation_speed = 5.0
+star_rotation_magnitude = 4.0
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("18_r2b5i")]
 transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 5.51, 250, 0, 1200)
@@ -267,7 +275,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314714, 0.9999467, 0, -0.9999467, 0.010314714, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314714, 0.99994665, 0, -0.99994665, 0.010314714, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0

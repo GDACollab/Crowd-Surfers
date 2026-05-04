@@ -105,12 +105,12 @@ func _continue_story():
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
-##Displays the current line incrementaly
+## Displays the current line incrementaly
 func _display_text(newDialoguePanel):
-	#Set anchor point
+	# Set anchor point
 	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	dialoguePanels.push_front(newDialoguePanel)
-	#Ensures panels do not overflow
+	# Ensures panels do not overflow
 	if(dialoguePanels.size() > 3):
 		_kill_panel(dialoguePanels[3])
 	dialogueLabel = newDialoguePanel.find_child("Dialogue Text")
@@ -126,7 +126,7 @@ func _display_text(newDialoguePanel):
 		await get_tree().create_timer(0.05).timeout
 	isTyping = false
 
-##Move old panels
+## Move old panels
 func _animate_panels():
 	if(dialoguePanels.get(1)):
 		awaitingAnimations = true
@@ -187,6 +187,7 @@ func _display_choices():
 	$"Choice Button Container".showPanel()
 	dialoguePanels[0].hidePanel()
 	var iter = 0
+	
 	for choice in currentStory.GetCurrentChoices():
 		var newChoiceButton = choiceButton.instantiate() as DialogueChoiceButton
 		newChoiceButton.choiceText = choice.GetText()
@@ -198,6 +199,7 @@ func _display_choices():
 		else:
 			newChoiceButton._unhighlight()
 		iter += 1
+		
 	await get_tree().create_timer(choiceSelectDelay).timeout
 	awaitingAnimations = false
 
@@ -221,6 +223,7 @@ func _handle_tags(currentTags, newPanel):
 		_reset_display()
 	awaitingAnimations = true
 	var differentSpeaker := false
+	var changed_expression := false
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
@@ -229,13 +232,14 @@ func _handle_tags(currentTags, newPanel):
 			"speaker":
 				if(previousSpeakerTag != tagValue):
 					differentSpeaker = true
+					
 				#Get speaker data
 				if(currentSpeakerData == null or currentSpeakerData.characterName != tagValue):
 					#Load correct speaker data
 					var resourcePath = "res://Assets/Dialogue/Character Dialogue Data/" + str(tagValue) + "DialogueData.tres"
 					if ResourceLoader.exists(resourcePath):
 						currentSpeakerData = load(resourcePath)
-						print("Loaded speaker data")
+						
 				#Add character data attributes
 				if(currentSpeakerData != null and currentSpeakerData.characterName == tagValue):
 					newPanel.modulate = currentSpeakerData.colour
@@ -249,46 +253,53 @@ func _handle_tags(currentTags, newPanel):
 					slipSpoke = false
 					previousSpeaker = leftPortrait
 					currentSpeaker = rightPortrait
+					
 					## Switches to new speaker
 					if(lastNonSlipSpeaker != tagValue):
 						var currentSpeakerPanel = currentSpeaker.get_parent()
-						print("New speaker detected!")
 						lastNonSlipSpeaker = tagValue
 						var portraitPosition = currentSpeakerPanel.global_position
 						var portraitTween = create_tween()
 						portraitTween.tween_property(currentSpeakerPanel,"global_position", 
 						portraitSwapPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 						await get_tree().create_timer(portraitSwapTime).timeout
-						if(currentSpeakerData != null and currentSpeakerData.portraits.size() > 0):
-							currentSpeaker.texture = currentSpeakerData.portraits[0]
+						if(currentSpeakerData != null):
+							currentSpeaker.texture = currentSpeakerData.default_portrait
 						var portraitTween2 = create_tween()
 						portraitTween2.tween_property(currentSpeakerPanel,"global_position", 
 						portraitPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
+						
 					##Sets new panel to right side of screen
 					newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
 					##TODO Change panel sprite if speaking from right
-				#Adjust portraits based on speaker
+					
+				## Adjust portraits based on speaker
 				currentSpeaker.scale = speakingPortraitScale
 				currentSpeaker.self_modulate = Color.WHITE
 				previousSpeaker.scale = Vector2.ONE
 				previousSpeaker.self_modulate = previousSpeakerColor
 				previousSpeakerTag = tagValue
+				
 				## Portrait Outline
 				if(differentSpeaker):
-					print("This speaker needs an outline")
 					previousSpeaker.material = null
 					if(currentSpeaker.material == null):
 						currentSpeaker.material = portraitOutlineMaterial
 						_draw_outline(currentSpeaker.material)
+						
 			"expression":
-				pass
+				currentSpeaker.texture = (currentSpeakerData.expression_dictionary[tagValue])
+				changed_expression = true
 			"anim":
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
 			"bg":
 				print("Choosing new background!")
 			"voiced":
 				##TODO Play next voice line. If already playing a line, make sure to cut if off.
-				print("This line needs to be voiced")
+				pass
+	## Return to default expression
+	if(!changed_expression and currentSpeakerData != null):
+		currentSpeaker.texture = currentSpeakerData.default_portrait
 	awaitingAnimations = false
 	_display_text(newPanel)
 
