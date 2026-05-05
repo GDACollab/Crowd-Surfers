@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=64 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hntgb"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="33_6mby3"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="39_2al6p"]
 [ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="39_cnki7"]
+[ext_resource type="PackedScene" uid="uid://3d36f81nhl1k" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/WallCornerLeft.tscn" id="40_3tfrk"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="40_fs1go"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="40_iuqee"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="41_5g6rg"]
@@ -58,6 +59,7 @@
 [ext_resource type="PackedScene" uid="uid://brqtqcecl1h5q" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile1.tscn" id="55_bmejo"]
 [ext_resource type="PackedScene" uid="uid://4ig40thve6wn" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile2.tscn" id="56_l4xy7"]
 [ext_resource type="PackedScene" uid="uid://dfjws5u8sjcvm" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile3.tscn" id="57_i0h32"]
+[ext_resource type="PackedScene" uid="uid://84b01iwmitg6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="58_3tfrk"]
 [ext_resource type="PackedScene" uid="uid://bynnjj1dvn6i4" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile4.tscn" id="58_h72c1"]
 [ext_resource type="PackedScene" uid="uid://c5td8tjkpdpii" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/TunnelWithRoad.tscn" id="58_l4xy7"]
 [ext_resource type="PackedScene" uid="uid://ckrapu7hc1cwu" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/WallCornerMiddle.tscn" id="59_i0h32"]
@@ -79,7 +81,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("3_nusql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3124.8413, -199.93646, -345.15146)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.158691, 0.0635376, 34.84854)
 ramping_exponent = 0.525
 stomp_dash_boost_factor = 400.0
 max_stomp_dash_boost = 700.0
@@ -746,9 +748,6 @@ transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -200)
 [node name="StaticBody3D67" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -300)
 
-[node name="StaticBody3D88" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -200, -300)
-
 [node name="StaticBody3D82" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -400)
 
@@ -830,9 +829,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3900, -100, 400)
 [node name="StaticBody3D95" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4000, -100, 0)
 
-[node name="StaticBody3D99" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, -100)
-
 [node name="StaticBody3D108" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 0)
 
@@ -844,12 +840,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 0)
 
 [node name="StaticBody3D111" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, 0, 0)
-
-[node name="StaticBody3D100" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, -100)
-
-[node name="StaticBody3D101" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5000, -100, -100)
 
 [node name="StaticBody3D98" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 0)
@@ -1218,9 +1208,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -100, 100)
 [node name="grass48" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -100, 100)
 
-[node name="grass49" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 100)
-
 [node name="grass55" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, -200)
 
@@ -1311,9 +1298,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, 400)
 [node name="grass88" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 400)
 
-[node name="grass79" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, -100)
-
 [node name="grass63" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 300)
 
@@ -1388,11 +1372,257 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -100, 300)
 [node name="Concrete36" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, 300)
 
+[node name="Concrete55" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -100, -200)
+
+[node name="Concrete56" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -100, -200)
+
 [node name="Concrete37" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -100, 300)
 
+[node name="Concrete57" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, -300)
+
+[node name="Concrete58" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, -300)
+
+[node name="Concrete59" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, -300)
+
+[node name="Concrete60" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, 0, -300)
+
+[node name="Concrete61" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -300)
+
+[node name="Concrete62" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -300)
+
+[node name="Concrete63" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -300)
+
+[node name="Concrete64" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -300)
+
+[node name="Concrete65" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -400)
+
+[node name="Concrete66" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -400)
+
+[node name="Concrete67" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -400)
+
+[node name="Concrete68" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -400)
+
+[node name="Concrete69" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, -400)
+
+[node name="Concrete70" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, -400)
+
+[node name="Concrete71" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, -400)
+
+[node name="Concrete72" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, 0, -400)
+
+[node name="Concrete73" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -300)
+
+[node name="Concrete74" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -300)
+
+[node name="Concrete75" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -300)
+
+[node name="Concrete76" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -300)
+
+[node name="Concrete105" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -200)
+
+[node name="Concrete106" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -200)
+
+[node name="Concrete107" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -200)
+
+[node name="Concrete108" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -200)
+
+[node name="Concrete109" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -200)
+
+[node name="Concrete110" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -200)
+
+[node name="Concrete111" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -200)
+
+[node name="Concrete112" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -200)
+
+[node name="Concrete113" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -100)
+
+[node name="Concrete114" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -100)
+
+[node name="Concrete115" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -100)
+
+[node name="Concrete116" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, -100)
+
+[node name="Concrete117" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -100)
+
+[node name="Concrete118" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -100)
+
+[node name="Concrete119" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -100)
+
+[node name="Concrete120" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -100)
+
+[node name="Concrete77" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -300)
+
+[node name="Concrete78" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -300)
+
+[node name="Concrete79" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -300)
+
+[node name="Concrete80" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -300)
+
+[node name="Concrete81" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -400)
+
+[node name="Concrete82" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -400)
+
+[node name="Concrete83" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -400)
+
+[node name="Concrete84" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -400)
+
+[node name="Concrete85" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -400)
+
+[node name="Concrete86" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -400)
+
+[node name="Concrete87" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -400)
+
+[node name="Concrete88" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -400)
+
+[node name="Concrete89" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -300)
+
+[node name="Concrete90" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -300)
+
+[node name="Concrete91" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -300)
+
+[node name="Concrete92" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -300)
+
+[node name="Concrete93" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -300)
+
+[node name="Concrete94" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -300)
+
+[node name="Concrete95" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -300)
+
+[node name="Concrete96" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -300)
+
+[node name="Concrete97" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -400)
+
+[node name="Concrete98" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -400)
+
+[node name="Concrete99" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -400)
+
+[node name="Concrete100" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -400)
+
+[node name="Concrete101" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -400)
+
+[node name="Concrete102" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -400)
+
+[node name="Concrete103" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -400)
+
+[node name="Concrete104" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -400)
+
+[node name="Concrete47" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, -500)
+
+[node name="Concrete48" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, -500)
+
+[node name="Concrete49" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -500)
+
+[node name="Concrete50" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -500)
+
+[node name="Concrete39" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 100)
+
+[node name="Concrete43" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -100)
+
+[node name="Concrete40" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 0)
+
+[node name="Concrete41" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, 100)
+
+[node name="Concrete44" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -200)
+
+[node name="Concrete42" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 100)
+
+[node name="Concrete45" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -400)
+
+[node name="Concrete46" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -300)
+
+[node name="Concrete51" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, -400)
+
+[node name="Concrete52" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, -300)
+
 [node name="Concrete38" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, 300)
+
+[node name="Concrete53" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, -100)
+
+[node name="Concrete54" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, -100)
 
 [node name="Concrete8" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
@@ -1433,6 +1663,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3600, -100, -200)
 [node name="Concrete26" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -100, -200)
 
+[node name="Concrete122" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -100, -300)
+
 [node name="Concrete18" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, 200)
 
@@ -1444,6 +1677,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 200)
 
 [node name="Concrete21" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, 200)
+
+[node name="Concrete121" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, -100)
 
 [node name="Concrete22" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 200)
@@ -1468,7 +1704,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -300)
 [node name="StaticBody3D7" parent="Level Components/Walls" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -300)
 
-[node name="StaticBody3D" parent="Level Components/Walls" instance=ExtResource("58_l4xy7")]
+[node name="tunnel" parent="Level Components/Walls" instance=ExtResource("58_l4xy7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -600)
 
 [node name="StaticBody3D2" parent="Level Components/Walls" instance=ExtResource("59_i0h32")]
@@ -1494,6 +1730,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -200, 200)
 
 [node name="medBrickWall2" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -200, 300)
+
+[node name="medBrickWall7" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, -300)
+
+[node name="medBrickWall8" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, -300)
+
+[node name="medBrickWall9" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -100, -600)
+
+[node name="medBrickWall10" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -100, -600)
+
+[node name="wallLeft" parent="Level Components/Walls" instance=ExtResource("40_3tfrk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -100, -600)
 
 [node name="Billboards" type="Node" parent="Level Components"]
 
@@ -1667,6 +1918,9 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3650
 [node name="long-stairs" parent="Level Components/Stairs" instance=ExtResource("50_8sijl")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3650, -199, 250)
 
+[node name="stairs2" parent="Level Components/Stairs" instance=ExtResource("52_7it87")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2200, -200, 400)
+
 [node name="stairs" parent="Level Components/Stairs" instance=ExtResource("52_7it87")]
 transform = Transform3D(7.54979e-08, 0, -1, 0, 1.02, 0, 1, 0, 7.54979e-08, 3650, -100, -350)
 
@@ -1697,6 +1951,9 @@ transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 2550
 [node name="ramp" parent="Level Components/Stairs" instance=ExtResource("14_hntgb")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 1250, 0, 50.000008)
 
+[node name="WindBoxCollider" parent="Level Components/Stairs" instance=ExtResource("58_3tfrk")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 280, 1.4745655, -150)
+
 [node name="Hud" parent="." instance=ExtResource("39_2al6p")]
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("40_fs1go")]
@@ -1713,6 +1970,3 @@ level_number = 1
 [node name="Crowd" parent="." instance=ExtResource("54_5x8vv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 9, 50)
 crowd_size = 20
-
-[node name="Node3D" parent="." instance=ExtResource("52_7it87")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2200, -200, 400)
