@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3napms5mmgre"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_fric3"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_puu28"]
+[ext_resource type="Texture2D" uid="uid://kfl0n0dxw033" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS SidewalkTiles S6/Manhole S3.png" id="3_fric3"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_ks67u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_puu28"]
+render_priority = 0
+shader = ExtResource("4_ks67u")
+shader_parameter/tex = ExtResource("3_fric3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kwg5e"]
+render_priority = 0
+shader = ExtResource("4_ks67u")
+shader_parameter/tex = ExtResource("3_fric3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ks67u"]
+size = Vector3(100, 0, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krp2n"]
+size = Vector3(100, 1, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_fric3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_puu28")
+front_filename = ExtResource("3_fric3")
+width = 100.0
+length = 100.0
+height = 1.0
+art_z_cutoff = 1.0
+platform_thickness = 1.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(38.75969, 0, inf, 1.6942398e-06, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
+material_overlay = SubResource("ShaderMaterial_puu28")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_fric3")
+region_enabled = true
+region_rect = Rect2(0, 258, 258, 0)
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(38.75969, 0, 0, 0, 1, 0, 0, 0, 38.75969, 0, 1, 50)
+material_overlay = SubResource("ShaderMaterial_kwg5e")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_fric3")
+region_enabled = true
+region_rect = Rect2(0, 0, 258, 258)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+shape = SubResource("BoxShape3D_ks67u")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
+shape = SubResource("BoxShape3D_krp2n")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

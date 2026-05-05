@@ -1,23 +1,22 @@
 extends Control
 
-#signal speed_changed(new_speed: float)
-
 @onready var bar: TextureProgressBar = $TextureProgressBar
-@onready var particle_Gen: CPUParticles2D = $CPUParticles2D
 
-func set_speed(value: float):
-	bar.value = value
-	
-	# experimental code and testing to see if ppl
-	# like the particles on speedometer
-	if(bar.value >= bar.max_value * .75):
-		particle_Gen.visible = true
+@export var bar_value_change_speed_per_second: float = 900.0
+
+var target_speed: float
+
+func _process(delta: float):
+	if (bar.value < target_speed):
+		bar.value += bar_value_change_speed_per_second * delta
+		bar.value = min(bar.value, target_speed)
 	else:
-		particle_Gen.visible = false
+		bar.value -= bar_value_change_speed_per_second * delta
+		bar.value = max(bar.value, target_speed)
+			
+func set_speed(value: float):
+	target_speed = value
 
-
-func set_Max_Speed(value:float):
+func set_max_speed(value:float):
 	bar.max_value = value
-
-func set_Particles():
-	pass
+	

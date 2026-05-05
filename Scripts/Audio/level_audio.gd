@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var player: CharacterBody3D
+@export var player: Player
 
 @onready var music: FmodEventEmitter2D = $Music
 @onready var city_ambience: FmodEventEmitter2D = $CityAmbience
@@ -12,9 +12,10 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	# fuckass player variable names like are you fr
-	var speed_range = player.base_ramping_cap - player.starting_speed
-	var ratio_of_max_speed = (player.max_speed - player.starting_speed) / speed_range
+	# interesting player variable names like are you fr
+	var speed_range = player.base_ramping_cap
+	var horizontal_vel = Vector2(player.velocity.x, player.velocity.z)
+	var ratio_of_max_speed = (horizontal_vel.length()) / speed_range
 	ratio_of_max_speed = clamp(ratio_of_max_speed, 0, 1)
 	# Update FMOD global parameter `player_speed` -- effects city amb and music
 	FmodServer.set_global_parameter_by_name("player_speed", ratio_of_max_speed)

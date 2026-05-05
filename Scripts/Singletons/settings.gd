@@ -14,7 +14,10 @@ func update_fmod_volumes():
 	var master_bus: FmodBus = FmodServer.get_bus("bus:/")
 	var music_bus: FmodBus = FmodServer.get_bus("bus:/MUS")
 	var sfx_bus: FmodBus = FmodServer.get_bus("bus:/SFX")
-
+	
+	if (master_bus == null):
+		return;
+	
 	# update bus volume property
 	master_bus.set("volume", master_volume)
 	music_bus.set("volume", music_volume)
