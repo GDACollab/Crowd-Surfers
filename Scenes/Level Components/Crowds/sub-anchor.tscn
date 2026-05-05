@@ -3,7 +3,7 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_tboun"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8iaam"]
-radius = 4.0
+radius = 2.0
 height = 16.0
 
 [node name="SubAnchor" type="CharacterBody3D"]
@@ -11,24 +11,23 @@ collision_layer = 2
 wall_min_slide_angle = 1.134464
 floor_constant_speed = true
 floor_max_angle = 1.134464
-floor_snap_length = 0.0
 platform_on_leave = 2
 safe_margin = 0.01
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 10.0
 target_desired_distance = 10.0
-path_max_distance = 50.01
+path_max_distance = 20.01
 simplify_path = true
-height = 10.0
-radius = 2.0
+path_return_max_length = 100.0
+height = 16.0
+radius = 4.0
 neighbor_distance = 0.1
 max_neighbors = 1
 max_speed = 30.0
 keep_y_velocity = false
 avoidance_layers = 0
 avoidance_mask = 0
-debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transparency = 0.7
