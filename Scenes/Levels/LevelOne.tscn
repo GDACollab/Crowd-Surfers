@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=62 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hntgb"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="15_bjeon"]
 [ext_resource type="PackedScene" uid="uid://dakmufixpwm3i" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="15_ubpxh"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="16_cnki7"]
-[ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="17_nusql"]
 [ext_resource type="PackedScene" uid="uid://y0q7l77qkvxi" path="res://Scenes/Level Components/Objects/cable-car-down.tscn" id="18_5g6rg"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="19_bki04"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="20_bjeon"]
@@ -80,7 +79,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("3_nusql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.356674, 13.444992, 35.74292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3124.8413, -199.93646, -345.15146)
 ramping_exponent = 0.525
 stomp_dash_boost_factor = 400.0
 max_stomp_dash_boost = 700.0
@@ -166,8 +165,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, 200)
 [node name="roadHorizontal34" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, 200)
 
+[node name="roadHorizontal39" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -200, 500)
+
+[node name="roadHorizontal40" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -200, 500)
+
+[node name="roadHorizontal42" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -200, 500)
+
+[node name="roadHorizontal43" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -200, 500)
+
+[node name="roadHorizontal51" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, 500)
+
+[node name="roadHorizontal52" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, 500)
+
+[node name="roadHorizontal53" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 500)
+
+[node name="roadHorizontal54" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, 500)
+
+[node name="roadHorizontal55" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, 500)
+
 [node name="roadHorizontal44" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, 300)
+
+[node name="roadHorizontal56" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4300, -100, -200)
+
+[node name="roadHorizontal57" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, -100)
+
+[node name="roadHorizontal58" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4000, -100, -100)
+
+[node name="roadHorizontal59" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3900, -100, -100)
+
+[node name="roadHorizontal60" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3800, -100, -100)
+
+[node name="roadHorizontal61" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3700, -100, -100)
+
+[node name="roadHorizontal62" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3600, -100, -100)
+
+[node name="roadHorizontal63" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -100, -100)
 
 [node name="roadHorizontal45" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4300, -100, 300)
@@ -181,44 +231,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, 300)
 [node name="roadHorizontal49" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, 300)
 
+[node name="roadHorizontal64" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, 0)
+
 [node name="roadHorizontal50" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 300)
-
-[node name="roadHorizontal59" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4000.8926, -100, 0)
-
-[node name="roadHorizontal60" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100.8926, -100, 0)
-
-[node name="roadHorizontal61" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4000.8926, -100, -100)
-
-[node name="roadHorizontal68" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3900.8926, -100, -100)
-
-[node name="roadHorizontal69" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3800.8926, -100, -100)
-
-[node name="roadHorizontal70" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3700.8926, -100, -100)
-
-[node name="roadHorizontal71" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3600.8926, -100, -100)
-
-[node name="roadHorizontal72" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500.8926, -100, -100)
-
-[node name="roadHorizontal62" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100.8926, -100, -100)
-
-[node name="roadHorizontal65" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4300.8926, -100, -200)
-
-[node name="roadHorizontal67" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700.8926, -100, -100)
-
-[node name="roadHorizontal66" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500.8926, -100, 0)
 
 [node name="roadHorizontal35" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 200)
@@ -271,9 +288,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 0)
 [node name="roadVertical8" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 0)
 
-[node name="roadVertical19" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, -100)
-
 [node name="roadVertical9" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 100)
 
@@ -295,26 +309,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -300)
 [node name="roadVertical13" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -200)
 
-[node name="roadVertical22" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -200)
-
-[node name="roadVertical23" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -300)
-
-[node name="roadVertical24" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -400)
-
-[node name="roadVertical25" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -500)
-
 [node name="roadVertical16" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 400)
 
 [node name="roadVertical21" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 400)
 
+[node name="roadVertical25" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, -100)
+
+[node name="roadVertical30" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -200)
+
+[node name="roadVertical31" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -300)
+
+[node name="roadVertical32" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -400)
+
+[node name="roadVertical33" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -500)
+
 [node name="roadVertical17" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 400)
+
+[node name="roadVertical29" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -200, 400)
 
 [node name="roadVertical3" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -100)
@@ -354,12 +374,6 @@ script = ExtResource("11_cnki7")
 [node name="roadRightDown2" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -200)
 
-[node name="roadRightDown5" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, -200)
-
-[node name="roadRightDown6" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, -100)
-
 [node name="roadRightDown3" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, -100)
 
@@ -368,6 +382,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -400)
 
 [node name="roadRightDown4" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 300)
+
+[node name="roadRightDown5" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, -200)
+
+[node name="roadRightDown6" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, -100)
 
 [node name="roadLeftDown" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -200)
@@ -378,11 +398,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, -200)
 [node name="roadLeftDown4" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, -100)
 
+[node name="roadLeftDown6" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, -200)
+
 [node name="roadLeftDown5" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -400)
-
-[node name="roadLeftDown3" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, -200)
 
 [node name="roadRightUp" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
@@ -393,10 +413,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 100)
 [node name="roadRightUp4" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 0)
 
-[node name="roadRightUp3" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
+[node name="roadRightUp6" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, 0)
 
-[node name="roadRightUp5" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
+[node name="roadRightUp7" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -100)
 
 [node name="roadIntersection" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
@@ -419,6 +439,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 200)
 
 [node name="roadIntersection6" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 200)
+
+[node name="roadIntersection7" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 500)
+
+[node name="roadIntersection8" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -200, 500)
+
+[node name="roadIntersection10" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 500)
 
 [node name="Vehicles" type="Node" parent="Level Components"]
 
@@ -463,32 +492,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3130, -200, 250)
 
 [node name="CarRedUp" parent="Level Components/Vehicles" instance=ExtResource("16_cnki7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2920, -200, 390)
-script = ExtResource("17_nusql")
-forward_direction = null
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([1.0])
-startFromSelf = true
-isClosed = null
-isRotate = null
-isVehicle = true
-do_transparency = null
-jumpVelocityRatio = null
 
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/CarRedUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
 
 [node name="StaticBody3D2" parent="Level Components/Vehicles" instance=ExtResource("18_5g6rg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3180, -200, -300)
-script = ExtResource("17_nusql")
-forward_direction = null
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([1.0])
-startFromSelf = true
-isClosed = false
-isRotate = null
-isVehicle = true
-do_transparency = null
-jumpVelocityRatio = null
 
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 700)
@@ -498,6 +507,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, 100)
 
 [node name="CarRedUp3" parent="Level Components/Vehicles" instance=ExtResource("16_cnki7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, -230)
+
+[node name="CarRedUp4" parent="Level Components/Vehicles" instance=ExtResource("16_cnki7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3420, -99, -230)
 
 [node name="CarRedDown" parent="Level Components/Vehicles" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, -20)
@@ -516,22 +528,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 1, -51.91844)
 
 [node name="CarRedDown6" parent="Level Components/Vehicles" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 1, -251.91844)
-script = ExtResource("17_nusql")
-forward_direction = null
-tweenTravelSpeedRatio = 10.0
-smoothnessArr = Array[float]([1.0])
-startFromSelf = true
-isClosed = false
-isRotate = null
-isVehicle = true
-do_transparency = null
-jumpVelocityRatio = null
 
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/CarRedDown6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 530)
 
 [node name="StaticBody3D3" parent="Level Components/Vehicles" instance=ExtResource("18_5g6rg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, -230)
+
+[node name="StaticBody3D4" parent="Level Components/Vehicles" instance=ExtResource("18_5g6rg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3380, -99, -370)
 
 [node name="StaticBody3D5" parent="Level Components/Vehicles" instance=ExtResource("18_5g6rg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, 300)
@@ -541,16 +546,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, -30)
 
 [node name="WaymoEvilUp" parent="Level Components/Vehicles" instance=ExtResource("23_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280, 0, 260)
-script = ExtResource("17_nusql")
-forward_direction = null
-tweenTravelSpeedRatio = 9.0
-smoothnessArr = Array[float]([1.0])
-startFromSelf = true
-isClosed = null
-isRotate = null
-isVehicle = true
-do_transparency = null
-jumpVelocityRatio = null
 
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/WaymoEvilUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
@@ -746,19 +741,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, -300)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, -300)
 
 [node name="StaticBody3D66" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -200)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -200)
 
 [node name="StaticBody3D67" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -300)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -300)
 
 [node name="StaticBody3D88" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -200, -300)
 
 [node name="StaticBody3D82" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -400)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -400)
 
 [node name="StaticBody3D83" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -500)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -500)
 
 [node name="StaticBody3D86" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -200, -500)
@@ -767,13 +762,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -200, -500)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -100, -500)
 
 [node name="StaticBody3D68" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, -100)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, -100)
 
 [node name="StaticBody3D69" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 0)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, 0)
 
 [node name="StaticBody3D70" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 100)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3300, -200, 100)
 
 [node name="StaticBody3D74" parent="Level Components/Buildings" instance=ExtResource("23_bjm7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -200, 400)
@@ -1256,6 +1251,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, 400)
 [node name="grass69" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 400)
 
+[node name="grass77" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, 400)
+
+[node name="grass81" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -200, 400)
+
+[node name="grass82" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -200, 400)
+
+[node name="grass89" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -200, 400)
+
 [node name="grass70" parent="Level Components/Grass" instance=ExtResource("21_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, 400)
 
@@ -1372,6 +1379,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3800, 0, -300)
 [node name="Concrete5" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3900, -100, 100)
 
+[node name="Concrete34" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -100, 300)
+
+[node name="Concrete35" parent="Level Components/ConcreteTiles" instance=ExtResource("56_l4xy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -100, 300)
+
+[node name="Concrete36" parent="Level Components/ConcreteTiles" instance=ExtResource("57_i0h32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, 300)
+
+[node name="Concrete37" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -100, 300)
+
+[node name="Concrete38" parent="Level Components/ConcreteTiles" instance=ExtResource("58_h72c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, 300)
+
 [node name="Concrete8" parent="Level Components/ConcreteTiles" instance=ExtResource("55_bmejo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
 
@@ -1456,22 +1478,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -100, -600)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -100, -600)
 
 [node name="medBrickWall" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, 200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, 300)
 
 [node name="medBrickWall3" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -200, 200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -200, 300)
 
 [node name="medBrickWall4" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -200, 200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -200, 300)
 
 [node name="medBrickWall5" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -200, 200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -200, 300)
 
 [node name="medBrickWall6" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -200, 200)
 
 [node name="medBrickWall2" parent="Level Components/Walls" instance=ExtResource("40_iuqee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -200, 200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -200, 300)
 
 [node name="Billboards" type="Node" parent="Level Components"]
 
@@ -1499,63 +1521,63 @@ texture = ExtResource("25_rblmd")
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 2200, 33.528877, -90)
 texture = ExtResource("26_tp666")
 
-[node name="soft objects" type="Node" parent="Level Components"]
+[node name="Soft Objects" type="Node" parent="Level Components"]
 
-[node name="SoftObject" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 800, 1, 80)
 
-[node name="SoftObject7" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject7" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 340, 1, -40)
 
-[node name="SoftObject9" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject9" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 340, 1, 60)
 
-[node name="SoftObject10" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject10" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 380, 1, 70)
 
-[node name="SoftObject8" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject8" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 360, 1, -20)
 
-[node name="SoftObject2" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject2" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 940, 1, 50)
 
-[node name="SoftObject6" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject6" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 1010, 1, 80)
 
-[node name="SoftObject3" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject3" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 790, 1, 30)
 
-[node name="SoftObject4" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject4" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 880, 1, 60)
 
-[node name="SoftObject5" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject5" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 880, 1, 60)
 
-[node name="SoftObject11" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject11" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 2990, -199, 20)
 
-[node name="SoftObject12" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject12" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 3080, -199, 170)
 
-[node name="SoftObject13" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject13" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 3120, -199, 140)
 
-[node name="SoftObject14" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject14" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 2970, -199, -150)
 
-[node name="SoftObject15" parent="Level Components/soft objects" instance=ExtResource("13_fcj8b")]
+[node name="SoftObject15" parent="Level Components/Soft Objects" instance=ExtResource("13_fcj8b")]
 transform = Transform3D(8.9, 0, 0, 0, 8.9, 0, 0, 0, 8.9, 3050, -199, -130)
 
-[node name="cone" parent="Level Components/soft objects" instance=ExtResource("46_i0h32")]
+[node name="cone" parent="Level Components/Soft Objects" instance=ExtResource("46_i0h32")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -70, 2.169983, 20)
 
-[node name="cone2" parent="Level Components/soft objects" instance=ExtResource("46_i0h32")]
+[node name="cone2" parent="Level Components/Soft Objects" instance=ExtResource("46_i0h32")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -70, 2.169983, 40)
 
-[node name="cone3" parent="Level Components/soft objects" instance=ExtResource("46_i0h32")]
+[node name="cone3" parent="Level Components/Soft Objects" instance=ExtResource("46_i0h32")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -70, 2.169983, 60)
 
-[node name="cone4" parent="Level Components/soft objects" instance=ExtResource("46_i0h32")]
+[node name="cone4" parent="Level Components/Soft Objects" instance=ExtResource("46_i0h32")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -70, 2.169983, 80)
 
 [node name="Windboxes" type="Node" parent="Level Components"]
@@ -1587,7 +1609,7 @@ transform = Transform3D(7.4941845, -6.6209707, 2.8941167e-07, -1.17122735e-14, -
 texture = ExtResource("41_5g6rg")
 
 [node name="curve-arrow5" type="Sprite3D" parent="Level Components/Arrows"]
-transform = Transform3D(7.4941845, -6.6209707, 2.8941167e-07, -1.17122735e-14, -4.3711398e-07, -9.999999, 6.62097, 7.4941845, -3.2758112e-07, 3818.997, 2.8759613, -152.22942)
+transform = Transform3D(3.1796694, -9.481021, 4.144284e-07, -3.5234683e-14, -4.3711398e-07, -9.999998, 9.48102, 3.179669, -1.3898769e-07, 3818.997, 2.8759613, -152.22942)
 texture = ExtResource("41_5g6rg")
 
 [node name="arrow4" type="Sprite3D" parent="Level Components/Arrows"]
@@ -1646,7 +1668,7 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3650
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3650, -199, 250)
 
 [node name="stairs" parent="Level Components/Stairs" instance=ExtResource("52_7it87")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3650, -99.967316, -350)
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1.02, 0, 1, 0, 7.54979e-08, 3650, -100, -350)
 
 [node name="road-ramp" parent="Level Components/Stairs" instance=ExtResource("14_hntgb")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 2550, -199, -50)
@@ -1691,3 +1713,6 @@ level_number = 1
 [node name="Crowd" parent="." instance=ExtResource("54_5x8vv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 9, 50)
 crowd_size = 20
+
+[node name="Node3D" parent="." instance=ExtResource("52_7it87")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2200, -200, 400)
