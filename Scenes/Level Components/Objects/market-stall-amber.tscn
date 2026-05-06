@@ -6,20 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://mddvhtllm6gy" path="res://Assets/Art/Chopped Art (Fixed)/Market Stall Amber/amberstall_FRONT.png" id="3_4610g"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_ffssr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffssr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mayqa"]
 render_priority = 0
 shader = ExtResource("5_ffssr")
 shader_parameter/tex = ExtResource("2_tpn6k")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mayqa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_op3mi"]
 render_priority = 0
 shader = ExtResource("5_ffssr")
 shader_parameter/tex = ExtResource("3_4610g")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_op3mi"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wkgeb"]
 size = Vector3(50, 31.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wkgeb"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tl5xk"]
 size = Vector3(50, 3.5, 50)
 
 [node name="MarketStallAmber" type="Node3D"]
@@ -39,7 +39,7 @@ front_spr_pad_right = 9.48
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(7.3918066, 0, 0, 0, 1, 0, 0, 0, 4.8496604, -0.635, 35, 25)
-material_overlay = SubResource("ShaderMaterial_ffssr")
+material_overlay = SubResource("ShaderMaterial_mayqa")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -47,7 +47,7 @@ texture = ExtResource("2_tpn6k")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(7.3308825, 0, 3.4302658e-07, 3.2044306e-07, 1.9106855e-15, -7.8475337, 0, 1, 1.4994169e-14, -0.415, 17.5, 50)
-material_overlay = SubResource("ShaderMaterial_mayqa")
+material_overlay = SubResource("ShaderMaterial_op3mi")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -55,10 +55,10 @@ texture = ExtResource("3_4610g")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.75, 25)
-shape = SubResource("BoxShape3D_op3mi")
+shape = SubResource("BoxShape3D_wkgeb")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.25, 25)
-shape = SubResource("BoxShape3D_wkgeb")
+shape = SubResource("BoxShape3D_tl5xk")
 debug_color = Color(0.972549, 0.25490198, 1, 1)

@@ -64,7 +64,7 @@
 	<object class="GroupTrack" id="{9b206fec-970d-4eaf-8f9c-09345e735ccd}">
 		<relationship name="modules">
 			<destination>{dd6ffed0-f66d-46b2-9da7-e1c91aac87d8}</destination>
-			<destination>{01a8b2c2-0e05-4cd5-adc5-c6916ded407b}</destination>
+			<destination>{db81d32e-ba60-46de-b114-6ba1a4e88828}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{75ff7917-d196-47fa-81fa-d6d10012734b}</destination>
@@ -78,7 +78,7 @@
 	<object class="ParameterProxy" id="{415e5f5f-488b-4038-9067-67e390ad8dac}">
 		<relationship name="modules">
 			<destination>{dd6ffed0-f66d-46b2-9da7-e1c91aac87d8}</destination>
-			<destination>{01a8b2c2-0e05-4cd5-adc5-c6916ded407b}</destination>
+			<destination>{db81d32e-ba60-46de-b114-6ba1a4e88828}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{6d0d3fa8-fc18-4f64-9f53-cbaefdf0df61}</destination>
@@ -112,15 +112,18 @@
 			<destination>{433a5827-a420-468a-a994-f695e434178b}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{01a8b2c2-0e05-4cd5-adc5-c6916ded407b}">
+	<object class="SingleSound" id="{db81d32e-ba60-46de-b114-6ba1a4e88828}">
 		<property name="start">
 			<value>1</value>
 		</property>
-		<property name="pitch">
-			<value>24</value>
+		<property name="volume">
+			<value>-7.5</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{fec48bb7-6602-4b40-8ea9-141062632e8a}</destination>
+		</relationship>
 		<relationship name="audioFile">
-			<destination>{433a5827-a420-468a-a994-f695e434178b}</destination>
+			<destination>{4975212d-1e87-40b8-821f-ce7679a5acc4}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{75ff7917-d196-47fa-81fa-d6d10012734b}">
@@ -150,6 +153,14 @@
 		</property>
 		<property name="amount">
 			<value>4</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{fec48bb7-6602-4b40-8ea9-141062632e8a}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>5</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{de51b201-4e59-4c37-b669-52dee5b7230e}">
