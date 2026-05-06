@@ -1,25 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://dw5pqgejh3hvn"]
+[gd_scene load_steps=8 format=3 uid="uid://dw5pqgejh3hvn"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_3cgiy"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_ngu4h"]
 [ext_resource type="Texture2D" uid="uid://v6tttn83cmdx" path="res://Assets/Art/AlphaSprites/CS Buildings S3/Restaurant Slug Pizza S3.png" id="2_3cgiy"]
-[ext_resource type="Shader" uid="uid://ol6axhtn0ds7" path="res://Scripts/Shaders/occlusion.gdshader" id="3_xqasb"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_tsh7t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyvq7"]
-render_priority = 0
-shader = ExtResource("3_xqasb")
-shader_parameter/tex = ExtResource("2_3cgiy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_poixc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngu4h"]
 render_priority = 0
 shader = ExtResource("5_tsh7t")
 shader_parameter/tex = ExtResource("2_3cgiy")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vqdai"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tsh7t"]
 size = Vector3(100, 135, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5h6vj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wyvq7"]
 size = Vector3(100, 15, 100)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -37,8 +31,7 @@ front_spr_pad_right = 12.03
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(7.160714, 0, 3.5795586e-07, 3.1300476e-07, 1.9106855e-15, -8.189075, 0, 1, 1.5646747e-14, 3.885, 72.04, 100)
-material_override = SubResource("ShaderMaterial_wyvq7")
-material_overlay = SubResource("ShaderMaterial_poixc")
+material_overlay = SubResource("ShaderMaterial_ngu4h")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -48,10 +41,10 @@ region_rect = Rect2(0, 0, 1624, 1904)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.5, 50)
-shape = SubResource("BoxShape3D_vqdai")
+shape = SubResource("BoxShape3D_tsh7t")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.5, 50)
-shape = SubResource("BoxShape3D_5h6vj")
+shape = SubResource("BoxShape3D_wyvq7")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
