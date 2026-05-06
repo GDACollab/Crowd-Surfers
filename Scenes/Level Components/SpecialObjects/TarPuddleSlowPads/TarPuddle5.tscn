@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://b85mrrdirnxxt"]
+
+[ext_resource type="Script" path="res://Scripts/slow_pad_collider.gd" id="1_bsyfa"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_4ch86"]
+[ext_resource type="Texture2D" uid="uid://bmgg63lek475e" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS TarPuddleVariants S6/Tar_Puddle 5 S6.png" id="3_gg67o"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_m5c1e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gaahk"]
+render_priority = 0
+shader = ExtResource("5_m5c1e")
+shader_parameter/tex = ExtResource("3_gg67o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gg67o"]
+render_priority = 0
+shader = ExtResource("5_m5c1e")
+shader_parameter/tex = ExtResource("3_gg67o")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ch86"]
+size = Vector3(100, 0, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ry24u"]
+size = Vector3(100, 1, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_bsyfa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_4ch86")
+front_filename = ExtResource("3_gg67o")
+width = 100.0
+length = 100.0
+height = 1.0
+art_z_cutoff = 1.0
+platform_thickness = 1.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(78.125, 0, inf, 3.4149523e-06, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
+material_overlay = SubResource("ShaderMaterial_gaahk")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_gg67o")
+region_enabled = true
+region_rect = Rect2(0, 128, 128, 0)
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(78.125, 0, 0, 0, 1, 0, 0, 0, 78.125, 0, 1, 50)
+material_overlay = SubResource("ShaderMaterial_gg67o")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_gg67o")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+shape = SubResource("BoxShape3D_4ch86")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
+shape = SubResource("BoxShape3D_ry24u")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
