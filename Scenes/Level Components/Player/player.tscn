@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=168 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://csvak8rgn8o3i" path="res://Assets/Art/PlayerAnimationFrames/Crash/CrashBack/crashB0001.png" id="2_fyney"]
@@ -813,8 +813,12 @@ animations = [{
 radius = 2.3608398
 height = 18.293991
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kf3bj"]
+radius = 15.0
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
+collision_mask = 9
 script = ExtResource("1_i0hvh")
 base_ramping_cap = 200.0
 starting_speed = 50.0
@@ -921,5 +925,13 @@ spot_attenuation = 0.7
 spot_angle = 7.0
 
 [node name="TransparencyRegion" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.071956635, 10.083466, 0)
+shape = SubResource("CylinderShape3D_kf3bj")
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_finished"]

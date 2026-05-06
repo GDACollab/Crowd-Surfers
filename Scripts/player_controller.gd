@@ -4,6 +4,10 @@ extends CharacterBody3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 
+# STOMP CROWD
+@onready var stomp_area : Area3D = $Area3D
+signal crowd_stomp_signal()
+
 # DEBUG
 @onready var velocityLabel : Label3D = $VelocityLabel
 @onready var stateLabel : Label3D = $StateLabel
@@ -41,6 +45,8 @@ var stateColors = {
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
+## Crowd Push force when going through
+@export var crowd_push_force: float = 10.0
 
 # Jumping
 @export_category("Jumping")
@@ -76,6 +82,10 @@ var stateColors = {
 #@export var stomp_resets_air_dash: bool = false
 ## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
 #@export var stomp_dash_margin: float = 0.2
+## Circumference of the Stomp Effect for Crowds
+@export var crowd_stomp_radius: float = 5.0
+## Strength of the Stomp Effect for Crowds
+@export var crowd_stomp_force: float = 10.0
 
 # Dash
 @export_category("Dash")
@@ -182,8 +192,12 @@ func _ready() -> void:
 	$StompWindupTimer.wait_time = windup_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
+	
+	# change shape of the area3D
+	$Area3D/CollisionShape3D.shape.radius = crowd_stomp_radius
 
 func _physics_process(delta: float) -> void:
+	crowd_impact()
 	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
@@ -310,6 +324,7 @@ func check_state_transitions() -> void:
 		States.STOMP_WINDUP:
 			if $StompWindupTimer.is_stopped():
 				velocity = Vector3(0.0, -stomp_speed, 0.0)
+				crowd_stomp_signal.emit()
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
@@ -627,7 +642,7 @@ func crash() -> void:
 	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
 	# Reset velocity components based on the wall that the player hit
 	#var wall_normal := get_wall_normal()
-	var dir := velocity.normalized()
+	if (!check_crowd_wall()): var dir := velocity.normalized()
 	#max_speed /= crash_penalty_mult
 	
 	# Components of the player's velocity which were going into the wall are 0 in this vector,
@@ -645,6 +660,33 @@ func check_height() -> void:
 
 	var ground_point: Vector3 = raycast.get_collision_point()
 	player_height = global_position.y - ground_point.y
+	
+## Checks if player is colliding with a rid (or member of the crowd) and applies force
+func check_crowd_wall() -> bool:
+	for curr_hit in get_slide_collision_count():
+		var collision = get_slide_collision(curr_hit)
+		var collider = collision.get_collider_rid()
+		if (PhysicsServer3D.body_get_collision_layer(collider) == 4):
+			return true 
+	return false
+
+## crowd impact to slowdown player
+func crowd_impact() -> void:
+	var space_state = get_world_3d().direct_space_state
+	
+	var rid_shape = $CollisionShape3D.shape.get_rid()
+	
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape_rid = rid_shape
+	query.transform = global_transform
+	query.collision_mask = 4
+	query.collide_with_bodies = true
+	
+	var results = space_state.intersect_shape(query, 500)
+	if results.size() > 0:
+		# i know, its way too many magic numbers, its late
+		var crowd_density = clamp(results.size() * 0.05, 0.05, 0.3)
+		velocity *= (1.0 - crowd_density)
 
 ## Update FMOD floor material parameter based on raycast
 func update_fmod_floor_material() -> void:
