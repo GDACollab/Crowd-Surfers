@@ -1,8 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://duybqcqdfpvk7"]
+[gd_scene load_steps=24 format=3 uid="uid://duybqcqdfpvk7"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="5_pyklh"]
+[ext_resource type="PackedScene" uid="uid://b6kkjvxxrm5qh" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile1.tscn" id="5_trd8n"]
+[ext_resource type="PackedScene" uid="uid://dc3rcuwcooube" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile2.tscn" id="6_kqi1o"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="7_3gcbn"]
+[ext_resource type="PackedScene" uid="uid://12f1kk357gr3" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile4.tscn" id="7_pf2ne"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="8_j0smc"]
+[ext_resource type="PackedScene" uid="uid://brqtqcecl1h5q" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile1.tscn" id="8_wakb0"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="9_w1c06"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="10_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="11_m1wnl"]
@@ -11,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="13_0jh0j"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="14_23jsx"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="14_pmu2x"]
-[ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="14_w1c06"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="15_eavq4"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="18_3gcbn"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="18_j0smc"]
@@ -84,21 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, 199)
 [node name="hori-road18" parent="Level2-intro/RoadCont" instance=ExtResource("7_3gcbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, -200)
 
-[node name="alleyway6" parent="Level2-intro/RoadCont" instance=ExtResource("14_w1c06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -200)
-
-[node name="alleyway5" parent="Level2-intro/RoadCont" instance=ExtResource("14_w1c06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -200)
-
-[node name="alleyway4" parent="Level2-intro/RoadCont" instance=ExtResource("14_w1c06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -200)
-
-[node name="alleyway3" parent="Level2-intro/RoadCont" instance=ExtResource("14_w1c06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -100)
-
-[node name="alleyway2" parent="Level2-intro/RoadCont" instance=ExtResource("14_w1c06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
-
 [node name="hori-road10" parent="Level2-intro/RoadCont" instance=ExtResource("7_3gcbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -200)
 
@@ -162,9 +150,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -200)
 [node name="intersection1" parent="Level2-intro/RoadCont" instance=ExtResource("15_eavq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
 
-[node name="alleyway1" parent="Level2-intro/RoadCont" instance=ExtResource("14_w1c06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 0)
-
 [node name="hori-road5" parent="Level2-intro/RoadCont" instance=ExtResource("7_3gcbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -200)
 
@@ -200,6 +185,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 599.553, 0, 599)
 [node name="road34" parent="Level2-intro/RoadCont" instance=ExtResource("5_pyklh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 499.553, 0, 599)
 
+[node name="concrete" parent="Level2-intro/RoadCont" instance=ExtResource("5_trd8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -200)
+
+[node name="concrete 2" parent="Level2-intro/RoadCont" instance=ExtResource("6_kqi1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -200)
+
+[node name="concrete3" parent="Level2-intro/RoadCont" instance=ExtResource("7_pf2ne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 0)
+
+[node name="concrete4" parent="Level2-intro/RoadCont" instance=ExtResource("8_wakb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0)
+
+[node name="concrete5" parent="Level2-intro/RoadCont" instance=ExtResource("8_wakb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -100)
+
+[node name="concrete6" parent="Level2-intro/RoadCont" instance=ExtResource("8_wakb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -200)
+
 [node name="Buildings" type="Node3D" parent="Level2-intro"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -2, 0)
 
@@ -226,15 +229,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, -100)
 
 [node name="brick-building8" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
-do_transparency = true
 
 [node name="brick-building9" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
-do_transparency = true
 
 [node name="brick-building10" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
-do_transparency = true
 
 [node name="brick-building11" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 0)
