@@ -82,7 +82,7 @@ func create_obstacle_path() -> void:
 	
 	for i in range(obstacleCurve.point_count):
 		
-a		var curve_strength = smoothnessArr[i%smoothnessArr.size()]
+		var curve_strength = smoothnessArr[i%smoothnessArr.size()]
 		var point_count = obstacleCurve.point_count
 		
 		var prev_idx: int = (i - 1 + point_count) % point_count
