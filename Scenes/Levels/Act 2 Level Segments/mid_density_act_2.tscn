@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cbcmgqb5ep5f6"]
+[gd_scene load_steps=34 format=3 uid="uid://cbcmgqb5ep5f6"]
 
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="1_ihe6m"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="2_dfckt"]
@@ -25,11 +25,38 @@
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="17_j7m4k"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="18_j7m4k"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="19_r4iu2"]
+[ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="20_xe2bc"]
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="21_uu56x"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="22_uu56x"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="23_5m2at"]
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="24_w268i"]
 [ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="30_n4o7x"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xe2bc"]
+vertices = PackedVector3Array(-551.00024, 10, 90, -544.00024, 10, 90, -544.00024, 10, 11, -555.00024, 10, 9, -560.00024, 10, 2, -560.00024, 10, -39, -639.00024, 10, -39, -639.00024, 10, 51, -554.00024, 10, 92, -641.00024, 10, 54, -539.00024, 45, -39, -539.00024, 45, -10, -510.00024, 45, -10, -510.00024, 45, -39, -505.00024, 10, 11, -505.00024, 10, 90, -494.00024, 10, 92, -494.00024, 10, 9, -355.00024, 10, 92, -344.00024, 10, 90, -344.00024, 10, 11, -355.00024, 10, 9, -360.00024, 10, 99, -360.00024, 10, 2, -360.00024, 10, -39, -489.00024, 10, -39, -489.00024, 10, 2, -489.00024, 10, 99, -489.00024, 10, 140, -360.00024, 10, 140, -339.00024, 45, -39, -339.00024, 45, -10, -310.00024, 45, -10, -310.00024, 45, -39, -305.00024, 10, 11, -305.00024, 10, 90, -294.00024, 10, 92, -294.00024, 10, 9, -155.00024, 10, 92, -144.00024, 10, 90, -144.00024, 10, 11, -155.00024, 10, 9, -160.00024, 10, 99, -160.00024, 10, 2, -160.00024, 10, -39, -289.00024, 10, -39, -289.00024, 10, 2, -289.00024, 10, 99, -289.00024, 10, 140, -160.00024, 10, 140, -139.00024, 45, -39, -139.00024, 45, -10, -110.000244, 45, -10, -110.000244, 45, -39, -89.000244, 10, -6, -61.000244, 10, -6, -61.000244, 10, -39, -89.000244, 10, -39, -89.000244, 10, 99, -89.000244, 10, 107, -61.000244, 10, 107, -89.000244, 10, 2, -91.000244, 10, 95, -91.000244, 10, 6, -98.000244, 10, 11, -98.000244, 10, 90, -558.00024, 10, 96, -646.00024, 10, 59, -649.00024, 10, 61, -714.00024, 10, 61, -714.00024, 10, 102, -719.00024, 10, 109, -560.00024, 10, 99, -601.00024, 10, 190, -560.00024, 10, 190, -605.00024, 10, 192, -610.00024, 10, 199, -731.00024, 10, 239, -610.00024, 10, 239, -723.00024, 10, 111, -731.00024, 10, 111, -1093.0002, 10, 239, -1093.0002, 10, 111, -1101.0002, 10, 111, -1105.0002, 10, 109, -1110.0002, 10, 102, -1339.0002, 10, 61, -1339.0002, 10, 239, -1110.0002, 10, 61, -1089.0002, 45, 61, -1089.0002, 45, 90, -1060.0002, 45, 90, -1060.0002, 45, 61, -921.00024, 10, 61, -1039.0002, 10, 61, -1039.0002, 10, 102, -1056.0002, 10, 239, -935.00024, 10, 239, -935.00024, 10, 199, -1048.0002, 10, 111, -1056.0002, 10, 111, -1044.0002, 10, 109, -930.00024, 10, 192, -920.00024, 10, 190, -879.00024, 10, 190, -878.00024, 10, 61, -785.00024, 10, 102, -785.00024, 10, 61, -783.00024, 10, 105, -873.00024, 10, 190, -866.00024, 10, 196, -764.00024, 45, 61, -764.00024, 45, 90, -735.00024, 45, 90, -735.00024, 45, 61, -864.00024, 10, 199, -864.00024, 10, 239, -768.00024, 10, 239, -768.00024, 10, 111, -776.00024, 10, 111, -89.000244, 10, 140, -61.000244, 10, 140, -539.00024, 45, 111, -539.00024, 45, 140, -510.00024, 45, 140, -510.00024, 45, 111, -339.00024, 45, 111, -339.00024, 45, 140, -310.00024, 45, 140, -310.00024, 45, 111, -139.00024, 45, 111, -139.00024, 45, 140, -110.000244, 45, 140, -110.000244, 45, 111, -914.00024, 45, 211, -914.00024, 45, 239, -885.00024, 45, 239, -885.00024, 45, 211, -589.00024, 45, 211, -589.00024, 45, 239, -560.00024, 45, 239, -560.00024, 45, 211)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(0, 8, 3), PackedInt32Array(3, 8, 4), PackedInt32Array(4, 8, 7), PackedInt32Array(7, 8, 9), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(14, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(20, 19, 18), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 22), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(22, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(16, 17, 26), PackedInt32Array(16, 26, 27), PackedInt32Array(27, 26, 23), PackedInt32Array(27, 23, 21), PackedInt32Array(27, 21, 22), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(34, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(40, 39, 38), PackedInt32Array(40, 38, 41), PackedInt32Array(41, 38, 42), PackedInt32Array(46, 45, 43), PackedInt32Array(43, 45, 44), PackedInt32Array(42, 49, 47), PackedInt32Array(47, 49, 48), PackedInt32Array(36, 37, 46), PackedInt32Array(36, 46, 47), PackedInt32Array(47, 46, 43), PackedInt32Array(47, 43, 41), PackedInt32Array(47, 41, 42), PackedInt32Array(53, 52, 50), PackedInt32Array(50, 52, 51), PackedInt32Array(57, 56, 54), PackedInt32Array(54, 56, 55), PackedInt32Array(60, 59, 58), PackedInt32Array(61, 54, 55), PackedInt32Array(60, 58, 62), PackedInt32Array(63, 61, 55), PackedInt32Array(63, 55, 64), PackedInt32Array(64, 55, 65), PackedInt32Array(65, 55, 62), PackedInt32Array(62, 55, 60), PackedInt32Array(65, 39, 64), PackedInt32Array(64, 39, 40), PackedInt32Array(2, 14, 1), PackedInt32Array(1, 14, 15), PackedInt32Array(20, 34, 19), PackedInt32Array(19, 34, 35), PackedInt32Array(8, 66, 9), PackedInt32Array(9, 66, 67), PackedInt32Array(70, 69, 68), PackedInt32Array(71, 70, 68), PackedInt32Array(71, 68, 67), PackedInt32Array(67, 66, 72), PackedInt32Array(72, 74, 73), PackedInt32Array(72, 73, 75), PackedInt32Array(75, 76, 72), PackedInt32Array(72, 76, 67), PackedInt32Array(67, 76, 71), PackedInt32Array(71, 76, 77), PackedInt32Array(76, 78, 77), PackedInt32Array(77, 80, 79), PackedInt32Array(77, 79, 71), PackedInt32Array(83, 82, 81), PackedInt32Array(84, 83, 81), PackedInt32Array(84, 81, 85), PackedInt32Array(85, 81, 87), PackedInt32Array(85, 87, 86), PackedInt32Array(86, 88, 85), PackedInt32Array(92, 91, 89), PackedInt32Array(89, 91, 90), PackedInt32Array(95, 94, 93), PackedInt32Array(98, 97, 96), PackedInt32Array(96, 100, 99), PackedInt32Array(96, 99, 101), PackedInt32Array(93, 103, 102), PackedInt32Array(95, 93, 101), PackedInt32Array(101, 93, 102), PackedInt32Array(101, 102, 98), PackedInt32Array(101, 98, 96), PackedInt32Array(103, 93, 104), PackedInt32Array(104, 93, 105), PackedInt32Array(105, 107, 106), PackedInt32Array(106, 108, 105), PackedInt32Array(105, 108, 109), PackedInt32Array(105, 109, 104), PackedInt32Array(108, 110, 109), PackedInt32Array(114, 113, 111), PackedInt32Array(111, 113, 112), PackedInt32Array(117, 116, 115), PackedInt32Array(115, 110, 117), PackedInt32Array(117, 110, 119), PackedInt32Array(117, 119, 118), PackedInt32Array(110, 108, 119), PackedInt32Array(121, 120, 60), PackedInt32Array(60, 120, 59), PackedInt32Array(82, 100, 81), PackedInt32Array(81, 100, 96), PackedInt32Array(118, 80, 117), PackedInt32Array(117, 80, 77), PackedInt32Array(125, 124, 122), PackedInt32Array(122, 124, 123), PackedInt32Array(129, 128, 126), PackedInt32Array(126, 128, 127), PackedInt32Array(133, 132, 130), PackedInt32Array(130, 132, 131), PackedInt32Array(137, 136, 134), PackedInt32Array(134, 136, 135), PackedInt32Array(141, 140, 138), PackedInt32Array(138, 140, 139)]
+cell_size = 1.0
+cell_height = 5.0
+border_size = 1.0
+agent_height = 16.0
+agent_radius = 10.0
+agent_max_climb = 5.0
+agent_max_slope = 65.0
+filter_ledge_spans = true
+filter_walkable_low_height_spans = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_vnrk1"]
+vertices = PackedVector3Array(-584, 10.000008, 101, -589, 10.000008, 107, -589, 10.000008, 157, -435, 10.000008, 157, -435, 10.000008, 149, -375, 10.000008, 140, -374, 10.000008, 61, -380, 10.000008, 59, -385, 10.000008, 52, -426, 10.000008, 140, -433, 10.000008, 145, -385, 10.000008, 11, -584, 10.000008, 11, -364, 40.000008, 11, -364, 40.000008, 40, -335, 40.000008, 40, -335, 40.000008, 11, -175, 10.000008, 140, -174, 10.000008, 61, -180, 10.000008, 59, -185, 10.000008, 52, -226, 10.000008, 140, -314, 10.000008, 51, -316, 10.000008, 54, -233, 10.000008, 146, -185, 10.000008, 11, -314, 10.000008, 11, -164, 40.000008, 11, -164, 40.000008, 40, -135, 40.000008, 40, -135, 40.000008, 11, 29, 10.000008, 90, 30, 10.000008, 61, 20, 10.000008, 59, -116, 10.000008, 54, -104, 10.000008, 92, -101, 10.000008, 90, -114, 10.000008, 51, 15, 10.000008, 52, -114, 10.000008, 11, 15, 10.000008, 11, 36, 40.000008, 11, 36, 40.000008, 40, 65, 40.000008, 40, 65, 40.000008, 11, 80, 10.000008, 59, 70, 10.000008, 61, 71, 10.000008, 90, 86, 10.000008, 51, 489, 10.000008, 90, 489, 10.000008, 11, 86, 10.000008, 11, -366, 10.000008, 145, -324, 10.000008, 61, -235, 10.000008, 149, -364, 10.000008, 156, -235, 10.000008, 156, -124, 10.000008, 61, -110, 10.000008, 99, -166, 10.000008, 145, -110, 10.000008, 157, -164, 10.000008, 149, -164, 10.000008, 157, -364, 10.000008, 194, -235, 10.000008, 195, -589, 10.000008, 194, -435, 10.000008, 194, -164, 10.000008, 193, -110, 10.000008, 193, -414, 40.000008, 161, -414, 40.000008, 190, -385, 40.000008, 190, -385, 40.000008, 161, -214, 40.000008, 161, -214, 40.000008, 190, -185, 40.000008, 190, -185, 40.000008, 161, -164, 10.000008, 299, -164, 10.000008, 307, -110, 10.000008, 307, -164, 10.000008, 201, -166, 10.000008, 295, -166, 10.000008, 205, -173, 10.000008, 290, -174, 10.000008, 211, -181, 10.000008, 211, -180, 10.000008, 290, -425, 10.000008, 290, -424, 10.000008, 211, -433, 10.000008, 206, -435, 10.000008, 202, -476, 10.000008, 290, -589, 10.000008, 307, -485, 10.000008, 299, -483, 10.000008, 295, -485, 10.000008, 307, -226, 10.000008, 290, -219, 10.000008, 290, -219, 10.000008, 211, -226, 10.000008, 211, -229, 10.000008, 292, -233, 10.000008, 206, -364, 10.000008, 201, -371, 10.000008, 209, -416, 10.000008, 295, -374, 10.000008, 211, -235, 10.000008, 299, -414, 10.000008, 306, -235, 10.000008, 306, -414, 10.000008, 344, -235, 10.000008, 345, -589, 10.000008, 344, -485, 10.000008, 344, -164, 10.000008, 343, -110, 10.000008, 343, -464, 40.000008, 311, -464, 40.000008, 340, -435, 40.000008, 340, -435, 40.000008, 311, -214, 40.000008, 311, -214, 40.000008, 340, -185, 40.000008, 340, -185, 40.000008, 311, -164, 10.000008, 351, -166, 10.000008, 355, -174, 10.000008, 361, -214, 10.000008, 449, -214, 10.000008, 457, -110, 10.000008, 457, -224, 10.000008, 361, -225, 10.000008, 440, -216, 10.000008, 445, -476, 10.000008, 440, -469, 10.000008, 440, -469, 10.000008, 361, -476, 10.000008, 361, -589, 10.000008, 457, -485, 10.000008, 457, -485, 10.000008, 449, -483, 10.000008, 445, -483, 10.000008, 356, -485, 10.000008, 352, -233, 10.000008, 356, -276, 10.000008, 440, -414, 10.000008, 351, -421, 10.000008, 359, -279, 10.000008, 442, -424, 10.000008, 361, -431, 10.000008, 361, -430, 10.000008, 440, -419, 10.000008, 442, -414, 10.000008, 449, -414, 10.000008, 456, -285, 10.000008, 456, -285, 10.000008, 449, -414, 10.000008, 494, -285, 10.000008, 495, -589, 10.000008, 494, -485, 10.000008, 494, -214, 10.000008, 493, -110, 10.000008, 493, -464, 40.000008, 461, -464, 40.000008, 490, -435, 40.000008, 490, -435, 40.000008, 461, -264, 40.000008, 461, -264, 40.000008, 490, -235, 40.000008, 490, -235, 40.000008, 461, -139, 10.000008, 615, -115, 10.000008, 615, -115, 10.000008, 599, -110, 10.000008, 593, -214, 10.000008, 501, -216, 10.000008, 504, -146, 10.000008, 621, -589, 10.000008, 600, -535, 10.000008, 601, -533, 10.000008, 595, -526, 10.000008, 590, -485, 10.000008, 502, -475, 10.000008, 590, -474, 10.000008, 511, -483, 10.000008, 506, -275, 10.000008, 590, -274, 10.000008, 511, -283, 10.000008, 506, -326, 10.000008, 590, -414, 10.000008, 501, -421, 10.000008, 509, -329, 10.000008, 592, -269, 10.000008, 592, -264, 10.000008, 599, -224, 10.000008, 511, -264, 10.000008, 632, -148, 10.000008, 632, -148, 10.000008, 624, -466, 10.000008, 595, -424, 10.000008, 511, -335, 10.000008, 599, -464, 10.000008, 606, -335, 10.000008, 606, -595, 10.000008, 609, -605, 10.000008, 611, -535, 10.000008, 652, -573, 10.000008, 740, -570, 10.000008, 742, -533, 10.000008, 655, -604, 10.000008, 740, -464, 10.000008, 644, -335, 10.000008, 645, -1036, 10.000008, 615, -995, 10.000008, 615, -995, 10.000008, 611, -1289, 10.000008, 611, -1028, 10.000008, 789, -1028, 10.000008, 661, -1036, 10.000008, 661, -1040, 10.000008, 659, -1045, 10.000008, 652, -1289, 10.000008, 789, -1045, 10.000008, 624, -1043, 10.000008, 620, -974, 40.000008, 611, -974, 40.000008, 640, -945, 40.000008, 640, -945, 40.000008, 611, -853, 10.000008, 611, -924, 10.000008, 611, -924, 10.000008, 651, -926, 10.000008, 654, -858, 10.000008, 746, -853, 10.000008, 741, -798, 10.000008, 740, -791, 10.000008, 746, -738, 10.000008, 655, -740, 10.000008, 652, -740, 10.000008, 611, -719, 40.000008, 611, -719, 40.000008, 640, -690, 40.000008, 640, -690, 40.000008, 611, -669, 10.000008, 611, -669, 10.000008, 651, -671, 10.000008, 654, -626, 10.000008, 740, -629, 10.000008, 742, -514, 40.000008, 611, -514, 40.000008, 640, -485, 40.000008, 640, -485, 40.000008, 611, -314, 40.000008, 611, -314, 40.000008, 640, -285, 40.000008, 640, -285, 40.000008, 611, -264, 10.000008, 643, -148, 10.000008, 643, -1024, 20.000008, 636, -1024, 20.000008, 640, -995, 20.000008, 640, -995, 20.000008, 636, -127, 20.000008, 636, -127, 20.000008, 665, -123, 20.000008, 665, -123, 20.000008, 636, -173, 10.000008, 740, -170, 10.000008, 742, -146, 10.000008, 680, -148, 10.000008, 677, -264, 10.000008, 651, -226, 10.000008, 740, -266, 10.000008, 654, -229, 10.000008, 742, -373, 10.000008, 740, -370, 10.000008, 742, -333, 10.000008, 655, -335, 10.000008, 652, -466, 10.000008, 654, -429, 10.000008, 742, -426, 10.000008, 740, -464, 10.000008, 651, -942, 10.000008, 789, -860, 10.000008, 789, -860, 10.000008, 749, -934, 10.000008, 661, -942, 10.000008, 661, -676, 10.000008, 659, -633, 10.000008, 746, -471, 10.000008, 659, -433, 10.000008, 746, -271, 10.000008, 659, -233, 10.000008, 746, -789, 10.000008, 749, -789, 10.000008, 789, -723, 10.000008, 789, -723, 10.000008, 661, -731, 10.000008, 661, -566, 10.000008, 746, -529, 10.000008, 659, -366, 10.000008, 746, -329, 10.000008, 659, -679, 10.000008, 661, -635, 10.000008, 789, -635, 10.000008, 749, -526, 10.000008, 661, -564, 10.000008, 749, -474, 10.000008, 661, -435, 10.000008, 749, -564, 10.000008, 789, -435, 10.000008, 789, -326, 10.000008, 661, -364, 10.000008, 749, -274, 10.000008, 661, -235, 10.000008, 749, -364, 10.000008, 789, -235, 10.000008, 789, -164, 10.000008, 749, -164, 10.000008, 755, -115, 10.000008, 754, -115, 10.000008, 686, -139, 10.000008, 686, -164, 10.000008, 789, -115, 10.000008, 789, -839, 40.000008, 761, -839, 40.000008, 789, -810, 40.000008, 789, -810, 40.000008, 761, -614, 40.000008, 761, -614, 40.000008, 789, -585, 40.000008, 789, -585, 40.000008, 761, -414, 40.000008, 761, -414, 40.000008, 789, -385, 40.000008, 789, -385, 40.000008, 761, -214, 40.000008, 761, -214, 40.000008, 789, -185, 40.000008, 789, -185, 40.000008, 761)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(7, 6, 5), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(10, 4, 11), PackedInt32Array(11, 4, 0), PackedInt32Array(11, 0, 12), PackedInt32Array(9, 10, 8), PackedInt32Array(8, 10, 11), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(19, 18, 17), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 21), PackedInt32Array(24, 23, 22), PackedInt32Array(21, 24, 20), PackedInt32Array(20, 24, 25), PackedInt32Array(25, 24, 22), PackedInt32Array(25, 22, 26), PackedInt32Array(30, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(33, 32, 31), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 37), PackedInt32Array(33, 31, 38), PackedInt32Array(38, 31, 36), PackedInt32Array(37, 39, 36), PackedInt32Array(36, 39, 38), PackedInt32Array(38, 39, 40), PackedInt32Array(44, 43, 41), PackedInt32Array(41, 43, 42), PackedInt32Array(47, 46, 45), PackedInt32Array(45, 48, 47), PackedInt32Array(47, 48, 49), PackedInt32Array(51, 50, 48), PackedInt32Array(48, 50, 49), PackedInt32Array(5, 6, 52), PackedInt32Array(52, 6, 53), PackedInt32Array(23, 24, 54), PackedInt32Array(52, 53, 55), PackedInt32Array(55, 53, 23), PackedInt32Array(55, 23, 54), PackedInt32Array(55, 54, 56), PackedInt32Array(58, 57, 35), PackedInt32Array(35, 57, 34), PackedInt32Array(59, 17, 60), PackedInt32Array(60, 17, 58), PackedInt32Array(58, 17, 57), PackedInt32Array(57, 17, 18), PackedInt32Array(60, 62, 61), PackedInt32Array(60, 61, 59), PackedInt32Array(32, 46, 31), PackedInt32Array(31, 46, 47), PackedInt32Array(55, 56, 63), PackedInt32Array(63, 56, 64), PackedInt32Array(2, 3, 65), PackedInt32Array(65, 3, 66), PackedInt32Array(62, 60, 67), PackedInt32Array(67, 60, 68), PackedInt32Array(72, 71, 69), PackedInt32Array(69, 71, 70), PackedInt32Array(76, 75, 73), PackedInt32Array(73, 75, 74), PackedInt32Array(79, 78, 77), PackedInt32Array(80, 67, 68), PackedInt32Array(79, 77, 81), PackedInt32Array(82, 80, 68), PackedInt32Array(81, 83, 79), PackedInt32Array(79, 83, 84), PackedInt32Array(79, 84, 82), PackedInt32Array(79, 82, 68), PackedInt32Array(83, 86, 84), PackedInt32Array(84, 86, 85), PackedInt32Array(87, 89, 88), PackedInt32Array(89, 87, 90), PackedInt32Array(90, 87, 91), PackedInt32Array(94, 93, 92), PackedInt32Array(93, 95, 92), PackedInt32Array(90, 91, 66), PackedInt32Array(66, 91, 94), PackedInt32Array(66, 94, 92), PackedInt32Array(66, 92, 65), PackedInt32Array(99, 98, 96), PackedInt32Array(96, 98, 97), PackedInt32Array(101, 100, 64), PackedInt32Array(64, 100, 102), PackedInt32Array(102, 100, 103), PackedInt32Array(96, 100, 99), PackedInt32Array(99, 100, 101), PackedInt32Array(102, 63, 64), PackedInt32Array(87, 88, 104), PackedInt32Array(104, 88, 105), PackedInt32Array(103, 100, 106), PackedInt32Array(105, 103, 104), PackedInt32Array(104, 103, 107), PackedInt32Array(107, 103, 106), PackedInt32Array(107, 106, 108), PackedInt32Array(98, 85, 97), PackedInt32Array(97, 85, 86), PackedInt32Array(107, 108, 109), PackedInt32Array(109, 108, 110), PackedInt32Array(92, 95, 111), PackedInt32Array(111, 95, 112), PackedInt32Array(78, 79, 113), PackedInt32Array(113, 79, 114), PackedInt32Array(118, 117, 115), PackedInt32Array(115, 117, 116), PackedInt32Array(122, 121, 119), PackedInt32Array(119, 121, 120), PackedInt32Array(123, 113, 114), PackedInt32Array(124, 123, 114), PackedInt32Array(124, 114, 125), PackedInt32Array(125, 114, 128), PackedInt32Array(125, 128, 126), PackedInt32Array(126, 128, 127), PackedInt32Array(129, 131, 130), PackedInt32Array(131, 129, 126), PackedInt32Array(126, 129, 125), PackedInt32Array(135, 134, 132), PackedInt32Array(132, 134, 133), PackedInt32Array(138, 137, 136), PackedInt32Array(135, 132, 139), PackedInt32Array(139, 138, 135), PackedInt32Array(135, 138, 140), PackedInt32Array(111, 112, 141), PackedInt32Array(140, 138, 141), PackedInt32Array(141, 138, 136), PackedInt32Array(141, 136, 111), PackedInt32Array(129, 130, 142), PackedInt32Array(142, 130, 143), PackedInt32Array(144, 146, 145), PackedInt32Array(143, 146, 142), PackedInt32Array(142, 146, 110), PackedInt32Array(110, 146, 144), PackedInt32Array(110, 144, 109), PackedInt32Array(148, 147, 149), PackedInt32Array(149, 147, 150), PackedInt32Array(154, 153, 151), PackedInt32Array(151, 153, 152), PackedInt32Array(147, 145, 150), PackedInt32Array(150, 145, 151), PackedInt32Array(151, 145, 154), PackedInt32Array(154, 145, 146), PackedInt32Array(134, 148, 133), PackedInt32Array(133, 148, 149), PackedInt32Array(152, 153, 155), PackedInt32Array(155, 153, 156), PackedInt32Array(136, 137, 157), PackedInt32Array(157, 137, 158), PackedInt32Array(127, 128, 159), PackedInt32Array(159, 128, 160), PackedInt32Array(164, 163, 161), PackedInt32Array(161, 163, 162), PackedInt32Array(168, 167, 165), PackedInt32Array(165, 167, 166), PackedInt32Array(171, 170, 169), PackedInt32Array(171, 169, 172), PackedInt32Array(172, 169, 160), PackedInt32Array(173, 159, 160), PackedInt32Array(173, 160, 174), PackedInt32Array(174, 160, 169), PackedInt32Array(174, 169, 175), PackedInt32Array(178, 177, 176), PackedInt32Array(178, 176, 179), PackedInt32Array(179, 176, 157), PackedInt32Array(179, 157, 180), PackedInt32Array(180, 157, 158), PackedInt32Array(181, 183, 182), PackedInt32Array(183, 181, 180), PackedInt32Array(180, 181, 179), PackedInt32Array(185, 184, 186), PackedInt32Array(186, 184, 187), PackedInt32Array(190, 189, 188), PackedInt32Array(187, 190, 186), PackedInt32Array(186, 190, 156), PackedInt32Array(156, 190, 188), PackedInt32Array(156, 188, 155), PackedInt32Array(191, 184, 185), PackedInt32Array(191, 185, 192), PackedInt32Array(192, 185, 193), PackedInt32Array(196, 195, 194), PackedInt32Array(193, 174, 192), PackedInt32Array(192, 174, 194), PackedInt32Array(194, 174, 196), PackedInt32Array(196, 174, 175), PackedInt32Array(181, 182, 197), PackedInt32Array(197, 182, 198), PackedInt32Array(189, 190, 199), PackedInt32Array(198, 189, 197), PackedInt32Array(197, 189, 200), PackedInt32Array(200, 189, 199), PackedInt32Array(200, 199, 201), PackedInt32Array(177, 202, 176), PackedInt32Array(202, 177, 203), PackedInt32Array(203, 177, 204), PackedInt32Array(207, 206, 205), PackedInt32Array(204, 207, 203), PackedInt32Array(203, 207, 205), PackedInt32Array(203, 205, 208), PackedInt32Array(200, 201, 209), PackedInt32Array(209, 201, 210), PackedInt32Array(212, 211, 213), PackedInt32Array(213, 211, 214), PackedInt32Array(217, 216, 215), PackedInt32Array(218, 217, 215), PackedInt32Array(218, 215, 219), PackedInt32Array(219, 215, 220), PackedInt32Array(219, 220, 214), PackedInt32Array(214, 221, 219), PackedInt32Array(214, 211, 222), PackedInt32Array(214, 222, 221), PackedInt32Array(226, 225, 223), PackedInt32Array(223, 225, 224), PackedInt32Array(229, 228, 227), PackedInt32Array(229, 227, 230), PackedInt32Array(230, 227, 232), PackedInt32Array(230, 232, 231), PackedInt32Array(236, 235, 233), PackedInt32Array(233, 235, 234), PackedInt32Array(237, 236, 227), PackedInt32Array(227, 236, 233), PackedInt32Array(227, 233, 232), PackedInt32Array(241, 240, 238), PackedInt32Array(238, 240, 239), PackedInt32Array(243, 242, 203), PackedInt32Array(243, 203, 244), PackedInt32Array(244, 203, 245), PackedInt32Array(245, 203, 208), PackedInt32Array(244, 245, 246), PackedInt32Array(250, 249, 247), PackedInt32Array(247, 249, 248), PackedInt32Array(254, 253, 251), PackedInt32Array(251, 253, 252), PackedInt32Array(194, 195, 255), PackedInt32Array(255, 195, 256), PackedInt32Array(260, 259, 257), PackedInt32Array(257, 259, 258), PackedInt32Array(264, 263, 261), PackedInt32Array(261, 263, 262), PackedInt32Array(266, 265, 267), PackedInt32Array(267, 265, 268), PackedInt32Array(268, 265, 256), PackedInt32Array(256, 265, 270), PackedInt32Array(256, 270, 269), PackedInt32Array(256, 269, 255), PackedInt32Array(272, 271, 270), PackedInt32Array(270, 271, 269), PackedInt32Array(274, 273, 275), PackedInt32Array(275, 273, 276), PackedInt32Array(278, 277, 279), PackedInt32Array(279, 277, 280), PackedInt32Array(276, 273, 210), PackedInt32Array(210, 273, 279), PackedInt32Array(210, 279, 280), PackedInt32Array(210, 280, 209), PackedInt32Array(283, 282, 281), PackedInt32Array(283, 281, 231), PackedInt32Array(231, 281, 284), PackedInt32Array(284, 281, 285), PackedInt32Array(231, 284, 230), PackedInt32Array(287, 286, 246), PackedInt32Array(246, 286, 244), PackedInt32Array(289, 288, 278), PackedInt32Array(278, 288, 277), PackedInt32Array(291, 290, 272), PackedInt32Array(272, 290, 271), PackedInt32Array(294, 293, 292), PackedInt32Array(292, 234, 294), PackedInt32Array(294, 234, 296), PackedInt32Array(294, 296, 295), PackedInt32Array(234, 235, 296), PackedInt32Array(207, 298, 206), PackedInt32Array(206, 298, 297), PackedInt32Array(275, 300, 274), PackedInt32Array(274, 300, 299), PackedInt32Array(287, 301, 286), PackedInt32Array(303, 302, 294), PackedInt32Array(287, 303, 301), PackedInt32Array(301, 303, 295), PackedInt32Array(295, 303, 294), PackedInt32Array(298, 304, 297), PackedInt32Array(297, 304, 305), PackedInt32Array(288, 289, 306), PackedInt32Array(306, 289, 307), PackedInt32Array(305, 304, 308), PackedInt32Array(308, 304, 306), PackedInt32Array(308, 306, 307), PackedInt32Array(308, 307, 309), PackedInt32Array(300, 310, 299), PackedInt32Array(299, 310, 311), PackedInt32Array(290, 291, 312), PackedInt32Array(312, 291, 313), PackedInt32Array(311, 310, 314), PackedInt32Array(314, 310, 312), PackedInt32Array(314, 312, 313), PackedInt32Array(314, 313, 315), PackedInt32Array(216, 285, 215), PackedInt32Array(215, 285, 281), PackedInt32Array(318, 317, 316), PackedInt32Array(316, 266, 318), PackedInt32Array(318, 266, 320), PackedInt32Array(318, 320, 319), PackedInt32Array(266, 267, 320), PackedInt32Array(321, 317, 322), PackedInt32Array(322, 317, 318), PackedInt32Array(326, 325, 323), PackedInt32Array(323, 325, 324), PackedInt32Array(330, 329, 327), PackedInt32Array(327, 329, 328), PackedInt32Array(334, 333, 331), PackedInt32Array(331, 333, 332), PackedInt32Array(338, 337, 335), PackedInt32Array(335, 337, 336)]
+cell_size = 1.0
+cell_height = 5.0
+border_size = 1.0
+agent_height = 16.0
+agent_radius = 10.0
+agent_max_climb = 5.0
+agent_max_slope = 65.0
+filter_ledge_spans = true
+filter_walkable_low_height_spans = true
 
 [node name="MidDensityAct2" type="Node3D"]
 
@@ -74,11 +101,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -150)
 
 [node name="StaticBody3D6" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -150)
-do_transparency = true
 
 [node name="StaticBody3D8" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, -50)
-do_transparency = true
 
 [node name="StaticBody3D9" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, -50)
@@ -97,10 +122,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -50)
 
 [node name="StaticBody3D14" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -450, 0, 200)
-do_transparency = true
 
 [node name="StaticBody3D15" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -50)
+
+[node name="InvisibleWall" parent="MidDensityStart/BuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-0.013249784, -0.0026979707, -0.99990857, -0.00035692577, 0.9999963, -0.0026934764, 0.9999121, 0.0003211961, -0.0132507, -300, 50, 200)
+
+[node name="InvisibleWallSmall" parent="MidDensityStart/BuildCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 50, 200)
+
+[node name="InteractionContStart" type="Node3D" parent="MidDensityStart"]
 
 [node name="ArrowCont" type="Node3D" parent="MidDensityStart"]
 
@@ -128,160 +160,162 @@ texture = ExtResource("23_5m2at")
 transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -339.65024, 2, 50)
 texture = ExtResource("22_uu56x")
 
-[node name="CrowdSpace" type="Node3D" parent="MidDensityStart"]
+[node name="ForCrowdsStart" type="NavigationRegion3D" parent="MidDensityStart"]
+navigation_mesh = SubResource("NavigationMesh_xe2bc")
 
-[node name="RoadHor" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -50)
 
-[node name="RoadHor2" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor2" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 50)
 
-[node name="RoadHor3" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor3" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, -50)
 
-[node name="RoadHor4" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor4" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 50)
 
-[node name="RoadHor5" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor5" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -50)
 
-[node name="RoadHor6" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor6" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 50)
 
-[node name="RoadHor7" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor7" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -50)
 
-[node name="RoadHor8" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor8" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 50)
 
-[node name="RoadHor9" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor9" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, -50)
 
-[node name="RoadHor10" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor10" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 50)
 
-[node name="RoadHor13" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor13" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 50)
 
-[node name="RoadHor14" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor14" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 150)
 
-[node name="RoadHor15" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor15" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 50)
 
-[node name="RoadHor16" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor16" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 150)
 
-[node name="RoadHor17" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor17" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 50)
 
-[node name="RoadHor18" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor18" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 150)
 
-[node name="RoadHor19" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor19" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 50)
 
-[node name="RoadHor20" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor20" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 150)
 
-[node name="StaticBody3D" parent="MidDensityStart/CrowdSpace" instance=ExtResource("2_dfckt")]
+[node name="StaticBody3D" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("2_dfckt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -50)
 
-[node name="RoadHor25" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor25" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 50)
 
-[node name="RoadHor21" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor21" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, 50)
 
-[node name="RoadHor22" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHor22" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, 150)
 
-[node name="StaticBody3D2" parent="MidDensityStart/CrowdSpace" instance=ExtResource("3_uu56x")]
+[node name="StaticBody3D2" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("3_uu56x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 150)
 
-[node name="RoadLD" parent="MidDensityStart/CrowdSpace" instance=ExtResource("4_5m2at")]
+[node name="RoadLD" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("4_5m2at")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1250, 0, 100.000244)
 
-[node name="RoadHori" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_lrgld")]
+[node name="RoadHori" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_lrgld")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1250.0002, 0, 200.00024)
 
-[node name="RoadInt" parent="MidDensityStart/CrowdSpace" instance=ExtResource("3_uu56x")]
+[node name="RoadInt" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("3_uu56x")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150.0002, 0, 200.00024)
 
-[node name="RoadVert3" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_60twm")]
+[node name="RoadVert3" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_60twm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150, 0, 100.000244)
 
-[node name="MarketStallCyan" parent="MidDensityStart/CrowdSpace" instance=ExtResource("17_j7m4k")]
+[node name="MarketStallCyan" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("17_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -100, 0, -25)
 
-[node name="MarketStallAmber2" parent="MidDensityStart/CrowdSpace" instance=ExtResource("16_fuigj")]
+[node name="MarketStallAmber2" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("16_fuigj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -100, 0, 125)
 
-[node name="MarketStallCyan2" parent="MidDensityStart/CrowdSpace" instance=ExtResource("17_j7m4k")]
+[node name="MarketStallCyan2" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("17_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -300, 0, 125)
 
-[node name="MarketStallAmber3" parent="MidDensityStart/CrowdSpace" instance=ExtResource("16_fuigj")]
+[node name="MarketStallAmber3" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("16_fuigj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -300, 0, -25)
 
-[node name="MarketStallCyan3" parent="MidDensityStart/CrowdSpace" instance=ExtResource("17_j7m4k")]
+[node name="MarketStallCyan3" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("17_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -500, 0, -25)
 
-[node name="MarketStallAmber4" parent="MidDensityStart/CrowdSpace" instance=ExtResource("16_fuigj")]
+[node name="MarketStallAmber4" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("16_fuigj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -500, 0, 125)
 
-[node name="MarketStallCyan4" parent="MidDensityStart/CrowdSpace" instance=ExtResource("17_j7m4k")]
+[node name="MarketStallCyan4" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("17_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -550, 0, 225)
 
-[node name="MarketStallAmber5" parent="MidDensityStart/CrowdSpace" instance=ExtResource("16_fuigj")]
+[node name="MarketStallAmber5" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("16_fuigj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -725, 0, 75)
 
-[node name="MarketStallCyan5" parent="MidDensityStart/CrowdSpace" instance=ExtResource("17_j7m4k")]
+[node name="MarketStallCyan5" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("17_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -875, 0, 225)
 
-[node name="MarketStallAmber6" parent="MidDensityStart/CrowdSpace" instance=ExtResource("16_fuigj")]
+[node name="MarketStallAmber6" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("16_fuigj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1050, 0, 75)
 
-[node name="InvisibleWall" parent="MidDensityStart/CrowdSpace" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -300, 50, 200)
-
-[node name="InvisibleWallSmall" parent="MidDensityStart/CrowdSpace" instance=ExtResource("12_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 50, 200)
-
-[node name="WindBoxCollider2" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_3q2qt")]
+[node name="WindBoxCollider2" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_3q2qt")]
 transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06, -55, 2, -25)
 
-[node name="WindBoxCollider3" parent="MidDensityStart/CrowdSpace" instance=ExtResource("5_3q2qt")]
+[node name="WindBoxCollider3" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("5_3q2qt")]
 transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06, -575, 2, 175)
 
-[node name="Banana2" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana2" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -185, 2, 25)
 
-[node name="Banana3" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana3" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -245, 2, 85)
 
-[node name="Banana4" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana4" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -340, 2, 45)
 
-[node name="Banana5" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana5" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -435, 2, 95)
 
-[node name="Banana6" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana6" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -575, 2, 25)
 
-[node name="Banana7" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana7" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -685, 2, 200)
 
-[node name="Banana8" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana8" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -815, 2, 135)
 
-[node name="Banana9" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana9" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -985, 2, 175)
 
-[node name="Banana10" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana10" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -1115, 2, 115)
 
-[node name="Banana11" parent="MidDensityStart/CrowdSpace" instance=ExtResource("7_w268i")]
+[node name="Banana11" parent="MidDensityStart/ForCrowdsStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -1210, 2, 250)
+
+[node name="CrowdsContStart" type="Node3D" parent="MidDensityStart"]
+
+[node name="Crowd" parent="MidDensityStart/CrowdsContStart" instance=ExtResource("20_xe2bc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.935, 8, 75)
+debug = true
+crowd_size = 20
 
 [node name="MidDensity" type="Node3D" parent="."]
 
@@ -381,79 +415,33 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 180, 2, 35)
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 120, 2, 435)
 
 [node name="FixedRoadCont" type="Node3D" parent="MidDensity"]
-visible = false
 
-[node name="StaticBody3D3" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 600)
+[node name="StaticBody3D84" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 0)
 
-[node name="StaticBody3D4" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 700)
+[node name="StaticBody3D98" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 0)
 
-[node name="StaticBody3D5" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 600)
+[node name="StaticBody3D99" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 0)
 
-[node name="StaticBody3D6" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 700)
+[node name="StaticBody3D78" parent="MidDensity/FixedRoadCont" instance=ExtResource("8_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 100)
 
-[node name="StaticBody3D7" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 600)
+[node name="StaticBody3D100" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 0)
 
-[node name="StaticBody3D8" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 700)
+[node name="StaticBody3D101" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 0)
 
-[node name="StaticBody3D9" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 600)
+[node name="StaticBody3D102" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 0)
 
-[node name="StaticBody3D10" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 700)
+[node name="StaticBody3D103" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 0)
 
-[node name="StaticBody3D11" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 600)
-
-[node name="StaticBody3D12" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 700)
-
-[node name="StaticBody3D13" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 600)
-
-[node name="StaticBody3D14" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 700)
-
-[node name="StaticBody3D15" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 600)
-
-[node name="StaticBody3D16" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 700)
-
-[node name="StaticBody3D17" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 600)
-
-[node name="StaticBody3D18" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 700)
-
-[node name="StaticBody3D19" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 600)
-
-[node name="StaticBody3D20" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 700)
-
-[node name="StaticBody3D21" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 600)
-
-[node name="StaticBody3D22" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 700)
-
-[node name="StaticBody3D23" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 600)
-
-[node name="StaticBody3D24" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 700)
-
-[node name="StaticBody3D25" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 600)
-
-[node name="StaticBody3D26" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 700)
+[node name="StairTest" parent="MidDensity/FixedRoadCont" instance=ExtResource("24_w268i")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -600, -50, 50)
 
 [node name="StaticBody3D27" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 600)
@@ -491,21 +479,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 500)
 [node name="StaticBody3D37" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 500)
 
-[node name="StaticBody3D" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 500)
-
-[node name="StaticBody3D38" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 500)
-
-[node name="StaticBody3D39" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 500)
-
-[node name="StaticBody3D40" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 500)
-
-[node name="StaticBody3D41" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 500)
-
 [node name="StaticBody3D42" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 400)
 
@@ -517,21 +490,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 400)
 
 [node name="StaticBody3D45" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 400)
-
-[node name="StaticBody3D46" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 400)
-
-[node name="StaticBody3D47" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 400)
-
-[node name="StaticBody3D48" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 400)
-
-[node name="StaticBody3D49" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 400)
-
-[node name="StaticBody3D50" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 400)
 
 [node name="StaticBody3D51" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 300)
@@ -545,21 +503,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 300)
 [node name="StaticBody3D54" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 300)
 
-[node name="StaticBody3D55" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 300)
-
-[node name="StaticBody3D56" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 300)
-
-[node name="StaticBody3D57" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 300)
-
-[node name="StaticBody3D58" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 300)
-
-[node name="StaticBody3D59" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 300)
-
 [node name="StaticBody3D60" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 200)
 
@@ -571,21 +514,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 200)
 
 [node name="StaticBody3D63" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 200)
-
-[node name="StaticBody3D64" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 200)
-
-[node name="StaticBody3D65" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 200)
-
-[node name="StaticBody3D66" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 200)
-
-[node name="StaticBody3D67" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 200)
-
-[node name="StaticBody3D68" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 200)
 
 [node name="StaticBody3D69" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 100)
@@ -599,88 +527,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 100)
 [node name="StaticBody3D72" parent="MidDensity/FixedRoadCont" instance=ExtResource("7_onjya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 100)
 
-[node name="StaticBody3D73" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 100)
-
-[node name="StaticBody3D74" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 100)
-
-[node name="StaticBody3D75" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 100)
-
-[node name="StaticBody3D76" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 100)
-
-[node name="StaticBody3D77" parent="MidDensity/FixedRoadCont" instance=ExtResource("6_urfa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 100)
-
-[node name="StaticBody3D84" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 0)
-
-[node name="StaticBody3D85" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 0)
-
-[node name="StaticBody3D86" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 0)
-
-[node name="StaticBody3D87" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 0)
-
-[node name="StaticBody3D88" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 0)
-
-[node name="StaticBody3D89" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 0)
-
-[node name="StaticBody3D90" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
-
-[node name="StaticBody3D91" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
-
-[node name="StaticBody3D92" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 0)
-
-[node name="StaticBody3D93" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 0)
-
-[node name="StaticBody3D94" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 0)
-
-[node name="StaticBody3D95" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 0)
-
-[node name="StaticBody3D98" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 0)
-
-[node name="StaticBody3D99" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 0)
-
-[node name="StaticBody3D78" parent="MidDensity/FixedRoadCont" instance=ExtResource("8_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 100)
-do_transparency = true
-
-[node name="StaticBody3D100" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 0)
-
-[node name="StaticBody3D101" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 0)
-
-[node name="StaticBody3D102" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 0)
-
-[node name="StaticBody3D103" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 0)
-
-[node name="StairTest" parent="MidDensity/FixedRoadCont" instance=ExtResource("24_w268i")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -600, -50, 50)
-
 [node name="FixedBuildCont" type="Node3D" parent="MidDensity"]
-visible = false
 
 [node name="StaticBody3D" parent="MidDensity/FixedBuildCont" instance=ExtResource("8_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 500)
-do_transparency = true
 
 [node name="StaticBody3D2" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 500)
@@ -690,14 +540,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 500)
 
 [node name="StaticBody3D4" parent="MidDensity/FixedBuildCont" instance=ExtResource("8_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 500)
-do_transparency = true
 
 [node name="StaticBody3D5" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 500)
 
 [node name="StaticBody3D6" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 500)
-do_transparency = true
 
 [node name="StaticBody3D7" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 500)
@@ -713,7 +561,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, -100)
 
 [node name="StaticBody3D11" parent="MidDensity/FixedBuildCont" instance=ExtResource("8_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -100)
-do_transparency = true
 
 [node name="StaticBody3D12" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -100)
@@ -741,34 +588,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 500)
 
 [node name="StaticBody3D20" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 100)
-do_transparency = true
 
 [node name="StaticBody3D21" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 200)
-do_transparency = true
 
 [node name="StaticBody3D22" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 450)
-do_transparency = true
 
 [node name="StaticBody3D23" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 100)
 
 [node name="StaticBody3D24" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 100)
-do_transparency = true
 
 [node name="StaticBody3D26" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 250)
-do_transparency = true
 
 [node name="StaticBody3D27" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 350)
-do_transparency = true
 
 [node name="StaticBody3D28" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -700, 0, 450)
-do_transparency = true
 
 [node name="StaticBody3D29" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, -100)
@@ -802,7 +642,6 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400,
 
 [node name="StaticBody3D83" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 250)
-do_transparency = true
 
 [node name="StaticBody3D96" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 750)
@@ -810,62 +649,55 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400,
 [node name="StaticBody3D97" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 650)
 
+[node name="InvisibleWall6" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1350, 50, 850)
+
+[node name="InvisibleWall7" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -850, 50, 150)
+
+[node name="InvisibleWall8" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150, 50, 150)
+
+[node name="InvisibleWallSmall2" parent="MidDensity/FixedBuildCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 50, 150)
+
+[node name="InvisibleWall" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150, 50, 850)
+
+[node name="InvisibleWall2" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -150, 50, 850)
+
+[node name="InvisibleWall3" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -450, 50, 850)
+
+[node name="InvisibleWall4" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -750, 50, 850)
+
+[node name="InvisibleWall5" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1050, 50, 850)
+
+[node name="InvisibleWall9" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350, 50, 150)
+
 [node name="FixedPropCont" type="Node3D" parent="MidDensity"]
-visible = false
 
-[node name="MarketStallAmber" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -705, 0, 600)
+[node name="CarRedSide6" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -915, 0, 5)
 
-[node name="MarketStallCyan" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -960, 0, 600)
+[node name="CarRedSide7" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -925, 0, 65)
 
-[node name="MarketStallAmber2" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 600)
+[node name="Bus1Side" parent="MidDensity/FixedPropCont" instance=ExtResource("30_n4o7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 35)
 
-[node name="MarketStallCyan2" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 600)
+[node name="Bus1Side2" parent="MidDensity/FixedPropCont" instance=ExtResource("30_n4o7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145, 0, 70)
 
-[node name="MarketStallAmber3" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 750)
-
-[node name="MarketStallCyan3" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 750)
-
-[node name="MarketStallCyan4" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 750)
-
-[node name="MarketStallAmber4" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 450)
-
-[node name="MarketStallCyan5" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 450)
-
-[node name="MarketStallAmber5" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 300)
-
-[node name="MarketStallCyan6" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 300)
-
-[node name="MarketStallAmber6" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 150)
-
-[node name="MarketStallCyan7" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 150)
-
-[node name="MarketStallAmber7" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 0)
-
-[node name="MarketStallCyan8" parent="MidDensity/FixedPropCont" instance=ExtResource("17_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 0)
-
-[node name="MarketStallAmber8" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
-
-[node name="CarRedSide" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1010, 0, 625)
+[node name="Bus1Up" parent="MidDensity/FixedPropCont" instance=ExtResource("17_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1025, 0, 0)
 
 [node name="CarRedSide2" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 350)
+transform = Transform3D(0.99999243, 0.0029041015, -0.0025920873, -0.0028986775, 0.9999936, 0.0020883428, 0.0025981516, -0.002080793, 0.99999446, 50, 0, 350)
 
 [node name="CarRedSide3" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 550)
@@ -882,87 +714,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235, 0, 420)
 [node name="Bus1Down3" parent="MidDensity/FixedPropCont" instance=ExtResource("21_uu56x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235, 0, 320)
 
-[node name="FenceTemp2" type="Sprite3D" parent="MidDensity/FixedPropCont"]
-transform = Transform3D(-1.0927847e-06, 6.470476, -24.148146, 0, 24.148144, 6.4704757, 24.999998, 2.8283347e-07, -1.0555489e-06, -100, 15, 650)
-texture = ExtResource("7_yacnu")
-
-[node name="InvisibleWallSmall" parent="MidDensity/FixedPropCont/FenceTemp2" instance=ExtResource("12_lrgld")]
-transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933, 0.0038637016, 0, 0, 0)
-
-[node name="FenceTemp3" type="Sprite3D" parent="MidDensity/FixedPropCont"]
-transform = Transform3D(-1.0927847e-06, 6.470476, -24.148146, 0, 24.148144, 6.4704757, 24.999998, 2.8283347e-07, -1.0555489e-06, -100, 15, 750)
-texture = ExtResource("7_yacnu")
-
-[node name="InvisibleWallSmall" parent="MidDensity/FixedPropCont/FenceTemp3" instance=ExtResource("12_lrgld")]
-transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933, 0.0038637016, 0, 0, 0)
-
-[node name="FenceTemp4" type="Sprite3D" parent="MidDensity/FixedPropCont"]
-transform = Transform3D(-1.0927846e-06, -6.470475, 24.148144, 0, 24.148142, 6.470475, -24.999994, 2.828335e-07, -1.055549e-06, -600, 10, 50)
-texture = ExtResource("7_yacnu")
-
-[node name="InvisibleWallSmall" parent="MidDensity/FixedPropCont/FenceTemp4" instance=ExtResource("12_lrgld")]
-transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933, 0.0038637016, 0, 0, 0)
-
-[node name="CarRedDown" parent="MidDensity/FixedPropCont" instance=ExtResource("16_3au38")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 0, 625)
-
-[node name="InvisibleWall" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150, 50, 850)
-
-[node name="InvisibleWall2" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -150, 50, 850)
-
-[node name="InvisibleWall3" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -450, 50, 850)
-
-[node name="InvisibleWall4" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -750, 50, 850)
-
-[node name="InvisibleWall5" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1050, 50, 850)
-
-[node name="InvisibleWall6" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1350, 50, 850)
-
-[node name="InvisibleWall7" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -850, 50, 150)
-
-[node name="InvisibleWall8" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1150, 50, 150)
-
-[node name="InvisibleWall9" parent="MidDensity/FixedPropCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350, 50, 150)
-
-[node name="FenceTemp5" type="Sprite3D" parent="MidDensity/FixedPropCont"]
-transform = Transform3D(-9.463794e-07, 6.470476, 24.148148, 5.463923e-07, 24.14814, -6.4704747, -24.999994, 2.8283353e-07, -1.0555491e-06, -1300, 15, 50)
-texture = ExtResource("7_yacnu")
-
-[node name="InvisibleWallSmall2" parent="MidDensity/FixedPropCont/FenceTemp5" instance=ExtResource("12_lrgld")]
-transform = Transform3D(0.04, 6.119595e-10, 2.342486e-11, -9.050672e-10, 0.027045922, 0.0010352755, 2.220446e-16, -0.0072469315, 0.0038637007, 0, 0, 0)
-
-[node name="CarRedSide6" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -915, 0, 5)
-
-[node name="CarRedSide7" parent="MidDensity/FixedPropCont" instance=ExtResource("18_j7m4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -925, 0, 65)
-
-[node name="Bus1Side" parent="MidDensity/FixedPropCont" instance=ExtResource("30_n4o7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 35)
-
-[node name="InvisibleWallSmall2" parent="MidDensity/FixedPropCont" instance=ExtResource("12_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 50, 150)
-
-[node name="MarketStallAmber9" parent="MidDensity/FixedPropCont" instance=ExtResource("16_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -825, 0, 750)
-
-[node name="Bus1Side2" parent="MidDensity/FixedPropCont" instance=ExtResource("30_n4o7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1145, 0, 70)
-
-[node name="Bus1Up" parent="MidDensity/FixedPropCont" instance=ExtResource("17_fuigj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1025, 0, 0)
-
 [node name="ArrowCont" type="Node3D" parent="MidDensity"]
-visible = false
 
 [node name="ArrowStraight" type="Sprite3D" parent="MidDensity/ArrowCont"]
 transform = Transform3D(3.8822846, -14.488886, -6.3332925e-07, 3.1763734e-21, -6.556707e-07, 14.999999, -14.488886, -3.8822846, -1.6970003e-07, -325, 2, 325)
@@ -1032,5 +784,272 @@ texture = ExtResource("22_uu56x")
 transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -250, 2, 50)
 texture = ExtResource("22_uu56x")
 
-[node name="ForCrowds" type="Node3D" parent="MidDensity"]
-visible = false
+[node name="ForCrowds" type="NavigationRegion3D" parent="MidDensity"]
+navigation_mesh = SubResource("NavigationMesh_vnrk1")
+
+[node name="StaticBody3D3" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 600)
+
+[node name="StaticBody3D4" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 700)
+
+[node name="StaticBody3D5" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 600)
+
+[node name="StaticBody3D6" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 700)
+
+[node name="StaticBody3D7" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 600)
+
+[node name="StaticBody3D8" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 700)
+
+[node name="StaticBody3D9" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 600)
+
+[node name="StaticBody3D10" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 700)
+
+[node name="StaticBody3D11" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 600)
+
+[node name="StaticBody3D12" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 700)
+
+[node name="StaticBody3D13" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 600)
+
+[node name="StaticBody3D14" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 700)
+
+[node name="StaticBody3D15" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 600)
+
+[node name="StaticBody3D16" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 700)
+
+[node name="StaticBody3D17" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 600)
+
+[node name="StaticBody3D18" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 700)
+
+[node name="StaticBody3D19" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 600)
+
+[node name="StaticBody3D20" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 700)
+
+[node name="StaticBody3D21" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 600)
+
+[node name="StaticBody3D22" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 700)
+
+[node name="StaticBody3D23" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 600)
+
+[node name="StaticBody3D24" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 700)
+
+[node name="StaticBody3D25" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 600)
+
+[node name="StaticBody3D26" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 700)
+
+[node name="StaticBody3D" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 500)
+
+[node name="StaticBody3D38" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 500)
+
+[node name="StaticBody3D39" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 500)
+
+[node name="StaticBody3D40" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 500)
+
+[node name="StaticBody3D41" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 500)
+
+[node name="StaticBody3D46" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 400)
+
+[node name="StaticBody3D47" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 400)
+
+[node name="StaticBody3D48" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 400)
+
+[node name="StaticBody3D49" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 400)
+
+[node name="StaticBody3D50" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 400)
+
+[node name="StaticBody3D55" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 300)
+
+[node name="StaticBody3D56" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 300)
+
+[node name="StaticBody3D57" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 300)
+
+[node name="StaticBody3D58" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 300)
+
+[node name="StaticBody3D59" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 300)
+
+[node name="StaticBody3D64" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 200)
+
+[node name="StaticBody3D65" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 200)
+
+[node name="StaticBody3D66" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 200)
+
+[node name="StaticBody3D67" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 200)
+
+[node name="StaticBody3D68" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 200)
+
+[node name="StaticBody3D73" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 100)
+
+[node name="StaticBody3D74" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 100)
+
+[node name="StaticBody3D75" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 100)
+
+[node name="StaticBody3D76" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 100)
+
+[node name="StaticBody3D77" parent="MidDensity/ForCrowds" instance=ExtResource("6_urfa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 100)
+
+[node name="StaticBody3D85" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 0)
+
+[node name="StaticBody3D86" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 0)
+
+[node name="StaticBody3D87" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 0)
+
+[node name="StaticBody3D88" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 0)
+
+[node name="StaticBody3D89" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 0)
+
+[node name="StaticBody3D90" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
+
+[node name="StaticBody3D91" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+
+[node name="StaticBody3D92" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 0)
+
+[node name="StaticBody3D93" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 0)
+
+[node name="StaticBody3D94" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 0)
+
+[node name="StaticBody3D95" parent="MidDensity/ForCrowds" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 0)
+
+[node name="MarketStallAmber" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -705, 0, 600)
+
+[node name="MarketStallCyan" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -960, 0, 600)
+
+[node name="MarketStallAmber2" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 600)
+
+[node name="MarketStallCyan2" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 600)
+
+[node name="MarketStallAmber3" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 750)
+
+[node name="MarketStallCyan3" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, 750)
+
+[node name="MarketStallCyan4" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 750)
+
+[node name="MarketStallAmber4" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 450)
+
+[node name="MarketStallCyan5" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 450)
+
+[node name="MarketStallAmber5" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 300)
+
+[node name="MarketStallCyan6" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 300)
+
+[node name="MarketStallAmber6" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 150)
+
+[node name="MarketStallCyan7" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 150)
+
+[node name="MarketStallAmber7" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 0)
+
+[node name="MarketStallCyan8" parent="MidDensity/ForCrowds" instance=ExtResource("17_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 0)
+
+[node name="MarketStallAmber8" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+
+[node name="CarRedSide" parent="MidDensity/ForCrowds" instance=ExtResource("18_j7m4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1010, 0, 625)
+
+[node name="CarRedDown" parent="MidDensity/ForCrowds" instance=ExtResource("16_3au38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 0, 625)
+
+[node name="MarketStallAmber9" parent="MidDensity/ForCrowds" instance=ExtResource("16_fuigj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -825, 0, 750)
+
+[node name="FenceTemp5" type="Sprite3D" parent="MidDensity/ForCrowds"]
+transform = Transform3D(-9.463794e-07, 6.470476, 24.148148, 5.463923e-07, 24.14814, -6.4704747, -24.999994, 2.8283353e-07, -1.0555491e-06, -1300, 15, 50)
+texture = ExtResource("7_yacnu")
+
+[node name="InvisibleWallSmall2" parent="MidDensity/ForCrowds/FenceTemp5" instance=ExtResource("12_lrgld")]
+transform = Transform3D(0.04, 6.119595e-10, 2.342486e-11, -9.050672e-10, 0.027045922, 0.0010352755, 2.220446e-16, -0.0072469315, 0.0038637007, 0, 0, 0)
+
+[node name="FenceTemp2" type="Sprite3D" parent="MidDensity/ForCrowds"]
+transform = Transform3D(-1.0927847e-06, 6.470476, -24.148146, 0, 24.148144, 6.4704757, 24.999998, 2.8283347e-07, -1.0555489e-06, -100, 15, 650)
+texture = ExtResource("7_yacnu")
+
+[node name="InvisibleWallSmall" parent="MidDensity/ForCrowds/FenceTemp2" instance=ExtResource("12_lrgld")]
+transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933, 0.0038637016, 0, 0, 0)
+
+[node name="FenceTemp3" type="Sprite3D" parent="MidDensity/ForCrowds"]
+transform = Transform3D(-1.0927847e-06, 6.470476, -24.148146, 0, 24.148144, 6.4704757, 24.999998, 2.8283347e-07, -1.0555489e-06, -100, 15, 750)
+texture = ExtResource("7_yacnu")
+
+[node name="InvisibleWallSmall" parent="MidDensity/ForCrowds/FenceTemp3" instance=ExtResource("12_lrgld")]
+transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933, 0.0038637016, 0, 0, 0)
+
+[node name="FenceTemp4" type="Sprite3D" parent="MidDensity/ForCrowds"]
+transform = Transform3D(-1.0927846e-06, -6.470475, 24.148144, 0, 24.148142, 6.470475, -24.999994, 2.828335e-07, -1.055549e-06, -600, 10, 50)
+texture = ExtResource("7_yacnu")
+
+[node name="InvisibleWallSmall" parent="MidDensity/ForCrowds/FenceTemp4" instance=ExtResource("12_lrgld")]
+transform = Transform3D(0.04, 0, 0, 0, 0.02704592, -0.0010352758, 0, 0.007246933, 0.0038637016, 0, 0, 0)
+
+[node name="CrowdsCont" type="Node3D" parent="MidDensity"]
