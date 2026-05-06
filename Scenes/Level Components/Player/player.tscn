@@ -883,7 +883,7 @@ transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
 shaded = true
 alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_c3qbh")
-animation = &"skate_side"
+animation = &"dash_back"
 script = ExtResource("34_dr5kq")
 player_path = NodePath("..")
 stomp_speed = 15.0
@@ -906,6 +906,9 @@ one_shot = true
 one_shot = true
 
 [node name="StompDashMargin" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashAnimationEndTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="StompSound" type="FmodEventEmitter3D" parent="."]

@@ -91,6 +91,8 @@ var stateColors = {
 @export var stomp_resets_air_dash: bool = false
 ## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
 @export var stomp_dash_margin: float = 0.2
+## This minus dash animation time is how long (in seconds) to hold the dash animation after it finishes
+@export var dash_animation_hold_time: float = 0.25
 
 # Glide
 @export_category("Glide")
@@ -182,6 +184,7 @@ func _ready() -> void:
 	$StompWindupTimer.wait_time = windup_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
+	$DashAnimationEndTimer.wait_time = dash_animation_hold_time
 
 func _physics_process(delta: float) -> void:
 	#snap_sprite()
@@ -221,14 +224,15 @@ func process_state(delta: float) -> void:
 				crash()
 			if is_on_floor():
 				velocity.y = 0.0
-			player_sprite.skate_animation()
+			if $DashAnimationEndTimer.is_stopped():
+				player_sprite.skate_animation()
 		States.COYOTE, States.AIR:
 			fall(delta)
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
 			# Play fall if the player is moving downwards
-			if velocity.y < 0.0 and not player_sprite.is_playing_fall:
+			if velocity.y < 0.0 and not player_sprite.is_playing_fall and $DashAnimationEndTimer.is_stopped():
 				player_sprite.play_animation("fall")
 		States.STOMP_WINDUP:
 			# Slow the player down
@@ -304,6 +308,7 @@ func check_state_transitions() -> void:
 				transition_to(States.AIR)
 		States.AIR:
 			if is_on_floor():
+				$DashAnimationEndTimer.stop()
 				transition_to(States.GROUND)
 			elif Input.is_action_just_pressed("ability_stomp"):
 				transition_to(States.STOMP_WINDUP)
@@ -531,6 +536,8 @@ func transition_to(new_state: int) -> void:
 				$DashSound.play()
 				#play dash animation
 				player_sprite.play_animation("dash")
+				# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
+				$DashAnimationEndTimer.start()
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	

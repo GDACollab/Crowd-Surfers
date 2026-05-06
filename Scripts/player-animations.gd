@@ -39,6 +39,7 @@ func skate_animation():
 	else:
 		play_animation("skate")
 
+## Takes the name of an action and selects a specific animation to play
 func play_animation(action: String) -> void:
 	is_playing_fall = action == "fall"
 	var v := player.velocity
@@ -50,6 +51,7 @@ func play_animation(action: String) -> void:
 		flip_h = false
 	play(action + get_animation_dir(v.x, v.z))
 
+## Returns a string to be appended to a base action name to help find the specific animation to play
 func get_animation_dir(x_dir: float, z_dir: float) -> String:
 	if abs(x_dir) > deadzone and abs(z_dir) > deadzone:
 		if z_dir >= 0:
