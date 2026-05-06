@@ -1835,7 +1835,6 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -70, 2.169983, 80)
 
 [node name="WindBoxCollider3" parent="Level Components/Windboxes" instance=ExtResource("32_74y4r")]
 transform = Transform3D(61.514355, 0, 0, 0, 16.22, 0, 0, 0, 61.514355, 3210, -190.89, -350)
-speed = 350.0
 
 [node name="SlowPadCollider" parent="Level Components/Windboxes" instance=ExtResource("39_cnki7")]
 transform = Transform3D(23.325, 0, 0, 0, 23.325, 0, 0, 0, 23.325, 2480, -98.5, -50)
@@ -1953,6 +1952,9 @@ transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 1250
 
 [node name="WindBoxCollider" parent="Level Components/Stairs" instance=ExtResource("58_3tfrk")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 280, 1.4745655, -150)
+boostDirection = Vector3(1, 1, 0)
+boostPower = 1000.0
+speedCap = 1000.0
 
 [node name="Hud" parent="." instance=ExtResource("39_2al6p")]
 

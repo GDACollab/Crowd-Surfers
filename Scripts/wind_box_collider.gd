@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var direction: Vector3 = Vector3(0, 1, 0)
-@export var speed: float = 50.0
+@export var boostDirection: Vector3 = Vector3(0, 1, 0)
+@export var boostPower: float = 50.0
 @export var speedCap: float = 250.0
 var isplayer: bool = false
 var player: CharacterBody3D
@@ -9,10 +9,11 @@ var player: CharacterBody3D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (isplayer):
-		if direction.y != 0:
-			player.transition_to(player.States.AIR)
-		if (player.velocity.dot(direction.normalized()) < speedCap):
-			player.velocity += direction.normalized() * speed
+		if boostDirection.y != 0:
+			player.touched_windbox = true
+		if (player.velocity.length() < speedCap):
+			print("fire")
+			player.velocity += boostDirection.normalized() * boostPower
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	#print(body.name)
