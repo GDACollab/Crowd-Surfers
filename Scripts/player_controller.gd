@@ -140,7 +140,7 @@ func crowd_launch() -> void:
 		velocity.y = yspeed
 		# Play dash sound
 		$DashSound.play()
-		player_sprite.dash_animation(velocity.x, velocity.z)
+		player_sprite.play_animation("dash")
 ## The states that the player can be in
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR, STOMP_CROWD_LAUNCH}
 
@@ -221,13 +221,15 @@ func process_state(delta: float) -> void:
 				crash()
 			if is_on_floor():
 				velocity.y = 0.0
+			player_sprite.skate_animation()
 		States.COYOTE, States.AIR:
 			fall(delta)
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
-			if velocity.y < 0.0:
-				player_sprite.fall_animation(velocity.x, velocity.z)
+			# Play fall if the player is moving downwards
+			if velocity.y < 0.0 and not player_sprite.is_playing_fall:
+				player_sprite.play_animation("fall")
 		States.STOMP_WINDUP:
 			# Slow the player down
 			velocity.x = move_toward(velocity.x, 0.0, stomp_windup_slowdown.x * delta)
@@ -420,15 +422,12 @@ func transition_to(new_state: int) -> void:
 		States.AIR:
 			# Restore friction when leaving the air
 			friction *= 2.0
-			player_sprite.can_play = true
 		States.GLIDE:
 			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
 			# Restore gravity
 			if glide_has_gravity:
 				gravity /= glide_gravity_factor
-			#allows to play other animations
-			player_sprite.can_play = true
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
@@ -461,7 +460,7 @@ func transition_to(new_state: int) -> void:
 				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 				$LandingSound.play()
 		States.STOMP_WINDUP:
-			player_sprite.stomp_animation(velocity.x, velocity.z)
+			player_sprite.play_animation("stomp")
 			# If dash is active as stomp begins, end it
 			$DashCooldownTimer.stop()
 			velocity.y = 0.0
@@ -502,9 +501,7 @@ func transition_to(new_state: int) -> void:
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
-			player_sprite.glide_animation(velocity.x, velocity.z)
-		States.COYOTE:
-			player_sprite.fall_animation(velocity.x, velocity.z)
+			player_sprite.play_animation("glide")
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
@@ -533,7 +530,7 @@ func transition_to(new_state: int) -> void:
 				# Play dash sound
 				$DashSound.play()
 				#play dash animation
-				player_sprite.dash_animation(velocity.x, velocity.z)
+				player_sprite.play_animation("dash")
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	
@@ -546,13 +543,6 @@ func handle_inputs(delta: float) -> void:
 	# Get directional inputs
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	#player_sprite animations
-	#Maybe move this to states? I think it's restarting the animation every frame
-	#player_sprite.play(state_to_string() + "_" + direction_to_string())
-	
-	if input_dir.x > 0: player_sprite.flip_h = false #sprite "faces" right
-	if input_dir.x < 0: player_sprite.flip_h = true #sprite flips and "faces" left
 
 	# if the player stops moving reset the current speed
 	if(velocity == Vector3.ZERO): 
@@ -587,7 +577,7 @@ func handle_inputs(delta: float) -> void:
 
 ## Give the player upwards velocity
 func jump() -> void:
-	player_sprite.jump_animation(velocity.x, velocity.z)
+	player_sprite.play_animation("jump")
 	velocity.y = jump_speed
 	$JumpSound.play()
 	#Hijacking this to add a check for if you jump off a moving car
