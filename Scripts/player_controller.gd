@@ -169,6 +169,7 @@ var can_air_dash: bool = true
 var can_glide: bool = true
 var player_height : float
 var floor_sound_material: String
+var touched_windbox: bool = false
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -294,6 +295,9 @@ func check_state_transitions() -> void:
 			elif not is_on_floor():
 				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
+			elif touched_windbox:
+				touched_windbox = false
+				transition_to(States.AIR)
 		States.COYOTE:
 			if is_on_floor():
 				transition_to(States.GROUND)
