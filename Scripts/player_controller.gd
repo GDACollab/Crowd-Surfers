@@ -76,6 +76,8 @@ var stateColors = {
 #@export var stomp_resets_air_dash: bool = false
 ## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
 #@export var stomp_dash_margin: float = 0.2
+## Multiplier on gravity while in the stomp fall state
+@export var stomp_gravity_multiplier: float = 3
 
 # Dash
 @export_category("Dash")
@@ -624,6 +626,8 @@ func fall(delta: float) -> void:
 			gravity_effect = jump_gravity
 		elif Input.is_action_just_released("move_jump") and velocity.y >= jump_end_speed:
 			velocity.y = jump_end_speed
+	if current_state == States.STOMP_FALL : 
+		gravity_effect *= stomp_gravity_multiplier
 	velocity += gravity_effect * Vector3.DOWN * delta
 	
 ## Applies penalty when crashing into a wall
