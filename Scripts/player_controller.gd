@@ -230,7 +230,7 @@ func process_state(delta: float) -> void:
 			if not player_sprite.current_animation == "crash":
 				if $DashAnimationEndTimer.is_stopped():
 					if velocity.length() > 0.0:
-						player_sprite.play_animation("skate")
+						player_sprite.play_animation("skate", true)
 					else:
 						player_sprite.play_idle_animation()
 		States.COYOTE, States.AIR:
@@ -243,7 +243,7 @@ func process_state(delta: float) -> void:
 			 and $DashAnimationEndTimer.is_stopped()\
 			 and not player_sprite.current_animation == "fall"\
 			 and not player_sprite.current_animation == "crash":
-				player_sprite.play_animation("fall")
+				player_sprite.play_animation("fall", true)
 		States.STOMP_WINDUP:
 			# Slow the player down
 			velocity.x = move_toward(velocity.x, 0.0, stomp_windup_slowdown.x * delta)
@@ -279,7 +279,7 @@ func process_state(delta: float) -> void:
 			if is_on_wall():
 				crash()
 			# Play glide animation
-			player_sprite.play_animation("glide")
+			player_sprite.play_animation("glide", true)
 		States.STOMP_CROWD_LAUNCH:
 			fall(delta)
 			handle_inputs(delta)

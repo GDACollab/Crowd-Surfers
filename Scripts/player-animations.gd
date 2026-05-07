@@ -6,6 +6,10 @@ extends AnimatedSprite3D
 @export var stomp_speed: float = 5.0 
 @onready var player: CharacterBody3D = get_node(player_path)
 
+# Track the last animation played before changing so we can handle looping animations correctly
+func _on_animation_changed() -> void:
+	last_animation = current_animation
+
 func _on_animation_finished() -> void:
 	# Effectively, state machine in null state until a new animation is played
 	current_animation = ""
@@ -14,6 +18,8 @@ func _on_animation_finished() -> void:
 var prev_flip_h := false
 ## A string identifying the currently playing animation
 var current_animation: String = ""
+## A string identifying the last animation played
+var last_animation: String = ""
 
 func _ready() -> void:
 	set_speeds()
@@ -48,14 +54,23 @@ func play_idle_animation():
 		play(idle_anim_name)
 
 ## Takes the name of an action and selects a specific animation to play
-func play_animation(action: String) -> void:
+func play_animation(action: String, continue_animation: bool = false) -> void:
 	var v := player.velocity
 	
 	# Unflip Slip if they are moving (neutral animation: front or back)
 	if v.x == 0.0:
 		flip_h = false
 	current_animation = action
+	
+	var current_frame := 0
+	var current_progress := 0.0
+	# Save progress if we are continuing an animation type
+	if continue_animation and last_animation == current_animation:
+		current_frame = frame
+		current_progress = frame_progress
+		
 	play(action + get_animation_dir(v.x, v.z))
+	set_frame_and_progress(current_frame, current_progress)
 
 ## Returns a string to be appended to a base action name to help find the specific animation to play
 func get_animation_dir(x_dir: float, z_dir: float) -> String:
