@@ -13,7 +13,8 @@ func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
 	if tripped_player: 
 		return
 	if player.get_node('AnimatedSprite3D'):
-		player.player_sprite.crash_animation()
+		player.player_sprite.play_animation("crash")
+		player.is_playing_crash = true
 	player.velocity *= speed_decrease_factor
 	tripped_player = true
 	set_process(true)

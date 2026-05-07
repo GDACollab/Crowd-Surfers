@@ -115,6 +115,10 @@ var stateColors = {
 @export var shadow_lift: float = 1.5             # your +1.5 offset
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
+func _on_animated_sprite_3d_animation_finished() -> void:
+	# So that repeatedly-called animations know to wait until the crash anim is done
+	is_playing_crash = false
+
 func _on_stomp_dash_margin_timeout() -> void:
 	stomp_boost = 0.0
 	max_speed_before_stomp = starting_speed
@@ -170,6 +174,7 @@ var can_glide: bool = true
 var player_height : float
 var floor_sound_material: String
 var touched_windbox: bool = false
+var is_playing_crash: bool = false
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -225,18 +230,19 @@ func process_state(delta: float) -> void:
 				crash()
 			if is_on_floor():
 				velocity.y = 0.0
-			if $DashAnimationEndTimer.is_stopped():
-				if velocity.length() > 0.0:
-					player_sprite.play_animation("skate")
-				else:
-					player_sprite.play_idle_animation()
+			if not is_playing_crash:
+				if $DashAnimationEndTimer.is_stopped():
+					if velocity.length() > 0.0:
+						player_sprite.play_animation("skate")
+					else:
+						player_sprite.play_idle_animation()
 		States.COYOTE, States.AIR:
 			fall(delta)
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
 			# Play fall if the player is moving downwards
-			if velocity.y < 0.0 and not player_sprite.is_playing_fall and $DashAnimationEndTimer.is_stopped():
+			if velocity.y < 0.0 and not player_sprite.is_playing_fall and $DashAnimationEndTimer.is_stopped() and not is_playing_crash:
 				player_sprite.play_animation("fall")
 		States.STOMP_WINDUP:
 			# Slow the player down
