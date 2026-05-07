@@ -115,10 +115,6 @@ var stateColors = {
 @export var shadow_lift: float = 1.5             # your +1.5 offset
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
-func _on_animated_sprite_3d_animation_finished() -> void:
-	# So that repeatedly-called animations know to wait until the crash anim is done
-	is_playing_crash = false
-
 func _on_stomp_dash_margin_timeout() -> void:
 	stomp_boost = 0.0
 	max_speed_before_stomp = starting_speed
@@ -147,6 +143,7 @@ func crowd_launch() -> void:
 		# Play dash sound
 		$DashSound.play()
 		player_sprite.play_animation("dash")
+
 ## The states that the player can be in
 enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GROUND, DASH_AIR, STOMP_CROWD_LAUNCH}
 
@@ -230,7 +227,7 @@ func process_state(delta: float) -> void:
 				crash()
 			if is_on_floor():
 				velocity.y = 0.0
-			if not is_playing_crash:
+			if not player_sprite.current_animation == "crash":
 				if $DashAnimationEndTimer.is_stopped():
 					if velocity.length() > 0.0:
 						player_sprite.play_animation("skate")
@@ -242,7 +239,10 @@ func process_state(delta: float) -> void:
 			if is_on_wall():
 				crash()
 			# Play fall if the player is moving downwards
-			if velocity.y < 0.0 and not player_sprite.is_playing_fall and $DashAnimationEndTimer.is_stopped() and not is_playing_crash:
+			if velocity.y < 0\
+			 and $DashAnimationEndTimer.is_stopped()\
+			 and not player_sprite.current_animation == "fall"\
+			 and not player_sprite.current_animation == "crash":
 				player_sprite.play_animation("fall")
 		States.STOMP_WINDUP:
 			# Slow the player down
@@ -638,20 +638,11 @@ func fall(delta: float) -> void:
 			velocity.y = jump_end_speed
 	velocity += gravity_effect * Vector3.DOWN * delta
 	
-## Applies penalty when crashing into a wall
+## Bumps the player off a wall when hitting it
 func crash() -> void:
-	pass
-	#max_speed = max(ramping_cap / crash_penalty_mult, starting_speed)
-	# Reset velocity components based on the wall that the player hit
-	#var wall_normal := get_wall_normal()
-	#var dir := velocity.normalized()
-	#max_speed /= crash_penalty_mult
-	
-	# Components of the player's velocity which were going into the wall are 0 in this vector,
-	# while components which didn't go into the wall are 1 in this vector
-	#dir += wall_normal
-	# Multiplying like this preserves directions where the player didn't hit the wall
-	#velocity = Vector3(dir.x * velocity.x, velocity.y, dir.z * velocity.z)
+	var wall_normal := get_wall_normal()
+	velocity += 50.0 * wall_normal
+	player_sprite.play_animation("crash")
 
 ## Checks player's current height
 func check_height() -> void:

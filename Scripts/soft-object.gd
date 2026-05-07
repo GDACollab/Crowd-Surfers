@@ -8,8 +8,6 @@ extends Node3D
 var tripped_player: bool = false
 
 func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
-	if player is not Player:
-		return
 	if tripped_player: 
 		return
 	if player.get_node('AnimatedSprite3D'):

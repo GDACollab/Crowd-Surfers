@@ -6,10 +6,14 @@ extends AnimatedSprite3D
 @export var stomp_speed: float = 5.0 
 @onready var player: CharacterBody3D = get_node(player_path)
 
+func _on_animation_finished() -> void:
+	# Effectively, state machine in null state until a new animation is played
+	current_animation = ""
+
 ## The horizontal flipping of the player animation before a neutral front/back animation is played
 var prev_flip_h := false
-## Is the fall animation already playing?
-var is_playing_fall := false
+## A string identifying the currently playing animation
+var current_animation: String = ""
 
 func _ready() -> void:
 	set_speeds()
@@ -38,18 +42,19 @@ func play_idle_animation():
 		# This is for jumping in-place. Slip will face the same direction they did before jumping
 		# Neutral animations shut off the flipping, so we need to use whatever the flip was before
 		# the animation
+		const idle_anim_name := "idle"
 		flip_h = prev_flip_h
-		play("idle")
+		current_animation = idle_anim_name
+		play(idle_anim_name)
 
 ## Takes the name of an action and selects a specific animation to play
 func play_animation(action: String) -> void:
-	is_playing_fall = action == "fall"
 	var v := player.velocity
 	
 	# Unflip Slip if they are moving (neutral animation: front or back)
 	if v.x == 0.0:
 		flip_h = false
-
+	current_animation = action
 	play(action + get_animation_dir(v.x, v.z))
 
 ## Returns a string to be appended to a base action name to help find the specific animation to play

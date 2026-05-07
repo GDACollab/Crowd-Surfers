@@ -883,7 +883,7 @@ transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
 shaded = true
 alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_c3qbh")
-animation = &"stomp_back"
+animation = &"crash_back"
 script = ExtResource("34_dr5kq")
 player_path = NodePath("..")
 stomp_speed = 15.0
@@ -975,4 +975,4 @@ spot_angle = 7.0
 
 [node name="TransparencyRegion" type="Node3D" parent="."]
 
-[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_finished"]
