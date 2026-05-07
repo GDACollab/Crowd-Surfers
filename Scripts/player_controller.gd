@@ -226,7 +226,10 @@ func process_state(delta: float) -> void:
 			if is_on_floor():
 				velocity.y = 0.0
 			if $DashAnimationEndTimer.is_stopped():
-				player_sprite.skate_animation()
+				if velocity.length() > 0.0:
+					player_sprite.play_animation("skate")
+				else:
+					player_sprite.play_idle_animation()
 		States.COYOTE, States.AIR:
 			fall(delta)
 			handle_inputs(delta)
@@ -522,26 +525,27 @@ func transition_to(new_state: int) -> void:
 				dash_start_pos = position
 				# Get directional inputs
 				var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-				dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-				# Ensure speed is at least min_dash_speed and apply stomp_boost
-				# The timer handles resetting these values to 0
-				dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, speed_before_stomp) + stomp_boost
-				max_speed = max(max_speed, max_speed_before_stomp)
-				# If you successfully stomp-dash, retain your speed
-				if not $StompDashMargin.is_stopped():
-					#speed_before_dashing = dash_speed
-					max_speed = min(max_speed+stomp_boost,ramping_cap)
-					new_state = States.DASH_AIR
-				# Apply dash to xz-direction and ignore y component of velocity
-				var yspeed := velocity.y
-				velocity = dash_dir * dash_speed
-				velocity.y = yspeed
+				# Don't do any of this logic if the player didn't provide an input with the dash
+				if input_dir != Vector2.ZERO:
+					dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+					# Ensure speed is at least min_dash_speed and apply stomp_boost
+					# The timer handles resetting these values to 0
+					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, speed_before_stomp) + stomp_boost
+					max_speed = max(max_speed, max_speed_before_stomp)
+					# If you successfully stomp-dash, retain your speed
+					if not $StompDashMargin.is_stopped():
+						max_speed = min(max_speed+stomp_boost,ramping_cap)
+						new_state = States.DASH_AIR
+					# Apply dash to xz-direction and ignore y component of velocity
+					var yspeed := velocity.y
+					velocity = dash_dir * dash_speed
+					velocity.y = yspeed
+					#play dash animation
+					player_sprite.play_animation("dash")
+					# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
+					$DashAnimationEndTimer.start()
 				# Play dash sound
 				$DashSound.play()
-				#play dash animation
-				player_sprite.play_animation("dash")
-				# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
-				$DashAnimationEndTimer.start()
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	

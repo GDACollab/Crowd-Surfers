@@ -26,8 +26,8 @@ func set_speeds():
 	sprite_frames.set_animation_speed('stomp_front_side',stomp_speed)
 	sprite_frames.set_animation_speed('stomp_side',stomp_speed)
 
-## Handles special logic for playing the skate animation or the idle
-func skate_animation():
+## Handles special logic for playing the idle animation
+func play_idle_animation():
 	var v := player.velocity
 	if abs(v.x) < deadzone and abs(v.z) < deadzone:
 		speed_scale = 1.0
@@ -35,9 +35,7 @@ func skate_animation():
 		# Neutral animations shut off the flipping, so we need to use whatever the flip was before
 		# the animation
 		flip_h = prev_flip_h
-		play("skate_idle")
-	else:
-		play_animation("skate")
+		play("idle")
 
 ## Takes the name of an action and selects a specific animation to play
 func play_animation(action: String) -> void:

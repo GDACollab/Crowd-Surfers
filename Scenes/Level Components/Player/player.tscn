@@ -564,6 +564,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("14_4d56n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dr5kq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("77_kf3bj")
 }, {
 "duration": 1.0,
@@ -726,17 +737,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_4d56n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_dr5kq")
-}],
-"loop": true,
-"name": &"skate_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("133_kf3bj")
 }, {
 "duration": 1.0,
@@ -883,8 +883,7 @@ transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
 shaded = true
 alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_c3qbh")
-animation = &"skate_front_side"
-frame_progress = 0.65440184
+animation = &"idle"
 script = ExtResource("34_dr5kq")
 player_path = NodePath("..")
 stomp_speed = 15.0
