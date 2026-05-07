@@ -10,9 +10,11 @@ var tripped_player: bool = false
 func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
 	if tripped_player: 
 		return
-	if player.get_node('AnimatedSprite3D'):
-		player.player_sprite.play_animation("crash")
-		player.is_playing_crash = true
+	# EXECUTIVE DECISION: I don't like how the crash animation looks with soft objects
+	# and I think it deserves its own dedicated animation, but we don't have time!
+	# - Quincy
+	#if player.get_node('AnimatedSprite3D'):
+		#player.player_sprite.play_animation("crash")
 	player.velocity *= speed_decrease_factor
 	tripped_player = true
 	set_process(true)
