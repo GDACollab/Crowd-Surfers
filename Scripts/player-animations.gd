@@ -31,6 +31,9 @@ func _process(_delta: float) -> void:
 	if v.x != 0.0:
 		prev_flip_h = flip_h
 		flip_h = v.x < 0.0
+		# Crash animations are reversed
+		if current_animation == "crash":
+			flip_h = not flip_h
 
 func set_speeds():
 	#stomp speeds
