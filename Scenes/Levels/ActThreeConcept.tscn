@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://boaamtpsale8k"]
+[gd_scene load_steps=28 format=3 uid="uid://boaamtpsale8k"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="9_6qom4"]
 [ext_resource type="PackedScene" uid="uid://dppmk1krlgcb1" path="res://Scenes/Level Components/Objects/invisible_right_triangle_flipped_wall.tscn" id="15_4ve0p"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="16_i7rp3"]
+[ext_resource type="PackedScene" uid="uid://db516tknh4vq0" path="res://Scenes/Level Components/SpecialObjects/BoostPad/BoostPad.tscn" id="16_mdont"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="17_0y6fi"]
 [ext_resource type="PackedScene" uid="uid://tghcf3lwvxj8" path="res://Scenes/Level Components/Objects/waymo-confused-down.tscn" id="18_n1c53"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="19_yolw6"]
@@ -1023,6 +1024,12 @@ transform = Transform3D(0.30901697, 0, 0.95105654, 0, 1, 0, -0.95105654, 0, 0.30
 transform = Transform3D(0.30901694, 0, 0.9510565, 0, 1, 0, -0.9510565, 0, 0.30901694, -69.48674, 0, 189.50822)
 
 [node name="DecorationsGroup" type="Node3D" parent="."]
+
+[node name="AlleyWayPads" type="Node3D" parent="DecorationsGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -766, 0, 535)
+
+[node name="StaticBody3D" parent="DecorationsGroup/AlleyWayPads" instance=ExtResource("16_mdont")]
+transform = Transform3D(0.35069692, 0, 0.71903527, 0, 1, 0, -0.71903527, 0, 0.35069692, -57.999573, -0.49, 56.999634)
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
