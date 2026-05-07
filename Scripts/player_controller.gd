@@ -172,6 +172,7 @@ var player_height : float
 var floor_sound_material: String
 var touched_windbox: bool = false
 var is_playing_crash: bool = false
+var prev_velocity: Vector3
 
 ## The current state the player is in
 var current_state: int = States.GROUND
@@ -193,6 +194,7 @@ func _physics_process(delta: float) -> void:
 	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
+	prev_velocity = velocity
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -641,8 +643,11 @@ func fall(delta: float) -> void:
 ## Bumps the player off a wall when hitting it
 func crash() -> void:
 	var wall_normal := get_wall_normal()
-	velocity += 50.0 * wall_normal
-	player_sprite.play_animation("crash")
+	var speed_into_wall:float = abs(prev_velocity.dot(wall_normal))
+	if speed_into_wall >= 75.0:
+		print(speed_into_wall)
+		velocity += 15.0 * log(speed_into_wall) * wall_normal
+		player_sprite.play_animation("crash")
 
 ## Checks player's current height
 func check_height() -> void:
