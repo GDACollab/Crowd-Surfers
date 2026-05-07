@@ -62,21 +62,17 @@ filter_walkable_low_height_spans = true
 
 [node name="Camera3D" parent="." instance=ExtResource("1_ihe6m")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -1517.1855, 120.806206, -413.69275)
-visible = false
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
 
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_q74j5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1500, 0, -475)
-visible = false
 
 [node name="Light" parent="." instance=ExtResource("4_3q2qt")]
 transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -7.305547e-08, 0.7071068, -0.37470946, 0.8480481, 0.3747096, -507.29907, 0, -1493.9137)
-visible = false
 light_specular = 0.0
 
 [node name="MidDensityStart" type="Node3D" parent="."]
@@ -121,7 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -50)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -450, 0, 200)
 
 [node name="StaticBody3D15" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, -150)
 
 [node name="StaticBody3D16" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -1000, 0, 350)
@@ -147,6 +143,9 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -200
 [node name="StaticBody3D22" parent="MidDensityStart/BuildCont" instance=ExtResource("9_urfa4")]
 transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -100, 0, 250)
 
+[node name="InvisibleWallSmall" parent="MidDensityStart/BuildCont" instance=ExtResource("12_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 50, 0)
+
 [node name="InteractionContStart" type="Node3D" parent="MidDensityStart"]
 
 [node name="WindBoxCollider2" parent="MidDensityStart/InteractionContStart" instance=ExtResource("5_3q2qt")]
@@ -162,7 +161,7 @@ transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -185
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -245, 2, 85)
 
 [node name="Banana4" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
-transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -340, 2, 35)
+transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -385, 2, 20)
 
 [node name="Banana5" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -435, 2, 95)
@@ -1059,20 +1058,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1575, 0, -450)
 [node name="Crowd" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1480, 8, -425)
 debug = true
-circum = 40.0
-crowd_size = 15
-route = Array[Vector3]([Vector3(-1480, 8, -425), Vector3(-1525, 8, -425), Vector3(-1480, 8, -225), Vector3(-1535, 8, -225)])
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-1480, 8, -425), Vector3(-1475, 8, -230), Vector3(-1525, 8, -230), Vector3(-1525, 8, -425)])
 
 [node name="Crowd2" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1525, 8, -225)
 debug = true
-circum = 40.0
-crowd_size = 15
-route = Array[Vector3]([Vector3(-1525, 8, -225), Vector3(-1470, 8, -225), Vector3(-1525, 8, -425), Vector3(-1480, 8, -425)])
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-1525, 8, -225), Vector3(-1525, 8, -420), Vector3(-1475, 8, -420), Vector3(-1475, 8, -225)])
 
 [node name="Crowd3" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1520, 8, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1515, 8, -25)
 debug = true
-circum = 40.0
-crowd_size = 15
-route = Array[Vector3]([Vector3(-1520, 8, -25), Vector3(-1345, 8, 95), Vector3(-1415, 8, 200)])
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-1515, 8, -25), Vector3(-1485, 8, -25)])
+
+[node name="Crowd4" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1350, 8, 95)
+debug = true
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-1350, 8, 95)])
