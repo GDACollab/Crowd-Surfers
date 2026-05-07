@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ba21dgon6j7ye"]
+[gd_scene load_steps=33 format=3 uid="uid://ba21dgon6j7ye"]
 
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="1_7f610"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_ks18i"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="3_3cdw4"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="3_pooii"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="4_vxxiv"]
+[ext_resource type="PackedScene" uid="uid://84b01iwmitg6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="5_24gi7"]
 [ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="5_dcvrr"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="6_im3sx"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="8_im3sx"]
@@ -51,6 +52,9 @@ offset = Vector3(0, 1000, 1000)
 [node name="Hud" parent="." instance=ExtResource("3_pooii")]
 
 [node name="PauseHolder" parent="." instance=ExtResource("3_3cdw4")]
+
+[node name="WindBoxCollider" parent="." instance=ExtResource("5_24gi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225, 0.01, 185)
 
 [node name="Player" parent="." instance=ExtResource("1_quug7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235.56013, 28.71975, 445.21405)
