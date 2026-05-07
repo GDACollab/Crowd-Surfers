@@ -278,6 +278,8 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_wall():
 				crash()
+			# Play glide animation
+			player_sprite.play_animation("glide")
 		States.STOMP_CROWD_LAUNCH:
 			fall(delta)
 			handle_inputs(delta)
@@ -519,7 +521,6 @@ func transition_to(new_state: int) -> void:
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
-			player_sprite.play_animation("glide")
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0

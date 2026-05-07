@@ -17,6 +17,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var v := player.velocity
 	speed_scale = 0.5 + v.length() / 125.0
+	# Flip Slip's sprite if they are moving right
+	if v.x != 0.0:
+		prev_flip_h = flip_h
+		flip_h = v.x < 0.0
 
 func set_speeds():
 	#stomp speeds
@@ -41,12 +45,11 @@ func play_idle_animation():
 func play_animation(action: String) -> void:
 	is_playing_fall = action == "fall"
 	var v := player.velocity
-	# Only flip sprite if slip is moving right
-	if abs(v.x) > deadzone:
-		prev_flip_h = flip_h
-		flip_h = v.x < 0
-	else:
+	
+	# Unflip Slip if they are moving (neutral animation: front or back)
+	if v.x == 0.0:
 		flip_h = false
+
 	play(action + get_animation_dir(v.x, v.z))
 
 ## Returns a string to be appended to a base action name to help find the specific animation to play
