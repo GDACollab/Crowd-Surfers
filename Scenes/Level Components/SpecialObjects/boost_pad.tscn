@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://84b01iwmitg6"]
+
+[ext_resource type="Script" uid="uid://df1k8ebao2g3p" path="res://Scripts/wind_box_collider.gd" id="1_8swyf"]
+[ext_resource type="Texture2D" uid="uid://ci5vskxiio2h7" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS BoostPad S6/Boost_Pad_S6.png" id="2_8swyf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
+
+[node name="WindBoxCollider" type="Node3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+script = ExtResource("1_8swyf")
+boostDirection = Vector3(1, 0.3, 0)
+boostPower = 300.0
+speedCap = 300.0
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_elp6e")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 0.2, 0, -1, -8.742278e-09, 0, 0, 0)
+texture = ExtResource("2_8swyf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
