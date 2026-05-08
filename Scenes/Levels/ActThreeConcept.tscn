@@ -1006,6 +1006,12 @@ transform = Transform3D(0.34202015, 0, 0.18793853, 0, 1, 0, -0.9396926, 0, 0.068
 [node name="StaticBody3D3" parent="DecorationsGroup/AlleywayDecorations/AlleyWayObstacles" instance=ExtResource("35_lkdh3")]
 transform = Transform3D(0.34202015, 0, 0.18793853, 0, 1, 0, -0.9396926, 0, 0.068404034, -328.4712, 100, -377.5159)
 
+[node name="Bus1Full" parent="DecorationsGroup/AlleywayDecorations/AlleyWayObstacles" instance=ExtResource("46_22qtl")]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, -348.72922, 100, -495.3556)
+
+[node name="WaymoEvilDown" parent="DecorationsGroup/AlleywayDecorations/AlleyWayObstacles" instance=ExtResource("47_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -405, 100, -355)
+
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
 
@@ -1133,13 +1139,8 @@ crowd_size = 10
 route = Array[Vector3]([Vector3(-40, 0, -195), Vector3(-40, 0, -10), Vector3(135, 0, -195), Vector3(135, 0, -10)])
 
 [node name="CrowdCrossWalk3" parent="." instance=ExtResource("44_rbx1u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1, -100)
-circum = 15.0
-crowd_size = 16
-route = Array[Vector3]([Vector3(-30, 0, -220), Vector3(55, 0, -350), Vector3(140, 0, -285), Vector3(55, 0, -490), Vector3(-40, 0, -575), Vector3(120, 0, -580), Vector3(-25, 0, -405)])
-
-[node name="Bus1Full" parent="." instance=ExtResource("46_22qtl")]
-transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, -348.72922, 100, -495.3556)
-
-[node name="WaymoEvilDown" parent="." instance=ExtResource("47_0swl4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -405, 100, -355)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 11, 145)
+circum = 20.0
+crowd_size = 30
+max_speed = 50.0
+route = Array[Vector3]([Vector3(50, 0, -560), Vector3(120, 0, -465), Vector3(-30, 0, -235), Vector3(115, 0, -25)])
