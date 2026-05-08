@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=46 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="9_6qom4"]
 [ext_resource type="PackedScene" uid="uid://brqtqcecl1h5q" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile1.tscn" id="9_fwpc1"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="16_i7rp3"]
-[ext_resource type="PackedScene" uid="uid://84b01iwmitg6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="16_mdont"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="17_0y6fi"]
 [ext_resource type="PackedScene" uid="uid://3d36f81nhl1k" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/WallCornerLeft.tscn" id="17_w208b"]
 [ext_resource type="PackedScene" uid="uid://c5td8tjkpdpii" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/TunnelWithRoad.tscn" id="18_fwpc1"]
@@ -959,9 +958,6 @@ visible = false
 
 [node name="AlleyWayInteractives" type="Node3D" parent="DecorationsGroup/AlleywayDecorations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -404, 0, 41)
-
-[node name="BoostPad" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("16_mdont")]
-transform = Transform3D(0.35069692, 0, 0.71903527, 0, 1, 0, -0.71903527, 0, 0.35069692, -74.829384, 0.01, 96.759)
 
 [node name="TarPuddle" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("18_grgm4")]
 transform = Transform3D(0.12678547, 0, 0.27189237, 0, 0.3, 0, -0.27189237, 0, 0.12678547, 15.047047, 1, -106.58697)
