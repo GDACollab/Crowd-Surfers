@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="7_jyobe"]
 [ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/BananaPeel.tscn" id="7_w268i"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="8_lrgld"]
+[ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="9_7ri18"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="9_urfa4"]
+[ext_resource type="Texture2D" uid="uid://ck8qtl483el4c" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Turn S6.png" id="10_7omum"]
 [ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_lrgld"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="16_3au38"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="16_fuigj"]
@@ -19,8 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="19_r4iu2"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="20_xe2bc"]
 [ext_resource type="PackedScene" uid="uid://bsfl8ygkejn3w" path="res://Scenes/Level Components/Objects/bus-1-down.tscn" id="21_uu56x"]
-[ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="22_uu56x"]
-[ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="23_5m2at"]
 [ext_resource type="PackedScene" uid="uid://b6kkjvxxrm5qh" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile1.tscn" id="23_te41h"]
 [ext_resource type="PackedScene" uid="uid://dc3rcuwcooube" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile2.tscn" id="24_rkfye"]
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="24_w268i"]
@@ -159,10 +159,10 @@ transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06,
 transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06, -575, 2, 175)
 
 [node name="Banana2" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
-transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -185, 2, 25)
+transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -185, 2, 55)
 
 [node name="Banana3" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
-transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -245, 2, 85)
+transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -245, 2, 45)
 
 [node name="Banana4" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -385, 2, 20)
@@ -171,7 +171,7 @@ transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -385
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -435, 2, 95)
 
 [node name="Banana6" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
-transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -575, 2, 25)
+transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -585, 2, 30)
 
 [node name="Banana7" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -685, 2, 200)
@@ -191,28 +191,28 @@ transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -121
 [node name="ArrowCont" type="Node3D" parent="MidDensityStart"]
 
 [node name="ArrowStraight" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -139.65024, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -139.65024, 2, 50)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight3" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -689.65027, 2, 150)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -689.65027, 2, 150)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight4" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -889.65027, 2, 150)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -889.65027, 2, 150)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowCurve" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -1083.9802, 2, 150)
-texture = ExtResource("23_5m2at")
+transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -1123.9802, 2, 150)
+texture = ExtResource("10_7omum")
 
 [node name="ArrowCurve2" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -533.9802, 2, 50)
-texture = ExtResource("23_5m2at")
+transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -543.9802, 2, 50)
+texture = ExtResource("10_7omum")
 
 [node name="ArrowStraight2" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
-transform = Transform3D(-14.999999, 1.3113415e-06, -5.732055e-14, -3.1763734e-21, -6.5567076e-07, -14.999999, -1.3113415e-06, -14.999999, 6.5567076e-07, -339.65024, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -339.65024, 2, 50)
+texture = ExtResource("9_7ri18")
 
 [node name="MidDensity" type="Node3D" parent="."]
 
@@ -249,7 +249,7 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -175, 2, 685)
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -470, 2, 35)
 
 [node name="Banana19" parent="MidDensity/InteractionCont" instance=ExtResource("7_w268i")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -315, 2, 70)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -395, 2, 70)
 
 [node name="Banana20" parent="MidDensity/InteractionCont" instance=ExtResource("7_w268i")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -165, 2, 90)
@@ -608,72 +608,72 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235, 0, 320)
 [node name="ArrowCont" type="Node3D" parent="MidDensity"]
 
 [node name="ArrowStraight" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(3.8822846, -14.488886, -6.3332925e-07, 3.1763734e-21, -6.556707e-07, 14.999999, -14.488886, -3.8822846, -1.6970003e-07, -325, 2, 325)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(14.488886, 3.8822854, 1.6970006e-07, 1.3792648e-14, -6.5567076e-07, 14.999999, 3.8822854, -14.488886, -6.333293e-07, -325, 2, 315)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight2" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(3.8822846, -14.488886, -6.3332925e-07, 3.1763734e-21, -6.556707e-07, 14.999999, -14.488886, -3.8822846, -1.6970003e-07, -350, 2, 500)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(14.488886, 3.8822854, 1.6970006e-07, 1.3792648e-14, -6.5567076e-07, 14.999999, 3.8822854, -14.488886, -6.333293e-07, -350, 2, 490)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight3" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -1100, 2, 700)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -1100, 2, 700)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight4" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -825, 2, 700)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -825, 2, 700)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight5" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -600, 2, 700)
-texture = ExtResource("22_uu56x")
-
-[node name="ArrowRound" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, -1.1368684e-13, -1.1464115e-13, -1.1464111e-13, 1.9670124e-06, -14.999999, 1.1368684e-13, 14.999999, 1.9670124e-06, -425, 2, 700)
-texture = ExtResource("23_5m2at")
-
-[node name="ArrowRound2" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, -1.1368684e-13, -1.1464115e-13, -1.1464111e-13, 1.9670124e-06, -14.999999, 1.1368684e-13, 14.999999, 1.9670124e-06, 75, 2, 700)
-texture = ExtResource("23_5m2at")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -600, 2, 700)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight6" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(-6.5567076e-07, -14.999999, -6.556707e-07, 0, -6.556707e-07, 14.999999, -14.999999, 6.5567076e-07, 2.8660278e-14, 150, 2, 500)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, 150, 2, 470)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight7" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(-6.5567076e-07, -14.999999, -6.556707e-07, 0, -6.556707e-07, 14.999999, -14.999999, 6.5567076e-07, 2.8660278e-14, 150, 2, 325)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, 150, 2, 325)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight8" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(-6.5567076e-07, -14.999999, -6.556707e-07, 0, -6.556707e-07, 14.999999, -14.999999, 6.5567076e-07, 2.8660278e-14, 150, 2, 175)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, 150, 2, 170)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight9" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -100, 2, 350)
-texture = ExtResource("22_uu56x")
-
-[node name="ArrowRound3" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(3.8822846, -14.488886, -6.3332965e-07, 1.146411e-13, -6.5567104e-07, 14.999999, -14.488886, -3.8822846, -1.6970002e-07, -300, 2, 175)
-texture = ExtResource("23_5m2at")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -130, 2, 350)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight10" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -50, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -50, 2, 50)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight11" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, 200, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, 200, 2, 50)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight12" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, 425, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, 425, 2, 50)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight13" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -500, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -500, 2, 50)
+texture = ExtResource("9_7ri18")
 
 [node name="ArrowStraight14" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(14.999999, 5.684342e-14, -3.3881318e-21, 3.1763731e-21, -6.556707e-07, 14.999999, 5.684342e-14, -14.999999, -6.556707e-07, -250, 2, 50)
-texture = ExtResource("22_uu56x")
+transform = Transform3D(-6.556708e-07, 14.999999, 6.556707e-07, 3.1763734e-21, -6.556707e-07, 14.999999, 14.999999, 6.556708e-07, 2.8660275e-14, -250, 2, 50)
+texture = ExtResource("9_7ri18")
+
+[node name="ArrowRound" type="Sprite3D" parent="MidDensity/ArrowCont"]
+transform = Transform3D(-6.5567065e-07, 14.999999, 1.9670126e-06, -1.1464111e-13, 1.9670126e-06, -14.999999, -14.999999, -6.5567065e-07, 2.866031e-14, -400, 2, 700)
+texture = ExtResource("10_7omum")
+
+[node name="ArrowRound2" type="Sprite3D" parent="MidDensity/ArrowCont"]
+transform = Transform3D(-6.5567065e-07, 14.999999, 1.9670126e-06, -1.1464111e-13, 1.9670126e-06, -14.999999, -14.999999, -6.5567065e-07, 2.866031e-14, 75, 2, 700)
+texture = ExtResource("10_7omum")
+
+[node name="ArrowRound3" type="Sprite3D" parent="MidDensity/ArrowCont"]
+transform = Transform3D(14.999998, -9.536743e-07, -1.1368684e-13, 1.146411e-13, -6.5567104e-07, 14.999999, -9.536743e-07, -14.999998, -6.5567104e-07, -300, 2, 160)
+texture = ExtResource("10_7omum")
 
 [node name="ForCrowds" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_vnrk1")
@@ -1090,3 +1090,31 @@ debug = true
 circum = 45.0
 crowd_size = 20
 route = Array[Vector3]([Vector3(-1350, 8, 530), Vector3(-1450, 8, 355), Vector3(-1350, 8, 200), Vector3(-1450, 8, 65), Vector3(-1350, 8, 200), Vector3(-1450, 8, 355)])
+
+[node name="Crowd6" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -955, 8, 680)
+debug = true
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-955, 8, 680), Vector3(-705, 8, 680)])
+
+[node name="Crowd7" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 8, 675)
+debug = true
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-500, 8, 675), Vector3(-300, 8, 675)])
+
+[node name="Crowd8" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 8, 720)
+debug = true
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-200, 8, 720), Vector3(-400, 8, 720)])
+
+[node name="Crowd9" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 8, 720)
+debug = true
+circum = 45.0
+crowd_size = 20
+route = Array[Vector3]([Vector3(-600, 8, 720), Vector3(-960, 8, 720)])
