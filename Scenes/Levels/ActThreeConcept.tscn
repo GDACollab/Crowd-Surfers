@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=52 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -38,8 +38,6 @@
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="19_yolw6"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="20_3fg1r"]
 [ext_resource type="PackedScene" uid="uid://dsx75spajgxig" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/ConeObstacle.tscn" id="20_i8egd"]
-[ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="21_4ve0p"]
-[ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="22_0y6fi"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="23_yolw6"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="24_3fg1r"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="24_iti87"]
@@ -751,15 +749,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 100, -300)
 
 [node name="VehicleGroup" type="Node3D" parent="."]
 
-[node name="WaymoConfusedDown3" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -1400)
-
-[node name="WaymoConfusedDown4" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -1400)
-
-[node name="WaymoConfusedDown5" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, -1350)
-
 [node name="CarRedDown" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -550)
 
@@ -768,18 +757,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -550)
 
 [node name="CarRedUp2" parent="VehicleGroup" instance=ExtResource("20_3fg1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -750)
-
-[node name="Bus1Side" parent="VehicleGroup" instance=ExtResource("21_4ve0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -1000)
-
-[node name="Bus1Side2" parent="VehicleGroup" instance=ExtResource("21_4ve0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -950)
-
-[node name="Bus1Side3" parent="VehicleGroup" instance=ExtResource("21_4ve0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1000)
-
-[node name="WaymoEvilSide" parent="VehicleGroup" instance=ExtResource("22_0y6fi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -900)
 
 [node name="RoadBlockade" type="Node3D" parent="VehicleGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 255, 0, -234)
