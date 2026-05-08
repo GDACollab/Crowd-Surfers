@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=55 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -40,8 +40,10 @@
 [ext_resource type="PackedScene" uid="uid://dsx75spajgxig" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/ConeObstacle.tscn" id="20_i8egd"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="23_yolw6"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="24_3fg1r"]
+[ext_resource type="PackedScene" uid="uid://d1ewknvdw2hoo" path="res://Scenes/Level Components/Objects/cable-car-side.tscn" id="24_i8egd"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="24_iti87"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="25_3fg1r"]
+[ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="26_6oh5t"]
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="27_4sj7n"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="28_0swl4"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="29_0je7h"]
@@ -819,6 +821,30 @@ transform = Transform3D(-0.25, 0, -0.8660254, 0, 1, 0, 0.4330127, 0, -0.5, 15.90
 [node name="WaymoConfusedSide3" parent="VehicleGroup/RoadBlockade2" instance=ExtResource("16_i7rp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, -6)
 
+[node name="TheaterRoadVehicles" type="Node3D" parent="VehicleGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1000)
+
+[node name="StaticBody3D" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("24_i8egd")]
+transform = Transform3D(0.8660253, 0, 0.49999997, 0, 1, 0, -0.49999997, 0, 0.8660253, -83.72591, 0, 3.8692942)
+
+[node name="Bus1Full" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("46_22qtl")]
+transform = Transform3D(0.9396925, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396925, 73.52189, 0, -28.493715)
+
+[node name="Bus1Full2" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071066, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071066, 174.43358, 0, -126.92567)
+
+[node name="Bus1Full3" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("46_22qtl")]
+transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 276.96405, 0, -328.45105)
+
+[node name="CarRedDown" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("19_yolw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, -15)
+
+[node name="CarRedSide" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("25_3fg1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -30)
+
+[node name="WaymoEvilUp" parent="VehicleGroup/TheaterRoadVehicles" instance=ExtResource("26_6oh5t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 30)
+
 [node name="BuildingGroup" type="Node3D" parent="."]
 
 [node name="AlleywayBuildings" type="Node3D" parent="BuildingGroup"]
@@ -1157,7 +1183,7 @@ level_number = 3
 visible = false
 
 [node name="BackgroundFloor" parent="." instance=ExtResource("4_rscd0")]
-transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 439.645, -50, -3165.355)
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 439.645, -45, -3165.355)
 
 [node name="CrossWalkCrowdNavRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rbx1u")
