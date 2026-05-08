@@ -12,7 +12,8 @@ func _on_animation_changed() -> void:
 
 func _on_animation_finished() -> void:
 	# Effectively, state machine in null state until a new animation is played
-	current_animation = ""
+	if not current_animation == "crash":
+		current_animation = ""
 
 ## The horizontal flipping of the player animation before a neutral front/back animation is played
 var prev_flip_h := false
@@ -20,6 +21,8 @@ var prev_flip_h := false
 var current_animation: String = ""
 ## A string identifying the last animation played
 var last_animation: String = ""
+## The direction the player crashed into the wall
+var crash_dir: Vector3
 
 func _ready() -> void:
 	set_speeds()
@@ -31,9 +34,8 @@ func _process(_delta: float) -> void:
 	if v.x != 0.0:
 		prev_flip_h = flip_h
 		flip_h = v.x < 0.0
-		# Crash animations are reversed
-		if current_animation == "crash":
-			flip_h = not flip_h
+	if current_animation == "crash" or current_animation == "crash_exit":
+		flip_h = crash_dir.x < 0.0
 
 func set_speeds():
 	#stomp speeds
@@ -57,7 +59,7 @@ func play_idle_animation():
 		play(idle_anim_name)
 
 ## Takes the name of an action and selects a specific animation to play
-func play_animation(action: String, continue_animation: bool = false) -> void:
+func play_animation(action: String, continue_animation: bool = false, custom_speed: float = 1.0) -> void:
 	var v := player.velocity
 	
 	# Unflip Slip if they are moving (neutral animation: front or back)
@@ -71,8 +73,11 @@ func play_animation(action: String, continue_animation: bool = false) -> void:
 	if continue_animation and last_animation == current_animation:
 		current_frame = frame
 		current_progress = frame_progress
+	var dir := v
+	if action == "crash" or action == "crash_exit":
+		dir = crash_dir
 		
-	play(action + get_animation_dir(v.x, v.z))
+	play(action + get_animation_dir(dir.x, dir.z), custom_speed)
 	set_frame_and_progress(current_frame, current_progress)
 
 ## Returns a string to be appended to a base action name to help find the specific animation to play
