@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://brn3rluc4x6sd"]
+
+[ext_resource type="Texture2D" uid="uid://b02bnlt4evmxu" path="res://Assets/Art/temp player.png" id="1_lcpf3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5ts3"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2lsfk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lcpf3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CrowdRigidMan" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_o5ts3")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_2lsfk")
