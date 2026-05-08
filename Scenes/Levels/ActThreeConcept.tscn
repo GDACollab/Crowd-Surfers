@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=53 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -55,6 +55,10 @@
 vertices = PackedVector3Array(-49.5, 1.5, -301.75, 149.5, 1.5, -301.75, 149.5, 1.5, -599.5, -49.5, 1.5, -599.5, -49.5, 1.5, 2, 149.5, 1.5, 2, 149.75, 1.5, -0.25, 149.75, 1.5, -299.5, 249.5, 1, -0.25, 249.5, 1, -299.5, 152.96774, 1, -0.25, 152.96774, 1, -299.5, 150.975, 1, -298.525, 150.98015, 1, -6.021118, -49.5, 1.5, 499.5, 149.5, 1.5, 499.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(1, 7, 0), PackedInt32Array(0, 7, 6), PackedInt32Array(0, 6, 5), PackedInt32Array(0, 5, 4), PackedInt32Array(11, 12, 7), PackedInt32Array(7, 13, 6), PackedInt32Array(6, 13, 10), PackedInt32Array(10, 13, 8), PackedInt32Array(8, 13, 9), PackedInt32Array(9, 12, 11), PackedInt32Array(12, 13, 7), PackedInt32Array(13, 12, 9), PackedInt32Array(15, 14, 5), PackedInt32Array(5, 14, 4)]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_mecku"]
+vertices = PackedVector3Array(550.5, 1.5, -1601.75, 649.5, 1.5, -1601.75, 649.5, 1.5, -1699.5, 550.5, 1.5, -1699.5, 550.5, 1.5, -1599.75, 550, 1.5, -1599.5, 550.25, 1.5, -1500.5, 649.5, 1.5, -1500.5, 450.5, 1.5, -1500, 549.5, 1.5, -1499.75, 549.5, 1.5, -1500.25, 450.5, 1.5, -1599.5, 450.25, 1.5, -1499.5, 350.5, 1.5, -1499.5, 350.5, 1.5, -1399.75, 449.75, 1.5, -1300.5, 549.5, 1.5, -1300.5, 250, 1.5, -1299.5, 349.5, 1.5, -1200, 349.75, 1.5, -1200.5, 250.5, 1.5, -1299.75, 449.5, 1.5, -1200.5, 250.5, 1.5, -1399.5, 150, 1.5, -1000.5, 249.5, 1.5, -1000.5, 249.5, 1.5, -1100.25, 349.5, 1.5, -1100.5, -49.5, 1.5, -1200, -49.5, 1.5, -1299.5, -49.5, 1.5, -898.25, 49.5, 1.5, -898.25, 49.75, 1.5, -900.5, -49.75, 1.5, -900.5, 149.5, 1.5, -1000.25, 149.5, 1.5, -900.5, -49.75, 1.5, -1199.5, -149.5, 1.5, -1199.5, -149.5, 1.5, -900.5, -49.5, 1.5, -800.5, 49.5, 1.5, -800.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(4, 0, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 1), PackedInt32Array(10, 9, 8), PackedInt32Array(6, 10, 5), PackedInt32Array(5, 10, 11), PackedInt32Array(11, 10, 8), PackedInt32Array(12, 8, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 12), PackedInt32Array(16, 12, 9), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 14, 20), PackedInt32Array(20, 14, 15), PackedInt32Array(20, 15, 19), PackedInt32Array(19, 15, 21), PackedInt32Array(25, 24, 23), PackedInt32Array(26, 25, 18), PackedInt32Array(18, 25, 17), PackedInt32Array(25, 23, 17), PackedInt32Array(17, 23, 27), PackedInt32Array(17, 27, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(29, 32, 31), PackedInt32Array(31, 32, 33), PackedInt32Array(33, 34, 31), PackedInt32Array(32, 37, 33), PackedInt32Array(33, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(35, 27, 33), PackedInt32Array(33, 27, 23), PackedInt32Array(39, 38, 30), PackedInt32Array(30, 38, 29)]
+
 [node name="ActThreeConcept" type="Node3D"]
 script = ExtResource("1_mg333")
 
@@ -80,12 +84,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
 [node name="MainVerticalRoad8" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800)
 
-[node name="MainVerticalRoad9" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900)
-
-[node name="MainVerticalRoad10" parent="RoadGroup/MainVerticalRoadGroup" instance=ExtResource("1_7ikem")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000)
-
 [node name="MainVerticalRoadGroup2" type="Node3D" parent="RoadGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
 
@@ -109,21 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -800)
 
 [node name="MainVerticalRoad9" parent="RoadGroup/MainVerticalRoadGroup2" instance=ExtResource("1_7ikem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900)
-
-[node name="MainVerticalRoad10" parent="RoadGroup/MainVerticalRoadGroup2" instance=ExtResource("1_7ikem")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000)
-
-[node name="StaticBody3D" parent="RoadGroup/MainVerticalRoadGroup2" instance=ExtResource("3_g7qq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1100)
-
-[node name="StaticBody3D2" parent="RoadGroup/MainVerticalRoadGroup2" instance=ExtResource("3_g7qq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1100)
-
-[node name="StaticBody3D3" parent="RoadGroup/MainVerticalRoadGroup2" instance=ExtResource("4_yuki4")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -1100)
-
-[node name="StaticBody3D4" parent="RoadGroup/MainVerticalRoadGroup2" instance=ExtResource("4_yuki4")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -100, 0, -1100)
 
 [node name="DiagonalRoadGroup1" type="Node3D" parent="RoadGroup"]
 transform = Transform3D(-8.940697e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -8.940697e-08, -300, 0, -350)
@@ -361,74 +344,29 @@ transform = Transform3D(0.9396923, 0, -0.3420201, 0, 1, 0, 0.3420201, 0, 0.93969
 
 [node name="DiagonalRoadGroup2" type="Node3D" parent="RoadGroup"]
 
-[node name="StaticBody3D" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -1200)
-
-[node name="StaticBody3D2" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -1100)
-
-[node name="StaticBody3D3" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 200, 0, -1100)
-
-[node name="StaticBody3D4" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 200, 0, -1200)
-
 [node name="StaticBody3D5" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -1300)
-
-[node name="StaticBody3D6" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -1200)
-
-[node name="StaticBody3D7" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 300, 0, -1200)
-
-[node name="StaticBody3D8" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 300, 0, -1300)
-
-[node name="StaticBody3D9" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -1400)
-
-[node name="StaticBody3D10" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -1300)
-
-[node name="StaticBody3D11" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 400, 0, -1300)
-
-[node name="StaticBody3D12" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 400, 0, -1400)
-
-[node name="StaticBody3D13" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -1500)
-
-[node name="StaticBody3D14" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -1400)
-
-[node name="StaticBody3D15" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 500, 0, -1400)
-
-[node name="StaticBody3D16" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 500, 0, -1500)
-
-[node name="StaticBody3D17" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -1600)
-
-[node name="StaticBody3D19" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 600, 0, -1500)
-
-[node name="StaticBody3D20" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 600, 0, -1600)
-
-[node name="StaticBody3D21" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -1700)
 
-[node name="StaticBody3D22" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -1600)
+[node name="StaticBody3D4" parent="RoadGroup/DiagonalRoadGroup2/StaticBody3D5" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="StaticBody3D23" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 700, 0, -1600)
+[node name="StaticBody3D2" parent="RoadGroup/DiagonalRoadGroup2/StaticBody3D5" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 
-[node name="StaticBody3D24" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 700, 0, -1700)
+[node name="StaticBody3D3" parent="RoadGroup/DiagonalRoadGroup2/StaticBody3D5/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D6" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -1800)
+
+[node name="StaticBody3D4" parent="RoadGroup/DiagonalRoadGroup2/StaticBody3D6" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D2" parent="RoadGroup/DiagonalRoadGroup2/StaticBody3D6" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="StaticBody3D3" parent="RoadGroup/DiagonalRoadGroup2/StaticBody3D6/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
 
 [node name="StaticBody3D25" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 0, -600)
@@ -489,18 +427,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -200
 
 [node name="StaticBody3D44" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -200, 0, -1000)
-
-[node name="StaticBody3D45" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1100)
-
-[node name="StaticBody3D46" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1000)
-
-[node name="StaticBody3D47" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -100, 0, -1000)
-
-[node name="StaticBody3D48" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("7_iegtb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -100, 0, -1100)
 
 [node name="StaticBody3D18" parent="RoadGroup/DiagonalRoadGroup2" instance=ExtResource("4_yuki4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -1500)
@@ -1270,3 +1196,102 @@ circum = 25.0
 crowd_size = 50
 max_speed = 10.0
 route = Array[Vector3]([Vector3(198, 0, -103)])
+
+[node name="TheaterDistrictCrowd" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_mecku")
+
+[node name="MainVerticalRoad9" parent="TheaterDistrictCrowd" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900)
+
+[node name="MainVerticalRoad10" parent="TheaterDistrictCrowd" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000)
+
+[node name="MainVerticalRoad11" parent="TheaterDistrictCrowd" instance=ExtResource("1_7ikem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -1000)
+
+[node name="StaticBody3D" parent="TheaterDistrictCrowd" instance=ExtResource("3_g7qq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -1100)
+
+[node name="StaticBody3D2" parent="TheaterDistrictCrowd" instance=ExtResource("3_g7qq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd" instance=ExtResource("4_yuki4")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 100, 0, -1100)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd" instance=ExtResource("4_yuki4")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -1100)
+
+[node name="StaticBody3D5" parent="TheaterDistrictCrowd" instance=ExtResource("9_fwpc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -1300)
+
+[node name="StaticBody3D6" parent="TheaterDistrictCrowd" instance=ExtResource("9_fwpc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1300)
+
+[node name="StaticBody3D7" parent="TheaterDistrictCrowd" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -1200)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd/StaticBody3D7" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D2" parent="TheaterDistrictCrowd/StaticBody3D7" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D7/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D11" parent="TheaterDistrictCrowd" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -1100)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd/StaticBody3D11" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D2" parent="TheaterDistrictCrowd/StaticBody3D11" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D11/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D8" parent="TheaterDistrictCrowd" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -1300)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd/StaticBody3D8" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D2" parent="TheaterDistrictCrowd/StaticBody3D8" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D8/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D9" parent="TheaterDistrictCrowd" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -1400)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd/StaticBody3D9" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D2" parent="TheaterDistrictCrowd/StaticBody3D9" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D9/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D10" parent="TheaterDistrictCrowd" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -1500)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd/StaticBody3D10" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D2" parent="TheaterDistrictCrowd/StaticBody3D10" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D10/StaticBody3D2" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D10" instance=ExtResource("7_iegtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+
+[node name="StaticBody3D3" parent="TheaterDistrictCrowd/StaticBody3D10/StaticBody3D3" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.371139e-06, 0, 0)
+
+[node name="StaticBody3D4" parent="TheaterDistrictCrowd/StaticBody3D10/StaticBody3D3" instance=ExtResource("7_iegtb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.3113417e-05, 0, 100)
