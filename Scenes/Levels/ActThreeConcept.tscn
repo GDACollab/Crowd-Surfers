@@ -1055,7 +1055,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -500)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -600)
 
 [node name="CrowdCrossWalk" parent="." instance=ExtResource("44_rbx1u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, -10)
-debug = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
 crowd_size = 7
 route = Array[Vector3]([Vector3(135, 0, -10), Vector3(135, 0, -195), Vector3(-40, 0, -195), Vector3(-40, 0, -10)])
+
+[node name="CrowdCrossWalk2" parent="." instance=ExtResource("44_rbx1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1, -190)
+crowd_size = 10
+route = Array[Vector3]([Vector3(-40, 0, -195), Vector3(-40, 0, -10), Vector3(135, 0, -195), Vector3(135, 0, -10)])
+
+[node name="CrowdCrossWalk3" parent="." instance=ExtResource("44_rbx1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, -100)
+circum = 15.0
+crowd_size = 16
+route = Array[Vector3]([Vector3(-30, 0, -220), Vector3(55, 0, -350), Vector3(140, 0, -285), Vector3(55, 0, -490), Vector3(-40, 0, -575), Vector3(120, 0, -580), Vector3(-25, 0, -405)])
