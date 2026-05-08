@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=51 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -47,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="27_4sj7n"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="28_0swl4"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="29_0je7h"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="30_0je7h"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="44_rbx1u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
@@ -671,6 +672,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 300)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, -0.01, 200)
 
 [node name="VehicleGroup" type="Node3D" parent="."]
+visible = false
 
 [node name="WaymoConfusedSide" parent="VehicleGroup" instance=ExtResource("16_i7rp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -245)
@@ -925,8 +927,11 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 100, 0, 0)
 [node name="StaticBody3D8" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
 transform = Transform3D(0.7071068, 0, 0.28284273, 0, 0.59999996, 0, -0.7071068, 0, 0.28284273, 567.9935, 0, -164.75597)
 
+[node name="StaticBody3D10" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("5_vn3cp")]
+transform = Transform3D(0.56568533, 0, -0.35355338, 0, 1.1999999, 0, 0.56568545, 0, 0.35355338, 664.16003, 0, -283.54993)
+
 [node name="StaticBody3D9" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
-transform = Transform3D(0.7071068, 0, 0.28284273, 0, 0.59999996, 0, -0.7071068, 0, 0.28284273, 638.7042, 0, -235.46666)
+transform = Transform3D(0.70710677, 0, 0.56568545, 0, 0.6, 0, -0.70710677, 0, 0.56568545, 610.27814, 0, -263.65686)
 
 [node name="StaticBody3D5" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
 transform = Transform3D(0.7, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 384.9999, 0, 0)
@@ -940,7 +945,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -100.01)
 [node name="StaticBody3D3" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D7" instance=ExtResource("24_iti87")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 100, 0, 0.01)
 
+[node name="StaticBody3D4" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D7" instance=ExtResource("24_iti87")]
+transform = Transform3D(0.9659259, 0, 0.25881904, 0, 2, 0, -0.25881904, 0, 0.9659259, 170.711, 0.1, -70.70099)
+
+[node name="StaticBody3D5" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D7" instance=ExtResource("24_iti87")]
+transform = Transform3D(0.9659259, 0, 0.25881904, 0, 2, 0, -0.25881904, 0, 0.9659259, 241.422, 0.2, -141.412)
+
+[node name="InvisibleWall" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("30_0je7h")]
+transform = Transform3D(6.3441544, 0, 0.04226183, 0, 10, 0, -2.958328, 0, 0.09063078, 340.47482, 100, -139.79063)
+
 [node name="SpecialComponentsGroup" type="Node3D" parent="."]
+visible = false
 
 [node name="DecorationsGroup" type="Node3D" parent="."]
 visible = false
@@ -1034,7 +1049,6 @@ visible = false
 
 [node name="BackgroundFloor" parent="." instance=ExtResource("4_rscd0")]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 439.645, -50, -3165.355)
-visible = false
 
 [node name="CrossWalkCrowdNavRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rbx1u")
