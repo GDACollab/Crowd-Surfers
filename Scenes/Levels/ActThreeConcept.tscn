@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://boaamtpsale8k"]
+[gd_scene load_steps=34 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -20,11 +20,16 @@
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="16_i7rp3"]
 [ext_resource type="PackedScene" uid="uid://db516tknh4vq0" path="res://Scenes/Level Components/SpecialObjects/BoostPad/BoostPad.tscn" id="16_mdont"]
 [ext_resource type="PackedScene" uid="uid://c4trltth5ira7" path="res://Scenes/Level Components/Objects/waymo-confused-up.tscn" id="17_0y6fi"]
+[ext_resource type="PackedScene" uid="uid://gvypmi6dyu1u" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle1.tscn" id="18_grgm4"]
 [ext_resource type="PackedScene" uid="uid://tghcf3lwvxj8" path="res://Scenes/Level Components/Objects/waymo-confused-down.tscn" id="18_n1c53"]
+[ext_resource type="PackedScene" uid="uid://dtkc18i1fk0cf" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/GarbageBag2.tscn" id="19_plohx"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="19_yolw6"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="20_3fg1r"]
+[ext_resource type="PackedScene" uid="uid://dm8je83w0qr81" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/GarbageBag1.tscn" id="20_20c2i"]
 [ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="21_4ve0p"]
+[ext_resource type="PackedScene" uid="uid://bl8hte1agb8q6" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel3.tscn" id="21_iq4ei"]
 [ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="22_0y6fi"]
+[ext_resource type="PackedScene" uid="uid://ti5a67cbkn0q" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel2.tscn" id="22_rscd0"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="23_yolw6"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="24_3fg1r"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="25_3fg1r"]
@@ -597,7 +602,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1000)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -900)
 
 [node name="BuildingGroup" type="Node3D" parent="."]
-visible = false
 
 [node name="AlleyWayBuildingsGroup" type="Node3D" parent="BuildingGroup"]
 
@@ -1027,11 +1031,29 @@ transform = Transform3D(0.30901694, 0, 0.9510565, 0, 1, 0, -0.9510565, 0, 0.3090
 
 [node name="DecorationsGroup" type="Node3D" parent="."]
 
-[node name="AlleyWayPads" type="Node3D" parent="DecorationsGroup"]
+[node name="AlleyWayObstacles" type="Node3D" parent="DecorationsGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -766, 0, 535)
 
-[node name="StaticBody3D" parent="DecorationsGroup/AlleyWayPads" instance=ExtResource("16_mdont")]
+[node name="BoostPad" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("16_mdont")]
 transform = Transform3D(0.35069692, 0, 0.71903527, 0, 1, 0, -0.71903527, 0, 0.35069692, -57.999573, -0.49, 56.999634)
+
+[node name="TarPuddle" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(0.12678547, 0, 0.27189237, 0, 0.3, 0, -0.27189237, 0, 0.12678547, 137, 0.51, -295)
+
+[node name="Garbage" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("19_plohx")]
+transform = Transform3D(9.563046, 0, 2.923717, 0, 10, 0, -2.923717, 0, 9.563046, 344, 5, -708)
+
+[node name="Garbage2" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("19_plohx")]
+transform = Transform3D(9.563046, 0, 2.923717, 0, 10, 0, -2.923717, 0, 9.563046, 210, 5, -509)
+
+[node name="SoftObject" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("20_20c2i")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 219, 0, -504)
+
+[node name="SoftObject2" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("21_iq4ei")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 220, 0, -465)
+
+[node name="SoftObject3" parent="DecorationsGroup/AlleyWayObstacles" instance=ExtResource("22_rscd0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 293, 37, -628)
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
