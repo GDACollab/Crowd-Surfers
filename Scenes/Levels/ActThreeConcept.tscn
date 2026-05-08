@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=50 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -45,6 +45,8 @@
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="24_iti87"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="25_3fg1r"]
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="27_4sj7n"]
+[ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="28_0swl4"]
+[ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="29_0je7h"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="44_rbx1u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
@@ -902,20 +904,41 @@ transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.70710
 [node name="StaticBody3D" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("3_tqh1b")]
 transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 0.4, 0, 0, 0)
 
+[node name="StaticBody3D4" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("3_tqh1b")]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 0.4, 100, 0, -41)
+
 [node name="StaticBody3D2" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
 transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 100, 0, 0)
 
-[node name="StaticBody3D3" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 200.00002, 0, 0)
+[node name="StaticBody3D2" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D2" instance=ExtResource("28_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 100.000015, 0, 0)
 
-[node name="StaticBody3D4" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 300, 0, 0)
+[node name="StaticBody3D2" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D2/StaticBody3D2" instance=ExtResource("29_0je7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 100.00001, 0, 0)
 
 [node name="StaticBody3D6" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
 transform = Transform3D(0.7071068, 0, 0.28284273, 0, 0.59999996, 0, -0.7071068, 0, 0.28284273, 426.57214, 0, -23.334534)
 
+[node name="StaticBody3D2" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D6" instance=ExtResource("28_0swl4")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 100, 0, 0)
+
+[node name="StaticBody3D8" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
+transform = Transform3D(0.7071068, 0, 0.28284273, 0, 0.59999996, 0, -0.7071068, 0, 0.28284273, 567.9935, 0, -164.75597)
+
+[node name="StaticBody3D9" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
+transform = Transform3D(0.7071068, 0, 0.28284273, 0, 0.59999996, 0, -0.7071068, 0, 0.28284273, 638.7042, 0, -235.46666)
+
 [node name="StaticBody3D5" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("27_4sj7n")]
 transform = Transform3D(0.7, 0, 0, 0, 0.6, 0, 0, 0, 0.4, 384.9999, 0, 0)
+
+[node name="StaticBody3D3" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("5_vn3cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8, 200, 0, -80)
+
+[node name="StaticBody3D7" parent="BuildingGroup/AlleywayBuildings/Walls2" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -100.01)
+
+[node name="StaticBody3D3" parent="BuildingGroup/AlleywayBuildings/Walls2/StaticBody3D7" instance=ExtResource("24_iti87")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 100, 0, 0.01)
 
 [node name="SpecialComponentsGroup" type="Node3D" parent="."]
 
@@ -1007,6 +1030,10 @@ hud_ui = NodePath("../Hud")
 level_number = 3
 
 [node name="PauseHolder" parent="." instance=ExtResource("9_6qom4")]
+visible = false
+
+[node name="BackgroundFloor" parent="." instance=ExtResource("4_rscd0")]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 439.645, -50, -3165.355)
 visible = false
 
 [node name="CrossWalkCrowdNavRegion" type="NavigationRegion3D" parent="."]
