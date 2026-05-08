@@ -62,6 +62,7 @@ func _process(_delta: float) -> void:
 			_get_input()
 		else:
 			_skip_scroll()
+			
 	#Choice selection
 	if(choicesDisplayed):
 		if(Input.is_action_just_pressed("move_down")):
@@ -123,7 +124,7 @@ func _display_text(newDialoguePanel):
 	dialogueLabel.text = dialogueText
 	while dialogueLabel.visible_characters < dialogueText.length() - 1:
 		dialogueLabel.visible_characters += 1
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.02).timeout
 	isTyping = false
 
 ## Move old panels
