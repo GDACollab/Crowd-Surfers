@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=31 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="20_jtff7"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="21_tvis2"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="22_m0tkt"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="26_nx437"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="27_1olov"]
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="28_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="29_2sk22"]
@@ -169,9 +170,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 350,
 [node name="BrickL6" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 350, 100, 800)
 
-[node name="BrickBuild2" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 100, 750)
-
 [node name="BrickBuild3" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 450, 100, 700)
 
@@ -189,6 +187,12 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 800,
 
 [node name="BrickD5" parent="AddedBuildings" instance=ExtResource("27_1olov")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 350, 0, 900)
+
+[node name="InvisibleWallSmall" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 50, 900)
+
+[node name="BrickL7" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 100, 750)
 
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
 
