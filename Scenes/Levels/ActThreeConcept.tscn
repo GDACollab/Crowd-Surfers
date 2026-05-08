@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://djxg6nq43wn6d"]
+[gd_scene load_steps=55 format=3 uid="uid://djxg6nq43wn6d"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="24_3fg1r"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="24_iti87"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="25_3fg1r"]
+[ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="26_6oh5t"]
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="27_4sj7n"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="28_0swl4"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="29_0je7h"]
@@ -50,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="44_rbx1u"]
 [ext_resource type="PackedScene" uid="uid://dakmufixpwm3i" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="46_22qtl"]
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="47_0swl4"]
+[ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="52_2y5rp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
 vertices = PackedVector3Array(-49.5, 1.5, -301.75, 149.5, 1.5, -301.75, 149.5, 1.5, -599.5, -49.5, 1.5, -599.5, -49.5, 1.5, 2, 149.5, 1.5, 2, 149.75, 1.5, -0.25, 149.75, 1.5, -299.5, 249.5, 1, -0.25, 249.5, 1, -299.5, 152.96774, 1, -0.25, 152.96774, 1, -299.5, 150.975, 1, -298.525, 150.98015, 1, -6.021118, -49.5, 1.5, 499.5, 149.5, 1.5, 499.5)
@@ -819,6 +821,33 @@ transform = Transform3D(-0.25, 0, -0.8660254, 0, 1, 0, 0.4330127, 0, -0.5, 15.90
 [node name="WaymoConfusedSide3" parent="VehicleGroup/RoadBlockade2" instance=ExtResource("16_i7rp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, -6)
 
+[node name="CarRedDown2" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235, -50, 190)
+
+[node name="CarRedSide" parent="VehicleGroup" instance=ExtResource("25_3fg1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240, -50, 315)
+
+[node name="CarRedUp3" parent="VehicleGroup" instance=ExtResource("20_3fg1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235, -50, 255)
+
+[node name="Bus1Full" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 210, -50, 165)
+
+[node name="WaymoConfusedDown" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, -50, 185)
+
+[node name="WaymoConfusedSide" parent="VehicleGroup" instance=ExtResource("16_i7rp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, -50, 315)
+
+[node name="WaymoConfusedUp" parent="VehicleGroup" instance=ExtResource("17_0y6fi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, -50, 255)
+
+[node name="WaymoEvilDown" parent="VehicleGroup" instance=ExtResource("47_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, -50, 190)
+
+[node name="WaymoEvilSide" parent="VehicleGroup" instance=ExtResource("26_6oh5t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 460, -50, 315)
+
 [node name="BuildingGroup" type="Node3D" parent="."]
 
 [node name="AlleywayBuildings" type="Node3D" parent="BuildingGroup"]
@@ -1382,3 +1411,6 @@ circum = 200.0
 crowd_size = 200
 max_speed = 30.0
 route = Array[Vector3]([Vector3(0, 5, -1100), Vector3(100, 5, -1100), Vector3(50, 5, -1150), Vector3(0, 15, -1100)])
+
+[node name="WaymoEvilUp" parent="." instance=ExtResource("52_2y5rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, -45, 255)
