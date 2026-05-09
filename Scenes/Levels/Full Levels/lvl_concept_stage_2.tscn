@@ -236,6 +236,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 100, 750)
 [node name="BrickBuild8" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 450, 100, 800)
 
+[node name="BrickM7" parent="AddedBuildings" instance=ExtResource("28_lg4t4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 350)
+
+[node name="BrickM8" parent="AddedBuildings" instance=ExtResource("28_lg4t4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 100, 350)
+
+[node name="BrickBuild9" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 900, 100, 450)
+
 [node name="EndEvent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.49762)
 
@@ -310,5 +319,8 @@ level_number = 2
 
 [node name="PauseHolder" parent="." instance=ExtResource("18_njsij")]
 visible = false
+
+[node name="StaticBody3D" parent="." instance=ExtResource("21_tvis2")]
+transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 850, 0, 500)
 
 [connection signal="body_entered" from="EndEvent/Checkpoint/Area3D" to="EndEvent/Checkpoint" method="_on_area_3d_body_entered"]
