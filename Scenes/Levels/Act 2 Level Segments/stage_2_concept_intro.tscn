@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://duybqcqdfpvk7"]
+[gd_scene load_steps=33 format=3 uid="uid://duybqcqdfpvk7"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="5_pyklh"]
 [ext_resource type="PackedScene" uid="uid://b6kkjvxxrm5qh" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile1.tscn" id="5_trd8n"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="10_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="11_m1wnl"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="11_qp3i3"]
-[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_cdwv3"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_cdwv3"]
+[ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="13_5wof4"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="14_23jsx"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="14_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="15_eavq4"]
@@ -179,16 +180,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1110, 0, -400)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -702, 0, -400)
 
 [node name="brick-building7" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, -100)
-
-[node name="brick-building8" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
-
-[node name="brick-building9" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 550, 2, -50)
 
 [node name="brick-building10" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 200)
 
 [node name="brick-building11" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 0)
@@ -212,12 +207,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 0)
 
 [node name="brick-building18" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -100, 0, 99.99999)
 
 [node name="brick-building19" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, -200)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 550, 2, -150)
 
 [node name="brick-building20" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100.00001)
 
 [node name="green-building1" parent="Level2-intro/Buildings" instance=ExtResource("11_qp3i3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.43839, 2, -100.99229)
@@ -233,9 +229,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, 100)
 
 [node name="beige-building1" parent="Level2-intro/Buildings" instance=ExtResource("11_m1wnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39424133, 2, -298.00952)
-
-[node name="beige-building6" parent="Level2-intro/Buildings" instance=ExtResource("11_m1wnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.60577, 2, 101.99048)
 
 [node name="brick-building21" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 0)
@@ -314,6 +307,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1317, 75, -500)
 
 [node name="brick-building45" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1517, 75, -500)
+
+[node name="InvisibleWallSmall" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, -50)
+
+[node name="InvisibleWallSmall2" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 52, -50)
+
+[node name="InvisibleWallSmall3" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 52, 150)
+
+[node name="InvisibleWallSmall4" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 52, 150)
+
+[node name="StaticBody3D" parent="Level2-intro/Buildings" instance=ExtResource("13_5wof4")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
 [node name="PropCont" type="Node3D" parent="Level2-intro"]
 
@@ -599,34 +607,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -100)
 [node name="Crowd" parent="Crowds" instance=ExtResource("24_kqi1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -480, 8, -130)
 debug = true
-circum = 60.0
-crowd_size = 20
+circum = 40.0
+crowd_size = 15
 route = Array[Vector3]([Vector3(20, 0, -90), Vector3(20, 0, -180)])
 
 [node name="Crowd2" parent="Crowds" instance=ExtResource("24_kqi1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 8, -230)
 debug = true
-circum = 60.0
-crowd_size = 20
+circum = 40.0
+crowd_size = 15
 route = Array[Vector3]([Vector3(-150, 0, -180), Vector3(-200, 0, -90)])
 
 [node name="Crowd3" parent="Crowds" instance=ExtResource("24_kqi1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -985, 8, -130)
 debug = true
-circum = 60.0
-crowd_size = 20
+circum = 40.0
+crowd_size = 15
 route = Array[Vector3]([Vector3(-485, 0, -80), Vector3(-365, 0, -180)])
 
 [node name="Crowd4" parent="Crowds" instance=ExtResource("24_kqi1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1380, 8, -230)
 debug = true
-circum = 60.0
-crowd_size = 20
+circum = 40.0
+crowd_size = 15
 route = Array[Vector3]([Vector3(-880, 0, -180), Vector3(-700, 0, -90), Vector3(-670, 0, -180)])
 
 [node name="Crowd5" parent="Crowds" instance=ExtResource("24_kqi1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1185, 8, -131.197)
 debug = true
-circum = 60.0
-crowd_size = 20
+circum = 40.0
+crowd_size = 15
 route = Array[Vector3]([Vector3(-700, 0, -90), Vector3(-670, 0, -180), Vector3(-880, 0, -180)])
+
+[node name="StaticBody3D" parent="." instance=ExtResource("13_5wof4")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 100, 0, 0)
