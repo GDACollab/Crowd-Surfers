@@ -25,6 +25,7 @@ func _ready() -> void:
 	query.exclude = [player.get_rid()]
 
 func _process(delta: float) -> void:
+	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
 	var v := player.velocity
 	lead_smoothed = lead_smoothed.lerp(v.normalized() * sqrt(v.length() + 1.0) * 3.0, 1.0 - exp(-follow_speed * delta))
 	global_position = player.global_position + offset + lead_smoothed
