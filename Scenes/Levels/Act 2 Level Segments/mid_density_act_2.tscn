@@ -28,11 +28,11 @@
 [ext_resource type="PackedScene" uid="uid://dfjws5u8sjcvm" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile3.tscn" id="28_eit0j"]
 [ext_resource type="PackedScene" uid="uid://brqtqcecl1h5q" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile1.tscn" id="29_fwgo3"]
 [ext_resource type="PackedScene" uid="uid://b8dc1ijuau24f" path="res://Scenes/Level Components/Objects/bus-1-side.tscn" id="30_n4o7x"]
-[ext_resource type="PackedScene" uid="uid://d2uarcacbt8oc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassBottomLeftCorner.tscn" id="37_t1cbv"]
+[ext_resource type="PackedScene" uid="uid://d2uarcacbt8oc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerBottomLeft.tscn" id="37_t1cbv"]
 [ext_resource type="Texture2D" uid="uid://dwct6333ddc2q" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS RoadBlockAssets S6/Chain_Linked_Fence_S6.png" id="37_te41h"]
-[ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassBottomRightCorner.tscn" id="38_kyll8"]
-[ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassUpRightCorner.tscn" id="39_shoe6"]
-[ext_resource type="PackedScene" uid="uid://d1nam1kuyikqa" path="res://Scenes/Level Components/Objects/GrassVariants/GrassUpLeftCorner.tscn" id="40_q6sm7"]
+[ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopRight.tscn" id="38_kyll8"]
+[ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopLeft.tscn" id="39_shoe6"]
+[ext_resource type="PackedScene" uid="uid://d1nam1kuyikqa" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerBottomRight.tscn" id="40_q6sm7"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="41_fwgo3"]
 [ext_resource type="PackedScene" uid="uid://dk60vjxm33eaq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTFlipped.tscn" id="41_hk06f"]
 [ext_resource type="PackedScene" uid="uid://bky6a75x1d73k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTLeft.tscn" id="42_7ri18"]
@@ -1281,6 +1281,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1480, 8, -425)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2930, 8, 25), Vector3(-2930, 8, 225), Vector3(-2980, 8, 225), Vector3(-2980, 8, 25)])
 
 [node name="Crowd2" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1288,6 +1290,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1525, 8, -225)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2980, 8, 225), Vector3(-2980, 8, 25), Vector3(-2930, 8, 25), Vector3(-2930, 8, 225)])
 
 [node name="Crowd3" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1295,6 +1299,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1515, 8, -25)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2965, 8, 425), Vector3(-2925, 8, 425)])
 
 [node name="Crowd4" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1302,6 +1308,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1350, 8, 95)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2800, 8, 545), Vector3(-2800, 8, 730)])
 
 [node name="Crowd15" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1309,6 +1317,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1450, 8, 450)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2900, 8, 900), Vector3(-2900, 8, 715)])
 
 [node name="Crowd5" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1316,6 +1326,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1420, 8, 535)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2870, 8, 985), Vector3(-2800, 8, 985)])
 
 [node name="Crowd14" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1323,6 +1335,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 8, 750)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2700, 8, 1200), Vector3(-2900, 8, 1200), Vector3(-2900, 8, 1040), Vector3(-2900, 8, 1200)])
 
 [node name="Crowd13" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1330,6 +1344,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1260, 8, 655)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2710, 8, 1105), Vector3(-2530, 8, 1105)])
 
 [node name="Crowd6" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1337,6 +1353,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -955, 8, 680)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2405, 8, 1130), Vector3(-2155, 8, 1130)])
 
 [node name="Crowd7" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1344,6 +1362,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 8, 675)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-1950, 8, 1125), Vector3(-1750, 8, 1125)])
 
 [node name="Crowd8" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1351,6 +1371,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 8, 720)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-1650, 8, 1170), Vector3(-1850, 8, 1170)])
 
 [node name="Crowd9" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1358,6 +1380,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 8, 720)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-2050, 8, 1170), Vector3(-2275, 8, 1170)])
 
 [node name="Crowd10" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1365,6 +1389,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -390, 8, 475)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-1840, 8, 925), Vector3(-1760, 8, 925)])
 
 [node name="Crowd11" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1372,6 +1398,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -265, 8, 325)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-1715, 8, 775), Vector3(-1840, 8, 775)])
 
 [node name="Crowd12" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1379,6 +1407,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -340, 8, 175)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-1790, 8, 625), Vector3(-1705, 8, 625)])
 
 [node name="Crowd16" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
@@ -1386,4 +1416,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145, 8, 70)
 debug = true
 circum = 45.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-1305, 8, 520), Vector3(-1100, 8, 520)])

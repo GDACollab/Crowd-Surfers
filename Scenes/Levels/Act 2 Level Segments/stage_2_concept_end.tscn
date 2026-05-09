@@ -1,11 +1,11 @@
 [gd_scene load_steps=20 format=3 uid="uid://dmkrxxqd6thbx"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="2_jvknt"]
-[ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassUpRightCorner.tscn" id="2_vu21y"]
+[ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopLeft.tscn" id="2_vu21y"]
 [ext_resource type="PackedScene" uid="uid://dk60vjxm33eaq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTFlipped.tscn" id="3_n3f7b"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="4_p1kcf"]
 [ext_resource type="PackedScene" uid="uid://bky6a75x1d73k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTLeft.tscn" id="4_xn5x7"]
-[ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassBottomRightCorner.tscn" id="5_h70yf"]
+[ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopRight.tscn" id="5_h70yf"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="5_jvknt"]
 [ext_resource type="PackedScene" uid="uid://dr7ljs6hig6il" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTRight.tscn" id="6_gi3lo"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="6_p1kcf"]
@@ -518,6 +518,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 8, 0)
 debug = true
 circum = 40.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-800, 8, 800), Vector3(-700, 8, 800), Vector3(-600, 8, 800), Vector3(-600, 8, 700)])
 
 [node name="Crowd2" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -525,7 +527,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 8, 0)
 debug = true
 circum = 40.0
 crowd_size = 20
-acceleration = 70.0
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-345, 8, 805), Vector3(-345, 8, 905), Vector3(-55, 8, 905), Vector3(-55, 8, 805)])
 
 [node name="Crowd6" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -533,7 +536,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 8, -100)
 debug = true
 circum = 40.0
 crowd_size = 20
-acceleration = 70.0
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-345, 8, 905), Vector3(-55, 8, 905), Vector3(-55, 8, 805), Vector3(-345, 8, 805)])
 
 [node name="Crowd4" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -541,7 +545,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 8, -100)
 debug = true
 circum = 40.0
 crowd_size = 20
-acceleration = 70.0
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-55, 8, 905), Vector3(-55, 8, 805), Vector3(-345, 8, 805), Vector3(-345, 8, 905)])
 
 [node name="Crowd7" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -549,7 +554,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, 8, 0)
 debug = true
 circum = 40.0
 crowd_size = 20
-acceleration = 70.0
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-55, 8, 805), Vector3(-345, 8, 805), Vector3(-345, 8, 905), Vector3(-55, 8, 905)])
 
 [node name="Crowd8" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -557,6 +563,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 8, -200)
 debug = true
 circum = 40.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-400, 8, 950), Vector3(-475, 8, 950), Vector3(-475, 8, 900), Vector3(-475, 8, 950)])
 
 [node name="Crowd9" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -564,6 +572,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 8, -300)
 debug = true
 circum = 40.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(-150, 8, 1075), Vector3(-200, 8, 1075), Vector3(-270, 8, 1025), Vector3(-200, 8, 1075)])
 
 [node name="Crowd10" parent="Crowds" instance=ExtResource("18_n3f7b")]
@@ -571,70 +581,126 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 8, -200)
 debug = true
 circum = 40.0
 crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
 route = Array[Vector3]([Vector3(70, 8, 1020), Vector3(0, 8, 1065)])
 
-[node name="StageCrowd" parent="Crowds" instance=ExtResource("18_n3f7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 8, -400)
+[node name="Crowd12" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 8, -110)
 debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(500, 8, 1200)])
+circum = 40.0
+crowd_size = 20
+max_speed = 40.0
+acceleration = 40.0
+route = Array[Vector3]([Vector3(10, 8, 900)])
 
 [node name="StageCrowd2" parent="Crowds" instance=ExtResource("18_n3f7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 8, -300)
 debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(500, 8, 1100)])
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(500, 0, 1100), Vector3(485, 0, 1115)])
 
 [node name="StageCrowd3" parent="Crowds" instance=ExtResource("18_n3f7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 8, -300)
 debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(400, 8, 1100)])
-
-[node name="StageCrowd4" parent="Crowds" instance=ExtResource("18_n3f7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 8, -400)
-debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(400, 8, 1200)])
-
-[node name="StageCrowd5" parent="Crowds" instance=ExtResource("18_n3f7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 8, -400)
-debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(300, 8, 1200)])
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(400, 0, 1100), Vector3(385, 0, 1115)])
 
 [node name="StageCrowd6" parent="Crowds" instance=ExtResource("18_n3f7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 8, -300)
 debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(300, 8, 1100)])
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(300, 8, 1100), Vector3(285, 8, 1115)])
 
 [node name="StageCrowd7" parent="Crowds" instance=ExtResource("18_n3f7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 8, -300)
 debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(200, 8, 1100)])
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(200, 8, 1100), Vector3(185, 8, 1115)])
+
+[node name="StageCrowd" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 8, -400)
+debug = true
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(500, 8, 1200), Vector3(515, 8, 1215)])
+
+[node name="StageCrowd4" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 8, -400)
+debug = true
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(400, 8, 1200), Vector3(415, 8, 1215)])
+
+[node name="StageCrowd5" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 8, -400)
+debug = true
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(300, 8, 1200), Vector3(315, 8, 1215)])
 
 [node name="StageCrowd8" parent="Crowds" instance=ExtResource("18_n3f7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 8, -400)
 debug = true
-circum = 100.0
-crowd_size = 60
-route = Array[Vector3]([Vector3(200, 8, 1200)])
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(200, 8, 1200), Vector3(215, 8, 1215)])
 
-[node name="Crowd12" parent="Crowds" instance=ExtResource("18_n3f7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 8, -100)
+[node name="StageCrowd9" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 8, -500)
 debug = true
-circum = 40.0
-crowd_size = 20
-route = Array[Vector3]([Vector3(10, 8, 900)])
+circum = 90.0
+crowd_size = 70
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(500, 8, 1300), Vector3(485, 8, 1315)])
+
+[node name="StageCrowd10" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 8, -500)
+debug = true
+circum = 90.0
+crowd_size = 60
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(400, 8, 1300), Vector3(385, 8, 1315)])
+
+[node name="StageCrowd11" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 8, -500)
+debug = true
+circum = 90.0
+crowd_size = 60
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(300, 8, 1300), Vector3(285, 8, 1315)])
+
+[node name="StageCrowd12" parent="Crowds" instance=ExtResource("18_n3f7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 8, -500)
+debug = true
+circum = 90.0
+crowd_size = 60
+max_speed = 40.0
+acceleration = 60.0
+route = Array[Vector3]([Vector3(200, 8, 1300), Vector3(185, 8, 1315)])
 
 [node name="Buildings" type="Node3D" parent="."]
 

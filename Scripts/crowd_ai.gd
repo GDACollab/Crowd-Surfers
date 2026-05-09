@@ -64,7 +64,6 @@ var curr_point = 0
 @onready var navigation_agent_3d: NavigationAgent3D = $Anchor/NavigationAgent3D
 @onready var anchor: Node3D = $Anchor
 @onready var player_reference: CharacterBody3D = get_tree().root.find_child("Player", true, false)
-@onready var area_reference: Area3D = player_reference.find_child("Area3D", true, false)
 @onready var nav_map = get_world_3d().navigation_map
 var multi_mesh_manager: MultiMeshInstance3D
 
