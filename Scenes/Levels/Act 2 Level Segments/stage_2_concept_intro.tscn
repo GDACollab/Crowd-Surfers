@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="10_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="11_m1wnl"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="11_qp3i3"]
-[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_cdwv3"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_cdwv3"]
 [ext_resource type="Texture2D" uid="uid://c1qhua1s3e1va" path="res://Assets/Art/MichaelDevArt/KeepOutTape.png" id="14_23jsx"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="14_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="15_eavq4"]
@@ -181,14 +181,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -702, 0, -400)
 [node name="brick-building7" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, -100)
 
-[node name="brick-building8" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
-
-[node name="brick-building9" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
-
 [node name="brick-building10" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 200)
 
 [node name="brick-building11" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 0, 0)
@@ -233,9 +227,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 2, 100)
 
 [node name="beige-building1" parent="Level2-intro/Buildings" instance=ExtResource("11_m1wnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39424133, 2, -298.00952)
-
-[node name="beige-building6" parent="Level2-intro/Buildings" instance=ExtResource("11_m1wnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 2, 100)
 
 [node name="brick-building21" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 0)
@@ -314,6 +305,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1317, 75, -500)
 
 [node name="brick-building45" parent="Level2-intro/Buildings" instance=ExtResource("10_pmu2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1517, 75, -500)
+
+[node name="InvisibleWallSmall" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, -50)
+
+[node name="InvisibleWallSmall2" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 50, -50)
+
+[node name="InvisibleWallSmall3" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 50, 150)
+
+[node name="InvisibleWallSmall4" parent="Level2-intro/Buildings" instance=ExtResource("12_cdwv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 50, 150)
 
 [node name="PropCont" type="Node3D" parent="Level2-intro"]
 
