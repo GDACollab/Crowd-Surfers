@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="CharacterDialogueData" load_steps=3 format=3 uid="uid://bp76ydllrswor"]
+[gd_resource type="Resource" script_class="CharacterDialogueData" load_steps=4 format=3 uid="uid://bp76ydllrswor"]
 
-[ext_resource type="Texture2D" uid="uid://b02bnlt4evmxu" path="res://Assets/Art/temp player.png" id="1_2ipgb"]
-[ext_resource type="Script" path="res://Scripts/CharacterDialogueData.gd" id="1_18es8"]
+[ext_resource type="Texture2D" uid="uid://ca5nvtldwcy3j" path="res://Assets/Art/Portraits/Chef/Chef_Default.PNG" id="1_2ipgb"]
+[ext_resource type="Script" uid="uid://cx4sjgqdwpmhw" path="res://Scripts/CharacterDialogueData.gd" id="1_18es8"]
+[ext_resource type="Texture2D" uid="uid://dfiiphatsv8dp" path="res://Assets/Art/Portraits/Chef/Chef_Nervous.PNG" id="2_h5m1m"]
 
 [resource]
 script = ExtResource("1_18es8")
 characterName = "Chef"
 displayName = "Chef"
 colour = Color(1, 0.5023, 0.43550968, 1)
-portraits = Array[Texture2D]([ExtResource("1_2ipgb")])
+default_portrait = ExtResource("1_2ipgb")
+expression_dictionary = Dictionary[String, Texture2D]({
+"Nervous": ExtResource("2_h5m1m")
+})
