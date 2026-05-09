@@ -1,5 +1,7 @@
 extends Node3D
 
+## I MADE MISTAKE, CIRCUMFERENCE MEANS DIAMETER
+
 # EXPORT VARIABLES
 @export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
@@ -19,7 +21,7 @@ const CAP_HEIGHT = 16
 # VARIABLES RIDS
 var visual_scale = 1.0
 var crowd_basis = Basis.IDENTITY.scaled(Vector3(visual_scale, visual_scale, visual_scale))
-var check_rate: int = crowd_size / check_limit # integer may be bad
+var check_rate: int = 2
 var check_freq: int = 0
 
 # ARRAY
@@ -45,6 +47,7 @@ var sub_timer_count: float = 2.0
 var anchor_velocity = Vector3(0, 0, 0)
 
 # INTERNAL VARIABLES
+var radius: float
 var gravity_force_for_velocity = Vector3.ZERO
 var stomp_force_multiplier: int = 1000 # helps with design not dealing with absurdly high numbers
 #var angle_radians = atan2(CAP_HEIGHT, CAP_RADIUS)
@@ -79,8 +82,10 @@ func _ready() -> void:
 	#anchor_box.shape.radius = circum / 4.0
 
 	var area = CylinderMesh.new()
-	area.top_radius = circum / 2.0
-	area.bottom_radius = circum / 2.0
+	check_rate = crowd_size / check_limit
+	radius = circum / 2.0
+	area.top_radius = radius
+	area.bottom_radius = radius
 	
 	anchor_mesh.mesh = area
 	# Transparency temporary debug
@@ -134,7 +139,8 @@ func _physics_process(delta: float) -> void:
 	call_queue.clear()
 	# deletion for all in queue
 	delete_queue()
-
+	
+	print(agents_sub.size())
 	# progress check freq
 	check_freq += check_limit
 	check_freq = check_freq % crowd_size
@@ -191,11 +197,9 @@ func group_main(safe_velocity) -> void:
 
 	anchor.velocity.x = lerp(anchor.velocity.x, vel.x, accel_delta)
 	anchor.velocity.z = lerp(anchor.velocity.z, vel.z, accel_delta)
-	anchor.velocity.y +=  gravity_force_for_velocity.y * get_physics_process_delta_time()
+	anchor.velocity.y +=  gravity_force_for_velocity.y * delta_time
 	# call its members
 	multi_mesh_process(agents_main, vel)
-	
-
 
 # sub brain
 # Sub loop for remerging, what needs to be initially made and what to follow? (might need to split up again)
@@ -212,10 +216,11 @@ func group_sub(sub_array, safe_velocity) -> void:
 	
 	sub_anchor.velocity.x = lerp(sub_anchor.velocity.x, vel.x, accel_delta)
 	sub_anchor.velocity.z = lerp(sub_anchor.velocity.z, vel.z, accel_delta)
-	sub_anchor.velocity.y +=  gravity_force_for_velocity.y * get_physics_process_delta_time()
+	sub_anchor.velocity.y +=  gravity_force_for_velocity.y * delta_time
 	
 	checkSubAmor(sub_array, vel)
 	multi_mesh_process(sub_array, vel)
+	
 
 ## collision detection
 # checkCollision
@@ -301,7 +306,7 @@ func checkSubAmor(array, non_main) -> void:
 		var given_anchor_position = Vector2(array[0].global_position.x, array[0].global_position.z)
 		#print('sub_anc')
 		#print(given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)))
-		if (array.size() > sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 3.0):
+		if (array.size() < sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 3.0):
 			#print('working anchor given')
 			call_queue.append(Callable(self, "mass_swap_behav").bind(array, sub_group))
 			return
@@ -394,7 +399,7 @@ func bounce_behav(member, collision) -> Vector3:
 func find_group_behav(member, origin, crowd_size) -> void:
 	for agt_array in agents_sub:
 		var dist = get_rid_position(member).distance_to(agt_array[0].global_position)
-		var temp_circum = circum * ratio_circum
+		var temp_circum = radius * ratio_circum
 		# check if objectect is close and combining doesn't exceed limit
 		if (dist <= temp_circum):
 			call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, agt_array))
@@ -467,6 +472,7 @@ func mass_swap_behav(array, target) -> void:
 			swap_member_behav(array, member, target)
 	
 	# reposition the current anchor to the last unswapped member if it exists
+	return
 	if (target.size() > 1):
 		target[0].global_position = get_rid_position(target[1])
 		#var current_vel = PhysicsServer3D.body_get_state(target[1], PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY)
@@ -609,8 +615,8 @@ func stomp_impact(source, force):
 	var space_state = get_world_3d().direct_space_state
 	
 	var blast_shape = SphereShape3D.new()
-	var radius = player_reference.crowd_stomp_radius
-	blast_shape.radius = radius
+	var stomp_radius = player_reference.crowd_stomp_radius
+	blast_shape.radius = stomp_radius
 	
 	var query = PhysicsShapeQueryParameters3D.new()
 	query.shape = blast_shape
@@ -621,7 +627,7 @@ func stomp_impact(source, force):
 	for result in results:
 		var rid = result.rid
 		if rid_dictionary.has(rid):
-			crowd_apply_force(source, rid, force, radius)
+			crowd_apply_force(source, rid, force, stomp_radius)
 
 # get rid position from reference
 func get_rid_position(rid) -> Vector3:
@@ -651,7 +657,7 @@ func set_velocity_change(member, target_vel: Vector3) -> void:
 	multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 
 # apply a force from a center to a body
-func crowd_apply_force(source, rid, force, radius) -> void:
+func crowd_apply_force(source, rid, force, stomp_radius) -> void:
 	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, false)
 	
 	var source_pos = source.global_position
@@ -660,7 +666,7 @@ func crowd_apply_force(source, rid, force, radius) -> void:
 	# apply ratio of force
 	const min_ratio = 0.25
 	const max_ratio = 1.0
-	var ratio = clamp(1.0 - (Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z)) / radius), min_ratio, max_ratio)
+	var ratio = clamp(1.0 - (Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z)) / stomp_radius), min_ratio, max_ratio)
 	
 	var force_vec = -(source_pos - rid_pos) * force * ratio
 	
