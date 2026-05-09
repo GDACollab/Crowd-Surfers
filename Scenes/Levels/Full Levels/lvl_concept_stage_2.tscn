@@ -323,6 +323,42 @@ transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 850,
 [node name="StaticBody3D13" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(5.7620454e-08, 0, -1, 0, 1, 0, 1, 0, 5.7620454e-08, 1250.0002, 0, 100)
 
+[node name="InvisibleWallSmall2" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 50, 600)
+
+[node name="InvisibleWallSmall3" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 50, 700)
+
+[node name="InvisibleWallSmall4" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 50, 800)
+
+[node name="InvisibleWallSmall5" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 150, 600)
+
+[node name="InvisibleWallSmall6" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(0.9992778, -0.016869366, 0.0340493, 0.01712212, 0.99982786, -0.0071450616, -0.0339229, 0.007722911, 0.9993946, 700, 150, 700)
+
+[node name="InvisibleWallSmall7" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 150, 800)
+
+[node name="InvisibleWallSmall8" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(0.9994496, -0.014740433, 0.029716926, 0.014933036, 0.99986887, -0.006269463, -0.029620608, 0.006709797, 0.99953866, 1000, 50, 900)
+
+[node name="InvisibleWallSmall9" parent="AddedBuildings" instance=ExtResource("26_nx437")]
+transform = Transform3D(0.9994496, -0.014740433, 0.029716926, 0.014933036, 0.99986887, -0.006269463, -0.029620608, 0.006709797, 0.99953866, 1100, 50, 900)
+
+[node name="BrickL10" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 750)
+
+[node name="BrickBuild10" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 700, 0, 850)
+
+[node name="BrickL11" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 650)
+
+[node name="BrickBuild11" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 800, 0, 750)
+
 [node name="EndEvent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.49762)
 
@@ -387,7 +423,7 @@ transform = Transform3D(0.025000002, -7.993202e-18, 1.3877788e-17, 1.110223e-16,
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("18_r2b5i")]
-transform = Transform3D(-4.3711385e-08, 0, 5.5099998, 0, 2.4999998, 0, -0.99999994, 0, -2.4084974e-07, 1050, 0, -300)
+transform = Transform3D(-4.3711385e-08, 0, 5.5099998, 0, 2.4999998, 0, -0.99999994, 0, -2.4084974e-07, 1050, 50, -300)
 level_clear_ui = NodePath("../LevelClearUI")
 
 [node name="LevelClearUI" parent="." node_paths=PackedStringArray("hud_ui") instance=ExtResource("19_7y7j4")]
@@ -398,22 +434,10 @@ level_number = 2
 [node name="PauseHolder" parent="." instance=ExtResource("18_njsij")]
 visible = false
 
-[node name="InvisibleWallSmall" parent="." instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 50, 600)
+[node name="StaticBody3D" parent="." instance=ExtResource("16_1hnly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -50)
 
-[node name="InvisibleWallSmall2" parent="." instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 50, 700)
-
-[node name="InvisibleWallSmall3" parent="." instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 50, 800)
-
-[node name="InvisibleWallSmall4" parent="." instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 150, 600)
-
-[node name="InvisibleWallSmall5" parent="." instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 150, 700)
-
-[node name="InvisibleWallSmall6" parent="." instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 150, 800)
+[node name="StaticBody3D2" parent="." instance=ExtResource("19_yn7c2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -50)
 
 [connection signal="body_entered" from="EndEvent/Checkpoint/Area3D" to="EndEvent/Checkpoint" method="_on_area_3d_body_entered"]

@@ -15,7 +15,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("Entered checkpoint ", body.name)
 	if (body.name == "Player"):
 		blockade.position.x = 500.0
-		blockade.position.y = -419.337
+		blockade.position.y = -1000.0
 		blockade.position.z = 100.0
 		fence.position.x = 925.0
 		fence.position.y = 35.0
