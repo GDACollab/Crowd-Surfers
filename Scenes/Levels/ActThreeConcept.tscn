@@ -1389,6 +1389,22 @@ transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.939
 [node name="WaymoEvilDown" parent="DecorationsGroup/AlleywayDecorations/AlleyWayObstacles" instance=ExtResource("47_0swl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -405, 100, -355)
 
+[node name="PlazaDecorations" type="Node3D" parent="DecorationsGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, -450)
+
+[node name="PlazaObstacles" type="Node3D" parent="DecorationsGroup/PlazaDecorations"]
+
+[node name="StaticBody3D" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 21.213203, 0, 100)
+
+[node name="StaticBody3D2" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 91.92388, 0, 29.289322)
+
+[node name="StaticBody3D3" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 162.63455, 0, -41.421356)
+
+[node name="PlazaInteractives" type="Node3D" parent="DecorationsGroup/PlazaDecorations"]
+
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
 
