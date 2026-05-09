@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
+@onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
+
 
 # DEBUG
 @onready var velocityLabel : Label3D = $VelocityLabel
@@ -41,6 +43,8 @@ var stateColors = {
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
+##Snap length to ensure smooth movement on slopes
+@export var snap_length = 5.0
 
 # Jumping
 @export_category("Jumping")
@@ -206,6 +210,7 @@ func _physics_process(delta: float) -> void:
 	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
+	stick_to_slope()
 	prev_velocity = velocity
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -774,6 +779,11 @@ func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	#stateLabel.modulate = stateColors[current_state]
+
+func stick_to_slope():
+	if is_on_floor():
+		floor_snap_length = snap_length
+	
 
 ## Checks when the restart button is pressed.
 func restart():
