@@ -49,7 +49,7 @@ bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Soun
 player = NodePath("../Player")
 
 [node name="Camera3D" parent="." instance=ExtResource("2_omilu")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 411.30725)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 561.30725)
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
@@ -57,7 +57,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_wef7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, 350)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, 550)
 
 [node name="Environment" parent="." instance=ExtResource("3_bi364")]
 
@@ -152,6 +152,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -649)
 
 [node name="stage_2_concept_end" parent="AddedRoads" instance=ExtResource("9_r2b5i")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -900, 0, 500)
+
+[node name="StaticBody3D" parent="AddedRoads" instance=ExtResource("16_1hnly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -50)
+
+[node name="StaticBody3D2" parent="AddedRoads" instance=ExtResource("19_yn7c2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -50)
 
 [node name="AddedBuildings" type="Node3D" parent="."]
 
@@ -354,10 +360,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 750)
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 700, 0, 850)
 
 [node name="BrickL11" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 650)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 750)
 
 [node name="BrickBuild11" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 800, 0, 750)
+
+[node name="BeigeBuild2" parent="AddedBuildings" instance=ExtResource("22_m0tkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 850)
+
+[node name="BrickBuild12" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 800, 0, 850)
+
+[node name="BrickL12" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 850, 100, 700)
 
 [node name="EndEvent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.49762)
@@ -433,11 +448,5 @@ level_number = 2
 
 [node name="PauseHolder" parent="." instance=ExtResource("18_njsij")]
 visible = false
-
-[node name="StaticBody3D" parent="." instance=ExtResource("16_1hnly")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -50)
-
-[node name="StaticBody3D2" parent="." instance=ExtResource("19_yn7c2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -50)
 
 [connection signal="body_entered" from="EndEvent/Checkpoint/Area3D" to="EndEvent/Checkpoint" method="_on_area_3d_body_entered"]
