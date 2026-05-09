@@ -17,6 +17,7 @@ extends Node3D
 # CONSTANTS
 const CAP_RADIUS = 4
 const CAP_HEIGHT = 16
+const HEIGHT_RESET = -50
 
 # VARIABLES RIDS
 var visual_scale = 1.0
@@ -99,7 +100,6 @@ func _ready() -> void:
 	gravity_force_for_velocity = ProjectSettings.get_setting("physics/3d/default_gravity_vector")*10
 	
 	group_brain(crowd_size, circum, 1)
-	player_reference.crowd_stomp_signal.connect(Callable(self, "stomp_impact").bind(player_reference, player_reference.crowd_stomp_force), 1)
 	#group_brain(1, circum, 0)
 
 
@@ -140,7 +140,6 @@ func _physics_process(delta: float) -> void:
 	# deletion for all in queue
 	delete_queue()
 	
-	print(agents_sub.size())
 	# progress check freq
 	check_freq += check_limit
 	check_freq = check_freq % crowd_size
@@ -157,12 +156,15 @@ func multi_mesh_process(array, vel) -> void:
 		
 		#if (current_vel.length() >= max_speed):
 			
+		if (!rid_dictionary[member].stomped):
+			var velocity_change = (vel - current_vel)
+				
+			PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
+			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
+		else:
+			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 		
-		var velocity_change = (vel - current_vel)
-			
-		PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
-		multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
-	
+		
 # group brain
 # Creates the groups, will need to send a list of what needs to be being checked
 # Parameters: 
@@ -334,7 +336,14 @@ func checkAnchor(array) -> void:
 		if (array[0].global_position.distance_to(sub_group[0].global_position) < circum / 2.0):
 			call_queue.append(Callable(self, "swap_member_behav").bind(array, array[0], 0, sub_group[0]))
 		
-	
+# checkReset
+# Checks the Y position, if the crowd member is falling out of the map, it will bring them back to the main anchor
+func checkReset(rid) -> void:
+	if !(get_rid_position(rid).y < HEIGHT_RESET): return
+	var member_transform = Transform3D(crowd_basis, anchor.global_position)
+		
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, member_transform)
+	multi_mesh_manager.multimesh.set_instance_transform(rid_dictionary[rid].rid_to_mesh_index, member_transform)
 
 
 # finds a new location for nav agent with a given point to point system
@@ -592,11 +601,12 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_X, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Z, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Y, true)
-		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 20.0)
+		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 50.0)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_MASS, mass)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_FRICTION, 0.0)
 		
-		
+		# script reference attachment
+		PhysicsServer3D.body_attach_object_instance_id(rid, get_instance_id())
 		# layer and masks
 		var layer_3 = 4 # (2 to the power of 2) I have no idea why they are like this other than binary
 		var mask_1_and_3 = 1 + 4 # (1 + 4 = 5)
@@ -611,23 +621,30 @@ func create_rids(position) -> void:
 		# Add to main group and map to the visual instance ID
 		agents_main.append(rid)
 
-func stomp_impact(source, force):
-	var space_state = get_world_3d().direct_space_state
+# apply a force from a center to a body
+func crowd_stomp_spread(source, rid, force, stomp_radius) -> void:
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, false)
+	rid_dictionary[rid].stomped = true # set the crowd to use physics for stomp
 	
-	var blast_shape = SphereShape3D.new()
-	var stomp_radius = player_reference.crowd_stomp_radius
-	blast_shape.radius = stomp_radius
+	var source_pos = source.global_position
+	var rid_pos = get_rid_position(rid)
 	
-	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = blast_shape
-	query.transform = player_reference.global_transform
-	query.collision_mask = 4
+	# apply ratio of force
+	const MIN_RATIO = 0.1
+	const MAX_RATIO = 1.0
+	const GAP_RADIUS = 1.0
+	var dist = Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z))
+	var ratio = remap(dist, GAP_RADIUS, stomp_radius, MAX_RATIO, MIN_RATIO)
+	#var ratio = clamp(1.0 - (Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z)) / stomp_radius), min_ratio, max_ratio)
+	ratio = clamp(ratio, 0.0, 1.0)
+	ratio = pow(ratio, 2)
+	var force_vec = -(source_pos - rid_pos) * force * ratio
 	
-	var results = space_state.intersect_shape(query, 500)
-	for result in results:
-		var rid = result.rid
-		if rid_dictionary.has(rid):
-			crowd_apply_force(source, rid, force, stomp_radius)
+	PhysicsServer3D.body_apply_central_impulse(rid, force_vec) # might need to multiply by time
+
+# tells the crowd to reapply its normal force and movement physics, based off the given array of rids
+func crowd_stomp_stop(rid) -> void:
+	rid_dictionary[rid].stomped = false # set the crowd to use physics for stomp
 
 # get rid position from reference
 func get_rid_position(rid) -> Vector3:
@@ -647,6 +664,7 @@ func get_velocity_change(member, target_vel) -> Vector3:
 	var current_vel = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY)
 	var velocity_change = (target_vel - current_vel)
 	return velocity_change
+	
 
 # set the velocity of the member to target_vel over time
 func set_velocity_change(member, target_vel: Vector3) -> void:
@@ -656,22 +674,6 @@ func set_velocity_change(member, target_vel: Vector3) -> void:
 	var mesh_index = rid_dictionary[member].rid_to_mesh_index
 	multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 
-# apply a force from a center to a body
-func crowd_apply_force(source, rid, force, stomp_radius) -> void:
-	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, false)
-	
-	var source_pos = source.global_position
-	var rid_pos = get_rid_position(rid)
-	
-	# apply ratio of force
-	const min_ratio = 0.25
-	const max_ratio = 1.0
-	var ratio = clamp(1.0 - (Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z)) / stomp_radius), min_ratio, max_ratio)
-	
-	var force_vec = -(source_pos - rid_pos) * force * ratio
-	
-	PhysicsServer3D.body_apply_central_impulse(rid, force_vec) # might need to multiply by time
-	
 func create_anchor(append_target, cir) -> void:
 	var sub_anchor = anchor_type.instantiate()
 	add_child(sub_anchor)

@@ -5,8 +5,7 @@ var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 
 # STOMP CROWD
-@onready var stomp_area : Area3D = $Area3D
-signal crowd_stomp_signal()
+signal crowd_stomp_end
 
 # DEBUG
 @onready var velocityLabel : Label3D = $VelocityLabel
@@ -46,8 +45,11 @@ var stateColors = {
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
 ## Crowd Push force when going through
-@export var crowd_push_force: float = 10.0
-
+@export var crowd_push_force: float = 50.0
+## Minimum Crowd slowdown
+@export var min_crowd_slowdown: float = 0.95
+## Maximum Crowd slowdown
+@export var max_crowd_slowdown: float = 0.8
 # Jumping
 @export_category("Jumping")
 ## Speed of the player's jump
@@ -83,9 +85,9 @@ var stateColors = {
 ## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
 #@export var stomp_dash_margin: float = 0.2
 ## Circumference of the Stomp Effect for Crowds
-@export var crowd_stomp_radius: float = 5.0
+@export var crowd_stomp_radius: float = 50.0
 ## Strength of the Stomp Effect for Crowds
-@export var crowd_stomp_force: float = 10.0
+@export var crowd_stomp_force: float = 50.0
 
 # Dash
 @export_category("Dash")
@@ -192,12 +194,10 @@ func _ready() -> void:
 	$StompWindupTimer.wait_time = windup_duration
 	$DashCooldownTimer.wait_time = dash_cooldown
 	$StompDashMargin.wait_time = stomp_dash_margin
-	
-	# change shape of the area3D
-	$Area3D/CollisionShape3D.shape.radius = crowd_stomp_radius
+
 
 func _physics_process(delta: float) -> void:
-	crowd_impact()
+	crowd_slowdown()
 	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
@@ -324,11 +324,12 @@ func check_state_transitions() -> void:
 		States.STOMP_WINDUP:
 			if $StompWindupTimer.is_stopped():
 				velocity = Vector3(0.0, -stomp_speed, 0.0)
-				crowd_stomp_signal.emit()
+				crowd_impact()
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
 				print("STOMP HIT FLOOR")
+				crowd_stomp_end.emit()
 				var hit_crowd = false
 				
 				# Loop through everything we collided with this frame
@@ -670,8 +671,8 @@ func check_crowd_wall() -> bool:
 			return true 
 	return false
 
-## crowd impact to slowdown player
-func crowd_impact() -> void:
+## crowd slowdown which gets the current body rid to check if any collisions exist with its mask 4
+func crowd_slowdown() -> void:
 	var space_state = get_world_3d().direct_space_state
 	
 	var rid_shape = $CollisionShape3D.shape.get_rid()
@@ -683,10 +684,46 @@ func crowd_impact() -> void:
 	query.collide_with_bodies = true
 	
 	var results = space_state.intersect_shape(query, 500)
+	var min_actual_slowdown = 1.0 - min_crowd_slowdown
+	var max_actual_slowdown = 1.0 - max_crowd_slowdown
+	
+	
 	if results.size() > 0:
-		# i know, its way too many magic numbers, its late
-		var crowd_density = clamp(results.size() * 0.05, 0.05, 0.3)
+		# clamp effect, so although it is the actual slowdown, the higher density the worse effect it has
+		var crowd_density = clamp(results.size() * min_actual_slowdown, min_actual_slowdown, max_actual_slowdown)
 		velocity *= (1.0 - crowd_density)
+		
+func crowd_impact() -> void:
+	var space_state = get_world_3d().direct_space_state
+	
+	var blast_shape = SphereShape3D.new()
+	var stomp_radius = crowd_stomp_radius
+	blast_shape.radius = stomp_radius
+	
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape = blast_shape
+	query.transform = global_transform
+	query.collision_mask = 4
+	
+	var results = space_state.intersect_shape(query, 500)
+	for result in results:
+		var rid = result.rid
+		var manager = result.collider
+		# Rid specific ID here
+		if manager and manager.has_method("crowd_stomp_spread"):
+			manager.crowd_stomp_spread(self, rid, crowd_stomp_force, crowd_stomp_radius)
+			
+	await crowd_stomp_end
+	crowd_stop_impact(results)
+
+func crowd_stop_impact(results) -> void:
+	for result in results:
+		var rid = result.rid
+		var manager = result.collider
+		if manager and manager.has_method("crowd_stomp_stop"):
+			manager.crowd_stomp_stop(rid)
+		
+
 
 ## Update FMOD floor material parameter based on raycast
 func update_fmod_floor_material() -> void:
