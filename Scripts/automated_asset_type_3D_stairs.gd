@@ -237,14 +237,14 @@ func _ready():
 
 # updates hitboxes upon every small change
 func _update_hitboxes():
-	print('called')
+	#print('called')
 	if (!active) or !is_inside_tree(): return
 	# initially makes sure all previous versions are destroyed, careful this will reset everything you worked on
 	cleanup_generated_nodes()
 	
 	# begins checking if existing and creating assets
 	if (collect_all_assets()): 
-		print("creationary stage")
+		#print("creationary stage")
 		
 		create_sprites()
 		
