@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3drn68hqluks"]
 
-[ext_resource type="Script" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_gf32f"]
-[ext_resource type="Texture2D" uid="uid://fusyp6ijm2nu" path="res://Assets/Art/ColeDevArt/Alleyway-DevArt.png" id="2_akh0m"]
+[ext_resource type="Script" uid="uid://dquwv5u4a0an0" path="res://Scripts/automated_asset_type_3D_stairs.gd" id="1_gf32f"]
+[ext_resource type="Texture2D" uid="uid://cwinn3vmtsn38" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS SidewalkTiles S6/Concrete tile 1 S3.png" id="2_gf32f"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_joq7w"]
-albedo_texture = ExtResource("2_akh0m")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akh0m"]
+albedo_texture = ExtResource("2_gf32f")
 uv1_scale = Vector3(1, -23, 1)
 uv1_offset = Vector3(0, -0.005, 0)
 
@@ -13,7 +13,7 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 50, 
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
 script = ExtResource("1_gf32f")
-stairs_filename = ExtResource("2_akh0m")
+stairs_filename = ExtResource("2_gf32f")
 width = 100.0
 length = 200.0
 height = 100.0
@@ -24,7 +24,7 @@ platform_thickness = 1.0
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 0, 200)
 polygon = PackedVector2Array(0, 0, 0, 10, 20, 10, 20, 20, 40, 20, 40, 30, 60, 30, 60, 40, 80, 40, 80, 50, 100, 50, 100, 60, 120, 60, 120, 70, 140, 70, 140, 80, 160, 80, 160, 90, 180, 90, 180, 100, 200, 100, 200, 99, 20, 0)
 depth = 100.0
-material = SubResource("StandardMaterial3D_joq7w")
+material = SubResource("StandardMaterial3D_akh0m")
 
 [node name="MainHitbox" type="CollisionPolygon3D" parent="StaticBody3D"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
