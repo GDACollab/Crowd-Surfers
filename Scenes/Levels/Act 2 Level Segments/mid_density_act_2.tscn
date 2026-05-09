@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cbcmgqb5ep5f6"]
+[gd_scene load_steps=48 format=3 uid="uid://cbcmgqb5ep5f6"]
 
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="5_3q2qt"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="5_lrgld"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b6kkjvxxrm5qh" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile1.tscn" id="23_te41h"]
 [ext_resource type="PackedScene" uid="uid://dc3rcuwcooube" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile2.tscn" id="24_rkfye"]
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="24_w268i"]
+[ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="25_kyll8"]
 [ext_resource type="PackedScene" uid="uid://yegdmbcse2fy" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile3.tscn" id="25_uq2mu"]
 [ext_resource type="PackedScene" uid="uid://12f1kk357gr3" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile4.tscn" id="26_px23y"]
 [ext_resource type="PackedScene" uid="uid://4ig40thve6wn" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile2.tscn" id="27_ed66n"]
@@ -131,6 +132,9 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -100
 
 [node name="InvisibleWallSmall" parent="MidDensityStart/BuildCont" instance=ExtResource("12_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 50, 0)
+
+[node name="StaticBody3D23" parent="MidDensityStart/BuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -50)
 
 [node name="InteractionContStart" type="Node3D" parent="MidDensityStart"]
 
@@ -379,6 +383,81 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 600)
 [node name="StaticBody3D28" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 700)
 
+[node name="StaticBody3D29" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 800)
+
+[node name="StaticBody3D30" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 800)
+
+[node name="StaticBody3D31" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 800)
+
+[node name="StaticBody3D32" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 800)
+
+[node name="StaticBody3D33" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, 800)
+
+[node name="StaticBody3D34" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 800)
+
+[node name="StaticBody3D35" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -350, 0, 800)
+
+[node name="StaticBody3D51" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 800)
+
+[node name="StaticBody3D53" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550, 0, 800)
+
+[node name="StaticBody3D55" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 800)
+
+[node name="StaticBody3D56" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 800)
+
+[node name="StaticBody3D59" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 800)
+
+[node name="StaticBody3D60" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 800)
+
+[node name="StaticBody3D63" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 800)
+
+[node name="StaticBody3D65" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 800)
+
+[node name="StaticBody3D67" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 800)
+
+[node name="StaticBody3D68" parent="MidDensity/FixedRoadCont" instance=ExtResource("41_fwgo3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1450, 0, 800)
+
+[node name="StaticBody3D70" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1350, 0, 800)
+
+[node name="StaticBody3D36" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 0, 100)
+
+[node name="StaticBody3D37" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1150, 0, 100)
+
+[node name="StaticBody3D38" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1050, 0, 100)
+
+[node name="StaticBody3D39" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -950, 0, 100)
+
+[node name="StaticBody3D40" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -850, 0, 100)
+
+[node name="StaticBody3D41" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -750, 0, 100)
+
+[node name="StaticBody3D42" parent="MidDensity/FixedRoadCont" instance=ExtResource("5_lrgld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -650, 0, 100)
+
 [node name="FixedBuildCont" type="Node3D" parent="MidDensity"]
 
 [node name="StaticBody3D" parent="MidDensity/FixedBuildCont" instance=ExtResource("8_lrgld")]
@@ -536,6 +615,159 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 200)
 
 [node name="InvisibleWallSmall4" parent="MidDensity/FixedBuildCont" instance=ExtResource("12_lrgld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 50, 150)
+
+[node name="StaticBody3D25" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1550, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D25" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D36" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1450, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D36" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D37" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1350, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D37" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D38" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1250, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D38" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D39" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1150, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D39" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D40" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1050, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D40" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D41" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -950, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D41" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D42" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -850, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D42" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D43" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -750, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D43" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D44" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -650, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D44" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D45" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -550, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D45" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D46" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -450, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D46" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D47" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -350, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D47" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D48" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -250, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D48" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D49" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -150, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D49" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D50" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -50, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D50" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D51" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 50, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D51" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D52" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 150, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D52" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D53" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 250, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D53" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D54" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 350, 0, 1000.0001)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D54" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D98" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 400, 0, 850)
+
+[node name="StaticBody3D55" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1150, 0, 300.00012)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D55" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D56" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1050, 0, 300.00012)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D56" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D57" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -950, 0, 300.00012)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D57" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D58" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -850, 0, 300.00012)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D58" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
+
+[node name="StaticBody3D59" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -750, 0, 300.00012)
+
+[node name="StaticBody3D2" parent="MidDensity/FixedBuildCont/StaticBody3D59" instance=ExtResource("25_kyll8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 100)
 
 [node name="FixedPropCont" type="Node3D" parent="MidDensity"]
 
