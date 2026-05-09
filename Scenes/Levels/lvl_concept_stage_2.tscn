@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=29 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -107,6 +107,44 @@ tracks/4/keys = {
 _data = {
 &"RESET": SubResource("Animation_7y7j4"),
 &"freeway_spotlights": SubResource("Animation_r2b5i")
+}
+
+[sub_resource type="Animation" id="Animation_evjpn"]
+resource_name = "light_flicker"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5333333, 1.9999998, 2.133333, 2.2666664, 2.3999996, 2.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [5.343, 5.343, 1.0, 4.0, 1.0, 4.0, 5.343]
+}
+
+[sub_resource type="Animation" id="Animation_hmqwp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.343]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hmqwp"]
+_data = {
+&"RESET": SubResource("Animation_hmqwp"),
+&"light_flicker": SubResource("Animation_evjpn")
 }
 
 [node name="LvlConcept-Stage2" type="Node3D"]
@@ -231,7 +269,7 @@ spot_range = 166.7274
 spot_attenuation = -0.03
 spot_angle = 89.99
 
-[node name="Spotlight_Alley" type="SpotLight3D" parent="Lights/Spotlights"]
+[node name="Spotlight_Alley_1" type="SpotLight3D" parent="Lights/Spotlights"]
 transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, 699.6141, 104.91832, -70.96285)
 light_color = Color(0.81215733, 0.68135476, 0, 1)
 light_energy = 1.98
@@ -261,6 +299,66 @@ spot_range = 166.7274
 spot_attenuation = -0.03
 spot_angle = 89.99
 
+[node name="Spotlight_Park_1" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -2028.3508, 104.91832, -646.8506)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Park_2" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -1839.6517, 104.91833, -640.714)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Park_3" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -2206.0454, 104.91833, -636.7317)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Park_4" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-0.6954865, -0.4370009, -0.57037604, -5.3168755e-08, -0.79379946, 0.6081797, -0.7185392, 0.4229808, 0.55207676, -1397.3732, 121.58242, -285.71515)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 198.0
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Park_5" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -1516.4637, 112.84093, -598.8055)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 256.53275
+spot_attenuation = -0.01
+spot_angle = 89.99
+
+[node name="Spotlight_Park_6" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -2883.646, 98.406364, -551.0381)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
 [node name="Spotlight_FreewayEnd" type="SpotLight3D" parent="Lights/Spotlights"]
 transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -839.16296, 104.91833, -121.34441)
 light_color = Color(0.81215733, 0.68135476, 0, 1)
@@ -275,7 +373,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.01031471, 0.9999463, 0, -0.9999463, 0.01031471, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314708, 0.99994606, 0, -0.99994606, 0.010314708, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -284,7 +382,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043646, -0.0007304823, 0, 0.0066143516, 0.9999781, 0.11043893, -0.99386066, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043643, -0.0007304823, 0, 0.0066143502, 0.9999781, 0.11043893, -0.9938604, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -293,7 +391,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039813183, -0.00026512897, 0, 0.006659173, 0.99997777, 0.039814085, -0.9991844, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813172, -0.00026512897, 0, 0.0066591715, 0.99997777, 0.039814085, -0.9991842, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -324,6 +422,98 @@ libraries = {
 &"": SubResource("AnimationLibrary_7y7j4")
 }
 autoplay = "freeway_spotlights"
+
+[node name="SpotLight_BackAlleyStart" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(0.9917899, -0.1220005, -0.038323853, 0, -0.29969025, 0.9540366, -0.12787822, -0.9462038, -0.29722977, -2042.0857, 77.544525, -150.7706)
+light_color = Color(0.6497317, 0.8549003, 0.9745272, 1)
+light_energy = 5.343
+spot_range = 204.80327
+spot_attenuation = 0.14
+spot_angle = 56.249996
+
+[node name="Spotlight_Flicker" type="AnimationPlayer" parent="Lights/Spotlights/SpotLight_BackAlleyStart"]
+libraries = {
+&"": SubResource("AnimationLibrary_hmqwp")
+}
+autoplay = "light_flicker"
+
+[node name="SpotLight_Blue_Park" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(0.9917899, -0.1220005, -0.03832385, 0, -0.29969025, 0.9540366, -0.12787822, -0.9462038, -0.29722974, -2641.9004, 77.54457, -644.601)
+light_color = Color(0.6497317, 0.8549003, 0.9745272, 1)
+light_energy = 5.343
+spot_range = 204.80327
+spot_attenuation = 0.14
+spot_angle = 49.09524
+
+[node name="Spotlight_Park_End" type="SpotLight3D" parent="Lights/Spotlights"]
+transform = Transform3D(-0.78081214, 0.37996995, 0.49593872, -1.1986037e-07, -0.7937994, 0.6081797, 0.6247659, 0.47487402, 0.61980826, -2925.2393, 104.91827, -140.62036)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 241.48291
+spot_attenuation = -0.03
+spot_angle = 78.28431
+
+[node name="Main Street" type="Node" parent="Lights/Spotlights"]
+
+[node name="SpotLight_Shortcut_End" type="SpotLight3D" parent="Lights/Spotlights/Main Street"]
+transform = Transform3D(0.9917899, -0.1220005, -0.03832385, 0, -0.29969025, 0.9540366, -0.12787822, -0.9462038, -0.29722974, -2090.2485, 135.99507, 480.53522)
+light_color = Color(0.6497317, 0.8549003, 0.9745272, 1)
+light_energy = 1.991
+spot_range = 204.80327
+spot_attenuation = 0.14
+spot_angle = 49.09524
+
+[node name="Spotlight_Main_1" type="SpotLight3D" parent="Lights/Spotlights/Main Street"]
+transform = Transform3D(1.3554397e-07, 0.6081797, 0.7937994, -1.1986037e-07, -0.7937994, 0.6081797, 1, -1.7758018e-07, -3.4698076e-08, -2929.308, 81.94832, 554.5272)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Main_2" type="SpotLight3D" parent="Lights/Spotlights/Main Street"]
+transform = Transform3D(1.3554397e-07, 0.6081797, 0.7937994, -1.1986037e-07, -0.7937994, 0.6081797, 1, -1.7758018e-07, -3.4698076e-08, -2830.4226, 104.91827, 887.0297)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Main_3" type="SpotLight3D" parent="Lights/Spotlights/Main Street"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -2758.8467, 104.91833, 1166.1576)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Main_4" type="SpotLight3D" parent="Lights/Spotlights/Main Street"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -2414.1523, 104.91832, 1156.0387)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
+
+[node name="Spotlight_Main_5" type="SpotLight3D" parent="Lights/Spotlights/Main Street"]
+transform = Transform3D(-1, -3.552714e-15, -8.742278e-08, -5.316875e-08, -0.79379946, 0.6081797, -6.939615e-08, 0.6081797, 0.79379946, -2115.4001, 104.91833, 1162.1753)
+light_color = Color(0.81215733, 0.68135476, 0, 1)
+light_energy = 1.98
+light_indirect_energy = 6.878
+light_volumetric_fog_energy = 4.592
+spot_range = 166.7274
+spot_attenuation = -0.03
+spot_angle = 89.99
 
 [node name="Car Lights" type="Node" parent="Lights"]
 
@@ -381,23 +571,95 @@ light_energy = 16.0
 shadow_enabled = true
 spot_range = 42.744
 
+[node name="Car 3" type="Node3D" parent="Lights/Car Lights"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2113.0583, 0, 473.35587)
+
+[node name="Car_Brakelight_1" type="OmniLight3D" parent="Lights/Car Lights/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Brakelight_2" type="OmniLight3D" parent="Lights/Car Lights/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Spotlight_1" type="SpotLight3D" parent="Lights/Car Lights/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 6, -22.085)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 42.744
+
+[node name="Car_Spotlight_2" type="SpotLight3D" parent="Lights/Car Lights/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -22.085)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 42.744
+
+[node name="Car 4" type="Node3D" parent="Lights/Car Lights"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2113.0583, 0, 502.1434)
+
+[node name="Car_Brakelight_1" type="OmniLight3D" parent="Lights/Car Lights/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Brakelight_2" type="OmniLight3D" parent="Lights/Car Lights/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Spotlight_1" type="SpotLight3D" parent="Lights/Car Lights/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 6, -22.085)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 42.744
+
+[node name="Car_Spotlight_2" type="SpotLight3D" parent="Lights/Car Lights/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -22.085)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 42.744
+
 [node name="Lighting Chunks" type="Node" parent="Lights"]
 
 [node name="LightChunk_Start" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("22_evjpn")]
 transform = Transform3D(6.775, 0, 0, 0, 1.89, 0, 0, 0, 5.27, 952.032, 80.47998, 84.582596)
-lights = [NodePath("../../Spotlights/Spotlight_Start"), NodePath("../../Spotlights/Spotlight_Alley"), NodePath("../../Spotlights/Spotlight_Alley_2"), NodePath("../../Spotlights/Spotlight_Alley_3"), NodePath("../../Car Lights/Car 1/Car_Brakelight_1"), NodePath("../../Car Lights/Car 1/Car_Brakelight_2"), NodePath("../../Car Lights/Car 1/Car_Spotlight_1"), NodePath("../../Car Lights/Car 1/Car_Spotlight_2"), NodePath("../../Car Lights/Car 2/Car_Brakelight_1"), NodePath("../../Car Lights/Car 2/Car_Brakelight_2"), NodePath("../../Car Lights/Car 2/Car_Spotlight_1"), NodePath("../../Car Lights/Car 2/Car_Spotlight_2")]
+lights = [NodePath("../../Spotlights/Spotlight_Start"), NodePath("../../Spotlights/Spotlight_Alley_1"), NodePath("../../Spotlights/Spotlight_Alley_2"), NodePath("../../Spotlights/Spotlight_Alley_3"), NodePath("../../Car Lights/Car 1/Car_Brakelight_1"), NodePath("../../Car Lights/Car 1/Car_Brakelight_2"), NodePath("../../Car Lights/Car 1/Car_Spotlight_1"), NodePath("../../Car Lights/Car 1/Car_Spotlight_2"), NodePath("../../Car Lights/Car 2/Car_Brakelight_1"), NodePath("../../Car Lights/Car 2/Car_Brakelight_2"), NodePath("../../Car Lights/Car 2/Car_Spotlight_1"), NodePath("../../Car Lights/Car 2/Car_Spotlight_2")]
+metadata/_edit_lock_ = true
 
 [node name="LightChunk_Freeway" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("22_evjpn")]
 transform = Transform3D(11.52, 0, 0, 0, 2, 0, 0, 0, 4.77, -297.86716, 76.2602, -167.58585)
 lights = [NodePath("../../Spotlights/Freeway/Freeway_01"), NodePath("../../Spotlights/Freeway/Freeway_02"), NodePath("../../Spotlights/Freeway/Freeway_03"), NodePath("../../Spotlights/Freeway/Freeway_04"), NodePath("../../Spotlights/Freeway/Freeway_05"), NodePath("../../Spotlights/Spotlight_FreewayEnd")]
+metadata/_edit_lock_ = true
+
+[node name="LightChunk_Park" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("22_evjpn")]
+transform = Transform3D(13.885, 0, 0, 0, 2, 0, 0, 0, 7.745, -2167.9873, 76.2602, -349.33688)
+lights = [NodePath("../../Spotlights/SpotLight_BackAlleyStart"), NodePath("../../Spotlights/Spotlight_Park_1"), NodePath("../../Spotlights/Spotlight_Park_2"), NodePath("../../Spotlights/Spotlight_Park_3"), NodePath("../../Spotlights/Spotlight_Park_4"), NodePath("../../Spotlights/Spotlight_Park_5"), NodePath("../../Spotlights/Spotlight_Park_6"), NodePath("../../Spotlights/SpotLight_Blue_Park"), NodePath("../../Spotlights/Spotlight_Park_End")]
+metadata/_edit_lock_ = true
+
+[node name="LightChunk_MainStreet" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("22_evjpn")]
+transform = Transform3D(14.71, 0, 0, 0, 2, 0, 0, 0, 7.745, -2067.8809, 76.2602, 863.3634)
+lights = [NodePath("../../Car Lights/Car 3/Car_Brakelight_1"), NodePath("../../Car Lights/Car 3/Car_Brakelight_2"), NodePath("../../Car Lights/Car 3/Car_Spotlight_1"), NodePath("../../Car Lights/Car 3/Car_Spotlight_2"), NodePath("../../Car Lights/Car 4/Car_Brakelight_1"), NodePath("../../Car Lights/Car 4/Car_Brakelight_2"), NodePath("../../Car Lights/Car 4/Car_Spotlight_1"), NodePath("../../Car Lights/Car 4/Car_Spotlight_2"), NodePath("../../Spotlights/Main Street/SpotLight_Shortcut_End"), NodePath("../../Spotlights/Main Street/Spotlight_Main_1"), NodePath("../../Spotlights/Main Street/Spotlight_Main_2"), NodePath("../../Spotlights/Main Street/Spotlight_Main_3"), NodePath("../../Spotlights/Main Street/Spotlight_Main_4"), NodePath("../../Spotlights/Main Street/Spotlight_Main_5")]
+metadata/_edit_lock_ = true
+
+[node name="LightChunk_End" parent="Lights/Lighting Chunks" instance=ExtResource("22_evjpn")]
+transform = Transform3D(14.71, 0, 0, 0, 2, 0, 0, 0, 7.745, 286.29614, 76.2602, 1058.7052)
+metadata/_edit_lock_ = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 190.0
 offset_bottom = 185.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -899.7218, 2027.6989, 518.76636)
-fov = 98.0
+fov = 100.5
+far = 3998.8
