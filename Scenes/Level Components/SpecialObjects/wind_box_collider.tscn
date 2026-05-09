@@ -5,7 +5,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
 
-[node name="WindBoxCollider" type="Node3D"]
+[node name="WindBoxCollider2" type="Node3D"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_elp6e")
 
@@ -13,9 +13,10 @@ script = ExtResource("1_elp6e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_elp6e")
+debug_color = Color(1.92523e-07, 0.7885931, 0.9148605, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.095, 0, 0, 0, -5.6824803e-09, 0.095, 0, -0.13, -4.152582e-09, 0, 0, 0)
+transform = Transform3D(-8.742279e-09, 0.273, 8.742278e-09, 0, -1.1933209e-08, 0.2, 0.2, 1.193321e-08, 3.8213714e-16, 0, 0, 0)
 texture = ExtResource("2_8eexc")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
