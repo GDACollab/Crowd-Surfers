@@ -90,6 +90,16 @@ text = "Act Two
 "
 icon = ExtResource("3_yohfk")
 
+[node name="Act3Button" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
+text = "Act Three
+"
+icon = ExtResource("3_yohfk")
+
 [node name="VerticalSliceButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -120,6 +130,6 @@ text = "Back
 
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act1Button" to="." method="_on_act_1_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act2Button" to="." method="_on_act_2_button_pressed"]
+[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act3Button" to="." method="_on_act_3_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton" to="." method="_on_vertical_slice_button_pressed"]
 [connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton" to="." method="_on_parking_lot_button_pressed"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/ActThreeConcept" to="." method="_on_act_three_concept_button_pressed"]
