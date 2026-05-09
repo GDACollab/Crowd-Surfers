@@ -12,6 +12,7 @@ extends Node3D
 @export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0 # this is amount of difference in height lost before recalculating
 @export var check_limit: int = 4
+@export var check_running_distance = 750
 
 
 # CONSTANTS
@@ -50,7 +51,6 @@ var anchor_velocity = Vector3(0, 0, 0)
 # INTERNAL VARIABLES
 var radius: float
 var gravity_force_for_velocity = Vector3.ZERO
-var stomp_force_multiplier: int = 1000 # helps with design not dealing with absurdly high numbers
 #var angle_radians = atan2(CAP_HEIGHT, CAP_RADIUS)
 #var angle_degrees = rad_to_deg(angle_radians)
 
@@ -105,6 +105,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if (!checkShouldRunInstance()): return
+	print('running')
 	# move behaviors
 	match state: 
 		State.IDLE:
@@ -345,6 +347,18 @@ func checkReset(rid) -> void:
 	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, member_transform)
 	multi_mesh_manager.multimesh.set_instance_transform(rid_dictionary[rid].rid_to_mesh_index, member_transform)
 
+# checkShouldRunInstance
+# Checks if the physics process for the current crowds should be running
+# NOTE Probably a better way to do this then how I am doing
+func checkShouldRunInstance() -> bool:
+	for point in route:
+		var point_position = Vector2(point.x, point.z)
+		var player_position = Vector2(player_reference.global_position.x, player_reference.global_position.z)
+		
+		var current_distance = player_position.distance_to(point_position)
+		if current_distance < check_running_distance:
+			return true
+	return false
 
 # finds a new location for nav agent with a given point to point system
 # Bug:
