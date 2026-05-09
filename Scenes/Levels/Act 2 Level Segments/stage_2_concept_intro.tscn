@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://duybqcqdfpvk7"]
+[gd_scene load_steps=34 format=3 uid="uid://duybqcqdfpvk7"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="5_pyklh"]
 [ext_resource type="PackedScene" uid="uid://b6kkjvxxrm5qh" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile1.tscn" id="5_trd8n"]
@@ -25,7 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://5ftwlpfd7ty8" path="res://Scenes/Level Components/Objects/FenceAndRoadBlockObjects/ChainLinkFence.tscn" id="22_3fww7"]
 [ext_resource type="PackedScene" uid="uid://d2uarcacbt8oc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassBottomLeftCorner.tscn" id="22_4yc5l"]
 [ext_resource type="PackedScene" uid="uid://c8fuj14nmef0t" path="res://Scenes/Level Components/Objects/GrassVariants/GrassT.tscn" id="23_ar8rp"]
+[ext_resource type="Texture2D" uid="uid://ck8qtl483el4c" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Turn S6.png" id="23_bqtap"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="24_kqi1o"]
+[ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="24_oo0hd"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="24_pf2ne"]
 [ext_resource type="PackedScene" uid="uid://dk60vjxm33eaq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTFlipped.tscn" id="25_5wof4"]
 [ext_resource type="PackedScene" uid="uid://mkge8kjmbt85" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantNormal.tscn" id="25_ar8rp"]
@@ -429,6 +431,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -350)
 
 [node name="fence2" parent="Level2-intro/PropCont" instance=ExtResource("22_3fww7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+
+[node name="ArrowRound" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(-14.999999, -1.3113415e-06, 5.732056e-14, 0, -6.5567076e-07, -14.999999, 1.3113415e-06, -14.999999, 6.5567076e-07, 500, 2, 50)
+texture = ExtResource("23_bqtap")
+
+[node name="ArrowStraight14" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(-6.5567076e-07, -14.999999, -6.5567076e-07, 0, -6.5567076e-07, 14.999999, -14.999999, 6.5567076e-07, 2.866028e-14, -75, 2, -150)
+texture = ExtResource("24_oo0hd")
+
+[node name="ArrowStraight15" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(-6.5567076e-07, -14.999999, -6.5567076e-07, 0, -6.5567076e-07, 14.999999, -14.999999, 6.5567076e-07, 2.866028e-14, -500, 2, -150)
+texture = ExtResource("24_oo0hd")
+
+[node name="ArrowStraight16" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(-6.5567076e-07, -14.999999, -6.5567076e-07, 0, -6.5567076e-07, 14.999999, -14.999999, 6.5567076e-07, 2.866028e-14, -925, 2, -150)
+texture = ExtResource("24_oo0hd")
+
+[node name="ArrowStraight17" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(-6.5567076e-07, -14.999999, -6.5567076e-07, 0, -6.5567076e-07, 14.999999, -14.999999, 6.5567076e-07, 2.866028e-14, -1325, 2, -150)
+texture = ExtResource("24_oo0hd")
 
 [node name="Grass" type="Node3D" parent="Level2-intro"]
 
