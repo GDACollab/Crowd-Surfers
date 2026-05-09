@@ -1,5 +1,7 @@
 extends Node3D
 
+## I MADE MISTAKE, CIRCUMFERENCE MEANS DIAMETER
+
 # EXPORT VARIABLES
 @export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
@@ -15,11 +17,12 @@ extends Node3D
 # CONSTANTS
 const CAP_RADIUS = 4
 const CAP_HEIGHT = 16
+const HEIGHT_RESET = -50
 
 # VARIABLES RIDS
 var visual_scale = 1.0
 var crowd_basis = Basis.IDENTITY.scaled(Vector3(visual_scale, visual_scale, visual_scale))
-var check_rate: int = crowd_size / check_limit # integer may be bad
+var check_rate: int = 2
 var check_freq: int = 0
 
 # ARRAY
@@ -45,7 +48,9 @@ var sub_timer_count: float = 2.0
 var anchor_velocity = Vector3(0, 0, 0)
 
 # INTERNAL VARIABLES
+var radius: float
 var gravity_force_for_velocity = Vector3.ZERO
+var stomp_force_multiplier: int = 1000 # helps with design not dealing with absurdly high numbers
 #var angle_radians = atan2(CAP_HEIGHT, CAP_RADIUS)
 #var angle_degrees = rad_to_deg(angle_radians)
 
@@ -59,6 +64,7 @@ var curr_point = 0
 @onready var navigation_agent_3d: NavigationAgent3D = $Anchor/NavigationAgent3D
 @onready var anchor: Node3D = $Anchor
 @onready var player_reference: CharacterBody3D = get_tree().root.find_child("Player", true, false)
+@onready var area_reference: Area3D = player_reference.find_child("Area3D", true, false)
 @onready var nav_map = get_world_3d().navigation_map
 var multi_mesh_manager: MultiMeshInstance3D
 
@@ -77,8 +83,10 @@ func _ready() -> void:
 	#anchor_box.shape.radius = circum / 4.0
 
 	var area = CylinderMesh.new()
-	area.top_radius = circum / 2.0
-	area.bottom_radius = circum / 2.0
+	check_rate = crowd_size / check_limit
+	radius = circum / 2.0
+	area.top_radius = radius
+	area.bottom_radius = radius
 	
 	anchor_mesh.mesh = area
 	# Transparency temporary debug
@@ -97,22 +105,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	#print('one loop')
 	# move behaviors
 	match state: 
 		State.IDLE:
 			get_new_loc()
 			apply_move_and_slide(anchor)
 			for nav in agents_sub:
-				#print(get_node(nav[0].name + "/SubNav"))
 				apply_move_and_slide(nav[0])
 				get_new_sub_loc(nav[0].find_child("NavigationAgent3D", false), nav[0])
 		State.MOVE:
-			#print('movee')
 			group_main(moving_behav(anchor, navigation_agent_3d))
 			apply_move_and_slide(anchor)
-			#moving_behav(anchor, navigation_agent_3d)
-			#print(agents_sub)
 			for nav in agents_sub:
 				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
 				
@@ -134,41 +137,34 @@ func _physics_process(delta: float) -> void:
 		if c.is_valid():
 			c.call()
 	call_queue.clear()
-	
 	# deletion for all in queue
 	delete_queue()
-
+	
 	# progress check freq
 	check_freq += check_limit
 	check_freq = check_freq % crowd_size
 	
 # mutli_mesh_process
 # physics appliance for multi mesh experiment
-func multi_mesh_process(array, vel, non_main = true) -> void:
+func multi_mesh_process(array, vel) -> void:
 	for member_idx in range(array.size()-1,0,-1):
 		var member = array[member_idx]
 		var member_transform = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_TRANSFORM)
 		member_transform = member_transform.scaled(Vector3(visual_scale, visual_scale, visual_scale))
 		var current_vel = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY)
-		var velocity_change = (vel - current_vel)
-		
-		PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
 		var mesh_index = rid_dictionary[member].rid_to_mesh_index
-		multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 		
-# functions needed:
-# group creation
-# indiv creation?
-# somehow intergrate with pathfinding?
-# reading point to points if given
-# moving to hte points (moving behavior)
-# merge group (finding behavior)
-# delete group (successful merge behavior)
-# remove member (collision loss)
-
-# if we are trying to remerge into main group, needs some way of knowing it should be checking that, might need to create sub functions for group brain
- 
-	
+		#if (current_vel.length() >= max_speed):
+			
+		if (!rid_dictionary[member].stomped):
+			var velocity_change = (vel - current_vel)
+				
+			PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
+			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
+		else:
+			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
+		
+		
 # group brain
 # Creates the groups, will need to send a list of what needs to be being checked
 # Parameters: 
@@ -203,11 +199,9 @@ func group_main(safe_velocity) -> void:
 
 	anchor.velocity.x = lerp(anchor.velocity.x, vel.x, accel_delta)
 	anchor.velocity.z = lerp(anchor.velocity.z, vel.z, accel_delta)
-	anchor.velocity.y +=  gravity_force_for_velocity.y * get_physics_process_delta_time()
+	anchor.velocity.y +=  gravity_force_for_velocity.y * delta_time
 	# call its members
-	multi_mesh_process(agents_main, vel, false)
-	
-
+	multi_mesh_process(agents_main, vel)
 
 # sub brain
 # Sub loop for remerging, what needs to be initially made and what to follow? (might need to split up again)
@@ -224,10 +218,11 @@ func group_sub(sub_array, safe_velocity) -> void:
 	
 	sub_anchor.velocity.x = lerp(sub_anchor.velocity.x, vel.x, accel_delta)
 	sub_anchor.velocity.z = lerp(sub_anchor.velocity.z, vel.z, accel_delta)
-	sub_anchor.velocity.y +=  gravity_force_for_velocity.y * get_physics_process_delta_time()
+	sub_anchor.velocity.y +=  gravity_force_for_velocity.y * delta_time
 	
 	checkSubAmor(sub_array, vel)
 	multi_mesh_process(sub_array, vel)
+	
 
 ## collision detection
 # checkCollision
@@ -278,17 +273,15 @@ func checkMemberAmor() -> void:
 	
 	# check through member in given freq, to see if member is outside of given group or at anchor
 	for i in range(check_limit):
-		#print(array)
 		var check_index = (curr_relative_index + i) % crowd_size
 		var array = rid_dictionary[agents[check_index]].group_reference
 		var non_main = !(array == agents_main)
 		var member = agents[check_index]
-		
-		if (not is_instance_valid(array[0]) and check_index != 0): return
+		#if (not is_instance_valid(array[0]) and check_index != 0): return
 		var temp_position = get_rid_position(member) # replaceemnt to get global position of a rid
 		var member_position = Vector2(temp_position.x, temp_position.z)
-		
-		
+		#if array == null or array.is_empty(): 
+			#continue
 		var ratio = (ratio_circum if non_main else 1.0) # ratio circum if nonmain
 		if (member.is_valid() and member_position.distance_to(Vector2(array[0].global_position.x, array[0].global_position.z)) >= circum / 2.0 * ratio):
 			find_group_behav(member, array, 0)
@@ -315,7 +308,7 @@ func checkSubAmor(array, non_main) -> void:
 		var given_anchor_position = Vector2(array[0].global_position.x, array[0].global_position.z)
 		#print('sub_anc')
 		#print(given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)))
-		if (array.size() > sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 3.0):
+		if (array.size() < sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 3.0):
 			#print('working anchor given')
 			call_queue.append(Callable(self, "mass_swap_behav").bind(array, sub_group))
 			return
@@ -343,7 +336,14 @@ func checkAnchor(array) -> void:
 		if (array[0].global_position.distance_to(sub_group[0].global_position) < circum / 2.0):
 			call_queue.append(Callable(self, "swap_member_behav").bind(array, array[0], 0, sub_group[0]))
 		
-	
+# checkReset
+# Checks the Y position, if the crowd member is falling out of the map, it will bring them back to the main anchor
+func checkReset(rid) -> void:
+	if !(get_rid_position(rid).y < HEIGHT_RESET): return
+	var member_transform = Transform3D(crowd_basis, anchor.global_position)
+		
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, member_transform)
+	multi_mesh_manager.multimesh.set_instance_transform(rid_dictionary[rid].rid_to_mesh_index, member_transform)
 
 
 # finds a new location for nav agent with a given point to point system
@@ -408,7 +408,7 @@ func bounce_behav(member, collision) -> Vector3:
 func find_group_behav(member, origin, crowd_size) -> void:
 	for agt_array in agents_sub:
 		var dist = get_rid_position(member).distance_to(agt_array[0].global_position)
-		var temp_circum = circum * ratio_circum
+		var temp_circum = radius * ratio_circum
 		# check if objectect is close and combining doesn't exceed limit
 		if (dist <= temp_circum):
 			call_queue.append(Callable(self, "swap_member_behav").bind(origin, member, agt_array))
@@ -464,7 +464,8 @@ func swap_member_behav(source, member, target) -> void:
 	add_member_behav(member, target)
 	
 	rid_dictionary[member].group_reference = target
-	if (source.size() == 1 and source != agents_main): deletion_queue.append(source)
+	if (source.size() == 1 and source != agents_main): 
+		deletion_queue.append(source)
 	
 # mass_swap_behav
 # Swaps massive group, calling the swap member, but does so without needing to store tons of function calls
@@ -480,6 +481,7 @@ func mass_swap_behav(array, target) -> void:
 			swap_member_behav(array, member, target)
 	
 	# reposition the current anchor to the last unswapped member if it exists
+	return
 	if (target.size() > 1):
 		target[0].global_position = get_rid_position(target[1])
 		#var current_vel = PhysicsServer3D.body_get_state(target[1], PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY)
@@ -599,11 +601,12 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_X, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Z, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Y, true)
-		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 10.0)
+		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 50.0)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_MASS, mass)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_FRICTION, 0.0)
 		
-		
+		# script reference attachment
+		PhysicsServer3D.body_attach_object_instance_id(rid, get_instance_id())
 		# layer and masks
 		var layer_3 = 4 # (2 to the power of 2) I have no idea why they are like this other than binary
 		var mask_1_and_3 = 1 + 4 # (1 + 4 = 5)
@@ -614,8 +617,34 @@ func create_rids(position) -> void:
 		rid_dictionary[rid] = CrowdData.new(i, agents_main)
 		agents.append(rid)
 		
+		
 		# Add to main group and map to the visual instance ID
 		agents_main.append(rid)
+
+# apply a force from a center to a body
+func crowd_stomp_spread(source, rid, force, stomp_radius) -> void:
+	PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, false)
+	rid_dictionary[rid].stomped = true # set the crowd to use physics for stomp
+	
+	var source_pos = source.global_position
+	var rid_pos = get_rid_position(rid)
+	
+	# apply ratio of force
+	const MIN_RATIO = 0.1
+	const MAX_RATIO = 1.0
+	const GAP_RADIUS = 1.0
+	var dist = Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z))
+	var ratio = remap(dist, GAP_RADIUS, stomp_radius, MAX_RATIO, MIN_RATIO)
+	#var ratio = clamp(1.0 - (Vector2(source_pos.x, source_pos.z).distance_to(Vector2(rid_pos.x, rid_pos.z)) / stomp_radius), min_ratio, max_ratio)
+	ratio = clamp(ratio, 0.0, 1.0)
+	ratio = pow(ratio, 2)
+	var force_vec = -(source_pos - rid_pos) * force * ratio
+	
+	PhysicsServer3D.body_apply_central_impulse(rid, force_vec) # might need to multiply by time
+
+# tells the crowd to reapply its normal force and movement physics, based off the given array of rids
+func crowd_stomp_stop(rid) -> void:
+	rid_dictionary[rid].stomped = false # set the crowd to use physics for stomp
 
 # get rid position from reference
 func get_rid_position(rid) -> Vector3:
@@ -625,12 +654,26 @@ func get_rid_position(rid) -> Vector3:
 		return current_pos
 		
 # set velocity of a character body 3d, may make it apply to rids too
-func set_velocity(body, vel):
+func set_velocity(body, vel) -> void:
 	body.velocity.x = vel.x
 	body.velocity.z = vel.z
 	body.velocity.y += gravity_force_for_velocity.y * get_physics_process_delta_time()
 	
+# get a force with given direction/velocity (I think) over time
+func get_velocity_change(member, target_vel) -> Vector3:
+	var current_vel = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY)
+	var velocity_change = (target_vel - current_vel)
+	return velocity_change
 	
+
+# set the velocity of the member to target_vel over time
+func set_velocity_change(member, target_vel: Vector3) -> void:
+	var member_transform = PhysicsServer3D.body_get_state(member, PhysicsServer3D.BODY_STATE_TRANSFORM)
+	member_transform = member_transform.scaled(Vector3(visual_scale, visual_scale, visual_scale))
+	PhysicsServer3D.body_apply_central_force(member, get_velocity_change(member, target_vel) * acceleration)
+	var mesh_index = rid_dictionary[member].rid_to_mesh_index
+	multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
+
 func create_anchor(append_target, cir) -> void:
 	var sub_anchor = anchor_type.instantiate()
 	add_child(sub_anchor)
@@ -673,3 +716,8 @@ func _on_navigation_finished(sub_nav: NavigationAgent3D, sub_anchor: CharacterBo
 	
 func apply_move_and_slide(member) -> void:
 	member.move_and_slide()
+
+# free all rids before leaving scene 
+func _on_screen_exited():
+	for rid in agents:
+		PhysicsServer3D.free_rid(rid)
