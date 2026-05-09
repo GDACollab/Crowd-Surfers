@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=26 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="18_njsij"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="18_r2b5i"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="19_7y7j4"]
+[ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="22_evjpn"]
 
 [sub_resource type="Animation" id="Animation_7y7j4"]
 length = 0.001
@@ -201,7 +202,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2900, 0, 1050)
 star_move_distance = 0.0
 star_animation_time = 0.0
 star_animation_time_change_per_second = 0.7
-hud_star_scene = null
 star_rotation_speed = 5.0
 star_rotation_magnitude = 4.0
 
@@ -275,7 +275,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314713, 0.9999466, 0, -0.9999466, 0.010314713, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.01031471, 0.9999463, 0, -0.9999463, 0.01031471, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -284,7 +284,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043649, -0.0007304823, 0, 0.0066143535, 0.9999781, 0.11043893, -0.99386096, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043646, -0.0007304823, 0, 0.0066143516, 0.9999781, 0.11043893, -0.99386066, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -293,7 +293,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039813194, -0.00026512897, 0, 0.006659175, 0.99997777, 0.039814085, -0.9991847, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813183, -0.00026512897, 0, 0.006659173, 0.99997777, 0.039814085, -0.9991844, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -380,3 +380,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -22.085)
 light_energy = 16.0
 shadow_enabled = true
 spot_range = 42.744
+
+[node name="Lighting Chunks" type="Node" parent="Lights"]
+
+[node name="LightChunk_Start" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("22_evjpn")]
+transform = Transform3D(6.775, 0, 0, 0, 1.89, 0, 0, 0, 5.27, 952.032, 80.47998, 84.582596)
+lights = [NodePath("../../Spotlights/Spotlight_Start"), NodePath("../../Spotlights/Spotlight_Alley"), NodePath("../../Spotlights/Spotlight_Alley_2"), NodePath("../../Spotlights/Spotlight_Alley_3"), NodePath("../../Car Lights/Car 1/Car_Brakelight_1"), NodePath("../../Car Lights/Car 1/Car_Brakelight_2"), NodePath("../../Car Lights/Car 1/Car_Spotlight_1"), NodePath("../../Car Lights/Car 1/Car_Spotlight_2"), NodePath("../../Car Lights/Car 2/Car_Brakelight_1"), NodePath("../../Car Lights/Car 2/Car_Brakelight_2"), NodePath("../../Car Lights/Car 2/Car_Spotlight_1"), NodePath("../../Car Lights/Car 2/Car_Spotlight_2")]
+
+[node name="LightChunk_Freeway" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("22_evjpn")]
+transform = Transform3D(11.52, 0, 0, 0, 2, 0, 0, 0, 4.77, -297.86716, 76.2602, -167.58585)
+lights = [NodePath("../../Spotlights/Freeway/Freeway_01"), NodePath("../../Spotlights/Freeway/Freeway_02"), NodePath("../../Spotlights/Freeway/Freeway_03"), NodePath("../../Spotlights/Freeway/Freeway_04"), NodePath("../../Spotlights/Freeway/Freeway_05"), NodePath("../../Spotlights/Spotlight_FreewayEnd")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 190.0
+offset_bottom = 185.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -899.7218, 2027.6989, 518.76636)
+fov = 98.0

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgpvjxbmeu41i"]
+
+[ext_resource type="Script" uid="uid://buoebr2nwygf1" path="res://Scenes/Levels/lighting_chunk.gd" id="1_xagf5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7y7j4"]
+size = Vector3(160, 160, 160)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xagf5"]
+size = Vector3(160, 160, 160)
+
+[node name="LightChunk_Start" type="Area3D"]
+script = ExtResource("1_xagf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7y7j4")
+debug_color = Color(0.690457, 0.68102235, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transparency = 0.78
+mesh = SubResource("BoxMesh_xagf5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
