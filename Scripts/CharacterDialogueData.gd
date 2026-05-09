@@ -7,4 +7,5 @@ class_name CharacterDialogueData
 @export var displayName : String = "Slip"
 @export var font : FontFile
 @export var colour : Color = Color.RED
-@export var portraits : Array[Texture2D]
+@export var default_portrait : Texture2D
+@export var expression_dictionary :  Dictionary[String, Texture2D] = {}
