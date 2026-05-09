@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_lrgld"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="16_3au38"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="16_fuigj"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="16_j7m4k"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="16_j7m4k"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="17_fuigj"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="17_j7m4k"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="18_j7m4k"]
@@ -133,13 +133,9 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -100
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, 50, 0)
 
 [node name="InteractionContStart" type="Node3D" parent="MidDensityStart"]
-visible = false
 
 [node name="WindBoxCollider2" parent="MidDensityStart/InteractionContStart" instance=ExtResource("5_3q2qt")]
 transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06, -55, 2, -25)
-
-[node name="WindBoxCollider3" parent="MidDensityStart/InteractionContStart" instance=ExtResource("5_3q2qt")]
-transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06, -575, 2, 150)
 
 [node name="Banana2" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -185, 2, 55)
@@ -171,8 +167,10 @@ transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -114
 [node name="Banana11" parent="MidDensityStart/InteractionContStart" instance=ExtResource("7_w268i")]
 transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -1210, 2, 250)
 
+[node name="WindBoxCollider3" parent="MidDensityStart/InteractionContStart" instance=ExtResource("5_3q2qt")]
+transform = Transform3D(-1.0927847e-06, 0, -25, 0, 25, 0, 25, 0, -1.0927847e-06, -570, 2, 150)
+
 [node name="ArrowCont" type="Node3D" parent="MidDensityStart"]
-visible = false
 
 [node name="ArrowStraight" type="Sprite3D" parent="MidDensityStart/ArrowCont"]
 transform = Transform3D(-6.5567076e-07, -14.999999, 6.556707e-07, 1.4824472e-21, -6.556707e-07, -14.999999, 14.999999, -6.5567076e-07, 2.866027e-14, -139.65024, 2, 50)
