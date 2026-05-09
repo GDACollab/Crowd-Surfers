@@ -186,6 +186,7 @@ var can_glide: bool = true
 var player_height : float
 var floor_sound_material: String
 var touched_windbox: bool = false
+var windbox_boost := Vector3.ZERO
 var is_playing_crash: bool = false
 var prev_velocity: Vector3
 
@@ -207,7 +208,9 @@ func _ready() -> void:
 	$CrashTimer.wait_time = crash_time
 
 func _physics_process(delta: float) -> void:
-	#snap_sprite()
+	if touched_windbox:
+		velocity += windbox_boost
+		touched_windbox = false
 	process_state(delta)
 	check_state_transitions()
 	stick_to_slope()
@@ -319,11 +322,7 @@ func check_state_transitions() -> void:
 			elif can_dash() and Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_GROUND)
 			elif not is_on_floor():
-				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
-			elif touched_windbox:
-				touched_windbox = false
-				transition_to(States.AIR)
 		States.COYOTE:
 			if just_crashed():
 				transition_to(States.CRASH_AIR)
@@ -511,6 +510,8 @@ func transition_to(new_state: int) -> void:
 				#player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash_exit")
 				print("Crash Exit!")
+		States.COYOTE:
+			$CoyoteTimer.start()
 		States.CRASH_GROUND, States.CRASH_AIR:
 			if not current_state == States.CRASH_GROUND and not current_state == States.CRASH_AIR:
 				max_speed = starting_speed
@@ -598,7 +599,6 @@ func transition_to(new_state: int) -> void:
 	
 	current_state = new_state
 	print(state_to_string())
-	print(direction_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -762,17 +762,6 @@ func state_to_string() -> String:
 			return "Ground Crash"
 		States.CRASH_AIR:
 			return "Air Crash"
-	return ""
-
-## Returns the current direction
-func direction_to_string() -> String:
-	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if input_dir.x != 0 && input_dir.y <= 0: return "up_right"
-	if input_dir.x != 0 && input_dir.y >= 0: return "down_right"
-	if input_dir.x == 0 && input_dir.y <= 0: return "up"
-	if input_dir.x == 0 && input_dir.y >= 0: return "down"
-	if input_dir.x != 0 && input_dir.y == 0: return "right"
-	if input_dir.x == 0 && input_dir.y == 0: return "idle"
 	return ""
 
 func update_labels():
