@@ -116,7 +116,7 @@ var stateColors = {
 ## Factor used to get the speed at which the player should bounce off the wall
 @export var crash_bounce_speed_factor: float = 15.0
 ## The length of the component of the player's velocity into the wall which must be exceeded to register a crash ("how fast into the wall the player is moving")
-@export var min_speed_for_crash: float = 75.0
+@export var min_speed_for_crash: float = 100.0
 
 # Shadow
 @export_category("Shadow")
@@ -485,9 +485,9 @@ func transition_to(new_state: int) -> void:
 		States.DASH_GROUND:
 			if not new_state == States.DASH_AIR:
 				# Reset speed if ending a ground dash
-				var yspeed := velocity.y
-				velocity = dash_dir * speed_before_dashing
-				velocity.y = yspeed
+				#var yspeed := velocity.y
+				#velocity = dash_dir * speed_before_dashing
+				#velocity.y = yspeed
 				$DashCooldownTimer.start()
 		States.DASH_AIR:
 			$DashCooldownTimer.start()
