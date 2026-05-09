@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c1xw1x5562w3b"]
+[gd_scene load_steps=26 format=3 uid="uid://c1xw1x5562w3b"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="1_sowhy"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="2_6hqax"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="5_6hqax"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="6_s6jld"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="7_0ntw3"]
-[ext_resource type="PackedScene" uid="uid://db516tknh4vq0" path="res://Scenes/Level Components/SpecialObjects/BoostPad/BoostPad.tscn" id="10_cuk7e"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="12_0na1c"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="12_7piyj"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="12_a6a0s"]
@@ -358,8 +357,18 @@ transform = Transform3D(4.9959965, 0, 0.2000486, 0, 5, 0, -0.2000486, 0, 4.99599
 
 [node name="BoostPads" type="Node3D" parent="Segment1"]
 
-[node name="bp1" parent="Segment1/BoostPads" instance=ExtResource("10_cuk7e")]
+[node name="bp1" parent="Segment1/BoostPads"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(-0.8791583, 0, 0.4765298, 0, 1, 0, -0.4765298, 0, -0.8791583, 1103.1772, 0, 373.01242)
+script = null
 
 [node name="Segment2" type="Node3D" parent="."]
 
@@ -980,16 +989,16 @@ transform = Transform3D(-0.06666667, 7.542229e-10, 5.728889e-09, -7.542229e-10, 
 
 [node name="Crowd" parent="Crowds" instance=ExtResource("23_236f0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -771.576, 8, -244.241)
-circum = 60.0
-crowd_size = 30
+circum = 40.0
+crowd_size = 20
 max_speed = 60.0
 acceleration = 100.0
 route = Array[Vector3]([Vector3(-945.504, 0, -353.408), Vector3(-1317.415, 0, -438.522), Vector3(-1672.673, 0, -403.366), Vector3(-1905.811, 0, -290.498), Vector3(-1905.811, 0, -38.857), Vector3(-1659.721, 0, -3.701), Vector3(-1200.846, 0, 83.263), Vector3(-902.947, 0, 83.263), Vector3(-623.552, 0, 83.263), Vector3(-370.06, 0, 83.263), Vector3(-14.802, 0, 53.658), Vector3(-455.174, 0, -105.468), Vector3(-610.59937, 0, -370.06104)])
 
 [node name="Crowd2" parent="Crowds" instance=ExtResource("23_236f0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1947.728, 8, -92.994)
-circum = 60.0
-crowd_size = 30
+circum = 40.0
+crowd_size = 20
 max_speed = 60.0
 acceleration = 100.0
 route = Array[Vector3]([Vector3(-1710.4388, 0, -2.704712), Vector3(-1200.648, 0, 96.313324), Vector3(-888.3472, 0, 96.313324), Vector3(-480.72546, 0, 96.313324), Vector3(-15.588989, 0, 32.06067), Vector3(-444.3496, 0, -42.748123), Vector3(-522.1848, 0, -362.2091), Vector3(-734.61914, 0, -159.69102), Vector3(-941.04913, 0, -318.06656), Vector3(-1203.0846, 0, -408.68903), Vector3(-1490.4772, 0, -408.68903), Vector3(-1892.449, 0, -362.17593)])
