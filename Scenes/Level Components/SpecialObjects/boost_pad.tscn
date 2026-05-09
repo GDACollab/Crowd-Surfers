@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://84b01iwmitg6"]
+[gd_scene load_steps=10 format=3 uid="uid://cxq7y3jah1q6"]
 
 [ext_resource type="Script" uid="uid://df1k8ebao2g3p" path="res://Scripts/wind_box_collider.gd" id="1_8swyf"]
 [ext_resource type="Texture2D" uid="uid://ci5vskxiio2h7" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS BoostPad S6/Boost_Pad_S6.png" id="2_8swyf"]
@@ -24,11 +24,9 @@ size = Vector3(50, 0, 50)
 size = Vector3(50, 1, 50)
 
 [node name="WindBoxCollider" type="Node3D"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_8swyf")
 boostDirection = Vector3(1, 0.3, 0)
-boostPower = 300.0
-speedCap = 300.0
+boostPower = 250.0
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 10, 0, 0, 0, 50, 0, 1.25, 25)

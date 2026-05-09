@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
+@onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
+
 
 # DEBUG
 @onready var velocityLabel : Label3D = $VelocityLabel
@@ -41,6 +43,8 @@ var stateColors = {
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
+##Snap length to ensure smooth movement on slopes
+@export var snap_length = 5.0
 
 # Jumping
 @export_category("Jumping")
@@ -206,6 +210,7 @@ func _physics_process(delta: float) -> void:
 	#snap_sprite()
 	process_state(delta)
 	check_state_transitions()
+	stick_to_slope()
 	prev_velocity = velocity
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -239,7 +244,7 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			if is_on_floor():
 				velocity.y = 0.0
-			if not player_sprite.current_animation == "crash":
+			if not player_sprite.current_animation == "crash_exit":
 				if $DashAnimationEndTimer.is_stopped():
 					if velocity.length() > 0.0:
 						player_sprite.play_animation("skate", true)
@@ -354,8 +359,6 @@ func check_state_transitions() -> void:
 			if $CrashTimer.is_stopped():
 				if is_on_floor():
 					transition_to(States.GROUND)
-				else:
-					transition_to(States.AIR)
 			elif not is_on_floor():
 				transition_to(States.CRASH_AIR)
 		States.STOMP_WINDUP:
@@ -468,9 +471,6 @@ func transition_to(new_state: int) -> void:
 		States.GLIDE:
 			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
-			# Restore gravity
-			if glide_has_gravity:
-				gravity /= glide_gravity_factor
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
@@ -481,6 +481,7 @@ func transition_to(new_state: int) -> void:
 		States.CRASH_GROUND, States.CRASH_AIR:
 			if not new_state == States.CRASH_GROUND and not new_state == States.CRASH_AIR:
 				velocity *= 0.0
+				player_sprite.current_animation = ""
 		States.SLOPE:
 			var angle: float = get_floor_angle()
 			# Sloped movement maintains the velocity but internally multiplies it by the angle,
@@ -495,6 +496,7 @@ func transition_to(new_state: int) -> void:
 				$DashCooldownTimer.start()
 		States.DASH_AIR:
 			$DashCooldownTimer.start()
+		
 
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
@@ -505,13 +507,19 @@ func transition_to(new_state: int) -> void:
 			if current_state == States.AIR or current_state == States.GLIDE:
 				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 				$LandingSound.play()
+			elif current_state == States.CRASH_GROUND or current_state == States.CRASH_AIR:
+				#player_sprite.crash_dir = -velocity
+				player_sprite.play_animation("crash_exit")
+				print("Crash Exit!")
 		States.CRASH_GROUND, States.CRASH_AIR:
 			if not current_state == States.CRASH_GROUND and not current_state == States.CRASH_AIR:
 				max_speed = starting_speed
 				var wall_normal := get_wall_normal()
 				var speed_into_wall: float = abs(prev_velocity.dot(wall_normal))
+				velocity *= -1
 				velocity += crash_bounce_speed_factor * log(speed_into_wall) * wall_normal
 				$CrashTimer.start()
+				player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash")
 		States.STOMP_WINDUP:
 			player_sprite.play_animation("stomp")
@@ -549,9 +557,7 @@ func transition_to(new_state: int) -> void:
 			speed_before_gliding = velocity.length()
 			max_speed_before_gliding = max_speed
 			time_gliding = 0.0
-			# Decrease gravity
-			if glide_has_gravity:
-				gravity *= glide_gravity_factor
+			
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
@@ -605,6 +611,9 @@ func handle_inputs(delta: float) -> void:
 		max_speed = starting_speed
 	# If there are inputs this frame, direction isn't null, so we add speed
 	if direction:
+		if player_sprite.current_animation == "crash_exit":
+			player_sprite.stop()
+			player_sprite.current_animation = ""
 		var factorx: float = acceleration * delta
 		var factorz: float = acceleration * delta
 		
@@ -672,6 +681,10 @@ func fall(delta: float) -> void:
 			velocity.y = jump_end_speed
 	if current_state == States.STOMP_FALL : 
 		gravity_effect *= stomp_gravity_multiplier
+	elif current_state == States.GLIDE:
+		# Decrease gravity
+		if glide_has_gravity and velocity.y <= 0.0:
+			gravity_effect *= glide_gravity_factor
 	velocity += gravity_effect * Vector3.DOWN * delta
 
 ## Returns true if the player just crashed into a wall on this frame, and false otherwise
@@ -766,6 +779,11 @@ func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	#stateLabel.modulate = stateColors[current_state]
+
+func stick_to_slope():
+	if is_on_floor():
+		floor_snap_length = snap_length
+	
 
 ## Checks when the restart button is pressed.
 func restart():
