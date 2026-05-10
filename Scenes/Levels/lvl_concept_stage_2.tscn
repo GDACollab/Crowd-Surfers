@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=28 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -6,11 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_omilu"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="3_bi364"]
 [ext_resource type="Script" uid="uid://cr71cfqwruewu" path="res://Scripts/Lighting/slip_spotlight.gd" id="4_7y7j4"]
-[ext_resource type="PackedScene" uid="uid://duybqcqdfpvk7" path="res://Scenes/Levels/stage_2_concept_intro.tscn" id="5_wef7b"]
-[ext_resource type="PackedScene" uid="uid://c1xw1x5562w3b" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
-[ext_resource type="PackedScene" uid="uid://bdycrobbag4ww" path="res://Scenes/Levels/mid_density_start.tscn" id="7_b76c4"]
-[ext_resource type="PackedScene" uid="uid://b7d8epeebr0h6" path="res://Scenes/Levels/mid_density_act_2.tscn" id="8_aj0jd"]
-[ext_resource type="PackedScene" uid="uid://dmkrxxqd6thbx" path="res://Scenes/Levels/stage_2_concept_end.tscn" id="9_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://duybqcqdfpvk7" path="res://Scenes/Levels/Act 2 Level Segments/stage_2_concept_intro.tscn" id="5_wef7b"]
+[ext_resource type="PackedScene" uid="uid://c1xw1x5562w3b" path="res://Scenes/Levels/Act 2 Level Segments/low_density_act_2.tscn" id="6_ipv6h"]
+[ext_resource type="PackedScene" uid="uid://cbcmgqb5ep5f6" path="res://Scenes/Levels/Act 2 Level Segments/mid_density_act_2.tscn" id="8_aj0jd"]
+[ext_resource type="PackedScene" uid="uid://dmkrxxqd6thbx" path="res://Scenes/Levels/Act 2 Level Segments/stage_2_concept_end.tscn" id="9_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="11_3tlda"]
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="12_pjuvg"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="12_pwmad"]
@@ -198,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 50)
 [node name="LowDensityAct2" parent="Scenes" instance=ExtResource("6_ipv6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, -200)
 
-[node name="MidDensityStart" parent="Scenes" instance=ExtResource("7_b76c4")]
+[node name="MidDensityStart" parent="Scenes" instance=ExtResource("8_aj0jd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3000, 0, 0)
 
 [node name="stage_2_concept_end" parent="Scenes" instance=ExtResource("9_ipv6h")]
@@ -373,7 +372,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314707, 0.999946, 0, -0.999946, 0.010314707, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314707, 0.99994594, 0, -0.99994594, 0.010314707, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -382,7 +381,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043643, -0.0007304823, 0, 0.0066143502, 0.9999781, 0.11043893, -0.9938604, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043643, -0.0007304823, 0, 0.00661435, 0.9999781, 0.11043893, -0.99386036, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -391,7 +390,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039813172, -0.00026512897, 0, 0.0066591715, 0.99997777, 0.039814085, -0.9991842, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813172, -0.00026512897, 0, 0.006659171, 0.99997777, 0.039814085, -0.99918413, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
