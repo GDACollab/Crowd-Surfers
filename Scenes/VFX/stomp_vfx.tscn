@@ -1,0 +1,66 @@
+[gd_scene load_steps=14 format=3 uid="uid://dnble8x3bgr7y"]
+
+[ext_resource type="Texture2D" uid="uid://s8i50jhpd36d" path="res://Assets/Art/VFX/Stomp/Stomp1.png" id="1_qtexh"]
+[ext_resource type="Texture2D" uid="uid://edm1dft7j3dx" path="res://Assets/Art/VFX/Stomp/Stomp2.png" id="2_0g6o1"]
+[ext_resource type="Texture2D" uid="uid://c7mx1ucb8ulqw" path="res://Assets/Art/VFX/Stomp/Stomp3.png" id="3_gg0du"]
+[ext_resource type="Texture2D" uid="uid://dm0016ei7017k" path="res://Assets/Art/VFX/Stomp/Stomp4.png" id="4_n8rhc"]
+[ext_resource type="Texture2D" uid="uid://dgxa0ik7c0pht" path="res://Assets/Art/VFX/Stomp/Stomp5.png" id="5_r3ht6"]
+[ext_resource type="Texture2D" uid="uid://fkkmpbkpl34o" path="res://Assets/Art/VFX/Stomp/Stomp6.png" id="6_npwrr"]
+[ext_resource type="Texture2D" uid="uid://cckc0ob4dtifa" path="res://Assets/Art/VFX/Stomp/Stomp7.png" id="7_g8etk"]
+[ext_resource type="Texture2D" uid="uid://hvmb0nrxxr1s" path="res://Assets/Art/VFX/Stomp/Stomp8.png" id="8_tbxfi"]
+[ext_resource type="Texture2D" uid="uid://dhpo5rdi1g21t" path="res://Assets/Art/VFX/Stomp/Stomp9.png" id="9_q0mr7"]
+[ext_resource type="Texture2D" uid="uid://bo58y6w6t6dhp" path="res://Assets/Art/VFX/Stomp/Stomp10.png" id="10_mxpud"]
+[ext_resource type="Texture2D" uid="uid://cmabt0qxw7sd0" path="res://Assets/Art/VFX/Stomp/Stomp11.png" id="11_8paae"]
+[ext_resource type="Texture2D" uid="uid://c11w1rybmwy3e" path="res://Assets/Art/VFX/Stomp/Stomp12.png" id="12_fc6ek"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drrt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qtexh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0g6o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gg0du")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n8rhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r3ht6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_npwrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g8etk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tbxfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q0mr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mxpud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8paae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fc6ek")
+}],
+"loop": false,
+"name": &"stomp",
+"speed": 15.0
+}]
+
+[node name="StompVFX" type="AnimatedSprite3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_drrt7")
+animation = &"stomp"
+autoplay = "stomp"
+frame = 11
+frame_progress = 1.0

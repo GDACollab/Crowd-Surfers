@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=27 format=3 uid="uid://ykvmtt70mexg"]
 
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_evjpn"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_wef7b"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="3_bi364"]
 [ext_resource type="Script" uid="uid://cr71cfqwruewu" path="res://Scripts/Lighting/slip_spotlight.gd" id="4_7y7j4"]
 [ext_resource type="PackedScene" uid="uid://duybqcqdfpvk7" path="res://Scenes/Levels/stage_2_concept_intro.tscn" id="5_wef7b"]
+[ext_resource type="PackedScene" uid="uid://b1326i5a5xn3f" path="res://Scenes/VFX/vfx_manager.tscn" id="6_hmqwp"]
 [ext_resource type="PackedScene" uid="uid://c1xw1x5562w3b" path="res://Scenes/Levels/low_density_act_2.tscn" id="6_ipv6h"]
 [ext_resource type="PackedScene" uid="uid://bdycrobbag4ww" path="res://Scenes/Levels/mid_density_start.tscn" id="7_b76c4"]
 [ext_resource type="PackedScene" uid="uid://b7d8epeebr0h6" path="res://Scenes/Levels/mid_density_act_2.tscn" id="8_aj0jd"]
@@ -109,6 +111,7 @@ _data = {
 }
 
 [node name="LvlConcept-Stage2" type="Node3D"]
+script = ExtResource("1_evjpn")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -126,8 +129,9 @@ occlusion_push = 1.0
 
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_wef7b")]
+[node name="Player" parent="." node_paths=PackedStringArray("vfx_manager") instance=ExtResource("1_wef7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, 350)
+vfx_manager = NodePath("../VfxManager")
 
 [node name="Spotlight Pivot" type="Node3D" parent="Player" node_paths=PackedStringArray("slip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 135.69676, 380.87122)
@@ -142,6 +146,8 @@ light_energy = 0.347
 spot_range = 449.358
 spot_attenuation = -0.02
 spot_angle = 13.78
+
+[node name="VfxManager" parent="." instance=ExtResource("6_hmqwp")]
 
 [node name="Environment" parent="." instance=ExtResource("3_bi364")]
 
@@ -269,7 +275,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314712, 0.99994653, 0, -0.99994653, 0.010314712, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314712, 0.9999465, 0, -0.9999465, 0.010314712, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -278,7 +284,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.1104365, -0.0007304823, 0, 0.006614354, 0.9999781, 0.11043893, -0.993861, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043649, -0.0007304823, 0, 0.0066143535, 0.9999781, 0.11043893, -0.99386096, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -287,7 +293,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.0398132, -0.00026512897, 0, 0.0066591753, 0.99997777, 0.039814085, -0.9991848, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813194, -0.00026512897, 0, 0.006659175, 0.99997777, 0.039814085, -0.9991847, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0

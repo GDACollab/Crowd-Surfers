@@ -5,7 +5,6 @@ var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
 
-
 # STOMP CROWD
 signal crowd_stomp_end
 
@@ -142,6 +141,10 @@ var stateColors = {
 @export var shadow_max_height: float = 3.0       # meters where shadow reaches min scale
 @export var shadow_lift: float = 1.5             # your +1.5 offset
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
+
+@export_category("VFX")
+@export var vfx_manager: Node3D
+
 
 func _on_stomp_dash_margin_timeout() -> void:
 	stomp_boost = 0.0
@@ -386,6 +389,11 @@ func check_state_transitions() -> void:
 				print("STOMP HIT FLOOR")
 				crowd_stomp_end.emit()
 				var hit_crowd = false
+				
+				if (vfx_manager == null):
+					print("ERROR: No VFX manager assigned to player!!")
+				else:
+					vfx_manager.spawn_vfx(position, player_sprite.flip_h, "stomp")
 				
 				# Loop through everything we collided with this frame
 				for i in get_slide_collision_count():

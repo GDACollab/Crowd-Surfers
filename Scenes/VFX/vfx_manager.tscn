@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1326i5a5xn3f"]
+
+[ext_resource type="Script" uid="uid://bljhi438vjo7c" path="res://Scripts/vfx_manager.gd" id="1_j544o"]
+[ext_resource type="PackedScene" uid="uid://dnble8x3bgr7y" path="res://Scenes/VFX/stomp_vfx.tscn" id="2_ednj2"]
+
+[node name="VfxManager" type="Node3D"]
+script = ExtResource("1_j544o")
+scene_dictionary = Dictionary[String, PackedScene]({
+"stomp": ExtResource("2_ednj2")
+})
+offset_dictionary = Dictionary[String, Vector3]({
+"stomp": Vector3(5.184, 0, 0)
+})
