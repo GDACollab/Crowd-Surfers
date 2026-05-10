@@ -109,6 +109,21 @@ _data = {
 &"freeway_spotlights": SubResource("Animation_r2b5i")
 }
 
+[sub_resource type="Animation" id="Animation_hmqwp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.343]
+}
+
 [sub_resource type="Animation" id="Animation_evjpn"]
 resource_name = "light_flicker"
 length = 3.0
@@ -124,21 +139,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [5.343, 5.343, 1.0, 4.0, 1.0, 4.0, 5.343]
-}
-
-[sub_resource type="Animation" id="Animation_hmqwp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:light_energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [5.343]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmqwp"]
@@ -373,7 +373,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314708, 0.99994606, 0, -0.99994606, 0.010314708, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314707, 0.999946, 0, -0.999946, 0.010314707, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
