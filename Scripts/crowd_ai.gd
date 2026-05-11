@@ -14,11 +14,11 @@ extends Node3D
 @export var check_limit: int = 4
 @export var check_running_distance = 750
 
-
 # CONSTANTS
 const CAP_RADIUS = 4
 const CAP_HEIGHT = 16
 const HEIGHT_RESET = -50
+const ε: float = 0.1
 
 # VARIABLES RIDS
 var visual_scale = 1.0
@@ -516,7 +516,7 @@ func create_sub_group(location, sub_idx = 0) -> Array:
 	var nav_agent = sub_anchor.find_child("NavigationAgent3D", false)
 	assert(nav_agent != null, "Error: NavigationAgent3D not found on sub_anchor!")
 	nav_agent.max_speed = max_speed * 1.5
-	nav_agent.radius = 4
+	nav_agent.radius = 4.0
 	nav_agent.navigation_finished.connect(Callable(self, "_on_navigation_finished").bind(nav_agent, sub_anchor))
 	get_new_sub_loc(nav_agent, sub_anchor)
 	return sub_array
@@ -592,6 +592,13 @@ func create_rids(position) -> void:
 	Color(0.4, 0.3, 0.2),  # dull brown
 	Color(0.3, 0.35, 0.25) # olive/tan green
 ]
+
+	var hexPackedPositions = getHexagonalPackedPositions(crowd_size, circum / 2.0, position)
+	
+	#print("Crowd Size: " + str(crowd_size))
+	#print("Position: " + str(position))a
+	#print("Container Radius: " + str(circum / 2.0))
+	#print("Hexagonal Packed Position Array: " + str(hexPackedPositions))
 	
 	for i in multi_mesh_manager.multimesh.instance_count:
 		var rid = PhysicsServer3D.body_create()
@@ -599,11 +606,13 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_space(rid, get_world_3d().space)
 		
 		var shape = PhysicsServer3D.capsule_shape_create() # I'm not too sure on this
-		PhysicsServer3D.shape_set_data(shape, {"radius": 4.0, "height": 16.0})
+		PhysicsServer3D.shape_set_data(shape, {"radius": CAP_RADIUS, "height": CAP_HEIGHT})
 		PhysicsServer3D.body_add_shape(rid, shape)
 		
 		var radi = circum / 4.0
-		var start_transform = Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
+		var start_pos = hexPackedPositions[i] if i < hexPackedPositions.size() else position
+		#var start_transform = Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
+		var start_transform = Transform3D(crowd_basis, start_pos) if start_pos != position else Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
 		
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, start_transform)
 		multi_mesh_manager.multimesh.set_instance_transform(i, start_transform)
@@ -633,6 +642,77 @@ func create_rids(position) -> void:
 		
 		# Add to main group and map to the visual instance ID
 		agents_main.append(rid)
+
+func getHexagonalPackedPositions(agtCount: int, spawnRad: float, spawnPos: Vector3) -> Array:
+	
+	var positions: Array = []
+	
+	const LAYER_MAX: int = 50
+	var physicsMask = 1
+	
+	var R = CAP_RADIUS + ε/2
+	var dx = 2.0 * R
+	var dz = sqrt(3.0) * R
+	
+	var maxCols = int((spawnRad * 2.0) / dx)
+	
+	var gridOrigin = Vector2(spawnPos.x - spawnRad, spawnPos.z - spawnRad) + Vector2(R, R)
+	var center2D = Vector2(spawnPos.x, spawnPos.z)
+	var physicsState = get_world_3d().direct_space_state
+	
+	var placedCount = 0
+	var row = 0
+	var layer = 0
+	
+	#const NAV_SNAP_TOLERANCE: float = CAP_RADIUS
+	
+	while placedCount < agtCount:
+		
+		#print("Layer: " + str(layer))
+		
+		if layer >= LAYER_MAX:
+			break
+		
+		var shiftX = R * (row%2)
+		
+		for col in range(maxCols):
+			
+			if placedCount >= agtCount:
+				break
+			
+			var x = gridOrigin.x + shiftX + dx * col
+			var z = gridOrigin.y + dz * row
+			
+			var candidatePos = Vector2(x, z)
+			
+			# Check if the XZ projection of the agent resides within the container
+			if( !Geometry2D.is_point_in_circle(candidatePos, center2D, spawnRad - CAP_RADIUS) ):
+				continue
+			
+			var y = spawnPos.y + (CAP_HEIGHT + ε) * layer
+			var candidate3D = Vector3(candidatePos.x, y, candidatePos.y)
+			
+			# Create a specialized physics raycast to check if the crowd member would intersect in physical space
+			var query = PhysicsShapeQueryParameters3D.new()
+			query.shape = SphereShape3D.new()
+			query.shape.radius = CAP_RADIUS + ε
+			query.transform = Transform3D(Basis.IDENTITY, candidate3D)
+			query.collision_mask = physicsMask
+			if !physicsState.intersect_shape(query, physicsMask).is_empty():
+				continue # Skip to next instance
+			
+			positions.append(candidate3D)
+			placedCount += 1
+			
+		row += 1
+		
+		if dz * row > spawnRad * 2.0 + dz:
+			row = 0
+			layer += 1
+	
+	#print("In Function Positions: " + str(positions))
+	return positions
+
 
 # apply a force from a center to a body
 func crowd_stomp_spread(source, rid, force, stomp_radius) -> void:
