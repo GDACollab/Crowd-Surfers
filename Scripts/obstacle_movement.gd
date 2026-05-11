@@ -14,10 +14,11 @@ extends Node3D
 
 @export_range(0.0, 360.0, 1.0) var forward_direction: float = 0.0
 @export_range(0.1, 10.0, 0.1) var tweenTravelSpeedRatio: float = 1.0
-@export var smoothnessArr: Array[float] = []
+@export var smoothnessArr: Array[float] = [0.0]
 @export var startFromSelf: bool = true # Doesnt work right now
 @export var isClosed: bool = true
 @export var isRotate: bool = false
+@export var reverseOnComplete: bool = false
 @export var isVehicle : bool = true
 @export var do_transparency: bool = false
 #This serves to scale the velocity being applied to the player
@@ -74,8 +75,10 @@ func create_obstacle_path() -> void:
 		#obstacleCurve.add_point(start_pos)
 	
 	for child in get_children():
-		var cGPos = child.global_position
-		obstacleCurve.add_point(Vector3(cGPos.x,start_pos.y, cGPos.z))
+		#print("Child Class: " + str(child.get_class()))
+		if child is Node3D && child.name.contains("Node3D"):
+			var cGPos = child.global_position
+			obstacleCurve.add_point(Vector3(cGPos.x,start_pos.y, cGPos.z))
 	
 	obstacleCurve.closed = isClosed
 	self.rotation = Vector3(self.rotation.x, deg_to_rad(forward_direction), self.rotation.z)
@@ -148,7 +151,7 @@ func create_obstacle_path() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if !isMoving or follow_node == null: # or physicsBody == null
+	if !isMoving or follow_node == null or !follow_node.is_inside_tree(): # or physicsBody == null
 		return
 	
 	var path_length = curve.get_baked_length()
@@ -157,6 +160,7 @@ func _physics_process(delta: float) -> void:
 	
 	if follow_node.progress >= path_length:
 		follow_node.progress -= path_length
+		self.rotation.y += PI * (180.0 / PI)
 	
 	"""
 	Code Devs Blood Writing Left On The Castle Walls:
