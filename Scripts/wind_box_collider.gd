@@ -6,8 +6,7 @@ extends Node3D
 var isplayer: bool = false
 var player: CharacterBody3D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (isplayer):
 		if boostDirection.y != 0:
 			player.touched_windbox = true
