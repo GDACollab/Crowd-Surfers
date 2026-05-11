@@ -125,8 +125,7 @@ Replay Mode is now unlocked.
 ->END
 
 ===Pavo_act1===
-Hi this is Pavo
-*You hang up*
+Hi this is Pavo act 1
 ->DONE
 ===Pavo_act2===
 This is Pavo act 2
