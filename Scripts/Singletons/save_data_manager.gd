@@ -55,6 +55,7 @@ func load_data() -> void:
 func reset_data() -> void:
 	levels_complete = [false,false,false]
 	level_times = [0.0,0.0,0.0]
+	Story.reset_story()
 	save_data()
 
 #######################
