@@ -3,9 +3,9 @@ extends Control
 @onready var orders_animation_player : AnimationPlayer = $OrdersAnimationPlayer
 @onready var settings_animation_player : AnimationPlayer = $SettingsAnimationPlayer
 
-@onready var main_container: Control = $PhoneImage/MainContainer
-@onready var orders_scene: Control = $PhoneImage/OrdersScene
-@onready var settings_scene: Control = $PhoneImage/SettingsScene
+@onready var main_container: Control = $PhoneImage/MainPhoneMask/MainContainer
+@onready var orders_scene: Control = $PhoneImage/MainPhoneMask/OrdersScene
+@onready var settings_scene: Control = $PhoneImage/MainPhoneMask/SettingsScene
 
 @export var animation_time: float = 0.3
 
