@@ -14,6 +14,12 @@ extends Node3D
 @export var check_limit: int = 4
 @export var check_running_distance = 750
 
+# EXPORT VISUAL SHADER VARIABLES
+@export var animationShader: Shader
+@export var crowdMemberAnimations: Array[Array]
+#Heads up, if you broke something and are confused about how to re-add textures...
+#Select the "object" option from the list of elements in the nested array,
+#Then add the png in!
 
 # CONSTANTS
 const CAP_RADIUS = 4

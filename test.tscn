@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctnmsqdivme8b"]
+
+[ext_resource type="Shader" uid="uid://h2h8c3qmcba1" path="res://Scripts/Shaders/CrowdMember.gdshader" id="1_6uqi0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6uqi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppyta"]
+render_priority = 0
+shader = ExtResource("1_6uqi0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ykrsh"]
+material = SubResource("ShaderMaterial_ppyta")
+
+[node name="Node3D" type="Node"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_6uqi0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("QuadMesh_ykrsh")
