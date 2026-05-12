@@ -124,6 +124,8 @@ var stateColors = {
 @export var glide_gravity_factor: float = 0.05
 ## Minimum time (in seconds) that the player can glide for without getting forced out of it
 @export var min_glide_time: float = 0.5
+# Time between spawning another glide vfx object
+@export var time_between_glide_vfx: float = 0.9
 
 # Crash
 @export_category("Crash")
@@ -189,6 +191,7 @@ var stomp_windup_slowdown: Vector3
 var time_gliding: float = 0.0
 var speed_before_gliding: float
 var max_speed_before_gliding: float
+var glide_vfxs_spawned: int = 0
 var stomp_boost: float = 0.0
 var speed_before_dashing: float
 var dash_dir: Vector3
@@ -317,6 +320,15 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			# Play glide animation
 			player_sprite.play_animation("glide", true)
+			
+			# Spawn glide vfx
+			if (time_gliding > time_between_glide_vfx * glide_vfxs_spawned):
+				if (vfx_manager == null):
+					print("ERROR: No VFX manager assigned to player!!")
+				else:
+					vfx_manager.spawn_vfx(position, velocity, "glide", self)
+				glide_vfxs_spawned += 1
+			
 		States.STOMP_CROWD_LAUNCH:
 			fall(delta)
 			handle_inputs(delta)
@@ -588,6 +600,9 @@ func transition_to(new_state: int) -> void:
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
+			
+			glide_vfxs_spawned = 0
+					
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
