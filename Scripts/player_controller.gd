@@ -149,7 +149,7 @@ var stateColors = {
 func _on_stomp_dash_margin_timeout() -> void:
 	stomp_boost = 0.0
 	max_speed_before_stomp = starting_speed
-	speed_before_stomp = 0.0
+	velocity_before_stomp = Vector3.ZERO
 
 ## Activates when stomping on a Crowd, boosting the player forward and slightly up
 func crowd_launch() -> void:
@@ -164,7 +164,7 @@ func crowd_launch() -> void:
 		stomp_dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		# Ensure speed is at least min_dash_speed and apply stomp_boost
 		# The timer handles resetting these values to 0
-		stomp_dash_speed = max(min_launch_speed, max_speed * launch_speed_multiplier, speed_before_stomp) + stomp_boost
+		stomp_dash_speed = max(min_launch_speed, max_speed * launch_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
 		max_speed = max(max_speed, max_speed_before_stomp)
 		# If you successfully stomp-dash, retain your speed
 		# Apply dash to xz-direction and ignore y component of velocity
@@ -182,7 +182,7 @@ enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GR
 var max_speed: float = starting_speed
 var acceleration: float
 var ramping_cap: float
-var speed_before_stomp: float = 0.0
+var velocity_before_stomp: Vector3
 var max_speed_before_stomp: float = starting_speed
 var ramping_cap_before_stomp: float
 var stomp_windup_slowdown: Vector3
@@ -393,7 +393,7 @@ func check_state_transitions() -> void:
 				if (vfx_manager == null):
 					print("ERROR: No VFX manager assigned to player!!")
 				else:
-					vfx_manager.spawn_vfx(position, player_sprite.flip_h, "stomp")
+					vfx_manager.spawn_vfx(position, velocity_before_stomp, "stomp")
 				
 				# Loop through everything we collided with this frame
 				for i in get_slide_collision_count():
@@ -558,7 +558,7 @@ func transition_to(new_state: int) -> void:
 			if stomp_resets_air_dash:
 				can_air_dash = true
 			# Store values needed for the stomp-dash
-			speed_before_stomp = Vector2(velocity.x, velocity.z).length()
+			velocity_before_stomp = Vector3(velocity.x, 0, velocity.z)	
 			max_speed_before_stomp = max(max_speed, starting_speed)
 			ramping_cap_before_stomp = ramping_cap
 			max_speed = starting_speed
@@ -604,7 +604,7 @@ func transition_to(new_state: int) -> void:
 					dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 					# Ensure speed is at least min_dash_speed and apply stomp_boost
 					# The timer handles resetting these values to 0
-					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, speed_before_stomp) + stomp_boost
+					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
 					max_speed = max(max_speed, max_speed_before_stomp)
 					# If you successfully stomp-dash, retain your speed
 					if not $StompDashMargin.is_stopped():
