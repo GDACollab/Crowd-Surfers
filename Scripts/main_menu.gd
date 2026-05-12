@@ -14,6 +14,7 @@ var transitioning: bool = false
 func _ready() -> void:
 	orders_scene.visible = false
 	settings_scene.visible = false
+	SaveDataManager.save_data()
 
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
