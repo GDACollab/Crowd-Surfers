@@ -5,7 +5,7 @@ class_name DialoguePlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Playing dialogue before scene: " + Story.next_scene)
+	print("[STORY] Playing dialogue before scene: " + Story.next_scene)
 	#This is all you need to do in order to play dialogue! Swag!
 	Inky.SetNewStory(story)
 	var current_knot = Story.get_current_knot()
@@ -13,7 +13,6 @@ func _ready() -> void:
 		Inky.PlayStoryFromKnot(current_knot)
 		Inky.DialogueEnded.connect(_on_dialogue_end)
 	else:
-		print("hiii")
 		get_tree().change_scene_to_file(Story.next_scene)
 
 func _on_dialogue_end():
