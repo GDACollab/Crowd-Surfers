@@ -1,12 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=30 format=3 uid="uid://bsqdn34fhynmr"]
 
-[ext_resource type="Texture2D" uid="uid://cg1wbnbync35f" path="res://Assets/Art/UI/MainMenu/SlipImageTemp.png" id="1_0p7o3"]
-[ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/main_menu.gd" id="1_dsamw"]
+[ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
+[ext_resource type="Texture2D" uid="uid://bf4najlt3o1au" path="res://Assets/Art/UI/MainMenu/background_orders.png" id="3_53pih"]
+[ext_resource type="Texture2D" uid="uid://ci7kvi02miy11" path="res://Assets/Art/UI/MainMenu/background_main.png" id="3_mdd1j"]
 [ext_resource type="Texture2D" uid="uid://crbvhp12gvfa2" path="res://Assets/Art/UI/ui_phone_base.png" id="4_ahrg2"]
+[ext_resource type="Texture2D" uid="uid://dyog8krqx7gmq" path="res://Assets/Art/UI/MainMenu/slip_main.png" id="5_53pih"]
+[ext_resource type="Texture2D" uid="uid://ckgs56onyg2fl" path="res://Assets/Art/UI/MainMenu/slip_orders.png" id="5_75vxy"]
 [ext_resource type="Texture2D" uid="uid://pltwgtmqepn6" path="res://Assets/Art/UI/ui_phone_base_bg.png" id="5_ahrg2"]
 [ext_resource type="PackedScene" uid="uid://c5rie8boisw4x" path="res://Scenes/UI Menus/MainMenu/orders_screen.tscn" id="5_arkae"]
+[ext_resource type="Texture2D" uid="uid://bwuhqa5kn4y7k" path="res://Assets/Art/UI/MainMenu/wall_orders.png" id="5_c3s7o"]
+[ext_resource type="Script" uid="uid://b7asm1s1ru2p4" path="res://Scripts/MainMenu/fire_glow.gd" id="5_hn1b1"]
 [ext_resource type="Texture2D" uid="uid://drq44x1rcfvse" path="res://Assets/Art/UI/MainMenu/orders_normal.png" id="6_ahrg2"]
+[ext_resource type="Texture2D" uid="uid://bp36bli7tjc7m" path="res://Assets/Art/UI/MainMenu/wall_main.png" id="6_hn1b1"]
 [ext_resource type="PackedScene" uid="uid://kvs3yueyscim" path="res://Scenes/UI Menus/MainMenu/settings_screen.tscn" id="6_j0r1m"]
 [ext_resource type="Texture2D" uid="uid://bj1p1ehi8mmd5" path="res://Assets/Art/UI/MainMenu/voicemails_normal.png" id="7_mtjt5"]
 [ext_resource type="Texture2D" uid="uid://ddxwsn8dml4jb" path="res://Assets/Art/UI/MainMenu/orders_hover.png" id="8_a8df5"]
@@ -15,6 +21,15 @@
 [ext_resource type="Texture2D" uid="uid://do21jpwkglhgg" path="res://Assets/Art/UI/MainMenu/exit.png" id="10_u2ljj"]
 [ext_resource type="Texture2D" uid="uid://dqucxu0fdyl5" path="res://Assets/Art/UI/MainMenu/main_menu_text.png" id="11_42s18"]
 [ext_resource type="Texture2D" uid="uid://jvu7wffodnv3" path="res://Assets/Art/UI/MainMenu/social_media.png" id="12_h3juu"]
+
+[sub_resource type="Gradient" id="Gradient_75vxy"]
+offsets = PackedFloat32Array(0, 0.64)
+colors = PackedColorArray(1, 0.9306667, 0.74, 1, 1, 0.92941177, 0.7411765, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_60cbh"]
+gradient = SubResource("Gradient_75vxy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_j0r1m"]
 length = 0.001
@@ -79,6 +94,54 @@ tracks/4/keys = {
 "args": [],
 "method": &"hide_orders_scene"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BackgroundMainImage:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SlipMainImage:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SlipOrdersImage:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WallOrdersImage:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_q16ba"]
@@ -148,6 +211,54 @@ tracks/4/keys = {
 "args": [true],
 "method": &"set_orders_scene_visibility"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BackgroundMainImage:modulate")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SlipMainImage:modulate")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SlipOrdersImage:modulate")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WallOrdersImage:modulate")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahrg2"]
@@ -300,14 +411,53 @@ bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Soun
 confirm_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SettingsButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton")]
 back_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/ExitButton")]
 
-[node name="SlipImage" type="TextureRect" parent="."]
+[node name="BackgroundOrdersImage" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 10.0
-offset_right = 1106.86
-offset_bottom = 1085.68
-texture = ExtResource("1_0p7o3")
-expand_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_53pih")
+
+[node name="BackgroundMainImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_mdd1j")
+
+[node name="FireGlowImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 895.0
+offset_top = 73.0
+offset_right = 959.0
+offset_bottom = 137.0
+scale = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_60cbh")
+script = ExtResource("5_hn1b1")
+
+[node name="WallMainImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("6_hn1b1")
+
+[node name="WallOrdersImage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_c3s7o")
+
+[node name="SlipOrdersImage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_75vxy")
+
+[node name="SlipMainImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_53pih")
 
 [node name="PhoneImage" type="TextureRect" parent="."]
 layout_mode = 0
