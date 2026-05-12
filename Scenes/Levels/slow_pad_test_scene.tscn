@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://2ajjg5jt3kvq"]
+[gd_scene load_steps=34 format=3 uid="uid://2ajjg5jt3kvq"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_tkq46"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_weynu"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="30_totla"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="31_stbqi"]
 [ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="32_tkq46"]
+[ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="33_weynu"]
 
 [node name="ReferenceScene" type="Node3D" groups=["Crowd"]]
 
@@ -347,3 +348,6 @@ light_specular = 0.0
 
 [node name="SlowPadCollider" parent="." instance=ExtResource("32_tkq46")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 175, 0, 500)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("33_weynu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 1, 500)
