@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=37 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -27,6 +27,7 @@
 [ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/MainMenu/exit_click_mask.png" id="21_8fxli"]
 [ext_resource type="BitMap" uid="uid://45oo5cy4l7wl" path="res://Assets/Art/UI/MainMenu/social_media_click_mask.png" id="22_yjf4t"]
 [ext_resource type="BitMap" uid="uid://d2ef7bx3li3ox" path="res://Assets/Art/UI/MainMenu/settings_click_mask.png" id="23_4v1m8"]
+[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 
 [sub_resource type="Gradient" id="Gradient_75vxy"]
 offsets = PackedFloat32Array(0, 0.64)
@@ -590,6 +591,9 @@ offset_top = 275.79965
 offset_right = 653.7461
 offset_bottom = 1076.0807
 scale = Vector2(1, 0.245)
+
+[node name="Vignette" parent="." instance=ExtResource("28_aq2ku")]
+layout_mode = 0
 
 [node name="OrdersAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
