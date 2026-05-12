@@ -104,7 +104,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("BackgroundMainImage:modulate")
+tracks/5/path = NodePath("BackgroundsFarther/BackgroundMainImage:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -116,7 +116,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SlipMainImage:modulate")
+tracks/6/path = NodePath("BackgroundsCloser/SlipMainImage:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -128,7 +128,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SlipOrdersImage:modulate")
+tracks/7/path = NodePath("BackgroundsCloser/SlipOrdersImage:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -140,7 +140,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("WallOrdersImage:modulate")
+tracks/8/path = NodePath("BackgroundsCloser/WallOrdersImage:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -221,7 +221,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("BackgroundMainImage:modulate")
+tracks/5/path = NodePath("BackgroundsFarther/BackgroundMainImage:modulate")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -233,7 +233,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SlipMainImage:modulate")
+tracks/6/path = NodePath("BackgroundsCloser/SlipMainImage:modulate")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -245,7 +245,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SlipOrdersImage:modulate")
+tracks/7/path = NodePath("BackgroundsCloser/SlipOrdersImage:modulate")
 tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -257,7 +257,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("WallOrdersImage:modulate")
+tracks/8/path = NodePath("BackgroundsCloser/WallOrdersImage:modulate")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -409,6 +409,8 @@ offset_bottom = -640.039
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dsamw")
+background_move_radius_x = 9.0
+background_move_radius_y = 9.0
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -417,19 +419,27 @@ bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Soun
 confirm_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SettingsButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton")]
 back_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/ExitButton")]
 
-[node name="BackgroundOrdersImage" type="TextureRect" parent="."]
+[node name="BackgroundsFarther" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -25.0
+offset_right = -20.0
+offset_bottom = -25.0
+scale = Vector2(1.04, 1.04)
+
+[node name="BackgroundOrdersImage" type="TextureRect" parent="BackgroundsFarther"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("3_53pih")
 
-[node name="BackgroundMainImage" type="TextureRect" parent="."]
+[node name="BackgroundMainImage" type="TextureRect" parent="BackgroundsFarther"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("3_mdd1j")
 
-[node name="FireGlowImage" type="TextureRect" parent="."]
+[node name="FireGlowImage" type="TextureRect" parent="BackgroundsFarther"]
 layout_mode = 0
 offset_left = 895.0
 offset_top = 73.0
@@ -438,28 +448,37 @@ offset_bottom = 137.0
 scale = Vector2(8, 8)
 texture = SubResource("GradientTexture2D_60cbh")
 script = ExtResource("5_hn1b1")
+min_alpha = 0.1
 
-[node name="WallMainImage" type="TextureRect" parent="."]
+[node name="BackgroundsCloser" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -25.0
+offset_right = -20.0
+offset_bottom = -25.0
+scale = Vector2(1.04, 1.04)
+
+[node name="WallMainImage" type="TextureRect" parent="BackgroundsCloser"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("6_hn1b1")
 
-[node name="WallOrdersImage" type="TextureRect" parent="."]
+[node name="WallOrdersImage" type="TextureRect" parent="BackgroundsCloser"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("5_c3s7o")
 
-[node name="SlipOrdersImage" type="TextureRect" parent="."]
+[node name="SlipOrdersImage" type="TextureRect" parent="BackgroundsCloser"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("5_75vxy")
 
-[node name="SlipMainImage" type="TextureRect" parent="."]
+[node name="SlipMainImage" type="TextureRect" parent="BackgroundsCloser"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
