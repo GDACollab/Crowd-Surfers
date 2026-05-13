@@ -245,7 +245,7 @@ func _handle_tags(currentTags, newPanel):
 				if(currentSpeakerData != null and currentSpeakerData.characterName == tagValue):
 					newPanel.modulate = currentSpeakerData.colour
 				else:
-					print("Could not get speaker data for: " + tagValue)
+					print("[DIALOGUE] Could not get speaker data for: " + tagValue)
 				if(tagValue == "Slip"):
 					slipSpoke = true
 					currentSpeaker = leftPortrait
@@ -294,7 +294,7 @@ func _handle_tags(currentTags, newPanel):
 			"anim":
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
 			"bg":
-				print("Choosing new background!")
+				print("[DIALOGUE] Choosing new background!")
 			"voiced":
 				##TODO Play next voice line. If already playing a line, make sure to cut if off.
 				pass
