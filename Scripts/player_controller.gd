@@ -3,6 +3,11 @@ extends CharacterBody3D
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
+@onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
+
+
+# STOMP CROWD
+signal crowd_stomp_end
 
 # DEBUG
 @onready var velocityLabel : Label3D = $VelocityLabel
@@ -41,6 +46,14 @@ var stateColors = {
 @export var coyote_time: float = 0.2
 ## Amount of max speed per second to lose when player is giving no inputs
 @export var max_speed_decay: float = 10.0
+## Crowd Push force when going through
+@export var crowd_push_force: float = 50.0
+## Minimum Crowd slowdown
+@export var min_crowd_slowdown: float = 0.95
+## Maximum Crowd slowdown
+@export var max_crowd_slowdown: float = 0.8
+##Snap length to ensure smooth movement on slopes
+@export var snap_length = 5.0
 
 # Jumping
 @export_category("Jumping")
@@ -76,6 +89,10 @@ var stateColors = {
 #@export var stomp_resets_air_dash: bool = false
 ## Amount of time (in seconds) after hitting the ground that the player can dash to restore their speed from before stomping
 #@export var stomp_dash_margin: float = 0.2
+## Circumference of the Stomp Effect for Crowds
+@export var crowd_stomp_radius: float = 50.0
+## Strength of the Stomp Effect for Crowds
+@export var crowd_stomp_force: float = 50.0
 ## Multiplier on gravity while in the stomp fall state
 @export var stomp_gravity_multiplier: float = 3
 
@@ -116,7 +133,7 @@ var stateColors = {
 ## Factor used to get the speed at which the player should bounce off the wall
 @export var crash_bounce_speed_factor: float = 15.0
 ## The length of the component of the player's velocity into the wall which must be exceeded to register a crash ("how fast into the wall the player is moving")
-@export var min_speed_for_crash: float = 75.0
+@export var min_speed_for_crash: float = 100.0
 
 # Shadow
 @export_category("Shadow")
@@ -182,6 +199,7 @@ var can_glide: bool = true
 var player_height : float
 var floor_sound_material: String
 var touched_windbox: bool = false
+var windbox_boost := Vector3.ZERO
 var is_playing_crash: bool = false
 var prev_velocity: Vector3
 
@@ -202,10 +220,16 @@ func _ready() -> void:
 	$DashAnimationEndTimer.wait_time = dash_animation_hold_time
 	$CrashTimer.wait_time = crash_time
 
+
 func _physics_process(delta: float) -> void:
+	crowd_slowdown()
 	#snap_sprite()
+	if touched_windbox:
+		velocity += windbox_boost
+		touched_windbox = false
 	process_state(delta)
 	check_state_transitions()
+	stick_to_slope()
 	prev_velocity = velocity
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -314,11 +338,7 @@ func check_state_transitions() -> void:
 			elif can_dash() and Input.is_action_just_pressed("ability_dash"):
 				transition_to(States.DASH_GROUND)
 			elif not is_on_floor():
-				$CoyoteTimer.start()
 				transition_to(States.COYOTE)
-			elif touched_windbox:
-				touched_windbox = false
-				transition_to(States.AIR)
 		States.COYOTE:
 			if just_crashed():
 				transition_to(States.CRASH_AIR)
@@ -359,10 +379,12 @@ func check_state_transitions() -> void:
 		States.STOMP_WINDUP:
 			if $StompWindupTimer.is_stopped():
 				velocity = Vector3(0.0, -stomp_speed, 0.0)
+				crowd_impact()
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
 				print("STOMP HIT FLOOR")
+				crowd_stomp_end.emit()
 				var hit_crowd = false
 				
 				# Loop through everything we collided with this frame
@@ -485,9 +507,9 @@ func transition_to(new_state: int) -> void:
 		States.DASH_GROUND:
 			if not new_state == States.DASH_AIR:
 				# Reset speed if ending a ground dash
-				var yspeed := velocity.y
-				velocity = dash_dir * speed_before_dashing
-				velocity.y = yspeed
+				#var yspeed := velocity.y
+				#velocity = dash_dir * speed_before_dashing
+				#velocity.y = yspeed
 				$DashCooldownTimer.start()
 		States.DASH_AIR:
 			$DashCooldownTimer.start()
@@ -506,6 +528,8 @@ func transition_to(new_state: int) -> void:
 				#player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash_exit")
 				print("Crash Exit!")
+		States.COYOTE:
+			$CoyoteTimer.start()
 		States.CRASH_GROUND, States.CRASH_AIR:
 			if not current_state == States.CRASH_GROUND and not current_state == States.CRASH_AIR:
 				max_speed = starting_speed
@@ -593,7 +617,6 @@ func transition_to(new_state: int) -> void:
 	
 	current_state = new_state
 	print(state_to_string())
-	print(direction_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -685,7 +708,7 @@ func fall(delta: float) -> void:
 ## Returns true if the player just crashed into a wall on this frame, and false otherwise
 func just_crashed() -> bool:
 	# Didn't crash if not on wall
-	if not is_on_wall():
+	if not is_on_wall() and not check_crowd_wall:
 		return false
 	var wall_normal := get_wall_normal()
 	var speed_into_wall: float = abs(prev_velocity.dot(wall_normal))
@@ -704,6 +727,69 @@ func check_height() -> void:
 
 	var ground_point: Vector3 = raycast.get_collision_point()
 	player_height = global_position.y - ground_point.y
+	
+## Checks if player is colliding with a rid (or member of the crowd) and applies force
+func check_crowd_wall() -> bool:
+	for curr_hit in get_slide_collision_count():
+		var collision = get_slide_collision(curr_hit)
+		var collider = collision.get_collider_rid()
+		if (PhysicsServer3D.body_get_collision_layer(collider) == 4):
+			return true 
+	return false
+
+## crowd slowdown which gets the current body rid to check if any collisions exist with its mask 4
+func crowd_slowdown() -> void:
+	var space_state = get_world_3d().direct_space_state
+	
+	var rid_shape = $CollisionShape3D.shape.get_rid()
+	
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape_rid = rid_shape
+	query.transform = global_transform
+	query.collision_mask = 4
+	query.collide_with_bodies = true
+	
+	var results = space_state.intersect_shape(query, 500)
+	var min_actual_slowdown = 1.0 - min_crowd_slowdown
+	var max_actual_slowdown = 1.0 - max_crowd_slowdown
+	
+	
+	if results.size() > 0:
+		# clamp effect, so although it is the actual slowdown, the higher density the worse effect it has
+		var crowd_density = clamp(results.size() * min_actual_slowdown, min_actual_slowdown, max_actual_slowdown)
+		velocity *= (1.0 - crowd_density)
+		
+func crowd_impact() -> void:
+	var space_state = get_world_3d().direct_space_state
+	
+	var blast_shape = SphereShape3D.new()
+	var stomp_radius = crowd_stomp_radius
+	blast_shape.radius = stomp_radius
+	
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape = blast_shape
+	query.transform = global_transform
+	query.collision_mask = 4
+	
+	var results = space_state.intersect_shape(query, 500)
+	for result in results:
+		var rid = result.rid
+		var manager = result.collider
+		# Rid specific ID here
+		if manager and manager.has_method("crowd_stomp_spread"):
+			manager.crowd_stomp_spread(self, rid, crowd_stomp_force, crowd_stomp_radius)
+			
+	await crowd_stomp_end
+	crowd_stop_impact(results)
+
+func crowd_stop_impact(results) -> void:
+	for result in results:
+		var rid = result.rid
+		var manager = result.collider
+		if manager and manager.has_method("crowd_stomp_stop"):
+			manager.crowd_stomp_stop(rid)
+		
+
 
 ## Update FMOD floor material parameter based on raycast
 func update_fmod_floor_material() -> void:
@@ -759,21 +845,15 @@ func state_to_string() -> String:
 			return "Air Crash"
 	return ""
 
-## Returns the current direction
-func direction_to_string() -> String:
-	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if input_dir.x != 0 && input_dir.y <= 0: return "up_right"
-	if input_dir.x != 0 && input_dir.y >= 0: return "down_right"
-	if input_dir.x == 0 && input_dir.y <= 0: return "up"
-	if input_dir.x == 0 && input_dir.y >= 0: return "down"
-	if input_dir.x != 0 && input_dir.y == 0: return "right"
-	if input_dir.x == 0 && input_dir.y == 0: return "idle"
-	return ""
-
 func update_labels():
 	velocityLabel.text = "Velocity: " + str(velocity)
 	stateLabel.text = "State: " + state_to_string()
 	#stateLabel.modulate = stateColors[current_state]
+
+func stick_to_slope():
+	if is_on_floor():
+		floor_snap_length = snap_length
+	
 
 ## Checks when the restart button is pressed.
 func restart():

@@ -890,6 +890,7 @@ height = 18.293991
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
+floor_snap_length = 5.0
 script = ExtResource("1_i0hvh")
 base_ramping_cap = 200.0
 starting_speed = 50.0
@@ -921,6 +922,9 @@ debug_color = Color(0.70781946, 0, 0.22679123, 0.6)
 
 [node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
 target_position = Vector3(0, -50, 0)
+
+[node name="SlopeCheckRaycast" type="RayCast3D" parent="CollisionShape3D"]
+target_position = Vector3(0, -10, 0)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 one_shot = true
@@ -1006,3 +1010,4 @@ spot_angle = 7.0
 
 [connection signal="animation_changed" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_finished"]
+[connection signal="timeout" from="StompDashMargin" to="." method="_on_stomp_dash_margin_timeout"]

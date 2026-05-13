@@ -1,3 +1,5 @@
+No Knot specified
+
 ===main_act1_scene1===
 \*It's been a pretty slow morning so far. Light traffic, uneventful news
 At least until...
@@ -36,10 +38,16 @@ Now get to work! The clock's ticking! #speaker:Sam
 ->END
 
 ===main_act1_scene2===
+PAVO Voicemail
+*[Respond]
+    <- Pavo_act1
+*[Ignore]
+    You ignore the call
+-Time to head back #fade:out
 \*You return to the pizzeria, worn out from a long day of work*
-I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #speaker:Slip #anim:Shake
-Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh
-But sir, I was supposed to be clocking out... #speaker:Slip
+I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #speaker:Slip #anim:Shake #voiced:yes
+Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #voiced:yes
+But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous
 Now why would you say that? It is only 6 P.M- #speaker:Sam
 ... #speaker:Sam
 Ahem, as I was saying! #speaker:Sam #anim:Laugh
@@ -91,3 +99,61 @@ It even features the original cast! #speaker:Sam
 ...Pretty cool, right? Guys...? #speaker:Sam
 ... #speaker:Sam
 ->END
+
+//PAVO
+
+===main_act2_scene1===
+This is main act 2 scene 1
+You meet Minny here
+->END
+
+===main_act2_scene2===
+Nyx voicemail
+*Respond
+ <- Nyx_act1
+*Ignore
+-Scene 2 plays
+->END
+
+===main_act3_scene1===
+This is main act 3 scene 1
+->END
+
+===main_act3_scene2===
+This is the last scene of the game
+Replay Mode is now unlocked.
+->END
+
+===Pavo_act1===
+Hi this is Pavo act 1
+->DONE
+===Pavo_act2===
+This is Pavo act 2
+->DONE
+===Pavo_act3===
+This is Pavo act 3
+->DONE
+
+//MINNY
+===Minny_act1===
+This is Minny act 1
+->DONE
+===Minny_act2===
+This is Minny act 2
+->DONE
+===Minny_act3===
+This is Minny act 3
+->DONE
+
+//NYX
+
+//NYX
+===Nyx_act1===
+This is Nyx act 1
+->DONE
+===Nyx_act2===
+This is Nyx act 2
+->DONE
+===Nyx_act3===
+This is Nyx act 3
+->DONE
