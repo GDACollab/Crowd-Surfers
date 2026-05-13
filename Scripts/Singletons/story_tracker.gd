@@ -22,9 +22,6 @@ var post_level := false
 var next_scene : String
 var voicemail_history : Array[String]
 
-func _ready() -> void:
-	get_story_progress_info()
-
 func increase_main_story_progress():
 	if(main_story_progress == 2):
 		main_story_complete = true
@@ -40,33 +37,44 @@ func get_current_knot() -> String:
 	var current_act := 0
 	## Replay Mode scene
 	if(main_story_complete):
-		if(post_level):
-			post_level = false
-			current_act = story_arcs_progress[selected_level]
-			## Increment to next scene
-			if(story_arcs_progress[selected_level] < 1):
-				story_arcs_progress[selected_level] += 1
-			knot_name = level_character[selected_level] + "_act" + str(current_act + 1)
-		else:
+		## Replay mode never plays scenes pre-level
+		if(!post_level):
+			print("[STORY] Entering level in replay mode")
 			return ""
+		post_level = false
+		current_act = story_arcs_progress[selected_level]
+		## Increment to next scene
+		if(story_arcs_progress[selected_level] < 1):
+			story_arcs_progress[selected_level] += 1
+		knot_name = level_character[selected_level] + "_act" + str(current_act + 1)
+		_add_voicemail(knot_name)
 	## Main Story scene
 	else:
-		if(main_story_progress > selected_level):
-			print("Seen already")
+		## Check if player is playing current story level
+		if(main_story_progress != selected_level):
+			print("[STORY] Seen already")
 			return ""
-		current_act = selected_level
 		if(post_level):
 			post_level = false
 			knot_name = "main_act" + str(main_story_progress + 1) + "_scene2"
+			## Last story act doesn't have a voicemail
+			if(main_story_progress < 2):
+				_add_voicemail(knot_name)
 			increase_main_story_progress()
 		else:
 			knot_name = "main_act" + str(main_story_progress + 1) + "_scene1"
-	print(knot_name)
+	print("[STORY] Playing: ",knot_name)
 	return knot_name
+
+func _add_voicemail(knot_name : String):
+	var voicemail_name = knot_name + "_voicemail"
+	if(!voicemail_history.has(voicemail_name)):
+		voicemail_history.append(voicemail_name)
 
 func get_story_progress_info():
 	print(
-		"Main Story Progress: " + str(main_story_progress) +
+		"[STORY PROGRESS]\nMain Story Progress: " + str(main_story_progress) +
+		"\nReplay Mode: " + str(main_story_complete),
 		"\nPavo Progress: " + str(story_arcs_progress[0]) +
 		"\nMinny Progress: " + str(story_arcs_progress[1]) +
 		"\nNyx Progress: " + str(story_arcs_progress[2])
@@ -81,6 +89,9 @@ func load_story(progress_dict : Dictionary):
 		for i in side_progress:
 			story_arcs_progress[iter] = side_progress[level_character[iter]]
 			iter += 1
+	if(progress_dict.has("voicemail_history")):
+		voicemail_history = progress_dict["voicemail_history"]
+	get_story_progress_info()
 
 func serialize_story() -> Dictionary:
 	var story_data := {}
@@ -93,8 +104,12 @@ func serialize_story() -> Dictionary:
 		side_story_progress[level_character[iter]] = i
 		iter += 1
 	story_data["side_story_progress"] = side_story_progress
+	
+	story_data["voicemail_history"] = voicemail_history
 	return story_data
 
 func reset_story():
-	##TODO Implement later
-	pass
+	main_story_progress = 0
+	main_story_complete = false
+	for s in story_arcs_progress:
+		s = 0
