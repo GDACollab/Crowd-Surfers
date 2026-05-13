@@ -25,5 +25,6 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.name == "Player"):
 		isplayer = false
 		player.touched_windbox = false
-		if player.max_speed < Vector3(player.velocity.x, 0, player.velocity.z).length(): player.max_speed = player.velocity.length()
+		var new_speed: float = Vector3(player.velocity.x, 0, player.velocity.z).dot(boostDirection.normalized())
+		if player.max_speed < new_speed: player.max_speed = new_speed
 		if player.max_speed > speedCap: player.max_speed = speedCap
