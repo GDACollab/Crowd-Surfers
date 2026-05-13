@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dko8vy0gjh707"]
+[gd_scene load_steps=34 format=3 uid="uid://dko8vy0gjh707"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_qwj2w"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_igd0b"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="30_lem05"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="31_omu78"]
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="32_igd0b"]
+[ext_resource type="PackedScene" uid="uid://cxq7y3jah1q6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="33_wkkjf"]
 
 [node name="ReferenceScene" type="Node3D" groups=["Crowd"]]
 
@@ -346,4 +347,7 @@ light_specular = 0.0
 [node name="Environment" parent="." instance=ExtResource("31_omu78")]
 
 [node name="WindBoxCollider" parent="." instance=ExtResource("32_igd0b")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 200, 2, 500)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 200, 1, 500)
+
+[node name="WindBoxCollider2" parent="." instance=ExtResource("33_wkkjf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.965, 1, 537.917)
