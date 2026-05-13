@@ -125,7 +125,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("3_nusql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.68701, 0.0635376, 86.52225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5245.687, 0.0635376, 86.52225)
 ramping_exponent = 0.525
 stomp_speed = 300.0
 stomp_dash_boost_factor = 400.0
@@ -4570,15 +4570,26 @@ transform = Transform3D(23.325, 0, 0, 0, 23.325, 0, 0, 0, 23.325, 2480, -98.5, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 99.23819, -275)
 
 [node name="BoostPad2" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -199, 525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -198.01721, 550.183)
 
 [node name="BoostPad4" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 1, 325)
 
 [node name="BoostPad3" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2620, -99, 325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2620, -98.91475, 352.14792)
 boostPower = 300.0
 speedCap = 300.0
+
+[node name="WindBoxCollider" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
+transform = Transform3D(0.83464605, 0, -0.5507867, 0, 1, 0, 0.5507867, 0, 0.83464605, 3911.6868, 0, -151.16005)
+
+[node name="WindBoxCollider2" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5300, 1.2264404, 149.99826)
+boostDirection = Vector3(0, 1, 25)
+speedCap = 250.0
+
+[node name="WindBoxCollider8" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5401.187, 1.2264404, 352.45566)
 
 [node name="Arrows" type="Node" parent="Level Components"]
 
@@ -5422,4 +5433,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, -100)
 transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 3200, -198.8614, 244.77777)
 
 [node name="DeathBoxCollider" parent="." instance=ExtResource("106_nregq")]
-transform = Transform3D(20896.127, 0, 0, 0, 20, 0, 0, 0, 4212.2803, 2700, -215.09615, 88.746155)
+transform = Transform3D(10448.063, 0, 0, 0, 20, 0, 0, 0, 4212.2803, 3662.063, -215.09615, 88.746155)
