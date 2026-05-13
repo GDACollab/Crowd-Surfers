@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctnmsqdivme8b"]
+[gd_scene load_steps=10 format=3 uid="uid://ctnmsqdivme8b"]
 
 [ext_resource type="Shader" uid="uid://h2h8c3qmcba1" path="res://Scripts/Shaders/CrowdMember.gdshader" id="1_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://bgx3u2kk0ka47" path="res://Assets/Art/Crowd/SenXie_cheery_bunny/bunny-1.png" id="2_6uqi0"]
@@ -16,6 +16,19 @@ shader_parameter/secondsPerFrame = 0.3
 [sub_resource type="QuadMesh" id="QuadMesh_ykrsh"]
 material = SubResource("ShaderMaterial_ppyta")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6uqi0"]
+render_priority = 0
+shader = ExtResource("1_6uqi0")
+shader_parameter/texture_array = Array[Texture2D]([ExtResource("2_6uqi0"), ExtResource("3_ppyta")])
+shader_parameter/timeOffset = 0.0
+shader_parameter/secondsPerFrame = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_ppyta"]
+material = SubResource("ShaderMaterial_6uqi0")
+
+[sub_resource type="MultiMesh" id="MultiMesh_ykrsh"]
+mesh = SubResource("QuadMesh_ppyta")
+
 [node name="Node3D" type="Node"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -28,4 +41,8 @@ material = SubResource("ShaderMaterial_ppyta")
 shape = SubResource("SphereShape3D_6uqi0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+visible = false
 mesh = SubResource("QuadMesh_ykrsh")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_ykrsh")

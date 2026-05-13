@@ -568,14 +568,18 @@ func multi_mesh_creation() -> void:
 	q_mesh.size = Vector2(16, 16)
 	multi_mesh.mesh = q_mesh
 	multi_mesh.use_colors = true
-	var mat = StandardMaterial3D.new()
-	mat.albedo_texture = crowd
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
-	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mat.vertex_color_use_as_albedo = true
-	mat.albedo_color = Color.WHITE
-	mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
-	mat.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_OPAQUE_ONLY
+	#mat.set_shader_parameter("texture_array",crowdMemberAnimations[0]);
+	#var mat = StandardMaterial3D.new()
+	var mat = ShaderMaterial.new()
+	mat.shader = animationShader;
+	mat.set_shader_parameter("texture_array",crowdMemberAnimations[0]);
+	#mat.albedo_texture = crowd
+	#mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+	#mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	#mat.vertex_color_use_as_albedo = true
+	#mat.albedo_color = Color.WHITE
+	#mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	#mat.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_OPAQUE_ONLY
 	q_mesh.material = mat
 	
 	multi_mesh.instance_count = crowd_size
@@ -590,6 +594,11 @@ func multi_mesh_creation() -> void:
 
 
 func create_rids(position) -> void:
+	#set shader
+	#multi_mesh_manager.multimesh.mesh.set_surface_override_material(0, animationShader);
+	#multi_mesh_manager.multimesh.m
+	#multi_mesh_manager.multimesh.mesh.surface_get_material(0).set_shader_parameter("texture_array",crowdMemberAnimations[0]);
+	
 	var city_colors = [
 	Color(0.6, 0.6, 0.6),  # light gray
 	Color(0.3, 0.3, 0.3),  # dark gray
