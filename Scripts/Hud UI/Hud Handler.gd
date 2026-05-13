@@ -116,7 +116,6 @@ func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: 
 			#else:
 				#sprite_formatted_time += str(character)
 		#formatted_time = sprite_formatted_time
-	print(formatted_time)
 	return formatted_time
 
 func _process(delta: float) -> void:

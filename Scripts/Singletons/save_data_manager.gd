@@ -49,7 +49,9 @@ func load_data() -> void:
 	Settings.music_volume = loaded_data["music_volume"]
 	Settings.sfx_volume = loaded_data["sfx_volume"]
 	Settings.update_fmod_volumes()
-	Story.load_story(loaded_data["story_progress"])
+	# Safety check
+	if(loaded_data.has("story_progress")):
+		Story.load_story(loaded_data.get("story_progress"))
 	print("Save Data loaded")
 
 func reset_data() -> void:
