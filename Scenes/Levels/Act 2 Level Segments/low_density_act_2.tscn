@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="7_0ntw3"]
 [ext_resource type="PackedScene" uid="uid://gvypmi6dyu1u" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle1.tscn" id="8_6biee"]
 [ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="9_hfqsx"]
-[ext_resource type="PackedScene" uid="uid://84b01iwmitg6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="10_cuk7e"]
+[ext_resource type="PackedScene" uid="uid://cxq7y3jah1q6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="10_cuk7e"]
 [ext_resource type="PackedScene" uid="uid://b0kx67g7eqlsl" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle3.tscn" id="10_s60nl"]
 [ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="11_ida46"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="12_7piyj"]
@@ -25,14 +25,14 @@
 [ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/BananaPeel.tscn" id="20_r2nto"]
 [ext_resource type="PackedScene" uid="uid://dk60vjxm33eaq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTFlipped.tscn" id="22_gth1d"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="23_236f0"]
-[ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassBottomRightCorner.tscn" id="23_qk3yq"]
-[ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassUpRightCorner.tscn" id="24_d0ino"]
+[ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopRight.tscn" id="23_qk3yq"]
+[ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopLeft.tscn" id="24_d0ino"]
 [ext_resource type="PackedScene" uid="uid://2bh76jv7nmnc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassMiddle.tscn" id="25_ci15m"]
 [ext_resource type="PackedScene" uid="uid://dr7ljs6hig6il" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTRight.tscn" id="26_03cxy"]
 [ext_resource type="PackedScene" uid="uid://bky6a75x1d73k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTLeft.tscn" id="27_d1t0l"]
-[ext_resource type="PackedScene" uid="uid://d2uarcacbt8oc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassBottomLeftCorner.tscn" id="28_8qwd7"]
+[ext_resource type="PackedScene" uid="uid://d2uarcacbt8oc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerBottomLeft.tscn" id="28_8qwd7"]
 [ext_resource type="PackedScene" uid="uid://c8fuj14nmef0t" path="res://Scenes/Level Components/Objects/GrassVariants/GrassT.tscn" id="29_8x86x"]
-[ext_resource type="PackedScene" uid="uid://d1nam1kuyikqa" path="res://Scenes/Level Components/Objects/GrassVariants/GrassUpLeftCorner.tscn" id="30_cpjft"]
+[ext_resource type="PackedScene" uid="uid://d1nam1kuyikqa" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerBottomRight.tscn" id="30_cpjft"]
 [ext_resource type="PackedScene" uid="uid://dumdrwcby7fk6" path="res://Scenes/Level Components/Objects/Road-FourWayStop.tscn" id="35_d1t0l"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nghji"]
@@ -1075,7 +1075,7 @@ route = Array[Vector3]([Vector3(-1813.144, 0, -707.63275), Vector3(-2000.6722, 0
 [node name="Crowd5" parent="Crowds" instance=ExtResource("23_236f0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1221.7776, 8, -9.07869)
 debug = true
-circum = 40.0
+circum = 60.0
 crowd_size = 20
 max_speed = 60.0
 acceleration = 100.0
