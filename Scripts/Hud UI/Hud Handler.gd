@@ -56,6 +56,9 @@ func _ready():
 	set_max_speed(saved_ramping_cap)
 	change_Lvl_Progress.connect(set_Level_Progress)
 	set_Level_Progress(0)
+	
+	set_Time(0.0)
+	
 	current_animation_time = star_animation_time
 	
 	# Create stars
@@ -176,8 +179,9 @@ func _process(delta: float) -> void:
 		index += 1
 	
 	## Calculate and display time
-	curr_Time = curr_Time + delta
-	set_Time(curr_Time)
+	if (player_start_pos.distance_to(Vector2(player.position.x, player.position.z)) > 0.01):
+		curr_Time = curr_Time + delta
+		set_Time(curr_Time)
 		
 	## Handle Level Progression
 	if(has_level_end_pos):
