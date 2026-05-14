@@ -1,0 +1,292 @@
+[gd_scene format=3 uid="uid://b8miwt7cr6tcm"]
+
+[ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scenes/Cutscenes/cutscene_example.gd" id="1_enem1"]
+[ext_resource type="Texture2D" uid="uid://bsu3080xa05dw" path="res://Assets/Art/Portraits/Slip/Slip_Confident.png" id="2_wuh7p"]
+[ext_resource type="Texture2D" uid="uid://bcmwaa0mckn5d" path="res://Assets/Art/Portraits/Slip/Slip_Nervous.png" id="3_knqpr"]
+[ext_resource type="Texture2D" uid="uid://dm3br3d3sbt6w" path="res://Assets/Art/Portraits/Slip/Slip_Scared.png" id="4_3qflq"]
+[ext_resource type="Texture2D" uid="uid://dnd7pq4h5jgom" path="res://Assets/Art/Portraits/Minny/Minny_Default.png" id="5_7yr8g"]
+[ext_resource type="Texture2D" uid="uid://b3cg1pufoafyc" path="res://Assets/Art/Portraits/Minny/Minny_Happy.png" id="6_gkc56"]
+[ext_resource type="Texture2D" uid="uid://d1mcnbcdhvdya" path="res://Assets/Art/Portraits/Minny/Minny_Nervous.png" id="7_fv40w"]
+
+[sub_resource type="Animation" id="Animation_yoa5k"]
+resource_name = "Cutscene_Test"
+length = 18.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"pause_for_input"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlipConfident:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 7, 8, 9, 10, 11, 15, 16, 17),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, true, true, true, false, true, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlipNervous:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 5, 6, 7, 11, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false, true, true, false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlipScared:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3, 4, 5, 13, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MinnyDefault:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4, 5, 6, 8, 9, 10, 16, 17, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false, true, true, false, true, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MinnyHappy:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MinnyNervous:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4, 10, 11, 12, 13, 14, 15, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false, true, true, true, true, true, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ColorRect/RichTextLabel:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["(whistling to music)
+The sound of roller skates riding against the concrete comes to a halt as Slip narrowly avoids colliding with a pedestrian. The unknown person cries out and freezes at the spot.
+", "(concerned)
+Oh man, are you okay? Sorry I didn’t see you, it’s like you tumbled out of nowhere!
+", "(pensively)
+D-don’t be sorry...my fault for running out… mumble mumble
+", "I didn’t quite catch-wait a sec. MINNY!?
+", "
+...
+SLIP!? I hardly recognized you in that uniform! Not to mention that visor covering your face.
+", "Well, something’s gotta keep the sun off these eyes. Especially with this city’s drivers...
+", "You do deliveries then?
+", "Transporting the most important package of all. Pizza.
+Enough about little old me though. What have you been up to?
+
+", "I work just down the street at a china shop, Bao-Bao’s Antiques.
+That is, if they haven’t fired me by now…
+", "Why are you worried about that? You’re the hardest working bull I know!
+", "You see, this morning I...", "*Minny? You ok?
+", "N-no, you see…
+", "*[Remain silent]
+
+", "I-I forgot to flip the sign to “open”!
+Urgh, it's even worse saying it out loud!
+
+
+", "Aww, that’s no big deal. Bet your boss didn’t even give it a second thought!
+And besides, it’s just some minimum-wage job. You’ll be fine.
+", "But-
+", "Shoot! Speaking of minimum-wage jobs, I gotta skate on outta here.
+Oh, and here’s my new number, let’s catch up soon!
+", "Wait-oh, ok. Have a good day...at work.
+I know I won’t...
+"]
+}
+
+[sub_resource type="Animation" id="Animation_dk6ph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlipConfident:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlipNervous:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlipScared:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MinnyDefault:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MinnyHappy:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MinnyNervous:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ColorRect/RichTextLabel:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["(whistling to music)
+The sound of roller skates riding against the concrete comes to a halt as Slip narrowly avoids colliding with a pedestrian. The unknown person cries out and freezes at the spot.
+"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d7w7y"]
+_data = {
+&"Cutscene_Test": SubResource("Animation_yoa5k"),
+&"RESET": SubResource("Animation_dk6ph")
+}
+
+[node name="Cutscene_Example" type="Node" unique_id=991710418]
+script = ExtResource("1_enem1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=375807390]
+libraries/ = SubResource("AnimationLibrary_d7w7y")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1008531371]
+offset_left = 3.0
+offset_top = 808.0
+offset_right = 1919.0
+offset_bottom = 1076.0
+color = Color(0.11674089, 0.116740905, 0.11674089, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=1408481012]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 1914.0
+offset_bottom = 265.0
+text = "(whistling to music)
+The sound of roller skates riding against the concrete comes to a halt as Slip narrowly avoids colliding with a pedestrian. The unknown person cries out and freezes at the spot.
+"
+fit_content = true
+
+[node name="SlipConfident" type="Sprite2D" parent="." unique_id=2114398816]
+position = Vector2(174.99997, 564.00006)
+scale = Vector2(0.21673004, 0.21673004)
+texture = ExtResource("2_wuh7p")
+
+[node name="SlipNervous" type="Sprite2D" parent="." unique_id=972128859]
+position = Vector2(185, 551)
+scale = Vector2(0.2287706, 0.2287706)
+texture = ExtResource("3_knqpr")
+
+[node name="SlipScared" type="Sprite2D" parent="." unique_id=1098546284]
+position = Vector2(176.99997, 559)
+scale = Vector2(0.22623573, 0.22623575)
+texture = ExtResource("4_3qflq")
+
+[node name="MinnyDefault" type="Sprite2D" parent="." unique_id=402431270]
+position = Vector2(1782.9998, 492)
+scale = Vector2(0.390625, 0.390625)
+texture = ExtResource("5_7yr8g")
+
+[node name="MinnyHappy" type="Sprite2D" parent="." unique_id=1397669560]
+position = Vector2(1746, 510)
+scale = Vector2(0.40875006, 0.37620628)
+texture = ExtResource("6_gkc56")
+
+[node name="MinnyNervous" type="Sprite2D" parent="." unique_id=142085076]
+position = Vector2(1771, 509)
+scale = Vector2(0.38078114, 0.38078114)
+texture = ExtResource("7_fv40w")
