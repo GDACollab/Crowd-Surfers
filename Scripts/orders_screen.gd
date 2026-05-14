@@ -18,4 +18,6 @@ func _on_act_2_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene_with_loading("res://Scenes/UI Menus/level_dialogue_player.tscn")
 
 func _on_act_3_button_pressed() -> void:
-	SceneFadeTransition.transition_to_scene_with_loading("res://Scenes/Levels/ActThreeConcept.tscn")
+	Story.next_scene = "res://Scenes/Levels/ActThreeConcept.tscn"
+	Story.selected_level = 2
+	SceneFadeTransition.transition_to_scene_with_loading("res://Scenes/UI Menus/level_dialogue_player.tscn")

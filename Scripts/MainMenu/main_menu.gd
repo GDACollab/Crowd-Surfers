@@ -32,6 +32,8 @@ func _ready() -> void:
 	start_background_position = backgrounds_closer.position
 	time = time_between_target_changes
 	
+	SaveDataManager.save_data()
+
 func _process(delta: float) -> void:
 	time += delta
 	if (time > time_between_target_changes):
