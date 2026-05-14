@@ -5,7 +5,6 @@ var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
 
-
 # STOMP CROWD
 signal crowd_stomp_end
 
@@ -125,6 +124,8 @@ var stateColors = {
 @export var glide_gravity_factor: float = 0.05
 ## Minimum time (in seconds) that the player can glide for without getting forced out of it
 @export var min_glide_time: float = 0.5
+# Time between spawning another glide vfx object
+@export var time_between_glide_vfx: float = 0.9
 
 # Crash
 @export_category("Crash")
@@ -143,10 +144,14 @@ var stateColors = {
 @export var shadow_lift: float = 1.5             # your +1.5 offset
 @export var shadow_falloff_exp: float = 1.6      # >1 shrinks faster early, <1 shrinks slower
 
+@export_category("VFX")
+@export var vfx_manager: Node3D
+
+
 func _on_stomp_dash_margin_timeout() -> void:
 	stomp_boost = 0.0
 	max_speed_before_stomp = starting_speed
-	speed_before_stomp = 0.0
+	velocity_before_stomp = Vector3.ZERO
 
 ## Activates when stomping on a Crowd, boosting the player forward and slightly up
 func crowd_launch() -> void:
@@ -161,7 +166,7 @@ func crowd_launch() -> void:
 		stomp_dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		# Ensure speed is at least min_dash_speed and apply stomp_boost
 		# The timer handles resetting these values to 0
-		stomp_dash_speed = max(min_launch_speed, max_speed * launch_speed_multiplier, speed_before_stomp) + stomp_boost
+		stomp_dash_speed = max(min_launch_speed, max_speed * launch_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
 		max_speed = max(max_speed, max_speed_before_stomp)
 		# If you successfully stomp-dash, retain your speed
 		# Apply dash to xz-direction and ignore y component of velocity
@@ -179,13 +184,14 @@ enum States{GROUND, COYOTE, AIR, STOMP_WINDUP, STOMP_FALL, GLIDE, SLOPE, DASH_GR
 var max_speed: float = starting_speed
 var acceleration: float
 var ramping_cap: float
-var speed_before_stomp: float = 0.0
+var velocity_before_stomp: Vector3
 var max_speed_before_stomp: float = starting_speed
 var ramping_cap_before_stomp: float
 var stomp_windup_slowdown: Vector3
 var time_gliding: float = 0.0
 var speed_before_gliding: float
 var max_speed_before_gliding: float
+var glide_vfxs_spawned: int = 0
 var stomp_boost: float = 0.0
 var speed_before_dashing: float
 var dash_dir: Vector3
@@ -314,6 +320,15 @@ func process_state(delta: float) -> void:
 			handle_inputs(delta)
 			# Play glide animation
 			player_sprite.play_animation("glide", true)
+			
+			# Spawn glide vfx
+			if (time_gliding > time_between_glide_vfx * glide_vfxs_spawned):
+				if (vfx_manager == null):
+					print("ERROR: No VFX manager assigned to player!!")
+				else:
+					vfx_manager.spawn_vfx(position, velocity, "glide", self)
+				glide_vfxs_spawned += 1
+			
 		States.STOMP_CROWD_LAUNCH:
 			fall(delta)
 			handle_inputs(delta)
@@ -386,6 +401,11 @@ func check_state_transitions() -> void:
 				print("STOMP HIT FLOOR")
 				crowd_stomp_end.emit()
 				var hit_crowd = false
+				
+				if (vfx_manager == null):
+					print("ERROR: No VFX manager assigned to player!!")
+				else:
+					vfx_manager.spawn_vfx(position, velocity_before_stomp, "stomp")
 				
 				# Loop through everything we collided with this frame
 				for i in get_slide_collision_count():
@@ -550,7 +570,7 @@ func transition_to(new_state: int) -> void:
 			if stomp_resets_air_dash:
 				can_air_dash = true
 			# Store values needed for the stomp-dash
-			speed_before_stomp = Vector2(velocity.x, velocity.z).length()
+			velocity_before_stomp = Vector3(velocity.x, 0, velocity.z)	
 			max_speed_before_stomp = max(max_speed, starting_speed)
 			ramping_cap_before_stomp = ramping_cap
 			max_speed = starting_speed
@@ -580,6 +600,9 @@ func transition_to(new_state: int) -> void:
 			# Start glide sound loop
 			$GlideSound.set_parameter("glide_state", "loop")
 			$GlideSound.play()
+			
+			glide_vfxs_spawned = 0
+					
 		States.AIR:
 			# Lower friction in midair
 			friction /= 2.0
@@ -596,7 +619,7 @@ func transition_to(new_state: int) -> void:
 					dash_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 					# Ensure speed is at least min_dash_speed and apply stomp_boost
 					# The timer handles resetting these values to 0
-					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, speed_before_stomp) + stomp_boost
+					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
 					max_speed = max(max_speed, max_speed_before_stomp)
 					# If you successfully stomp-dash, retain your speed
 					if not $StompDashMargin.is_stopped():
