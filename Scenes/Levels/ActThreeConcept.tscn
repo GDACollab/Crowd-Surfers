@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=73 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -67,6 +67,9 @@
 [ext_resource type="PackedScene" uid="uid://dakmufixpwm3i" path="res://Scenes/Level Components/Objects/bus-1-full.tscn" id="46_22qtl"]
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="47_0swl4"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="52_2y5rp"]
+[ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="68_ykr1p"]
+[ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="69_w6g8g"]
+[ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
 vertices = PackedVector3Array(-49.5, 1.5, -301.75, 149.5, 1.5, -301.75, 149.5, 1.5, -599.5, -49.5, 1.5, -599.5, -49.5, 1.5, 2, 149.5, 1.5, 2, 149.75, 1.5, -0.25, 149.75, 1.5, -299.5, 249.5, 1, -0.25, 249.5, 1, -299.5, 152.96774, 1, -0.25, 152.96774, 1, -299.5, 150.975, 1, -298.525, 150.98015, 1, -6.021118, -49.5, 1.5, 499.5, 149.5, 1.5, 499.5)
@@ -536,7 +539,7 @@ transform = Transform3D(-1, 0, -2.6226832e-07, 0, 1, 0, 2.6226832e-07, 0, -1, 80
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 900, 0, -650)
 
 [node name="StaticBody3D24" parent="RoadGroup/HighwayGroup" instance=ExtResource("7_iegtb")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 900, 0, -550)
+transform = Transform3D(0.999904, 0.013857471, 1.7482877e-07, -0.013857471, 0.999904, -2.4229172e-09, -1.7484555e-07, 0, 1, 900, 0, -550)
 
 [node name="StaticBody3D25" parent="RoadGroup/HighwayGroup" instance=ExtResource("7_iegtb")]
 transform = Transform3D(-1, 0, -2.6226832e-07, 0, 1, 0, 2.6226832e-07, 0, -1, 900, 0, -550)
@@ -1429,13 +1432,13 @@ transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70
 transform = Transform3D(0.7071069, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.7071069, 334.68658, 0, -1322.9319)
 
 [node name="WaymoConfusedDown4" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 188.72462, 0, -1192.4725)
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 188.73586, 0, -1192.5111)
 
 [node name="CarRedUp9" parent="VehicleGroup" instance=ExtResource("20_3fg1r")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 353.68152, 0, -1243.937)
 
 [node name="WaymoEvilUp3" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 259.93784, 0, -1171.7618)
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 259.9266, 0, -1171.7233)
 
 [node name="WaymoConfusedDown5" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 588.7246, 0, -1592.4725)
@@ -1448,6 +1451,156 @@ transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70
 
 [node name="Bus1Full13" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
 transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 660.75256, 0, -1552.5765)
+
+[node name="Bus1Full16" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 944.1345, 0, -1440.4512)
+
+[node name="Bus1Full26" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 985.45776, 0, -1384.1997)
+
+[node name="CarRedDown12" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 853.15564, 0, -1554.1948)
+
+[node name="CarRedDown14" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1159.3239, 0, -1554.1948)
+
+[node name="CarRedDown18" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1159.3239, 0, -1650.1948)
+
+[node name="CarRedDown19" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1159.3239, 0, -1751.7274)
+
+[node name="Bus1Full17" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(0.7071069, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.7071069, 740.1017, 0, -1337.5262)
+
+[node name="Bus1Full19" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(0.7071069, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.7071069, 937.4624, 0, -1337.5262)
+
+[node name="WaymoConfusedDown8" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 690.28284, 0, -1300.3857)
+
+[node name="CarRedUp13" parent="VehicleGroup" instance=ExtResource("20_3fg1r")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 855.2285, 0, -1351.8116)
+
+[node name="CarRedUp14" parent="VehicleGroup" instance=ExtResource("20_3fg1r")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 855.2285, 0, -1255.5525)
+
+[node name="WaymoEvilUp7" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 774.61346, 0, -1279.5979)
+
+[node name="WaymoEvilUp9" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 761.4736, 0, -1463.2349)
+
+[node name="WaymoEvilUp11" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 868.70404, 0, -1463.2349)
+
+[node name="WaymoEvilUp12" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.7063412, 0, -0.7078715, 0, 1, 0, 0.7078715, 0, 0.7063412, 1062.7041, 0, -1463.2349)
+
+[node name="WaymoConfusedDown9" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1090.2717, 0, -1700.3472)
+
+[node name="WaymoConfusedDown12" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1289.5693, 0, -1700.3472)
+
+[node name="WaymoConfusedDown11" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1252.2437, 0, -1761.0663)
+
+[node name="WaymoConfusedDown13" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1430.375, 0, -1931.5518)
+
+[node name="WaymoConfusedDown14" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1475.538, 0, -2072.7188)
+
+[node name="WaymoConfusedDown10" parent="VehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1266.6338, 0, -1962.587)
+
+[node name="WaymoEvilUp8" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1051.4849, 0, -1549.6365)
+
+[node name="WaymoEvilUp13" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1207.6761, 0, -1604.7294)
+
+[node name="WaymoEvilUp16" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1308.9264, 0, -1802.9094)
+
+[node name="WaymoEvilUp15" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1323.1565, 0, -2020.0972)
+
+[node name="WaymoEvilUp14" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1522.5566, 0, -2027.2535)
+
+[node name="WaymoEvilUp17" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1429.5339, 0, -2027.2535)
+
+[node name="WaymoEvilUp10" parent="VehicleGroup" instance=ExtResource("52_2y5rp")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 896.06146, 0, -1294.9144)
+
+[node name="CarRedDown13" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1023.76404, 0, -1619.1948)
+
+[node name="CarRedDown20" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1395.4554, 0, -1785.0365)
+
+[node name="CarRedDown22" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1374.9354, 0, -1872.0621)
+
+[node name="CarRedDown21" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1395.4554, 0, -1990.2145)
+
+[node name="CarRedDown23" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1596.7352, 0, -1990.2145)
+
+[node name="CarRedDown17" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1221.764, 0, -1818.9402)
+
+[node name="CarRedDown16" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 910.03595, 0, -1408.8008)
+
+[node name="CarRedDown15" parent="VehicleGroup" instance=ExtResource("19_yolw6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 912.7034, 0, -1619.1948)
+
+[node name="Bus1Full18" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1162.2996, 0, -1660.4512)
+
+[node name="Bus1Full25" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.71293235, 0, 0.7012328, 0, 1, 0, -0.7012328, 0, -0.71293235, 1057.3469, 0, -1761.9116)
+
+[node name="Bus1Full24" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1162.2996, 0, -1851.891)
+
+[node name="Bus1Full27" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1249.16, 0, -1851.891)
+
+[node name="Bus1Full28" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1455.925, 0, -1851.891)
+
+[node name="Bus1Full29" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1455.925, 0, -2153.6777)
+
+[node name="Bus1Full30" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1659.494, 0, -2153.6777)
+
+[node name="Bus1Full31" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1506.2502, 0, -1905.8411)
+
+[node name="Bus1Full32" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1506.2502, 0, -2096.7075)
+
+[node name="Bus1Full33" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 1396.9163, 0, -2096.7075)
+
+[node name="Bus1Full22" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 910.88635, 0, -1502.0234)
+
+[node name="Bus1Full23" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 768.9432, 0, -1369.4899)
+
+[node name="Bus1Full20" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 964.0254, 0, -1660.4512)
+
+[node name="Bus1Full21" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 661.46173, 0, -1362.5105)
 
 [node name="Bus1Full2" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
 transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -127.20709, 0, 22.754822)
@@ -2306,3 +2459,59 @@ circum = 200.0
 crowd_size = 200
 max_speed = 30.0
 route = Array[Vector3]([Vector3(0, 5, -1100), Vector3(100, 5, -1100), Vector3(50, 5, -1150), Vector3(0, 15, -1100)])
+
+[node name="HighwayTarPuddles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1004.06, -174.77005, -1651.5151)
+
+[node name="StaticBody3D" parent="HighwayTarPuddles" instance=ExtResource("18_grgm4")]
+
+[node name="StaticBody3D2" parent="HighwayTarPuddles" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9282837, 0, 205.23193)
+
+[node name="StaticBody3D3" parent="HighwayTarPuddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 244.43463, 0, -33.743774)
+
+[node name="StaticBody3D4" parent="HighwayTarPuddles" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.11725, 0, -165.92944)
+
+[node name="StaticBody3D5" parent="HighwayTarPuddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -213.56885, 0, 211.09082)
+
+[node name="StaticBody3D6" parent="HighwayTarPuddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.12433, 0, 371.2932)
+
+[node name="StaticBody3D7" parent="HighwayTarPuddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.915894, 0, 120.07202)
+
+[node name="StaticBody3D8" parent="HighwayTarPuddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.379456, 0, -87.81445)
+
+[node name="StaticBody3D9" parent="HighwayTarPuddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.44147, 0, 48.372192)
+
+[node name="StaticBody3D10" parent="HighwayTarPuddles" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.859375, 0, 140.91528)
+
+[node name="StaticBody3D11" parent="HighwayTarPuddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.424255, 0, 49.33374)
+
+[node name="StaticBody3D12" parent="HighwayTarPuddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.25043, 0, 133.64502)
+
+[node name="StaticBody3D13" parent="HighwayTarPuddles" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 276.02106, 0, -169.02563)
+
+[node name="StaticBody3D14" parent="HighwayTarPuddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 290.18085, 0, -303.3003)
+
+[node name="StaticBody3D15" parent="HighwayTarPuddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 442.3908, 0, -214.52808)
+
+[node name="StaticBody3D16" parent="HighwayTarPuddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 398.7885, 0, -326.9308)
+
+[node name="StaticBody3D17" parent="HighwayTarPuddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 418.11432, 0, -432.70654)
+
+[node name="StaticBody3D18" parent="HighwayTarPuddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 513.4992, 0, -352.26855)
