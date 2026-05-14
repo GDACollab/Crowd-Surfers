@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0nvgh2u0h8mh"]
 
-[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_umjs8"]
-[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_774a5"]
-[ext_resource type="Texture2D" uid="uid://bnr4l3bgy5uyy" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS TempNewBuildings S7/Building2.png" id="3_umjs8"]
-[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_swhec"]
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_iiijm"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_dyh8q"]
+[ext_resource type="Texture2D" uid="uid://bnr4l3bgy5uyy" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS TempNewBuildings S7/Building2.png" id="3_2kic2"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_08kwn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_umjs8"]
 render_priority = 0
-shader = ExtResource("4_swhec")
-shader_parameter/tex = ExtResource("3_umjs8")
+shader = ExtResource("4_08kwn")
+shader_parameter/tex = ExtResource("3_2kic2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_774a5"]
 size = Vector3(100, 169.5, 100)
@@ -17,11 +17,11 @@ size = Vector3(100, 169.5, 100)
 size = Vector3(48, 30.5, 100)
 
 [node name="StaticBody3D" type="Node3D"]
-script = ExtResource("1_umjs8")
+script = ExtResource("1_iiijm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
-script = ExtResource("2_774a5")
-front_filename = ExtResource("3_umjs8")
+script = ExtResource("2_dyh8q")
+front_filename = ExtResource("3_2kic2")
 width = 100.0
 length = 100.0
 height = 200.0
@@ -37,7 +37,7 @@ material_overlay = SubResource("ShaderMaterial_umjs8")
 axis = 1
 shaded = true
 alpha_cut = 1
-texture = ExtResource("3_umjs8")
+texture = ExtResource("3_2kic2")
 region_enabled = true
 region_rect = Rect2(0, 0, 1024, 1024)
 
