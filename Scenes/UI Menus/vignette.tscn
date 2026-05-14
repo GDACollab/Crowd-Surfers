@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbd8fgunh305q"]
+
+[sub_resource type="Gradient" id="Gradient_8fxli"]
+offsets = PackedFloat32Array(0.84, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.2784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aq2ku"]
+gradient = SubResource("Gradient_8fxli")
+width = 1920
+height = 1080
+fill = 2
+fill_from = Vector2(0.5, 0.49532712)
+
+[node name="Vignette" type="TextureRect"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_aq2ku")

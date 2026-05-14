@@ -1,9 +1,9 @@
 extends Node2D
 
 ## all buttons that make 'confirm' sound when clicked
-@export var confirm_buttons: Array[Button]
+@export var confirm_buttons: Array[BaseButton]
 ## all buttons that make 'back' sound when clicked
-@export var back_buttons: Array[Button]
+@export var back_buttons: Array[BaseButton]
 
 func _ready() -> void:
 	# connect audio playback to all confirm buttons
