@@ -38,14 +38,15 @@ Now get to work! The clock's ticking! #speaker:Sam
 ->END
 
 ===main_act1_scene2===
-PAVO Voicemail
-*[Respond]
+Your phone starts buzzing
+Hey, diva! I wanted to thank you, whoever you are, for the pizza. So do call me back! #speaker:Pavo
+Thank your boss while you’re at it, too. He owes me a call! #speaker:Pavo
+Link us up, and I’ll make sure that music of yours reaches the ears of all my fans #speaker:Pavo #anim:Laugh
+*[Call Back]
     <- Pavo_act1
 *[Ignore]
-    You ignore the call
--Time to head back #fade:out
-\*You return to the pizzeria, worn out from a long day of work*
-I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #speaker:Slip #anim:Shake #voiced:yes
+   You send the call to voicemail and head back #speaker:None
+-I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #speaker:Slip #anim:Shake #voiced:yes
 Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #voiced:yes
 But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous
 Now why would you say that? It is only 6 P.M- #speaker:Sam

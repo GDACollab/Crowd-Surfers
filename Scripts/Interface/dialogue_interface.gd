@@ -234,18 +234,20 @@ func _handle_tags(currentTags, newPanel):
 				if(previousSpeakerTag != tagValue):
 					differentSpeaker = true
 					
-				#Get speaker data
+				## Get speaker data
 				if(currentSpeakerData == null or currentSpeakerData.characterName != tagValue):
 					#Load correct speaker data
 					var resourcePath = "res://Assets/Dialogue/Character Dialogue Data/" + str(tagValue) + "DialogueData.tres"
 					if ResourceLoader.exists(resourcePath):
 						currentSpeakerData = load(resourcePath)
 						
-				#Add character data attributes
+				## Add character data attributes
 				if(currentSpeakerData != null and currentSpeakerData.characterName == tagValue):
 					newPanel.modulate = currentSpeakerData.colour
 				else:
 					print("[DIALOGUE] Could not get speaker data for: " + tagValue)
+				
+				## Check if Slip is the speaker
 				if(tagValue == "Slip"):
 					slipSpoke = true
 					currentSpeaker = leftPortrait
@@ -271,7 +273,8 @@ func _handle_tags(currentTags, newPanel):
 						portraitPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 						
 					##Sets new panel to right side of screen
-					newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
+					if(tagValue != "None"):
+						newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
 					##TODO Change panel sprite if speaking from right
 					
 				## Adjust portraits based on speaker
