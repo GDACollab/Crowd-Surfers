@@ -56,6 +56,9 @@ func _ready():
 	set_max_speed(saved_ramping_cap)
 	change_Lvl_Progress.connect(set_Level_Progress)
 	set_Level_Progress(0)
+	
+	set_Time(0.0)
+	
 	current_animation_time = star_animation_time
 	
 	# Create stars
@@ -106,17 +109,16 @@ func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: 
 	else:
 		formatted_time = minutes + ":" + seconds
 		
-	if (sprites):
-		var sprite_formatted_time: String = ""
-		for character in formatted_time:
-			if (character == ':'):
-				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/colon.png[/img]"
-			elif (character == '.'):
-				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/period.png[/img]" 
-			else:
-				sprite_formatted_time += "[img]res://Assets/Art/UI/HUD/TimerNumbers/" + character + ".png[/img]"
-		formatted_time = sprite_formatted_time
-		
+	#if (sprites):
+		#var sprite_formatted_time: String = ""
+		#for character in formatted_time:
+			#if (character == ':'):
+				#sprite_formatted_time += ":"
+			#elif (character == '.'):
+				#sprite_formatted_time += "." 
+			#else:
+				#sprite_formatted_time += str(character)
+		#formatted_time = sprite_formatted_time
 	return formatted_time
 
 func _process(delta: float) -> void:
@@ -177,8 +179,9 @@ func _process(delta: float) -> void:
 		index += 1
 	
 	## Calculate and display time
-	curr_Time = curr_Time + delta
-	set_Time(curr_Time)
+	if (player_start_pos.distance_to(Vector2(player.position.x, player.position.z)) > 0.01):
+		curr_Time = curr_Time + delta
+		set_Time(curr_Time)
 		
 	## Handle Level Progression
 	if(has_level_end_pos):
@@ -188,7 +191,8 @@ func _process(delta: float) -> void:
 		set_Level_Progress(progress)
 	# Error message to let level designer know to attach the script
 	else:
-		print("Error: Level end position not passed to the HUD! Either 1: you didn't attach the \"level.gd\" script to the root node for this scene, or you didn't add a \"LevelEndCollider\" as a child to the root node")
+		pass
+		#print("Error: Level end position not passed to the HUD! Either 1: you didn't attach the \"level.gd\" script to the root node for this scene, or you didn't add a \"LevelEndCollider\" as a child to the root node")
 	
 	
 func handle_shake(delta: float) -> void:

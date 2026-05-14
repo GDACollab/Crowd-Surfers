@@ -25,7 +25,8 @@ func save_data() -> void:
 		"times": level_times,
 		"master_volume": Settings.master_volume,
 		"music_volume": Settings.music_volume,
-		"sfx_volume": Settings.sfx_volume
+		"sfx_volume": Settings.sfx_volume,
+		"story_progress" : Story.serialize_story()
 	}
 	var err:Error = store_file(saved_data, SAVE_PATH)
 	if err != OK:
@@ -48,11 +49,15 @@ func load_data() -> void:
 	Settings.music_volume = loaded_data["music_volume"]
 	Settings.sfx_volume = loaded_data["sfx_volume"]
 	Settings.update_fmod_volumes()
+	# Safety check
+	if(loaded_data.has("story_progress")):
+		Story.load_story(loaded_data.get("story_progress"))
 	print("Save Data loaded")
 
 func reset_data() -> void:
 	levels_complete = [false,false,false]
 	level_times = [0.0,0.0,0.0]
+	Story.reset_story()
 	save_data()
 
 #######################
