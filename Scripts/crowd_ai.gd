@@ -16,10 +16,11 @@ extends Node3D
 
 # EXPORT VISUAL SHADER VARIABLES
 @export var animationShader: Shader
-@export var crowdMemberAnimations: Array[Array]
+@export var crowdMemberAnimations: Array[CompressedTexture2D]
 #Heads up, if you broke something and are confused about how to re-add textures...
-#Select the "object" option from the list of elements in the nested array,
-#Then add the png in!
+#but basically, there should be 4 animations, each with 2 frames.
+#Make sure they're in order! (ie, animAframe1, animAframe2, animBframe1, animBframe2, etc)
+#If this didn't work, you may have to dive into the shader. sorry :(
 
 # CONSTANTS
 const CAP_RADIUS = 4
@@ -563,6 +564,7 @@ func multi_mesh_creation() -> void:
 	var multi_mesh_instant = MultiMeshInstance3D.new()
 	var multi_mesh = MultiMesh.new()
 	multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
+	multi_mesh.use_custom_data = true;
 	
 	var q_mesh = QuadMesh.new()
 	q_mesh.size = Vector2(16, 16)
@@ -572,7 +574,7 @@ func multi_mesh_creation() -> void:
 	#var mat = StandardMaterial3D.new()
 	var mat = ShaderMaterial.new()
 	mat.shader = animationShader;
-	mat.set_shader_parameter("texture_array",crowdMemberAnimations[0]);
+	mat.set_shader_parameter("texture_array",crowdMemberAnimations);
 	#mat.albedo_texture = crowd
 	#mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 	#mat.cull_mode = BaseMaterial3D.CULL_DISABLED
@@ -622,6 +624,7 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, start_transform)
 		multi_mesh_manager.multimesh.set_instance_transform(i, start_transform)
 		multi_mesh_manager.multimesh.set_instance_color(i, city_colors[randi() % city_colors.size()])
+		multi_mesh_manager.multimesh.set_instance_custom_data(i, Color(randf(),randf(),randf(),randf()))
 		
 		# physics lock
 		var mass = 1.0
