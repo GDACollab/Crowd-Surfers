@@ -12,7 +12,10 @@ func _physics_process(_delta: float) -> void:
 			if boostDirection.y != 0:
 				player.transition_to(player.States.AIR)
 				player.player_sprite.play_animation("jump")
-			player.windbox_boost = boostDirection.normalized() * boostPower
+			if((speedCap - player.velocity.length()) > boostPower):
+				player.windbox_boost = boostDirection.normalized() * boostPower
+			else:
+				player.windbox_boost = boostDirection.normalized() * speedCap - player.velocity
 			player.touched_windbox = true
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
