@@ -4,7 +4,7 @@ extends CharacterBody3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
-
+@onready var dust_particles: CPUParticles3D = $DustParticles
 
 # STOMP CROWD
 signal crowd_stomp_end
@@ -520,6 +520,8 @@ func transition_to(new_state: int) -> void:
 		States.GROUND:
 			can_air_dash = true
 			can_glide = true
+			if velocity.length() > 0.1
+				
 			# Check if landing sound needs to be played
 			if current_state == States.AIR or current_state == States.GLIDE:
 				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)

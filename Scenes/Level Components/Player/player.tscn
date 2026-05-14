@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=170 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://d3e32r174a02j" path="res://Assets/Art/PlayerAnimationFrames/Crash/Back/crash_B0001.png" id="2_kf3bj"]
@@ -164,6 +164,7 @@
 [ext_resource type="Texture2D" uid="uid://1kdtq8uwyj4y" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0003.png" id="161_o0wuh"]
 [ext_resource type="Texture2D" uid="uid://cgox4d7ttsxpo" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0004.png" id="162_q208r"]
 [ext_resource type="Texture2D" uid="uid://ce2p08nqj4r08" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0005.png" id="163_wdytq"]
+[ext_resource type="Material" uid="uid://cvsnr330mh3e5" path="res://Assets/Art/Particles/dust-particle.tres" id="165_3l3e0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3qbh"]
 animations = [{
@@ -888,22 +889,66 @@ animations = [{
 radius = 2.3608398
 height = 18.293991
 
+[sub_resource type="QuadMesh" id="QuadMesh_o0wuh"]
+material = ExtResource("165_3l3e0")
+
+[sub_resource type="Curve" id="Curve_3l3e0"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 2.839726), 0.0, 0.6611312, 0, 0, Vector2(0.88888884, 3), -4.0635324, -4.0635324, 0, 0, Vector2(0.97979796, 0), -33.347168, 0.0, 0, 0]
+point_count = 3
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 floor_snap_length = 5.0
 script = ExtResource("1_i0hvh")
+debugLabels = null
 base_ramping_cap = 200.0
 starting_speed = 50.0
+ramping_exponent = null
+crash_penalty_mult = null
+base_acceleration = null
+friction = null
+gravity = null
+coyote_time = null
+max_speed_decay = null
+crowd_push_force = null
+min_crowd_slowdown = null
+max_crowd_slowdown = null
+snap_length = null
+jump_speed = null
+jump_gravity = null
+jump_end_speed = null
 stomp_speed = 100.0
+max_speed_for_windup = null
 windup_duration = 0.06
 stomp_dash_boost_factor = 650.0
 max_stomp_dash_boost = 1000.0
+launch_distance = null
+launch_speed_multiplier = null
+min_launch_speed = null
+crowd_stomp_radius = null
+crowd_stomp_force = null
 stomp_gravity_multiplier = 5.0
 dash_distance = 40.0
 dash_cooldown = 0.33
+dash_speed_multiplier = null
 min_dash_speed = 75.0
 stomp_resets_air_dash = true
 stomp_dash_margin = 1.0
+dash_animation_hold_time = null
+glide_decay_ratio = null
+glide_min_speed = null
+glide_has_gravity = null
+glide_gravity_factor = null
+min_glide_time = null
+crash_time = null
+crash_bounce_speed_factor = null
+min_speed_for_crash = null
+shadow_base_scale = null
+shadow_min_scale = null
+shadow_max_height = null
+shadow_lift = null
+shadow_falloff_exp = null
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1.66, 0, 0, 0, 2.35, 0, 0, 0, 2.35, 0, 12.618144, 0)
@@ -1007,6 +1052,21 @@ spot_attenuation = 0.7
 spot_angle = 7.0
 
 [node name="TransparencyRegion" type="Node3D" parent="."]
+
+[node name="DustParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4256144, 1.1617308)
+amount = 3
+lifetime = 0.5
+lifetime_randomness = 0.25
+mesh = SubResource("QuadMesh_o0wuh")
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, -100, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = 217.36
+angular_velocity_max = 438.05
+scale_amount_curve = SubResource("Curve_3l3e0")
 
 [connection signal="animation_changed" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_finished"]
