@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk31rxtmmb3d0"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_n37sa"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_ybste"]
+[ext_resource type="Texture2D" uid="uid://bck32b1x8c03m" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS MoreNewBuildings S7/Building 1 Clean S7.png" id="3_hemk2"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_x8lyx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxbdb"]
+render_priority = 0
+shader = ExtResource("4_x8lyx")
+shader_parameter/tex = ExtResource("3_hemk2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bmgwb"]
+size = Vector3(100, 105, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w28uy"]
+size = Vector3(58, 45, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_n37sa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
+script = ExtResource("2_ybste")
+active = true
+front_filename = ExtResource("3_hemk2")
+width = 100.0
+length = 100.0
+height = 150.0
+x_pad_plat_right = 42.0
+front_spr_pad_top = 27.0
+front_spr_pad_bottom = 9.0
+front_spr_pad_left = 7.0
+front_spr_pad_right = 7.0
+platform_thickness = 0.3
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(6.451613, 0, 3.8224346e-07, 2.8200895e-07, 1.9106855e-15, -8.744711, 0, 1, 1.6708392e-14, 0, 84, 100)
+material_overlay = SubResource("ShaderMaterial_vxbdb")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_hemk2")
+region_enabled = true
+region_rect = Rect2(0, 0, 1767, 2127)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52.5, 50)
+shape = SubResource("BoxShape3D_bmgwb")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 127.5, 50)
+shape = SubResource("BoxShape3D_w28uy")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
