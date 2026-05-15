@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dyw311goqsesl" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS TarPuddleVariants S6/Tar_Puddle 4 S6.png" id="3_621mv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xn63l"]
+size = Vector3(1, 0.026000977, 1)
 
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_cxqin")
@@ -12,6 +13,7 @@ script = ExtResource("1_cxqin")
 transform = Transform3D(78.125, 0, 0, 0, 78.125, 0, 0, 0, 78.125, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0095825195, 0)
 shape = SubResource("BoxShape3D_xn63l")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
