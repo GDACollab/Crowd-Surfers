@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=178 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://d3e32r174a02j" path="res://Assets/Art/PlayerAnimationFrames/Crash/Back/crash_B0001.png" id="2_kf3bj"]
@@ -164,6 +164,10 @@
 [ext_resource type="Texture2D" uid="uid://1kdtq8uwyj4y" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0003.png" id="161_o0wuh"]
 [ext_resource type="Texture2D" uid="uid://cgox4d7ttsxpo" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0004.png" id="162_q208r"]
 [ext_resource type="Texture2D" uid="uid://ce2p08nqj4r08" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0005.png" id="163_wdytq"]
+[ext_resource type="Shader" uid="uid://d058hc0b4rxns" path="res://addons/GPUTrail/shaders/trail.gdshader" id="165_q208r"]
+[ext_resource type="Shader" uid="uid://ccc1807xplo8e" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="166_wdytq"]
+[ext_resource type="Texture2D" uid="uid://dw8hrkutvar7a" path="res://Assets/Art/VFX/speed_gradient.png" id="167_wdytq"]
+[ext_resource type="Script" uid="uid://f280k613n5v8" path="res://addons/GPUTrail/GPUTrail3D.gd" id="167_x80xa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3qbh"]
 animations = [{
@@ -888,6 +892,39 @@ animations = [{
 radius = 2.3608398
 height = 18.293991
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q208r"]
+shader = ExtResource("165_q208r")
+
+[sub_resource type="Gradient" id="Gradient_wdytq"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x80xa"]
+gradient = SubResource("Gradient_wdytq")
+
+[sub_resource type="Curve" id="Curve_3mnch"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ojguh"]
+curve = SubResource("Curve_3mnch")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2odea"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("166_wdytq")
+shader_parameter/tex = ExtResource("167_wdytq")
+shader_parameter/mask_strength = 1.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_x80xa")
+shader_parameter/curve = SubResource("CurveTexture_ojguh")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 12
+
+[sub_resource type="QuadMesh" id="QuadMesh_3j1fi"]
+material = SubResource("ShaderMaterial_2odea")
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 floor_snap_length = 5.0
@@ -1007,6 +1044,28 @@ spot_attenuation = 0.7
 spot_angle = 7.0
 
 [node name="TransparencyRegion" type="Node3D" parent="."]
+
+[node name="TrailHolder" type="Node3D" parent="."]
+transform = Transform3D(1.9, 0, 0, 0, -8.305164e-08, 1.9, 0, -1.9, -8.305164e-08, 0, 2.9068437, -0.32092547)
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="TrailHolder"]
+transform = Transform3D(1, 1.7763568e-14, 0, 1.0658141e-14, 1, 0, 0, 0, 1, 0, 1.934816e-08, -0.44263458)
+amount = 300
+lifetime = 300.0
+explosiveness = 1.0
+fixed_fps = 240
+process_material = SubResource("ShaderMaterial_q208r")
+draw_pass_1 = SubResource("QuadMesh_3j1fi")
+script = ExtResource("167_x80xa")
+length = 300
+length_seconds = 1.25
+texture = ExtResource("167_wdytq")
+color_ramp = SubResource("GradientTexture1D_x80xa")
+curve = SubResource("CurveTexture_ojguh")
+billboard = true
+clip_overlaps = false
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://f280k613n5v8"
 
 [connection signal="animation_changed" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_finished"]
