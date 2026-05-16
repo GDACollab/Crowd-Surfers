@@ -289,7 +289,7 @@ func _handle_tags(currentTags, newPanel):
 						_draw_outline(currentSpeaker.material)
 						
 			"expression":
-				currentSpeaker.texture = (currentSpeakerData.expression_dictionary[tagValue])
+				currentSpeaker.texture = (currentSpeakerData.expression_dictionary.get(tagValue, currentSpeaker.texture))
 				changed_expression = true
 			"anim":
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
