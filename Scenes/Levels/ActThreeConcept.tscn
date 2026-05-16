@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=81 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -62,6 +62,8 @@
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="29_0je7h"]
 [ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="30_0je7h"]
 [ext_resource type="PackedScene" uid="uid://5ftwlpfd7ty8" path="res://Scenes/Level Components/Objects/FenceAndRoadBlockObjects/ChainLinkFence.tscn" id="35_lkdh3"]
+[ext_resource type="PackedScene" uid="uid://ckmiu2drnedmw" path="res://Scenes/Level Components/Objects/NewBuildingsNoBillBoards/BuildingTallApartmentCleaned.tscn" id="42_ok7c5"]
+[ext_resource type="PackedScene" uid="uid://dk31rxtmmb3d0" path="res://Scenes/Level Components/Objects/NewBuildingsNoBillBoards/BuildingCondoCleaned.tscn" id="43_48lh8"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="44_rbx1u"]
 [ext_resource type="PackedScene" uid="uid://bcf5shpu8llw0" path="res://Scenes/Level Components/Objects/NewBuildingsNoBillBoards/BuildingShort1.tscn" id="44_w6g8g"]
 [ext_resource type="PackedScene" uid="uid://dlsjl7ujv7ly8" path="res://Scenes/Level Components/Objects/waymo-evil-side.tscn" id="45_c2771"]
@@ -1507,6 +1509,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -800)
 [node name="StaticBody3D" parent="BuildingGroup/PlazaBuildingGroup" instance=ExtResource("5_spvyn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, 0.01)
 
+[node name="StaticBody3D18" parent="BuildingGroup/PlazaBuildingGroup" instance=ExtResource("5_spvyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 200.01001)
+
+[node name="StaticBody3D2" parent="BuildingGroup/PlazaBuildingGroup/StaticBody3D18" instance=ExtResource("42_ok7c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
+
+[node name="StaticBody3D3" parent="BuildingGroup/PlazaBuildingGroup/StaticBody3D18" instance=ExtResource("43_48lh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -200)
+
+[node name="StaticBody3D4" parent="BuildingGroup/PlazaBuildingGroup/StaticBody3D18" instance=ExtResource("45_lkj5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -300)
+
 [node name="StaticBody3D2" parent="BuildingGroup/PlazaBuildingGroup" instance=ExtResource("24_iti87")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0.01)
 
@@ -1627,7 +1641,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, -200)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0, 400.01)
 
 [node name="StaticBody3D31" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("24_iti87")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 400.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 850, 0, -599.99)
 
 [node name="StaticBody3D15" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("24_iti87")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 650, 0, 0)
@@ -1639,7 +1653,7 @@ transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -250, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0, 300)
 
 [node name="StaticBody3D32" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("5_vn3cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, 400.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 750, 0, -499.99)
 
 [node name="StaticBody3D17" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("3_tqh1b")]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 650, 0, 200)
@@ -1705,13 +1719,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 0, 75)
 transform = Transform3D(0.7071068, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071068, -190.37897, 0, -21.670063)
 
 [node name="StaticBody3D29" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("44_w6g8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, 400)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1150, 0, -900)
 
 [node name="StaticBody3D30" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("44_w6g8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 400)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, -800)
 
 [node name="StaticBody3D2" parent="BuildingGroup/DowntownBuildings/StaticBody3D30" instance=ExtResource("45_lkj5b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100)
 
 [node name="SpecialComponentsGroup" type="Node3D" parent="."]
 
