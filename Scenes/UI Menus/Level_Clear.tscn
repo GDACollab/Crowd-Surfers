@@ -1,11 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg5atjrtrnq3w"]
+[gd_scene load_steps=16 format=3 uid="uid://cg5atjrtrnq3w"]
 
 [ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/level_clear.gd" id="1_8u14x"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_ashpn"]
-[ext_resource type="Texture2D" uid="uid://rxcpvppucb18" path="res://Assets/Art/UI/LevelClear/background.PNG" id="3_3p2ea"]
+[ext_resource type="Texture2D" uid="uid://rxcpvppucb18" path="res://Assets/Art/UI/LevelClear/background_old.PNG" id="3_3p2ea"]
 [ext_resource type="Texture2D" uid="uid://c6606nu8c1hpo" path="res://Assets/Art/UI/LevelClear/level_clear.PNG" id="4_dql68"]
+[ext_resource type="Texture2D" uid="uid://3b3ohhudaawc" path="res://Assets/Art/UI/LevelClear/background_line.PNG" id="5_auuq0"]
 [ext_resource type="Texture2D" uid="uid://b3xa4woj7aau6" path="res://Assets/Art/UI/LevelClear/clear_time.PNG" id="5_dql68"]
 [ext_resource type="Texture2D" uid="uid://comqwg6v04wlv" path="res://Assets/Art/UI/LevelClear/best_time.PNG" id="6_k5fbo"]
+[ext_resource type="Texture2D" uid="uid://bcbejd8phkxj5" path="res://Assets/Art/UI/LevelClear/background.PNG" id="7_pscuh"]
+[ext_resource type="Texture2D" uid="uid://c5o6e5dhbvpr" path="res://Assets/Art/UI/LevelClear/background_star_1.PNG" id="8_auuq0"]
+[ext_resource type="Texture2D" uid="uid://cnxpiynitwknp" path="res://Assets/Art/UI/LevelClear/background_star_2.PNG" id="9_ewal3"]
+[ext_resource type="Texture2D" uid="uid://dk7knx18hwvme" path="res://Assets/Art/UI/LevelClear/background_star_3.PNG" id="10_5bgqs"]
+[ext_resource type="Texture2D" uid="uid://du6g6cfb6dmn5" path="res://Assets/Art/UI/LevelClear/background_star_4.PNG" id="11_rm4hk"]
+[ext_resource type="Texture2D" uid="uid://dwa6wsr41784a" path="res://Assets/Art/UI/LevelClear/restart_button.PNG" id="13_ewal3"]
+[ext_resource type="Texture2D" uid="uid://d7vnoe50wc8r" path="res://Assets/Art/UI/LevelClear/continue_button.PNG" id="14_5bgqs"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/MainMenu/button_highlight.gd" id="14_rm4hk"]
 
 [node name="LevelClearUI" type="Control"]
 process_mode = 3
@@ -19,15 +28,67 @@ script = ExtResource("1_8u14x")
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_ashpn")]
-confirm_buttons = [NodePath("../Background/RestartButton")]
-back_buttons = [NodePath("../Background/ContinueButton")]
+visible = false
+confirm_buttons = [NodePath("../Background/ContinueButton")]
+back_buttons = [NodePath("../Background/RestartButton")]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="BackgroundOld" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 2655.0
 offset_bottom = 1640.0
 scale = Vector2(0.728, 0.7)
 texture = ExtResource("3_3p2ea")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.728, 0.7)
+texture = ExtResource("7_pscuh")
+
+[node name="BackgroundElements" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line" type="TextureRect" parent="Background/BackgroundElements"]
+layout_mode = 0
+offset_left = 1.3736258
+offset_top = 381.4286
+offset_right = 2655.3735
+offset_bottom = 725.4286
+texture = ExtResource("5_auuq0")
+
+[node name="Star1" type="TextureRect" parent="Background/BackgroundElements"]
+layout_mode = 0
+offset_right = 480.00003
+offset_bottom = 680.0
+texture = ExtResource("8_auuq0")
+
+[node name="Star2" type="TextureRect" parent="Background/BackgroundElements"]
+layout_mode = 0
+offset_left = 30.21978
+offset_top = 934.28577
+offset_right = 326.2198
+offset_bottom = 1378.2858
+texture = ExtResource("9_ewal3")
+
+[node name="Star3" type="TextureRect" parent="Background/BackgroundElements"]
+layout_mode = 0
+offset_left = 2129.121
+offset_top = 90.0
+offset_right = 2655.121
+offset_bottom = 948.0
+texture = ExtResource("10_5bgqs")
+
+[node name="Star4" type="TextureRect" parent="Background/BackgroundElements"]
+layout_mode = 0
+offset_left = 806.31866
+offset_top = 311.42856
+offset_right = 1730.3186
+offset_bottom = 1485.4286
+texture = ExtResource("11_rm4hk")
 
 [node name="LevelClear" type="TextureRect" parent="Background"]
 layout_mode = 0
@@ -37,7 +98,7 @@ texture = ExtResource("4_dql68")
 
 [node name="ClearTime" type="TextureRect" parent="Background"]
 layout_mode = 0
-offset_left = 8.241768
+offset_left = 8.241767
 offset_top = 537.08795
 offset_right = 1454.2418
 offset_bottom = 1215.0879
@@ -45,7 +106,7 @@ texture = ExtResource("5_dql68")
 
 [node name="ClearTimeText" type="Label" parent="Background"]
 layout_mode = 0
-offset_left = 499.99994
+offset_left = 499.9999
 offset_top = 804.2857
 offset_right = 1323.0
 offset_bottom = 947.4146
@@ -79,24 +140,53 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/font_size = 100
 text = "00:00.00"
 
-[node name="RestartButton" type="Button" parent="Background"]
+[node name="RestartButton" type="TextureButton" parent="Background"]
 layout_mode = 0
-offset_left = 1719.7803
-offset_top = 864.2857
-offset_right = 2575.7803
-offset_bottom = 1029.2856
-theme_override_font_sizes/font_size = 150
-text = "Restart Level"
+offset_left = 1541.2087
+offset_top = 781.4286
+offset_right = 2687.2087
+offset_bottom = 1141.4286
+texture_normal = ExtResource("13_ewal3")
+script = ExtResource("14_rm4hk")
+brightness_change = 0.1
 
-[node name="ContinueButton" type="Button" parent="Background"]
+[node name="TempText" type="RichTextLabel" parent="Background/RestartButton"]
 layout_mode = 0
-offset_left = 1719.7803
-offset_top = 1225.1372
-offset_right = 2266.7803
-offset_bottom = 1390.1372
-theme_override_font_sizes/font_size = 150
-text = "Continue
-"
+offset_left = 282.96704
+offset_top = 22.857143
+offset_right = 341.96704
+offset_bottom = 62.857143
+scale = Vector2(10, 10)
+mouse_filter = 2
+text = "Restart"
+fit_content = true
+autowrap_mode = 0
 
+[node name="ContinueButton" type="TextureButton" parent="Background"]
+layout_mode = 0
+offset_left = 1443.6813
+offset_top = 1127.143
+offset_right = 2659.6812
+offset_bottom = 1537.143
+texture_normal = ExtResource("14_5bgqs")
+script = ExtResource("14_rm4hk")
+brightness_change = 0.1
+
+[node name="TempText" type="RichTextLabel" parent="Background/ContinueButton"]
+layout_mode = 0
+offset_left = 259.6154
+offset_top = 42.857056
+offset_right = 329.6154
+offset_bottom = 82.857056
+scale = Vector2(10, 10)
+mouse_filter = 2
+text = "Continue"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="mouse_entered" from="Background/RestartButton" to="Background/RestartButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Background/RestartButton" to="Background/RestartButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="Background/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="Background/ContinueButton" to="." method="_on_continue_button_pressed"]
