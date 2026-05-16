@@ -1140,23 +1140,6 @@ jumpVelocityRatio = 0.8
 [node name="Node3D" type="Node3D" parent="Level Components/Vehicles/CarRedUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1100)
 
-[node name="StaticBody3D2" parent="Level Components/Vehicles" instance=ExtResource("30_67idq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3180, -200, -600)
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Level Components/Vehicles/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1200)
-
 [node name="CarRedUp2" parent="Level Components/Vehicles" instance=ExtResource("28_hiwxu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, 100)
 
@@ -1181,23 +1164,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 1, -62.730614)
 [node name="CarRedDown5" parent="Level Components/Vehicles" instance=ExtResource("31_n820w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, 1, -51.91844)
 
-[node name="CarRedDown6" parent="Level Components/Vehicles" instance=ExtResource("31_n820w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 1, -251.91844)
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Level Components/Vehicles/CarRedDown6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 530)
-
 [node name="StaticBody3D3" parent="Level Components/Vehicles" instance=ExtResource("30_67idq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2880, -200, -230)
 
@@ -1212,23 +1178,6 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1180, 1, 10)
 
 [node name="Bus1Up" parent="Level Components/Vehicles" instance=ExtResource("32_4p6im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, -30)
-
-[node name="WaymoEvilUp" parent="Level Components/Vehicles" instance=ExtResource("33_071de")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280, 0, 260)
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Level Components/Vehicles/WaymoEvilUp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
 
 [node name="Buildings" type="Node" parent="Level Components"]
 
@@ -3799,8 +3748,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -400)
 [node name="StaticBody3D4" parent="." instance=ExtResource("48_i5e8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, -400)
 
-[node name="CarRedDown" parent="." instance=ExtResource("31_n820w")]
+[node name="Fucked Up Ve-hicles" type="Node" parent="."]
+
+[node name="CarRedDown" parent="Fucked Up Ve-hicles" instance=ExtResource("31_n820w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5280.567, 0, -363.83234)
+visible = false
 script = ExtResource("29_wrg6d")
 forward_direction = 0.0
 tweenTravelSpeedRatio = 6.0
@@ -3813,9 +3765,65 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown"]
+[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/CarRedDown"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 798.9055)
 
-[node name="WindBoxCollider2" parent="CarRedDown" instance=ExtResource("63_dhum3")]
+[node name="WindBoxCollider2" parent="Fucked Up Ve-hicles/CarRedDown" instance=ExtResource("63_dhum3")]
 transform = Transform3D(22, 0, 0, 0, 20, 0, 0, 0, 20, 0.6220703, 8.551901, 55.898163)
 boostDirection = Vector3(-1, 1, 0)
+
+[node name="StaticBody3D2" parent="Fucked Up Ve-hicles" instance=ExtResource("30_67idq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3180, -200, -600)
+visible = false
+script = ExtResource("29_wrg6d")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 1.0
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1200)
+visible = false
+
+[node name="WaymoEvilUp" parent="Fucked Up Ve-hicles" instance=ExtResource("33_071de")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280, 0, 260)
+visible = false
+script = ExtResource("29_wrg6d")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 1.0
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/WaymoEvilUp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
+
+[node name="CarRedDown6" parent="Fucked Up Ve-hicles" instance=ExtResource("31_n820w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 1, -251.91844)
+visible = false
+script = ExtResource("29_wrg6d")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 1.0
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/CarRedDown6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 530)
+visible = false
