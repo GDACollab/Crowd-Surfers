@@ -2254,6 +2254,12 @@ crowd_size = 10
 max_speed = 50.0
 route = Array[Vector3]([Vector3(-303.8807, 11.999992, 552.77435), Vector3(-200.21992, 11.999992, 551.6302), Vector3(-197.34378, 11.999992, 352.5884), Vector3(-304.94876, 11.999989, 353.79608)])
 
+[node name="Crowd" parent="Crowds" instance=ExtResource("44_rbx1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 12, -600)
+circum = 50.0
+crowd_size = 100
+route = Array[Vector3]([Vector3(250, 0, -600), Vector3(250, 0, -450), Vector3(450, 0, -600)])
+
 [node name="PlazaNavMesh" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ykr1p")
 
