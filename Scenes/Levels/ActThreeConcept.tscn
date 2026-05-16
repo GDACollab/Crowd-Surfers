@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=83 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -74,6 +74,8 @@
 [ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="68_ykr1p"]
 [ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="69_w6g8g"]
 [ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
+[ext_resource type="PackedScene" uid="uid://djh3u3ghtvce2" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingTallApartment.tscn" id="75_lk4wn"]
+[ext_resource type="PackedScene" uid="uid://ci0n2ibbk4cit" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingShortBillBoard.tscn" id="76_ypdg7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
 vertices = PackedVector3Array(-49.5, 1.5, -301.75, 149.5, 1.5, -301.75, 149.5, 1.5, -599.5, -49.5, 1.5, -599.5, 250.25, 1, -301.25, 349.5, 1, -301, 349.5, 1, -399.5, 250.25, 1, -399.5, 250, 1, -299.5, 249.75, 1, -100.25, 349.5, 1, -100.25, 149.75, 1.5, -0.25, 249.5, 1, -0.25, 152.9758, 1, -3.47583, 152.96774, 1, -0.25, -49.5, 1.5, 2, 149.5, 1.5, 2, 149.75, 1.5, -299.5, 152.9758, 1, -293.07257, 152.98387, 1, -299.5, 149.50014, 1.5, -286.47522, 150.99344, 1, -283.51474, 149.50844, 1.5, -283.47574, 151.02176, 1, -280.4933, 149.51842, 1.5, -278.98807, 150.98677, 1, -276.02267, 149.50345, 1.5, -274.49545, 150.97685, 1, -271.4971, 149.52196, 1.5, -266.9886, 151.02042, 1, -263.9853, 149.51888, 1.5, -260.982, 151.00739, 1, -257.98474, 149.52237, 1.5, -257.99573, 150.98091, 1, -254.9765, 149.52122, 1.5, -250.4812, 151.00482, 1, -247.50705, 149.5198, 1.5, -247.51804, 151.02342, 1, -244.52191, 149.51385, 1.5, -240.01672, 150.99254, 1, -237.01569, 149.51436, 1.5, -235.49564, 150.99808, 1, -232.5116, 149.51306, 1.5, -232.52258, 151.0168, 1, -229.5166, 149.52054, 1.5, -226.51059, 151.01433, 1, -223.51065, 149.5081, 1.5, -220.51071, 150.99194, 1, -217.51682, 149.52385, 1.5, -215.98087, 151.01271, 1, -213.004, 149.52354, 1.5, -208.49722, 150.98747, 1, -205.51544, 149.50941, 1.5, -203.98553, 150.9784, 1, -201.02078, 149.52037, 1.5, -199.51889, 150.98236, 1, -197.99503, 149.50935, 1.5, -196.48218, 151.00636, 1, -194.99731, 149.51837, 1.5, -193.52347, 151.0004, 1, -191.97763, 149.4974, 1.5, -190.4928, 151.01445, 1, -188.98596, 149.49648, 1.5, -187.49014, 150.99852, 1, -186.02234, 149.51555, 1.5, -184.5155, 151.00261, 1, -182.98672, 149.50467, 1.5, -181.51892, 151.01175, 1, -180.01816, 149.49881, 1.5, -178.48935, 150.9909, 1, -176.9776, 149.51299, 1.5, -175.48782, 150.9901, 1, -174.01508, 150.98932, 1, -4.515259, 149.50432, 1.5, -4.4762573, 150.98703, 1, -294.01953, 150.99689, 1, -289.49173, -49.5, 1.5, 499.5, 149.5, 1.5, 499.5)
@@ -1905,7 +1907,6 @@ visible = false
 
 [node name="BackgroundFloor" parent="." instance=ExtResource("4_rscd0")]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 439.645, -50, -3165.355)
-visible = false
 
 [node name="CrossWalkCrowdNavRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rbx1u")
@@ -2832,3 +2833,27 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -100
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D38" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
+
+[node name="StaticBody3D39" parent="Enviromental Fixes" instance=ExtResource("24_iti87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, 0, 1200.01)
+
+[node name="StaticBody3D40" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 1000)
+
+[node name="StaticBody3D41" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -800, 0, 800)
+
+[node name="StaticBody3D44" parent="Enviromental Fixes" instance=ExtResource("75_lk4wn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 0, 1100.2)
+
+[node name="StaticBody3D45" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -1000, 0, 1000)
+
+[node name="StaticBody3D46" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -1100, 0, 1100)
+
+[node name="StaticBody3D42" parent="Enviromental Fixes" instance=ExtResource("76_ypdg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 900.2)
+
+[node name="StaticBody3D43" parent="Enviromental Fixes" instance=ExtResource("4_v7jmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 900)
