@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://cc262l8kbhr0n"]
+[gd_scene load_steps=84 format=3 uid="uid://cc262l8kbhr0n"]
 
 [ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hry65"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="2_wsuf5"]
@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="38_aicbs"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="39_dr6at"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="40_3rh8w"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="41_cnrtn"]
+[ext_resource type="PackedScene" uid="uid://cyoj5grrsady" path="res://Scenes/Level Components/Objects/invisible_wall.tscn" id="41_cnrtn"]
 [ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="42_06iua"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="43_m4ap4"]
 [ext_resource type="PackedScene" uid="uid://brqtqcecl1h5q" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile1.tscn" id="44_uyaa4"]
@@ -67,17 +67,16 @@
 [ext_resource type="PackedScene" uid="uid://cxq7y3jah1q6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="65_ehn6i"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="66_25bm3"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="67_xqmgc"]
-[ext_resource type="PackedScene" uid="uid://byuafgrm8cx3s" path="res://Scenes/Level Components/Objects/long-grass-ramp.tscn" id="68_jhccc"]
-[ext_resource type="PackedScene" uid="uid://b3drn68hqluks" path="res://Scenes/Level Components/Objects/long-concrete-stair.tscn" id="69_uh5br"]
+[ext_resource type="PackedScene" uid="uid://df55h0mmc32fc" path="res://Scenes/Level Components/Objects/long-grass-ramp.tscn" id="68_jhccc"]
+[ext_resource type="PackedScene" uid="uid://cxx858xvfuc4g" path="res://Scenes/Level Components/Objects/long-concrete-stair.tscn" id="69_uh5br"]
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="70_ddy1q"]
 [ext_resource type="PackedScene" uid="uid://ct0bchhuqimhb" path="res://Scenes/Level Components/Objects/road-ramp.tscn" id="71_1yw8f"]
-[ext_resource type="PackedScene" uid="uid://dvf8jyalkad2s" path="res://Scenes/Level Components/Objects/grass-ramp.tscn" id="72_5fl0x"]
+[ext_resource type="PackedScene" uid="uid://b1w67l73d2mk6" path="res://Scenes/Level Components/Objects/grass-ramp.tscn" id="72_5fl0x"]
 [ext_resource type="PackedScene" uid="uid://cjjvao0bcsrgn" path="res://Scenes/Level Components/Objects/long-road-ramp.tscn" id="73_eqafq"]
 [ext_resource type="PackedScene" uid="uid://6g62uuswf0m5" path="res://Scenes/UI Menus/Hud/InGameHud.tscn" id="74_6eryr"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="75_38141"]
 [ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="76_hlvsx"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="77_pu4n8"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="78_upl5h"]
 [ext_resource type="PackedScene" uid="uid://dbrfxqrd8k7mq" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel1.tscn" id="79_1tncj"]
 [ext_resource type="PackedScene" uid="uid://ti5a67cbkn0q" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel2.tscn" id="80_rrg0m"]
 [ext_resource type="PackedScene" uid="uid://bl8hte1agb8q6" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel3.tscn" id="81_aoy2w"]
@@ -103,7 +102,7 @@ offset = Vector3(0, 1000, 1000)
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("4_ywtjx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5184.8413, 0.06352997, 334.8485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8413086, 0.06352997, 48.84851)
 ramping_exponent = 0.525
 stomp_speed = 300.0
 stomp_dash_boost_factor = 400.0
@@ -1133,6 +1132,7 @@ smoothnessArr = Array[float]([0.0])
 startFromSelf = true
 isClosed = false
 isRotate = false
+reverseOnComplete = false
 isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
@@ -1149,6 +1149,7 @@ smoothnessArr = Array[float]([0.0])
 startFromSelf = true
 isClosed = false
 isRotate = false
+reverseOnComplete = false
 isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
@@ -1189,6 +1190,7 @@ smoothnessArr = Array[float]([0.0])
 startFromSelf = true
 isClosed = false
 isRotate = false
+reverseOnComplete = false
 isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
@@ -1220,6 +1222,7 @@ smoothnessArr = Array[float]([0.0])
 startFromSelf = true
 isClosed = false
 isRotate = false
+reverseOnComplete = false
 isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
@@ -3545,9 +3548,6 @@ speedCap = 350.0
 [node name="SlowPadCollider" parent="Level Components/Windboxes" instance=ExtResource("64_j2nc4")]
 transform = Transform3D(23.325, 0, 0, 0, 23.325, 0, 0, 0, 23.325, 2480, -98.5, -50)
 
-[node name="BoostPad" parent="Level Components/Windboxes" instance=ExtResource("65_ehn6i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 101, -275)
-
 [node name="BoostPad2" parent="Level Components/Windboxes" instance=ExtResource("65_ehn6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -199, 525)
 
@@ -3748,10 +3748,6 @@ level_number = 1
 
 [node name="PauseHolder" parent="." instance=ExtResource("77_pu4n8")]
 
-[node name="Crowd" parent="." instance=ExtResource("78_upl5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 9, 50)
-crowd_size = 20
-
 [node name="SoftObject" parent="." instance=ExtResource("79_1tncj")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1880.151, -197.09357, 399.9987)
 
@@ -3812,6 +3808,7 @@ smoothnessArr = Array[float]([0.0])
 startFromSelf = true
 isClosed = false
 isRotate = false
+reverseOnComplete = false
 isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
