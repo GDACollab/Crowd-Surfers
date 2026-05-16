@@ -3,8 +3,8 @@ extends Control
 @export var hud_ui: Control
 @export var level_number: int
 
-@onready var clear_time_text: Label = $Panel/ClearTimeText
-@onready var best_time_text: Label = $Panel/BestTimeText
+@onready var clear_time_text: Label = $Background/ClearTimeText
+@onready var best_time_text: Label = $Background/BestTimeText
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -30,6 +30,6 @@ func open_ui() -> void:
 			SaveDataManager.level_times[level_number-1] = hud_ui.curr_Time
 		SaveDataManager.save_data()
 		
-	clear_time_text.text = "Clear Time: " + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, false, false) + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, true, false)
+	clear_time_text.text = hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, false, false) + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, true, false)
 	if level_number > 0:
-		best_time_text.text = "Best Time: " + hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], false, false) + hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], true, false)
+		best_time_text.text = hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], false, false) + hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], true, false)
