@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://cc262l8kbhr0n"]
+[gd_scene load_steps=82 format=3 uid="uid://cc262l8kbhr0n"]
 
 [ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hry65"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="2_wsuf5"]
@@ -28,11 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://d1ewknvdw2hoo" path="res://Scenes/Level Components/Objects/cable-car-side.tscn" id="26_kofp3"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="27_vrgnd"]
 [ext_resource type="PackedScene" uid="uid://c0vf3acmawr05" path="res://Scenes/Level Components/Objects/car-red-up.tscn" id="28_hiwxu"]
-[ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="29_wrg6d"]
 [ext_resource type="PackedScene" uid="uid://y0q7l77qkvxi" path="res://Scenes/Level Components/Objects/cable-car-down.tscn" id="30_67idq"]
 [ext_resource type="PackedScene" uid="uid://dp7mxn6u50crq" path="res://Scenes/Level Components/Objects/car-red-down.tscn" id="31_n820w"]
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="32_4p6im"]
-[ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="33_071de"]
 [ext_resource type="PackedScene" uid="uid://di2gpsw0b678d" path="res://Scenes/Level Components/Objects/market-stall-amber.tscn" id="34_5q4rd"]
 [ext_resource type="PackedScene" uid="uid://dj5oekin3yxu0" path="res://Scenes/Level Components/Objects/market-stall-cyan.tscn" id="35_e7t4t"]
 [ext_resource type="PackedScene" uid="uid://dw5pqgejh3hvn" path="res://Scenes/Level Components/Objects/building-slug-pizza.tscn" id="36_mmb2l"]
@@ -1122,23 +1120,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1130, 0, 20)
 
 [node name="CarRedSide4" parent="Level Components/Vehicles" instance=ExtResource("27_vrgnd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3130, -200, 250)
-
-[node name="CarRedUp" parent="Level Components/Vehicles" instance=ExtResource("28_hiwxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2920, -200, 490)
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Level Components/Vehicles/CarRedUp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1100)
 
 [node name="CarRedUp2" parent="Level Components/Vehicles" instance=ExtResource("28_hiwxu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3220, -200, 100)
@@ -3747,83 +3728,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -400)
 
 [node name="StaticBody3D4" parent="." instance=ExtResource("48_i5e8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, -400)
-
-[node name="Fucked Up Ve-hicles" type="Node" parent="."]
-
-[node name="CarRedDown" parent="Fucked Up Ve-hicles" instance=ExtResource("31_n820w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5280.567, 0, -363.83234)
-visible = false
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 6.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/CarRedDown"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 798.9055)
-
-[node name="WindBoxCollider2" parent="Fucked Up Ve-hicles/CarRedDown" instance=ExtResource("63_dhum3")]
-transform = Transform3D(22, 0, 0, 0, 20, 0, 0, 0, 20, 0.6220703, 8.551901, 55.898163)
-boostDirection = Vector3(-1, 1, 0)
-
-[node name="StaticBody3D2" parent="Fucked Up Ve-hicles" instance=ExtResource("30_67idq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3180, -200, -600)
-visible = false
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1200)
-visible = false
-
-[node name="WaymoEvilUp" parent="Fucked Up Ve-hicles" instance=ExtResource("33_071de")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280, 0, 260)
-visible = false
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/WaymoEvilUp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -500)
-
-[node name="CarRedDown6" parent="Fucked Up Ve-hicles" instance=ExtResource("31_n820w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 1, -251.91844)
-visible = false
-script = ExtResource("29_wrg6d")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 1.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="Fucked Up Ve-hicles/CarRedDown6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 530)
-visible = false
