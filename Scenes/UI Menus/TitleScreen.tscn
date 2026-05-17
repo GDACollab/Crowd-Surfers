@@ -14,7 +14,7 @@
 [ext_resource type="BitMap" uid="uid://cb5fs2c6dw6m3" path="res://Assets/Art/UI/TitleScreen/play_button_click_mask.png" id="9_h17gc"]
 [ext_resource type="BitMap" uid="uid://dvbgirwbu1fiw" path="res://Assets/Art/UI/TitleScreen/credits_button_click_mask.png" id="12_8o0qd"]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" node_paths=PackedStringArray("music_notes")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sjn55")
+music_notes = [NodePath("Images/MusicNotes")]
+hover_time = 6.0
+hover_magnitude = 5.0
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -78,9 +81,9 @@ brightness_change = 0.15
 [node name="CreditsButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 387.0
-offset_top = 805.0
+offset_top = 807.0
 offset_right = 1037.0
-offset_bottom = 1305.0
+offset_bottom = 1307.0
 texture_normal = ExtResource("7_vbb3l")
 texture_click_mask = ExtResource("12_8o0qd")
 script = ExtResource("9_0iu0x")
