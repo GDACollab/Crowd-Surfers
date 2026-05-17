@@ -256,6 +256,7 @@ func _physics_process(delta: float) -> void:
 	restart()
 	check_height()
 	update_fmod_floor_material()
+	update_trail(delta)
 	if debugLabels:
 		update_labels()
 	
@@ -876,7 +877,16 @@ func update_labels():
 func stick_to_slope():
 	if is_on_floor():
 		floor_snap_length = snap_length
-	
+
+func update_trail(delta):
+	var inputDir = Input.get_vector("move_left", "move_right", "move_down", "move_up").angle()
+	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
+	if max_speed > 140:
+		$TrailHolder/GPUTrail3D.visible = true
+	else:
+		$TrailHolder/GPUTrail3D.restart()
+	print(max_speed)
+	pass
 
 ## Checks when the restart button is pressed.
 func restart():
