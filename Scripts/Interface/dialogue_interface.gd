@@ -30,6 +30,7 @@ class_name DialogueInterface
 @export var sketchyDraw := true
 @onready var leftPortrait = $"Left Character Portrait/Portrait Image"
 @onready var rightPortrait = $"Right Character Portrait/Portrait Image"
+@onready var animator = $"Interface Animator"
 var dialoguePanels : Array[InterfacePanel]
 var dialogueLabel : Label
 var currentStory : InkStory
@@ -99,16 +100,17 @@ func _get_input():
 		else:
 			Inky.EndDialogue()
 
-##Loads next line
+## Loads next line
 func _continue_story():
 	dialogueText = currentStory.Continue()
-	#Spawn new dialogue panel
+	## Create new dialogue panel
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
+	## Apply tags to current panel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
 ## Displays the current line incrementaly
 func _display_text(newDialoguePanel):
-	# Set anchor point
+	## Set anchor point
 	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	dialoguePanels.push_front(newDialoguePanel)
 	# Ensures panels do not overflow
@@ -156,7 +158,7 @@ func _animate_panels():
 				awaitingAnimations = false
 
 func _kill_panel(panel : InterfacePanel):
-	dialoguePanels.remove_at(3)
+	dialoguePanels.erase(panel)
 	var t = create_tween()
 	t.tween_property(panel, "scale", Vector2(0,0), 0.2)
 	await(t.finished)
@@ -298,15 +300,26 @@ func _handle_tags(currentTags, newPanel):
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
 			"bg":
 				print("[DIALOGUE] Choosing new background!")
-			"voiced":
-				##TODO Play next voice line. If already playing a line, make sure to cut if off.
-				pass
+			"vo":
+				if(tagValue == "play"):
+					##TODO Play next voice line. If already playing a line, make sure to cut if off.
+					pass
+				else:
+					##TODO Load based on tag value
+					print("[DIALOGUE] Loading VO files: ", tagValue)
+					pass
+			"fade":
+				## Pauses dialogue and fades to black
+				animator.play("fade")
+				await animator.animation_finished
+				
 	## Return to default expression
 	if(!changed_expression and currentSpeakerData != null):
 		currentSpeaker.texture = currentSpeakerData.default_portrait
 	awaitingAnimations = false
 	_display_text(newPanel)
 
+## Reset portrait attributes
 func _reset_display():
 	leftPortrait.scale = Vector2.ONE
 	leftPortrait.self_modulate = Color.WHITE
@@ -314,6 +327,10 @@ func _reset_display():
 	rightPortrait.scale = Vector2.ONE
 	leftPortrait.self_modulate = Color.WHITE
 	rightPortrait.material = null
+
+func _hide_all_panels():
+	for p in dialoguePanels:
+		p.visible = false
 
 func _draw_outline(drawMat : ShaderMaterial):
 	var iter := 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=13 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -7,6 +7,62 @@
 [ext_resource type="PackedScene" uid="uid://cvwdknj7n8u5o" path="res://Scenes/Dialogue Interface/character_portrait.tscn" id="4_wemfb"]
 [ext_resource type="Material" uid="uid://di7ysi5m6lg7" path="res://Scenes/Dialogue Interface/character_portrait_material.tres" id="5_tk2da"]
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
+
+[sub_resource type="Gradient" id="Gradient_tk2da"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ybge"]
+gradient = SubResource("Gradient_tk2da")
+
+[sub_resource type="Animation" id="Animation_4ybge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tk2da"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hide_all_panels"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ybge"]
+_data = {
+&"RESET": SubResource("Animation_4ybge"),
+&"fade": SubResource("Animation_tk2da")
+}
 
 [node name="Dialogue Interface" type="Control" node_paths=PackedStringArray("mainPanels")]
 layout_mode = 3
@@ -27,6 +83,17 @@ upperDialogueBoxHeight = 50.0
 upperDialogueBoxScale = Vector2(0.4, 0.4)
 lowerDialogueBoxScale = Vector2(0.65, 0.65)
 portraitOutlineMaterial = ExtResource("5_tk2da")
+
+[node name="Fade Panel" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_4ybge")
 
 [node name="Left Character Portrait" parent="." instance=ExtResource("4_wemfb")]
 layout_mode = 1
@@ -75,3 +142,8 @@ layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "PRESS X TO SKIP SCENE"
+
+[node name="Interface Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4ybge")
+}
