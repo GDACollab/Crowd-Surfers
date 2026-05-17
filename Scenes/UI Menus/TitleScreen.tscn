@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=19 format=3 uid="uid://7uehf4aws4ii"]
 
 [ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/title_screen.gd" id="1_sjn55"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
@@ -8,11 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://b52ppde1ewcqm" path="res://Assets/Art/UI/TitleScreen/slip.png" id="5_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2feq7alf2tqs" path="res://Assets/Art/UI/TitleScreen/now_playing.png" id="5_km04c"]
 [ext_resource type="Texture2D" uid="uid://c3s5ifd2i0xvm" path="res://Assets/Art/UI/TitleScreen/play_button.png" id="6_sh7nw"]
-[ext_resource type="Texture2D" uid="uid://ccuevx5kpvdpf" path="res://Assets/Art/UI/TitleScreen/music_notes.png" id="6_vbb3l"]
+[ext_resource type="Texture2D" uid="uid://ckcd8tnnf5req" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note1.png" id="7_idimm"]
 [ext_resource type="Texture2D" uid="uid://dl02iq4vkpkb7" path="res://Assets/Art/UI/TitleScreen/credits_button.png" id="7_vbb3l"]
+[ext_resource type="Texture2D" uid="uid://1il8h1s684wy" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note2.png" id="8_w6tul"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/MainMenu/button_highlight.gd" id="9_0iu0x"]
 [ext_resource type="BitMap" uid="uid://cb5fs2c6dw6m3" path="res://Assets/Art/UI/TitleScreen/play_button_click_mask.png" id="9_h17gc"]
+[ext_resource type="Texture2D" uid="uid://dyro4vuot6lxw" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note3.png" id="9_in3d3"]
+[ext_resource type="Texture2D" uid="uid://ojwf0kiqemd1" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note4.png" id="10_a31pv"]
+[ext_resource type="Texture2D" uid="uid://cyx7l5k8duoue" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note5.png" id="11_f8b7y"]
 [ext_resource type="BitMap" uid="uid://dvbgirwbu1fiw" path="res://Assets/Art/UI/TitleScreen/credits_button_click_mask.png" id="12_8o0qd"]
+[ext_resource type="Texture2D" uid="uid://cg5jsfwllp3hx" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note6.png" id="12_ij21d"]
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("music_notes")]
 layout_mode = 3
@@ -22,9 +27,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sjn55")
-music_notes = [NodePath("Images/MusicNotes")]
+music_notes = [NodePath("Images/MusicNotes/Note1"), NodePath("Images/MusicNotes/Note2"), NodePath("Images/MusicNotes/Note3"), NodePath("Images/MusicNotes/Note4"), NodePath("Images/MusicNotes/Note5"), NodePath("Images/MusicNotes/Note6")]
+music_notes_move_distance = 12.0
 hover_time = 6.0
-hover_magnitude = 5.0
+hover_magnitude = 4.0
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -61,11 +67,58 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("5_crh2s")
 
-[node name="MusicNotes" type="TextureRect" parent="Images"]
+[node name="MusicNotes" type="Control" parent="Images"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Note1" type="TextureRect" parent="Images/MusicNotes"]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("6_vbb3l")
+offset_left = 11.0
+offset_top = 31.0
+offset_right = 111.0
+offset_bottom = 131.0
+texture = ExtResource("7_idimm")
+
+[node name="Note2" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 9.0
+offset_right = 155.0
+offset_bottom = 109.0
+texture = ExtResource("8_w6tul")
+
+[node name="Note3" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 44.0
+offset_right = 1171.0
+offset_bottom = 144.0
+texture = ExtResource("9_in3d3")
+
+[node name="Note4" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 1144.0
+offset_top = -12.0
+offset_right = 1244.0
+offset_bottom = 88.0
+texture = ExtResource("10_a31pv")
+
+[node name="Note5" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 932.0
+offset_right = 818.0
+offset_bottom = 1057.0
+texture = ExtResource("11_f8b7y")
+
+[node name="Note6" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 930.0
+offset_right = 869.0
+offset_bottom = 1030.0
+texture = ExtResource("12_ij21d")
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
