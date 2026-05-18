@@ -1,11 +1,21 @@
-[gd_resource type="Resource" script_class="CharacterDialogueData" load_steps=3 format=3 uid="uid://dh2p0qgv550sv"]
+[gd_resource type="Resource" script_class="CharacterDialogueData" load_steps=7 format=3 uid="uid://dh2p0qgv550sv"]
 
 [ext_resource type="Script" uid="uid://cx4sjgqdwpmhw" path="res://Scripts/CharacterDialogueData.gd" id="1_k10by"]
-[ext_resource type="Texture2D" uid="uid://cofu7sjxc8qxc" path="res://Assets/Art/Portraits/Temp_SAM.PNG" id="1_ljsni"]
+[ext_resource type="Texture2D" uid="uid://dsrycuk1hfr3q" path="res://Assets/Art/Portraits/Sam/SAM_Default_StellaNguyen.PNG" id="1_qrt3m"]
+[ext_resource type="Texture2D" uid="uid://b6u7cllpvnwg8" path="res://Assets/Art/Portraits/Sam/SAM_Angry_StellaNguyen.PNG" id="2_amhvl"]
+[ext_resource type="Texture2D" uid="uid://i1jmj0rd7blv" path="res://Assets/Art/Portraits/Sam/SAM_Laugh_StellaNguyen.PNG" id="3_amhvl"]
+[ext_resource type="Texture2D" uid="uid://m41w2xec4nhk" path="res://Assets/Art/Portraits/Sam/SAM_Nervous_StellaNguyen.PNG" id="4_b321j"]
+[ext_resource type="Texture2D" uid="uid://c3r16atf5g8w5" path="res://Assets/Art/Portraits/Sam/SAM_Confident_StellaNguyen.PNG" id="5_vg8ue"]
 
 [resource]
 script = ExtResource("1_k10by")
 characterName = "Sam"
 displayName = "Samuel Ario Maximus"
 colour = Color(0.7610829, 0.67560416, 0, 1)
-default_portrait = ExtResource("1_ljsni")
+default_portrait = ExtResource("1_qrt3m")
+expression_dictionary = Dictionary[String, Texture2D]({
+"Angry": ExtResource("2_amhvl"),
+"Confident": ExtResource("5_vg8ue"),
+"Laugh": ExtResource("3_amhvl"),
+"Nervous": ExtResource("4_b321j")
+})
