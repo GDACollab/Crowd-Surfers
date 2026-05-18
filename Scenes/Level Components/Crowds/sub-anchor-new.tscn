@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://1gr6catkt1cf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iv4ky"]
+friction = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_paenc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1fg3o"]
+radius = 4.0
+height = 16.0
+
+[node name="SubAnchorNew" type="RigidBody3D"]
+collision_layer = 2
+input_ray_pickable = false
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_iv4ky")
+gravity_scale = 50.0
+lock_rotation = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 10.0
+path_height_offset = 3.0
+path_max_distance = 20.01
+simplify_path = true
+path_return_max_length = 100.0
+height = 16.0
+radius = 4.0
+neighbor_distance = 0.1
+max_neighbors = 1
+max_speed = 30.0
+keep_y_velocity = false
+avoidance_layers = 0
+avoidance_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transparency = 0.7
+mesh = SubResource("CylinderMesh_paenc")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1fg3o")
+debug_color = Color(0.827451, 0.16470589, 0.047058824, 0.7490196)
