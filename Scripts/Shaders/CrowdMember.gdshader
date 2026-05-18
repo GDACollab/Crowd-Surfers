@@ -20,6 +20,7 @@ void fragment() {
 	int frame_index = int(floor(customInfo.y * float(animationCount)));
 	// customInfo is frame index, frame count is sprite sheet size, and the frame is itself or which it should have
 	//int layer = frame + int(floor(customInfo.x * float(frameCount)));
+	int layer = frame + (frame_index * frameCount);
 
 	//vec4 textureFrame = texture(texture_array[frame + (2 * int(floor(customInfo.y * 4.0f)))], UV);
 	//COLOR = texture(texture_array, vec3(UV, frame));
