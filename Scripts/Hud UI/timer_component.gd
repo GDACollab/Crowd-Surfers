@@ -21,7 +21,7 @@ func set_timer_text(mainTimer: String, centisecondsTimer: String):
 	## Clear current text
 	mainTimerDisplay.clear()
 	centisecondsTimerDisplay.clear()
-	
+
 	## Add text images
 	for m in mainTimer:
 		mainTimerDisplay.add_image(textureDict[m])
