@@ -5,14 +5,14 @@ extends Node3D
 # EXPORT VARIABLES
 @export var debug: bool = false
 @export var circum: float = 10.0 # area of main brain
-@export var ratio_circum: float = 0.7 # area ratio of subgroups max, and max find distance
+@export var ratio_circum: float = 0.75 # area ratio of subgroups max, and max find distance
 @export var merge_ratio: float = 0.75 # default is my pref, increase distance beyond 2.0 exceeds circum, I do not recommend. Decreasing makes the distance less than the radius.
 @export var crowd_size: int = 1.0
 @export var max_speed: float = 20.0
 @export var acceleration: float = 20.0
 @export var height_recalc_sensitivity: float = 10.0 # this is amount of difference in height lost before recalculating
 @export var check_limit: int = 4
-@export var check_running_distance = 750
+@export var check_running_distance = 800
 
 # CONSTANTS
 const CAP_RADIUS = 4
@@ -51,6 +51,8 @@ var anchor_velocity = Vector3(0, 0, 0)
 # INTERNAL VARIABLES
 var radius: float
 var gravity_force_for_velocity = Vector3.ZERO
+@onready var sub_max_speed = max_speed * 1.5
+@onready var active_crowd = false
 #var angle_radians = atan2(CAP_HEIGHT, CAP_RADIUS)
 #var angle_degrees = rad_to_deg(angle_radians)
 
@@ -62,13 +64,13 @@ var curr_point = 0
 
 # NODE REFERENCE
 @onready var navigation_agent_3d: NavigationAgent3D = $Anchor/NavigationAgent3D
-@onready var anchor: Node3D = $Anchor
+@onready var anchor: RigidBody3D = $Anchor
 @onready var player_reference: CharacterBody3D = get_tree().root.find_child("Player", true, false)
 @onready var nav_map = get_world_3d().navigation_map
-var multi_mesh_manager: MultiMeshInstance3D
+@onready var multi_mesh_manager: MultiMeshInstance3D
 
 # SCENE/PREFAB REFERENCES
-@onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor.tscn")
+@onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor-new.tscn")
 @onready var crowd = preload("res://Assets/Art/temp player.png")
 
 # Called when the node enters the scene tree for the first time.
@@ -99,29 +101,91 @@ func _ready() -> void:
 	gravity_force_for_velocity = ProjectSettings.get_setting("physics/3d/default_gravity_vector")*10
 	
 	group_brain(crowd_size, circum, 1)
+	disable_crowd_system()
+	
 	#group_brain(1, circum, 0)
+	
+
+func disable_crowd_system() -> void:
+	active_crowd = false
+	anchor.freeze = false
+	anchor.linear_velocity = Vector3.ZERO
+	anchor.angular_velocity = Vector3.ZERO
+	for sub_group in agents_sub:
+		var sub_anchor = sub_group[0]
+		if is_instance_valid(sub_anchor):
+			sub_anchor.linear_velocity = Vector3.ZERO
+			sub_anchor.angular_velocity = Vector3.ZERO
+			
+			sub_anchor.freeze = true
+	for rid in agents:
+		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, Vector3.ZERO)
+		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, true)
+	
 
 
+func enable_crowd_system() -> void:
+	active_crowd = true
+	
+	anchor.freeze = false
+	anchor.sleeping = false
+	anchor.linear_velocity = Vector3.ZERO
+	anchor.angular_velocity = Vector3.ZERO
+	for sub_group in agents_sub:
+		var sub_anchor = sub_group[0]
+		sub_anchor.freeze = false
+		sub_anchor.sleeping = false
+		sub_anchor.linear_velocity = Vector3.ZERO
+		sub_anchor.angular_velocity = Vector3.ZERO
+		
+	for rid in agents:
+		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, false)
+
+
+
+
+
+# called during physics processing, allowing for safely modify the simulation state for the object
+# mainly used for sub navs since they used rigid body 3ds
+#func _integrate_forces(delta: float) -> void:
+	#for nav in agents_sub:
+		#var nav_agent = nav[0].find_child("NavigationAgent3D", false)
+				
+		#group_sub(nav, moving_behav(nav[0], nav_agent))
+	#pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if (!checkShouldRunInstance()): return
+	# this is just a state machine pretty much but i dont have too much time (if i rememeber, switch this soon plz) - chris
+	if (active_crowd == false and !checkShouldRunInstance()):  # player is not in range, and crowd is off, should just return
+		return
+	elif (active_crowd == true and !checkShouldRunInstance()): # player is in range and crowd is on, should be turned off
+		disable_crowd_system()
+		return
+	elif (active_crowd == false and checkShouldRunInstance()): # player is in range and crowd is off, should be turned on
+		enable_crowd_system()
+	
+	
 	#print('running')
 	# move behaviors
 	match state: 
 		State.IDLE:
 			get_new_loc()
-			apply_move_and_slide(anchor)
+			#apply_move_and_slide(anchor)
 			for nav in agents_sub:
-				apply_move_and_slide(nav[0])
-				get_new_sub_loc(nav[0].find_child("NavigationAgent3D", false), nav[0])
+				
+				#apply_move_and_slide(nav[0])
+				
+				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
+				#get_new_sub_loc(nav_agent, nav[0])
+				group_sub(nav, moving_behav(nav[0], nav_agent))
 		State.MOVE:
 			group_main(moving_behav(anchor, navigation_agent_3d))
-			apply_move_and_slide(anchor)
+			#apply_move_and_slide(anchor)
 			for nav in agents_sub:
 				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
 				
 				group_sub(nav, moving_behav(nav[0], nav_agent))
-				apply_move_and_slide(nav[0])
+				#apply_move_and_slide(nav[0])
 				
 	# this call is for mass swaps
 	for c in call_queue:
@@ -194,13 +258,17 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 # Parameters:
 # - Safe_velocity: Velocity to apply to the agents
 func group_main(safe_velocity) -> void:
+	var anchor_state = PhysicsServer3D.body_get_direct_state(anchor)
+	
 	var delta_time = get_physics_process_delta_time()
-	var accel_delta = delta_time * acceleration;
-	var vel = anchor.velocity.move_toward(safe_velocity, accel_delta)
-
-	anchor.velocity.x = lerp(anchor.velocity.x, vel.x, accel_delta)
-	anchor.velocity.z = lerp(anchor.velocity.z, vel.z, accel_delta)
-	anchor.velocity.y +=  gravity_force_for_velocity.y * delta_time
+	var accel_delta = delta_time * acceleration * 1.5;
+	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
+	vel.limit_length(sub_max_speed)
+	
+	anchor_state.linear_velocity.x = lerp(anchor_state.linear_velocity.x, vel.x, accel_delta)
+	anchor_state.linear_velocity.z = lerp(anchor_state.linear_velocity.z, vel.z, accel_delta)
+	
+	
 	# call its members
 	multi_mesh_process(agents_main, vel)
 
@@ -213,16 +281,19 @@ func group_sub(sub_array, safe_velocity) -> void:
 	if (sub_array.is_empty()): return
 	
 	var sub_anchor = sub_array[0]
+	var anchor_state = PhysicsServer3D.body_get_direct_state(sub_anchor)
+	
 	var delta_time = get_physics_process_delta_time()
 	var accel_delta = delta_time * acceleration * 1.5;
-	var vel = sub_anchor.velocity.move_toward(safe_velocity, accel_delta)
+	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
+	vel.limit_length(sub_max_speed)
 	
-	sub_anchor.velocity.x = lerp(sub_anchor.velocity.x, vel.x, accel_delta)
-	sub_anchor.velocity.z = lerp(sub_anchor.velocity.z, vel.z, accel_delta)
-	sub_anchor.velocity.y +=  gravity_force_for_velocity.y * delta_time
+	anchor_state.linear_velocity.x = lerp(anchor_state.linear_velocity.x, vel.x, accel_delta)
+	anchor_state.linear_velocity.z = lerp(anchor_state.linear_velocity.z, vel.z, accel_delta)
 	
 	checkSubAmor(sub_array, vel)
 	multi_mesh_process(sub_array, vel)
+	
 	
 
 ## collision detection
@@ -283,8 +354,8 @@ func checkMemberAmor() -> void:
 		var member_position = Vector2(temp_position.x, temp_position.z)
 		#if array == null or array.is_empty(): 
 			#continue
-		var ratio = (ratio_circum if non_main else 1.0) # ratio circum if nonmain
-		if (member.is_valid() and member_position.distance_to(Vector2(array[0].global_position.x, array[0].global_position.z)) >= circum / 2.0 * ratio):
+		# ratio circum (originally it was based on variable for non mains, but they shouldnt be considering themselves outside of sub groups based on it, whoops)
+		if (member.is_valid() and member_position.distance_to(Vector2(array[0].global_position.x, array[0].global_position.z)) >= circum / 2.0):
 			find_group_behav(member, array, 0)
 			continue
 		
@@ -309,7 +380,7 @@ func checkSubAmor(array, non_main) -> void:
 		var given_anchor_position = Vector2(array[0].global_position.x, array[0].global_position.z)
 		#print('sub_anc')
 		#print(given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)))
-		if (array.size() < sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 3.0):
+		if (array.size() < sub_group.size() and given_anchor_position.distance_to(Vector2(sub_group[0].global_position.x, sub_group[0].global_position.z)) < circum / 2.0 * ratio_circum):
 			#print('working anchor given')
 			call_queue.append(Callable(self, "mass_swap_behav").bind(array, sub_group))
 			return
@@ -438,6 +509,8 @@ func delete_group_behav(target) -> void:
 		agents_sub.erase(target)
 		return
 	
+
+	
 	var nav_agent = target[0]
 	var nav_node = nav_agent.find_child("NavigationAgent3D", false)
 	if (is_instance_valid(nav_node) and nav_node.velocity_computed.is_connected(_on_velocity_computed)):
@@ -454,6 +527,7 @@ func delete_queue() -> void:
 	for del in deletion_queue:
 		delete_group_behav(del)
 	deletion_queue.clear()
+	
 
 # remove_member_behav
 # Removes a member 
@@ -803,12 +877,12 @@ func _on_navigation_agent_3d_waypoint_reached(details: Dictionary) -> void:
 func _on_navigation_agent_3d_navigation_finished() -> void:
 	get_new_loc()
 
-func _on_navigation_finished(sub_nav: NavigationAgent3D, sub_anchor: CharacterBody3D) -> void:
+func _on_navigation_finished(sub_nav: NavigationAgent3D, sub_anchor: RigidBody3D) -> void:
 	get_new_sub_loc(sub_nav, sub_anchor)
 	
 	
-func apply_move_and_slide(member) -> void:
-	member.move_and_slide()
+#func apply_move_and_slide(member) -> void:
+	#member.move_and_slide()
 
 # free all rids before leaving scene 
 func _on_screen_exited():
