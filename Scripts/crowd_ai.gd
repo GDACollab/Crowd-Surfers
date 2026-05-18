@@ -101,6 +101,8 @@ func _ready() -> void:
 	group_brain(crowd_size, circum, 1)
 	#group_brain(1, circum, 0)
 
+func _exit_tree() -> void:
+	_on_screen_exited()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -812,5 +814,6 @@ func apply_move_and_slide(member) -> void:
 
 # free all rids before leaving scene 
 func _on_screen_exited():
+	print("[CROWDS] Freeing crowd agents from crowd: ", name)
 	for rid in agents:
 		PhysicsServer3D.free_rid(rid)
