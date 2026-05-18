@@ -1,9 +1,10 @@
-[gd_scene load_steps=107 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=117 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_hntgb"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cnki7"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_nusql"]
+[ext_resource type="Texture2D" uid="uid://dh8t7x602ld58" path="res://Assets/Art/VFX/test_cloud_shadows.png" id="3_tyndo"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="4_5g6rg"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="5_bki04"]
 [ext_resource type="PackedScene" uid="uid://b1326i5a5xn3f" path="res://Scenes/VFX/vfx_manager.tscn" id="5_futj0"]
@@ -107,8 +108,100 @@
 [ext_resource type="PackedScene" uid="uid://c3napms5mmgre" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/Manhole1.tscn" id="105_onbwc"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="106_nregq"]
 
+[sub_resource type="CurveTexture" id="CurveTexture_tyndo"]
+
+[sub_resource type="Curve" id="Curve_a3054"]
+_data = [Vector2(0.0049261153, 0), 0.0, 0.0, 0, 0, Vector2(0.35467982, 1), 0.0, 0.0, 0, 0, Vector2(0.7684729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_dy6nc"]
+curve = SubResource("Curve_a3054")
+
+[sub_resource type="Curve" id="Curve_dy6nc"]
+_data = [Vector2(0, 0.516854), 0.0, 0.0, 0, 0, Vector2(0.28078818, 0.43820232), 0.0, 0.0, 0, 0, Vector2(0.5615763, 0.5842697), 0.0, 0.0, 0, 0, Vector2(0.75369453, 0.44943827), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_5rnn1"]
+curve = SubResource("Curve_dy6nc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tyndo"]
+emission_shape = 3
+emission_box_extents = Vector3(39.99, 3.59, 82.72)
+angle_curve = SubResource("CurveTexture_tyndo")
+direction = Vector3(0, 1, 0)
+spread = 1.552
+initial_velocity_min = -17.8
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 30.609997
+linear_accel_max = 40.809998
+tangential_accel_min = -8.160002
+tangential_accel_max = 9.999997
+tangential_accel_curve = SubResource("CurveTexture_5rnn1")
+scale_curve = SubResource("CurveTexture_dy6nc")
+turbulence_noise_strength = 0.34
+turbulence_noise_scale = 0.557
+
+[sub_resource type="Curve" id="Curve_tyndo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.41702124, 0.31460673), 0.0, 0.0, 0, 0, Vector2(0.6468085, 0.33707863), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyndo"]
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_a3054"]
+material = SubResource("StandardMaterial3D_tyndo")
+shape = 0
+section_segments = 48
+curve = SubResource("Curve_tyndo")
+
 [node name="ReferenceScene" type="Node3D"]
 script = ExtResource("1_hntgb")
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="Reference Lights" type="Node" parent="Lighting"]
+
+[node name="Spotlights" type="Node" parent="Lighting"]
+
+[node name="Segment_Start" type="Node" parent="Lighting/Spotlights"]
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Lighting/Spotlights/Segment_Start"]
+transform = Transform3D(1, 1.0521454e-08, -4.158039e-08, 4.158039e-08, -0.4756242, 0.87964857, -1.0521454e-08, -0.87964857, -0.4756242, 1899.2859, -108.519, 324.95532)
+light_energy = 2.794
+spot_range = 203.0
+spot_attenuation = 0.25
+spot_angle = 44.325073
+
+[node name="Segment_End" type="Node" parent="Lighting/Spotlights"]
+
+[node name="Tunnel Light" type="SpotLight3D" parent="Lighting/Spotlights/Segment_End"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7601.099, -18, 466.55368)
+light_color = Color(0.8031641, 0.62153405, 0.4771877, 1)
+light_energy = 5.97
+spot_range = 124.03953
+spot_attenuation = 0.0
+spot_angle = 41.429836
+
+[node name="Tunnel Light2" type="SpotLight3D" parent="Lighting/Spotlights/Segment_End"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 6798.3145, -18, 1148.7224)
+light_color = Color(0.8031641, 0.62153405, 0.4771877, 1)
+light_energy = 5.97
+spot_range = 124.03953
+spot_attenuation = 0.0
+spot_angle = 41.429836
+
+[node name="Chunks" type="Node" parent="Lighting"]
+
+[node name="Light" parent="Lighting" instance=ExtResource("4_5g6rg")]
+transform = Transform3D(-0.58807695, -0.6779603, 0.44106138, 0.64949167, -0.07086166, 0.7570596, -0.482002, 0.73167497, 0.48200175, -507.29907, 0, -1493.9137)
+light_specular = 0.0
+
+[node name="Decal" type="Decal" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.179878, 0)
+size = Vector3(1000, 500, 1000)
+texture_albedo = ExtResource("3_tyndo")
+modulate = Color(0, 0, 0, 0.52156866)
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -128,11 +221,17 @@ offset = Vector3(0, 1000, 1000)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3129883, 35.921158, 45.04034)
 vfx_manager = NodePath("../VfxManager")
 
-[node name="VfxManager" parent="." instance=ExtResource("5_futj0")]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -70.234985, 15.116859, 10.5157585)
+lifetime = 6.34
+preprocess = 5.9
+visibility_aabb = AABB(-5.87, -4, -4, 1000, 1000, 1000)
+trail_enabled = true
+trail_lifetime = 1.21
+process_material = SubResource("ParticleProcessMaterial_tyndo")
+draw_pass_1 = SubResource("RibbonTrailMesh_a3054")
 
-[node name="Light" parent="." instance=ExtResource("4_5g6rg")]
-transform = Transform3D(0.18301266, -0.9659259, -0.1830127, 0.7071068, -3.090862e-08, 0.7071068, -0.6830127, -0.258819, 0.6830127, -507.29907, 0, -1493.9137)
-light_specular = 0.0
+[node name="VfxManager" parent="." instance=ExtResource("5_futj0")]
 
 [node name="Environment" parent="." instance=ExtResource("5_bki04")]
 
@@ -141,1220 +240,1625 @@ light_specular = 0.0
 [node name="Roads" type="Node" parent="Level Components"]
 
 [node name="roadHorizontal" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal2" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal3" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal4" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal7" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal8" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal9" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal10" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal11" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal12" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal13" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal14" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1300, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal21" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal17" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal20" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal27" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal30" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal47" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal31" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal37" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, -400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal38" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, -400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal32" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal33" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal34" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal39" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal81" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal82" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1900, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal83" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1800, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal103" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal104" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal40" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal42" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal43" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2500, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal51" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2600, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal52" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal53" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal54" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3000, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal66" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3300, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal67" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal68" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal73" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3600, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal78" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3800, -100, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal79" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3900, -100, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal80" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4000, -100, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal55" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal56" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4300, -100, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal65" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal70" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal69" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal84" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6100, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal90" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6200, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal92" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6300, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal93" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6300, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal94" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6300, -100, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal95" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6300, -100, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal96" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6300, -100, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal91" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6200, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal85" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6100, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal86" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6100, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal87" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6100, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal88" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6100, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal107" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6000, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal108" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6000, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal144" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6000, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal145" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6000, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal153" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6000, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal97" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal98" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6500, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal99" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6600, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal100" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6600, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal101" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6500, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal102" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal105" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6700, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal106" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6700, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal109" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6800, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal110" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6900, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal111" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7000, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal112" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7000, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal113" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6900, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal114" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6800, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal115" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7100, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal116" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal117" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7300, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal118" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7300, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal119" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal120" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7100, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal121" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7400, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal122" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7500, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal123" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7600, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal127" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal124" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7600, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal138" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7700, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal139" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7700, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal125" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7500, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal126" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7400, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal128" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal129" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7300, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal130" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7300, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal131" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal132" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7400, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal133" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7500, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal134" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7600, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal135" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7600, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal140" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7700, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal141" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal142" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7700, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal136" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7500, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal137" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7400, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal143" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6900, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal146" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6900, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal147" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6800, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal148" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6800, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal149" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6700, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal150" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6700, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal151" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6600, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal152" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6600, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal74" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal57" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal58" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4000, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal59" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3900, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal60" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3800, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal61" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3700, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal62" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3600, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal63" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3500, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal46" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal89" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4300, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal48" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal49" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal64" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4500, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal50" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4700, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal35" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2800, -200, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal36" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2700, -200, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal26" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2400, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal41" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2200, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal18" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal19" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1600, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal6" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadHorizontal5" parent="Level Components/Roads" instance=ExtResource("6_hntgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadCross" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical4" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical5" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical18" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical6" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical7" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical8" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical9" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical10" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical11" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical12" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical14" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical150" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical151" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical152" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical15" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical13" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical16" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical19" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical20" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical22" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical33" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical55" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical59" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical60" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical61" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical62" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical63" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical64" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical65" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical66" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical67" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical68" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical56" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical57" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical58" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical85" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical86" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical87" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical88" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical89" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical90" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical91" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical92" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical93" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical94" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical95" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical96" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical97" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical98" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical99" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical100" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical101" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical102" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical103" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical104" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical105" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical106" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical107" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical108" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical109" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical110" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical111" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical112" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical113" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical114" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical115" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical116" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical117" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical118" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical119" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical135" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical136" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical137" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical138" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical139" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical140" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical141" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical142" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical143" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical144" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical145" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical146" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical147" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical148" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical149" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical153" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical154" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical155" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical156" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical157" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical158" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical159" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical160" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical120" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical121" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical122" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical123" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical125" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical126" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical127" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical128" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical129" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical130" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical131" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical132" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical133" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical134" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical124" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical69" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical70" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical71" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical72" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical73" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical74" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical75" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical76" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical77" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical78" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical79" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical80" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical81" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical82" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical83" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical84" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical21" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, -100, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical24" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6500, -100, 1500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical161" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, -100, 1600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical162" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6500, -100, 1600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical37" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6500, -100, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical38" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical39" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 900)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical41" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical42" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 800)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical43" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical44" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 700)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical45" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical46" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 600)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical47" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical48" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 500)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical50" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8100, -100, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical53" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8100, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical54" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8100, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical51" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8100, -100, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical52" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8100, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical49" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical40" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical25" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical30" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical31" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -300)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical32" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical17" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical29" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -200, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical3" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical2" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical28" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical26" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical23" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical34" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical35" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical27" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadVertical36" parent="Level Components/Roads" instance=ExtResource("25_vsd3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
 script = ExtResource("11_cnki7")
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp2" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp3" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp4" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp5" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadRightDown" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -200)
 script = ExtResource("11_cnki7")
+metadata/_edit_lock_ = true
 
 [node name="roadRightDown2" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadRightDown3" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2300, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadRightDown5" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadRightDown6" parent="Level Components/Roads" instance=ExtResource("10_f045n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4600, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown2" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown4" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown6" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, -200)
+metadata/_edit_lock_ = true
 
 [node name="roadRightUp" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadRightUp2" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadRightUp4" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp6" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftUp7" parent="Level Components/Roads" instance=ExtResource("9_uymm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown7" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, 0, 400)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown10" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, -100, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadLeftDown8" parent="Level Components/Roads" instance=ExtResource("22_3tfrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7900, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadRightUp6" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4400, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadRightUp7" parent="Level Components/Roads" instance=ExtResource("12_ulmir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3400, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection7" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection8" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection9" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="diag-left-down2" parent="Level Components/Roads" instance=ExtResource("15_pyelp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, -100, 1200)
+metadata/_edit_lock_ = true
 
 [node name="diag-left-down3" parent="Level Components/Roads" instance=ExtResource("15_pyelp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6500, -100, 1300)
+metadata/_edit_lock_ = true
 
 [node name="diag-left-up2" parent="Level Components/Roads" instance=ExtResource("16_lx1ln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 500)
+metadata/_edit_lock_ = true
 
 [node name="diag-left-up3" parent="Level Components/Roads" instance=ExtResource("16_lx1ln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="diag-right-down" parent="Level Components/Roads" instance=ExtResource("17_k0kx4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 200)
+metadata/_edit_lock_ = true
 
 [node name="diag-right-down2" parent="Level Components/Roads" instance=ExtResource("17_k0kx4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, 100)
+metadata/_edit_lock_ = true
 
 [node name="diag-right-down3" parent="Level Components/Roads" instance=ExtResource("17_k0kx4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4200, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="diag-right-down4" parent="Level Components/Roads" instance=ExtResource("17_k0kx4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4100, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="diag-right-up" parent="Level Components/Roads" instance=ExtResource("18_rt8hm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="road-t-up" parent="Level Components/Roads" instance=ExtResource("19_otkhw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, 300)
+metadata/_edit_lock_ = true
 
 [node name="road-t-up6" parent="Level Components/Roads" instance=ExtResource("19_otkhw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6400, -100, 1300)
+metadata/_edit_lock_ = true
 
 [node name="road-t-up3" parent="Level Components/Roads" instance=ExtResource("19_otkhw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D5" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="road-t-up4" parent="Level Components/Roads" instance=ExtResource("19_otkhw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="road-t-up5" parent="Level Components/Roads" instance=ExtResource("19_otkhw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -200, 500)
+metadata/_edit_lock_ = true
 
 [node name="road-t-up2" parent="Level Components/Roads" instance=ExtResource("19_otkhw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4900, -100, 200)
+metadata/_edit_lock_ = true
 
 [node name="road-t-down" parent="Level Components/Roads" instance=ExtResource("20_p6d56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4800, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="road-t-down2" parent="Level Components/Roads" instance=ExtResource("20_p6d56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2100, -100, 0)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left7" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 300)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection10" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection11" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection12" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection32" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection33" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection34" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection35" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection36" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection37" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection38" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection39" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection40" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection41" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection22" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection13" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection14" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection15" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection23" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection24" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection25" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection26" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection27" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection28" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection29" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection30" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection31" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection16" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection17" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection18" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection19" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection20" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5300, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="roadIntersection21" parent="Level Components/Roads" instance=ExtResource("23_wbhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left8" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 200)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left9" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 100)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left10" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left11" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left3" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -400)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right4" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 1000)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right5" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, 1100)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right6" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5700, 0, 1200)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right7" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, 1300)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right8" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5500, 0, 1400)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right3" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -400)
+metadata/_edit_lock_ = true
 
 [node name="road-t-left2" parent="Level Components/Roads" instance=ExtResource("21_2vk1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1400, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="road-t-right2" parent="Level Components/Roads" instance=ExtResource("22_jrrke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1700, 0, -100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6300, -100, 1100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D4" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7300, -100, 400)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D8" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, -100, 1100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D9" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7500, -100, 1100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D10" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, -100, 1100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D6" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7800, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D11" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8400, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D7" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7500, -100, -100)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D2" parent="Level Components/Roads" instance=ExtResource("59_i0h32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6200, -100, 1100)
+metadata/_edit_lock_ = true
 
 [node name="4-way-stop" parent="Level Components/Roads" instance=ExtResource("102_47mxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, 200)
+metadata/_edit_lock_ = true
 
 [node name="4-way-stop2" parent="Level Components/Roads" instance=ExtResource("102_47mxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, 200)
+metadata/_edit_lock_ = true
 
 [node name="4-way-stop3" parent="Level Components/Roads" instance=ExtResource("102_47mxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3200, -200, -100)
+metadata/_edit_lock_ = true
 
 [node name="4-way-stop4" parent="Level Components/Roads" instance=ExtResource("102_47mxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2900, -200, -100)
+metadata/_edit_lock_ = true
 
 [node name="Vehicles" type="Node" parent="Level Components"]
 
@@ -5477,182 +5981,15 @@ level_number = 1
 
 [node name="PauseHolder" parent="." instance=ExtResource("42_5l05s")]
 
-[node name="CarRedDown16" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -670)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 5.5
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
+[node name="StaticBody3D2" parent="." instance=ExtResource("105_onbwc")]
+transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 3200, -198.8614, 244.77777)
 
-[node name="Node3D" type="Node3D" parent="CarRedDown16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
+[node name="DeathBoxCollider" parent="." instance=ExtResource("106_nregq")]
+transform = Transform3D(10448.063, 0, 0, 0, 20, 0, 0, 0, 4212.2803, 3662.063, -215.09615, 88.746155)
 
-[node name="WindBoxCollider2" parent="CarRedDown16" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
+[node name="Moving Cars" type="Node" parent="."]
 
-[node name="CarRedDown24" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -470)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 5.5
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="CarRedDown24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
-
-[node name="WindBoxCollider2" parent="CarRedDown24" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
-
-[node name="CarRedDown25" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -670)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 5.5
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="CarRedDown25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
-
-[node name="WindBoxCollider2" parent="CarRedDown25" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
-
-[node name="CarRedDown26" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -470)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 5.5
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="CarRedDown26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
-
-[node name="WindBoxCollider2" parent="CarRedDown26" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
-
-[node name="CarRedDown27" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, -670)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 5.5
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="CarRedDown27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
-
-[node name="WindBoxCollider2" parent="CarRedDown27" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
-
-[node name="CarRedDown23" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -370)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 5.0
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="CarRedDown23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
-
-[node name="WindBoxCollider2" parent="CarRedDown23" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
-
-[node name="CarRedDown17" parent="." instance=ExtResource("19_bki04")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -370)
-script = ExtResource("23_js5k7")
-forward_direction = 0.0
-tweenTravelSpeedRatio = 4.5
-smoothnessArr = Array[float]([0.0])
-startFromSelf = true
-isClosed = false
-snapToStart = true
-isRotate = false
-reverseOnComplete = false
-isVehicle = true
-do_transparency = false
-jumpVelocityRatio = 0.8
-
-[node name="Node3D" type="Node3D" parent="CarRedDown17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
-
-[node name="WindBoxCollider2" parent="CarRedDown17" instance=ExtResource("32_74y4r")]
-transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
-visible = false
-boostDirection = Vector3(-1, 0.3, 0)
-boostPower = 100.0
-speedCap = 300.0
-
-[node name="CarRedDown19" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown19" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -569.9775)
 script = ExtResource("23_js5k7")
 forward_direction = 0.0
@@ -5667,17 +6004,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown19"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown19" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown19" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown28" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown28" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5900, 0, 1630)
 script = ExtResource("23_js5k7")
 forward_direction = 180.0
@@ -5692,17 +6029,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown28"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown28"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown28" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown28" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown31" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown31" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5700, 0, 1630)
 script = ExtResource("23_js5k7")
 forward_direction = 180.0
@@ -5717,17 +6054,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown31"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown31"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown31" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown31" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown29" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown29" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5500, 0, 1630)
 script = ExtResource("23_js5k7")
 forward_direction = 180.0
@@ -5742,17 +6079,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown29"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown29"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown29" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown29" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown30" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown30" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5300, 0, 1630)
 script = ExtResource("23_js5k7")
 forward_direction = 180.0
@@ -5767,17 +6104,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown30"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown30"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown30" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown30" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown20" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown20" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -370)
 script = ExtResource("23_js5k7")
 forward_direction = 0.0
@@ -5792,17 +6129,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown20"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown20"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown20" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown20" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown21" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown21" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5900, 0, 30)
 script = ExtResource("23_js5k7")
 forward_direction = 0.0
@@ -5817,17 +6154,17 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown21"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown21"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown21" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown21" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="CarRedDown22" parent="." instance=ExtResource("19_bki04")]
+[node name="CarRedDown22" parent="Moving Cars" instance=ExtResource("19_bki04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, -370)
 script = ExtResource("23_js5k7")
 forward_direction = 0.0
@@ -5842,18 +6179,187 @@ isVehicle = true
 do_transparency = false
 jumpVelocityRatio = 0.8
 
-[node name="Node3D" type="Node3D" parent="CarRedDown22"]
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown22"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
 
-[node name="WindBoxCollider2" parent="CarRedDown22" instance=ExtResource("32_74y4r")]
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown22" instance=ExtResource("32_74y4r")]
 transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
 visible = false
 boostDirection = Vector3(-1, 0.3, 0)
 boostPower = 100.0
 speedCap = 300.0
 
-[node name="StaticBody3D2" parent="." instance=ExtResource("105_onbwc")]
-transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 3200, -198.8614, 244.77777)
+[node name="CarRedDown16" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -670)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 5.5
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
 
-[node name="DeathBoxCollider" parent="." instance=ExtResource("106_nregq")]
-transform = Transform3D(10448.063, 0, 0, 0, 20, 0, 0, 0, 4212.2803, 3662.063, -215.09615, 88.746155)
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown16" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0
+
+[node name="CarRedDown24" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -470)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 5.5
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown24" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0
+
+[node name="CarRedDown25" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -670)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 5.5
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown25" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0
+
+[node name="CarRedDown26" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5600, 0, -470)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 5.5
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown26" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0
+
+[node name="CarRedDown27" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5800, 0, -670)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 5.5
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2300)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown27" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0
+
+[node name="CarRedDown23" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5200, 0, -370)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 5.0
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown23" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0
+
+[node name="CarRedDown17" parent="Moving Cars" instance=ExtResource("19_bki04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5400, 0, -370)
+script = ExtResource("23_js5k7")
+forward_direction = 0.0
+tweenTravelSpeedRatio = 4.5
+smoothnessArr = Array[float]([0.0])
+startFromSelf = true
+isClosed = false
+snapToStart = true
+isRotate = false
+reverseOnComplete = false
+isVehicle = true
+do_transparency = false
+jumpVelocityRatio = 0.8
+
+[node name="Node3D" type="Node3D" parent="Moving Cars/CarRedDown17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
+
+[node name="WindBoxCollider2" parent="Moving Cars/CarRedDown17" instance=ExtResource("32_74y4r")]
+transform = Transform3D(-8.742278e-07, 0, 20, 0, 20, 0, -20, 0, -8.742278e-07, 0, 3.9447823, 63.281174)
+visible = false
+boostDirection = Vector3(-1, 0.3, 0)
+boostPower = 100.0
+speedCap = 300.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4d324vip84gg"]
+[gd_scene load_steps=12 format=3 uid="uid://b4d324vip84gg"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_n0w1m"]
 [ext_resource type="Texture2D" uid="uid://b7o4f0cipak1f" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS Decorations S7/Tree1.png" id="2_jaq3t"]
@@ -9,22 +9,37 @@ render_priority = 0
 shader = ExtResource("3_5r67k")
 shader_parameter/tex = ExtResource("2_jaq3t")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jaq3t"]
-render_priority = 0
-shader = ExtResource("3_5r67k")
-shader_parameter/tex = ExtResource("2_jaq3t")
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_5r67k"]
 size = Vector3(3, 22.5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umcp0"]
 size = Vector3(17, 2.5, 10)
 
+[sub_resource type="Curve" id="Curve_n0w1m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.21182267, 1), 0.0, 0.0, 0, 0, Vector2(0.50246304, 0.6516854), 0.0, 0.0, 0, 0, Vector2(0.73399013, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_jaq3t"]
+curve = SubResource("Curve_n0w1m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n0w1m"]
+emission_shape = 3
+emission_box_extents = Vector3(10.435, 12.35, 1)
+angle_min = -26.99999
+angle_max = 72.70001
+gravity = Vector3(4.205, -2.96, 0)
+scale_curve = SubResource("CurveTexture_jaq3t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaq3t"]
+albedo_color = Color(0, 0.5367804, 0.27607387, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5r67k"]
+material = SubResource("StandardMaterial3D_jaq3t")
+
 [node name="Tree1" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_n0w1m")
-active = true
 top_filename = ExtResource("2_jaq3t")
 front_filename = ExtResource("2_jaq3t")
 width = 25.0
@@ -51,7 +66,6 @@ region_rect = Rect2(0, 0, 512, 256)
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(4.8828125, 0, 4.2686904e-07, 2.1343452e-07, 1.9106855e-15, -9.765625, 0, 1, 1.8659038e-14, 0, 12.5, 25)
-material_overlay = SubResource("ShaderMaterial_jaq3t")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -68,3 +82,10 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 20)
 shape = SubResource("BoxShape3D_umcp0")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.738857, 24)
+amount = 3
+lifetime = 6.779999999999999
+process_material = SubResource("ParticleProcessMaterial_n0w1m")
+draw_pass_1 = SubResource("QuadMesh_5r67k")
