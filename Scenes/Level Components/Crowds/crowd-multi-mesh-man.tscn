@@ -1,17 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://oai45nrav4ov"]
-
-[ext_resource type="Texture2D" uid="uid://b02bnlt4evmxu" path="res://Assets/Art/temp player.png" id="1_bflqk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5n30r"]
-albedo_texture = ExtResource("1_bflqk")
-
-[sub_resource type="QuadMesh" id="QuadMesh_jjofm"]
-material = SubResource("StandardMaterial3D_5n30r")
+[gd_scene load_steps=2 format=3 uid="uid://oai45nrav4ov"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_31vse"]
 transform_format = 1
 use_colors = true
-mesh = SubResource("QuadMesh_jjofm")
+use_custom_data = true
 
 [node name="CrowdMultiMeshMan" type="MultiMeshInstance3D"]
 multimesh = SubResource("MultiMesh_31vse")

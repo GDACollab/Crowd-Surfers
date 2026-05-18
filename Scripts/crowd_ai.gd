@@ -567,7 +567,7 @@ func multi_mesh_creation() -> void:
 	multi_mesh.use_custom_data = true;
 	
 	var q_mesh = QuadMesh.new()
-	q_mesh.size = Vector2(16, 16)
+	q_mesh.size = Vector2(20, 20)
 	multi_mesh.mesh = q_mesh
 	multi_mesh.use_colors = true
 	#mat.set_shader_parameter("texture_array",crowdMemberAnimations[0]);
@@ -615,7 +615,7 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_space(rid, get_world_3d().space)
 		
 		var shape = PhysicsServer3D.capsule_shape_create() # I'm not too sure on this
-		PhysicsServer3D.shape_set_data(shape, {"radius": 4.0, "height": 16.0})
+		PhysicsServer3D.shape_set_data(shape, {"radius": 4.0, "height": 20.0})
 		PhysicsServer3D.body_add_shape(rid, shape)
 		
 		var radi = circum / 4.0
