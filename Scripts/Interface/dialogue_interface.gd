@@ -140,6 +140,8 @@ func _do_typewriter_text():
 		
 		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter_voice(
 			dialogueText, character_name, letter_index, alphanumerics_count, textSpeedScale)
+			
+		if (should_increment_alphanumeric_counter): alphanumerics_count += 1
 		
 		dialogueLabel.visible_characters += 1
 		await get_tree().create_timer(0.02).timeout
