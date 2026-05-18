@@ -17,6 +17,7 @@ extends Control
 @export var background_acceleration_speed: float = 0.03
 @export var background_max_speed: float = 0.3
 @export var time_between_target_changes: float = 3
+@export var far_background_move_percentage: float = 0.7
 
 var transitioning: bool = false
 
@@ -44,7 +45,7 @@ func _process(delta: float) -> void:
 	if (velocity.length() > background_max_speed):
 		velocity = velocity.normalized() * background_max_speed
 	backgrounds_closer.position += velocity
-	backgrounds_farther.position = start_background_position.lerp(backgrounds_closer.position, 0.8)
+	backgrounds_farther.position = start_background_position.lerp(backgrounds_closer.position, far_background_move_percentage)
 	
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
