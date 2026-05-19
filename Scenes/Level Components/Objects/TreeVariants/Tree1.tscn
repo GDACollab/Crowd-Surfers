@@ -1,13 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4d324vip84gg"]
+[gd_scene load_steps=10 format=3 uid="uid://b4d324vip84gg"]
 
-[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_n0w1m"]
+[ext_resource type="Material" uid="uid://deu2578yan1xj" path="res://Assets/Materials/mat_tree.tres" id="1_wu4b0"]
 [ext_resource type="Texture2D" uid="uid://b7o4f0cipak1f" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS Decorations S7/Tree1.png" id="2_jaq3t"]
-[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="3_5r67k"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0w1m"]
-render_priority = 0
-shader = ExtResource("3_5r67k")
-shader_parameter/tex = ExtResource("2_jaq3t")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5r67k"]
 size = Vector3(3, 22.5, 5)
@@ -39,38 +33,14 @@ material = SubResource("StandardMaterial3D_jaq3t")
 [node name="Tree1" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-script = ExtResource("1_n0w1m")
-top_filename = ExtResource("2_jaq3t")
-front_filename = ExtResource("2_jaq3t")
-width = 25.0
-length = 25.0
-height = 25.0
-z_pad_main_top = 20.0
-x_pad_main_left = 11.0
-x_pad_main_right = 11.0
-z_pad_plat_top = 15.0
-x_pad_plat_left = 4.0
-x_pad_plat_right = 4.0
-front_t_cutoff = 256.0
-top_b_cutoff = 256.0
 
-[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(4.8828125, 0, 0, 0, 1, 0, 0, 0, 9.765625, 0, 25, 12.5)
-material_overlay = SubResource("ShaderMaterial_n0w1m")
+[node name="Tree Sprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(4.8828125, 0, 4.2686904e-07, 2.1343452e-07, 1.9106855e-15, -9.765625, 0, 1, 1.8659038e-14, 0, 24.94933, 25)
+material_override = ExtResource("1_wu4b0")
 axis = 1
 shaded = true
 alpha_cut = 1
 texture = ExtResource("2_jaq3t")
-region_enabled = true
-region_rect = Rect2(0, 0, 512, 256)
-
-[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(4.8828125, 0, 4.2686904e-07, 2.1343452e-07, 1.9106855e-15, -9.765625, 0, 1, 1.8659038e-14, 0, 12.5, 25)
-axis = 1
-shaded = true
-alpha_cut = 1
-texture = ExtResource("2_jaq3t")
-region_enabled = true
 region_rect = Rect2(0, 256, 512, 256)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
