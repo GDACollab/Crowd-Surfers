@@ -21,6 +21,7 @@ var selected_level : int = 0
 var post_level := false
 var next_scene : String
 var voicemail_history : Array[String]
+var current_voicemail_knot : String
 
 func increase_main_story_progress():
 	if(main_story_progress == 2):
@@ -113,3 +114,4 @@ func reset_story():
 	main_story_complete = false
 	for s in story_arcs_progress:
 		s = 0
+	voicemail_history.clear()
