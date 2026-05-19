@@ -18,7 +18,7 @@ extends Node3D
 const CAP_RADIUS = 4
 const CAP_HEIGHT = 16
 const HEIGHT_RESET = -50
-const ε: float = 0.1
+@export var ε: float = 1.0
 
 # VARIABLES RIDS
 var visual_scale = 1.0
