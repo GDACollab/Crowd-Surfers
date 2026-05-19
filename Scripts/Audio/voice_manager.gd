@@ -2,40 +2,54 @@ class_name VoiceManager
 extends Node
 
 ## Determines how often a character voice sound plays (every 1, 2, 3, etc. letters)
-@export var typewriter_voice_frequency : int = 2
+@export var typewriter_voice_frequency := 2
 
-## TODO: deprecate this dictionary and change FMOD voice parameter values to character names rather than voice archetypes
-var character_voice : Dictionary = {
-	"default": "default",
-	"Chef": "deep",
-	"Minny": "deep",
-	"Nyx": "andro",
-	"Pavo": "andro"
+const PUNCTUATION_PITCHES := {
+	"?": 1.0,
+	".": -1.0,
+	"!": 0.5
 }
 
+var punctuation_regexes := {
+	"?": RegEx.create_from_string("[?]+"),
+	".": RegEx.create_from_string("[.]+"),
+	"!": RegEx.create_from_string("[!]+")
+}
+
+var letter_regex := RegEx.create_from_string("[A-Za-z]")
+
 func _handle_typewriter_voice(dialogue_text: String, character: String, letter_index: int, alphanumerics_count: int, textSpeedScale: float) -> bool:
-	## `typewriter_voice_frequency` scaled respective to text speed
-	var typewriter_voice_frequency_scaled = floor(typewriter_voice_frequency * textSpeedScale) as int
+	var frequency_scaled := floor(typewriter_voice_frequency * textSpeedScale) as int
 	
-	if (alphanumerics_count % typewriter_voice_frequency_scaled == 0):
-		var should_increment_alphanumeric_counter = true
-		var letter = dialogue_text[letter_index]
-		var letter_sound = FmodServer.create_event_instance("event:/SFX/CHAR/typewriter_voice/typewriter_voice_hub")
+	if alphanumerics_count % frequency_scaled != 0:
+		return true
+	
+	var should_increment := true
+	var letter := dialogue_text[letter_index]
+	var letter_sound := FmodServer.create_event_instance("event:/SFX/CHAR/voiceover/typewriter/vo_typewriter_hub")
+
+	letter_sound.set_parameter_by_name_with_label("voice", character.to_lower(), false)
+
+	if letter_regex.search(letter): 
+		letter_sound.set_parameter_by_name_with_label("letter", letter.to_lower(), false )
+	else: 
+		letter_sound.set_parameter_by_name_with_label("letter", "punc", false )
+		should_increment = false
+	
+	# Nearby punctuation pitch influence
+	for punctuation in punctuation_regexes:
+		var regex: RegEx = punctuation_regexes[punctuation]
+		var pitch: float = PUNCTUATION_PITCHES[punctuation]
 		
-		letter_sound.set_parameter_by_name_with_label("voice", character_voice[character], false)
+		var matches = regex.search_all(dialogue_text, letter_index)
 		
-		# regex match
-		if (RegEx.create_from_string("[A-Za-z]").search(letter)): 
-			letter_sound.set_parameter_by_name_with_label("letter", letter.to_lower(), false)
-		
-		elif (RegEx.create_from_string("[0-9]").search(letter)): 
-			letter_sound.set_parameter_by_name_with_label("letter", letter, false)
+		for match in matches:
+			var match_start := match.get_start()
 			
-		else:
-			letter_sound.set_parameter_by_name_with_label("letter", "punc", false)
-			should_increment_alphanumeric_counter = false
-		
-		letter_sound.start()
-		return should_increment_alphanumeric_counter
-		
-	return true
+			if (letter_index >= (match_start - 4)) and (letter_index < match_start): 
+				letter_sound.set_parameter_by_name("letter_pitch", pitch)
+				break
+	
+	letter_sound.start()
+	
+	return should_increment

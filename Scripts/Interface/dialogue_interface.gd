@@ -51,7 +51,7 @@ var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
 var awaitingTags := false
 
-func _ready() -> void:
+func _ready() -> void:	
 	currentStory = Inky.GetCurrentStory()
 	$"Left Character Portrait".find_child("Portrait Image").texture = defaultPortait
 	_load_main_panels()
