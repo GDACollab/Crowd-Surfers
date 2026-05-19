@@ -4,6 +4,7 @@ extends Node
 var master_volume: float = 1.0;
 var music_volume: float = 1.0;
 var sfx_volume: float = 1.0;
+var voice_volume: float = 1.0;
 	
 func update_fmod_volumes():
 	#For some reason the busses cant be @onready, it didnt work when switching between (or reloading) scenes
@@ -16,11 +17,13 @@ func update_fmod_volumes():
 	var master_vca: FmodVCA = FmodServer.get_vca("vca:/MASTER")
 	var music_vca: FmodVCA = FmodServer.get_vca("vca:/MUS")
 	var sfx_vca: FmodVCA = FmodServer.get_vca("vca:/SFX")
+	var voice_vca: FmodVCA = FmodServer.get_vca("vca:/VO")
 
 	if (master_vca.is_valid()):
 		master_vca.set("volume", master_volume)
 		music_vca.set("volume", music_volume)
 		sfx_vca.set("volume", sfx_volume)
+		voice_vca.set("volume", voice_volume)
 		
 	else:
 		return
