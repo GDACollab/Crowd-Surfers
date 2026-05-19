@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerGroup" id="{4625d4ca-5e81-4ce1-be73-f1381128ad1e}">
 		<property name="volume">
-			<value>6</value>
+			<value>9</value>
 		</property>
 		<property name="name">
 			<value>MUS</value>
@@ -22,9 +22,24 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f28bb125-e030-40e2-b8b9-1c7d381455ca}">
 		<relationship name="effects">
+			<destination>{c1db438a-8dec-4f28-9a4b-b4647280e595}</destination>
 			<destination>{3414d699-709c-4dff-9164-15dfd09746e6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{085f83bd-82a9-4861-a9cf-bdbd7bdf86de}" />
+	<object class="CompressorEffect" id="{c1db438a-8dec-4f28-9a4b-b4647280e595}">
+		<property name="threshold">
+			<value>-9</value>
+		</property>
+		<property name="ratio">
+			<value>1.5</value>
+		</property>
+		<property name="releaseTime">
+			<value>680</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{1798afad-7730-4c9c-a6a6-be969561242d}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{3414d699-709c-4dff-9164-15dfd09746e6}" />
 </objects>

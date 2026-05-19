@@ -19,6 +19,7 @@ func _ready():
 	# kill_all_persistent("event:/MUS/title")
 	# print(registry)
 	
+# TODO: Replace with a version that doesn't check if the scene has changed every single frame
 func _process(_delta):
 	var current_scene = get_tree().current_scene
 
@@ -57,6 +58,22 @@ func kill_persistent(key: String) -> bool:
 		return registry.erase(key)
 		
 	return returnVal
+	
+# Safely get a persistent instance from a key
+# Returns null if key/value pair not found
+func get_persistent_instance(key: String) -> FmodEvent:
+	if registry.has(key):
+		return registry[key]["instance"]
+		
+	return null
+	
+# Safely get a persistent path from a key
+# Returns empty if key/value pair not found
+func get_persistent_path(key: String) -> String:
+	if registry.has(key):
+		return registry[key]["path"]
+		
+	return ""
 
 ## Destroys ALL instances sharing the given path.
 ## Returns true if ALL items were successfully removed, false if any were not.
@@ -76,7 +93,7 @@ func kill_all_persistent(eventPath: String) -> bool:
 			
 	return returnVal
 
-## Returns true if an instance of a given event path exists in registry.
+## Returns true if 1 or multiple instances of a given event path exists in registry.
 func path_exists_in_registry(eventPath: String) -> bool:
 	var returnVal = false
 	

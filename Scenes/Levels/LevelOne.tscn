@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=118 format=3 uid="uid://b6pv0w4ibgj7b"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_hntgb"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="6_hntgb"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="9_uymm0"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="10_f045n"]
-[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="11_cnki7"]
+[ext_resource type="Script" path="res://Scripts/object.gd" id="11_cnki7"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="12_ulmir"]
 [ext_resource type="PackedScene" uid="uid://dw5pqgejh3hvn" path="res://Scenes/Level Components/Objects/building-slug-pizza.tscn" id="13_fjcpu"]
 [ext_resource type="PackedScene" uid="uid://d1ewknvdw2hoo" path="res://Scenes/Level Components/Objects/cable-car-side.tscn" id="14_25gcb"]
@@ -38,7 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="22_pnf6m"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="23_bjm7j"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="23_h72c1"]
-[ext_resource type="Script" uid="uid://dlkijspge77pa" path="res://Scripts/obstacle_movement.gd" id="23_js5k7"]
+[ext_resource type="Script" path="res://Scripts/obstacle_movement.gd" id="23_js5k7"]
 [ext_resource type="Texture2D" uid="uid://bjvohaaj8o0ok" path="res://Assets/Art/ColeDevArt/TutorialBillboard (1).png" id="23_p283n"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="23_wbhui"]
 [ext_resource type="Texture2D" uid="uid://ckvw1wyt5omhr" path="res://Assets/Art/ColeDevArt/TutorialBillboard (2).png" id="24_rkgah"]
@@ -58,7 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="40_fs1go"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="40_iuqee"]
 [ext_resource type="Texture2D" uid="uid://bjurhxilyfs5u" path="res://Assets/Art/MichaelDevArt/ArrowCurve.png" id="41_5g6rg"]
-[ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="41_t6fm4"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/Level_Clear.tscn" id="41_t6fm4"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="42_5l05s"]
 [ext_resource type="Texture2D" uid="uid://d2np0fyt75o8x" path="res://Assets/Art/MichaelDevArt/ArrowStraight.png" id="42_bki04"]
 [ext_resource type="PackedScene" uid="uid://dsx75spajgxig" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/ConeObstacle.tscn" id="46_i0h32"]
@@ -108,7 +108,13 @@
 [ext_resource type="PackedScene" uid="uid://c3napms5mmgre" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/Manhole1.tscn" id="105_onbwc"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="106_nregq"]
 
+[sub_resource type="Curve" id="Curve_5rnn1"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_tyndo"]
+curve = SubResource("Curve_5rnn1")
 
 [sub_resource type="Curve" id="Curve_a3054"]
 _data = [Vector2(0.0049261153, 0), 0.0, 0.0, 0, 0, Vector2(0.35467982, 1), 0.0, 0.0, 0, 0, Vector2(0.7684729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -202,9 +208,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.179878, 0)
 size = Vector3(1000, 500, 1000)
 texture_albedo = ExtResource("3_tyndo")
 modulate = Color(0, 0, 0, 0.52156866)
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_bjeon")]
 player = NodePath("../Player")

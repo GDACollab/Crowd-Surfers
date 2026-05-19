@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=14 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cvwdknj7n8u5o" path="res://Scenes/Dialogue Interface/character_portrait.tscn" id="4_wemfb"]
 [ext_resource type="Material" uid="uid://di7ysi5m6lg7" path="res://Scenes/Dialogue Interface/character_portrait_material.tres" id="5_tk2da"]
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
+[ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="6_4ybge"]
 
 [sub_resource type="Gradient" id="Gradient_tk2da"]
 
@@ -83,6 +84,9 @@ upperDialogueBoxHeight = 50.0
 upperDialogueBoxScale = Vector2(0.4, 0.4)
 lowerDialogueBoxScale = Vector2(0.65, 0.65)
 portraitOutlineMaterial = ExtResource("5_tk2da")
+
+[node name="VoiceManager" type="Node2D" parent="."]
+script = ExtResource("6_4ybge")
 
 [node name="Fade Panel" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 0)

@@ -32,10 +32,14 @@ func _ready():
 			note.position.y += music_notes_move_distance
 		index += 1
 	
-	if (!PersistentAudio.registry.has("mus_title")):
-		title_music = PersistentAudio.create_persistent("mus_title", "event:/MUS/title", true)
+	if (!Audio.registry.has("mus_title")):
+		title_music = Audio.create_persistent("mus_title", "event:/MUS/title")
 		title_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
 		title_music.start()
+		
+	else:
+		title_music = Audio.get_persistent_instance("mus_title")
+		title_music.set_parameter_by_name("muffling", 0.)
 
 func _process(delta: float):	
 	title_image.position.y = sin((timer * 2 * PI) / hover_time) * hover_magnitude + title_image_start_y
@@ -60,6 +64,10 @@ func _animate_notes() -> void:
 	
 func _on_credits_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/Credits/credits.tscn"))
+	title_music.set_parameter_by_name("muffling", 1.)
+	# Audio.kill_persistent("mus_title")
 
 func _on_play_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
+	# title_music.set_parameter_by_name("muffling", 1.)
+	Audio.kill_persistent("mus_title")
