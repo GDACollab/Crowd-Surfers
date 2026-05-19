@@ -19,12 +19,39 @@ var occluding := {}
 var pyramid_shape := ConvexPolygonShape3D.new()
 var query := PhysicsShapeQueryParameters3D.new()
 
+# Aar Camera Shake Variables
+@export var RANDOM_SHAKE_STRENGTH: float = 30.0
+@export var SHAKE_DECAY_RATE: float = 5.0
+
+@export var NOISE_SHAKE_SPEED: float = 30.0
+@export var NOISE_SHAKE_STRENGTH: float = 60.0
+@export var NOISE_PERIOD: float = 2.0
+#@export var shake_interval: float = 0.05
+#@export var shake_duration: float = 1.0
+var noise_i: float = 0.0
+var shake_strength: float = 0.0
+var init_offset
+var shake_tween: Tween
+@onready var rand = RandomNumberGenerator.new()
+@onready var noise = FastNoiseLite.new()
+
 func _ready() -> void:
 	query.collide_with_bodies = true
 	query.collide_with_areas = false
 	query.exclude = [player.get_rid()]
+	rand.randomize()
+	
+	init_offset = self.offset
+	noise.seed = rand.randi()
+	noise.frequency = 1.0 / NOISE_PERIOD
 
 func _process(delta: float) -> void:
+	
+	# Camera Shake
+	shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
+	#self.offset = get_XZ_offset_3D() + init_offset
+	self.offset = get_noise_offset_3D(delta) + init_offset
+	
 	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
 	var v := player.velocity
 	lead_smoothed = lead_smoothed.lerp(v.normalized() * sqrt(v.length() + 1.0) * 3.0, 1.0 - exp(-follow_speed * delta))
@@ -109,3 +136,40 @@ func restore_sprite(sprite: GeometryInstance3D, original: Material) -> void:
 	if is_instance_valid(sprite):
 		sprite.material_override = original
 	occluding.erase(sprite)
+	
+func apply_shake() -> void:
+	#shake_strength = RANDOM_SHAKE_STRENGTH
+	shake_strength = NOISE_SHAKE_STRENGTH
+
+func get_random_offset_2D() -> Vector2:
+	return Vector2(
+		rand.randf_range(-shake_strength, shake_strength),
+		rand.randf_range(-shake_strength, shake_strength)
+	)
+
+func get_XZ_offset_3D() -> Vector3:
+	var XZRand2D = get_random_offset_2D()
+	return Vector3(
+		XZRand2D.x,
+		0,
+		XZRand2D.y
+	)
+
+func get_noise_offset_2D(delta: float) -> Vector2:
+	noise_i += delta * NOISE_SHAKE_SPEED
+	return Vector2(
+		noise.get_noise_2d(1, noise_i) * shake_strength,
+		noise.get_noise_2d(100, noise_i) * shake_strength
+	)
+	
+func get_noise_offset_3D(delta: float) -> Vector3:
+	var XZNoise2D = get_noise_offset_2D(delta)
+	return Vector3(
+		XZNoise2D.x,
+		0,
+		XZNoise2D.y
+	)
+
+func _input(event):
+	if event.is_action_pressed("aar_camera_debug"):
+		apply_shake()
