@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=179 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://d3e32r174a02j" path="res://Assets/Art/PlayerAnimationFrames/Crash/Back/crash_B0001.png" id="2_kf3bj"]
@@ -165,6 +165,7 @@
 [ext_resource type="Texture2D" uid="uid://cgox4d7ttsxpo" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0004.png" id="162_q208r"]
 [ext_resource type="Texture2D" uid="uid://ce2p08nqj4r08" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0005.png" id="163_wdytq"]
 [ext_resource type="Shader" uid="uid://d058hc0b4rxns" path="res://addons/GPUTrail/shaders/trail.gdshader" id="165_q208r"]
+[ext_resource type="Script" uid="uid://d2sgne7cvwbli" path="res://Scripts/Audio/skate_audio.gd" id="165_x80xa"]
 [ext_resource type="Shader" uid="uid://ccc1807xplo8e" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="166_wdytq"]
 [ext_resource type="Texture2D" uid="uid://dw8hrkutvar7a" path="res://Assets/Art/VFX/speed_gradient.png" id="167_wdytq"]
 [ext_resource type="Script" uid="uid://f280k613n5v8" path="res://addons/GPUTrail/GPUTrail3D.gd" id="167_x80xa"]
@@ -1008,6 +1009,11 @@ event_guid = "{37e4c1ff-9cd4-4400-b1c5-8e6f4e784d62}"
 [node name="LandingSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/landing"
 event_guid = "{ccf34438-e881-4f0c-92ef-2cdeb64532c8}"
+
+[node name="SkateSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/skate_step"
+event_guid = "{127abfb2-3972-47fc-92dc-455459d8d55a}"
+script = ExtResource("165_x80xa")
 
 [node name="VelocityLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.188904, 27.012472, 0)
