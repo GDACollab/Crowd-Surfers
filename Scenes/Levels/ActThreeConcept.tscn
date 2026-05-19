@@ -1965,6 +1965,9 @@ boostPower = 100.0
 [node name="InvisibleWall2" parent="SpecialComponentsGroup" instance=ExtResource("54_m3ff1")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, -1300)
 
+[node name="InvisibleWall3" parent="SpecialComponentsGroup" instance=ExtResource("54_m3ff1")]
+transform = Transform3D(-2, 0, -1.1920929e-07, 0, 1, 0, 2.3841858e-07, 0, -1, 750, 0, -1600)
+
 [node name="DecorationsGroup" type="Node3D" parent="."]
 
 [node name="AlleywayDecorations" type="Node3D" parent="DecorationsGroup"]
@@ -2076,6 +2079,7 @@ visible = false
 
 [node name="BackgroundFloor" parent="." instance=ExtResource("4_rscd0")]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 439.645, -50, -3165.355)
+visible = false
 
 [node name="CrossWalkCrowdNavRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rbx1u")
