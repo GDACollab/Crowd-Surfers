@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{1b5ded23-d7fd-474d-b871-89c65f79a7b1}">
-		<property name="note">
-			<value>am thinking the question quotient can modulate the pitch</value>
-		</property>
+		<property name="note" />
 		<property name="name">
 			<value>voice_andro</value>
 		</property>
@@ -36,9 +34,6 @@
 		</relationship>
 		<relationship name="parameters">
 			<destination>{5b171939-9ab9-463c-a16b-76a85b2b673a}</destination>
-			<destination>{91a2ccc0-a840-4664-9e03-7728be64115f}</destination>
-			<destination>{33b812a8-051e-4f3c-9c42-a5ddd1146bed}</destination>
-			<destination>{054cd911-1de6-4e35-9bb9-067890fd3052}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{8668d775-8c3c-4506-aacc-33a24114f68d}">
@@ -59,7 +54,11 @@
 			<destination>{70aae2aa-d4ce-4461-86dd-8334b97a9160}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{9abfe015-f5b7-4654-8c17-3374279abb63}" />
+	<object class="EventAutomatableProperties" id="{9abfe015-f5b7-4654-8c17-3374279abb63}">
+		<property name="maxVoices">
+			<value>2</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{684ab9ba-c5d8-4246-a6fe-b5b6c7c76ac5}" />
 	<object class="GroupTrack" id="{0e3650aa-90ca-47da-95e1-3c3b8b094dfd}">
 		<relationship name="modules">
@@ -130,21 +129,6 @@
 		</relationship>
 		<relationship name="preset">
 			<destination>{3d228554-d4bd-4678-93d5-3e3bbb650e79}</destination>
-		</relationship>
-	</object>
-	<object class="ParameterProxy" id="{91a2ccc0-a840-4664-9e03-7728be64115f}">
-		<relationship name="preset">
-			<destination>{060cb142-17c9-46ba-b117-d90674018339}</destination>
-		</relationship>
-	</object>
-	<object class="ParameterProxy" id="{33b812a8-051e-4f3c-9c42-a5ddd1146bed}">
-		<relationship name="preset">
-			<destination>{5daa5190-c323-458b-b2dc-4f0d2df1c189}</destination>
-		</relationship>
-	</object>
-	<object class="ParameterProxy" id="{054cd911-1de6-4e35-9bb9-067890fd3052}">
-		<relationship name="preset">
-			<destination>{4aa2a202-d1d8-417d-9dd8-9227d77a0e97}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{94454711-5bf8-43bc-a542-df1bf64ddde4}">
