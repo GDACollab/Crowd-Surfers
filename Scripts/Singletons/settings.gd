@@ -18,7 +18,6 @@ func update_fmod_volumes():
 	var sfx_vca: FmodVCA = FmodServer.get_vca("vca:/SFX")
 
 	if (master_vca.is_valid()):
-		print("Master volume: " + str(master_vca.get("volume")))
 		master_vca.set("volume", master_volume)
 		music_vca.set("volume", music_volume)
 		sfx_vca.set("volume", sfx_volume)
