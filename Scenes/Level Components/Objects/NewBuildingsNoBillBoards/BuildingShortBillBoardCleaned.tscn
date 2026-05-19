@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://d00tp7vqfo753"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_151ib"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_lt27v"]
+[ext_resource type="Texture2D" uid="uid://tw66804b2cg2" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS MoreNewBuildings S7/Building3 Clean S7.png" id="3_8vssp"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_nvl4i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vssp"]
+render_priority = 0
+shader = ExtResource("4_nvl4i")
+shader_parameter/tex = ExtResource("3_8vssp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxr3j"]
+size = Vector3(100, 135, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lddoq"]
+size = Vector3(100, 15, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_151ib")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
+script = ExtResource("2_lt27v")
+front_filename = ExtResource("3_8vssp")
+width = 100.0
+length = 100.0
+height = 150.0
+front_spr_pad_top = 12.0
+front_spr_pad_bottom = 7.0
+front_spr_pad_left = 7.0
+front_spr_pad_right = 7.0
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(7.4558535, 0, 2.514372e-07, 3.2590572e-07, 1.9106855e-15, -5.7522125, 0, 1, 1.0990669e-14, 0, 77.5, 100)
+material_overlay = SubResource("ShaderMaterial_8vssp")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_8vssp")
+region_enabled = true
+region_rect = Rect2(0, 0, 1529, 2938)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.5, 50)
+shape = SubResource("BoxShape3D_uxr3j")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.5, 50)
+shape = SubResource("BoxShape3D_lddoq")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

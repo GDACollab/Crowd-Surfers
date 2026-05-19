@@ -6,14 +6,17 @@ extends Node3D
 var isplayer: bool = false
 var player: CharacterBody3D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (isplayer):
-		if boostDirection.y != 0:
-			player.touched_windbox = true
 		if (player.velocity.length() < speedCap):
-			player.windbox_boost = boostDirection.normalized() * boostPower
-			player.player_sprite.play_animation("jump")
+			if boostDirection.y != 0:
+				player.transition_to(player.States.AIR)
+				player.player_sprite.play_animation("jump")
+			if((speedCap - player.velocity.length()) > boostPower):
+				player.windbox_boost = boostDirection.normalized() * boostPower
+			else:
+				player.windbox_boost = boostDirection.normalized() * speedCap - player.velocity
+			player.touched_windbox = true
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if (body.name == "Player"):
@@ -25,3 +28,6 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.name == "Player"):
 		isplayer = false
 		player.touched_windbox = false
+		var new_speed: float = Vector3(player.velocity.x, 0, player.velocity.z).dot(boostDirection.normalized())
+		if player.max_speed < new_speed: player.max_speed = new_speed
+		if player.max_speed > speedCap: player.max_speed = speedCap

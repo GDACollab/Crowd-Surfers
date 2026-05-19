@@ -48,6 +48,33 @@ func _ready() -> void:
 		# Create the label node set its text and other properties
 		var label: RichTextLabel = credits_text_scene.instantiate()
 		label.text = text
+		
+		if (text.contains("|||")):
+			# this is the stupidest code ive ever made why is godot doing this to me
+			var font: Font = label.get_theme_font("normal_font")
+			
+			var first_half_text: String = text.substr(text.find("]") + 1, text.find("|||") - text.find("]") - 1)
+			var first_half_text_size: Vector2 = font.get_string_size(first_half_text, HORIZONTAL_ALIGNMENT_CENTER, -1, label.get_theme_font_size("font_size"))
+			
+			var second_half_text: String = text.substr(text.find("|||") + 3, text.find("[", text.find("|||") + 3) - (text.find("|||") + 3))
+			var second_half_text_size: Vector2 = font.get_string_size(second_half_text, HORIZONTAL_ALIGNMENT_CENTER, -1, label.get_theme_font_size("font_size"))
+			
+			var move_distance: float = second_half_text_size.x - first_half_text_size.x
+		
+			#thin space character (U+2009)
+			var space_size: Vector2 = font.get_string_size(" ", HORIZONTAL_ALIGNMENT_CENTER, -1, label.get_theme_font_size("font_size"))
+			var num_spaces_to_add: int = floor(move_distance / space_size.x)
+			
+			if (num_spaces_to_add < 0):
+				num_spaces_to_add *= -1
+				for i in range(num_spaces_to_add):
+					text = text.insert(text.find("[/font_size]"), " ")
+			else:
+				for i in range(num_spaces_to_add):
+					text = text.insert(text.find("]") + 1, " ")
+			label.text = text
+			print(text)
+			
 		# Add label as a child
 		credits_text_container.add_child(label)
 		

@@ -1,0 +1,92 @@
+[gd_scene load_steps=20 format=3 uid="uid://d4kauo4x7sj2s"]
+
+[ext_resource type="Texture2D" uid="uid://doq7okmrbfde4" path="res://Assets/Art/VFX/Glide/Glide1.png" id="1_2sb8y"]
+[ext_resource type="Texture2D" uid="uid://bw81a7vc6381s" path="res://Assets/Art/VFX/Glide/Glide2.png" id="2_hd30k"]
+[ext_resource type="Texture2D" uid="uid://cghgfu51al6n" path="res://Assets/Art/VFX/Glide/Glide3.png" id="3_h1euw"]
+[ext_resource type="Texture2D" uid="uid://bueksyyay65dk" path="res://Assets/Art/VFX/Glide/Glide4.png" id="4_fp583"]
+[ext_resource type="Texture2D" uid="uid://du76u2hpumhgj" path="res://Assets/Art/VFX/Glide/Glide5.png" id="5_d2wbv"]
+[ext_resource type="Texture2D" uid="uid://cpcjevawpbbq6" path="res://Assets/Art/VFX/Glide/Glide6.png" id="6_g485h"]
+[ext_resource type="Texture2D" uid="uid://bc7pj5ch6ljvx" path="res://Assets/Art/VFX/Glide/Glide7.png" id="7_181gv"]
+[ext_resource type="Texture2D" uid="uid://jlv1ggny4bic" path="res://Assets/Art/VFX/Glide/Glide8.png" id="8_km0ov"]
+[ext_resource type="Texture2D" uid="uid://u32nmglhd1yo" path="res://Assets/Art/VFX/Glide/Glide9.png" id="9_dvvaj"]
+[ext_resource type="Texture2D" uid="uid://baxhsdgh0rnul" path="res://Assets/Art/VFX/Glide/Glide10.png" id="10_4edqx"]
+[ext_resource type="Texture2D" uid="uid://cd1dotc5ogecq" path="res://Assets/Art/VFX/Glide/Glide11.png" id="11_popdi"]
+[ext_resource type="Texture2D" uid="uid://djroaavpfigcl" path="res://Assets/Art/VFX/Glide/Glide12.png" id="12_q7it6"]
+[ext_resource type="Texture2D" uid="uid://b7a5efhdel517" path="res://Assets/Art/VFX/Glide/Glide13.png" id="13_sb0sl"]
+[ext_resource type="Texture2D" uid="uid://blmfgso1f4tqq" path="res://Assets/Art/VFX/Glide/Glide14.png" id="14_sru0j"]
+[ext_resource type="Texture2D" uid="uid://dt10duvw4abwj" path="res://Assets/Art/VFX/Glide/Glide15.png" id="15_d0dxy"]
+[ext_resource type="Texture2D" uid="uid://dnadmhi72fthc" path="res://Assets/Art/VFX/Glide/Glide16.png" id="16_7s3wf"]
+[ext_resource type="Texture2D" uid="uid://c64rs61cv4x" path="res://Assets/Art/VFX/Glide/Glide17.png" id="17_2uxtd"]
+[ext_resource type="Texture2D" uid="uid://dwycvskdyr0d6" path="res://Assets/Art/VFX/Glide/Glide18.png" id="18_cfyyx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drrt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2sb8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hd30k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h1euw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fp583")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d2wbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g485h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_181gv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_km0ov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dvvaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4edqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_popdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q7it6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_sb0sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sru0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_d0dxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7s3wf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2uxtd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cfyyx")
+}],
+"loop": false,
+"name": &"glide",
+"speed": 15.0
+}]
+
+[node name="GlideVFX" type="AnimatedSprite3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shaded = true
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_drrt7")
+animation = &"glide"
+autoplay = "glide"
+frame = 17
+frame_progress = 1.0

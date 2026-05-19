@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://2ajjg5jt3kvq"]
+[gd_scene load_steps=38 format=3 uid="uid://2ajjg5jt3kvq"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_tkq46"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_weynu"]
@@ -32,6 +32,11 @@
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="30_totla"]
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="31_stbqi"]
 [ext_resource type="PackedScene" uid="uid://ds0yxmc0r0nog" path="res://Scenes/Level Components/SpecialObjects/slow_pad_collider.tscn" id="32_tkq46"]
+[ext_resource type="PackedScene" uid="uid://gvypmi6dyu1u" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle1.tscn" id="33_78nps"]
+[ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="33_weynu"]
+[ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="34_78nps"]
+[ext_resource type="PackedScene" uid="uid://b0kx67g7eqlsl" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle3.tscn" id="36_qouoj"]
+[ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="38_333di"]
 
 [node name="ReferenceScene" type="Node3D" groups=["Crowd"]]
 
@@ -347,3 +352,18 @@ light_specular = 0.0
 
 [node name="SlowPadCollider" parent="." instance=ExtResource("32_tkq46")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 175, 0, 500)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("33_78nps")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 161.95184, 1, 560.5589)
+
+[node name="StaticBody3D2" parent="." instance=ExtResource("33_weynu")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 12.509567, 1, 581.5205)
+
+[node name="StaticBody3D3" parent="." instance=ExtResource("36_qouoj")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -46.814972, 1, 656.402)
+
+[node name="StaticBody3D4" parent="." instance=ExtResource("34_78nps")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 57.29071, 1, 646.6416)
+
+[node name="StaticBody3D5" parent="." instance=ExtResource("38_333di")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 379.54895, 1, 517.35876)

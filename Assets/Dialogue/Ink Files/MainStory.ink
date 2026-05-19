@@ -38,15 +38,16 @@ Now get to work! The clock's ticking! #speaker:Sam
 ->END
 
 ===main_act1_scene2===
-PAVO Voicemail
-*[Respond]
+Your phone starts buzzing
+Hey, diva! I wanted to thank you, whoever you are, for the pizza. So do call me back! #speaker:Pavo
+Thank your boss while you’re at it, too. He owes me a call! #speaker:Pavo
+Link us up, and I’ll make sure that music of yours reaches the ears of all my fans #speaker:Pavo #anim:Laugh
+*[Call Back]
     <- Pavo_act1
 *[Ignore]
-    You ignore the call
--Time to head back #fade:out
-\*You return to the pizzeria, worn out from a long day of work*
-I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #speaker:Slip #anim:Shake #voiced:yes
-Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #voiced:yes
+   You send the call to voicemail and head back #speaker:None
+-I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #fade:out #vo:example_bank #speaker:Slip #anim:Shake #vo:play
+Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #vo:play
 But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous
 Now why would you say that? It is only 6 P.M- #speaker:Sam
 ... #speaker:Sam
@@ -125,8 +126,53 @@ Replay Mode is now unlocked.
 ->END
 
 ===Pavo_act1===
-Hi this is Pavo
-*You hang up*
+[Phone rings/vibrates]
+
+Yello? #speaker:Slip #expression:Default #anim:Spin
+
+Hi! I just wanted to personally thank you for the pizza, it smells delicious! #speaker:Pavo #expression:Default
+
+Oh, happy to help! ‘Kay, bye! #speaker:Slip
+
+WAIT WAIT WAIT- *ahem* I mean, wait a sec! I don’t think I even got your name, girl. #speaker:Pavo #expression:Scared
+
+Umm, Slip. #speaker:Slip #expression:Confused
+
+Slip, now that’s a name with character! What is that, like a nickname, a stage name, a drag name? #speaker:Pavo #expression:Positive
+
+Legal. #speaker:Slip #expression:Default
+
+HAH! You are just too funny, Slip. Y’know, I’ve got a bit of a name myself. #speaker:Pavo #anim:Laugh
+
+Pavo? That’s what the order ticket said. #speaker:Slip #expression:Confused #anim:Shake
+
+True, some people do know me as Pavo, but to the world, I go by #speaker:Pavo #expression:Default
+Madame Menagerie! #speaker:Pavo #expression:Positive #anim:Spin 
+
+Should I be part of that world, or…? #speaker:Slip #expression:Nervous
+
+Ah ah ah. I'm not furnished yet, hunty. #speaker:Pavo #expression:Default
+When Madame Menagerie, superstar drag queen and top billing for Noise City’s biggest broadway show yet, gives you a compliment, it’s a big deal. #speaker:Pavo #expression:Positive #anim:Spin
+
+Yes, ma’am! #speaker:Slip #expression:Confident
+
+So, please, tell your boss that I’m grateful for his food, delicious fuel for beauties everywhere, and… #speaker:Pavo #expression:Positive
+
+My boss? #speaker:Slip #expression:Scared #anim:Shake
+
+AND, that I’d like to rebuild some bridges between us. #speaker:Pavo #expression:Default
+
+Well, what’s in it for me? #speaker:Slip #expression:Nervous
+
+Get this done, and your music will grace the ears of all my fans. That’s a promise. #speaker:Pavo #expression:Positive
+
+You know I make music? #speaker:Slip #expression:Confident
+
+Oop, I’ve got a rehearsal coming up soon and a whole pie to myself. Tata, Slip! #speaker:Pavo
+
+[Call hangs up] #speaker:None
+	
+I’ve got a feeling this is gonna be more work than I bargained for. #speaker:Slip #expression:Confused
 ->DONE
 ===Pavo_act2===
 This is Pavo act 2

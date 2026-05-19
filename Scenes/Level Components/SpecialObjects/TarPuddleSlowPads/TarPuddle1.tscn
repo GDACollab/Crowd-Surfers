@@ -1,64 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://gvypmi6dyu1u"]
+[gd_scene load_steps=4 format=3 uid="uid://gvypmi6dyu1u"]
 
-[ext_resource type="Script" path="res://Scripts/slow_pad_collider.gd" id="1_jyg14"]
-[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_ysxu4"]
+[ext_resource type="Script" uid="uid://ccr1tc3w830q4" path="res://Scripts/slow_pad_collider.gd" id="1_jyg14"]
 [ext_resource type="Texture2D" uid="uid://bgj6v7ml58q03" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS TarPuddleVariants S6/Tar_Puddle 1 S6.png" id="3_3u0wv"]
-[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_4l1sa"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyg14"]
-render_priority = 0
-shader = ExtResource("5_4l1sa")
-shader_parameter/tex = ExtResource("3_3u0wv")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3u0wv"]
-render_priority = 0
-shader = ExtResource("5_4l1sa")
-shader_parameter/tex = ExtResource("3_3u0wv")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jv26n"]
-size = Vector3(100, 0, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3puk8"]
-size = Vector3(100, 1, 100)
+[sub_resource type="BoxShape3D" id="BoxShape3D_a4wih"]
+size = Vector3(0.8866577, 0.043121338, 0.8828125)
 
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_jyg14")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-script = ExtResource("2_ysxu4")
-front_filename = ExtResource("3_3u0wv")
-width = 100.0
-length = 100.0
-height = 1.0
-art_z_cutoff = 1.0
-platform_thickness = 1.0
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
-[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(78.125, 0, inf, 3.4149523e-06, 1.9106855e-15, inf_neg, 0, 1, inf, 0, 0.5, 100)
-material_overlay = SubResource("ShaderMaterial_jyg14")
-axis = 1
-shaded = true
-alpha_cut = 1
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008270264, 0.02, 0.0126953125)
+shape = SubResource("BoxShape3D_a4wih")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(78.125, 0, 0, 0, -3.4149523e-06, 78.125, 0, -78.125, -3.4149523e-06, 0, 0.01, 0)
 texture = ExtResource("3_3u0wv")
-region_enabled = true
-region_rect = Rect2(0, 128, 128, 0)
 
-[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(78.125, 0, 0, 0, 1, 0, 0, 0, 78.125, 0, 1, 50)
-material_overlay = SubResource("ShaderMaterial_3u0wv")
-axis = 1
-shaded = true
-alpha_cut = 1
-texture = ExtResource("3_3u0wv")
-region_enabled = true
-region_rect = Rect2(0, 0, 128, 128)
-
-[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("BoxShape3D_jv26n")
-debug_color = Color(1, 0, 0, 1)
-
-[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 50)
-shape = SubResource("BoxShape3D_3puk8")
-debug_color = Color(0.972549, 0.25490198, 1, 1)
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

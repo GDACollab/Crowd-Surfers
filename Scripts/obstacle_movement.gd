@@ -14,10 +14,12 @@ extends Node3D
 
 @export_range(0.0, 360.0, 1.0) var forward_direction: float = 0.0
 @export_range(0.1, 10.0, 0.1) var tweenTravelSpeedRatio: float = 1.0
-@export var smoothnessArr: Array[float] = []
+@export var smoothnessArr: Array[float] = [0.0]
 @export var startFromSelf: bool = true # Doesnt work right now
 @export var isClosed: bool = true
+@export var snapToStart: bool = true
 @export var isRotate: bool = false
+@export var reverseOnComplete: bool = false
 @export var isVehicle : bool = true
 @export var do_transparency: bool = false
 #This serves to scale the velocity being applied to the player
@@ -26,9 +28,11 @@ extends Node3D
 ## Handles the transparency for this node
 @onready var transparency := Transparency.new($StaticBody3D/TopSprite, $StaticBody3D/FrontSprite)
 
+var progressDir: int = 1
 var isMoving: bool = false
 var travel_speed: float = 0.0
 
+var startPos: Vector3
 var follow_node: PathFollow3D
 var curve: Curve3D
 
@@ -60,6 +64,44 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	transparency.set_do_transparency(do_transparency, global_position.z)
 
+func makeParentFirstChild(parentNode: Node3D):
+	if parentNode.get_child_count() == 0:
+		return
+		
+	var firstNodeIDX: int
+	var first
+	
+	for child in parentNode.get_children():
+		if child is Node3D && child.name.contains("Node3D"):
+			first = child
+			break
+		firstNodeIDX += 1
+	
+	var other_childs = []
+	
+	for i in range(firstNodeIDX, parentNode.get_child_count()):
+		other_childs.append({
+			"node": parentNode.get_child(i),
+			"name": parentNode.get_child(i).name,
+			"global_pos": parentNode.get_child(i).global_position
+		})
+	
+	parentNode.global_position = first.global_position
+	first.queue_free()
+	print(other_childs)
+	
+	for entry in other_childs:
+		if entry["name"].contains("Node3D"):
+			entry["node"].global_position = entry["global_pos"]
+		#print(str(entry["global_pos"]))
+
+func onlySetParentGlobalPosition(parentNode: Node3D, gPos: Vector3):
+	
+	for child in parentNode.get_children():
+		child.global_position -= gPos
+		
+	parentNode.global_position = gPos
+
 func create_obstacle_path() -> void:
 	
 	#if (!active) or !is_inside_tree(): return
@@ -70,12 +112,25 @@ func create_obstacle_path() -> void:
 	get_parent().add_child.call_deferred(obstaclePath)
 	
 	var obstacleCurve: Curve3D = Curve3D.new()
-	#if startFromSelf:
-		#obstacleCurve.add_point(start_pos)
+
+	if startFromSelf:
+		startPos = self_node.global_position
+		obstacleCurve.add_point(startPos)
+	else:
+		for child in get_children():
+			if child is Node3D && child.name.contains("Node3D"):
+				var cGPos = child.global_position
+				startPos = cGPos
+				obstacleCurve.add_point(startPos)
+				child.free()
+				makeParentFirstChild(self_node)
+				break
 	
 	for child in get_children():
-		var cGPos = child.global_position
-		obstacleCurve.add_point(Vector3(cGPos.x,start_pos.y, cGPos.z))
+		#print("Child Class: " + str(child.get_class()))
+		if child is Node3D && child.name.contains("Node3D"):
+			var cGPos = child.global_position
+			obstacleCurve.add_point(Vector3(cGPos.x,start_pos.y, cGPos.z))
 	
 	obstacleCurve.closed = isClosed
 	self.rotation = Vector3(self.rotation.x, deg_to_rad(forward_direction), self.rotation.z)
@@ -148,30 +203,33 @@ func create_obstacle_path() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if !isMoving or follow_node == null: # or physicsBody == null
+	if !isMoving or follow_node == null or !follow_node.is_inside_tree(): # or physicsBody == null
 		return
 	
 	var path_length = curve.get_baked_length()
+	var updatedProgress = follow_node.progress + progressDir * travel_speed * delta
 	
-	follow_node.progress += travel_speed * delta
+	if !snapToStart:
+		if reverseOnComplete:
+			self_node.rotation.y += PI
+		elif updatedProgress >= path_length:
+			updatedProgress = path_length
+			progressDir = -1
+		elif updatedProgress <= 0:
+			updatedProgress = 0
+			progressDir = 1
 	
-	if follow_node.progress >= path_length:
-		follow_node.progress -= path_length
+	follow_node.progress += progressDir * travel_speed * delta
 	
 	"""
 	Code Devs Blood Writing Left On The Castle Walls:
 	ASHTON, THIS IS THE TANGENCY. TAKE IT. MAKE TITANFALL 2 LIKE WE WERE MEANT TO
 	"""
 	var dir = follow_node.global_position - self_node.global_position
-	#var dir = curve.sample_baked_with_rotation(follow_node.progress).basis.z #Asks the forward direction at the point
-	#self_node.rotation.y = atan2(dir.x, dir.z) + deg_to_rad(forward_direction)
-	self_node.global_position = follow_node.global_position #For animatablebody3d
-	#physicsBody.apply_central_force(apply_force()) #For RigidBody3d
-	#var self_2d = Vector2(self.global_position.x, self.global_position.z)
-	#var target_2d = Vector2(follow_node.global_position.x, follow_node.global_position.z)
-	#var theta = self_2d.angle_to(target_2d)
-	#myVelocity = Vector3(cos(theta)*100.0, 0.0, sin(theta) * 100.0)
 	myVelocity = dir / delta #The distance traveled, divided by delta for average per second
+	self_node.global_position = follow_node.global_position #For animatablebody3d
+	if isRotate:
+		self_node.rotation.y = atan2(dir.x, dir.z) + deg_to_rad(forward_direction)
 
 func get_player_jumped_velocity() -> Vector3:
 	#Calcing this every frame instead of on jump may be inefficient,
