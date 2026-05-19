@@ -32,14 +32,6 @@ music_notes_move_distance = 12.0
 hover_time = 6.0
 hover_magnitude = 4.0
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank", "res://Assets/Sound_Banks/Music.bank"]
-
-[node name="TitleMusic" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/MUS/title"
-event_guid = "{b8efc450-d36e-4b0f-aeca-3dccb32c5de3}"
-position = Vector2(1, 0)
-
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons") instance=ExtResource("2_dl3ah")]
 confirm_buttons = [NodePath("../PlayButton"), NodePath("../CreditsButton")]
 

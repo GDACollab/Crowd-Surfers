@@ -31,17 +31,21 @@ func _ready():
 		if (index % 2 == 1):
 			note.position.y += music_notes_move_distance
 		index += 1
-		
-	title_music = FmodServer.create_event_instance("event:/MUS/title")
-	title_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
-	title_music.start()
+	
+	if (!PersistentAudio.registry.has("mus_title")):
+		title_music = PersistentAudio.create_persistent("mus_title", "event:/MUS/title", true)
+		title_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
+		title_music.start()
 
-func _process(_delta: float):	
+func _process(delta: float):	
 	title_image.position.y = sin((timer * 2 * PI) / hover_time) * hover_magnitude + title_image_start_y
 	now_playing_image.position.y = sin(5 + (timer * 1.7 * PI) / hover_time) * hover_magnitude + now_playing_image_start_y
 	play_button.position.y = sin(10 + (timer * 1.8 * PI) / hover_time) * hover_magnitude * 0.8 + play_button_start_y
 	credits_button.position.y = sin(15 + (timer * 1.6 * PI) / hover_time) * hover_magnitude * 0.8 + credits_button_start_y
+	
+	timer += delta
 
+## FMOD event callback trigger, occurs every beat based on the event's desginated tempo
 func _handle_beat_events(_dict: Dictionary, type: int) -> void: 
 	if type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
 		_animate_notes()
