@@ -1,4 +1,4 @@
-No Knot specified
+->END
 
 ===main_act1_scene1===
 \*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
@@ -99,8 +99,6 @@ They are the ones truly missing out... Right?? #speaker:Sam
 ... #speaker:Sam
 ->END
 
-//PAVO
-
 ===main_act2_scene1===
 ->Minny_act1
 
@@ -114,12 +112,62 @@ Nyx voicemail #speaker:Nyx
 ->END
 
 ===main_act3_scene1===
-This is main act 3 scene 1
+(SLIP groggily enters, collapsing before SAM)
+Mmmph... #speaker:Slip #expression:Confused #anim:Shake
+Great news, sport! We’ve finally done it. That dastardly Max has been bested, by yours truly, once and for all! #speaker:Sam #expression:Confident
+Yay. #speaker:Slip #expression:Confused #anim:Shake
+This calls for a celebration! No! For gloating!#speaker:Sam #expression:Confident #anim:Laugh
+Ooh, when I get ahold of that slimy chump, he’ll be absolutely wrought with jealousy. I can’t wait to savor it! #speaker:Sam #expression:Angry #anim:Laugh
+
+Bonjour, this is Monsieur Gastron, and if you are calling for restaurant hours, we are sadly closed for the foreseeable future. #speaker:Max
+I am headed back to France tonight, so don’t bother leaving a message, thank you. #speaker:Max
+And if this is Samuel, I hope you are happy. #speaker:Max
+
+H-he’s going to France? But… he is my rival. My opposite. That coward would not dare give the final curtain call! #speaker:Sam #expression:Nervous #anim:Laugh
+
+Uhh, you won. Shouldn’t you be happy? #speaker:Slip #expression:Default #Anim:Spin
+
+No. No, I never wanted this. How could he leave like that, over some stupid tickets?! #speaker:Sam #expression:Angry #anim:Shake
+
+Hold up, hold up, I thought you wanted him gone. Now there’s no competition for Sammy Sassbear’s. #speaker:Slip #expression:Confused
+
+It was never about our businesses! It was about our endless clash, that constant return and volley, our efforts to try and make the opponent yield first. #speaker:Sam #expression:Nervous
+He wasn’t supposed to leave. He was supposed to want to get me back, where I would then revel in my victory and proffer him a ticket out of pity. #speaker:Sam #expression:Angry
+That’s how our script was destined to play out. #speaker:Sam #expression:Nervous #anim:Shake
+
+Yeah, yeah, you wanted to go on a date with Mr. Gastron, and now you’ve pushed him too far. #speaker:Slip #expression:Default
+Look, if you really don’t want him to leave, just go to the airport and give him the ticket yourself. #speaker:Slip #expression:Default
+I checked online and the plane hasn’t left yet.#speaker:Slip #expression:Nervous
+
+It hasn’t? Then there’s still a chance we can make it! We’ll just take my car and navigate towards… #speaker:Sam #expression:Confident
+It is the night of the show, the roads will be far too crowded. We’ll never make it in time. #speaker:Sam #expression:Neutral #anim:Spin
+Oh, our romance was doomed from the very beginning! #speaker:Sam #expression:Nervous #anim:Laugh
+
+Listen up, just try to get there as fast as you can. I’ll go on ahead and skate these tickets on over to Mr. Gastron before the plane takes off. #speaker:Slip #expression:Neutral
+ONLY if I get a raise after this though, deal? #speaker:Slip #expression:Confused #anim:Shake
+
+Absolutely, I would forever be in your debt. Though, how will you ever make it through? #speaker:Sam #expression:Neutral
+Even with those skates of yours, the roads will be flooded with Madame Menagerie’s adoring audience. #speaker:Sam #expression:Nervous #anim:Shake
+
+Please, with all of these deliveries, I’ve learned to be a bit of a Crowd Surfer. #speaker:Slip #expression:Confident
 ->END
 
 ===main_act3_scene2===
-This is the last scene of the game
-Replay Mode is now unlocked.
+\*You reach the airport terminal just in time to stop Maximilian*
+Why won’t you two leave me alone? Have you not done enough to forsake my reputation? #speaker:Max
+
+I know we have our differences, but… you have always been my other half. #speaker:Sam #expression:Neutral
+The cheese to my tomato sauce, the Romeo to my Juliet! #speaker:Sam #expression:Angry #anim:Shake
+I- I need you to stay, Maximilian. Please. #speaker:Sam #expression:Nervous
+
+N-nothing you could say at this point can refire my passion for the art of cuisine. I am ruined, I tell you! Now please, make this easy for both of us... #speaker:Max
+
+There… there may be one thing. #speaker:Sam #expression:Nercous
+Will you… go to Feathers with me...? #speaker:Sam #expression:Confident
+
+Damn you! Must you always hold the key to my shell? Of course I shall go, Samuel! Let us deep fry our conflicts and dance under the spotlight! #speaker:Max
+
+I better get that raise... #speaker:Slip #expression:Nervous
 ->END
 
 ===Pavo_act1===
@@ -180,8 +228,36 @@ This is Pavo act 3
 
 //MINNY
 ===Minny_act1===
-This is Minny act 1
+\*It's another breezy morning as you skate to work*
+If you know you know..oooohh! #speaker:Slip #expression:Scared #anim:Shake
+\*You narrowly avoid colliding with a pedestrian as your skates come to a screeching halt on the concrete #anim:Spin
+Oh man, are you okay? Sorry I didn't see you, it's like you tumbled out of nowhere! #speaker:Slip #expression:Nervous #anim:Laugh
+D-don't be sorry...my fault for running out...*mumble mumble* #speaker:Minny #expression:Nervous #anim:Shake
+I didn't quite catch-wait a sec, Minny!? #speaker:Slip #expression:Scared
+... #speaker:Minny
+Slip!? I hardly recognized you in that uniform! Not to mention that visor covering your face. #speaker:Minny #expression:Nervous
+Well. something's gotta keep the sun off these eyes. Especially with this city's drivers #speaker:Slip #expression:Nervous
+So, you do deliveries? #speaker:Minny
+Transporting the most important package of all. Pizza #speaker:Slip #expression:Confident
+Enough about little old me though. What have you been up to? #speaker:Slip
+I work just down the street at a china shop, Bao-Bao's Antiques. #speaker:Minny
+That is, if they haven't fired me by now... #speaker:Minny #expression:Nervous #anim:Shake
+Why are you worried about that? You’re the hardest working bull I know! #speaker:Slip
+You see, this morning I... #speaker:Minny #expression:Nervous
+*Minny? You ok? #speaker:Slip
+    N-no, you see... #speaker:Minny #expression:Nervous
+*[\[Remain Silent\]] \*You remain silent* #speaker:Slip
+-I-I forgot to flip the sign to "Open"! #speaker:Minny #expression:Nervous #anim:Spin
+Urgh, it's even worse saying it out loud! #speaker:Minny #expression:Nervous
+Aww, that’s no big deal. Bet your boss didn’t even give it a second thought! #speaker:Slip #expression:Confident #anim:Laugh
+And besides, it’s just some minimum-wage job. You’ll be fine. #speaker:Slip
+But- #speaker:Minny #expression:Nervous
+Shoot! Speaking of minimum-wage jobs, I gotta skate on outta here. #speaker:Slip #expression:Confused
+Oh, and here’s my new number, let’s catch up soon! #speaker:Slip #expression:Confident
+Wait-oh, ok. Have a good day...at work. #anim:Exit #speaker:Minny
+I know I won’t... #speaker:Minny #expression:Nervous
 ->DONE
+
 ===Minny_act2===
 \*You recieve a call from an unknown number* #vo:Minny_act2
 Caller not found? How exciting. #speaker:Slip #expression:Nervous #vo:play
