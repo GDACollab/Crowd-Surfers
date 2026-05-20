@@ -106,7 +106,7 @@ They are the ones truly missing out... Right?? #speaker:Sam
 
 ===main_act2_scene2===
 \*As you finish the delivery, your phone recieves a voicemail*
-Nyx voicemail
+Nyx voicemail #speaker:Nyx
 *Respond
  <- Nyx_act1
 *Ignore
@@ -183,7 +183,7 @@ This is Pavo act 3
 This is Minny act 1
 ->DONE
 ===Minny_act2===
-\*You recieve a call from an unknown number* #vo:minny_act2
+\*You recieve a call from an unknown number* #vo:Minny_act2
 Caller not found? How exciting. #speaker:Slip #expression:Nervous #vo:play
 Slip speaking! How may I help you? #speaker:Slip #expression:Confident #anim:Laugh
 D-did I actually press the call button? That was an accident- #speaker:Minny #expression:Nervous #anim:Shake
