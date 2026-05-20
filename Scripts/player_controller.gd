@@ -250,8 +250,9 @@ func _physics_process(delta: float) -> void:
 			
 			# If the normal's Y value is low, it means we got hit from the SIDE (bumper)
 			if hit_normal.y < 0.5: 
+				pass
 				# Call Slip's damage function here! 
-				print("Slip got hit by the bumper!")
+				#print("Slip got hit by the bumper!")
 				# take_damage(1)d
 	restart()
 	check_height()
@@ -399,7 +400,6 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
-				print("STOMP HIT FLOOR")
 				crowd_stomp_end.emit()
 				var hit_crowd = false
 				
@@ -413,20 +413,21 @@ func check_state_transitions() -> void:
 					var collision = get_slide_collision(i)
 					var collider = collision.get_collider()
 					
-					print("Collision ", i, " with: ", collider.name)
-					print("  - Groups on this object: ", collider.get_groups())
+					#print("Collision ", i, " with: ", collider.name)
+					#print("  - Groups on this object: ", collider.get_groups())
 					
 					if collider.is_in_group("Crowd"):
-						print("Detects Crowd")
+						#print("Detects Crowd")
 						hit_crowd = true
 						break
 				
 				if hit_crowd:
-					print("SUCCESS! Crowd object detected. Launching!")
+					#print("SUCCESS! Crowd object detected. Launching!")
 					transition_to(States.STOMP_CROWD_LAUNCH)
 					return
 				else:
-					print("Normal floor detected. Transitioning to GROUND.")
+					pass
+					#print("Normal floor detected. Transitioning to GROUND.")
 			
 				$StompDashMargin.start()
 				transition_to(States.GROUND)
@@ -548,7 +549,7 @@ func transition_to(new_state: int) -> void:
 			elif current_state == States.CRASH_GROUND or current_state == States.CRASH_AIR:
 				#player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash_exit")
-				print("Crash Exit!")
+				#print("Crash Exit!")
 		States.COYOTE:
 			$CoyoteTimer.start()
 		States.CRASH_GROUND, States.CRASH_AIR:
@@ -640,7 +641,7 @@ func transition_to(new_state: int) -> void:
 			crowd_launch()
 	
 	current_state = new_state
-	print(state_to_string())
+	#print(state_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -824,13 +825,13 @@ func update_fmod_floor_material() -> void:
 	var floor_collider = raycast.get_collider()
 	if floor_collider.is_in_group("Concrete"):
 		floor_sound_material = "concrete"
-		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "concrete")
 	elif floor_collider.is_in_group("Metal"):
 		floor_sound_material = "metal"
-		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "metal")
 	elif floor_collider.is_in_group("Grass"):
 		floor_sound_material = "grass"
-		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "grass")
+	else:
+		floor_sound_material = "concrete"
+		
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
@@ -885,7 +886,6 @@ func update_trail(delta):
 		$TrailHolder/GPUTrail3D.visible = true
 	else:
 		$TrailHolder/GPUTrail3D.restart()
-	print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.
