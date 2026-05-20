@@ -27,7 +27,7 @@
 [ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/MainMenu/exit_click_mask.png" id="21_8fxli"]
 [ext_resource type="BitMap" uid="uid://45oo5cy4l7wl" path="res://Assets/Art/UI/MainMenu/social_media_click_mask.png" id="22_yjf4t"]
 [ext_resource type="BitMap" uid="uid://d2ef7bx3li3ox" path="res://Assets/Art/UI/MainMenu/settings_click_mask.png" id="23_4v1m8"]
-[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 
 [sub_resource type="Gradient" id="Gradient_75vxy"]
 offsets = PackedFloat32Array(0, 0.64)
@@ -412,9 +412,6 @@ grow_vertical = 2
 script = ExtResource("1_dsamw")
 background_move_radius_x = 9.0
 background_move_radius_y = 9.0
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_j0r1m")]
 confirm_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SettingsButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton")]

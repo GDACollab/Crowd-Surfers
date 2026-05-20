@@ -25,6 +25,7 @@ var start_background_position: Vector2
 var target_position: Vector2
 var time: float
 var velocity: Vector2
+var hub_music: FmodEvent
 
 func _ready() -> void:
 	orders_scene.visible = false
@@ -32,6 +33,11 @@ func _ready() -> void:
 	
 	start_background_position = backgrounds_closer.position
 	time = time_between_target_changes
+	
+	# Start music
+	if (!Audio.registry.has("mus_hub")):
+		hub_music = Audio.create_persistent("mus_hub", "event:/MUS/hub")
+		hub_music.start()
 	
 	SaveDataManager.save_data()
 
@@ -49,6 +55,7 @@ func _process(delta: float) -> void:
 	
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
+	Audio.kill_persistent("mus_hub")
 
 func _on_orders_button_pressed() -> void:
 	if (transitioning):

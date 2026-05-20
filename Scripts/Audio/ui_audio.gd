@@ -4,12 +4,18 @@ extends Node2D
 @export var confirm_buttons: Array[BaseButton]
 ## all buttons that make 'back' sound when clicked
 @export var back_buttons: Array[BaseButton]
+## all buttons that make 'levelstart' sound when clicked
+@export var start_buttons: Array[BaseButton]
 
 func _ready() -> void:
 	# connect audio playback to all confirm buttons
 	for button in confirm_buttons:
 		button.mouse_entered.connect(play_hover_sound)
 		button.pressed.connect(play_confirm_sound)
+		
+	for button in start_buttons:
+		button.mouse_entered.connect(play_hover_sound)
+		button.pressed.connect(play_levelstart_sound)
 	
 	# connect audio playback to all back buttons
 	for button in back_buttons:
@@ -17,7 +23,10 @@ func _ready() -> void:
 		button.pressed.connect(play_back_sound)
 
 func play_confirm_sound() -> void:
-	$ConfirmSound.play()
+	FmodServer.play_one_shot("event:/SFX/UI/menu_confirm")
+	
+func play_levelstart_sound() -> void:
+	FmodServer.play_one_shot("event:/SFX/UI/menu_levelstart")
 
 func play_back_sound() -> void:
 	$BackSound.play()
