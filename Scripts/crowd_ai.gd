@@ -24,7 +24,7 @@ extends Node3D
 
 # CONSTANTS
 const CAP_RADIUS = 4
-const CAP_HEIGHT = 16
+const CAP_HEIGHT = 24
 const HEIGHT_RESET = -50
 @export var ε: float = 1.0
 
@@ -645,7 +645,7 @@ func multi_mesh_creation() -> void:
 	multi_mesh.use_custom_data = true;
 	
 	var q_mesh = QuadMesh.new()
-	q_mesh.size = Vector2(20, 20)
+	q_mesh.size = Vector2(24, 24)
 	multi_mesh.mesh = q_mesh
 	multi_mesh.use_colors = true
 	#mat.set_shader_parameter("texture_array",crowdMemberAnimations[0]);
@@ -680,7 +680,7 @@ func create_rids(position) -> void:
 	#multi_mesh_manager.multimesh.mesh.surface_get_material(0).set_shader_parameter("texture_array",crowdMemberAnimations[0]);
 	
 	var city_colors = [
-	Color(0.6, 0.6, 0.6),  # light gray
+	Color(0.996, 0.0, 0.879, 1.0),  # light gray
 	Color(0.3, 0.3, 0.3),  # dark gray
 	Color(0.4, 0.5, 0.6),  # muted blue
 	Color(0.4, 0.3, 0.2),  # dull brown
