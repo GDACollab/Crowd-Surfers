@@ -28,5 +28,7 @@ func _process(delta: float) -> void:
 	
 	# Play sound and reset timer
 	if current_time > last_skate_time + skate_interval:
+		FmodServer.set_global_parameter_by_name_with_label(
+			"floor_material", player.floor_sound_material);
 		play(true);
 		last_skate_time = current_time;

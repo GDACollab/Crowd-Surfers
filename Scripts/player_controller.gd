@@ -513,6 +513,8 @@ func transition_to(new_state: int) -> void:
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
+				FmodServer.set_global_parameter_by_name_with_label(
+					"floor_material", floor_sound_material)
 				$StompSound.set_parameter("stomp_state", "end")
 			else:
 				# interrupt playback
@@ -544,7 +546,8 @@ func transition_to(new_state: int) -> void:
 			can_glide = true
 			# Check if landing sound needs to be played
 			if current_state == States.AIR or current_state == States.GLIDE:
-				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
+				FmodServer.set_global_parameter_by_name_with_label(
+					"floor_material", floor_sound_material)
 				$LandingSound.play()
 			elif current_state == States.CRASH_GROUND or current_state == States.CRASH_AIR:
 				#player_sprite.crash_dir = -velocity
@@ -585,7 +588,6 @@ func transition_to(new_state: int) -> void:
 			# Start the windup timer
 			$StompWindupTimer.start()
 			# Start stomp sound windup
-			FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 			$StompSound.set_parameter("stomp_state", "windup")
 			$StompSound.play()
 			
