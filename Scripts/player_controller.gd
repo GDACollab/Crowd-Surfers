@@ -885,7 +885,7 @@ func update_trail(delta):
 		$TrailHolder/GPUTrail3D.visible = true
 	else:
 		$TrailHolder/GPUTrail3D.restart()
-	print(max_speed)
+	# print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.

@@ -62,6 +62,9 @@ func _process(_delta: float) -> void:
 		Inky.EndDialogue()
 	if(Input.is_action_just_pressed("DialogueInteract")):
 		if(!isTyping):
+			if(!awaitingAnimations): 
+				FmodServer.play_one_shot("event:/SFX/UI/dialogue_next")
+				
 			_get_input()
 		else:
 			_skip_scroll()
@@ -172,6 +175,7 @@ func _animate_panels():
 			panelIndex += 1
 			#End animations
 			if(panelIndex == dialoguePanels.size()):
+				# FmodServer.play_one_shot("event:/SFX/UI/dialogue_appear")
 				await positionTween.finished
 				awaitingAnimations = false
 
@@ -245,6 +249,9 @@ func _handle_tags(currentTags, newPanel):
 	awaitingAnimations = true
 	var differentSpeaker := false
 	var changed_expression := false
+	
+	print(currentStory.CurrentStoryName)
+	
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
@@ -321,6 +328,7 @@ func _handle_tags(currentTags, newPanel):
 			"vo":
 				if(tagValue == "play"):
 					##TODO Play next voice line. If already playing a line, make sure to cut if off.
+					$VoiceManager._handle_voiceover()
 					pass
 				else:
 					##TODO Load based on tag value
