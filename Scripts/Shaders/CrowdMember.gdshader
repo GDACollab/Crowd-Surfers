@@ -1,7 +1,7 @@
 shader_type spatial;
 
-uniform sampler2DArray texture_array[8] : filter_nearest, source_color;
-const int animationCount = 4;
+uniform sampler2DArray texture_array[16] : filter_nearest, source_color;
+const int animationCount = 8;
 const int frameCount = 2;
 
 uniform float timeOffset = 0;

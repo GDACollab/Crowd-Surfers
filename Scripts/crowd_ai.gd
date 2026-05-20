@@ -25,6 +25,7 @@ extends Node3D
 # CONSTANTS
 const CAP_RADIUS = 4
 const CAP_HEIGHT = 24
+const SPRITE_SIZE = 26
 const HEIGHT_RESET = -50
 @export var ε: float = 1.0
 
@@ -78,7 +79,7 @@ var curr_point = 0
 @onready var multi_mesh_manager: MultiMeshInstance3D
 
 # SCENE/PREFAB REFERENCES
-@onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor-new.tscn")
+@onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor.tscn")
 @onready var crowd = preload("res://Assets/Art/temp player.png")
 
 # Called when the node enters the scene tree for the first time.
@@ -645,7 +646,7 @@ func multi_mesh_creation() -> void:
 	multi_mesh.use_custom_data = true;
 	
 	var q_mesh = QuadMesh.new()
-	q_mesh.size = Vector2(24, 24)
+	q_mesh.size = Vector2(SPRITE_SIZE,SPRITE_SIZE)
 	multi_mesh.mesh = q_mesh
 	multi_mesh.use_colors = true
 	#mat.set_shader_parameter("texture_array",crowdMemberAnimations[0]);
@@ -680,7 +681,7 @@ func create_rids(position) -> void:
 	#multi_mesh_manager.multimesh.mesh.surface_get_material(0).set_shader_parameter("texture_array",crowdMemberAnimations[0]);
 	
 	var city_colors = [
-	Color(0.996, 0.0, 0.879, 1.0),  # light gray
+	Color(0.644, 0.581, 0.606, 1.0),  # light gray
 	Color(0.3, 0.3, 0.3),  # dark gray
 	Color(0.4, 0.5, 0.6),  # muted blue
 	Color(0.4, 0.3, 0.2),  # dull brown
