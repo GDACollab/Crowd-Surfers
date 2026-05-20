@@ -50,6 +50,7 @@ var previousSpeaker : Control
 var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
 var awaitingTags := false
+var currentVOPath : String = ""
 
 func _ready() -> void:	
 	currentStory = Inky.GetCurrentStory()
@@ -324,8 +325,8 @@ func _handle_tags(currentTags, newPanel):
 					pass
 				else:
 					##TODO Load based on tag value
-					print("[DIALOGUE] Loading VO files: ", tagValue)
-					pass
+					currentVOPath = tagValue
+					print("[DIALOGUE] Loading VO files: ", currentVOPath)
 			"fade":
 				## Pauses dialogue and fades to black
 				animator.play("fade")

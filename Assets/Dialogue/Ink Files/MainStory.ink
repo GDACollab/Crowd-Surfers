@@ -1,7 +1,7 @@
 No Knot specified
 
 ===main_act1_scene1===
-\*It's been a pretty slow morning so far. Light traffic, uneventful news
+\*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
 At least until...
 You knock on your boss's door. What could he be calling you in for?*
 Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown
@@ -47,7 +47,7 @@ Link us up, and I’ll make sure that music of yours reaches the ears of all my 
 *[Ignore]
    You send the call to voicemail and head back #speaker:None
 //START OF MAIN STORY SCENE
--I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #fade:out #vo:example_bank #speaker:Slip #anim:Shake #vo:play
+-I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #fade:out #vo:main_act1_scene2 #speaker:Slip #anim:Shake #vo:play
 Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #vo:play
 But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous
 Now why would you say that? It is only 6 P.M- #speaker:Sam
@@ -183,8 +183,8 @@ This is Pavo act 3
 This is Minny act 1
 ->DONE
 ===Minny_act2===
-\*You recieve a call from an unknown number*
-Caller not found? How exciting. #speaker:Slip #expression:Nervous
+\*You recieve a call from an unknown number* #vo:minny_act2
+Caller not found? How exciting. #speaker:Slip #expression:Nervous #vo:play
 Slip speaking! How may I help you? #speaker:Slip #expression:Confident #anim:Laugh
 D-did I actually press the call button? That was an accident- #speaker:Minny #expression:Nervous #anim:Shake
 I mean, h-hi Slip #speaker:Minny #expression:Nervous
