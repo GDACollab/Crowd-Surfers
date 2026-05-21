@@ -15,6 +15,8 @@ extends Control
 @export_category("Images")
 @export var images: Array[CreditsImageData]
 
+var credits_music: FmodEvent
+
 #Used for a smooth transition between slow and fast scroll speeds
 var current_scroll_speed: float
 

@@ -1,5 +1,5 @@
-extends Control
 class_name DialogueInterface
+extends Control
 
 @export var mainPanels : Array[InterfacePanel]
 ## Dialogue Panel prefab
@@ -28,8 +28,10 @@ class_name DialogueInterface
 @export var outlineSize : int = 5
 ## Determines if shader drawing varies in size
 @export var sketchyDraw := true
+@export var textSpeedScale : float = 1
 @onready var leftPortrait = $"Left Character Portrait/Portrait Image"
 @onready var rightPortrait = $"Right Character Portrait/Portrait Image"
+var textSpeedInMilliseconds : float = 0.05
 @onready var animator = $"Interface Animator"
 var dialoguePanels : Array[InterfacePanel]
 var dialogueLabel : Label
@@ -48,8 +50,9 @@ var previousSpeaker : Control
 var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
 var awaitingTags := false
+var currentVOPath : String = ""
 
-func _ready() -> void:
+func _ready() -> void:	
 	currentStory = Inky.GetCurrentStory()
 	$"Left Character Portrait".find_child("Portrait Image").texture = defaultPortait
 	_load_main_panels()
@@ -60,11 +63,14 @@ func _process(_delta: float) -> void:
 		Inky.EndDialogue()
 	if(Input.is_action_just_pressed("DialogueInteract")):
 		if(!isTyping):
+			if(!awaitingAnimations): 
+				FmodServer.play_one_shot("event:/SFX/UI/dialogue_next")
+				
 			_get_input()
 		else:
 			_skip_scroll()
 			
-	#Choice selection
+	# Choice selection
 	if(choicesDisplayed):
 		if(Input.is_action_just_pressed("move_down")):
 			selectedButton._unhighlight()
@@ -85,48 +91,64 @@ func _process(_delta: float) -> void:
 
 func _get_input():
 	if(!awaitingAnimations):
-		#Continue story
+		# Continue story
 		if(currentStory.GetCanContinue()):
 			_continue_story()
-		#Display choices
+		# Display choices
 		elif(currentStory.GetCurrentChoices().size() > 0 and !choicesDisplayed):
 			_display_choices()
-		#Make choice
+		# Make choice
 		elif(currentStory.GetCurrentChoices().size() > 0 and choicesDisplayed):
 			currentStory.ChooseChoiceIndex(currentChoiceIndex)
 			_clear_choices()
 			_continue_story()
-		#End story
+		# End story
 		else:
 			Inky.EndDialogue()
 
-## Loads next line
+##  Loads next line
 func _continue_story():
 	dialogueText = currentStory.Continue()
-	## Create new dialogue panel
+	# # Create new dialogue panel
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
 	## Apply tags to current panel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
-## Displays the current line incrementaly
-func _display_text(newDialoguePanel):
-	## Set anchor point
+##  Displays the current line 
+func _handle_panel_text(newDialoguePanel):
+	##  Set anchor point
 	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	dialoguePanels.push_front(newDialoguePanel)
-	# Ensures panels do not overflow
+	
+	#  Ensures panels do not overflow
 	if(dialoguePanels.size() > 3):
 		_kill_panel(dialoguePanels[3])
+		
 	dialogueLabel = newDialoguePanel.find_child("Dialogue Text")
 	add_child(newDialoguePanel)
 	newDialoguePanel.showPanel()
 	_animate_panels()
+	_do_typewriter_text()
 	
+## Displays text incrementally with a typewriter effect and calls typewriter voice sounds (animalese)
+func _do_typewriter_text():
 	isTyping = true
 	dialogueLabel.visible_characters = 0
 	dialogueLabel.text = dialogueText
+	var alphanumerics_count = 0 ## count of every non-punctuation character because those are the only characters we play animalese sounds for
+	
 	while dialogueLabel.visible_characters < dialogueText.length() - 1:
+		var letter_index = dialogueLabel.visible_characters; 
+		# TODO: currentSpeakerData.characterName always returns nil during testing. fix this
+		var character_name = currentSpeakerData.characterName if (currentSpeakerData != null) else "Slip"
+		
+		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter_voice(
+			dialogueText, character_name, letter_index, alphanumerics_count, textSpeedScale)
+		
 		dialogueLabel.visible_characters += 1
-		await get_tree().create_timer(0.02).timeout
+		if (should_increment_alphanumeric_counter): alphanumerics_count += 1
+		
+		await get_tree().create_timer(textSpeedInMilliseconds / textSpeedScale).timeout
 	isTyping = false
 
 ## Move old panels
@@ -154,6 +176,7 @@ func _animate_panels():
 			panelIndex += 1
 			#End animations
 			if(panelIndex == dialoguePanels.size()):
+				# FmodServer.play_one_shot("event:/SFX/UI/dialogue_appear")
 				await positionTween.finished
 				awaitingAnimations = false
 
@@ -227,6 +250,9 @@ func _handle_tags(currentTags, newPanel):
 	awaitingAnimations = true
 	var differentSpeaker := false
 	var changed_expression := false
+	
+	print(currentStory.CurrentStoryName)
+	
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
@@ -236,14 +262,14 @@ func _handle_tags(currentTags, newPanel):
 				if(previousSpeakerTag != tagValue):
 					differentSpeaker = true
 					
-				## Get speaker data
+				# # Get speaker data
 				if(currentSpeakerData == null or currentSpeakerData.characterName != tagValue):
-					#Load correct speaker data
+					# Load correct speaker data
 					var resourcePath = "res://Assets/Dialogue/Character Dialogue Data/" + str(tagValue) + "DialogueData.tres"
 					if ResourceLoader.exists(resourcePath):
 						currentSpeakerData = load(resourcePath)
 						
-				## Add character data attributes
+				##  Add character data attributes
 				if(currentSpeakerData != null and currentSpeakerData.characterName == tagValue):
 					newPanel.modulate = currentSpeakerData.colour
 				else:
@@ -259,7 +285,7 @@ func _handle_tags(currentTags, newPanel):
 					previousSpeaker = leftPortrait
 					currentSpeaker = rightPortrait
 					
-					## Switches to new speaker
+					# Switches to new speaker
 					if(lastNonSlipSpeaker != tagValue):
 						var currentSpeakerPanel = currentSpeaker.get_parent()
 						lastNonSlipSpeaker = tagValue
@@ -286,7 +312,7 @@ func _handle_tags(currentTags, newPanel):
 				previousSpeaker.self_modulate = previousSpeakerColor
 				previousSpeakerTag = tagValue
 				
-				## Portrait Outline
+				# Portrait Outline
 				if(differentSpeaker):
 					previousSpeaker.material = null
 					if(currentSpeaker.material == null):
@@ -303,11 +329,12 @@ func _handle_tags(currentTags, newPanel):
 			"vo":
 				if(tagValue == "play"):
 					##TODO Play next voice line. If already playing a line, make sure to cut if off.
+					$VoiceManager._handle_voiceover()
 					pass
 				else:
 					##TODO Load based on tag value
-					print("[DIALOGUE] Loading VO files: ", tagValue)
-					pass
+					currentVOPath = tagValue
+					print("[DIALOGUE] Loading VO files: ", currentVOPath)
 			"fade":
 				## Pauses dialogue and fades to black
 				animator.play("fade")
@@ -317,7 +344,7 @@ func _handle_tags(currentTags, newPanel):
 	if(!changed_expression and currentSpeakerData != null):
 		currentSpeaker.texture = currentSpeakerData.default_portrait
 	awaitingAnimations = false
-	_display_text(newPanel)
+	_handle_panel_text(newPanel)
 
 ## Reset portrait attributes
 func _reset_display():

@@ -1,7 +1,7 @@
-[gd_scene load_steps=117 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=118 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
-[ext_resource type="Script" path="res://Scripts/level.gd" id="1_hntgb"]
+[ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hntgb"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_cnki7"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_nusql"]
 [ext_resource type="Texture2D" uid="uid://dh8t7x602ld58" path="res://Assets/Art/VFX/test_cloud_shadows.png" id="3_tyndo"]
@@ -108,17 +108,24 @@
 [ext_resource type="PackedScene" uid="uid://c3napms5mmgre" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/Manhole1.tscn" id="105_onbwc"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="106_nregq"]
 
-[sub_resource type="CurveTexture" id="CurveTexture_tyndo"]
+[sub_resource type="Curve" id="Curve_5rnn1"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iem5g"]
+curve = SubResource("Curve_5rnn1")
 
 [sub_resource type="Curve" id="Curve_a3054"]
-_data = [Vector2(0.0049261153, 0), 0.0, 0.0, 0, 0, Vector2(0.35467982, 1), 0.0, 0.0, 0, 0, Vector2(0.7684729, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0.0049261153, 0), 0.0, 0.0, 0, 0, Vector2(0.33004928, 0.57303375), 2.1008284, 2.1008284, 0, 0, Vector2(0.5123153, 1), 0.0, 0.0, 0, 0, Vector2(0.6748768, 0.28089893), -2.6775765, -2.6775765, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_dy6nc"]
 curve = SubResource("Curve_a3054")
 
 [sub_resource type="Curve" id="Curve_dy6nc"]
-_data = [Vector2(0, 0.516854), 0.0, 0.0, 0, 0, Vector2(0.28078818, 0.43820232), 0.0, 0.0, 0, 0, Vector2(0.5615763, 0.5842697), 0.0, 0.0, 0, 0, Vector2(0.75369453, 0.44943827), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_limits = [-12.498398, 15.344521, 0.0, 1.0]
+_data = [Vector2(0, 6.897794), 0.0, 0.0, 0, 0, Vector2(0.26108375, -2.8003006), 0.0, 0.0, 0, 0, Vector2(0.5073892, 5.646427), 0.0, 0.0, 0, 0, Vector2(0.75862074, -2.8003006), 0.0, 0.0, 0, 0, Vector2(0.9901479, 4.707901), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_5rnn1"]
@@ -126,33 +133,36 @@ curve = SubResource("Curve_dy6nc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tyndo"]
 emission_shape = 3
-emission_box_extents = Vector3(39.99, 3.59, 82.72)
-angle_curve = SubResource("CurveTexture_tyndo")
+emission_box_extents = Vector3(38.605, 229.165, 78.285)
+angle_curve = SubResource("CurveTexture_iem5g")
 direction = Vector3(0, 1, 0)
-spread = 1.552
-initial_velocity_min = -17.8
+spread = 1.5
+initial_velocity_min = 10.0
 initial_velocity_max = 10.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 1, 0)
 linear_accel_min = 30.609997
 linear_accel_max = 40.809998
-tangential_accel_min = -8.160002
-tangential_accel_max = 9.999997
+tangential_accel_min = 0.99999774
+tangential_accel_max = 2.9999976
 tangential_accel_curve = SubResource("CurveTexture_5rnn1")
 scale_curve = SubResource("CurveTexture_dy6nc")
 turbulence_noise_strength = 0.34
 turbulence_noise_scale = 0.557
 
 [sub_resource type="Curve" id="Curve_tyndo"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.41702124, 0.31460673), 0.0, 0.0, 0, 0, Vector2(0.6468085, 0.33707863), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3361702, 0.7422414), 0.0, 0.0, 0, 0, Vector2(0.5531915, 0.26034486), 0.0, 0.0, 0, 0, Vector2(0.7829787, 0.48448277), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyndo"]
+shading_mode = 0
+disable_receive_shadows = true
 use_particle_trails = true
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_a3054"]
 material = SubResource("StandardMaterial3D_tyndo")
 shape = 0
-section_segments = 48
+size = 1.5
+section_segments = 50
 curve = SubResource("Curve_tyndo")
 
 [node name="ReferenceScene" type="Node3D"]
@@ -197,8 +207,20 @@ spot_angle = 41.429836
 transform = Transform3D(-0.58807695, -0.6779603, 0.44106138, 0.64949167, -0.07086166, 0.7570596, -0.482002, 0.73167497, 0.48200175, -507.29907, 0, -1493.9137)
 light_specular = 0.0
 
-[node name="Decal" type="Decal" parent="Lighting"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.179878, 0)
+[node name="Cloud Shadow" type="Decal" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152.32193, 15.179878, 0)
+size = Vector3(1000, 500, 1000)
+texture_albedo = ExtResource("3_tyndo")
+modulate = Color(0, 0, 0, 0.52156866)
+
+[node name="Cloud Shadow2" type="Decal" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3028.4133, -145.85938, 0)
+size = Vector3(1000, 500, 1000)
+texture_albedo = ExtResource("3_tyndo")
+modulate = Color(0, 0, 0, 0.52156866)
+
+[node name="Cloud Shadow3" type="Decal" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5528.525, -145.85938, 63.058533)
 size = Vector3(1000, 500, 1000)
 texture_albedo = ExtResource("3_tyndo")
 modulate = Color(0, 0, 0, 0.52156866)
@@ -219,9 +241,10 @@ offset = Vector3(0, 1000, 1000)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3129883, 35.921158, 45.04034)
 vfx_manager = NodePath("../VfxManager")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -70.234985, 15.116859, 10.5157585)
-lifetime = 6.34
+[node name="Wind Particles" type="GPUParticles3D" parent="Player"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.4840546, 15.116859, 10.5157585)
+amount = 12
+lifetime = 5.0
 preprocess = 5.9
 visibility_aabb = AABB(-5.87, -4, -4, 1000, 1000, 1000)
 trail_enabled = true
@@ -5769,7 +5792,7 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1916.5753, -4.005493, -
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1861.6954, -4.005493, -208.91125)
 
 [node name="Tree116" parent="Level Components/Trees" instance=ExtResource("103_gr23m")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1792.5907, -4.005493, -181.20908)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1792.5907, -4.005493, -228.92795)
 
 [node name="Tree15" parent="Level Components/Trees" instance=ExtResource("103_gr23m")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 2840.5554, -200, -35.029617)
