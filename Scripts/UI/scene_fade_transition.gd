@@ -48,7 +48,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	get_tree().change_scene_to_packed(load(LOAD_SCENE))
 	await get_tree().scene_changed
 	# Enable this if/when loading screen gets sound
-	# Settings.update_fmod_volumes()
+	Settings.update_fmod_volumes()
 	
 	animation_player.play("fade_out")
 	# Wait for animation
