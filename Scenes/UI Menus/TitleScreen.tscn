@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
 [ext_resource type="Texture2D" uid="uid://b2rff4pg2w0gi" path="res://Assets/Art/UI/TitleScreen/background.png" id="3_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2v1kr7g0ysu8" path="res://Assets/Art/UI/TitleScreen/title.png" id="4_xym7l"]
-[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
 [ext_resource type="Texture2D" uid="uid://b52ppde1ewcqm" path="res://Assets/Art/UI/TitleScreen/slip.png" id="5_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2feq7alf2tqs" path="res://Assets/Art/UI/TitleScreen/now_playing.png" id="5_km04c"]
 [ext_resource type="Texture2D" uid="uid://c3s5ifd2i0xvm" path="res://Assets/Art/UI/TitleScreen/play_button.png" id="6_sh7nw"]
@@ -31,9 +31,6 @@ music_notes = [NodePath("Images/MusicNotes/Note1"), NodePath("Images/MusicNotes/
 music_notes_move_distance = 12.0
 hover_time = 6.0
 hover_magnitude = 4.0
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons") instance=ExtResource("2_dl3ah")]
 confirm_buttons = [NodePath("../PlayButton"), NodePath("../CreditsButton")]
@@ -144,6 +141,11 @@ brightness_change = 0.15
 
 [node name="Vignette" parent="." instance=ExtResource("5_6t3va")]
 layout_mode = 0
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="mouse_entered" from="PlayButton" to="PlayButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_mouse_exited"]
