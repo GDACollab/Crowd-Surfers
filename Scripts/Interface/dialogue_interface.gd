@@ -174,6 +174,7 @@ func _animate_panels():
 			var positionTween = create_tween()
 			positionTween.tween_property(currentPanel, "position", Vector2(xPos,yPos),1).set_trans(transitionType).set_ease(easeType)
 			panelIndex += 1
+			currentPanel.panel_texture.self_modulate = currentPanel.panel_texture.self_modulate.darkened(.2)
 			#End animations
 			if(panelIndex == dialoguePanels.size()):
 				await positionTween.finished
