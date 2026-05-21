@@ -153,7 +153,7 @@ func _do_typewriter_text():
 
 ## Move old panels
 func _animate_panels():
-	if(dialoguePanels.get(1)):
+	if(dialoguePanels.size() >= 2 and dialoguePanels.get(1)):
 		awaitingAnimations = true
 		var panelIndex = 1
 		while panelIndex < dialoguePanels.size():
