@@ -6,7 +6,11 @@ extends Node3D
 var isplayer: bool = false
 var player: CharacterBody3D
 
-@onready var collideSound: FmodEventEmitter3D = $CollideSound
+@onready var collideSound: FmodEventEmitter3D = null
+
+func _ready() -> void:
+	if has_node("CollideSound"):
+		collideSound = get_node("CollideSound")
 
 func _physics_process(_delta: float) -> void:
 	if (isplayer):

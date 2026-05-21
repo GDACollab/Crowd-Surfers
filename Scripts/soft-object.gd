@@ -7,7 +7,7 @@ extends Node3D
 ## Whether or not this object has already tripped the player
 var tripped_player: bool = false
 
-@onready var collide_sound: FmodEventEmitter3D = $CollideSound
+var collide_sound: FmodEventEmitter3D = null
 
 func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
 	if tripped_player: 
@@ -26,6 +26,8 @@ func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
 	
 func _ready() -> void:
 	set_process(false)
+	if has_node("CollideSound"):
+		collide_sound = get_node("CollideSound")
 	
 func _process(delta: float) -> void:
 	$Sprite3D.modulate.a -= delta / time_to_disappear
