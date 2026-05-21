@@ -251,7 +251,7 @@ func _handle_tags(currentTags, newPanel):
 	var differentSpeaker := false
 	var changed_expression := false
 	
-	print(currentStory.CurrentStoryName)
+	#print(currentStory.CurrentStoryName)
 	
 	for t : String in currentTags:
 		var splitTag = t.split(":")
@@ -329,7 +329,7 @@ func _handle_tags(currentTags, newPanel):
 			"vo":
 				if(tagValue == "play"):
 					##TODO Play next voice line. If already playing a line, make sure to cut if off.
-					$VoiceManager._handle_voiceover()
+					#$VoiceManager._handle_voiceover()
 					pass
 				else:
 					##TODO Load based on tag value
