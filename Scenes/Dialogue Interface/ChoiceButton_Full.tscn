@@ -5,8 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_j5l2q"]
 font_size = 32
 
-[node name="Panel" type="Panel"]
-clip_contents = true
+[node name="Panel" type="Panel" node_paths=PackedStringArray("panel_texture")]
 custom_minimum_size = Vector2(350, 125)
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,6 +21,17 @@ grow_vertical = 2
 pivot_offset = Vector2(350, 125)
 script = ExtResource("1_j5l2q")
 transitionType = 6
+panel_texture = NodePath("Choice Button Sprite")
+
+[node name="Choice Button Sprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

@@ -27,7 +27,7 @@
 [ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/MainMenu/exit_click_mask.png" id="21_8fxli"]
 [ext_resource type="BitMap" uid="uid://45oo5cy4l7wl" path="res://Assets/Art/UI/MainMenu/social_media_click_mask.png" id="22_yjf4t"]
 [ext_resource type="BitMap" uid="uid://d2ef7bx3li3ox" path="res://Assets/Art/UI/MainMenu/settings_click_mask.png" id="23_4v1m8"]
-[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
+[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 
 [sub_resource type="Gradient" id="Gradient_75vxy"]
 offsets = PackedFloat32Array(0, 0.64)
@@ -607,6 +607,7 @@ libraries = {
 [connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="." method="_on_voice_mail_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="PhoneImage/MainPhoneMask/MainContainer/ExitButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="PhoneImage/MainPhoneMask/MainContainer/ExitButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]

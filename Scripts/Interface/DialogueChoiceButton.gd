@@ -2,6 +2,7 @@ extends Panel
 class_name DialogueChoiceButton
 
 @export var transitionType : Tween.TransitionType
+@export var panel_texture : TextureRect
 const TRANSITION_SPEED := 0.2
 var choiceText : String
 var choiceIndex : int
