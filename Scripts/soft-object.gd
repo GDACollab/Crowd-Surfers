@@ -7,6 +7,8 @@ extends Node3D
 ## Whether or not this object has already tripped the player
 var tripped_player: bool = false
 
+@onready var collide_sound: FmodEventEmitter3D = $CollideSound
+
 func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
 	if tripped_player: 
 		return
@@ -18,6 +20,9 @@ func _on_area_3d_body_entered(player: CharacterBody3D) -> void:
 	player.velocity *= speed_decrease_factor
 	tripped_player = true
 	set_process(true)
+	
+	if collide_sound:
+		collide_sound.play()
 	
 func _ready() -> void:
 	set_process(false)
