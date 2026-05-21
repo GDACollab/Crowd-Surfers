@@ -22,5 +22,9 @@ shape = SubResource("BoxShape3D_elp6e")
 transform = Transform3D(39.063, 0, 0, 0, -1.707498e-06, -39.063, 0, 39.063, -1.707498e-06, 0, 0.01, 0)
 texture = ExtResource("2_8swyf")
 
+[node name="CollideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/boost_pad"
+event_guid = "{945861ca-bafd-48f3-80dd-e2c3b03299ce}"
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
