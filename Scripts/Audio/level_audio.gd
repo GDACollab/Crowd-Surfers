@@ -2,14 +2,15 @@ extends Node2D
 
 @export var player: Player
 
-@onready var music: FmodEventEmitter2D = $Music
-@onready var city_ambience: FmodEventEmitter2D = $CityAmbience
+# TODO: Logic that handles level_audio playing different music based on the level
 
 func _ready() -> void:
 	assert(player)
-	music.play()
-	city_ambience.play()
+	var mus_level1 := Audio.create_persistent("mus_level1", "event:/MUS/level_1")
+	var amb_city := Audio.create_persistent("amb_city", "event:/SFX/ENV/ambience/city_ambience")
 	
+	mus_level1.start()
+	amb_city.start()
 
 func _process(_delta: float) -> void:
 	# interesting player variable names like are you fr

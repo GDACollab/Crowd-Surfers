@@ -18,7 +18,7 @@ var punctuation_regexes := {
 
 var letter_regex := RegEx.create_from_string("[A-Za-z]")
 
-func _handle_typewriter_voice(dialogue_text: String, character: String, letter_index: int, alphanumerics_count: int, textSpeedScale: float) -> bool:
+func _handle_typewriter(dialogue_text: String, character: String, letter_index: int, alphanumerics_count: int, textSpeedScale: float) -> bool:
 	var frequency_scaled := floor(typewriter_voice_frequency * textSpeedScale) as int
 	
 	if alphanumerics_count % frequency_scaled != 0:
@@ -53,3 +53,6 @@ func _handle_typewriter_voice(dialogue_text: String, character: String, letter_i
 	letter_sound.start()
 	
 	return should_increment
+
+func _handle_voiceover():
+	pass
