@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dt3tm74l30x7i"]
+[gd_scene load_steps=17 format=3 uid="uid://dt3tm74l30x7i"]
 
 [ext_resource type="Script" uid="uid://i51ogy8iyv7r" path="res://Scripts/Interface/loading.gd" id="1_vtqvs"]
 [ext_resource type="Texture2D" uid="uid://cyny348tlou4j" path="res://Assets/Art/UI/Loading/background.PNG" id="2_g0bv1"]
@@ -9,6 +9,22 @@
 [ext_resource type="Texture2D" uid="uid://ca37sx0i2n4f3" path="res://Assets/Art/UI/Loading/synth_1.PNG" id="4_tpcjb"]
 [ext_resource type="Texture2D" uid="uid://dsxsqgvbi7sxw" path="res://Assets/Art/UI/Loading/zap_3.PNG" id="5_ckrer"]
 [ext_resource type="Texture2D" uid="uid://bktyrm6yg8jyh" path="res://Assets/Art/UI/Loading/loading.PNG" id="7_28ots"]
+[ext_resource type="Texture2D" uid="uid://cdsg76vyaqadv" path="res://Assets/Art/UI/Loading/synth_2.PNG" id="8_qp5b4"]
+
+[sub_resource type="Animation" id="Animation_jaai6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiscImage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_vtqvs")]
+}
 
 [sub_resource type="Animation" id="Animation_qp5b4"]
 resource_name = "loading_image_animate"
@@ -25,21 +41,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("3_vtqvs"), ExtResource("4_r2tdo")]
-}
-
-[sub_resource type="Animation" id="Animation_jaai6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DiscImage:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_vtqvs")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s0yno"]
@@ -144,15 +145,14 @@ libraries = {
 }
 autoplay = "loading_image_animate"
 
-[node name="SynthImage" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.0070941495
-texture = ExtResource("4_tpcjb")
+[node name="SynthProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+max_value = 1.0
+step = 0.0
+texture_under = ExtResource("8_qp5b4")
+texture_progress = ExtResource("4_tpcjb")
 
 [node name="LoadingImage" type="TextureRect" parent="."]
 layout_mode = 1
