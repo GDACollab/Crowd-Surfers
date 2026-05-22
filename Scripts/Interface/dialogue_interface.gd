@@ -142,7 +142,7 @@ func _do_typewriter_text():
 		# TODO: currentSpeakerData.characterName always returns nil during testing. fix this
 		var character_name = currentSpeakerData.characterName if (currentSpeakerData != null) else "Slip"
 		
-		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter_voice(
+		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter(
 			dialogueText, character_name, letter_index, alphanumerics_count, textSpeedScale)
 		
 		dialogueLabel.visible_characters += 1
@@ -251,7 +251,7 @@ func _handle_tags(currentTags, newPanel):
 	var differentSpeaker := false
 	var changed_expression := false
 	
-	print(currentStory.CurrentStoryName)
+	# print(currentTags)
 	
 	for t : String in currentTags:
 		var splitTag = t.split(":")

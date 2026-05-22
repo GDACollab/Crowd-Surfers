@@ -43,6 +43,9 @@ func open_ui() -> void:
 		
 	animation_player.play("show_level_clear")
 	
+	# print("Current registry keys: " + str(Audio.get_all_registry_keys()))
+	Audio.kill_all_persistents()
+	
 func scale_level_clear():	
 	var tween: Tween = create_tween()
 	tween.set_ignore_time_scale(true)
