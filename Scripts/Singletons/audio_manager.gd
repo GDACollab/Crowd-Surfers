@@ -3,6 +3,7 @@ class_name AudioManager
 
 ## Public registry that (ideally) contains all persitent FMOD events (music, looping SFX, etc)
 @export var registry: Dictionary
+var TITLE_SCREEN_PULSING := false
 var previous_scene: Node = null
 
 func _ready():
@@ -34,7 +35,7 @@ func _on_scene_changed():
 		if (registry[iterKey]["killOnSceneChange"] == true):
 			kill_persistent(iterKey)
 
-## Takes an FMOD event path, takes a key, and returns a newly created event instance.
+## Takes a key, takes an FMOD event path, and returns a newly created event instance.
 ## Also takes a `killOnSceneChange` boolean that determines whether or not to stop and release the instance upon a scene change.
 ## The key, instance, path, and `killOnSceneChange` are then mapped to `registry`.
 func create_persistent(key: String, eventPath: String, killOnSceneChange := false) -> FmodEvent:
@@ -43,9 +44,39 @@ func create_persistent(key: String, eventPath: String, killOnSceneChange := fals
 	registry[key] = {
 		"instance": eventInstance,
 		"path": eventPath,
-		"killOnSceneChange": killOnSceneChange}
+		"killOnSceneChange": killOnSceneChange,
+		"pausePosition": -1
+		}
 		
 	return eventInstance
+	
+## Takes a key and pauses the instance belonging to it, storing the playback position in memory.
+## Returns true upon success, false upon failure (key not found or instance is already paused)
+## The FmodEvent `paused` property does not account for fade outs, which is why this function is necessary.
+func pause_persistent(key: String) -> bool:
+	if (registry.has(key) and registry[key]["pausePosition"] == -1):
+		var eventInstance = registry[key]["instance"]
+		registry[key]["pausePosition"] = eventInstance.position
+		eventInstance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		print("AudioManager: Paused instance of \"" + str(key) + "\"")
+		return true
+	
+	print("AudioManager: Failed to pause \"" + str(key) + "\"")
+	return false
+
+## Takes a key and unpauses the instance belonging to it.
+## Returns true upon success, false upon failure (key not found or instance is not paused)
+func unpause_persistent(key: String) -> bool:
+	if (registry.has(key) and registry[key]["pausePosition"] != -1):
+		var eventInstance = registry[key]["instance"]
+		eventInstance.set_timeline_position(registry[key]["pausePosition"])
+		eventInstance.start()
+		registry[key]["pausePosition"] = -1
+		print("AudioManager: Unpaused instance of \"" + str(key) + "\"")
+		return true
+		
+	print("AudioManager: Failed to unpause \"" + str(key) + "\"")
+	return false
 	
 ## Takes a registry key, stops and releases the associated event instance, and removes it from the registry.
 ## Returns true if the item was successfully removed, false if any not.
@@ -55,6 +86,7 @@ func kill_persistent(key: String) -> bool:
 	if (registry.has(key)):
 		registry[key]["instance"].stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		registry[key]["instance"].release()
+		print("AudioManager: Killed instance of \"" + str(key) + "\"")
 		return registry.erase(key)
 		
 	return returnCode
@@ -80,6 +112,7 @@ func kill_duplicate_persistents(eventPath: String) -> bool:
 		if (currVal["path"] == eventPath):
 			currVal["instance"].stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 			currVal["instance"].release()
+			print("AudioManager: Killed instance of \"" + str(iterKey) + "\"")
 			returnCode = returnCode && registry.erase(iterKey)
 		
 		else:

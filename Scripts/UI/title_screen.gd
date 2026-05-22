@@ -5,7 +5,7 @@ extends Control
 @onready var play_button: TextureButton = $PlayButton
 @onready var credits_button: TextureButton = $CreditsButton
 @onready var bottom_glow: TextureRect = $BottomGlow
-# @onready var music_bpm: float = 90.
+@onready var flash: TextureRect = $Flash
 
 @export var music_notes: Array[TextureRect]
 @export var music_notes_move_distance: float = 15
@@ -27,6 +27,7 @@ func _ready():
 	now_playing_image_start_y = now_playing_image.position.y
 	play_button_start_y = play_button.position.y
 	credits_button_start_y = credits_button.position.y
+	flash.modulate.a = 0.0
 	
 	var index: int = 0
 	for note: TextureRect in music_notes:
@@ -41,7 +42,9 @@ func _ready():
 		
 	else:
 		title_music = Audio.get_persistent_instance("mus_title")
+		title_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
 		title_music.set_parameter_by_name("muffling", 0.)
+		Audio.unpause_persistent("mus_title")
 
 func _process(delta: float):	
 	title_image.position.y = sin((timer * 2 * PI) / hover_time) * hover_magnitude + title_image_start_y
@@ -50,6 +53,7 @@ func _process(delta: float):
 	credits_button.position.y = sin(15 + (timer * 1.6 * PI) / hover_time) * hover_magnitude * 0.8 + credits_button_start_y
 	
 	bottom_glow.modulate.a -= delta;
+	# flash.modulate.a -= delta;
 	
 	play_button.scale = play_button.scale.lerp(Vector2.ONE, delta)
 	credits_button.scale = credits_button.scale.lerp(Vector2.ONE, delta)
@@ -59,7 +63,11 @@ func _process(delta: float):
 
 ## FMOD event callback trigger, occurs every beat based on the event's desginated tempo
 func _handle_beat_events(_dict: Dictionary, type: int) -> void: 
-	if type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
+	if type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_MARKER:
+		Audio.TITLE_SCREEN_PULSING = true
+		# flash.modulate.a = 1.0
+	
+	if Audio.TITLE_SCREEN_PULSING and type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
 		_animate_to_beat()
 
 func _animate_to_beat() -> void:
@@ -86,4 +94,5 @@ func _on_credits_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
 	# title_music.set_parameter_by_name("muffling", 1.)
-	Audio.kill_persistent("mus_title")
+	# Audio.kill_persistent("mus_title")
+	Audio.pause_persistent("mus_title")

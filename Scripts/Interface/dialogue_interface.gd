@@ -51,12 +51,29 @@ var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
 var awaitingTags := false
 var currentVOPath : String = ""
+var hub_music: FmodEvent
+var music_bus : FmodBus
+var music_bus_volume_scalar := 0.25
 
 func _ready() -> void:	
 	currentStory = Inky.GetCurrentStory()
 	$"Left Character Portrait".find_child("Portrait Image").texture = defaultPortait
 	_load_main_panels()
 	_get_input()
+	music_bus = FmodServer.get_bus("bus:/MUS")
+	music_bus.volume *= music_bus_volume_scalar
+	
+	# Start music
+	if (!Audio.registry.has("mus_hub")):
+		hub_music = Audio.create_persistent("mus_hub", "event:/MUS/hub")
+		hub_music.start()
+		
+	else:
+		Audio.unpause_persistent("mus_hub")
+		
+func _exit_tree() -> void:
+	music_bus.volume /= music_bus_volume_scalar
+	Audio.kill_persistent("mus_hub")
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("DialogueCancel")):
