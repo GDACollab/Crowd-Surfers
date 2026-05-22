@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="20_jtff7"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="21_tvis2"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="22_m0tkt"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="26_nx437"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="26_nx437"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="27_1olov"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="27_jtff7"]
 [ext_resource type="Script" uid="uid://cdxqkuup5thoc" path="res://Scripts/act2_endclear.gd" id="27_tvis2"]
@@ -225,6 +225,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -999.65894, 0, -197.85452)
 [node name="MidDensityAct2" parent="Scenes" instance=ExtResource("8_4gi21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1450, 0, 450)
 
+[node name="stage_2_concept_end" parent="Scenes" instance=ExtResource("9_r2b5i")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -900, 0, 500)
+
 [node name="AddedRoads" type="Node3D" parent="."]
 
 [node name="RoadV11" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
@@ -298,9 +301,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -647)
 
 [node name="RoadV10" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -647)
-
-[node name="stage_2_concept_end" parent="AddedRoads" instance=ExtResource("9_r2b5i")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -900, 0, 500)
 
 [node name="StaticBody3D" parent="AddedRoads" instance=ExtResource("16_1hnly")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -47.65)
@@ -400,9 +400,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 800,
 [node name="BrickD5" parent="AddedBuildings" instance=ExtResource("27_1olov")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 350, 0, 900)
 
-[node name="InvisibleWallSmall" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 150, 600)
-
 [node name="BrickL7" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 100, 750)
 
@@ -495,30 +492,6 @@ transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 850,
 
 [node name="StaticBody3D13" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(5.7620454e-08, 0, -1, 0, 1, 0, 1, 0, 5.7620454e-08, 1250.0002, 0, 100)
-
-[node name="InvisibleWallSmall2" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 50, 600)
-
-[node name="InvisibleWallSmall3" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 50, 700)
-
-[node name="InvisibleWallSmall4" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 50, 800)
-
-[node name="InvisibleWallSmall5" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 150, 600)
-
-[node name="InvisibleWallSmall6" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(0.9992778, -0.016869366, 0.0340493, 0.01712212, 0.99982786, -0.0071450616, -0.0339229, 0.007722911, 0.9993946, 700, 150, 700)
-
-[node name="InvisibleWallSmall7" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 150, 800)
-
-[node name="InvisibleWallSmall8" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(0.9994496, -0.014740433, 0.029716926, 0.014933036, 0.99986887, -0.006269463, -0.029620608, 0.006709797, 0.99953866, 1000, 50, 900)
-
-[node name="InvisibleWallSmall9" parent="AddedBuildings" instance=ExtResource("26_nx437")]
-transform = Transform3D(0.9994496, -0.014740433, 0.029716926, 0.014933036, 0.99986887, -0.006269463, -0.029620608, 0.006709797, 0.99953866, 1100, 50, 900)
 
 [node name="BrickL10" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 750)
@@ -803,7 +776,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314671, 0.99994254, 0, -0.99994254, 0.010314671, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314669, 0.99994236, 0, -0.99994236, 0.010314669, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -812,7 +785,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043609, -0.0007304823, 0, 0.0066143298, 0.9999781, 0.11043893, -0.9938573, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043608, -0.0007304823, 0, 0.006614329, 0.9999781, 0.11043893, -0.9938572, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -821,7 +794,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.03981305, -0.00026512897, 0, 0.0066591506, 0.99997777, 0.039814085, -0.9991811, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813045, -0.00026512897, 0, 0.00665915, 0.99997777, 0.039814085, -0.999181, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
