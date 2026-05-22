@@ -1,20 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://c26316wye2n1k"]
 
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="1_a6h07"]
+[ext_resource type="Texture2D" uid="uid://dsrrik2pov3ba" path="res://Assets/Art/UI/Dialogue/dialogue_bubble_left_fixed.PNG" id="2_241ul"]
 [ext_resource type="LabelSettings" uid="uid://yypp3xogmkhl" path="res://Assets/Dialogue/Font_Dialogue.tres" id="2_ung3r"]
-[ext_resource type="Texture2D" uid="uid://dvfkmlpaisn4e" path="res://Assets/Art/UI/UI_DialogueBubble.png" id="3_241ul"]
 
-[node name="Dialogue Panel" type="Panel"]
+[node name="Dialogue Panel" type="Panel" node_paths=PackedStringArray("panel_texture", "label_pivot")]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -302.5
-offset_top = -765.0
-offset_right = 629.69446
-offset_bottom = -312.0
+offset_left = -960.0
+offset_top = -1080.0
+offset_right = -27.805542
+offset_bottom = -627.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -22,6 +22,9 @@ size_flags_vertical = 3
 script = ExtResource("1_a6h07")
 showPosition = Vector2(495, 588)
 hidePosition = Vector2(495, 1200)
+panel_texture = NodePath("TextureRect")
+label_pivot = NodePath("Text Pivot")
+right_offset_position = -115.0
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -31,19 +34,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_241ul")
+texture = ExtResource("2_241ul")
 expand_mode = 1
-stretch_mode = 5
 
-[node name="Dialogue Text" type="Label" parent="."]
+[node name="Text Pivot" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 145.50003
-offset_top = 34.644993
-offset_right = -176.69446
-offset_bottom = -46.999817
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogue Text" type="Label" parent="Text Pivot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 179.0
+offset_right = -76.19446
 grow_horizontal = 2
 grow_vertical = 2
 text = " Hello my name is Slip I am twenty one years old"

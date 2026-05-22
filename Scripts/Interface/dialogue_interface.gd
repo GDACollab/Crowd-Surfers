@@ -2,14 +2,17 @@ class_name DialogueInterface
 extends Control
 
 @export var mainPanels : Array[InterfacePanel]
+@export_category("Panel Settings")
 ## Dialogue Panel prefab
 @export var dialoguePanel : PackedScene
+@export var right_panel_sprite : Texture2D
 ## Type of transition for all tweens
 @export var transitionType : Tween.TransitionType = Tween.TransitionType.TRANS_ELASTIC
 @export var easeType : Tween.EaseType = Tween.EaseType.EASE_IN_OUT
 @export_category("Choices")
 ## Choice Button prefab
 @export var choiceButton : PackedScene
+@export var choice_button_sprites : Array[Texture2D]
 ## Amount of time the player must wait before selecing a choice
 @export var choiceSelectDelay : float
 @export_category("Portrait Settings")
@@ -191,6 +194,7 @@ func _animate_panels():
 			var positionTween = create_tween()
 			positionTween.tween_property(currentPanel, "position", Vector2(xPos,yPos),1).set_trans(transitionType).set_ease(easeType)
 			panelIndex += 1
+			currentPanel.panel_texture.self_modulate = currentPanel.panel_texture.self_modulate.darkened(.2)
 			#End animations
 			if(panelIndex == dialoguePanels.size()):
 				# FmodServer.play_one_shot("event:/SFX/UI/dialogue_appear")
@@ -233,6 +237,7 @@ func _display_choices():
 	
 	for choice in currentStory.GetCurrentChoices():
 		var newChoiceButton = choiceButton.instantiate() as DialogueChoiceButton
+		newChoiceButton.panel_texture.texture = choice_button_sprites[iter]
 		newChoiceButton.choiceText = choice.GetText()
 		newChoiceButton.choiceIndex = iter
 		$"Choice Button Container".add_child(newChoiceButton)
@@ -320,7 +325,8 @@ func _handle_tags(currentTags, newPanel):
 					##Sets new panel to right side of screen
 					if(tagValue != "None"):
 						newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
-					##TODO Change panel sprite if speaking from right
+						newPanel.panel_texture.texture = right_panel_sprite
+						newPanel.set_to_right()
 					
 				## Adjust portraits based on speaker
 				currentSpeaker.scale = speakingPortraitScale
