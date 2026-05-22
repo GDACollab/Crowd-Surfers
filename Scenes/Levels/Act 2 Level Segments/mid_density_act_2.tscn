@@ -184,7 +184,19 @@ transform = Transform3D(-3.059797e-07, 0, -7, 0, 7, 0, 7, 0, -3.059797e-07, -121
 
 [node name="bp1" parent="MidDensityStart/InteractionContStart" instance=ExtResource("6_n73jy")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -820, 1, 100)
-boostDirection = Vector3(1, 1, 0)
+boostDirection = Vector3(0, 0.5, 1)
+boostPower = 600.0
+speedCap = 300.0
+
+[node name="bp2" parent="MidDensityStart/InteractionContStart" instance=ExtResource("6_n73jy")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -600.00006, 1, 1005)
+boostDirection = Vector3(1, 0.5, 0)
+boostPower = 600.0
+speedCap = 300.0
+
+[node name="bp3" parent="MidDensityStart/InteractionContStart" instance=ExtResource("6_n73jy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1250, 1, 1665)
+boostDirection = Vector3(0, 0.5, -1)
 boostPower = 600.0
 speedCap = 300.0
 
@@ -571,6 +583,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, -100)
 [node name="StaticBody3D87" parent="MidDensity/FixedRoadCont" instance=ExtResource("41_fwgo3")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1550, 0, 200)
 
+[node name="StaticBody3D88" parent="MidDensity/FixedRoadCont" instance=ExtResource("25_uq2mu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, 100)
+
+[node name="StaticBody3D89" parent="MidDensity/FixedRoadCont" instance=ExtResource("29_fwgo3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 450, 0, 100)
+
 [node name="FixedBuildCont" type="Node3D" parent="MidDensity"]
 
 [node name="StaticBody3D2" parent="MidDensity/FixedBuildCont" instance=ExtResource("9_urfa4")]
@@ -695,15 +713,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -750
 
 [node name="InvisibleWall5" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1050, 50, 850)
-
-[node name="InvisibleWall9" parent="MidDensity/FixedBuildCont" instance=ExtResource("16_j7m4k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 350, 50, 150)
-
-[node name="InvisibleWallSmall" parent="MidDensity/FixedBuildCont" instance=ExtResource("12_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 50, 150)
-
-[node name="InvisibleWallSmall3" parent="MidDensity/FixedBuildCont" instance=ExtResource("12_lrgld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 50, 150)
 
 [node name="StaticBody3D23" parent="MidDensity/FixedBuildCont" instance=ExtResource("7_jyobe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 200)
@@ -980,10 +989,6 @@ texture = ExtResource("9_7ri18")
 
 [node name="ArrowRound" type="Sprite3D" parent="MidDensity/ArrowCont"]
 transform = Transform3D(-6.5567065e-07, 14.999999, 1.9670126e-06, -1.1464111e-13, 1.9670126e-06, -14.999999, -14.999999, -6.5567065e-07, 2.866031e-14, -400, 2, 700)
-texture = ExtResource("10_7omum")
-
-[node name="ArrowRound2" type="Sprite3D" parent="MidDensity/ArrowCont"]
-transform = Transform3D(-6.5567065e-07, 14.999999, 1.9670126e-06, -1.1464111e-13, 1.9670126e-06, -14.999999, -14.999999, -6.5567065e-07, 2.866031e-14, 75, 2, 700)
 texture = ExtResource("10_7omum")
 
 [node name="ArrowRound3" type="Sprite3D" parent="MidDensity/ArrowCont"]
@@ -1442,7 +1447,7 @@ circum = 60.0
 crowd_size = 20
 max_speed = 40.0
 acceleration = 40.0
-route = Array[Vector3]([Vector3(-2900, 8, 900), Vector3(-2900, 8, 715)])
+route = Array[Vector3]([Vector3(-2900, 8, 900), Vector3(-2900, 8, 790)])
 
 [node name="Crowd5" parent="CrowdsCont" instance=ExtResource("20_xe2bc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1420, 8, 535)
