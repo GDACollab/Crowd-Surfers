@@ -123,7 +123,10 @@ func kill_duplicate_persistents(eventPath: String) -> bool:
 ## Takes registry keys, stops and releases the all associated event instances, and removes them from the registry.
 ## Returns true if ALL items were successfully removed, false if any were not.
 func kill_all_persistents() -> bool:
-	return kill_persistents(registry.keys())
+	var keysUntyped: Array = registry.keys()
+	var keysTyped: Array[String] = []
+	keysTyped.assign(keysUntyped)
+	return kill_persistents(keysTyped)
 	
 # Safely get a persistent instance from a key
 # Returns null if key/value pair not found
