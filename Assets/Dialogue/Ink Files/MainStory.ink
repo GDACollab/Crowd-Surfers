@@ -4,36 +4,36 @@
 \*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
 At least until...
 You knock on your boss's door. What could he be calling you in for?*
-Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown
+Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown #vo:play
 \*You enter the door* #speaker:Slip
-Right on time...but only barely. You need to be faster than that. Much faster #speaker:Sam
-Um, sorry boss! I was asking Chef how his morning was going–but he just started rambling about some "cheese shortage"? #speaker:Slip #anim:Shake
-Preposterous! The great Sammy Sassbear’s would never fall victim to the fabled cheese shortage! #speaker:Sam
-Well, if you want to be the one to argue with Chef… #speaker:Slip
+Right on time...but only barely. You need to be faster than that. Much faster #speaker:Sam #vo:play
+Um, sorry boss! I was asking Chef how his morning was going–but he just started rambling about some "cheese shortage"? #speaker:Slip #anim:Shake #vo:play
+Preposterous! The great Sammy Sassbear’s would never fall victim to the fabled cheese shortage! #speaker:Sam #vo:play
+Well, if you want to be the one to argue with Chef… #speaker:Slip #vo:play
 …I think I shall pass on that kind offer #speaker:Sam #expression:Scared
 Anywhooo…we are officially at war! And Slip, you have won the audition to be our shining lead actor! #speaker:Sam
-*Uhh, I don’t remember auditioning… #speaker:Slip
-    Nevermind that #speaker:Sam
-*Wait, did you say war? I’m too young to die! #speaker:Slip
-    Not to that extreme, but a war nonetheless #speaker:Sam
--A message from up-top was emailed to us this morning #speaker:Sam
+*Uhh, I don’t remember auditioning… #speaker:Slip #vo:play
+    Nevermind that #speaker:Sam #vo:play
+*Wait, did you say war? I’m too young to die! #speaker:Slip #vo:play
+    Not to that extreme, but a war nonetheless #speaker:Sam #vo:play
+-A message from up-top was emailed to us this morning #speaker:Sam #vo:play
 Those big, dirty, disgusting corporate suits have tempted me with a most glorious treasure #speaker:Sam
-A ticket to Feathers! On Broadway! Eeeeeeee!!! #speaker:Sam #anim:Shake
-Umm...okay? #speaker:Slip
+A ticket to Feathers! On Broadway! Eeeeeeee!!! #speaker:Sam #anim:Shake #vo:play
+Umm...okay? #speaker:Slip #vo:play
 But who are we at war with? #speaker:Slip #expression:Scared
-Caeno Gastropub, of course! We must best them in a game of speedy deliveries and top-quality food! #speaker:Sam
+Caeno Gastropub, of course! We must best them in a game of speedy deliveries and top-quality food! #speaker:Sam #vo:play
 Only then shall we seize the ever-elusive prize! #speaker:Sam
-So you’re saying that all I gotta do is deliver pizza? #speaker:Slip
-Ha, dear Slip. You are not just delivering pizza. You are delivering justice. #speaker:Sam
+So you’re saying that all I gotta do is deliver pizza? #speaker:Slip #vo:play
+Ha, dear Slip. You are not just delivering pizza. You are delivering justice. #speaker:Sam #vo:play
 Justice to that slimy Maximilian. It is high time that Noise City learns who the most magnificent business owner truly is! #speaker:Sam #anim:Laugh
-*The CEO of Scratch Records? #speaker:Slip
-*Oh, Gabrielle D. Annabelle of course! #speaker:Slip
--WRONG! It is I, Samuel. Ario. MAXIMUS! #speaker:Sam
-Now Slip, get those skates on the ground and satisfy our audience with cheesy deliciousness! #speaker:Sam
+*The CEO of Scratch Records? #speaker:Slip #vo:play
+*Oh, Gabrielle D. Annabelle of course! #speaker:Slip #vo:play
+-WRONG! It is I, Samuel. Ario. MAXIMUS! #speaker:Sam #vo:play
+Now Slip, get those skates on the ground and satisfy our audience with cheesy deliciousness! #speaker:Sam #vo:play
 If I hear those delivery times are slipping, I may have to ask you to, ahem, exit stage left. Kindly, of course. #speaker:Sam #anim:Shake
 Got it? #speaker:Sam
-So...am I getting a raise for all this? #speaker:Slip
-You’re a funny fella, Slip! #speaker:Sam #anim:Laugh
+So...am I getting a raise for all this? #speaker:Slip #vo:play
+You’re a funny fella, Slip! #speaker:Sam #anim:Laugh #vo:play
 Now get to work! The clock's ticking! #speaker:Sam
 ->END
 
