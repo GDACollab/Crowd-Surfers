@@ -33,8 +33,6 @@ var stateColors = {
 @export var starting_speed : float = 30.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
-## Shrinking exponent for damping
-@export var damping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.05
 ## Acceleration before modifications
@@ -270,8 +268,6 @@ func process_state(delta: float) -> void:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
-			else:
-				max_speed -= pow(max_speed - ramping_cap, damping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_floor():
 				velocity.y = 0.0
