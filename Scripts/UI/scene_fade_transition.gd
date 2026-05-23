@@ -53,8 +53,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	var progress: Array[float] = []
 	var progressBar: TextureProgressBar = get_tree().current_scene.get_node("SynthProgressBar")
 	while ResourceLoader.load_threaded_get_status(finalScene, progress) != ResourceLoader.THREAD_LOAD_LOADED:
-		# Why multiply by 4? Good question
-		progressBar.value = lerp(progressBar.value, progress[0] * 4, get_process_delta_time())
+		progressBar.value = lerp(progressBar.value, progress[0], get_process_delta_time())
 		await get_tree().process_frame
 	progressBar.value = 1.0
 
