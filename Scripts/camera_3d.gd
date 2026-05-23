@@ -11,6 +11,7 @@ extends Camera3D
 @export var player_half_width: float = 0.5
 @export var player_half_height: float = 7.5
 @export var occlusion_push: float = 1.0
+@export var camera_max_size: float = 250.0;
 
 @onready var player: CharacterBody3D = get_node(player_path)
 
@@ -18,6 +19,7 @@ var lead_smoothed := Vector3.ZERO
 var occluding := {}
 var pyramid_shape := ConvexPolygonShape3D.new()
 var query := PhysicsShapeQueryParameters3D.new()
+var camera_size = camera_max_size;
 
 # Aar Camera Shake Variables
 #@export var RANDOM_SHAKE_STRENGTH: float = 30.0
@@ -26,6 +28,7 @@ var query := PhysicsShapeQueryParameters3D.new()
 @export var NOISE_SHAKE_SPEED: float = 15.0
 @export var NOISE_SHAKE_STRENGTH: float = 15.0
 @export var NOISE_PERIOD: float = 2.0
+
 #@export var shake_interval: float = 0.05
 #@export var shake_duration: float = 1.0
 var noise_i: float = 0.0
@@ -54,6 +57,12 @@ func _process(delta: float) -> void:
 	
 	RenderingServer.global_shader_parameter_set("player_pos", player.global_position)
 	var v := player.velocity
+
+	# FOV Zoom
+	var flat_v = Vector2(v.x, v.z)
+	camera_size = lerp(camera_size, remap(min(flat_v.length(), 100.0), 0, 200.0, camera_max_size / 2.0, camera_max_size), 0.01);
+	self.size = camera_size
+
 	lead_smoothed = lead_smoothed.lerp(v.normalized() * sqrt(v.length() + 1.0) * 3.0, 1.0 - exp(-follow_speed * delta))
 	global_position = player.global_position + offset + lead_smoothed
 
