@@ -23,10 +23,10 @@ var camera_size = camera_max_size;
 
 # Aar Camera Shake Variables
 #@export var RANDOM_SHAKE_STRENGTH: float = 30.0
-@export var SHAKE_DECAY_RATE: float = 2.5
+@export var SHAKE_DECAY_RATE: float = 5.0
 
-@export var NOISE_SHAKE_SPEED: float = 15.0
-@export var NOISE_SHAKE_STRENGTH: float = 15.0
+@export var NOISE_SHAKE_SPEED: float = 25.0
+@export var NOISE_SHAKE_STRENGTH: float = 10.0
 @export var NOISE_PERIOD: float = 2.0
 
 #@export var shake_interval: float = 0.05
@@ -146,13 +146,13 @@ func restore_sprite(sprite: GeometryInstance3D, original: Material) -> void:
 		sprite.material_override = original
 	occluding.erase(sprite)
 	
-func apply_shake(max_player_speed, current_player_speed) -> void:
+func apply_shake() -> void:
 	#shake_strength = RANDOM_SHAKE_STRENGTH
-	shake_strength = NOISE_SHAKE_STRENGTH * ease_shake_strength(max_player_speed, current_player_speed)
-
-func ease_shake_strength(max_player_speed, current_player_speed) -> float:
-	var shake_x = current_player_speed / max_player_speed
-	return 5*(sqrt(shake_x) + 1)
+	shake_strength = NOISE_SHAKE_STRENGTH # * ease_shake_strength(max_player_speed, current_player_speed)
+#
+#func ease_shake_strength(max_player_speed, current_player_speed) -> float:
+	#var shake_x = current_player_speed / max_player_speed
+	#return 5*(sqrt(shake_x) + 1)
 
 func get_random_offset_2D() -> Vector2:
 	return Vector2(

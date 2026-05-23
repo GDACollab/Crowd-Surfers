@@ -554,7 +554,6 @@ func transition_to(new_state: int) -> void:
 		States.CRASH_GROUND, States.CRASH_AIR:
 			if not current_state == States.CRASH_GROUND and not current_state == States.CRASH_AIR:
 				max_speed = starting_speed
-				var ps = velocity.length() # Player speed ( No one say I made this variable )
 				var wall_normal := get_wall_normal()
 				var speed_into_wall: float = abs(prev_velocity.dot(wall_normal))
 				velocity *= -1
@@ -562,7 +561,7 @@ func transition_to(new_state: int) -> void:
 				$CrashTimer.start()
 				player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash")
-				get_viewport().get_camera_3d().apply_shake(ramping_cap, ps)
+				get_viewport().get_camera_3d().apply_shake()
 		States.STOMP_WINDUP:
 			player_sprite.play_animation("stomp")
 			# If dash is active as stomp begins, end it
