@@ -4,6 +4,7 @@ extends CharacterBody3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
+@onready var trail_spakle: AnimatedSprite3D = $TrailSparkle
 
 # STOMP CROWD
 signal crowd_stomp_end
@@ -943,8 +944,10 @@ func update_trail(delta):
 	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
 	if max_speed > 140:
 		$TrailHolder/GPUTrail3D.visible = true
+		trail_spakle.visible = true
 	else:
 		$TrailHolder/GPUTrail3D.restart()
+		trail_spakle.visible = false
 	#print(max_speed)
 	pass
 
