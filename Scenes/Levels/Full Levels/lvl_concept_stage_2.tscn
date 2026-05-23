@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=52 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://ck8qtl483el4c" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Turn S6.png" id="33_1olov"]
 [ext_resource type="Texture2D" uid="uid://dwct6333ddc2q" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS RoadBlockAssets S6/Chain_Linked_Fence_S6.png" id="33_m0tkt"]
 [ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="35_lg4t4"]
+[ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
 [ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0tkt"]
@@ -698,6 +699,9 @@ transform = Transform3D(14.999999, 0, 0, 0, -6.5567076e-07, 14.999999, 0, -14.99
 visible = false
 texture = ExtResource("35_lg4t4")
 
+[node name="DeathBoxCollider" parent="." instance=ExtResource("39_lxrsn")]
+transform = Transform3D(13649.581, 0, 0, 0, 20, 0, 0, 0, 5296.4404, 0, -260, 405)
+
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("18_r2b5i")]
@@ -782,7 +786,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314667, 0.99994206, 0, -0.99994206, 0.010314667, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314666, 0.999942, 0, -0.999942, 0.010314666, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
