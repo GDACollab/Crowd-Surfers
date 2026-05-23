@@ -740,6 +740,12 @@ func just_crashed() -> bool:
 	if speed_into_wall < min_speed_for_crash:
 		return false
 	# Crashed!
+	
+	if (vfx_manager == null):
+		print("ERROR: No VFX manager assigned to player!!")
+	else:
+		vfx_manager.spawn_vfx(position, velocity, "bonk")
+	
 	return true
 
 ## Checks player's current height

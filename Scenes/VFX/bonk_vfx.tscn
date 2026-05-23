@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://duqovoj3guyqv"]
+
+[ext_resource type="Texture2D" uid="uid://eaxwjno71blo" path="res://Assets/Art/VFX/Bonk/Bonk1.png" id="1_e8r5u"]
+[ext_resource type="Texture2D" uid="uid://bf880h2ta233l" path="res://Assets/Art/VFX/Bonk/Bonk2.png" id="2_oua7u"]
+[ext_resource type="Texture2D" uid="uid://bbuylr0i0naad" path="res://Assets/Art/VFX/Bonk/Bonk3.png" id="3_pica8"]
+[ext_resource type="Texture2D" uid="uid://c11w1rybmwy3e" path="res://Assets/Art/VFX/Stomp/Stomp12.png" id="4_oua7u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dm1xc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e8r5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oua7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pica8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oua7u")
+}],
+"loop": false,
+"name": &"bonk",
+"speed": 5.0
+}]
+
+[node name="BonkVFX" type="AnimatedSprite3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shaded = true
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_dm1xc")
+animation = &"bonk"
+autoplay = "bonk"
