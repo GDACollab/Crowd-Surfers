@@ -4,6 +4,7 @@ extends Node
 var master_volume: float = 1.0;
 var music_volume: float = 1.0;
 var sfx_volume: float = 1.0;
+var voice_volume: float = 1.0;
 	
 func update_fmod_volumes():
 	#For some reason the busses cant be @onready, it didnt work when switching between (or reloading) scenes
@@ -11,17 +12,20 @@ func update_fmod_volumes():
 	# "bus:/SFX/ENV"
 	# "bus:/SFX/Player"
 	# "bus:/SFX/UI"
-	var master_bus: FmodBus = FmodServer.get_bus("bus:/")
-	var music_bus: FmodBus = FmodServer.get_bus("bus:/MUS")
-	var sfx_bus: FmodBus = FmodServer.get_bus("bus:/SFX")
 	
-	if (master_bus == null):
-		return;
-	
-	# update bus volume property
-	if (master_bus != null):
-		master_bus.set("volume", master_volume)
-		music_bus.set("volume", music_volume)
-		sfx_bus.set("volume", sfx_volume)
+	# Marlowe: changed to VCAs so bus mixing faders are not overwritten and so reverb volume changes with SFX volume
+	var master_vca: FmodVCA = FmodServer.get_vca("vca:/MASTER")
+	var music_vca: FmodVCA = FmodServer.get_vca("vca:/MUS")
+	var sfx_vca: FmodVCA = FmodServer.get_vca("vca:/SFX")
+	var voice_vca: FmodVCA = FmodServer.get_vca("vca:/VO")
+
+	if (master_vca.is_valid()):
+		master_vca.set("volume", master_volume)
+		music_vca.set("volume", music_volume)
+		sfx_vca.set("volume", sfx_volume)
+		voice_vca.set("volume", voice_volume)
+		
+	else:
+		return
 	
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://tl8hudacn7il"]
+[gd_scene load_steps=4 format=3 uid="uid://tl8hudacn7il"]
 
 [ext_resource type="Script" uid="uid://cs4px6b4nammw" path="res://Scripts/Interface/dialogue_player.gd" id="1_bikxp"]
 [ext_resource type="Resource" uid="uid://dsglycoyfanig" path="res://Assets/Dialogue/Ink Files/MainStory.ink" id="2_7unw7"]
+[ext_resource type="Texture2D" uid="uid://ci7kvi02miy11" path="res://Assets/Art/UI/MainMenu/background_main.png" id="3_7unw7"]
 
 [node name="Dialogue Player" type="Node"]
 script = ExtResource("1_bikxp")
@@ -9,3 +10,11 @@ story = ExtResource("2_7unw7")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_7unw7")

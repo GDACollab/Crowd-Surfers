@@ -1,12 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=19 format=3 uid="uid://7uehf4aws4ii"]
 
-[ext_resource type="Texture2D" uid="uid://0v4vevr468uf" path="res://Assets/Art/UI/TitleScreen/title_image.png" id="1_jt71w"]
-[ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/title_screen.gd" id="1_sjn55"]
-[ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/UI/Credits/temp_image_2.PNG" id="2_cwgrq"]
+[ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/UI/title_screen.gd" id="1_sjn55"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
-[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
+[ext_resource type="Texture2D" uid="uid://b2rff4pg2w0gi" path="res://Assets/Art/UI/TitleScreen/background.png" id="3_crh2s"]
+[ext_resource type="Texture2D" uid="uid://b2v1kr7g0ysu8" path="res://Assets/Art/UI/TitleScreen/title.png" id="4_xym7l"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
+[ext_resource type="Texture2D" uid="uid://b52ppde1ewcqm" path="res://Assets/Art/UI/TitleScreen/slip.png" id="5_crh2s"]
+[ext_resource type="Texture2D" uid="uid://b2feq7alf2tqs" path="res://Assets/Art/UI/TitleScreen/now_playing.png" id="5_km04c"]
+[ext_resource type="Texture2D" uid="uid://c3s5ifd2i0xvm" path="res://Assets/Art/UI/TitleScreen/play_button.png" id="6_sh7nw"]
+[ext_resource type="Texture2D" uid="uid://ckcd8tnnf5req" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note1.png" id="7_idimm"]
+[ext_resource type="Texture2D" uid="uid://dl02iq4vkpkb7" path="res://Assets/Art/UI/TitleScreen/credits_button.png" id="7_vbb3l"]
+[ext_resource type="Texture2D" uid="uid://1il8h1s684wy" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note2.png" id="8_w6tul"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="9_0iu0x"]
+[ext_resource type="BitMap" uid="uid://cb5fs2c6dw6m3" path="res://Assets/Art/UI/TitleScreen/play_button_click_mask.png" id="9_h17gc"]
+[ext_resource type="Texture2D" uid="uid://dyro4vuot6lxw" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note3.png" id="9_in3d3"]
+[ext_resource type="Texture2D" uid="uid://ojwf0kiqemd1" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note4.png" id="10_a31pv"]
+[ext_resource type="Texture2D" uid="uid://cyx7l5k8duoue" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note5.png" id="11_f8b7y"]
+[ext_resource type="BitMap" uid="uid://dvbgirwbu1fiw" path="res://Assets/Art/UI/TitleScreen/credits_button_click_mask.png" id="12_8o0qd"]
+[ext_resource type="Texture2D" uid="uid://cg5jsfwllp3hx" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note6.png" id="12_ij21d"]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" node_paths=PackedStringArray("music_notes")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,55 +27,129 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sjn55")
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
+music_notes = [NodePath("Images/MusicNotes/Note1"), NodePath("Images/MusicNotes/Note2"), NodePath("Images/MusicNotes/Note3"), NodePath("Images/MusicNotes/Note4"), NodePath("Images/MusicNotes/Note5"), NodePath("Images/MusicNotes/Note6")]
+music_notes_move_distance = 12.0
+hover_time = 6.0
+hover_magnitude = 4.0
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons") instance=ExtResource("2_dl3ah")]
 confirm_buttons = [NodePath("../PlayButton"), NodePath("../CreditsButton")]
 
-[node name="TitleImage" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 46.0
-offset_right = 1768.3635
-offset_bottom = 1925.9924
-scale = Vector2(0.55, 0.4)
-texture = ExtResource("1_jt71w")
+[node name="Images" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="SlipImage" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="Images"]
 layout_mode = 0
-offset_left = 1030.0
-offset_top = 39.0
-offset_right = 3129.5
-offset_bottom = 3054.0437
-scale = Vector2(0.4, 0.33)
-texture = ExtResource("2_cwgrq")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_crh2s")
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="TitleImage" type="TextureRect" parent="Images"]
 layout_mode = 0
-offset_left = 55.999996
-offset_top = 836.0
-offset_right = 262.1818
-offset_bottom = 905.09094
-scale = Vector2(2.75, 2.75)
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
-text = "Play"
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_xym7l")
 
-[node name="CreditsButton" type="Button" parent="."]
+[node name="NowPlaying" type="TextureRect" parent="Images"]
 layout_mode = 0
-offset_left = 660.7148
-offset_top = 836.0
-offset_right = 849.5921
-offset_bottom = 914.28564
-scale = Vector2(1.75, 1.75)
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Credits"
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_km04c")
+
+[node name="Slip" type="TextureRect" parent="Images"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_crh2s")
+
+[node name="MusicNotes" type="Control" parent="Images"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Note1" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 31.0
+offset_right = 111.0
+offset_bottom = 131.0
+texture = ExtResource("7_idimm")
+
+[node name="Note2" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 9.0
+offset_right = 155.0
+offset_bottom = 109.0
+texture = ExtResource("8_w6tul")
+
+[node name="Note3" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 44.0
+offset_right = 1171.0
+offset_bottom = 144.0
+texture = ExtResource("9_in3d3")
+
+[node name="Note4" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 1144.0
+offset_top = -12.0
+offset_right = 1244.0
+offset_bottom = 88.0
+texture = ExtResource("10_a31pv")
+
+[node name="Note5" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 932.0
+offset_right = 818.0
+offset_bottom = 1057.0
+texture = ExtResource("11_f8b7y")
+
+[node name="Note6" type="TextureRect" parent="Images/MusicNotes"]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 930.0
+offset_right = 869.0
+offset_bottom = 1030.0
+texture = ExtResource("12_ij21d")
+
+[node name="PlayButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 430.0
+offset_right = 1113.0
+offset_bottom = 930.0
+texture_normal = ExtResource("6_sh7nw")
+texture_click_mask = ExtResource("9_h17gc")
+script = ExtResource("9_0iu0x")
+brightness_change = 0.15
+
+[node name="CreditsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 807.0
+offset_right = 1037.0
+offset_bottom = 1307.0
+texture_normal = ExtResource("7_vbb3l")
+texture_click_mask = ExtResource("12_8o0qd")
+script = ExtResource("9_0iu0x")
+brightness_change = 0.15
 
 [node name="Vignette" parent="." instance=ExtResource("5_6t3va")]
 layout_mode = 0
 
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="mouse_entered" from="PlayButton" to="PlayButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="CreditsButton" to="CreditsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CreditsButton" to="CreditsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
