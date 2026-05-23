@@ -9,6 +9,7 @@ var previous_scene: Node = null
 var value := 0.0
 var target := 100.0
 var speed := 20.0   # units per second
+var game_paused := false
 
 func _ready():
 	print("AudioManager loaded")
@@ -64,10 +65,14 @@ func pause_persistent(key: String) -> bool:
 		var eventInstance = registry[key]["instance"]
 		registry[key]["pausePosition"] = eventInstance.position
 		eventInstance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
-		print("AudioManager: Paused instance of \"" + str(key) + "\"")
+		
+		# this is annoying
+		if (key != "skating_loop"):
+			print("AudioManager: Paused instance of \"" + str(key) + "\"")
+		
 		return true
 	
-	print("AudioManager: Failed to pause \"" + str(key) + "\"")
+	if (key != "skating_loop"): print("AudioManager: Failed to pause \"" + str(key) + "\"")
 	return false
 
 ## Takes a key and unpauses the instance belonging to it.
@@ -78,10 +83,13 @@ func unpause_persistent(key: String) -> bool:
 		eventInstance.set_timeline_position(registry[key]["pausePosition"])
 		eventInstance.start()
 		registry[key]["pausePosition"] = -1
-		print("AudioManager: Unpaused instance of \"" + str(key) + "\"")
+		
+		if (key != "skating_loop"):
+			print("AudioManager: Unpaused instance of \"" + str(key) + "\"")
+		
 		return true
 		
-	print("AudioManager: Failed to unpause \"" + str(key) + "\"")
+	if (key != "skating_loop"): print("AudioManager: Failed to unpause \"" + str(key) + "\"")
 	return false
 	
 ## Takes a registry key, stops and releases the associated event instance, and removes it from the registry.
@@ -92,7 +100,7 @@ func kill_persistent(key: String) -> bool:
 	if (registry.has(key)):
 		registry[key]["instance"].stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		registry[key]["instance"].release()
-		print("AudioManager: Killed instance of \"" + str(key) + "\"")
+		print("AudioManager: Killed the instance \"" + str(key) + "\"")
 		return registry.erase(key)
 		
 	return returnCode
@@ -184,3 +192,23 @@ func path_exists_in_registry(eventPath: String) -> bool:
 		if returnCode: return returnCode
 		
 	return returnCode
+
+# TODO: Currently broken, killing the snapshot doesn't return the mixer to its original state
+## Pauses all level audio (env, char, player buses) and muffles music
+func toggle_level_audio() -> void:
+	var busArray : Array[FmodBus]
+	var pause_snapshot := create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling")
+	
+	busArray.assign([
+		FmodServer.get_bus("bus:/SFX/ENV"),
+		FmodServer.get_bus("bus:/SFX/CHAR"),
+		FmodServer.get_bus("bus:/SFX/P")
+	])
+	
+	game_paused = !game_paused
+	
+	for b in busArray:
+		b.paused = game_paused
+		
+	if (game_paused): pause_snapshot.start()
+	else: kill_persistent("pause_snapshot")

@@ -59,7 +59,11 @@
 			<destination>{35d6b6b7-1829-4fac-8138-9c69993f34b0}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{6c5c1ba7-e4f7-4bbc-9a6f-84b83251554f}" />
+	<object class="EventAutomatableProperties" id="{6c5c1ba7-e4f7-4bbc-9a6f-84b83251554f}">
+		<property name="triggerCooldown">
+			<value>100</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{2ccb9ca6-a5f4-4601-90f0-cc17fd69f07c}" />
 	<object class="Timeline" id="{9ae168ca-39ba-4daa-ac41-7eb30a793276}">
 		<property name="isProxyEnabled">
@@ -72,6 +76,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{0d0e2866-3403-4b02-b2bf-3755099c237b}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{fc031da5-8f42-42e6-8ef4-5178fd8000d1}</destination>
 		</relationship>
@@ -95,6 +102,7 @@
 	<object class="MixerBusPanner" id="{9e298620-8334-46fb-9706-1b6b9e68dc7c}" />
 	<object class="MixerBusEffectChain" id="{fc031da5-8f42-42e6-8ef4-5178fd8000d1}">
 		<relationship name="effects">
+			<destination>{81b6a328-f9c5-46c0-9df8-8a861310dc04}</destination>
 			<destination>{a0343be4-7cb2-4d7f-a7dd-dce8fb0750ea}</destination>
 		</relationship>
 	</object>
@@ -108,6 +116,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{14bf8a7c-e6de-47bb-91e8-95507bdd169b}" />
+	<object class="ThreeEQEffect" id="{81b6a328-f9c5-46c0-9df8-8a861310dc04}">
+		<property name="lowGain">
+			<value>-3</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{a0343be4-7cb2-4d7f-a7dd-dce8fb0750ea}" />
 	<object class="RandomizerModulator" id="{1dd6bea0-49fe-4e5e-853d-4bf78efd0b7b}">
 		<property name="nameOfPropertyBeingModulated">

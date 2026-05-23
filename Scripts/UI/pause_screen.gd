@@ -57,6 +57,7 @@ func _on_restart_level_button_pressed() -> void:
 
 func _on_exit_level_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
+	Audio.toggle_level_audio()
 	await get_tree().create_timer(SceneFadeTransition.FADE_TIME - 0.1).timeout 
 	get_tree().paused = false
 	

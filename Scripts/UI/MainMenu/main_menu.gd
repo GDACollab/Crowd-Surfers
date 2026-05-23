@@ -54,7 +54,7 @@ func _ready() -> void:
 	else:
 		Audio.unpause_persistent("mus_hub")
 	
-	SaveDataManager.save_data()
+	# SaveDataManager.save_data()
 
 func _process(delta: float) -> void:
 	time += delta
