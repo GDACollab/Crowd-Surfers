@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxnpgpdvwm5sn"]
 
 [ext_resource type="Script" uid="uid://jr1sdhb67frw" path="res://Scripts/soft-object.gd" id="1_mpbxv"]
-[ext_resource type="Texture2D" uid="uid://ctpyilcidgwtx" path="res://Assets/Art/Chopped Art (Fixed)/Banana Peel/placeholder_Peel.png" id="1_xmfw6"]
+[ext_resource type="Texture2D" uid="uid://iwm15ay8ejtq" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS SoftObstacleAssets S6/Banana2 Soft Obstacle S6.png" id="2_43ppq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mpbxv"]
 
@@ -15,7 +15,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_mpbxv")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.9659258, -0.0669873, 0.25, 0, 0.96592593, 0.25881907, -0.25881907, -0.25000003, 0.9330128, 0, 0.5, 0)
-texture = ExtResource("1_xmfw6")
+transform = Transform3D(2.4148145, -0.16746825, 0.625, 0, 2.4148145, 0.64704764, -0.64704764, -0.625, 2.3325317, 0, 0.5, 0)
+texture = ExtResource("2_43ppq")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
