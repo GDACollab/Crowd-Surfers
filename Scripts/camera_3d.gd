@@ -22,12 +22,12 @@ var query := PhysicsShapeQueryParameters3D.new()
 var camera_size = camera_max_size;
 
 # Aar Camera Shake Variables
-@export var RANDOM_SHAKE_STRENGTH: float = 30.0
+#@export var RANDOM_SHAKE_STRENGTH: float = 30.0
 @export var SHAKE_DECAY_RATE: float = 5.0
-
-@export var NOISE_SHAKE_SPEED: float = 30.0
-@export var NOISE_SHAKE_STRENGTH: float = 30.0
+@export var NOISE_SHAKE_SPEED: float = 10.0
+@export var NOISE_SHAKE_STRENGTH: float = 18.0
 @export var NOISE_PERIOD: float = 2.0
+
 #@export var shake_interval: float = 0.05
 #@export var shake_duration: float = 1.0
 var noise_i: float = 0.0
