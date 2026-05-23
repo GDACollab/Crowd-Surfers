@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=94 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -80,6 +80,8 @@
 [ext_resource type="PackedScene" uid="uid://ti5a67cbkn0q" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel2.tscn" id="58_i7gpa"]
 [ext_resource type="PackedScene" uid="uid://dbrfxqrd8k7mq" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel1.tscn" id="59_xklhs"]
 [ext_resource type="PackedScene" uid="uid://bl8hte1agb8q6" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel3.tscn" id="60_i1c8y"]
+[ext_resource type="PackedScene" uid="uid://b4d324vip84gg" path="res://Scenes/Level Components/Objects/TreeVariants/Tree1.tscn" id="61_i1c8y"]
+[ext_resource type="PackedScene" uid="uid://dbnpkl1rnvyk1" path="res://Scenes/Level Components/Objects/TreeVariants/Tree2.tscn" id="62_lsqwo"]
 [ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="68_ykr1p"]
 [ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="69_w6g8g"]
 [ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
@@ -1037,13 +1039,13 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -40, 4, 110)
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -40, 4, 70)
 
 [node name="SoftObject4" parent="VehicleGroup/RoadBlockade" instance=ExtResource("20_i8egd")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -40, 4, 30)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -50, 4, 30)
 
 [node name="SoftObject5" parent="VehicleGroup/RoadBlockade" instance=ExtResource("20_i8egd")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -40, 4, -10)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -50, 4, -10)
 
 [node name="SoftObject6" parent="VehicleGroup/RoadBlockade" instance=ExtResource("20_i8egd")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -20, 4, -40)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -10, 4, -40)
 
 [node name="StaticBody3D4" parent="VehicleGroup/RoadBlockade" instance=ExtResource("35_lkdh3")]
 transform = Transform3D(0.4226182, 0, -0.90630776, 0, 1, 0, 0.90630776, 0, 0.4226182, -12.553241, 0, 49.076637)
@@ -2247,6 +2249,71 @@ transform = Transform3D(-2, 0, -1.1920929e-07, 0, 1, 0, 2.3841858e-07, 0, -1, 75
 
 [node name="Plaza" type="Node3D" parent="SpecialComponentsGroup"]
 
+[node name="Road Puddles" type="Node3D" parent="SpecialComponentsGroup"]
+
+[node name="Tar" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(0.4330127, 0, -0.25, 0, 0.5, 0, 0.25, 0, 0.4330127, -340, 1, 210)
+
+[node name="Tar2" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -885, 1, -160)
+
+[node name="Tar3" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1005, 1, -160)
+
+[node name="Tar4" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1120, 1, -160)
+
+[node name="Tar5" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1240, 1, -160)
+
+[node name="Tar6" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -765, 1, -160)
+
+[node name="Tar7" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -570, 1, 460)
+
+[node name="Tar8" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(0.35355338, 0, 0.35355338, 0, 0.5, 0, -0.35355338, 0, 0.35355338, -185, 1, 40)
+
+[node name="Tar9" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(-0.4829629, 0, -0.12940957, 0, 0.5, 0, 0.12940957, 0, -0.4829629, -70, 1, -140)
+
+[node name="Tar10" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1240, 1, -160)
+
+[node name="Tar11" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -765, 1, -160)
+
+[node name="Tar12" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -325, 1, 715)
+
+[node name="Tar13" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -140, 1, 760)
+
+[node name="Tar14" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 50, 1, 620)
+
+[node name="Tar15" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 105, 1, 305)
+
+[node name="Tar16" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, 1, 70)
+
+[node name="Tar17" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 110, 1, -310)
+
+[node name="Tar18" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 50, 1, -430)
+
+[node name="Tar19" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 25, 1, -700)
+
+[node name="Tar20" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("17_0swl4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1005, 1, -160)
+
+[node name="Tar21" parent="SpecialComponentsGroup/Road Puddles" instance=ExtResource("18_grgm4")]
+transform = Transform3D(0.4829629, 0, 0.12940952, 0, 0.5, 0, -0.12940952, 0, 0.4829629, 100, 1, -870)
+
 [node name="DecorationsGroup" type="Node3D" parent="."]
 
 [node name="AlleywayDecorations" type="Node3D" parent="DecorationsGroup"]
@@ -2257,23 +2324,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -404, 0, 41)
 [node name="TarPuddle" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("18_grgm4")]
 transform = Transform3D(0.12678547, 0, 0.27189237, 0, 0.3, 0, -0.27189237, 0, 0.12678547, 15.047047, 1, -106.58697)
 
-[node name="Cone" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -220, 3, 0)
-
 [node name="Cone2" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -20, 3, 75)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -20, 3, 75)
 
 [node name="Cone3" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -37, 3, 85)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -37, 3, 85)
 
 [node name="Cone4" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59, 3, 80)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -59, 3, 80)
 
 [node name="Cone5" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -80, 3, 85)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -80, 3, 85)
 
 [node name="Cone6" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -100, 3, 75)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -100, 3, 75)
 
 [node name="banan5" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("59_xklhs")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -20, 3, 25)
@@ -2306,22 +2370,22 @@ transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 180, 3, -525)
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 155, 3, -485)
 
 [node name="Cone7" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 60, 3, -715)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 60, 3, -715)
 
 [node name="Cone8" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 260, 3, -640)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 260, 3, -640)
 
 [node name="Cone9" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 243, 3, -630)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 243, 3, -630)
 
 [node name="Cone10" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 221, 3, -635)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 221, 3, -635)
 
 [node name="Cone11" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 200, 3, -630)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 200, 3, -630)
 
 [node name="Cone12" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 180, 3, -640)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 180, 3, -640)
 
 [node name="AlleyWayObstacles" type="Node3D" parent="DecorationsGroup/AlleywayDecorations"]
 
@@ -2378,37 +2442,52 @@ transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70
 [node name="WaymoConfusedSide2" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("16_i7rp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195, 0, -235)
 
+[node name="Tree1" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -530, 0, 900)
+
+[node name="Tree2" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -485, 0, 815)
+
+[node name="Tree3" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -505, 0, 985)
+
+[node name="Tree4" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -530, 0, 900)
+
+[node name="Tree5" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -425, 0, 780)
+
+[node name="Tree6" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -545, 0, 750)
+
 [node name="PlazaInteractives" type="Node3D" parent="DecorationsGroup/PlazaDecorations"]
 
 [node name="Cone2" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -25, 3, 130)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -15, 3, 135)
 
 [node name="Cone3" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -52, 3, 115)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -47, 3, 115)
 
 [node name="Cone4" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74, 3, 100)
-
-[node name="Cone5" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -95, 3, 85)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, -79, 3, 100)
 
 [node name="Cone6" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 230, 3, -90)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 230, 3, -90)
 
 [node name="Cone7" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 250, 3, -115)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 250, 3, -115)
 
 [node name="Cone8" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 275, 3, -145)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 275, 3, -145)
 
 [node name="Cone9" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 295, 3, -170)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 295, 3, -170)
 
 [node name="Cone10" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 315, 3, -195)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 315, 3, -195)
 
 [node name="Cone11" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 340, 3, -225)
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 340, 3, -225)
 
 [node name="Oil" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("17_0swl4")]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 45, 1, -60)
