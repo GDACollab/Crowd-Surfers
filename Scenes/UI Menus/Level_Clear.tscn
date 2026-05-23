@@ -1,9 +1,186 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg5atjrtrnq3w"]
+[gd_scene load_steps=18 format=3 uid="uid://cg5atjrtrnq3w"]
 
-[ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/level_clear.gd" id="1_8u14x"]
+[ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/UI/level_clear.gd" id="1_8u14x"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_ashpn"]
+[ext_resource type="Texture2D" uid="uid://c6606nu8c1hpo" path="res://Assets/Art/UI/LevelClear/level_clear.PNG" id="4_dql68"]
+[ext_resource type="Texture2D" uid="uid://3b3ohhudaawc" path="res://Assets/Art/UI/LevelClear/background_line.PNG" id="5_auuq0"]
+[ext_resource type="Texture2D" uid="uid://b3xa4woj7aau6" path="res://Assets/Art/UI/LevelClear/clear_time.PNG" id="5_dql68"]
+[ext_resource type="Texture2D" uid="uid://comqwg6v04wlv" path="res://Assets/Art/UI/LevelClear/best_time.PNG" id="6_k5fbo"]
+[ext_resource type="Texture2D" uid="uid://bcbejd8phkxj5" path="res://Assets/Art/UI/LevelClear/background.PNG" id="7_pscuh"]
+[ext_resource type="Texture2D" uid="uid://c5o6e5dhbvpr" path="res://Assets/Art/UI/LevelClear/background_star_1.PNG" id="8_auuq0"]
+[ext_resource type="Texture2D" uid="uid://cnxpiynitwknp" path="res://Assets/Art/UI/LevelClear/background_star_2.PNG" id="9_ewal3"]
+[ext_resource type="Texture2D" uid="uid://dk7knx18hwvme" path="res://Assets/Art/UI/LevelClear/background_star_3.PNG" id="10_5bgqs"]
+[ext_resource type="Texture2D" uid="uid://du6g6cfb6dmn5" path="res://Assets/Art/UI/LevelClear/background_star_4.PNG" id="11_rm4hk"]
+[ext_resource type="Texture2D" uid="uid://dwa6wsr41784a" path="res://Assets/Art/UI/LevelClear/restart_button.PNG" id="13_ewal3"]
+[ext_resource type="Texture2D" uid="uid://d7vnoe50wc8r" path="res://Assets/Art/UI/LevelClear/continue_button.PNG" id="14_5bgqs"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="14_rm4hk"]
 
-[node name="Control" type="Control"]
+[sub_resource type="Animation" id="Animation_rm4hk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/BackgroundElements/Line:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2656.5935, 381.4286)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/RestartButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5bgqs"]
+resource_name = "show_level_clear"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/BackgroundElements/Star1:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/BackgroundElements/Star2:self_modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.70000005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/BackgroundElements/Star3:self_modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.34, 0.90000004),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background/BackgroundElements/Star4:self_modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.36666667, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Background/BackgroundElements/Line:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.23333333, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2656.5935, 381.4286), Vector2(1.374, 381.429)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.1333334, 1.9666667, 2.2666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"scale_level_clear"
+}, {
+"args": [],
+"method": &"scale_clear_time"
+}, {
+"args": [],
+"method": &"scale_best_time"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Background/RestartButton:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.75, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Background/ContinueButton:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.75, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vw3ka"]
+_data = {
+&"RESET": SubResource("Animation_rm4hk"),
+&"show_level_clear": SubResource("Animation_5bgqs")
+}
+
+[node name="LevelClearUI" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
@@ -15,64 +192,170 @@ script = ExtResource("1_8u14x")
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_ashpn")]
-confirm_buttons = [NodePath("../Panel/RestartButton")]
-back_buttons = [NodePath("../Panel/ContinueButton")]
+visible = false
+confirm_buttons = [NodePath("../Background/ContinueButton")]
+back_buttons = [NodePath("../Background/RestartButton")]
 
-[node name="Panel" type="Panel" parent="."]
-clip_contents = true
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 13813.0
-offset_bottom = 7170.0
-scale = Vector2(0.13900031, 0.15062712)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.728, 0.7)
+texture = ExtResource("7_pscuh")
 
-[node name="LevelClearText" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 614.2751
-offset_top = 310.6592
-offset_right = 1584.2751
-offset_bottom = 550.6592
-scale = Vector2(8.974465, 8.747356)
-theme_override_font_sizes/font_size = 175
-text = "Level Clear!"
+[node name="BackgroundElements" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="ClearTimeText" type="Label" parent="Panel"]
+[node name="Line" type="TextureRect" parent="Background/BackgroundElements"]
 layout_mode = 0
-offset_left = 614.275
-offset_top = 1928.8608
-offset_right = 1437.275
-offset_bottom = 2071.9897
-scale = Vector2(8.974465, 8.747356)
+offset_left = -2656.5935
+offset_top = 381.4286
+offset_right = -2.5935059
+offset_bottom = 725.42883
+texture = ExtResource("5_auuq0")
+
+[node name="Star1" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 480.00003
+offset_bottom = 680.0
+texture = ExtResource("8_auuq0")
+
+[node name="Star2" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 30.21978
+offset_top = 934.28577
+offset_right = 326.2198
+offset_bottom = 1378.2858
+texture = ExtResource("9_ewal3")
+
+[node name="Star3" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 2129.121
+offset_top = 90.0
+offset_right = 2655.121
+offset_bottom = 948.0
+texture = ExtResource("10_5bgqs")
+
+[node name="Star4" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 806.31866
+offset_top = 311.42856
+offset_right = 1730.3186
+offset_bottom = 1485.4286
+texture = ExtResource("11_rm4hk")
+
+[node name="LevelClear" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_right = 2656.0
+offset_bottom = 646.0
+pivot_offset = Vector2(1328, 323)
+texture = ExtResource("4_dql68")
+
+[node name="ClearTime" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 8.241767
+offset_top = 537.08795
+offset_right = 1454.2418
+offset_bottom = 1215.0879
+pivot_offset = Vector2(723, 339)
+texture = ExtResource("5_dql68")
+
+[node name="ClearTimeText" type="Label" parent="Background/ClearTime"]
+layout_mode = 0
+offset_left = 491.75815
+offset_top = 267.19775
+offset_right = 1314.7583
+offset_bottom = 410.32666
+scale = Vector2(1.9, 1.9)
+theme_override_colors/font_color = Color(0.97, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.17125198, 0.0003387683, 0.30962637, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/font_size = 100
-text = "Clear Time: 00:00"
+text = "00:00.00"
 
-[node name="BestTimeText" type="Label" parent="Panel"]
+[node name="BestTime" type="TextureRect" parent="Background"]
 layout_mode = 0
-offset_left = 614.275
-offset_top = 2798.5562
-offset_right = 1437.275
-offset_bottom = 2941.685
-scale = Vector2(8.974465, 8.747356)
+offset_left = 129.12088
+offset_top = 1119.5055
+offset_right = 1081.1208
+offset_bottom = 1397.5055
+pivot_offset = Vector2(634.666, 185.334)
+texture = ExtResource("6_k5fbo")
+
+[node name="BestTimeText" type="Label" parent="Background/BestTime"]
+layout_mode = 0
+offset_left = 439.56046
+offset_top = 213.3518
+offset_right = 1262.5605
+offset_bottom = 356.4807
+scale = Vector2(1.9, 1.9)
+theme_override_colors/font_color = Color(0.97, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.17125198, 0.0003387683, 0.30962637, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/font_size = 100
-text = "Best Time: 00:00"
+text = "00:00.00"
 
-[node name="RestartButton" type="Button" parent="Panel"]
+[node name="RestartButton" type="TextureButton" parent="Background"]
 layout_mode = 0
-offset_left = 5637.0
-offset_top = 3717.7898
-offset_right = 13351.0
-offset_bottom = 5102.79
-theme_override_font_sizes/font_size = 700
-text = "Restart Level"
+offset_left = 1541.2087
+offset_top = 781.4286
+offset_right = 2687.209
+offset_bottom = 1141.4286
+texture_normal = ExtResource("13_ewal3")
+script = ExtResource("14_rm4hk")
+brightness_change = 0.1
 
-[node name="ContinueButton" type="Button" parent="Panel"]
+[node name="TempText" type="RichTextLabel" parent="Background/RestartButton"]
 layout_mode = 0
-offset_left = 5637.0
-offset_top = 5394.752
-offset_right = 13351.0
-offset_bottom = 6779.752
-theme_override_font_sizes/font_size = 700
-text = "Continue
-"
+offset_left = 282.96704
+offset_top = 22.857143
+offset_right = 341.96704
+offset_bottom = 62.857143
+scale = Vector2(10, 10)
+mouse_filter = 2
+text = "Restart"
+fit_content = true
+autowrap_mode = 0
 
-[connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Panel/ContinueButton" to="." method="_on_continue_button_pressed"]
+[node name="ContinueButton" type="TextureButton" parent="Background"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1443.6813
+offset_top = 1127.143
+offset_right = 2659.6812
+offset_bottom = 1537.143
+texture_normal = ExtResource("14_5bgqs")
+script = ExtResource("14_rm4hk")
+brightness_change = 0.1
+
+[node name="TempText" type="RichTextLabel" parent="Background/ContinueButton"]
+layout_mode = 0
+offset_left = 259.6154
+offset_top = 42.857056
+offset_right = 329.6154
+offset_bottom = 82.857056
+scale = Vector2(10, 10)
+mouse_filter = 2
+text = "Continue"
+fit_content = true
+autowrap_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vw3ka")
+}
+
+[connection signal="mouse_entered" from="Background/RestartButton" to="Background/RestartButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Background/RestartButton" to="Background/RestartButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="Background/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="Background/ContinueButton" to="." method="_on_continue_button_pressed"]
