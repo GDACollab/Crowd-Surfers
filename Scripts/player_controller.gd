@@ -638,6 +638,12 @@ func transition_to(new_state: int) -> void:
 					player_sprite.play_animation("dash")
 					# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
 					$DashAnimationEndTimer.start()
+					
+					if (vfx_manager == null):
+						print("ERROR: No VFX manager assigned to player!!")
+					else:
+						vfx_manager.spawn_vfx(position, velocity, "dash_side", self)
+		
 				# Play dash sound
 				$DashSound.play()
 		States.STOMP_CROWD_LAUNCH:
@@ -895,7 +901,7 @@ func update_trail(delta):
 		$TrailHolder/GPUTrail3D.visible = true
 	else:
 		$TrailHolder/GPUTrail3D.restart()
-	print(max_speed)
+	#print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.
