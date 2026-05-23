@@ -1470,6 +1470,27 @@ transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071
 [node name="Bus1Full5" parent="VehicleGroup/PlazaVehicleGroup" instance=ExtResource("46_22qtl")]
 transform = Transform3D(-0.9999999, 1.5383701e-15, -5.960464e-08, -4.2146848e-08, 0.7071067, 0.70710665, 4.2146844e-08, 0.7071067, -0.7071066, 1120, 40, -1040)
 
+[node name="WaymoConfusedDown3" parent="VehicleGroup/PlazaVehicleGroup" instance=ExtResource("18_n1c53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -530)
+
+[node name="WaymoConfusedSide" parent="VehicleGroup/PlazaVehicleGroup" instance=ExtResource("16_i7rp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190, 0, -690)
+
+[node name="WaymoEvilSide" parent="VehicleGroup/PlazaVehicleGroup" instance=ExtResource("45_c2771")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 275, 0, -690)
+
+[node name="WaymoConfusedSide2" parent="VehicleGroup/PlazaVehicleGroup" instance=ExtResource("16_i7rp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 360, 0, -690)
+
+[node name="WaymoEvilSide2" parent="VehicleGroup/PlazaVehicleGroup" instance=ExtResource("45_c2771")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 525, 0, -690)
+
+[node name="CarRedUp15" parent="VehicleGroup" instance=ExtResource("20_3fg1r")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 300, 0, -520)
+
+[node name="Bus1Full34" parent="VehicleGroup" instance=ExtResource("46_22qtl")]
+transform = Transform3D(-0.25881904, 0, 0.9659257, 0, 1, 0, -0.9659257, 0, -0.25881904, 270, 0, -530)
+
 [node name="BuildingGroup" type="Node3D" parent="."]
 
 [node name="AlleywayBuildings" type="Node3D" parent="BuildingGroup"]
@@ -2224,6 +2245,8 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, -1300)
 [node name="InvisibleWall3" parent="SpecialComponentsGroup" instance=ExtResource("54_m3ff1")]
 transform = Transform3D(-2, 0, -1.1920929e-07, 0, 1, 0, 2.3841858e-07, 0, -1, 750, 0, -1600)
 
+[node name="Plaza" type="Node3D" parent="SpecialComponentsGroup"]
+
 [node name="DecorationsGroup" type="Node3D" parent="."]
 
 [node name="AlleywayDecorations" type="Node3D" parent="DecorationsGroup"]
@@ -2352,7 +2375,52 @@ transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70
 [node name="StaticBody3D3" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("35_lkdh3")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 162.63455, 0, -41.421356)
 
+[node name="WaymoConfusedSide2" parent="DecorationsGroup/PlazaDecorations/PlazaObstacles" instance=ExtResource("16_i7rp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195, 0, -235)
+
 [node name="PlazaInteractives" type="Node3D" parent="DecorationsGroup/PlazaDecorations"]
+
+[node name="Cone2" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -25, 3, 130)
+
+[node name="Cone3" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -52, 3, 115)
+
+[node name="Cone4" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74, 3, 100)
+
+[node name="Cone5" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -95, 3, 85)
+
+[node name="Cone6" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 230, 3, -90)
+
+[node name="Cone7" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 250, 3, -115)
+
+[node name="Cone8" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 275, 3, -145)
+
+[node name="Cone9" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 295, 3, -170)
+
+[node name="Cone10" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 315, 3, -195)
+
+[node name="Cone11" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 340, 3, -225)
+
+[node name="Oil" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("17_0swl4")]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 45, 1, -60)
+
+[node name="Oil2" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("68_ykr1p")]
+transform = Transform3D(0.24999999, 0, 0.43301272, 0, 0.5, 0, -0.43301272, 0, 0.24999999, 100, 1, -70)
+
+[node name="Oil3" parent="DecorationsGroup/PlazaDecorations/PlazaInteractives" instance=ExtResource("69_w6g8g")]
+transform = Transform3D(-0.2, 0, 0.34641016, 0, 0.4, 0, -0.34641016, 0, -0.2, 30, 1, -115)
+
+[node name="StaticBody3D" parent="DecorationsGroup/PlazaDecorations" instance=ExtResource("70_lkj5b")]
+transform = Transform3D(0.51961523, 0, 0.3, 0, 1, 0, -0.3, 0, 0.51961523, 170, 1, -180)
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
