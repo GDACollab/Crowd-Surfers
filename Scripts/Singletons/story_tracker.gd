@@ -44,8 +44,12 @@ func get_current_knot() -> String:
 			return ""
 		post_level = false
 		current_act = story_arcs_progress[selected_level]
+		print("[STORY] ", current_act)
+		## Checks if story is complete
+		if(current_act == 2):
+			return ""
 		## Increment to next scene
-		if(story_arcs_progress[selected_level] < 1):
+		if(story_arcs_progress[selected_level] <= 1):
 			story_arcs_progress[selected_level] += 1
 		knot_name = level_character[selected_level] + "_act" + str(current_act + 2)
 		_add_voicemail(knot_name)

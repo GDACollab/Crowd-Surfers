@@ -19,7 +19,7 @@ public partial class InkyHandler : Node
 	//Initializes InkyHandler and loads default story
 	public override void _Ready()
 	{
-		defaultStory = (InkStory) GD.Load("res://Assets/Dialogue/JoelleDialogueTest.ink");
+		defaultStory = (InkStory) GD.Load("res://Assets/Dialogue/Ink Files/MainStory.ink");
 		currentStory = defaultStory;
 		dialogueInterface = GD.Load<PackedScene>("res://Scenes/Dialogue Interface/dialogue_interface.tscn");
 		GD.Print("Inky Handler loaded");
