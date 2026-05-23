@@ -13,12 +13,9 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_day0g")
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
-
-[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("1_3bm1j")]
-confirm_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act2Button")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "start_buttons") instance=ExtResource("1_3bm1j")]
 back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
+start_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act2Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act3Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/VerticalSliceButton"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/ParkingLotButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

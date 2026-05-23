@@ -413,9 +413,6 @@ script = ExtResource("1_dsamw")
 background_move_radius_x = 9.0
 background_move_radius_y = 9.0
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_j0r1m")]
 confirm_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SettingsButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton")]
 back_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/ExitButton")]
@@ -610,6 +607,7 @@ libraries = {
 [connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="." method="_on_voice_mail_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="PhoneImage/MainPhoneMask/MainContainer/ExitButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="PhoneImage/MainPhoneMask/MainContainer/ExitButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
