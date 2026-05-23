@@ -63,8 +63,9 @@ func _ready() -> void:
 	$"Left Character Portrait".find_child("Portrait Image").texture = defaultPortait
 	_load_main_panels()
 	_get_input()
+	
 	music_bus = FmodServer.get_bus("bus:/MUS")
-	music_bus.volume *= music_bus_volume_scalar
+	Audio.set_bus_volume("bus:/MUS", music_bus.volume * music_bus_volume_scalar)
 	
 	# Start music
 	if (!Audio.registry.has("mus_hub")):
@@ -75,7 +76,7 @@ func _ready() -> void:
 		Audio.unpause_persistent("mus_hub")
 		
 func _exit_tree() -> void:
-	music_bus.volume /= music_bus_volume_scalar
+	Audio.set_bus_volume("bus:/MUS", music_bus.volume / music_bus_volume_scalar)
 	Audio.kill_persistent("mus_hub")
 
 func _process(_delta: float) -> void:

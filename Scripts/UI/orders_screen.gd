@@ -21,4 +21,4 @@ func _on_act_3_button_pressed() -> void:
 func _handle_music():
 	Audio.kill_persistent("mus_title")
 	Audio.pause_persistent("mus_hub")
-	Audio.TITLE_SCREEN_PULSING = false
+	Audio.ui_pulsing = false
