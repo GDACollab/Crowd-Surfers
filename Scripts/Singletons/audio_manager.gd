@@ -3,8 +3,12 @@ class_name AudioManager
 
 ## Public registry that (ideally) contains all persitent FMOD events (music, looping SFX, etc)
 @export var registry: Dictionary
-var TITLE_SCREEN_PULSING := false
+var ui_pulsing := false
+var delta_global : float
 var previous_scene: Node = null
+var value := 0.0
+var target := 100.0
+var speed := 20.0   # units per second
 
 func _ready():
 	print("AudioManager loaded")
@@ -20,7 +24,7 @@ func _ready():
 	# print(registry)
 	
 # TODO: Replace with a version that doesn't check if the scene has changed every single frame
-func _process(_delta):
+func _process(_delta: float):
 	var current_scene = get_tree().current_scene
 
 	if current_scene != previous_scene:
@@ -47,6 +51,8 @@ func create_persistent(key: String, eventPath: String, killOnSceneChange := fals
 		"killOnSceneChange": killOnSceneChange,
 		"pausePosition": -1
 		}
+		
+	print("AudioManager: Created instance of \"" + str(eventPath) + "\"")
 		
 	return eventInstance
 	
@@ -123,11 +129,25 @@ func kill_duplicate_persistents(eventPath: String) -> bool:
 ## Takes registry keys, stops and releases the all associated event instances, and removes them from the registry.
 ## Returns true if ALL items were successfully removed, false if any were not.
 func kill_all_persistents() -> bool:
-	var keysUntyped: Array = registry.keys()
-	var keysTyped: Array[String] = []
-	keysTyped.assign(keysUntyped)
-	return kill_persistents(keysTyped)
+	var keys: Array[String] = []
+	keys.assign(registry.keys())
+	return kill_persistents(keys)
 	
+## Takes a bus path and a volume to set the bus to and ramps the value over the given time interval in seconds.
+## The FmodEvent `volume` property does not cleanly ramp between volumes, which is why this function is necessary.
+func set_bus_volume(busPath: String, newVolume: float, time_interval := 1.0) -> bool:
+	var bus := FmodServer.get_bus(busPath)
+	var prevVolume := bus.volume
+	
+	create_tween().tween_method(
+		Callable(func(v): bus.volume = v), 
+		prevVolume, 
+		newVolume, 
+		time_interval
+	)
+	
+	return true	
+
 # Safely get a persistent instance from a key
 # Returns null if key/value pair not found
 func get_persistent_instance(key: String) -> FmodEvent:

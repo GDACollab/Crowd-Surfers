@@ -64,10 +64,10 @@ func _process(delta: float):
 ## FMOD event callback trigger, occurs every beat based on the event's desginated tempo
 func _handle_beat_events(_dict: Dictionary, type: int) -> void: 
 	if type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_MARKER:
-		Audio.TITLE_SCREEN_PULSING = true
+		Audio.ui_pulsing = true
 		# flash.modulate.a = 1.0
 	
-	if Audio.TITLE_SCREEN_PULSING and type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
+	if Audio.ui_pulsing and type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
 		_animate_to_beat()
 
 func _animate_to_beat() -> void:
