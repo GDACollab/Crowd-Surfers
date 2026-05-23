@@ -18,4 +18,8 @@ shape = SubResource("BoxShape3D_mpbxv")
 transform = Transform3D(2.4148145, -0.16746825, 0.625, 0, 2.4148145, 0.64704764, -0.64704764, -0.625, 2.3325317, 0, 0.5, 0)
 texture = ExtResource("2_43ppq")
 
+[node name="CollideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/objects/banana"
+event_guid = "{a79d2cf1-1986-49f7-bd49-248314db819b}"
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
