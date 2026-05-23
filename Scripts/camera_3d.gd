@@ -24,7 +24,7 @@ var query := PhysicsShapeQueryParameters3D.new()
 @export var SHAKE_DECAY_RATE: float = 5.0
 
 @export var NOISE_SHAKE_SPEED: float = 30.0
-@export var NOISE_SHAKE_STRENGTH: float = 60.0
+@export var NOISE_SHAKE_STRENGTH: float = 30.0
 @export var NOISE_PERIOD: float = 2.0
 #@export var shake_interval: float = 0.05
 #@export var shake_duration: float = 1.0

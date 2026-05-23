@@ -561,6 +561,7 @@ func transition_to(new_state: int) -> void:
 				$CrashTimer.start()
 				player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash")
+				get_viewport().get_camera_3d().apply_shake()
 		States.STOMP_WINDUP:
 			player_sprite.play_animation("stomp")
 			# If dash is active as stomp begins, end it
