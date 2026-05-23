@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=92 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -77,6 +77,9 @@
 [ext_resource type="PackedScene" uid="uid://bwrihpc133hm4" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/StormDrain.tscn" id="52_ypdg7"]
 [ext_resource type="PackedScene" uid="uid://c6ipg1n8uf8sa" path="res://Scenes/Level Components/SpecialObjects/wind_box_collider.tscn" id="53_mbmfq"]
 [ext_resource type="PackedScene" uid="uid://b6e14c1o1p1c7" path="res://Scenes/Level Components/Objects/invisible_right_triangle_wall.tscn" id="54_m3ff1"]
+[ext_resource type="PackedScene" uid="uid://ti5a67cbkn0q" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel2.tscn" id="58_i7gpa"]
+[ext_resource type="PackedScene" uid="uid://dbrfxqrd8k7mq" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel1.tscn" id="59_xklhs"]
+[ext_resource type="PackedScene" uid="uid://bl8hte1agb8q6" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/BananaPeel3.tscn" id="60_i1c8y"]
 [ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="68_ykr1p"]
 [ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="69_w6g8g"]
 [ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
@@ -2122,6 +2125,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -500)
 
 [node name="SpecialComponentsGroup" type="Node3D" parent="."]
 
+[node name="Park Bananas" type="Node3D" parent="SpecialComponentsGroup"]
+
+[node name="banan" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("59_xklhs")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -235, 3, 530)
+
+[node name="banan2" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("58_i7gpa")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -285, 3, 495)
+
+[node name="banan3" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("60_i1c8y")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -325, 3, 565)
+
+[node name="banan4" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("60_i1c8y")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -165, 3, 475)
+
+[node name="banan5" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("58_i7gpa")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -325, 3, 345)
+
+[node name="banan6" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("59_xklhs")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -180, 3, 565)
+
+[node name="banan7" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("60_i1c8y")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -245, 3, 365)
+
+[node name="banan8" parent="SpecialComponentsGroup/Park Bananas" instance=ExtResource("58_i7gpa")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -310, 3, 425)
+
 [node name="HighwayTarPuddles" type="Node3D" parent="SpecialComponentsGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1004.06, 1, -1651.515)
 
@@ -2204,6 +2233,72 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -404, 0, 41)
 
 [node name="TarPuddle" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("18_grgm4")]
 transform = Transform3D(0.12678547, 0, 0.27189237, 0, 0.3, 0, -0.27189237, 0, 0.12678547, 15.047047, 1, -106.58697)
+
+[node name="Cone" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -220, 3, 0)
+
+[node name="Cone2" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -20, 3, 75)
+
+[node name="Cone3" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -37, 3, 85)
+
+[node name="Cone4" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59, 3, 80)
+
+[node name="Cone5" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -80, 3, 85)
+
+[node name="Cone6" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -100, 3, 75)
+
+[node name="banan5" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("59_xklhs")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -20, 3, 25)
+
+[node name="banan6" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("58_i7gpa")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -35, 3, -15)
+
+[node name="banan7" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("60_i1c8y")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 40, 3, -55)
+
+[node name="banan8" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("58_i7gpa")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 60, 3, -130)
+
+[node name="banan9" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("59_xklhs")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 75, 3, -250)
+
+[node name="banan10" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("60_i1c8y")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 90, 3, -195)
+
+[node name="banan11" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("59_xklhs")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 120, 3, -355)
+
+[node name="banan12" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("58_i7gpa")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 160, 3, -405)
+
+[node name="banan13" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("59_xklhs")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 180, 3, -525)
+
+[node name="banan14" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("60_i1c8y")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 155, 3, -485)
+
+[node name="Cone7" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 60, 3, -715)
+
+[node name="Cone8" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 260, 3, -640)
+
+[node name="Cone9" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 243, 3, -630)
+
+[node name="Cone10" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 221, 3, -635)
+
+[node name="Cone11" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 200, 3, -630)
+
+[node name="Cone12" parent="DecorationsGroup/AlleywayDecorations/AlleyWayInteractives" instance=ExtResource("20_i8egd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 180, 3, -640)
 
 [node name="AlleyWayObstacles" type="Node3D" parent="DecorationsGroup/AlleywayDecorations"]
 
