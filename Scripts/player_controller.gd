@@ -655,6 +655,8 @@ func transition_to(new_state: int) -> void:
 					
 					if (vfx_manager == null):
 						print("ERROR: No VFX manager assigned to player!!")
+					elif (abs(velocity.z) > abs(velocity.x)):
+						vfx_manager.spawn_vfx(position, velocity, "dash_up", self)
 					else:
 						vfx_manager.spawn_vfx(position, velocity, "dash_side", self)
 		

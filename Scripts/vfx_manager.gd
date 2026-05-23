@@ -10,7 +10,7 @@ extends Node3D
 @export var offset_dictionary: Dictionary[String, Vector3] = {}
 
 @export_category("VFX Settings")
-enum RotationSetting {NONE, FLIP, ROTATE}
+enum RotationSetting {NONE, FLIP_X, FLIP_Y, ROTATE}
 @export var rotate_dictionary: Dictionary[String, RotationSetting] = {}
 
 func spawn_vfx(vfx_position: Vector3, player_velocity: Vector3, vfx_name: String, parent_node: Node = null):	
@@ -31,12 +31,17 @@ func spawn_vfx(vfx_position: Vector3, player_velocity: Vector3, vfx_name: String
 	flat_offset = flat_offset.rotated(player_flat_velocity.angle())
 	offset = Vector3(flat_offset.x, offset.y, flat_offset.y)
 	
-	if (rotate_dictionary[vfx_name] == RotationSetting.FLIP):
+	if (rotate_dictionary[vfx_name] == RotationSetting.FLIP_X):
 		if (player_flat_velocity.x > 0):
 			vfx.flip_h = true
-			
+						
 		if (abs(player_flat_velocity.y) > abs(player_flat_velocity.x)):
 			vfx.rotation.y = -90
+			
+	elif (rotate_dictionary[vfx_name] == RotationSetting.FLIP_Y):
+		if (player_flat_velocity.y > 0):
+			vfx.rotation.x = PI
+			offset += Vector3(0, 30, 20)
 		
 	elif (rotate_dictionary[vfx_name] == RotationSetting.ROTATE):
 		# weird ahh code. turns velocity into an angle rounded to the nearest 45 degrees. each 45 degree angle goes from from 0 to 7
