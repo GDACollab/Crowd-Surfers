@@ -53,10 +53,23 @@ var previousSpeaker : Control
 var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
 var awaitingTags := false
-var currentVOPath : String = ""
+
 var hub_music: FmodEvent
 var music_bus : FmodBus
-var music_bus_volume_scalar := 0.25
+var voice_lines : FmodEvent
+var currentVOPath : String = ""
+var music_bus_volume_scalar := 0.20
+## Used to count the number of choices the play has been given, for my jank FMOD dialogue tree implementation
+var choice_query_count := 0 
+
+var VOPATH_TO_FMODPATH := {
+	"main_act1_scene1": "event:/SFX/CHAR/voiceover/scenes/A1S1",
+	"main_act1_scene2": "event:/SFX/CHAR/voiceover/scenes/A1S2",
+	"main_act2_scene1": "event:/SFX/CHAR/voiceover/scenes/A2S1",
+	"main_act2_scene2": "event:/SFX/CHAR/voiceover/scenes/A2S2",
+	"main_act3_scene1": "event:/SFX/CHAR/voiceover/scenes/A3S1",
+	"main_act3_scene2": "event:/SFX/CHAR/voiceover/scenes/A3S2"
+}
 
 func _ready() -> void:	
 	currentStory = Inky.GetCurrentStory()
@@ -69,7 +82,7 @@ func _ready() -> void:
 	
 	# Start music
 	if (!Audio.registry.has("mus_hub")):
-		hub_music = Audio.create_persistent("mus_hub", "event:/MUS/hub")
+		hub_music = Audio.create_persistent("mus_hub", "event:/MUS/hub", true)
 		hub_music.start()
 		
 	else:
@@ -77,7 +90,6 @@ func _ready() -> void:
 		
 func _exit_tree() -> void:
 	Audio.set_bus_volume("bus:/MUS", music_bus.volume / music_bus_volume_scalar)
-	Audio.kill_persistent("mus_hub")
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("DialogueCancel")):
@@ -119,9 +131,16 @@ func _get_input():
 			_continue_story()
 		# Display choices
 		elif(currentStory.GetCurrentChoices().size() > 0 and !choicesDisplayed):
+			if (voice_lines != null): 
+				voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+			
 			_display_choices()
 		# Make choice
 		elif(currentStory.GetCurrentChoices().size() > 0 and choicesDisplayed):
+			if (voice_lines != null): 
+				voice_lines.set_parameter_by_name("branch", choice_query_count + (currentChoiceIndex + 1))
+				choice_query_count += currentStory.GetCurrentChoices().size()
+				
 			currentStory.ChooseChoiceIndex(currentChoiceIndex)
 			_clear_choices()
 			_continue_story()
@@ -135,6 +154,10 @@ func _continue_story():
 	# # Create new dialogue panel
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
 	## Apply tags to current panel
+	
+	if (voice_lines != null): 
+		voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+	
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
 ##  Displays the current line 
@@ -276,12 +299,13 @@ func _handle_tags(currentTags, newPanel):
 	var differentSpeaker := false
 	var changed_expression := false
 	
-	# #print(currentTags)
+	# print(currentTags)
 	
 	for t : String in currentTags:
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
 		var tagValue = splitTag[1]
+		
 		match(tagKey):
 			"speaker":
 				if(previousSpeakerTag != tagValue):
@@ -353,13 +377,17 @@ func _handle_tags(currentTags, newPanel):
 			"bg":
 				print("[DIALOGUE] Choosing new background!")
 			"vo":
-				if(tagValue == "play"):
-					##TODO Play next voice line. If already playing a line, make sure to cut if off.
-					#$VoiceManager._handle_voiceover()
+				if(tagValue == "return"):
+					# TODO: Fix dialogue skipping upon returning to main dialogue branch
+					# `voice_lines.start()` is not getting called twice: it's an issue with the FMOD event???
+					voice_lines.set_parameter_by_name("branch", 0)
+				elif(tagValue == "play"):
+					voice_lines.start()
 					pass
 				else:
 					##TODO Load based on tag value
 					currentVOPath = tagValue
+					voice_lines = Audio.create_persistent("voice_lines", VOPATH_TO_FMODPATH[currentVOPath], true)
 					print("[DIALOGUE] Loading VO files: ", currentVOPath)
 			"fade":
 				## Pauses dialogue and fades to black

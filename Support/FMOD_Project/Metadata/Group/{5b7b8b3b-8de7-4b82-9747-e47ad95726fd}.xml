@@ -17,6 +17,7 @@
 	<object class="MixerBusEffectChain" id="{cf9b3aad-60ac-43bf-87d2-831b8131c95f}">
 		<relationship name="effects">
 			<destination>{950c06b3-f8a4-42f5-ab9a-aa0203f78e5d}</destination>
+			<destination>{efedd103-9ede-46c6-a428-6ec52d0ca661}</destination>
 			<destination>{d7e7fdcb-2a9d-4c8a-8aa1-94a87f73af76}</destination>
 			<destination>{f4729505-8745-4444-825d-e994061bf401}</destination>
 		</relationship>
@@ -24,17 +25,25 @@
 	<object class="MixerBusPanner" id="{8c2c2584-29fc-4ac8-b724-195d7f5438ce}" />
 	<object class="CompressorEffect" id="{950c06b3-f8a4-42f5-ab9a-aa0203f78e5d}">
 		<property name="threshold">
-			<value>-9</value>
+			<value>-33</value>
 		</property>
 		<property name="ratio">
-			<value>1.5</value>
+			<value>50</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
 		</property>
 		<property name="releaseTime">
-			<value>680</value>
+			<value>500</value>
 		</property>
 		<relationship name="sidechains">
-			<destination>{1798afad-7730-4c9c-a6a6-be969561242d}</destination>
+			<destination>{84531245-4c31-4b67-b4a9-4b2f00b6f959}</destination>
 		</relationship>
+	</object>
+	<object class="ThreeEQEffect" id="{efedd103-9ede-46c6-a428-6ec52d0ca661}">
+		<property name="highCrossover">
+			<value>3000</value>
+		</property>
 	</object>
 	<object class="Sidechain" id="{d7e7fdcb-2a9d-4c8a-8aa1-94a87f73af76}">
 		<property name="level">

@@ -4,37 +4,37 @@
 \*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
 At least until...
 You knock on your boss's door. What could he be calling you in for?*
-Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown #vo:play
-\*You enter the door* #speaker:Slip
-Right on time...but only barely. You need to be faster than that. Much faster #speaker:Sam #vo:play
+Ah, finally. You may enter. And do treat the door handle with care. #speaker:Unknown #vo:play
+\*You enter the door*
+Right on time... but only barely. You need to be faster than that. Much faster. #speaker:Sam #vo:play
 Um, sorry boss! I was asking Chef how his morning was going–but he just started rambling about some "cheese shortage"? #speaker:Slip #anim:Shake #vo:play
 Preposterous! The great Sammy Sassbear’s would never fall victim to the fabled cheese shortage! #speaker:Sam #vo:play
-Well, if you want to be the one to argue with Chef… #speaker:Slip #vo:play
-…I think I shall pass on that kind offer #speaker:Sam #expression:Scared
-Anywhooo…we are officially at war! And Slip, you have won the audition to be our shining lead actor! #speaker:Sam
-*Uhh, I don’t remember auditioning… #speaker:Slip #vo:play
-    Nevermind that #speaker:Sam #vo:play
+Well, if you want to be the one to argue with Chef... #speaker:Slip #vo:play
+... I think I shall pass on that kind offer. #speaker:Sam #expression:Scared #vo:play
+Anywhooo... we are officially at war! And Slip, you have won the audition to be our shining lead actor! #speaker:Sam #vo:play
+*Uhh, I don’t remember auditioning... #speaker:Slip #vo:play
+    Nevermind that. #speaker:Sam #vo:play
 *Wait, did you say war? I’m too young to die! #speaker:Slip #vo:play
-    Not to that extreme, but a war nonetheless #speaker:Sam #vo:play
--A message from up-top was emailed to us this morning #speaker:Sam #vo:play
-Those big, dirty, disgusting corporate suits have tempted me with a most glorious treasure #speaker:Sam
+    Not to that extreme, but a war nonetheless. #speaker:Sam #vo:play
+-A message from up-top was emailed to us this morning. #speaker:Sam #vo:return #vo:play
+Those big, dirty, disgusting, horrendous, rotten, no-good corporate suits have tempted me with a most glorious treasure! #speaker:Sam #vo:play
 A ticket to Feathers! On Broadway! Eeeeeeee!!! #speaker:Sam #anim:Shake #vo:play
-Umm...okay? #speaker:Slip #vo:play
-But who are we at war with? #speaker:Slip #expression:Scared
+Umm... okay? #speaker:Slip #vo:play
+But who are we at war with? #speaker:Slip #expression:Scared #vo:play
 Caeno Gastropub, of course! We must best them in a game of speedy deliveries and top-quality food! #speaker:Sam #vo:play
-Only then shall we seize the ever-elusive prize! #speaker:Sam
-So you’re saying that all I gotta do is deliver pizza? #speaker:Slip #vo:play
-Ha, dear Slip. You are not just delivering pizza. You are delivering justice. #speaker:Sam #vo:play
-Justice to that slimy Maximilian. It is high time that Noise City learns who the most magnificent business owner truly is! #speaker:Sam #anim:Laugh
+Only then shall we seize the ever-elusive prize! #speaker:Sam #vo:play
+So you’re saying that all I gotta do is deliver some pizzas? #speaker:Slip #vo:play
+Ha! Dear Slip... You are not just delivering pizzas. You are delivering justice. #speaker:Sam #vo:play
+Justice to that slimy Maximilian. It is high time that Noise City learns who the most magnificent business owner truly is! #speaker:Sam #anim:Laugh #vo:play
 *The CEO of Scratch Records? #speaker:Slip #vo:play
 *Oh, Gabrielle D. Annabelle of course! #speaker:Slip #vo:play
--WRONG! It is I, Samuel. Ario. MAXIMUS! #speaker:Sam #vo:play
+-WRONG! It is I, Samuel. Ario. MAXIMUS! #speaker:Sam #vo:return #vo:play
 Now Slip, get those skates on the ground and satisfy our audience with cheesy deliciousness! #speaker:Sam #vo:play
-If I hear those delivery times are slipping, I may have to ask you to, ahem, exit stage left. Kindly, of course. #speaker:Sam #anim:Shake
-Got it? #speaker:Sam
-So...am I getting a raise for all this? #speaker:Slip #vo:play
+If I hear those delivery times are slipping, I may have to ask you to, ahem, exit stage left. Kindly, of course. #speaker:Sam #anim:Shake #vo:play
+Understood? #speaker:Sam #vo:play
+So... am I getting a raise for all this? #speaker:Slip #vo:play
 You’re a funny fella, Slip! #speaker:Sam #anim:Laugh #vo:play
-Now get to work! The clock's ticking! #speaker:Sam
+Now get to work! The clock's ticking! #speaker:Sam #vo:play
 ->END
 
 ===main_act1_scene2===
@@ -49,53 +49,53 @@ Link us up, and I’ll make sure that music of yours reaches the ears of all my 
 //START OF MAIN STORY SCENE
 -I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #fade:out #vo:main_act1_scene2 #speaker:Slip #anim:Shake #vo:play
 Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #vo:play
-But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous
-Now why would you say that? It is only 6 P.M- #speaker:Sam
+But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous #vo:play
+Now why would you say that? It is only 6pm- #speaker:Sam #vo:play
 ... #speaker:Sam
-Ahem, as I was saying! #speaker:Sam #anim:Laugh
-How did the first day of the competition go? Did you beat those dastardly snails? #speaker:Sam
-Were they begging on their shells for mercy? #speaker:Sam
-*Easy as pizza pie #speaker:Slip
-    That is music to my ears! #speaker:Sam
-*I may have slammed into a few walls... #speaker:Slip
-    Ha ha ha! #speaker:Sam #anim:Laugh
-    I mean, uh, that is most unfortunate #speaker:Sam
--One of the customers also said they were an old friend of yours #speaker:Slip
-They mentioned some “bridges needing to be rebuilt”? As if you would be the constructive type... #speaker:Slip
-What the slug are you talking about? #speaker:Sam
-Ah, right! Their name was Pavo. They were some kind of music artist, I think? #speaker:Slip
-Pa-Pavo? It has been oh so many years #speaker:Sam
-Although, "friend" is not the word I would use to describe them... #speaker:Sam #anim:Shake
-*Is "buddy" a better word? #speaker:Slip
-    Buddy. Pal. Friend. It's all the same, and Pavo is none of them. Not anymore, that is #speaker:Sam
-    Not anymore, that is #speaker:Sam
-*Why's that? #speaker:Slip
--That green-feathered goose dared to sabotage me on my journey to the main stage! #speaker:Sam
-Twisting my teachings, and turning them right back against me! #speaker:Sam #anim:Flip
-Full shade, of course #speaker:Sam
-If it wasn’t for them, I would be singing my tentacles off right now! #speaker:Sam
-And the people would love me! #speaker:Sam
-Oh, how I miss the applause... #speaker:Sam
-You trained them? #speaker:Slip
-Yes. And they turned around and left me in the dust, claiming I was “becoming mean” and “hurting them with my words”, whatever that means #speaker:Sam
-To be an actor is to dedicate your life to the craft! #speaker:Sam #anim:Laugh
-Are you sure they weren’t just looking out for you? They seemed concerned when we talked #speaker:Slip
-Hah! What a farce! #speaker:Sam
-Do not trust that witch’s wicked lies, just as you should not trust that Maximilian to play fair in this game of wits #speaker:Sam
-So get out of here, Slip, and get a good night’s rest #speaker:Sam
-We need you in tip-top shape for tomorrow’s deliveries! We cannot throw away this shot! #speaker:Sam #anim:Shake
-But what about Pa- #speaker:Slip
-Oh dear, look at the time! We gotta get this place closed! #speaker:Sam
-It is terribly tragic, but you must be on your way! See you tomorrow, Slip! #speaker:Sam
-Whatever, at least I can listen to the album now... #speaker:Slip #anim:Shake
-Goodnight Chef! #speaker:Slip #anim:Exit
-Hey, what about me! Do I get a goodnight? Slip? #speaker:Sam
+Ahem, as I was saying! #speaker:Sam #anim:Laugh #vo:play
+How did the first day of the competition go? #speaker:Sam #vo:play
+Did you beat those dastardly snails? Were they begging on their shells for mercy? #speaker:Sam #vo:play
+*Uh, yeah... easy as pie... #speaker:Slip #vo:play
+    That is music to my ears! #speaker:Sam #vo:play
+*I may have slammed into a few walls... #speaker:Slip #vo:play
+    Ha ha ha! #speaker:Sam #anim:Laugh #vo:play
+    I mean, uh, that is most unfortunate. #speaker:Sam #vo:play
+-One of the customers also said they were an old friend of yours. #speaker:Slip #vo:return #vo:play
+They mentioned some “bridges needing to be rebuilt”? As if you would be the constructive type... #speaker:Slip #vo:play
+What the slug are you talking about? #speaker:Sam #vo:play
+Ah, right! Their name was... Pavo? They were some kind of music artist, I think. #speaker:Slip #vo:play
+P- Pavo? It has been oh so many years... #speaker:Sam #vo:play
+Although, "friend" is not the word I would use to describe them. #speaker:Sam #anim:Shake #vo:play
+*Is "buddy" a better word? #speaker:Slip #vo:play
+    Buddy. Pal. Friend. It's all the same, and Pavo is none of them. #speaker:Sam #vo:play
+    Not anymore, that is. #speaker:Sam #vo:play
+*Why's that? #speaker:Slip #vo:play
+-That green-feathered goose dared to sabotage me on my journey to the main stage! #speaker:Sam #vo:return #vo:play
+Twisting my teachings, and turning them around, back against me! #speaker:Sam #anim:Flip #vo:play
+Full shade, of course. #speaker:Sam #vo:play
+If it wasn’t for them, I would be singing my tentacles off right now! #speaker:Sam #vo:play
+And the people would love me! #speaker:Sam #vo:play
+Oh, how I miss the applause... #speaker:Sam #vo:play
+You trained them? #speaker:Slip #vo:play
+Yes. And they turned around and left me in the dust, claiming I was “becoming mean” and “hurting them with my words.” Whatever that means. #speaker:Sam #vo:play
+To be an actor is to dedicate your life to the craft! #speaker:Sam #anim:Laugh #vo:play
+Are you sure they weren’t just looking out for you? They seemed concerned when we talked... #speaker:Slip #vo:play
+Hah! What a farce! #speaker:Sam #vo:play
+Do not trust that witch’s wicked lies, just as you should not trust that Maximilian to play fair in this game of wits. #speaker:Sam #vo:play
+So get out of here, Slip, and get a good night’s rest. #speaker:Sam #vo:play
+We need you in tip-top shape for tomorrow’s deliveries! We cannot throw away this shot! #speaker:Sam #anim:Shake #vo:play
+But what about Pa- #speaker:Slip #vo:play
+Oh dear, look at the time! We gotta get this place closed! #speaker:Sam #vo:play
+It is terribly tragic, but you must be on your way! See you tomorrow, Slip! #speaker:Sam #vo:play
+Whatever, at least I can listen to the album now... #speaker:Slip #anim:Shake #vo:play
+Goodnight Chef! #speaker:Slip #anim:Exit #vo:play
+Hey, what about me! Do I get a goodnight? Slip? #speaker:Sam #vo:play
 ... #speaker:Chef
 It may do you good to treat the kid with some respect. Have a goodnight, Samuel #speaker:Chef
 ... #speaker:Sam
-I-it matters not. My 4K copy of Mammalton (Director’s Cut) will keep my company tonight! #speaker:Sam #anim:Laugh
-It even features the original cast! #speaker:Sam
-They are the ones truly missing out... Right?? #speaker:Sam
+I-it matters not. My 4K copy of Mammalton (Director’s Cut) will keep my company tonight! #speaker:Sam #anim:Laugh #vo:play
+It even features the original cast! #speaker:Sam #vo:play
+They are the ones truly missing out... #speaker:Sam #vo:play
 ... #speaker:Sam
 ->END
 
@@ -252,32 +252,32 @@ This is Pavo act 3
 
 //MINNY
 ===Minny_act1===
-\*It's another breezy morning as you skate to work*
-If you know you know..oooohh! #speaker:Slip #expression:Scared #anim:Shake
+\*It's another breezy morning as you skate to work* #vo:main_act2_scene1
+If you know you know... oooohh! #speaker:Slip #expression:Scared #anim:Shake #vo:play
 \*You narrowly avoid colliding with a pedestrian as your skates come to a screeching halt on the concrete #anim:Spin
-Oh man, are you okay? Sorry I didn't see you, it's like you tumbled out of nowhere! #speaker:Slip #expression:Nervous #anim:Laugh
+Oh man, are you okay? Sorry I didn't see you, it's like you tumbled out of nowhere! #speaker:Slip #expression:Nervous #anim:Laugh #vo:play
 D-don't be sorry...my fault for running out...*mumble mumble* #speaker:Minny #expression:Nervous #anim:Shake
-I didn't quite catch-wait a sec, Minny!? #speaker:Slip #expression:Scared
+I didn't quite catch-wait a sec, Minny!? #speaker:Slip #expression:Scared #vo:play
 ... #speaker:Minny
 Slip!? I hardly recognized you in that uniform! Not to mention that visor covering your face. #speaker:Minny #expression:Nervous
-Well. something's gotta keep the sun off these eyes. Especially with this city's drivers #speaker:Slip #expression:Nervous
+Well. something's gotta keep the sun off these eyes. Especially with this city's drivers #speaker:Slip #expression:Nervous #vo:play
 So, you do deliveries? #speaker:Minny
-Transporting the most important package of all. Pizza #speaker:Slip #expression:Confident
-Enough about little old me though. What have you been up to? #speaker:Slip
+Transporting the most important package of all. Pizza #speaker:Slip #expression:Confident #vo:play
+Enough about little old me though. What have you been up to? #speaker:Slip #vo:play
 I work just down the street at a china shop, Bao-Bao's Antiques. #speaker:Minny
 That is, if they haven't fired me by now... #speaker:Minny #expression:Nervous #anim:Shake
-Why are you worried about that? You’re the hardest working bull I know! #speaker:Slip
+Why are you worried about that? You’re the hardest working bull I know! #speaker:Slip #vo:play
 You see, this morning I... #speaker:Minny #expression:Nervous
-*Minny? You ok? #speaker:Slip
+*Minny? You ok? #speaker:Slip #vo:play
     N-no, you see... #speaker:Minny #expression:Nervous
 *[\[Remain Silent\]] \*You remain silent* #speaker:Slip
--I-I forgot to flip the sign to "Open"! #speaker:Minny #expression:Nervous #anim:Spin
+-I- I forgot to flip the sign to "Open"! #speaker:Minny #expression:Nervous #anim:Spin
 Urgh, it's even worse saying it out loud! #speaker:Minny #expression:Nervous
-Aww, that’s no big deal. Bet your boss didn’t even give it a second thought! #speaker:Slip #expression:Confident #anim:Laugh
-And besides, it’s just some minimum-wage job. You’ll be fine. #speaker:Slip
+Aww, that’s no big deal. Bet your boss didn’t even give it a second thought! #speaker:Slip #expression:Confident #anim:Laugh #vo:play
+And besides, it’s just some minimum-wage job. You’ll be fine. #speaker:Slip #vo:play
 But- #speaker:Minny #expression:Nervous
-Shoot! Speaking of minimum-wage jobs, I gotta skate on outta here. #speaker:Slip #expression:Confused
-Oh, and here’s my new number, let’s catch up soon! #speaker:Slip #expression:Confident
+Shoot! Speaking of minimum-wage jobs, I gotta skate on outta here. #speaker:Slip #expression:Confused #vo:play
+Oh, and here’s my new number, let’s catch up soon! #speaker:Slip #expression:Confident #vo:play
 Wait-oh, ok. Have a good day...at work. #anim:Exit #speaker:Minny
 I know I won’t... #speaker:Minny #expression:Nervous
 ->DONE
