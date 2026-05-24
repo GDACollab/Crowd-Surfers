@@ -45,14 +45,14 @@ Link us up, and I’ll make sure that music of yours reaches the ears of all my 
 *[Call Back]
     <- Pavo_act1
 *[Call Later]
-   You send the call to voicemail and head back #speaker:None
+   You send the call to voicemail and head back... #speaker:None
 //START OF MAIN STORY SCENE
--I’m...I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #fade:out #vo:main_act1_scene2 #speaker:Slip #anim:Shake #vo:play
+-I’m... I’m so tired. I can’t wait to go home and listen to the new Frutiger Spaerrow album... #fade:out #vo:main_act1_scene2 #speaker:Slip #anim:Shake #vo:play
 Oh Sliiipppppp! Let us have a chat, shall we? #speaker:Sam #anim:Laugh #vo:play
 But sir, I was supposed to be clocking out... #speaker:Slip #expression:Nervous #vo:play
 Now why would you say that? It is only 6pm- #speaker:Sam #vo:play
 ... #speaker:Sam
-Ahem, as I was saying! #speaker:Sam #anim:Laugh #vo:play
+Ahem, as I was saying... #speaker:Sam #anim:Laugh #vo:play
 How did the first day of the competition go? #speaker:Sam #vo:play
 Did you beat those dastardly snails? Were they begging on their shells for mercy? #speaker:Sam #vo:play
 *Uh, yeah... easy as pie... #speaker:Slip #vo:play
@@ -91,7 +91,7 @@ Whatever, at least I can listen to the album now... #speaker:Slip #anim:Shake #v
 Goodnight Chef! #speaker:Slip #anim:Exit #vo:play
 Hey, what about me! Do I get a goodnight? Slip? #speaker:Sam #vo:play
 ... #speaker:Chef
-It may do you good to treat the kid with some respect. Have a goodnight, Samuel #speaker:Chef
+It may do you good to treat the kid with some respect. Have a good night, Samuel. #speaker:Chef
 ... #speaker:Sam
 I-it matters not. My 4K copy of Mammalton (Director’s Cut) will keep my company tonight! #speaker:Sam #anim:Laugh #vo:play
 It even features the original cast! #speaker:Sam #vo:play
@@ -260,9 +260,9 @@ D-don't be sorry...my fault for running out...*mumble mumble* #speaker:Minny #ex
 I didn't quite catch-wait a sec, Minny!? #speaker:Slip #expression:Scared #vo:play
 ... #speaker:Minny
 Slip!? I hardly recognized you in that uniform! Not to mention that visor covering your face. #speaker:Minny #expression:Nervous
-Well. something's gotta keep the sun off these eyes. Especially with this city's drivers #speaker:Slip #expression:Nervous #vo:play
+Well... something's gotta keep the sun off these eyes. Especially with this city's drivers #speaker:Slip #expression:Nervous #vo:play
 So, you do deliveries? #speaker:Minny
-Transporting the most important package of all. Pizza #speaker:Slip #expression:Confident #vo:play
+Transporting the most important package of all. Pizza! #speaker:Slip #expression:Confident #vo:play
 Enough about little old me though. What have you been up to? #speaker:Slip #vo:play
 I work just down the street at a china shop, Bao-Bao's Antiques. #speaker:Minny
 That is, if they haven't fired me by now... #speaker:Minny #expression:Nervous #anim:Shake
@@ -271,7 +271,7 @@ You see, this morning I... #speaker:Minny #expression:Nervous
 *Minny? You ok? #speaker:Slip #vo:play
     N-no, you see... #speaker:Minny #expression:Nervous
 *[\[Remain Silent\]] \*You remain silent* #speaker:Slip
--I- I forgot to flip the sign to "Open"! #speaker:Minny #expression:Nervous #anim:Spin
+-I- I forgot to flip the sign to "Open"! #speaker:Minny #expression:Nervous #anim:Spin #vo:return
 Urgh, it's even worse saying it out loud! #speaker:Minny #expression:Nervous
 Aww, that’s no big deal. Bet your boss didn’t even give it a second thought! #speaker:Slip #expression:Confident #anim:Laugh #vo:play
 And besides, it’s just some minimum-wage job. You’ll be fine. #speaker:Slip #vo:play

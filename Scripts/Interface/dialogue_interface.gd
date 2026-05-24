@@ -94,12 +94,12 @@ func _exit_tree() -> void:
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("DialogueCancel")):
 		Inky.EndDialogue()
+		
 	if(Input.is_action_just_pressed("DialogueInteract")):
 		if(!isTyping):
-			if(!awaitingAnimations): 
-				FmodServer.play_one_shot("event:/SFX/UI/dialogue_next")
-				
+			if(!awaitingAnimations): FmodServer.play_one_shot("event:/SFX/UI/dialogue_next")
 			_get_input()
+			
 		else:
 			_skip_scroll()
 			
@@ -108,19 +108,24 @@ func _process(_delta: float) -> void:
 		if(Input.is_action_just_pressed("move_down")):
 			FmodServer.play_one_shot("event:/SFX/UI/dialogue_hover")
 			selectedButton._unhighlight()
+			
 			if(currentChoiceIndex < currentStory.GetCurrentChoices().size() - 1):
 				currentChoiceIndex += 1
 			else:
 				currentChoiceIndex = 0
+				
 			selectedButton = _find_choice(currentChoiceIndex)
 			selectedButton._highlight()
+			
 		if(Input.is_action_just_pressed("move_up")):
 			FmodServer.play_one_shot("event:/SFX/UI/dialogue_hover")
 			selectedButton._unhighlight()
+			
 			if(currentChoiceIndex > 0):
 				currentChoiceIndex -= 1
 			else:
 				currentChoiceIndex = currentStory.GetCurrentChoices().size() - 1
+				
 			selectedButton = _find_choice(currentChoiceIndex)
 			selectedButton._highlight()
 
@@ -128,22 +133,29 @@ func _get_input():
 	if(!awaitingAnimations):
 		# Continue story
 		if(currentStory.GetCanContinue()):
+			if (voice_lines != null): 
+				voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		
 			_continue_story()
+			
 		# Display choices
 		elif(currentStory.GetCurrentChoices().size() > 0 and !choicesDisplayed):
 			if (voice_lines != null): 
 				voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 			
 			_display_choices()
+			
 		# Make choice
 		elif(currentStory.GetCurrentChoices().size() > 0 and choicesDisplayed):
 			if (voice_lines != null): 
+				voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 				voice_lines.set_parameter_by_name("branch", choice_query_count + (currentChoiceIndex + 1))
 				choice_query_count += currentStory.GetCurrentChoices().size()
 				
 			currentStory.ChooseChoiceIndex(currentChoiceIndex)
 			_clear_choices()
 			_continue_story()
+			
 		# End story
 		else:
 			Inky.EndDialogue()
@@ -151,19 +163,12 @@ func _get_input():
 ##  Loads next line
 func _continue_story():
 	dialogueText = currentStory.Continue()
-	# # Create new dialogue panel
-	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel
-	## Apply tags to current panel
-	
-	if (voice_lines != null): 
-		voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
-	
+	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel # Create new panel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
 ##  Displays the current line 
 func _handle_panel_text(newDialoguePanel):
-	##  Set anchor point
-	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	newDialoguePanel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM) ##  Set anchor point
 	dialoguePanels.push_front(newDialoguePanel)
 	
 	#  Ensures panels do not overflow
@@ -173,6 +178,7 @@ func _handle_panel_text(newDialoguePanel):
 	dialogueLabel = newDialoguePanel.find_child("Dialogue Text")
 	add_child(newDialoguePanel)
 	newDialoguePanel.showPanel()
+	
 	_animate_panels()
 	_do_typewriter_text()
 	
@@ -181,12 +187,13 @@ func _do_typewriter_text():
 	isTyping = true
 	dialogueLabel.visible_characters = 0
 	dialogueLabel.text = dialogueText
-	var alphanumerics_count = 0 ## count of every non-punctuation character because those are the only characters we play animalese sounds for
+	
+	## Count of every non-punctuation character because those are the only characters we play animalese sounds for
+	var alphanumerics_count = 0 
 	
 	while dialogueLabel.visible_characters < dialogueText.length() - 1:
 		var letter_index = dialogueLabel.visible_characters; 
-		# TODO: currentSpeakerData.characterName always returns nil during testing. fix this
-		var character_name = currentSpeakerData.characterName if (currentSpeakerData != null) else "Slip"
+		var character_name = currentSpeakerData.characterName if (currentSpeakerData != null) else "default"
 		
 		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter(
 			dialogueText, character_name, letter_index, alphanumerics_count, textSpeedScale)
@@ -204,23 +211,30 @@ func _animate_panels():
 		var panelIndex = 1
 		while panelIndex < dialoguePanels.size():
 			var currentPanel = dialoguePanels[panelIndex]
+			
 			if(currentPanel.pivot_offset.x > 0 and panelIndex > 1):
 				currentPanel.pivot_offset.x = currentPanel.size.x
+				
 			var xPos : float = currentPanel.position.x
 			var yPos : float
 			var newScale : Vector2
+			
 			if(panelIndex == 1):
 				yPos = lowerDialogueBoxHeight
 				newScale = lowerDialogueBoxScale
 			else:
 				yPos = upperDialogueBoxHeight
 				newScale = upperDialogueBoxScale
+				
 			var heightTween = create_tween()
 			heightTween.tween_property(currentPanel, "scale", newScale,1).set_trans(transitionType).set_ease(easeType)
+			
 			var positionTween = create_tween()
 			positionTween.tween_property(currentPanel, "position", Vector2(xPos,yPos),1).set_trans(transitionType).set_ease(easeType)
+			
 			panelIndex += 1
 			currentPanel.panel_texture.self_modulate = currentPanel.panel_texture.self_modulate.darkened(.2)
+			
 			#End animations
 			if(panelIndex == dialoguePanels.size()):
 				# FmodServer.play_one_shot("event:/SFX/UI/dialogue_appear")
@@ -251,6 +265,7 @@ func _display_choices():
 	leftPortrait.scale = Vector2(1.2, 1.2)
 	leftPortrait.material = portraitOutlineMaterial
 	_draw_outline(leftPortrait.material)
+	
 	rightPortrait.self_modulate = previousSpeakerColor
 	rightPortrait.scale = Vector2.ONE
 	rightPortrait.material = null
@@ -259,29 +274,33 @@ func _display_choices():
 	choicesDisplayed = true
 	$"Choice Button Container".showPanel()
 	dialoguePanels[0].hidePanel()
-	var iter = 0
 	
+	var iter = 0
 	for choice in currentStory.GetCurrentChoices():
 		var newChoiceButton = choiceButton.instantiate() as DialogueChoiceButton
 		newChoiceButton.panel_texture.texture = choice_button_sprites[iter]
 		newChoiceButton.choiceText = choice.GetText()
 		newChoiceButton.choiceIndex = iter
 		$"Choice Button Container".add_child(newChoiceButton)
+		
 		if(iter == 0):
 			newChoiceButton._highlight()
 			selectedButton = newChoiceButton
+			
 		else:
 			newChoiceButton._unhighlight()
+			
 		iter += 1
 		
 	await get_tree().create_timer(choiceSelectDelay).timeout
 	awaitingAnimations = false
 
-##Removes choice buttons
+## Removes choice buttons
 func _clear_choices():
 	choicesDisplayed = false
 	$"Choice Button Container".hidePanel()
 	await get_tree().create_timer(1).timeout
+	
 	for c in $"Choice Button Container".get_children():
 		c.queue_free()
 
@@ -293,13 +312,12 @@ func _find_choice(desiredIndex):
 
 ##Handles all Ink tag functions
 func _handle_tags(currentTags, newPanel):
-	if(currentTags.size() < 1):
+	if(currentTags.size() < 1): 
 		_reset_display()
+	
 	awaitingAnimations = true
 	var differentSpeaker := false
 	var changed_expression := false
-	
-	# print(currentTags)
 	
 	for t : String in currentTags:
 		var splitTag = t.split(":")
@@ -311,24 +329,24 @@ func _handle_tags(currentTags, newPanel):
 				if(previousSpeakerTag != tagValue):
 					differentSpeaker = true
 					
-				# # Get speaker data
+				# Get and load speaker data
 				if(currentSpeakerData == null or currentSpeakerData.characterName != tagValue):
-					# Load correct speaker data
 					var resourcePath = "res://Assets/Dialogue/Character Dialogue Data/" + str(tagValue) + "DialogueData.tres"
-					if ResourceLoader.exists(resourcePath):
-						currentSpeakerData = load(resourcePath)
+					if ResourceLoader.exists(resourcePath): currentSpeakerData = load(resourcePath)
 						
-				##  Add character data attributes
+				#  Add character data attributes
 				if(currentSpeakerData != null and currentSpeakerData.characterName == tagValue):
 					newPanel.modulate = currentSpeakerData.colour
+					
 				else:
 					print("[DIALOGUE] Could not get speaker data for: " + tagValue)
 				
-				## Check if Slip is the speaker
+				# Check if Slip is the speaker
 				if(tagValue == "Slip"):
 					slipSpoke = true
 					currentSpeaker = leftPortrait
 					previousSpeaker = rightPortrait
+					
 				else:
 					slipSpoke = false
 					previousSpeaker = leftPortrait
@@ -337,25 +355,28 @@ func _handle_tags(currentTags, newPanel):
 					# Switches to new speaker
 					if(lastNonSlipSpeaker != tagValue):
 						var currentSpeakerPanel = currentSpeaker.get_parent()
-						lastNonSlipSpeaker = tagValue
 						var portraitPosition = currentSpeakerPanel.global_position
 						var portraitTween = create_tween()
+						lastNonSlipSpeaker = tagValue
+						
 						portraitTween.tween_property(currentSpeakerPanel,"global_position", 
 						portraitSwapPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 						await get_tree().create_timer(portraitSwapTime).timeout
+						
 						if(currentSpeakerData != null):
 							currentSpeaker.texture = currentSpeakerData.default_portrait
+							
 						var portraitTween2 = create_tween()
 						portraitTween2.tween_property(currentSpeakerPanel,"global_position", 
 						portraitPosition, portraitSwapTime/2).set_trans(transitionType).set_ease(easeType)
 						
-					##Sets new panel to right side of screen
+					# Sets new panel to right side of screen
 					if(tagValue != "None"):
 						newPanel.pivot_offset = Vector2(dialoguePanels[0].size.x, 0)
 						newPanel.panel_texture.texture = right_panel_sprite
 						newPanel.set_to_right()
 					
-				## Adjust portraits based on speaker
+				# Adjust portraits based on speaker
 				currentSpeaker.scale = speakingPortraitScale
 				currentSpeaker.self_modulate = Color.WHITE
 				previousSpeaker.scale = Vector2.ONE
@@ -372,31 +393,38 @@ func _handle_tags(currentTags, newPanel):
 			"expression":
 				currentSpeaker.texture = (currentSpeakerData.expression_dictionary.get(tagValue, currentSpeaker.texture))
 				changed_expression = true
+				
 			"anim":
 				currentSpeaker.get_parent().find_child("Animator").play(tagValue)
+				
 			"bg":
 				print("[DIALOGUE] Choosing new background!")
+				
 			"vo":
 				if(tagValue == "return"):
-					# TODO: Fix dialogue skipping upon returning to main dialogue branch
-					# `voice_lines.start()` is not getting called twice: it's an issue with the FMOD event???
+					if (voice_lines != null): 
+						voice_lines.stop(FmodServer.FMOD_STUDIO_STOP_IMMEDIATE)
+						
 					voice_lines.set_parameter_by_name("branch", 0)
+					
 				elif(tagValue == "play"):
 					voice_lines.start()
 					pass
+					
 				else:
-					##TODO Load based on tag value
 					currentVOPath = tagValue
 					voice_lines = Audio.create_persistent("voice_lines", VOPATH_TO_FMODPATH[currentVOPath], true)
 					print("[DIALOGUE] Loading VO files: ", currentVOPath)
+					
 			"fade":
-				## Pauses dialogue and fades to black
+				# Pauses dialogue and fades to black
 				animator.play("fade")
 				await animator.animation_finished
 				
 	## Return to default expression
 	if(!changed_expression and currentSpeakerData != null):
 		currentSpeaker.texture = currentSpeakerData.default_portrait
+		
 	awaitingAnimations = false
 	_handle_panel_text(newPanel)
 
@@ -415,11 +443,15 @@ func _hide_all_panels():
 
 func _draw_outline(drawMat : ShaderMaterial):
 	var iter := 1.0
+	
 	while iter > 0:
 		drawMat.set_shader_parameter("threshold", iter)
+		
 		if(sketchyDraw):
 			drawMat.set_shader_parameter("dist", randi_range(outlineSize - 3, outlineSize + 3))
+			
 		iter -= 0.1
 		await get_tree().create_timer(0.03).timeout
+		
 	drawMat.set_shader_parameter("dist", outlineSize)
 	return
