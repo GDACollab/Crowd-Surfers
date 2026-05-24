@@ -165,7 +165,7 @@
 [ext_resource type="Texture2D" uid="uid://cgox4d7ttsxpo" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0004.png" id="162_q208r"]
 [ext_resource type="Texture2D" uid="uid://ce2p08nqj4r08" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_side/stomp_S0005.png" id="163_wdytq"]
 [ext_resource type="Shader" uid="uid://d058hc0b4rxns" path="res://addons/GPUTrail/shaders/trail.gdshader" id="165_q208r"]
-[ext_resource type="Script" uid="uid://d2sgne7cvwbli" path="res://Scripts/Audio/skate_audio.gd" id="165_x80xa"]
+[ext_resource type="Script" path="res://Scripts/Audio/skate_audio.gd" id="165_x80xa"]
 [ext_resource type="Shader" uid="uid://ccc1807xplo8e" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="166_wdytq"]
 [ext_resource type="Texture2D" uid="uid://dw8hrkutvar7a" path="res://Assets/Art/VFX/speed_gradient.png" id="167_wdytq"]
 [ext_resource type="Script" uid="uid://f280k613n5v8" path="res://addons/GPUTrail/GPUTrail3D.gd" id="167_x80xa"]
@@ -1012,6 +1012,10 @@ event_guid = "{37e4c1ff-9cd4-4400-b1c5-8e6f4e784d62}"
 [node name="LandingSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/landing"
 event_guid = "{ccf34438-e881-4f0c-92ef-2cdeb64532c8}"
+
+[node name="CrashSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/P/crash"
+event_guid = "{27b7de5d-f82c-481f-9fff-ddc140db93c6}"
 
 [node name="SkateSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/P/skate_step"

@@ -104,6 +104,9 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 [node name="ActThreeConcept" type="Node3D"]
 script = ExtResource("1_mg333")
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
+
 [node name="Prop Groups" type="Node" parent="."]
 
 [node name="RoadGroup" type="Node3D" parent="Prop Groups"]
@@ -2082,9 +2085,6 @@ transform = Transform3D(31.525, 0, 0, 0, 40.235, 0, 0, 0, 31.525, -263.88382, 16
 modulate = Color(0.8, 0.8, 0.8, 1)
 shaded = true
 texture = ExtResource("54_lk4wn")
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_cuima")]
 player = NodePath("../Player")
