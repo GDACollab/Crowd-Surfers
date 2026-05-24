@@ -1,7 +1,8 @@
 shader_type spatial;
 
-uniform sampler2DArray texture_array[16] : filter_nearest, source_color;
-const int animationCount = 8;
+const int TOTAL_SPRITES = 16; // total in array
+uniform sampler2D texture_array[TOTAL_SPRITES] : filter_nearest, source_color;
+const int animationCount = TOTAL_SPRITES / 2;
 const int frameCount = 2;
 
 uniform float timeOffset = 0;
@@ -14,6 +15,7 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	float time = TIME + timeOffset;
 	int frame = (int(floor((customInfo.x + time) / secondsPerFrame))) % frameCount;
+	//frame = int(floor(TIME)) % 2;
 	// Finds the depth of the layer
 	//int layer = (int(floor((customInfo.y + time) * 4.0)));
 	//int layer = frame + (int(floor((customInfo.y + time) * 4.0)));
@@ -24,7 +26,19 @@ void fragment() {
 
 	//vec4 textureFrame = texture(texture_array[frame + (2 * int(floor(customInfo.y * 4.0f)))], UV);
 	//COLOR = texture(texture_array, vec3(UV, frame));
-	vec4 textureFrame = texture(texture_array[layer], vec3(UV, float(layer)));
+	
+	vec4 textureFrame =vec4(0.0);
+	
+	for (int i = 0; i < TOTAL_SPRITES; i++) {
+		if (i == layer) {
+			textureFrame = texture(texture_array[i], UV);
+		}
+	}
+	//vec2 atlas_uv = UV;
+	//if (atlas_uv.x >= 1024.0) atlas_uv w
+	//atlas_uv.x = (atlas_uv.x + float(layer)) / float(frameCount);
+	//atlas_uv.y = (atlas_uv.y + float(frame_index)) / float(animationCount);
+	//textureFrame = texture(texture_array, vec3(atlas_uv, float(layer)));
 	//vec4 textureFrame = texture(texture_array[layer], UV);
 	ALBEDO = textureFrame.rgb;
 	ALPHA = textureFrame.a;
