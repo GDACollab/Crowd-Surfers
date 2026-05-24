@@ -5,6 +5,12 @@ extends Node3D
 var isplayer: bool = false
 var player: CharacterBody3D
 
+var collide_sound: FmodEventEmitter3D = null
+
+func _ready() -> void:
+	if (has_node("CollideSound")):
+		collide_sound = get_node("CollideSound")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (isplayer):
@@ -19,6 +25,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if (body.name == "Player"):
 		isplayer = true
 		player = body
+		if (collide_sound): collide_sound.play()
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
