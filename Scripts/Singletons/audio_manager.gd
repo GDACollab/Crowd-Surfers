@@ -94,11 +94,11 @@ func unpause_persistent(key: String) -> bool:
 	
 ## Takes a registry key, stops and releases the associated event instance, and removes it from the registry.
 ## Returns true if the item was successfully removed, false if any not.
-func kill_persistent(key: String) -> bool:
+func kill_persistent(key: String, stopMode: int = FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT) -> bool:
 	var returnCode = false
 		
 	if (registry.has(key)):
-		registry[key]["instance"].stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		registry[key]["instance"].stop(stopMode)
 		registry[key]["instance"].release()
 		print("AudioManager: Killed the instance \"" + str(key) + "\"")
 		return registry.erase(key)
@@ -211,4 +211,4 @@ func toggle_level_audio() -> void:
 		b.paused = game_paused
 		
 	if (game_paused): pause_snapshot.start()
-	else: kill_persistent("pause_snapshot")
+	else: kill_persistent("pause_snapshot", FmodServer.FMOD_STUDIO_STOP_IMMEDIATE)
