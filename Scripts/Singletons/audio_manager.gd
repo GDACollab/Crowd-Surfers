@@ -197,8 +197,8 @@ func path_exists_in_registry(eventPath: String) -> bool:
 ## Pauses all level audio (env, char, player buses) and muffles music
 func toggle_level_audio() -> void:
 	var busArray : Array[FmodBus]
-	var pause_snapshot := create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling")
-	
+	var pause_snapshot : FmodEvent
+
 	busArray.assign([
 		FmodServer.get_bus("bus:/SFX/ENV"),
 		FmodServer.get_bus("bus:/SFX/CHAR"),
@@ -210,5 +210,8 @@ func toggle_level_audio() -> void:
 	for b in busArray:
 		b.paused = game_paused
 		
-	if (game_paused): pause_snapshot.start()
-	else: kill_persistent("pause_snapshot", FmodServer.FMOD_STUDIO_STOP_IMMEDIATE)
+	if (game_paused):
+		pause_snapshot = create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling") 
+		pause_snapshot.start()
+	else: 
+		kill_persistent("pause_snapshot", FmodServer.FMOD_STUDIO_STOP_IMMEDIATE)

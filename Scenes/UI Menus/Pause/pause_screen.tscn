@@ -392,9 +392,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f6gwv")
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_0kv7i")]
 confirm_buttons = [NodePath("../PhoneBackground/ButtonContainer/ResumeButton"), NodePath("../PhoneBackground/ButtonContainer/ControlsButton"), NodePath("../PhoneBackground/ButtonContainer/SettingsButton"), NodePath("../PhoneBackground/ButtonContainer/RestartLevelButton")]
 back_buttons = [NodePath("../PhoneBackground/ButtonContainer/ExitLevelButton"), NodePath("../PhoneBackground/ControlsContainer/BackButtonHolder/BackButton")]
@@ -564,6 +561,9 @@ offset_right = -541.0
 offset_bottom = 26.499992
 grow_horizontal = 2
 scale = Vector2(0.8, 0.8)
+
+[node name="UIAudio" parent="PhoneBackground/SettingsScene" index="0" node_paths=PackedStringArray("confirm_buttons")]
+confirm_buttons = [NodePath("../../ButtonContainer/ResumeButton")]
 
 [node name="PhoneOutline" type="TextureRect" parent="PhoneBackground"]
 clip_contents = true

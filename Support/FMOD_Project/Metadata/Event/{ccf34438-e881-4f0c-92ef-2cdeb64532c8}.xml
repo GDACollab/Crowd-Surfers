@@ -136,6 +136,9 @@
 		<property name="volume">
 			<value>6</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{84ff42af-8332-4e58-b722-c982961af882}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{3cf85f39-cbdd-477d-ac81-3b44c67d7b6d}</destination>
 		</relationship>
@@ -144,6 +147,9 @@
 		<property name="volume">
 			<value>-6</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{343f413d-41b9-421c-9129-eb9b33720472}</destination>
+		</relationship>
 		<relationship name="sounds">
 			<destination>{6833e3b7-447e-401c-ad69-34343c37e4e0}</destination>
 			<destination>{b6822184-d320-42d4-b99f-37c5b3cb8233}</destination>
@@ -179,6 +185,22 @@
 			<value>5</value>
 		</property>
 	</object>
+	<object class="RandomizerModulator" id="{84ff42af-8332-4e58-b722-c982961af882}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>4.16666698</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{343f413d-41b9-421c-9129-eb9b33720472}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>4.16666698</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{6833e3b7-447e-401c-ad69-34343c37e4e0}">
 		<relationship name="audioFile">
 			<destination>{ad546b25-0940-44a4-ad89-9000721730f0}</destination>
@@ -196,10 +218,25 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{de51b201-4e59-4c37-b669-52dee5b7230e}">
 		<relationship name="effects">
+			<destination>{4a170bcb-c76e-43a2-9050-967e3f9c42e2}</destination>
 			<destination>{9a949d29-bfbe-4c3c-b9ca-3e4563c16ea9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{11e4c0ed-ed27-4e54-999c-d55400f33309}" />
 	<object class="MixerBusFader" id="{dc1f93a4-5ebb-4155-bfee-0b4017c28cea}" />
+	<object class="CompressorEffect" id="{4a170bcb-c76e-43a2-9050-967e3f9c42e2}">
+		<property name="threshold">
+			<value>-15</value>
+		</property>
+		<property name="ratio">
+			<value>4</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="releaseTime">
+			<value>50</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{9a949d29-bfbe-4c3c-b9ca-3e4563c16ea9}" />
 </objects>
