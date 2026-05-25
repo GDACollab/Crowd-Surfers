@@ -127,7 +127,7 @@ Then they both got so preoccupied with their businesses that their dedication to
 That’s so sad! #speaker:Slip #expression:Scared #anim:Shake #vo:play
 It’s easy to lose sight of each other when life gets busy. Things will get better though, they just need a little push. #speaker:Chef
 ... #speaker:Slip 
-Something wrond, kiddo? #speaker:Chef
+Something wrong, kiddo? #speaker:Chef
 No, no. It’s just that I ran into an old friend today. We haven’t talked since high school, though, because... #speaker:Slip #vo:play
 Well, we both got busy with work. #speaker:Slip #expression:Confused #anim:Shake #vo:play
 Ah. Like I said, it’s easy to lose sight of each other. #speaker:Chef
@@ -256,11 +256,11 @@ This is Pavo act 3
 If you know you know... oooohh! #speaker:Slip #expression:Scared #anim:Shake #vo:play
 \*You narrowly avoid colliding with a pedestrian as your skates come to a screeching halt on the concrete #anim:Spin
 Oh man, are you okay? Sorry I didn't see you, it's like you tumbled out of nowhere! #speaker:Slip #expression:Nervous #anim:Laugh #vo:play
-D-don't be sorry...my fault for running out...*mumble mumble* #speaker:Minny #expression:Nervous #anim:Shake
+D-don't be sorry... my fault for running out... *mumble mumble* #speaker:Minny #expression:Nervous #anim:Shake
 I didn't quite catch-wait a sec, Minny!? #speaker:Slip #expression:Scared #vo:play
 ... #speaker:Minny
 Slip!? I hardly recognized you in that uniform! Not to mention that visor covering your face. #speaker:Minny #expression:Nervous
-Well... something's gotta keep the sun off these eyes. Especially with this city's drivers #speaker:Slip #expression:Nervous #vo:play
+Well... something's gotta keep the sun off these eyes. Especially with this city's drivers. #speaker:Slip #expression:Nervous #vo:play
 So, you do deliveries? #speaker:Minny
 Transporting the most important package of all. Pizza! #speaker:Slip #expression:Confident #vo:play
 Enough about little old me though. What have you been up to? #speaker:Slip #vo:play
@@ -270,7 +270,7 @@ Why are you worried about that? You’re the hardest working bull I know! #speak
 You see, this morning I... #speaker:Minny #expression:Nervous
 *Minny? You ok? #speaker:Slip #vo:play
     N-no, you see... #speaker:Minny #expression:Nervous
-*[\[Remain Silent\]] \*You remain silent* #speaker:Slip
+*[\[Remain Silent\]] \*You remain silent* #speaker:Slip #vo:play
 -I- I forgot to flip the sign to "Open"! #speaker:Minny #expression:Nervous #anim:Spin #vo:return
 Urgh, it's even worse saying it out loud! #speaker:Minny #expression:Nervous
 Aww, that’s no big deal. Bet your boss didn’t even give it a second thought! #speaker:Slip #expression:Confident #anim:Laugh #vo:play

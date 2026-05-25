@@ -16,7 +16,8 @@ const TYPERWRITER_IMPLEMENTED := [
 	"Pavo",
 	"Minny",
 	"Nyx",
-	"Sam"
+	"Sam",
+	"Max"
 ]
 
 var punctuation_regexes := {

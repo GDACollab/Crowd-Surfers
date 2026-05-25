@@ -58,7 +58,7 @@ var hub_music: FmodEvent
 var music_bus : FmodBus
 var voice_lines : FmodEvent
 var currentVOPath : String = ""
-var music_bus_volume_scalar := 0.25
+var music_bus_volume_scalar := 0.3
 ## Used to count the number of choices the play has been given, for my jank FMOD dialogue tree implementation
 var choice_query_count := 0 
 

@@ -926,12 +926,22 @@ func stick_to_slope():
 	if is_on_floor():
 		floor_snap_length = snap_length
 
+# var trail_sound_playing := false
+
 func update_trail(delta):
 	var inputDir = Input.get_vector("move_left", "move_right", "move_down", "move_up").angle()
 	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
 	if max_speed > 140:
+		# if (trail_sound_playing == false):
+		# 	Audio.create_persistent("player_trail", "event:/SFX/P/trail_effect", true).start()
+		# 	trail_sound_playing = true
+		
 		$TrailHolder/GPUTrail3D.visible = true
 	else:
+		# if (trail_sound_playing == true):
+		# 	Audio.kill_persistent("player_trail")
+		# 	trail_sound_playing = false
+			
 		$TrailHolder/GPUTrail3D.restart()
 	pass
 
