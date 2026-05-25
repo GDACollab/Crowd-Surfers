@@ -2340,6 +2340,33 @@ transform = Transform3D(-0.2, 0, 0.34641016, 0, 0.4, 0, -0.34641016, 0, -0.2, 30
 transform = Transform3D(0.51961523, 0, 0.3, 0, 1, 0, -0.3, 0, 0.51961523, 170, 1, -180)
 
 [node name="HighwayOnrampDecor" type="Node3D" parent="DecorationsGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -1400)
+
+[node name="StaticBody3D" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(-1, 0, 7.54979e-08, 0, 1, 0, -1.509958e-07, 0, -0.5, 0, 0, 5)
+
+[node name="StaticBody3D2" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(-0.7071069, 0, -0.35355332, 0, 1, 0, 0.70710665, 0, -0.35355344, 20, 0, 40)
+
+[node name="StaticBody3D3" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(-0.7071069, 0, -0.35355332, 0, 1, 0, 0.70710665, 0, -0.35355344, -50, 0, 110)
+
+[node name="StaticBody3D4" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(-0.7071069, 0, -0.35355332, 0, 1, 0, 0.70710665, 0, -0.35355344, -80, 0, 40)
+
+[node name="StaticBody3D5" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(-0.7071069, 0, -0.35355332, 0, 1, 0, 0.70710665, 0, -0.35355344, -150, 0, 110)
+
+[node name="StaticBody3D7" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("35_lkdh3")]
+transform = Transform3D(-1.4901161e-07, 0, -0.5, 0, 1, 0, 1, 0, -7.4505806e-08, -185, 0, 190)
+
+[node name="StaticBody3D6" parent="DecorationsGroup/HighwayOnrampDecor" instance=ExtResource("52_ypdg7")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -55, 0, 35)
+
+[node name="WindBoxCollider2" parent="DecorationsGroup/HighwayOnrampDecor/StaticBody3D6" instance=ExtResource("53_mbmfq")]
+transform = Transform3D(100.000015, 0, 0, 0, 20, 0, 0, 0, 50.000008, 0.00048828125, 0, 21.213074)
+boostPower = 75.0
+speedCap = 300.0
 
 [node name="Lighting_Spotlights#Segment Traffic" type="Node" parent="."]
 
