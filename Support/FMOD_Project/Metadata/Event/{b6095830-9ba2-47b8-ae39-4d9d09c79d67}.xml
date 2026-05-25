@@ -5,7 +5,7 @@
 			<value>Crowd_Descend</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1f9e2564-9160-4e0d-91fa-77c52f2ea021}</destination>
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{9611baba-62d4-4a59-ab2d-773145618896}">
+		<property name="volume">
+			<value>-6.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{80d80342-3158-4a0d-9ca8-deeca979fdda}</destination>
 		</relationship>
@@ -95,6 +98,7 @@
 	<object class="MixerBusPanner" id="{35b8ee52-c05b-4675-9b6c-1d86c7b49719}" />
 	<object class="MixerBusEffectChain" id="{80d80342-3158-4a0d-9ca8-deeca979fdda}">
 		<relationship name="effects">
+			<destination>{87bd946a-9269-4768-a7f0-bf72f96ae624}</destination>
 			<destination>{924a896c-675d-47aa-b3ae-4edaa5e4d864}</destination>
 		</relationship>
 	</object>
@@ -105,5 +109,19 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{9e6d587f-cb1d-4cc6-b780-7f9b93f0fbcc}" />
+	<object class="SpatialiserEffect" id="{87bd946a-9269-4768-a7f0-bf72f96ae624}">
+		<property name="minimumDistance">
+			<value>150</value>
+		</property>
+		<property name="maximumDistance">
+			<value>450</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="panBlend">
+			<value>0.599999964</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{924a896c-675d-47aa-b3ae-4edaa5e4d864}" />
 </objects>
