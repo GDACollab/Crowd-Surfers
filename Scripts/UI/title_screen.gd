@@ -88,7 +88,7 @@ func _animate_to_beat() -> void:
 
 func _on_credits_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/Credits/credits.tscn"))
-	title_music.set_parameter_by_name("muffling", 1.)
+	# title_music.set_parameter_by_name("muffling", 1.)
 	# Audio.kill_persistent("mus_title")
 
 func _on_play_button_pressed() -> void:
