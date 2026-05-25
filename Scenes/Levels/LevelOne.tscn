@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=120 format=3 uid="uid://b6pv0w4ibgj7b"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_hntgb"]
@@ -29,10 +29,10 @@
 [ext_resource type="PackedScene" uid="uid://dwfwoc6s5cbjn" path="res://Scenes/Level Components/Objects/bus-1-up.tscn" id="20_bjeon"]
 [ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-T-down.tscn" id="20_p6d56"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="20_xl122"]
-[ext_resource type="PackedScene" uid="uid://bg71w1ou1liwo" path="res://Scenes/Level Components/Objects/road-T-left.tscn" id="21_2vk1q"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-T-left.tscn" id="21_2vk1q"]
 [ext_resource type="PackedScene" uid="uid://8wuwm3cqpn0" path="res://Scenes/Level Components/Objects/grass-MS.tscn" id="21_iuqee"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="22_3tfrk"]
-[ext_resource type="PackedScene" uid="uid://hmxouo667lki" path="res://Scenes/Level Components/Objects/road-T-right.tscn" id="22_jrrke"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-T-right.tscn" id="22_jrrke"]
 [ext_resource type="PackedScene" uid="uid://diq2s5sarpdk2" path="res://Scenes/Level Components/Objects/building-brick-complex.tscn" id="22_pnf6m"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="23_bjm7j"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="23_h72c1"]
@@ -70,7 +70,7 @@
 [ext_resource type="PackedScene" uid="uid://ckrapu7hc1cwu" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/WallCornerMiddle.tscn" id="59_i0h32"]
 [ext_resource type="Texture2D" uid="uid://bphjgikik45ba" path="res://Assets/Art/BillBoardImages_Act1/Billboard 1.png" id="74_tyndo"]
 [ext_resource type="Texture2D" uid="uid://dlb7yco62e1wr" path="res://Assets/Art/BillBoardImages_Act1/Billboard 3.png" id="75_a3054"]
-[ext_resource type="PackedScene" uid="uid://cjjvao0bcsrgn" path="res://Scenes/Level Components/Objects/long-road-ramp.tscn" id="75_jrrke"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/long-road-ramp.tscn" id="75_jrrke"]
 [ext_resource type="PackedScene" uid="uid://cvlhf3aebkg27" path="res://Scenes/Level Components/Objects/ConcreteTunnelAndWalls/WallCornerRight.tscn" id="76_a50gb"]
 [ext_resource type="Texture2D" uid="uid://d0lv7so6xii3k" path="res://Assets/Art/BillBoardImages_Act1/Billboard 2.png" id="76_dy6nc"]
 [ext_resource type="Texture2D" uid="uid://cvqkdslqehymc" path="res://Assets/Art/BillBoardImages_Act1/Billboard 4.png" id="77_5rnn1"]
@@ -107,7 +107,7 @@
 [ext_resource type="PackedScene" uid="uid://b4d324vip84gg" path="res://Scenes/Level Components/Objects/TreeVariants/Tree1.tscn" id="103_gr23m"]
 [ext_resource type="PackedScene" uid="uid://dbnpkl1rnvyk1" path="res://Scenes/Level Components/Objects/TreeVariants/Tree2.tscn" id="104_lm8b2"]
 [ext_resource type="PackedScene" uid="uid://c3napms5mmgre" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/Manhole1.tscn" id="105_onbwc"]
-[ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="106_nregq"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="106_nregq"]
 [ext_resource type="PackedScene" uid="uid://dnbc5bh1y8efa" path="res://Scenes/Level Components/SpecialObjects/Arrows/ArrowTurnGuide.tscn" id="109_5rnn1"]
 
 [sub_resource type="Curve" id="Curve_5rnn1"]
@@ -170,9 +170,6 @@ curve = SubResource("Curve_tyndo")
 [node name="ReferenceScene" type="Node3D"]
 script = ExtResource("1_hntgb")
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Reference Lights" type="Node" parent="Lighting"]
@@ -232,6 +229,8 @@ modulate = Color(0, 0, 0, 0.52156866)
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_bjeon")]
 player = NodePath("../Player")
+music_path = "event:/MUS/level_1"
+ambience_path = "event:/SFX/ENV/ambience/city_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_cnki7")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)

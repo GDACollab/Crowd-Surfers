@@ -22,9 +22,5 @@ transform = Transform3D(78.125, 0, 0, 0, -3.4149523e-06, 78.125, 0, -78.125, -3.
 shaded = true
 texture = ExtResource("3_3u0wv")
 
-[node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/slow_pad"
-event_guid = "{258573f0-857e-4890-b540-13f1d26c7198}"
-
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
