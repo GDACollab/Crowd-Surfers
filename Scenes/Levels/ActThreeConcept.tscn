@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=95 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dumdrwcby7fk6" path="res://Scenes/Level Components/Objects/Road-FourWayStop.tscn" id="3_g7qq8"]
 [ext_resource type="PackedScene" uid="uid://bgp1lscaxtuut" path="res://Scenes/Level Components/Objects/road-diag-turn-right-up.tscn" id="3_iq4ei"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="3_tqh1b"]
+[ext_resource type="Script" uid="uid://nqcky711v03l" path="res://Scripts/Debug/occlusion_debug.gd" id="4_lsqwo"]
 [ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="4_rscd0"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="4_v7jmr"]
 [ext_resource type="PackedScene" uid="uid://db7tx8ne7qwiv" path="res://Scenes/Level Components/Objects/road-T-up.tscn" id="4_yuki4"]
@@ -127,6 +128,11 @@ near = 0.001
 offset = Vector3(0, 1000, 1000)
 
 [node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
+
+[node name="Occlusion Debug" type="Label" parent="Camera3D"]
+offset_right = 571.0
+offset_bottom = 206.0
+script = ExtResource("4_lsqwo")
 
 [node name="Player" parent="." instance=ExtResource("3_8ah0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -857.0073, 2.5224152, 1210.4185)
