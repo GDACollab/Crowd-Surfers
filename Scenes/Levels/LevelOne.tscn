@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://kcq0sb47owyc"]
+[gd_scene load_steps=121 format=3 uid="uid://kcq0sb47owyc"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_bjeon"]
 [ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_hntgb"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://s2l7vl7m5r40" path="res://Scenes/Level Components/Environment/world-environment.tscn" id="5_bki04"]
 [ext_resource type="PackedScene" uid="uid://b1326i5a5xn3f" path="res://Scenes/VFX/vfx_manager.tscn" id="5_futj0"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="6_hntgb"]
+[ext_resource type="Environment" uid="uid://cd0m1peuagvpb" path="res://Assets/Art/SkyBoxArt/skyboxEnviorment.tres" id="9_5rnn1"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="9_uymm0"]
 [ext_resource type="PackedScene" uid="uid://trncvdtpi324" path="res://Scenes/Level Components/Objects/road-turn-right-down.tscn" id="10_f045n"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="11_cnki7"]
@@ -91,16 +92,16 @@
 [ext_resource type="PackedScene" uid="uid://d2uarcacbt8oc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerBottomLeft.tscn" id="89_etfg4"]
 [ext_resource type="PackedScene" uid="uid://dk60vjxm33eaq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTFlipped.tscn" id="92_lec4c"]
 [ext_resource type="PackedScene" uid="uid://f5tu4a8y4ybq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopLeft.tscn" id="93_futj0"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/long-left-grass-ramp.tscn" id="94_aq3va"]
+[ext_resource type="PackedScene" uid="uid://drrl4u4qebvtj" path="res://Scenes/Level Components/Objects/long-left-grass-ramp.tscn" id="94_aq3va"]
 [ext_resource type="PackedScene" uid="uid://tghcf3lwvxj8" path="res://Scenes/Level Components/Objects/waymo-confused-down.tscn" id="94_futj0"]
 [ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopRight.tscn" id="94_kkrpt"]
 [ext_resource type="PackedScene" uid="uid://d1nam1kuyikqa" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerBottomRight.tscn" id="94_lec4c"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/long-right-grass-ramp.tscn" id="95_6qh42"]
+[ext_resource type="PackedScene" uid="uid://cv0rm8xbadc5m" path="res://Scenes/Level Components/Objects/long-right-grass-ramp.tscn" id="95_6qh42"]
 [ext_resource type="PackedScene" uid="uid://coe0kdr6sxcje" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingCondo.tscn" id="95_u0uv3"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/grass-right-ramp.tscn" id="96_47mxs"]
+[ext_resource type="PackedScene" uid="uid://d15tkntlra2v6" path="res://Scenes/Level Components/Objects/grass-right-ramp.tscn" id="96_47mxs"]
 [ext_resource type="PackedScene" uid="uid://c0nvgh2u0h8mh" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingBigTallApartment.tscn" id="96_aq3va"]
 [ext_resource type="PackedScene" uid="uid://ci0n2ibbk4cit" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingShortBillBoard.tscn" id="97_6qh42"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/grass-left-ramp.tscn" id="97_gr23m"]
+[ext_resource type="PackedScene" uid="uid://bx0qyj7lr68uq" path="res://Scenes/Level Components/Objects/grass-left-ramp.tscn" id="97_gr23m"]
 [ext_resource type="PackedScene" uid="uid://b2cwesn2qf5fr" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingBillBoardCovered.tscn" id="98_47mxs"]
 [ext_resource type="PackedScene" uid="uid://djh3u3ghtvce2" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingTallApartment.tscn" id="99_gr23m"]
 [ext_resource type="PackedScene" uid="uid://dumdrwcby7fk6" path="res://Scenes/Level Components/Objects/Road-FourWayStop.tscn" id="102_47mxs"]
@@ -259,6 +260,7 @@ draw_pass_1 = SubResource("RibbonTrailMesh_a3054")
 [node name="VfxManager" parent="." instance=ExtResource("5_futj0")]
 
 [node name="Environment" parent="." instance=ExtResource("5_bki04")]
+environment = ExtResource("9_5rnn1")
 
 [node name="Level Components" type="Node" parent="."]
 
