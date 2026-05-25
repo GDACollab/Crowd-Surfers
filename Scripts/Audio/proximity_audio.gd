@@ -2,6 +2,7 @@ extends Area3D
 
 @export var proximity_sound : FmodEventEmitter3D
 @export var collider_scale : float = 400.
+@export var one_shot: bool = false
 
 @onready var area := self
 @onready var collision_shape := $CollisionShape3D
@@ -22,6 +23,6 @@ func _on_body_entered(body):
 		# print("Playing: " + str(proximity_sound))
 
 func _on_body_exited(body):
-	if body.name == "Player":
+	if body.name == "Player" and not one_shot:
 		proximity_sound.stop()
 		# print("Stopping: " + str(proximity_sound))
