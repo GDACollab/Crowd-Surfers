@@ -1,10 +1,10 @@
 extends Control
 
-@onready var phone_animation_player : AnimationPlayer = $PhoneBackground/AnimationPlayer
+@onready var phone_animation_player : AnimationPlayer = $PhoneOutline/PhoneBackground/AnimationPlayer
 
-@onready var controls_container: VBoxContainer = $PhoneBackground/ControlsContainer
-@onready var buttons_container: VBoxContainer = $PhoneBackground/ButtonContainer
-@onready var settings_scene: Control = $PhoneBackground/SettingsScene
+@onready var controls_container: Control = $PhoneOutline/PhoneBackground/ControlsContainer
+@onready var buttons_container: VBoxContainer = $PhoneOutline/PhoneBackground/ButtonContainer
+@onready var settings_scene: Control = $PhoneOutline/PhoneBackground/SettingsScene
 
 var transitioning: bool = false
 
@@ -66,10 +66,3 @@ func stop_transitioning() -> void:
 	
 func start_transitioning() -> void:
 	transitioning = true
-	
-func hide_buttons() -> void:
-	buttons_container.visible = false
-	
-func hide_controls() -> void:
-	controls_container.visible = false
-	
