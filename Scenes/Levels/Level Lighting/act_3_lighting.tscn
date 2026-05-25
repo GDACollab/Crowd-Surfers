@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsmts5ygr25hs"]
+
+[ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_f0itc"]
+
+[node name="Lighting" type="Node"]
+
+[node name="Reference Lights" type="Node" parent="."]
+
+[node name="Spotlights" type="Node" parent="."]
+
+[node name="Segment 1" type="Node" parent="Spotlights"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Spotlights/Segment 1"]
+transform = Transform3D(1, 0, 0, 0, -0.47522503, 0.87986434, 0, -0.87986434, -0.47522503, -238.06091, 31.344189, 302.72433)
+light_energy = 5.606
+shadow_enabled = true
+spot_range = 75.0
+spot_attenuation = 0.7
+spot_angle = 54.843746
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Spotlights/Segment 1"]
+transform = Transform3D(0.69134915, 0.6357203, 0.34335998, 0, -0.47522503, 0.87986434, 0.7225208, -0.6082935, -0.32854643, -259.1034, 69.43338, 234.74986)
+light_energy = 5.606
+spot_range = 164.22313
+spot_attenuation = 0.7
+spot_angle = 32.5941
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Spotlights/Segment 1"]
+transform = Transform3D(0.67937726, -0.64563495, -0.34871495, -1.1503351e-08, -0.47522497, 0.87986434, -0.7337892, -0.5977598, -0.32285702, -493.503, 97.59838, 132.20415)
+light_color = Color(0.5191368, 0.68042296, 0.96219033, 1)
+light_energy = 7.424
+spot_range = 164.22313
+spot_attenuation = 0.25
+spot_angle = 56.892216
+
+[node name="Segment 2" type="Node" parent="Spotlights"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Spotlights/Segment 2"]
+transform = Transform3D(-0.6470826, 0.67082614, 0.36232096, 0.19732882, -0.31167474, 0.9294731, 0.73644114, 0.6729422, 0.06930597, 379.79425, 176.20982, -227.50662)
+light_energy = 5.606
+spot_range = 507.0
+spot_attenuation = 0.27
+spot_angle = 29.280176
+
+[node name="Segment Traffic" type="Node" parent="Spotlights"]
+
+[node name="Car 2" type="Node3D" parent="Spotlights/Segment Traffic"]
+transform = Transform3D(-0.7071067, 0, 0.7071066, 0, 1, 0, -0.7071066, 0, -0.7071067, 1003.1225, 3.8146973e-06, -1598.1409)
+
+[node name="Car_Brakelight_1" type="OmniLight3D" parent="Spotlights/Segment Traffic/Car 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Brakelight_2" type="OmniLight3D" parent="Spotlights/Segment Traffic/Car 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Spotlight_1" type="SpotLight3D" parent="Spotlights/Segment Traffic/Car 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 6, -22.085)
+light_energy = 16.0
+spot_range = 42.744
+
+[node name="Car_Spotlight_2" type="SpotLight3D" parent="Spotlights/Segment Traffic/Car 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -22.085)
+light_energy = 16.0
+spot_range = 42.744
+
+[node name="Car 3" type="Node3D" parent="Spotlights/Segment Traffic"]
+transform = Transform3D(-0.7071067, 0, 0.7071066, 0, 1, 0, -0.7071066, 0, -0.7071067, 1139.9393, 3.8146973e-06, -1633.9585)
+
+[node name="Car_Brakelight_1" type="OmniLight3D" parent="Spotlights/Segment Traffic/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Brakelight_2" type="OmniLight3D" parent="Spotlights/Segment Traffic/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Spotlight_1" type="SpotLight3D" parent="Spotlights/Segment Traffic/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 6, -22.085)
+light_energy = 16.0
+spot_range = 42.744
+
+[node name="Car_Spotlight_2" type="SpotLight3D" parent="Spotlights/Segment Traffic/Car 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -22.085)
+light_energy = 16.0
+spot_range = 42.744
+
+[node name="Car 4" type="Node3D" parent="Spotlights/Segment Traffic"]
+transform = Transform3D(-0.7071067, 0, 0.7071066, 0, 1, 0, -0.7071066, 0, -0.7071067, 1138.5574, 4.884968, -1533.2894)
+
+[node name="Car_Brakelight_1" type="OmniLight3D" parent="Spotlights/Segment Traffic/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Brakelight_2" type="OmniLight3D" parent="Spotlights/Segment Traffic/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 29)
+light_color = Color(1, 0.28279155, 0.48208314, 1)
+light_energy = 4.592
+omni_range = 10.690891
+
+[node name="Car_Spotlight_1" type="SpotLight3D" parent="Spotlights/Segment Traffic/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 6, -22.085)
+light_energy = 16.0
+spot_range = 42.744
+
+[node name="Car_Spotlight_2" type="SpotLight3D" parent="Spotlights/Segment Traffic/Car 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 6, -22.085)
+light_energy = 16.0
+spot_range = 42.744
+
+[node name="Chunks" type="Node" parent="."]
+
+[node name="Light" parent="." instance=ExtResource("1_f0itc")]
+transform = Transform3D(-0.5397825, -0.64596426, 0.53978235, 0.802133, -0.20015962, 0.5625999, -0.2553768, 0.7366589, 0.626192, 866.5679, 164.48663, 229.5144)
+light_color = Color(0.959909, 0.78723484, 0.7768656, 1)
+light_specular = 0.0
