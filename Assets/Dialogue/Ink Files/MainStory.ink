@@ -195,53 +195,53 @@ I better get that raise... #speaker:Slip #expression:Nervous #vo:play
 ->END
 
 ===Pavo_act1===
-\*Your phone buzzes*
+\*Your phone buzzes* #vo:Pavo_act1
 
-Yello? #speaker:Slip #expression:Default #anim:Spin
+Yello? #speaker:Slip #expression:Default #anim:Spin #vo:play
 
 Hi! I just wanted to personally thank you for the pizza, it smells delicious! #speaker:Pavo #expression:Default
 
-Oh, happy to help! ‘Kay, bye! #speaker:Slip
+Oh, happy to help! ‘Kay, bye! #speaker:Slip #vo:play
 
 WAIT WAIT WAIT- *ahem* I mean, wait a sec! I don’t think I even got your name, girl. #speaker:Pavo #expression:Scared
 
-Umm, Slip. #speaker:Slip #expression:Confused
+Umm, Slip. #speaker:Slip #expression:Confused #vo:play
 
 Slip, now that’s a name with character! What is that, like a nickname, a stage name, a drag name? #speaker:Pavo #expression:Positive
 
-Legal. #speaker:Slip #expression:Default
+Legal. #speaker:Slip #expression:Default #vo:play
 
 HAH! You are just too funny, Slip. Y’know, I’ve got a bit of a name myself. #speaker:Pavo #anim:Laugh
 
-Pavo? That’s what the order ticket said. #speaker:Slip #expression:Confused #anim:Shake
+Pavo? That’s what the order ticket said. #speaker:Slip #expression:Confused #anim:Shake #vo:play
 
-True, some people do know me as Pavo, but to the world, I go by #speaker:Pavo #expression:Default
+True, some people do know me as Pavo, but to the world, I go by... #speaker:Pavo #expression:Default
 Madame Menagerie! #speaker:Pavo #expression:Positive #anim:Spin 
 
-Should I be part of that world, or…? #speaker:Slip #expression:Nervous
+Should I be part of that world, or…? #speaker:Slip #expression:Nervous #vo:play
 
 Ah ah ah. I'm not furnished yet, hunty. #speaker:Pavo #expression:Default
 When Madame Menagerie, superstar drag queen and top billing for Noise City’s biggest broadway show yet, gives you a compliment, it’s a big deal. #speaker:Pavo #expression:Positive #anim:Spin
 
-Yes, ma’am! #speaker:Slip #expression:Confident
+Yes, ma’am! #speaker:Slip #expression:Confident #vo:play
 
 So, please, tell your boss that I’m grateful for his food, delicious fuel for beauties everywhere, and… #speaker:Pavo #expression:Positive
 
-My boss? #speaker:Slip #expression:Scared #anim:Shake
+My boss? #speaker:Slip #expression:Scared #anim:Shake #vo:play
 
 AND, that I’d like to rebuild some bridges between us. #speaker:Pavo #expression:Default
 
-Well, what’s in it for me? #speaker:Slip #expression:Nervous
+Well, what’s in it for me? #speaker:Slip #expression:Nervous #vo:play
 
 Get this done, and your music will grace the ears of all my fans. That’s a promise. #speaker:Pavo #expression:Positive
 
-You know I make music? #speaker:Slip #expression:Confident
+You know I make music? #speaker:Slip #expression:Confident #vo:play
 
 Oop, I’ve got a rehearsal coming up soon and a whole pie to myself. Tata, Slip! #speaker:Pavo
 
 [Call hangs up] #speaker:None
 	
-I’ve got a feeling this is gonna be more work than I bargained for. #speaker:Slip #expression:Confused
+I’ve got a feeling this is gonna be more work than I bargained for. #speaker:Slip #expression:Confused #vo:play
 ->DONE
 ===Pavo_act2===
 This is Pavo act 2
@@ -285,175 +285,175 @@ I know I won’t... #speaker:Minny #expression:Nervous
 ===Minny_act2===
 \*You recieve a call from an unknown number* #vo:Minny_act2
 Caller not found? How exciting. #speaker:Slip #expression:Nervous #vo:play
-Slip speaking! How may I help you? #speaker:Slip #expression:Confident #anim:Laugh
+Slip speaking! How may I help you? #speaker:Slip #expression:Confident #anim:Laugh #vo:play
 D-did I actually press the call button? That was an accident- #speaker:Minny #expression:Nervous #anim:Shake
 I mean, h-hi Slip #speaker:Minny #expression:Nervous
-Oh, Minny?! Should I let you go? #speaker:Slip #expression:Default
-No need! I just, um, didn’t want to be a bother so I started to close my phone #speaker:Minny #expression:Nervous
+Oh, Minny?! Should I let you go? #speaker:Slip #expression:Default #vo:play
+No need! I just, um, didn’t want to be a bother so I started to close my phone... #speaker:Minny #expression:Nervous
 But my finger must have slipped on that awfully big green button and I panicked and- #speaker:Minny #expression:Nervous
-Hey, hey, it's alright. You’re never a bother! #speaker:Slip #expression:Confident
-What’cha calling about? Here to leave a scorching hot pizza review? #speaker:Slip #expression:Default
-Not exactly...well, the pizza was great, but something happened at work #speaker:Minny #expression:Default
-I was turning around to sweep, and the end of my broom caught a teacup by its handle #speaker:Minny #expression:Nervous
+Hey, hey, it's alright. You’re never a bother! #speaker:Slip #expression:Confident #vo:play
+What’cha calling about? Here to leave a scorching hot pizza review? #speaker:Slip #expression:Default #vo:play
+Not exactly...well, the pizza was great, but something happened at work. #speaker:Minny #expression:Default
+I was turning around to sweep, and the end of my broom caught a teacup by its handle... #speaker:Minny #expression:Nervous
 And so it fell and shattered and made a mess and- #speaker:Minny #expression:Nervous #anim:Shake
-Woah, Minny. Take a breath! #speaker:Slip #expression:Scared
-It’s just one teacup, I’m sure it's no biggie #speaker:Slip #expression:Confident
+Woah, Minny. Take a breath! #speaker:Slip #expression:Scared #vo:play
+It’s just one teacup, I’m sure it's no biggie. #speaker:Slip #expression:Confident #vo:play
 I-I’m gonna get fired…and I just got this job! #speaker:Minny #expression:Nervous
 Why am I such a klutz... #speaker:Minny #expression:Nervous
-You’re hardly a klutz, you know. At least you’ve never slammed into a bus while skating! #speaker:Slip
-Actually, I think I might be the klutz… #speaker:Slip #expression:Nervous
-Anyways, remember that time in school when you knocked all those papers off the teacher’s desk? #speaker:Slip
+You’re hardly a klutz, you know. At least you’ve never slammed into a bus while skating! #speaker:Slip #vo:play
+Actually, I think I might be the klutz… #speaker:Slip #expression:Nervous #vo:play
+Anyways, remember that time in school when you knocked all those papers off the teacher’s desk? #speaker:Slip #vo:play
 Yes, of course I do. Ms. Hollibuzz got so… #speaker:Minny #expression:Nervous
 … #speaker:Minny
-Mad? Nu uh. She barely even flinched #speaker:Slip
-Mistakes happen, and a boss that says otherwise isn’t worth working for in the first place #speaker:Slip #expression:Confident
-…Spoken from a glass house #speaker:Minny #expression:Nervous
-Umm, he’s working on it...I think #speaker:Slip #expression:Nervous #anim:Shake
-Either way, just sit down with her and apologize, I’m sure she’ll forgive you #speaker:Slip
-I know I would #speaker:Slip #expression:Confident
+Mad? Nu uh. She barely even flinched. #speaker:Slip #vo:play
+Mistakes happen, and a boss that says otherwise isn’t worth working for in the first place. #speaker:Slip #expression:Confident #vo:play
+… Spoken from a glass house. #speaker:Minny #expression:Nervous
+Umm, he’s working on it... I think. #speaker:Slip #expression:Nervous #anim:Shake #vo:play
+Either way, just sit down with her and apologize, I’m sure she’ll forgive you. #speaker:Slip #vo:play
+I know I would. #speaker:Slip #expression:Confident #vo:play
 Thanks Slip, I’ll-I’ll try… #speaker:Minny
-I shouldn’t keep you any longer. Have a good night #speaker:Minny #expression:Happy
-You too, Min. Keep me updated! #speaker:Slip #expression:Confident
+I shouldn’t keep you any longer. Have a good night. #speaker:Minny #expression:Happy
+You too, Min. Keep me updated! #speaker:Slip #expression:Confident #vo:play
 And don’t be afraid to bother me! #speaker:Slip #expression:Confident
 ->DONE
 ===Minny_act3===
-\*You recieve a call from Minny, much to your delight*
-My favorite customer! How's the pie? #speaker:Slip #expression:Confident #anim:Laugh
+\*You recieve a call from Minny, much to your delight* #vo:Minny_act3
+My favorite customer! How's the pie? #speaker:Slip #expression:Confident #anim:Laugh #vo:play
 Eek! Sorry, didn't expect you to pick up so fast... #speaker:Minny #expression:Nervous
 I-it's lovely as always. You never fail to deliver, do you? #speaker:Minny
-Letting a stomach go empty on my watch? Not a chance #speaker:Slip #expression:Confident
+Letting a stomach go empty on my watch? Not a chance. #speaker:Slip #expression:Confident #vo:play
 Pfft, are you some Noise City superhero now? #speaker:Minny #expression:Happy #anim:Laugh
-The very best. Not a soul can outdeliver me #speaker:Slip
-Well, it's not like you need pizza to be a hero #speaker:Minny
-You do a good enough job just being you #speaker:Minny #expression:Nervous
-Hey, I could say the same for you #speaker:Slip
-Remember the time I skated straight into that open manhole? #speaker:Slip
-I would've been a Slip sausage if you weren't there to pull me up! #speaker:Slip #expression:Nervous
+The very best. Not a soul can outdeliver me. #speaker:Slip #vo:play
+Well, it's not like you need pizza to be a hero. #speaker:Minny
+You do a good enough job just being you. #speaker:Minny #expression:Nervous
+Hey, I could say the same for you! #speaker:Slip #vo:play
+Remember the time I skated straight into that open manhole? #speaker:Slip #vo:play
+I would've been a Slip sausage if you weren't there to pull me up! #speaker:Slip #expression:Nervous #vo:play
 At least you started wearing a helmet after that… #speaker:Minny
-Better late than never, as they say! #speaker:Slip #expression:Confident
+Better late than never, as they say! #speaker:Slip #expression:Confident #vo:play
 Does that logic apply to your deliveries? #speaker:Minny
-Err, well… #speaker:Slip #expression:Nervous
-Seen any cool movies lately? #speaker:Slip #expression:Confident #anim:Laugh
-Smooth as always. I can hardly bear your wit #speaker:Minny
-They don’t call me ‘Slip’ for nothing #speaker:Slip
-Alright, save the cheese for when you’re on the clock #speaker:Minny #expression:Happy #anim:Laugh
-I’ve actually been wanting to see this new movie lately, my boss said it was a real tearjerker #speaker:Minny
-So, you’re on good terms now? #speaker:Slip
-Couldn’t be better. In her words, she’ll “take a gentle bull over an intact teacup” any day of the week #speaker:Minny
-Spoken like an angel #speaker:Slip #expression:Nervous
-But for real, I’m glad you’re doing well #speaker:Slip
-Even if you weren’t, I’ll always be here to watch sappy movies with you #speaker:Slip #expression:Confident
+Err, well… #speaker:Slip #expression:Nervous #vo:play
+Seen any cool movies lately? #speaker:Slip #expression:Confident #anim:Laugh #vo:play
+Smooth as always. I can hardly bear your wit... #speaker:Minny
+They don’t call me ‘Slip’ for nothing. #speaker:Slip #vo:play
+Alright, save the cheese for when you’re on the clock. #speaker:Minny #expression:Happy #anim:Laugh
+I’ve actually been wanting to see this new movie lately, my boss said it was a real tearjerker. #speaker:Minny
+So, you’re on good terms now? #speaker:Slip #vo:play
+Couldn’t be better. In her words, she’ll “take a gentle bull over an intact teacup” any day of the week. #speaker:Minny
+Spoken like an angel. #speaker:Slip #expression:Nervous #vo:play
+But for real, I’m glad you’re doing well. #speaker:Slip #vo:play
+Even if you weren’t, I’ll always be here to watch sappy movies with you. #speaker:Slip #expression:Confident #vo:play
 Ah! A-are you sure you want to see- #speaker:Minny #expression:Nervous #anim:Shake
-Come on, I need a break from thinking about pizza #speaker:Slip #expression:Confused #anim:Shake
-What’s the movie about, anyway? #speaker:Slip #expression:Confident
+Come on, I need a break from thinking about pizza! #speaker:Slip #expression:Confused #anim:Shake #vo:play
+What’s the movie about, anyway? #speaker:Slip #expression:Confident #vo:play
 Umm... #speaker:Minny #anim:Shake
-“A family facing economic strife while keeping their pizzeria open”, according to Wikibeedia #speaker:Minny #expression:Nervous
+“A family facing economic strife while keeping their pizzeria open”, according to Wikibeedia... #speaker:Minny #expression:Nervous
 ... #speaker:Slip #expression:Confused
-Well, you can’t win ’em all. See you at 9? #speaker:Slip
+Well, you can’t win ’em all. See you at 9? #speaker:Slip #vo:play
 S-sounds like a plan. Oh! I gotta start getting ready! #speaker:Minny #expression:Nervous
 See you soon! #speaker:Slip #expression:Confident #anim:Laugh
 ->DONE
 
 //NYX
 ===Nyx_act1===
-\*Your phone buzzes*
+\*Your phone buzzes* #vo:Nyx_act1
 Hey, Slip! I wanted to thank ya for the quick delivery, I didn’t expect it to be this warm. #speaker:Nyx #expression:Happy #anim:Shake 
 It was cool to see an old client of mine, especially a memorable one at that. #speaker:Nyx #expression:Happy
 
-Thanks, Pierce! I really appreciate that. #speaker:Slip #expression:Happy
-Speaking of being an old client… #speaker:Slip #expression:Nervous
+Thanks, Pierce! I really appreciate that. #speaker:Slip #expression:Happy #vo:play
+Speaking of being an old client… #speaker:Slip #expression:Nervous #vo:play
 	
 Oh? Am I sensing a return to my parlor? #speaker:Nyx #expression:Default
 	
-Heck yeah! I wanna get a new tattoo! I feel like I deserve another one after all these years! #speaker:Slip #expression:Confident #anim:Spin
+Heck yeah! I wanna get a new tattoo! I feel like I deserve another one after all these years! #speaker:Slip #expression:Confident #anim:Spin #vo:play
 	
 Ha, alright, little dude. Well, you gotta think of one quickly, ‘cause I won’t be around for much longer. #speaker:Nyx #expression:Happy #anim:Laugh
 	
-HA- Wait, what? #speaker:Slip #expression:Scared
+HA- Wait, what? #speaker:Slip #expression:Scared #vo:play
 	
 You heard me, you gotta think of one quick. #speaker:Nyx #expression:Default
 	
-No no, I meant, what do you mean you won’t be around for much longer? #speaker:Slip #expression:Scared #anim:Shake
+No no, I meant, what do you mean you won’t be around for much longer? #speaker:Slip #expression:Scared #anim:Shake #vo:play
 	
-Ah, well… It’s… complicated, kid. Just feels like I need to change it up. #speaker:Nyx #expression:Default
+Ah, well… It’s… complicated, kid. Just feels like I need to change it up. #speaker:Nyx #expression:Default 
 	
-Wha- But, you’re amazing! My “djslipster” tattoo you made was so awesome! #speaker:Slip #expression:Confident
+Wha- But, you’re amazing! My “djslipster” tattoo you made was so awesome! #speaker:Slip #expression:Confident #vo:play
 	
 … You’ll get it one day, kid. Anyways, lemme know what kind of design you want. We can talk about it more later. #speaker:Nyx #expression:Default
 	
-	Slip: Ah… alright… How would a dragon feel? #speaker:Slip #expression:Nervous
+	Slip: Ah… alright… How would a dragon feel? #speaker:Slip #expression:Nervous #vo:play
 	
 … Kid… At least, give it some thought, a’ight? #speaker:Nyx #expression:Default
 Keep at it, Slip. #speaker:Nyx #expression:Default
 
-Later, Pierce. #speaker:Slip #expression:Confused
+Later, Pierce. #speaker:Slip #expression:Confused #vo:play
 ->DONE
 ===Nyx_act2===
-\*Your phone buzzes*
+\*Your phone buzzes* #vo:Nyx_act2
 Hey, Slip, I really appreciate these speedy deliveries! One less thing I’ve gotta worry about these days. #speaker:Nyx #expression:Happy
 
-No problem, but isn’t there any other way I can help? Y’know, with your shop closing and all? #speaker:Slip #expression:Confused #anim:Shake
+No problem, but isn’t there any other way I can help? Y’know, with your shop closing and all? #speaker:Slip #expression:Confused #anim:Shake #vo:play
 	
 Nah, it’s nothing you need to worry yourself over. Just focus on what tattoo you want. I’m not gonna leave without a big finale. #speaker:Nyx #expression:Default
 	
-Well, I gave it some thought, and I think I’ve got your answer. #speaker:Slip #expression:Confident #anim:Laugh
+Well, I gave it some thought, and I think I’ve got your answer. #speaker:Slip #expression:Confident #anim:Laugh #vo:play
 	
 Sweet! Lay it on me, fella! #speaker:Nyx #expression:Happy #anim:Laugh
 	
-I want a fire-breathing dragon! A big one! #speaker:Slip #expression:Confident #anim:Shake
-Ooh. and it’ll be made of bones and wear cool sunglasses! #speaker:Slip #expression:Confident #anim:Laugh
+I want a fire-breathing dragon! A big one! #speaker:Slip #expression:Confident #anim:Shake #vo:play
+Ooh, and it’ll be made of bones and wear cool sunglasses! #speaker:Slip #expression:Confident #anim:Laugh #vo:play
 
 Yeahhh, we’re not doing that. #speaker:Nyx #expression:Default #anim:Shake
 
-Wha-Why not?! #speaker:Slip #expression:Scared
+Wha-Why not?! #speaker:Slip #expression:Scared #vo:play
 
 This thing is permanent, duh! It’s gotta be something you’ll want forever. #speaker:Nyx #expression:Default
 
-Of course, when wouldn’t I want a sick dragon on my arm? #speaker:Slip #expression:Confused #anim:Spin
+Of course, when wouldn’t I want a sick dragon on my arm? #speaker:Slip #expression:Confused #anim:Spin #vo:play
 
 When you’ve gotta explain to someone important why you’ve got an eyesore for an arm, idiot! #speaker:Nyx #expression:Scared #anim:Shake
 
-… I’ve gotten a tattoo from you before, remember? #speaker:Slip #expression:Scared
+… I’ve gotten a tattoo from you before, remember? #speaker:Slip #expression:Scared #vo:play
 
 Sorry. Look, good tattoos aren’t just what’s cool at the moment. They’re gonna be a part of you, so they should be about who you are. #speaker:Nyx #expression:Scared
 The best ones tell the world your awesome stories. #speaker:Nyx #expression:Happy
 
-Isn’t my flaming music note tattoo just as silly, though? #speaker:Slip #expression:Confused
+Isn’t my flaming music note tattoo just as silly, though? #speaker:Slip #expression:Confused #vo:play
 
 Obviously, but if my memory serves me right, you chose to get that with your friends. That’s as good a story as any! #speaker:Nyx #expression:Happy
 
-Doesn’t that just make it a bad group decision? #speaker:Slip #expression:Nervous
+Doesn’t that just make it a bad group decision? #speaker:Slip #expression:Nervous #vo:play
 
 It’s a reminder of who you made that decision with, like Minny. #speaker:Nyx #expression:Happy
 
-I guess… #speaker:Slip #expression:Confused #anim:Shake
+I guess… #speaker:Slip #expression:Confused #anim:Shake #vo:play
 
 Just think about it a bit more, for my sake. I promise I’ll ink whatever you want after. #speaker:Nyx #expression:Default
 
-Even a dragon? #speaker:Slip #expression:Nervous
+Even a dragon? #speaker:Slip #expression:Nervous #vo:play
 
 Even a dragon. I know your story will be one of my favorites, kid! #speaker:Nyx #expression:Happy #anim:Laugh
 
-Thanks! #speaker:Slip #expression:Confident #anim:Exit
+Thanks! #speaker:Slip #expression:Confident #anim:Exit #vo:play
 ->DONE
-===Nyx_act3===
-\*Your phone buzzes*
+===Nyx_act3=== 
+\*Your phone buzzes* #vo:Nyx_act3
 Hey, little bud. Heard you had some, er, complications with your boss. #speaker:Nyx #expression:Default #anim:Shake
 
-Uhh… yeah, you could say that. Anywho, sorry if this is awkward to ask, but, uh, is that free tattoo offer still good? #speaker:Slip #expression:Nervous
+Uhh… yeah, you could say that. Anywho, sorry if this is awkward to ask, but, uh, is that free tattoo offer still good? #speaker:Slip #expression:Nervous #vo:play
 
 Huh? Oh, yeah, of course. It better be a good use of my skills, though! #speaker:Nyx #expression:Happy #anim:Laugh
 
-No, I understand. It’s just… mmm with everything going on recently, I haven’t been able to think of what else I’d want to get. #speaker:Slip #expression:Default
-Do you have any suggestions, Pierce? #speaker:Slip #expression:Nervous
+No, I understand. It’s just… mmm with everything going on recently, I haven’t been able to think of what else I’d want to get. #speaker:Slip #expression:Default #vo:play
+Do you have any suggestions, Pierce? #speaker:Slip #expression:Nervous #vo:play
 
 Suggestions? Me? This is your tattoo, kid. #speaker:Nyx #expression:Scared
 
-C’mon, I’m struggling over here! #speaker:Slip #expression:Scared #anim:Spin
+C’mon, I’m struggling over here! #speaker:Slip #expression:Scared #anim:Spin #vo:play
 
 (laughing) I’m kidding, I’m kidding! Well, is there anyone or anything you’d like to remember with your tattoo? #speaker:Nyx #expression:Happy #anim:Laugh
 	
-Why don’t you tell me about one of yours then? Give me a baseline! #speaker:Slip #expression:Nervous
+Why don’t you tell me about one of yours then? Give me a baseline! #speaker:Slip #expression:Nervous #vo:play
 
 Mine… well, I still remember getting my first tattoo: just a small little thing on the back of my leg. Something that could be easily covered up so my parents wouldn’t see. #speaker:Nyx #expression:Happy
 
@@ -461,16 +461,16 @@ God, I thought they’d be mortified. Or, well, maybe I thought it was too embar
 
  Hahhh, even saying it now is kind of embarrassing. But… I guess it meant something to me then, and now that I’m living out here, hundreds of miles from them, I guess it means more… #speaker:Nyx #expression:Happy
  
-Oh, that’s… #speaker:Slip #expression:Scared
-I guess there… are some people I might want to remember. With a tattoo, I mean. #speaker:Slip #expression:Nervous
+Oh, that’s… #speaker:Slip #expression:Scared #vo:play
+I guess there… are some people I might want to remember. With a tattoo, I mean. #speaker:Slip #expression:Nervous #vo:play
 
 Heh, well, if I’m being honest, I wouldn’t recommend just getting initials done. It can be kinda tacky. #speaker:Nyx #expression:Happy #anim:Laugh
 
-Hey, wouldn’t you be the one tattooing me? #speaker:Slip #expression:Confused #anim:Shake
+Hey, wouldn’t you be the one tattooing me? #speaker:Slip #expression:Confused #anim:Shake #vo:play
 
 Well, yeah, but you’re asking my opinion on this stuff. Thought I might give some advice. #speaker:Nyx #expression:Default
 
-(sigh) Then I guess I’ll keep thinking… I’ll try to come by before you close up shop. #speaker:Slip #expression:Default 
+(sigh) Then I guess I’ll keep thinking… I’ll try to come by before you close up shop. #speaker:Slip #expression:Default #vo:play
 
 Oh, uh… actually, I decided I’m staying. #speaker:Nyx #expression:Happy
 

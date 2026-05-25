@@ -62,13 +62,22 @@ var music_bus_volume_scalar := 0.3
 ## Used to count the number of choices the play has been given, for my jank FMOD dialogue tree implementation
 var choice_query_count := 0 
 
-var VOPATH_TO_FMODPATH := {
+const VOPATH_TO_FMODPATH := {
 	"main_act1_scene1": "event:/SFX/CHAR/voiceover/scenes/A1S1",
 	"main_act1_scene2": "event:/SFX/CHAR/voiceover/scenes/A1S2",
 	"main_act2_scene1": "event:/SFX/CHAR/voiceover/scenes/A2S1",
 	"main_act2_scene2": "event:/SFX/CHAR/voiceover/scenes/A2S2",
 	"main_act3_scene1": "event:/SFX/CHAR/voiceover/scenes/A3S1",
-	"main_act3_scene2": "event:/SFX/CHAR/voiceover/scenes/A3S2"
+	"main_act3_scene2": "event:/SFX/CHAR/voiceover/scenes/A3S2",
+	
+	"Pavo_act1": "event:/SFX/CHAR/voiceover/scenes/PAVOA1",
+	"Pavo_act2": "event:/SFX/CHAR/voiceover/scenes/PAVOA2",
+	"Pavo_act3": "event:/SFX/CHAR/voiceover/scenes/PAVOA3",
+	"Nyx_act1": "event:/SFX/CHAR/voiceover/scenes/NYXA1",
+	"Nyx_act2": "event:/SFX/CHAR/voiceover/scenes/NYXA2",
+	"Nyx_act3": "event:/SFX/CHAR/voiceover/scenes/NYXA3",
+	"Minny_act2": "event:/SFX/CHAR/voiceover/scenes/MINNYA2",
+	"Minny_act3": "event:/SFX/CHAR/voiceover/scenes/MINNYA3"
 }
 
 func _ready() -> void:	
