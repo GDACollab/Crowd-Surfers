@@ -104,94 +104,94 @@ They are the ones truly missing out... #speaker:Sam #vo:play
 
 ===main_act2_scene2===
 \*As you finish the delivery, your phone recieves a voicemail*
-Hey, Slip, my man, I wanted to thank ya for the delivery. Pizza was still warm, which I really liked #speaker:Nyx #anim:Laugh
-I don’t usually do this anymore, but you were one of my first clients, so hit me up if you’d like another tattoo #speaker:Nyx
+Hey, Slip, my man, I wanted to thank ya for the delivery. Pizza was still warm, which I really liked. #speaker:Nyx #anim:Laugh 
+I don’t usually do this anymore, but you were one of my first clients, so hit me up if you’d like another tattoo. #speaker:Nyx
 Parlor’s closin’ up soon, permanently, so be quick with whatever design you’d like... #speaker:Nyx
-A’ight, keep at it, little man #speaker:Nyx
+A’ight, keep at it, little man. #speaker:Nyx
 *[Call Back]
  <- Nyx_act1
 *[Call Later]
-    You send the call to voicemail and head back #speaker:None
+    You send the call to voicemail and head back. #speaker:None
 -Hey Chef. I’m done for the night. Where’s Sam? #fade:out #vo:main_act2_scene2 #speaker:Slip #expression:Confused #vo:play
-He never came in today #speaker:Chef
-This snail’s pace rat race for those Feathers tickets is taking quite the toll on him #speaker:Chef #expression:Nervous
-Is he okay? Why do those tickets matter so much anyway? #speaker:Slip #expression:Scared
-… It’s not the tickets he cares about. It’s  Maximilian #speaker:Chef
-There’s gotta be something I’m missing #speaker:Slip
-I’ve heard that they used to be friends, but I’ve never seen Sam get so stressed that he’d stay home from work #speaker:Slip
-They were more than friends #speaker:Chef
-Oh. #speaker:Slip
-...Ohhhh #speaker:Slip #expression:Scared
-It was going strong for a good while #speaker:Chef
-Then they both got so preoccupied with their businesses that their dedication to each other just… dwindled #speaker:Chef #expression:Nervous
-That’s so sad! #speaker:Slip #expression:Scared #anim:Shake
-It’s easy to lose sight of each other when life gets busy. Things will get better though, they just need a little push #speaker:Chef
-... #speaker:Slip
+He never came in today. #speaker:Chef
+This snail’s pace rat race for those Feathers tickets is taking quite the toll on him. #speaker:Chef #expression:Nervous
+Is he okay? Why do those tickets matter so much anyway? #speaker:Slip #expression:Scared #vo:play
+… It’s not the tickets he cares about. It’s  Maximilian. #speaker:Chef
+There’s gotta be something I’m missing... #speaker:Slip #vo:play
+I’ve heard that they used to be friends, but I’ve never seen Sam get so stressed that he’d stay home from work. #speaker:Slip #vo:play
+They were more than friends... #speaker:Chef
+Oh. #speaker:Slip #vo:play
+...Ohhhh #speaker:Slip #expression:Scared #vo:play
+It was going strong for a good while... #speaker:Chef
+Then they both got so preoccupied with their businesses that their dedication to each other just... dwindled. #speaker:Chef #expression:Nervous
+That’s so sad! #speaker:Slip #expression:Scared #anim:Shake #vo:play
+It’s easy to lose sight of each other when life gets busy. Things will get better though, they just need a little push. #speaker:Chef
+... #speaker:Slip 
 Something wrond, kiddo? #speaker:Chef
-No, no. It’s just that I ran into an old friend today. We haven’t talked since high school, though, because… #speaker:Slip
-Well, we both got busy with work #speaker:Slip #expression:Confused #anim:Shake
-Ah. Like I said, it’s easy to lose sight of each other #speaker:Chef
-Yeah. She works so close by, too. I should really check in with her #speaker:Slip #expression:Nervous
-That sounds like a plan #speaker:Chef #anim:Laugh
+No, no. It’s just that I ran into an old friend today. We haven’t talked since high school, though, because... #speaker:Slip #vo:play
+Well, we both got busy with work. #speaker:Slip #expression:Confused #anim:Shake #vo:play
+Ah. Like I said, it’s easy to lose sight of each other. #speaker:Chef
+Yeah. She works so close by, too. I should really check in with her... #speaker:Slip #expression:Nervous #vo:play
+That sounds like a plan! #speaker:Chef #anim:Laugh
 ->END
 
 ===main_act3_scene1===
 (SLIP groggily enters, collapsing before SAM)
-Mmmph... #speaker:Slip #expression:Confused #anim:Shake
-Great news, sport! We’ve finally done it. That dastardly Max has been bested, by yours truly, once and for all! #speaker:Sam #expression:Confident
-Yay. #speaker:Slip #expression:Confused #anim:Shake
-This calls for a celebration! No! For gloating!#speaker:Sam #expression:Confident #anim:Laugh
-Ooh, when I get ahold of that slimy chump, he’ll be absolutely wrought with jealousy. I can’t wait to savor it! #speaker:Sam #expression:Angry #anim:Laugh
+Mmmph... #speaker:Slip #expression:Confused #anim:Shake #vo:main_act3_scene1 
+Great news, sport! We’ve finally done it. That dastardly Max has been bested, by yours truly, once and for all! #speaker:Sam #expression:Confident #vo:play
+Yay. #speaker:Slip #expression:Confused #anim:Shake #vo:play
+This calls for a celebration! No! For gloating!#speaker:Sam #expression:Confident #anim:Laugh #vo:play
+Ooh, when I get ahold of that slimy chump, he’ll be absolutely wrought with jealousy. I can’t wait to savor it! #speaker:Sam #expression:Angry #anim:Laugh #vo:play
 
-Bonjour, this is Monsieur Gastron, and if you are calling for restaurant hours, we are sadly closed for the foreseeable future. #speaker:Max
-I am headed back to France tonight, so don’t bother leaving a message, thank you. #speaker:Max
-And if this is Samuel, I hope you are happy. #speaker:Max
+Bonjour, this is Monsieur Gastron, and if you are calling for restaurant hours, we are sadly closed for the foreseeable future. #speaker:Max #vo:play
+I am headed back to France tonight, so don’t bother leaving a message, thank you. #speaker:Max #vo:play
+And if this is Samuel, I hope you are happy. #speaker:Max #vo:play
 
-H-he’s going to France? But… he is my rival. My opposite. That coward would not dare give the final curtain call! #speaker:Sam #expression:Nervous #anim:Laugh
+H-he’s going to France? But… he is my rival. My opposite. That coward would not dare give the final curtain call! #speaker:Sam #expression:Nervous #anim:Laugh #vo:play
 
-Uhh, you won. Shouldn’t you be happy? #speaker:Slip #expression:Default #Anim:Spin
+Uhh, you won. Shouldn’t you be happy? #speaker:Slip #expression:Default #Anim:Spin #vo:play
 
-No. No, I never wanted this. How could he leave like that, over some stupid tickets?! #speaker:Sam #expression:Angry #anim:Shake
+No. No, I never wanted this. How could he leave like that, over some stupid tickets?! #speaker:Sam #expression:Angry #anim:Shake #vo:play
 
-Hold up, hold up, I thought you wanted him gone. Now there’s no competition for Sammy Sassbear’s. #speaker:Slip #expression:Confused
+Hold up, hold up, I thought you wanted him gone. Now there’s no competition for Sammy Sassbear’s. #speaker:Slip #expression:Confused #vo:play
 
-It was never about our businesses! It was about our endless clash, that constant return and volley, our efforts to try and make the opponent yield first. #speaker:Sam #expression:Nervous
-He wasn’t supposed to leave. He was supposed to want to get me back, where I would then revel in my victory and proffer him a ticket out of pity. #speaker:Sam #expression:Angry
-That’s how our script was destined to play out. #speaker:Sam #expression:Nervous #anim:Shake
+It was never about our businesses! It was about our endless clash, that constant return and volley, our efforts to try and make the opponent yield first. #speaker:Sam #expression:Nervous #vo:play
+He wasn’t supposed to leave. He was supposed to want to get me back, where I would then revel in my victory and proffer him a ticket out of pity. #speaker:Sam #expression:Angry #vo:play
+That’s how our script was destined to play out. #speaker:Sam #expression:Nervous #anim:Shake #vo:play
 
-Yeah, yeah, you wanted to go on a date with Mr. Gastron, and now you’ve pushed him too far. #speaker:Slip #expression:Default
-Look, if you really don’t want him to leave, just go to the airport and give him the ticket yourself. #speaker:Slip #expression:Default
-I checked online and the plane hasn’t left yet.#speaker:Slip #expression:Nervous
+Yeah, yeah, you wanted to go on a date with Mr. Gastron, and now you’ve pushed him too far. #speaker:Slip #expression:Default #vo:play
+Look, if you really don’t want him to leave, just go to the airport and give him the ticket yourself. #speaker:Slip #expression:Default #vo:play
+I checked online and the plane hasn’t left yet.#speaker:Slip #expression:Nervous #vo:play
 
-It hasn’t? Then there’s still a chance we can make it! We’ll just take my car and navigate towards… #speaker:Sam #expression:Confident
-It is the night of the show, the roads will be far too crowded. We’ll never make it in time. #speaker:Sam #expression:Neutral #anim:Spin
-Oh, our romance was doomed from the very beginning! #speaker:Sam #expression:Nervous #anim:Laugh
+It hasn’t? Then there’s still a chance we can make it! We’ll just take my car and navigate towards… #speaker:Sam #expression:Confident #vo:play
+It is the night of the show, the roads will be far too crowded. We’ll never make it in time. #speaker:Sam #expression:Neutral #anim:Spin #vo:play
+Oh, our romance was doomed from the very beginning! #speaker:Sam #expression:Nervous #anim:Laugh #vo:play
 
-Listen up, just try to get there as fast as you can. I’ll go on ahead and skate these tickets on over to Mr. Gastron before the plane takes off. #speaker:Slip #expression:Neutral
-ONLY if I get a raise after this though, deal? #speaker:Slip #expression:Confused #anim:Shake
+Listen up, just try to get there as fast as you can. I’ll go on ahead and skate these tickets on over to Mr. Gastron before the plane takes off. #speaker:Slip #expression:Neutral #vo:play
+ONLY if I get a raise after this though, deal? #speaker:Slip #expression:Confused #anim:Shake #vo:play
 
-Absolutely, I would forever be in your debt. Though, how will you ever make it through? #speaker:Sam #expression:Neutral
-Even with those skates of yours, the roads will be flooded with Madame Menagerie’s adoring audience. #speaker:Sam #expression:Nervous #anim:Shake
+Absolutely, I would forever be in your debt. Though, how will you ever make it through? #speaker:Sam #expression:Neutral #vo:play
+Even with those skates of yours, the roads will be flooded with Madame Menagerie’s adoring audience. #speaker:Sam #expression:Nervous #anim:Shake #vo:play
 
-Please, with all of these deliveries, I’ve learned to be a bit of a Crowd Surfer. #speaker:Slip #expression:Confident
+Please, with all of these deliveries, I’ve learned to be a bit of a Crowd Surfer. #speaker:Slip #expression:Confident #vo:play
 ->END
 
 ===main_act3_scene2===
-\*You reach the airport terminal just in time to stop Maximilian*
-Why won’t you two leave me alone? Have you not done enough to forsake my reputation? #speaker:Max
+\*You reach the airport terminal just in time to stop Maximilian* #vo:main_act3_scene2
+Why won’t you two leave me alone? Have you not done enough to forsake my reputation? #speaker:Max #vo:play
 
-I know we have our differences, but… you have always been my other half. #speaker:Sam #expression:Neutral
-The cheese to my tomato sauce, the Romeo to my Juliet! #speaker:Sam #expression:Angry #anim:Shake
-I- I need you to stay, Maximilian. Please. #speaker:Sam #expression:Nervous
+I know we have our differences, but… you have always been my other half. #speaker:Sam #expression:Neutral #vo:play
+The cheese to my tomato sauce, the Romeo to my Juliet! #speaker:Sam #expression:Angry #anim:Shake #vo:play
+I- I need you to stay, Maximilian. Please. #speaker:Sam #expression:Nervous #vo:play
 
-N-nothing you could say at this point can refire my passion for the art of cuisine. I am ruined, I tell you! Now please, make this easy for both of us... #speaker:Max
+N-nothing you could say at this point can refire my passion for the art of cuisine. I am ruined, I tell you! Now please, make this easy for both of us... #speaker:Max #vo:play
 
-There… there may be one thing. #speaker:Sam #expression:Nercous
-Will you… go to Feathers with me...? #speaker:Sam #expression:Confident
+There… there may be one thing. #speaker:Sam #expression:Nercous #vo:play
+Will you… go to Feathers with me...? #speaker:Sam #expression:Confident #vo:play
 
-Damn you! Must you always hold the key to my shell? Of course I shall go, Samuel! Let us deep fry our conflicts and dance under the spotlight! #speaker:Max
+Damn you! Must you always hold the key to my shell? Of course I shall go, Samuel! Let us deep fry our conflicts and dance under the spotlight! #speaker:Max #vo:play
 
-I better get that raise... #speaker:Slip #expression:Nervous
+I better get that raise... #speaker:Slip #expression:Nervous #vo:play
 ->END
 
 ===Pavo_act1===
