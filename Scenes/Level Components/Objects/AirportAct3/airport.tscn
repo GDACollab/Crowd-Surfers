@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsc0ntrmaunq"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_ps23o"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_1xl7o"]
+[ext_resource type="Texture2D" uid="uid://clag6ac46y42" path="res://Assets/Art/AlphaSprites/SprintEightAssets/Airport Top.png" id="3_811oh"]
+[ext_resource type="Texture2D" uid="uid://c3a0xyi045utl" path="res://Assets/Art/AlphaSprites/SprintEightAssets/Airport Front.png" id="4_jgug8"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="5_krjso"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eejdc"]
+render_priority = 0
+shader = ExtResource("5_krjso")
+shader_parameter/tex = ExtResource("3_811oh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnjw8"]
+render_priority = 0
+shader = ExtResource("5_krjso")
+shader_parameter/tex = ExtResource("4_jgug8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36u6l"]
+size = Vector3(300, 90, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_udv66"]
+size = Vector3(300, 10, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_ps23o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("2_1xl7o")
+active = true
+top_filename = ExtResource("3_811oh")
+front_filename = ExtResource("4_jgug8")
+width = 300.0
+length = 100.0
+height = 100.0
+top_spr_pad_top = 9.735
+top_spr_pad_bottom = 64.07
+top_spr_pad_left = 26.815
+top_spr_pad_right = 27.39
+front_spr_pad_top = 84.26
+front_spr_pad_bottom = 12.855
+front_spr_pad_left = 26.605
+front_spr_pad_right = 27.14
+
+[node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(19.977722, 0, 0, 0, 1, 0, 0, 0, 14.544352, 0.2875, 100, 77.1675)
+material_overlay = SubResource("ShaderMaterial_eejdc")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_811oh")
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(19.951777, 0, 7.2101847e-07, 8.7211987e-07, 1.9106855e-15, -16.49498, 0, 1, 3.1516717e-14, 0.2675, 85.7025, 100)
+material_overlay = SubResource("ShaderMaterial_cnjw8")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("4_jgug8")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 50)
+shape = SubResource("BoxShape3D_36u6l")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95, 50)
+shape = SubResource("BoxShape3D_udv66")
+debug_color = Color(0.972549, 0.25490198, 1, 1)
