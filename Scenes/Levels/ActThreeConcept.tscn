@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=98 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -74,6 +74,7 @@
 [ext_resource type="PackedScene" uid="uid://deollg5t5wxfp" path="res://Scenes/Level Components/Objects/waymo-evil-down.tscn" id="47_0swl4"]
 [ext_resource type="PackedScene" uid="uid://d3dfk5a4jc00h" path="res://Scenes/Level Components/Objects/NewBuildingsNoBillBoards/BuildingApartments.tscn" id="48_ly061"]
 [ext_resource type="PackedScene" uid="uid://c7rolm3dinuxb" path="res://Scenes/Level Components/Objects/NewBuildingsNoBillBoards/BuildingBigTallApartmentCleaned.tscn" id="49_ocsh4"]
+[ext_resource type="PackedScene" uid="uid://bsc0ntrmaunq" path="res://Scenes/Level Components/Objects/AirportAct3/airport.tscn" id="50_0p5f0"]
 [ext_resource type="PackedScene" uid="uid://ch5oarqo7kc1g" path="res://Scenes/Level Components/Objects/NewBuildingsNoBillBoards/BuildingTall.tscn" id="50_3har6"]
 [ext_resource type="PackedScene" uid="uid://dr2brnr7colbq" path="res://Scenes/Level Components/Objects/waymo-evil-up.tscn" id="52_2y5rp"]
 [ext_resource type="PackedScene" uid="uid://bwrihpc133hm4" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/StormDrain.tscn" id="52_ypdg7"]
@@ -1992,6 +1993,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -400)
 
 [node name="StaticBody3D7" parent="BuildingGroup/HighwayBuildings" instance=ExtResource("42_ok7c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -500)
+
+[node name="AirportGroup" type="Node3D" parent="BuildingGroup"]
+transform = Transform3D(1.33, 0, 0, 0, 1, 0, 0, 0, 1, 1850, 0, -2700)
+
+[node name="StaticBody3D" parent="BuildingGroup/AirportGroup" instance=ExtResource("50_0p5f0")]
 
 [node name="SpecialComponentsGroup" type="Node3D" parent="."]
 
