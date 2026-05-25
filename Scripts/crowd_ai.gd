@@ -705,6 +705,7 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_add_shape(rid, shape)
 		
 		var radi = circum / 4.0
+		
 		var start_pos = hexPackedPositions[i] if i < hexPackedPositions.size() else position
 		#var start_transform = Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
 		var start_transform = Transform3D(crowd_basis, start_pos) if start_pos != position else Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
@@ -712,7 +713,10 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, start_transform)
 		multi_mesh_manager.multimesh.set_instance_transform(i, start_transform)
 		multi_mesh_manager.multimesh.set_instance_color(i, city_colors[randi() % city_colors.size()])
-		multi_mesh_manager.multimesh.set_instance_custom_data(i, Color(randf(),randf(),randf(),randf()))
+		var randColor = Color(randf(),randf(),randf(),i)
+		
+		
+		multi_mesh_manager.multimesh.set_instance_custom_data(i, randColor)
 		
 		# physics lock
 		var mass = 1.0
