@@ -127,7 +127,7 @@ Then they both got so preoccupied with their businesses that their dedication to
 That’s so sad! #speaker:Slip #expression:Scared #anim:Shake
 It’s easy to lose sight of each other when life gets busy. Things will get better though, they just need a little push #speaker:Chef
 ... #speaker:Slip
-Something wrond, kiddo? #speaker:Chef
+Something wrong, kiddo? #speaker:Chef
 No, no. It’s just that I ran into an old friend today. We haven’t talked since high school, though, because… #speaker:Slip
 Well, we both got busy with work #speaker:Slip #expression:Confused #anim:Shake
 Ah. Like I said, it’s easy to lose sight of each other #speaker:Chef
