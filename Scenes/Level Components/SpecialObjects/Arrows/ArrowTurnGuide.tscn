@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_ceiqy"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_ki0ig"]
-[ext_resource type="Texture2D" uid="uid://ck8qtl483el4c" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Turn S6.png" id="3_ceiqy"]
+[ext_resource type="Texture2D" uid="uid://cye354b8g71i4" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Turn S7.png" id="3_ceiqy"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_tl5yt"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ceiqy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ki0ig"]
 render_priority = 0
 shader = ExtResource("4_tl5yt")
 shader_parameter/tex = ExtResource("3_ceiqy")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ki0ig"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_23c75"]
 size = Vector3(50, 50, 0.1)
 
 [node name="StaticBody3D" type="Node3D"]
@@ -30,7 +30,7 @@ platform_thickness = 0.0
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(13.671875, 0, 5.9761663e-07, 5.9761663e-07, 1.9106855e-15, -13.671875, 0, 1, 2.6122654e-14, 0, 25, 0.1)
-material_overlay = SubResource("ShaderMaterial_ceiqy")
+material_overlay = SubResource("ShaderMaterial_ki0ig")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -40,5 +40,5 @@ region_rect = Rect2(0, 0, 512, 512)
 
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0.05)
-shape = SubResource("BoxShape3D_ki0ig")
+shape = SubResource("BoxShape3D_23c75")
 debug_color = Color(1, 0, 0, 1)
