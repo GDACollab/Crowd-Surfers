@@ -12,6 +12,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	
 func _on_resume_button_pressed() -> void:
+	Audio.toggle_level_audio()
 	get_tree().paused = false
 	queue_free()
 
@@ -36,6 +37,7 @@ func _on_settings_button_pressed() -> void:
 	if (transitioning):
 		return
 	
+	Audio.toggle_level_audio()
 	transitioning = true
 	settings_scene.visible = true
 	phone_animation_player.play("open_settings")
@@ -43,7 +45,8 @@ func _on_settings_button_pressed() -> void:
 func _on_settings_back_button_pressed() -> void:
 	if (transitioning):
 		return
-		
+	
+	Audio.toggle_level_audio()	
 	transitioning = true
 	buttons_container.visible = true
 	phone_animation_player.play_backwards("open_settings")
@@ -51,6 +54,7 @@ func _on_settings_back_button_pressed() -> void:
 	SaveDataManager.save_data()
 
 func _on_restart_level_button_pressed() -> void:
+	Audio.toggle_level_audio()
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
 	get_tree().paused = false
 	queue_free()
