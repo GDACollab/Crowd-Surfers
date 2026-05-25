@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=96 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -88,6 +88,7 @@
 [ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
 [ext_resource type="PackedScene" uid="uid://djh3u3ghtvce2" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingTallApartment.tscn" id="75_lk4wn"]
 [ext_resource type="PackedScene" uid="uid://ci0n2ibbk4cit" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingShortBillBoard.tscn" id="76_ypdg7"]
+[ext_resource type="PackedScene" uid="uid://2bh76jv7nmnc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassMiddle.tscn" id="89_bkk8d"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
 
@@ -3321,6 +3322,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, -0.51, 1000)
 [node name="StaticBody3D7" parent="DownTownRoadsNavMesh2" instance=ExtResource("17_twov8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, -0.51, 1100)
 
+[node name="StaticBody3D16" parent="DownTownRoadsNavMesh2" instance=ExtResource("17_twov8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -600, -0.51, 1100)
+
+[node name="StaticBody3D18" parent="DownTownRoadsNavMesh2" instance=ExtResource("17_twov8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, -0.51, 1000)
+
+[node name="StaticBody3D17" parent="DownTownRoadsNavMesh2" instance=ExtResource("17_twov8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, -0.51, 1200)
+
 [node name="StaticBody3D8" parent="DownTownRoadsNavMesh2" instance=ExtResource("17_twov8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, -0.51, 1200)
 
@@ -3559,9 +3569,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0)
 [node name="StaticBody3D7" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
 transform = Transform3D(1.341105e-07, 0, -1.0000002, 0, 1, 0, 1.0000002, 0, 1.341105e-07, 50, -0.1, -150)
 
-[node name="StaticBody3D" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, -0.51, 800)
-
 [node name="StaticBody3D10" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1100, -0.51, 1200)
 
@@ -3576,18 +3583,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, -0.51, 900)
 
 [node name="StaticBody3D14" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, -0.51, 800)
-
-[node name="StaticBody3D2" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, -0.51, 800)
-
-[node name="StaticBody3D3" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, -0.51, 800)
-
-[node name="StaticBody3D4" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.51, 800)
-
-[node name="StaticBody3D15" parent="Enviromental Fixes" instance=ExtResource("17_twov8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, -0.51, 800)
 
 [node name="StaticBody3D16" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 1300, 0, -900)
@@ -3605,7 +3600,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, -800)
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 1300, 0, -800)
 
 [node name="StaticBody3D19" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 100, 0, 1000)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 100, 0, 1100)
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D19" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
@@ -3614,7 +3609,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 250, 0, 850.01)
 
 [node name="StaticBody3D21" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1000)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1100)
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D21" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
@@ -3625,20 +3620,26 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 200,
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D35" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
 
+[node name="StaticBody3D51" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 200, 0, 1100)
+
+[node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D51" instance=ExtResource("29_0je7h")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
+
 [node name="StaticBody3D36" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -200, 0, 1000)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -200, 0, 1100)
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D36" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
 
 [node name="StaticBody3D37" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -300, 0, 1000)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -300, 0, 1100)
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D37" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
 
 [node name="StaticBody3D38" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -100, 0, 1000)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -100, 0, 1100)
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D38" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
@@ -3668,7 +3669,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -800, 0, 900.2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -900, 0, 900)
 
 [node name="StaticBody3D47" parent="Enviromental Fixes" instance=ExtResource("3_tqh1b")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -400, 0, 1000)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -400, 0, 1100)
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D47" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
@@ -3690,3 +3691,128 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -700
 
 [node name="StaticBody3D2" parent="Enviromental Fixes/StaticBody3D50" instance=ExtResource("29_0je7h")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.6293945e-06, 0, 100)
+
+[node name="StaticBody3D" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 800)
+
+[node name="StaticBody3D6" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 900)
+
+[node name="StaticBody3D8" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 900)
+
+[node name="StaticBody3D9" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 900)
+
+[node name="StaticBody3D15" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 900)
+
+[node name="StaticBody3D52" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 900)
+
+[node name="StaticBody3D53" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 900)
+
+[node name="StaticBody3D54" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 1000)
+
+[node name="StaticBody3D55" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 1000)
+
+[node name="StaticBody3D56" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 900)
+
+[node name="StaticBody3D57" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 800)
+
+[node name="StaticBody3D58" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1000)
+
+[node name="StaticBody3D59" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 1000)
+
+[node name="StaticBody3D60" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 1000)
+
+[node name="StaticBody3D61" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 0, 1000)
+
+[node name="StaticBody3D62" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 1000)
+
+[node name="StaticBody3D2" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 800)
+
+[node name="StaticBody3D3" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 800)
+
+[node name="StaticBody3D4" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 800)
+
+[node name="StaticBody3D5" parent="Enviromental Fixes" instance=ExtResource("89_bkk8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 800)
+
+[node name="Trees" type="Node3D" parent="Enviromental Fixes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -315, 0, 805)
+
+[node name="Tree1" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, 0)
+
+[node name="Tree3" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 0, 40)
+
+[node name="Tree4" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 0, 0)
+
+[node name="Tree8" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245, 0, 55)
+
+[node name="Tree17" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195, 0, 135)
+
+[node name="Tree18" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430, 0, 140)
+
+[node name="Tree19" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 385, 0, 110)
+
+[node name="Tree20" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 95)
+
+[node name="Tree21" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 145)
+
+[node name="Tree9" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215, 0, 10)
+
+[node name="Tree10" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 290, 0, -5)
+
+[node name="Tree11" parent="Enviromental Fixes/Trees" instance=ExtResource("61_i1c8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 5)
+
+[node name="Tree2" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+
+[node name="Tree12" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 100)
+
+[node name="Tree13" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, 95)
+
+[node name="Tree14" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 0, 75)
+
+[node name="Tree15" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 270, 0, 125)
+
+[node name="Tree16" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 330, 0, 70)
+
+[node name="Tree5" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165, 0, 5)
+
+[node name="Tree6" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 315, 0, -10)
+
+[node name="Tree7" parent="Enviromental Fixes/Trees" instance=ExtResource("62_lsqwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 395, 0, 20)
