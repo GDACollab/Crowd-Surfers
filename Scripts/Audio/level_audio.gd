@@ -8,11 +8,11 @@ extends Node2D
 
 func _ready() -> void:
 	assert(player and music_path and ambience_path)
-	var mus_level1 := Audio.create_persistent("mus_level1", music_path, true)
+	var mus_level := Audio.create_persistent("mus_level", music_path, true)
 	var amb_city := Audio.create_persistent("amb_city", ambience_path, true)
 	var skating_loop := Audio.create_persistent("skating_loop", "event:/SFX/P/skate_loop", true)
 	
-	mus_level1.start()
+	mus_level.start()
 	amb_city.start()
 	skating_loop.start()
 

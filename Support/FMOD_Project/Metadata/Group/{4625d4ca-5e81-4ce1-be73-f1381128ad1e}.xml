@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerGroup" id="{4625d4ca-5e81-4ce1-be73-f1381128ad1e}">
-		<property name="volume">
-			<value>1.5</value>
-		</property>
 		<property name="name">
 			<value>MUS</value>
 		</property>
@@ -24,6 +21,7 @@
 		<relationship name="effects">
 			<destination>{88c0ae8b-bbf2-4c7e-a5f6-c59b9074d1b4}</destination>
 			<destination>{c1db438a-8dec-4f28-9a4b-b4647280e595}</destination>
+			<destination>{29790a01-4677-443d-a1b5-82b7791a632c}</destination>
 			<destination>{c611a732-f6b5-4fc2-bd98-c94dc823c984}</destination>
 			<destination>{3414d699-709c-4dff-9164-15dfd09746e6}</destination>
 		</relationship>
@@ -61,6 +59,12 @@
 		</property>
 		<relationship name="sidechains">
 			<destination>{84531245-4c31-4b67-b4a9-4b2f00b6f959}</destination>
+		</relationship>
+	</object>
+	<object class="CompressorEffect" id="{29790a01-4677-443d-a1b5-82b7791a632c}">
+		<relationship name="sidechains">
+			<destination>{92eb1440-5837-4dec-a868-4b256bd692b5}</destination>
+			<destination>{295d000e-8658-49b6-b870-b18f7542ae88}</destination>
 		</relationship>
 	</object>
 	<object class="MultibandEqEffect" id="{c611a732-f6b5-4fc2-bd98-c94dc823c984}">
