@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=38 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -9,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://ckgs56onyg2fl" path="res://Assets/Art/UI/MainMenu/Background/slip_orders.png" id="5_75vxy"]
 [ext_resource type="Texture2D" uid="uid://pltwgtmqepn6" path="res://Assets/Art/UI/ui_phone_base_bg.png" id="5_ahrg2"]
 [ext_resource type="PackedScene" uid="uid://c5rie8boisw4x" path="res://Scenes/UI Menus/MainMenu/orders_screen.tscn" id="5_arkae"]
-[ext_resource type="Texture2D" uid="uid://bwuhqa5kn4y7k" path="res://Assets/Art/UI/wall_orders.png" id="5_c3s7o"]
+[ext_resource type="Texture2D" uid="uid://bwuhqa5kn4y7k" path="res://Assets/Art/UI/MainMenu/Background/wall_orders.png" id="5_c3s7o"]
 [ext_resource type="Script" uid="uid://b7asm1s1ru2p4" path="res://Scripts/UI/MainMenu/fire_glow.gd" id="5_hn1b1"]
 [ext_resource type="Texture2D" uid="uid://drq44x1rcfvse" path="res://Assets/Art/UI/MainMenu/Main/orders_normal.png" id="6_ahrg2"]
-[ext_resource type="Texture2D" uid="uid://bp36bli7tjc7m" path="res://Assets/Art/UI/wall_main.png" id="6_hn1b1"]
+[ext_resource type="Texture2D" uid="uid://bp36bli7tjc7m" path="res://Assets/Art/UI/MainMenu/Background/wall_main.png" id="6_hn1b1"]
 [ext_resource type="PackedScene" uid="uid://kvs3yueyscim" path="res://Scenes/UI Menus/MainMenu/settings_screen.tscn" id="6_j0r1m"]
 [ext_resource type="Texture2D" uid="uid://bj1p1ehi8mmd5" path="res://Assets/Art/UI/MainMenu/Main/voicemails_normal.png" id="7_mtjt5"]
 [ext_resource type="Texture2D" uid="uid://ddxwsn8dml4jb" path="res://Assets/Art/UI/MainMenu/Main/orders_hover.png" id="8_a8df5"]
@@ -28,6 +28,7 @@
 [ext_resource type="BitMap" uid="uid://45oo5cy4l7wl" path="res://Assets/Art/UI/MainMenu/Main/social_media_click_mask.png" id="22_yjf4t"]
 [ext_resource type="BitMap" uid="uid://d2ef7bx3li3ox" path="res://Assets/Art/UI/MainMenu/Main/settings_click_mask.png" id="23_4v1m8"]
 [ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
+[ext_resource type="Texture2D" uid="uid://bmn876h0e8tcp" path="res://Assets/Art/UI/ui_phone_edge.png" id="28_dnqoa"]
 
 [sub_resource type="Gradient" id="Gradient_75vxy"]
 offsets = PackedFloat32Array(0, 0.64)
@@ -43,7 +44,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:scale")
+tracks/0/path = NodePath("PhoneImage/PhoneBg/OrdersScene:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -55,7 +56,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:modulate")
+tracks/1/path = NodePath("PhoneImage/PhoneBg/OrdersScene:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -67,7 +68,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhoneImage/MainPhoneMask/MainContainer/OrdersButton:scale")
+tracks/2/path = NodePath("PhoneImage/PhoneBg/MainContainer/OrdersButton:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -79,7 +80,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhoneImage/MainPhoneMask/MainContainer:modulate")
+tracks/3/path = NodePath("PhoneImage/PhoneBg/MainContainer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -153,7 +154,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:rotation")
+tracks/9/path = NodePath("PhoneImage/PhoneBg/OrdersScene:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -169,7 +170,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:scale")
+tracks/0/path = NodePath("PhoneImage/PhoneBg/OrdersScene:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -181,7 +182,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:modulate")
+tracks/1/path = NodePath("PhoneImage/PhoneBg/OrdersScene:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -193,7 +194,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhoneImage/MainPhoneMask/MainContainer/OrdersButton:scale")
+tracks/2/path = NodePath("PhoneImage/PhoneBg/MainContainer/OrdersButton:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -205,7 +206,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhoneImage/MainPhoneMask/MainContainer:modulate")
+tracks/3/path = NodePath("PhoneImage/PhoneBg/MainContainer:modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -282,7 +283,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:rotation")
+tracks/9/path = NodePath("PhoneImage/PhoneBg/OrdersScene:rotation")
 tracks/9/interp = 2
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -303,7 +304,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneImage/MainPhoneMask/SettingsScene:scale")
+tracks/0/path = NodePath("PhoneImage/PhoneBg/SettingsScene:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -315,7 +316,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PhoneImage/MainPhoneMask/SettingsScene:modulate")
+tracks/1/path = NodePath("PhoneImage/PhoneBg/SettingsScene:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -327,7 +328,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhoneImage/MainPhoneMask/MainContainer/SettingsButton:scale")
+tracks/2/path = NodePath("PhoneImage/PhoneBg/MainContainer/SettingsButton:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -339,7 +340,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhoneImage/MainPhoneMask/MainContainer:modulate")
+tracks/3/path = NodePath("PhoneImage/PhoneBg/MainContainer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -355,7 +356,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneImage/MainPhoneMask/SettingsScene:scale")
+tracks/0/path = NodePath("PhoneImage/PhoneBg/SettingsScene:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -367,7 +368,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PhoneImage/MainPhoneMask/SettingsScene:modulate")
+tracks/1/path = NodePath("PhoneImage/PhoneBg/SettingsScene:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -379,7 +380,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhoneImage/MainPhoneMask/MainContainer/SettingsButton:scale")
+tracks/2/path = NodePath("PhoneImage/PhoneBg/MainContainer/SettingsButton:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -391,7 +392,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhoneImage/MainPhoneMask/MainContainer:modulate")
+tracks/3/path = NodePath("PhoneImage/PhoneBg/MainContainer:modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -438,8 +439,8 @@ background_move_radius_x = 9.0
 background_move_radius_y = 9.0
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_j0r1m")]
-confirm_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SettingsButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/OrdersButton"), NodePath("../PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton")]
-back_buttons = [NodePath("../PhoneImage/MainPhoneMask/MainContainer/ExitButton")]
+confirm_buttons = [NodePath("../PhoneImage/PhoneBg/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/SettingsButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/OrdersButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/SocialMediaButton")]
+back_buttons = [NodePath("../PhoneImage/PhoneBg/MainContainer/ExitButton")]
 
 [node name="BackgroundsFarther" type="Control" parent="."]
 anchors_preset = 0
@@ -517,7 +518,7 @@ scale = Vector2(0.9, 0.9)
 mouse_filter = 2
 texture = ExtResource("4_ahrg2")
 
-[node name="MainPhoneMask" type="TextureRect" parent="PhoneImage"]
+[node name="PhoneBg" type="TextureRect" parent="PhoneImage"]
 layout_mode = 0
 offset_top = 3.0517578e-05
 offset_right = 830.0
@@ -525,14 +526,14 @@ offset_bottom = 1400.0
 mouse_filter = 2
 texture = ExtResource("5_ahrg2")
 
-[node name="MainContainer" type="Control" parent="PhoneImage/MainPhoneMask"]
+[node name="MainContainer" type="Control" parent="PhoneImage/PhoneBg"]
 anchors_preset = 0
 offset_left = -202.05981
 offset_top = 93.48767
 offset_right = -162.05981
 offset_bottom = 133.48767
 
-[node name="MainMenuText" type="TextureRect" parent="PhoneImage/MainPhoneMask/MainContainer"]
+[node name="MainMenuText" type="TextureRect" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 0
 offset_left = 304.1172
 offset_top = 2.3551025
@@ -540,7 +541,7 @@ offset_right = 934.1172
 offset_bottom = 272.3551
 texture = ExtResource("11_42s18")
 
-[node name="OrdersButton" type="TextureButton" parent="PhoneImage/MainPhoneMask/MainContainer"]
+[node name="OrdersButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 0
 offset_left = 336.20834
 offset_top = 278.8747
@@ -553,7 +554,7 @@ texture_disabled = ExtResource("6_ahrg2")
 texture_click_mask = ExtResource("15_h6nhr")
 script = ExtResource("19_pnqed")
 
-[node name="VoiceMailButton" type="TextureButton" parent="PhoneImage/MainPhoneMask/MainContainer"]
+[node name="VoiceMailButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -568,7 +569,7 @@ texture_hover = ExtResource("8_vga46")
 texture_click_mask = ExtResource("19_mwlcr")
 script = ExtResource("19_pnqed")
 
-[node name="ExitButton" type="TextureButton" parent="PhoneImage/MainPhoneMask/MainContainer"]
+[node name="ExitButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 0
 offset_left = 344.85596
 offset_top = 233.57208
@@ -578,7 +579,7 @@ texture_normal = ExtResource("10_u2ljj")
 texture_click_mask = ExtResource("21_8fxli")
 script = ExtResource("19_pnqed")
 
-[node name="SocialMediaButton" type="TextureButton" parent="PhoneImage/MainPhoneMask/MainContainer"]
+[node name="SocialMediaButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 0
 offset_left = 567.36743
 offset_top = 191.8743
@@ -588,7 +589,7 @@ texture_normal = ExtResource("12_h3juu")
 texture_click_mask = ExtResource("22_yjf4t")
 script = ExtResource("19_pnqed")
 
-[node name="SettingsButton" type="TextureButton" parent="PhoneImage/MainPhoneMask/MainContainer"]
+[node name="SettingsButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 0
 offset_left = 719.93616
 offset_top = 163.26532
@@ -598,14 +599,14 @@ texture_normal = ExtResource("9_n277a")
 texture_click_mask = ExtResource("23_4v1m8")
 script = ExtResource("19_pnqed")
 
-[node name="OrdersScene" parent="PhoneImage/MainPhoneMask" instance=ExtResource("5_arkae")]
+[node name="OrdersScene" parent="PhoneImage/PhoneBg" instance=ExtResource("5_arkae")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 435.73694
 offset_bottom = 800.281
 pivot_offset = Vector2(360.322, 643.346)
 
-[node name="SettingsScene" parent="PhoneImage/MainPhoneMask" instance=ExtResource("6_j0r1m")]
+[node name="SettingsScene" parent="PhoneImage/PhoneBg" instance=ExtResource("6_j0r1m")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 218.00916
@@ -613,6 +614,17 @@ offset_top = 275.79965
 offset_right = 653.7461
 offset_bottom = 1076.0807
 scale = Vector2(1, 0.245)
+
+[node name="PhoneEdge" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1209.9999
+offset_top = -63.999985
+offset_right = 2039.9999
+offset_bottom = 1336.0
+rotation = 0.17453292
+scale = Vector2(0.9, 0.9)
+mouse_filter = 2
+texture = ExtResource("28_dnqoa")
 
 [node name="Vignette" parent="." instance=ExtResource("28_aq2ku")]
 layout_mode = 0
@@ -627,22 +639,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_vga46")
 }
 
-[connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" to="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" to="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
-[connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton" to="." method="_on_voice_mail_button_pressed"]
-[connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="PhoneImage/MainPhoneMask/MainContainer/ExitButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="PhoneImage/MainPhoneMask/MainContainer/ExitButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton" to="PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton" to="PhoneImage/MainPhoneMask/MainContainer/SocialMediaButton" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="PhoneImage/MainPhoneMask/MainContainer/SettingsButton" to="PhoneImage/MainPhoneMask/MainContainer/SettingsButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PhoneImage/MainPhoneMask/MainContainer/SettingsButton" to="PhoneImage/MainPhoneMask/MainContainer/SettingsButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="PhoneImage/MainPhoneMask/MainContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="PhoneImage/MainPhoneMask/OrdersScene/OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_orders_back_button_pressed"]
-[connection signal="pressed" from="PhoneImage/MainPhoneMask/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
+[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" to="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" to="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" to="." method="_on_voice_mail_button_pressed"]
+[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/OrdersScene/OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_orders_back_button_pressed"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
 
-[editable path="PhoneImage/MainPhoneMask/OrdersScene"]
-[editable path="PhoneImage/MainPhoneMask/SettingsScene"]
+[editable path="PhoneImage/PhoneBg/OrdersScene"]
+[editable path="PhoneImage/PhoneBg/SettingsScene"]

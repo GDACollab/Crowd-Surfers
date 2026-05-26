@@ -1,17 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=20 format=3 uid="uid://c5rie8boisw4x"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
 [ext_resource type="Script" uid="uid://b5jkrrd2dj5sp" path="res://Scripts/UI/orders_screen.gd" id="1_day0g"]
 [ext_resource type="Texture2D" uid="uid://bu5ow00t63c83" path="res://Assets/Art/UI/MainMenu/Orders/orders_text.png" id="4_wbn7y"]
 [ext_resource type="Texture2D" uid="uid://cx7ew6n2o7p56" path="res://Assets/Art/UI/MainMenu/Orders/scrollbar.png" id="5_g3g7s"]
-[ext_resource type="Texture2D" uid="uid://dwk06ymifbdaq" path="res://Assets/Art/UI/MainMenu/Orders/order_normal.png" id="5_iclaa"]
+[ext_resource type="Texture2D" uid="uid://4fo2u5clokuy" path="res://Assets/Art/UI/MainMenu/Orders/order_normal.png" id="5_iclaa"]
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="5_p8qb0"]
 [ext_resource type="Texture2D" uid="uid://bevsfgf4bv204" path="res://Assets/Art/UI/MainMenu/Orders/orders_phone_base_bg.png" id="5_s2td8"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="6_g3g7s"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="6_lw5l0"]
 [ext_resource type="Texture2D" uid="uid://chdekvmvtudo0" path="res://Assets/Art/UI/MainMenu/Orders/order_hover.png" id="10_4olv6"]
-[ext_resource type="BitMap" uid="uid://cl0bvkex1nokv" path="res://Assets/Art/UI/MainMenu/Orders/order_click_mask.png" id="10_f7nka"]
+[ext_resource type="BitMap" uid="uid://dwk06ymifbdaq" path="res://Assets/Art/UI/MainMenu/Orders/order_click_mask.png" id="10_f7nka"]
 [ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="11_0ci8o"]
+[ext_resource type="Texture2D" uid="uid://cemnwnppdq1lc" path="res://Assets/Art/UI/MainMenu/Orders/order_locked.png" id="11_itith"]
 [ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="12_itith"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f7nka"]
@@ -87,6 +88,7 @@ script = ExtResource("6_lw5l0")
 layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
 texture_hover = ExtResource("10_4olv6")
+texture_disabled = ExtResource("11_itith")
 texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
@@ -110,19 +112,38 @@ autowrap_mode = 0
 
 [node name="BestTime" type="RichTextLabel" parent="OrdersBody/ScrollContainer/VBoxContainer/Act1Button"]
 layout_mode = 0
-offset_left = -148.0
-offset_top = 332.35037
-offset_right = 499.0
-offset_bottom = 584.3504
+offset_left = -145.00002
+offset_top = 381.99997
+offset_right = 502.0
+offset_bottom = 634.0
 rotation = -0.17453292
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.972549, 0.9372549, 0.8784314, 1)
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_fonts/normal_font = ExtResource("11_0ci8o")
 theme_override_fonts/italics_font = ExtResource("12_itith")
 theme_override_fonts/mono_font = ExtResource("11_0ci8o")
-theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/italics_font_size = 50
 bbcode_enabled = true
-text = "[i]Best Time: 00:00.00 "
+text = "[i]00:00.00 "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="BestTime2" type="RichTextLabel" parent="OrdersBody/ScrollContainer/VBoxContainer/Act1Button"]
+layout_mode = 0
+offset_left = -347.0
+offset_top = 439.99997
+offset_right = 300.0
+offset_bottom = 692.0
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("11_0ci8o")
+theme_override_fonts/italics_font = ExtResource("12_itith")
+theme_override_fonts/mono_font = ExtResource("11_0ci8o")
+theme_override_font_sizes/italics_font_size = 25
+bbcode_enabled = true
+text = "[i]BEST TIME:"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
@@ -131,6 +152,7 @@ horizontal_alignment = 2
 layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
 texture_hover = ExtResource("10_4olv6")
+texture_disabled = ExtResource("11_itith")
 texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
@@ -154,19 +176,38 @@ autowrap_mode = 0
 
 [node name="BestTime" type="RichTextLabel" parent="OrdersBody/ScrollContainer/VBoxContainer/Act2Button"]
 layout_mode = 0
-offset_left = -148.0
-offset_top = 332.35037
-offset_right = 499.0
-offset_bottom = 584.3504
+offset_left = -145.00002
+offset_top = 382.0
+offset_right = 502.0
+offset_bottom = 634.0
 rotation = -0.17453292
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.972549, 0.9372549, 0.8784314, 1)
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_fonts/normal_font = ExtResource("11_0ci8o")
 theme_override_fonts/italics_font = ExtResource("12_itith")
 theme_override_fonts/mono_font = ExtResource("11_0ci8o")
-theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/italics_font_size = 50
 bbcode_enabled = true
-text = "[i]Best Time: 00:00.00 "
+text = "[i]00:00.00 "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="BestTime2" type="RichTextLabel" parent="OrdersBody/ScrollContainer/VBoxContainer/Act2Button"]
+layout_mode = 0
+offset_left = -347.0
+offset_top = 439.99997
+offset_right = 300.0
+offset_bottom = 692.0
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("11_0ci8o")
+theme_override_fonts/italics_font = ExtResource("12_itith")
+theme_override_fonts/mono_font = ExtResource("11_0ci8o")
+theme_override_font_sizes/italics_font_size = 25
+bbcode_enabled = true
+text = "[i]BEST TIME:"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
@@ -175,6 +216,7 @@ horizontal_alignment = 2
 layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
 texture_hover = ExtResource("10_4olv6")
+texture_disabled = ExtResource("11_itith")
 texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
@@ -198,19 +240,38 @@ autowrap_mode = 0
 
 [node name="BestTime" type="RichTextLabel" parent="OrdersBody/ScrollContainer/VBoxContainer/Act3Button"]
 layout_mode = 0
-offset_left = -148.0
-offset_top = 332.35037
-offset_right = 499.0
-offset_bottom = 584.3504
+offset_left = -145.00002
+offset_top = 382.0
+offset_right = 502.0
+offset_bottom = 634.0
 rotation = -0.17453292
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.972549, 0.9372549, 0.8784314, 1)
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_fonts/normal_font = ExtResource("11_0ci8o")
 theme_override_fonts/italics_font = ExtResource("12_itith")
 theme_override_fonts/mono_font = ExtResource("11_0ci8o")
-theme_override_font_sizes/italics_font_size = 35
+theme_override_font_sizes/italics_font_size = 50
 bbcode_enabled = true
-text = "[i]Best Time: 00:00.00 "
+text = "[i]00:00.00 "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="BestTime2" type="RichTextLabel" parent="OrdersBody/ScrollContainer/VBoxContainer/Act3Button"]
+layout_mode = 0
+offset_left = -347.0
+offset_top = 439.99997
+offset_right = 300.0
+offset_bottom = 692.0
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("11_0ci8o")
+theme_override_fonts/italics_font = ExtResource("12_itith")
+theme_override_fonts/mono_font = ExtResource("11_0ci8o")
+theme_override_font_sizes/italics_font_size = 25
+bbcode_enabled = true
+text = "[i]BEST TIME:"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2

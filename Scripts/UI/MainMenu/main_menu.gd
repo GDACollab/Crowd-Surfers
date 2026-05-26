@@ -3,12 +3,12 @@ extends Control
 @onready var orders_animation_player : AnimationPlayer = $OrdersAnimationPlayer
 @onready var settings_animation_player : AnimationPlayer = $SettingsAnimationPlayer
 
-@onready var main_container: Control = $PhoneImage/MainPhoneMask/MainContainer
-@onready var orders_scene: Control = $PhoneImage/MainPhoneMask/OrdersScene
-@onready var settings_scene: Control = $PhoneImage/MainPhoneMask/SettingsScene
+@onready var main_container: Control = $PhoneImage/PhoneBg/MainContainer
+@onready var orders_scene: Control = $PhoneImage/PhoneBg/OrdersScene
+@onready var settings_scene: Control = $PhoneImage/PhoneBg/SettingsScene
 
-@onready var orders_button: TextureButton = $PhoneImage/MainPhoneMask/MainContainer/OrdersButton
-@onready var voicemails_button: TextureButton = $PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton
+@onready var orders_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/OrdersButton
+@onready var voicemails_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/VoiceMailButton
 
 
 @onready var backgrounds_farther: Control = $BackgroundsFarther
@@ -81,6 +81,7 @@ func _on_orders_button_pressed() -> void:
 		return
 	
 	orders_button.disabled = true
+	orders_button.modulate = Color.WHITE
 	orders_animation_player.play("open_orders")
 	orders_scene.visible = true
 	
