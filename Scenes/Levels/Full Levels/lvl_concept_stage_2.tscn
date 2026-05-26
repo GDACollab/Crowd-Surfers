@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=56 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
@@ -44,6 +44,23 @@
 [ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="35_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
 [ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
+
+[sub_resource type="Gradient" id="Gradient_lxrsn"]
+offsets = PackedFloat32Array(0, 0.06358381, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.06936416, 0.06936416, 0.06936416, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_js7g2"]
+gradient = SubResource("Gradient_lxrsn")
+
+[sub_resource type="Sky" id="Sky_k2ga0"]
+
+[sub_resource type="Environment" id="Environment_lxrsn"]
+background_mode = 2
+sky = SubResource("Sky_k2ga0")
+glow_bloom = 0.68
+adjustment_enabled = true
+adjustment_saturation = 1.05
+adjustment_color_correction = SubResource("GradientTexture1D_js7g2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0tkt"]
 
@@ -208,6 +225,7 @@ spot_angle = 13.78
 [node name="VfxManager" parent="." instance=ExtResource("5_3ykl1")]
 
 [node name="Environment" parent="." instance=ExtResource("3_bi364")]
+environment = SubResource("Environment_lxrsn")
 
 [node name="Light" parent="." instance=ExtResource("1_omilu")]
 transform = Transform3D(-0.5996606, -0.52991927, 0.5996606, 0.70710677, -5.1982042e-08, 0.7071068, -0.37470946, 0.8480481, 0.37470958, -507.29907, 0, -1493.9137)
@@ -227,7 +245,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -999.65894, 0, -197.85452)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1450, 0, 450)
 
 [node name="stage_2_concept_end" parent="Scenes" instance=ExtResource("9_r2b5i")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -900, 0, 501)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -900, 0, 500)
 
 [node name="AddedRoads" type="Node3D" parent="."]
 
@@ -326,9 +344,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 750)
 
 [node name="RoadV12" parent="AddedRoads" instance=ExtResource("12_pjuvg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2600, 0, -947.5)
-
-[node name="Alleyway13" parent="AddedRoads" instance=ExtResource("14_cuotr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, 850)
 
 [node name="AddedBuildings" type="Node3D" parent="."]
 
@@ -789,7 +804,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314665, 0.9999419, 0, -0.9999419, 0.010314665, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314664, 0.9999418, 0, -0.9999418, 0.010314664, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -798,7 +813,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043604, -0.0007304823, 0, 0.0066143265, 0.9999781, 0.11043893, -0.99385685, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043604, -0.0007304823, 0, 0.006614326, 0.9999781, 0.11043893, -0.9938568, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -807,7 +822,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039813027, -0.00026512894, 0, 0.006659148, 0.99997777, 0.03981408, -0.9991806, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813027, -0.00026512897, 0, 0.0066591473, 0.99997777, 0.039814085, -0.99918056, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0

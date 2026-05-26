@@ -1,22 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ti5a67cbkn0q"]
+[gd_scene load_steps=5 format=3 uid="uid://ti5a67cbkn0q"]
 
 [ext_resource type="Script" uid="uid://jr1sdhb67frw" path="res://Scripts/soft-object.gd" id="1_d6mss"]
 [ext_resource type="Texture2D" uid="uid://iwm15ay8ejtq" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS SoftObstacleAssets S6/Banana2 Soft Obstacle S6.png" id="2_d6mss"]
+[ext_resource type="Material" uid="uid://c27mulduke4xo" path="res://Assets/Materials/mat_banana.tres" id="2_ncy3l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mpbxv"]
 
 [node name="SoftObject" type="Node3D"]
 script = ExtResource("1_d6mss")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Banana Area" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="Banana Shape" type="CollisionShape3D" parent="Banana Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_mpbxv")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.5, 0)
+material_override = ExtResource("2_ncy3l")
 pixel_size = 0.02
+shaded = true
 texture = ExtResource("2_d6mss")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Banana Area" to="." method="_on_area_3d_body_entered"]

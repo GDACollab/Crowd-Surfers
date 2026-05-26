@@ -4,6 +4,7 @@ extends CharacterBody3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
+@onready var trail_spakle: AnimatedSprite3D = $TrailSparkle
 
 # STOMP CROWD
 signal crowd_stomp_end
@@ -33,6 +34,8 @@ var stateColors = {
 @export var starting_speed : float = 30.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
+## Shrinking exponent for damping
+@export var damping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.05
 ## Acceleration before modifications
@@ -111,6 +114,14 @@ var stateColors = {
 @export var stomp_dash_margin: float = 0.2
 ## This minus dash animation time is how long (in seconds) to hold the dash animation after it finishes
 @export var dash_animation_hold_time: float = 0.25
+## Circumference to check for crowd members when dashing
+@export var crowd_dash_radius: float = 15.0
+## Strength of the dash Effect for Crowds, overriding to dash speed(?)
+@export var crowd_dash_force: float = 100.0
+## Minimum number of people required for a dash boost to be applied
+@export var crowd_dash_min_members_requirement: int = 5
+## tracking variable to determine if you are slowed down by crowd members or not
+var has_crowd_dash_boost: bool = false
 
 # Glide
 @export_category("Glide")
@@ -267,6 +278,8 @@ func process_state(delta: float) -> void:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
+			else:
+				max_speed -= pow(max_speed - ramping_cap, damping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_floor():
 				velocity.y = 0.0
@@ -526,6 +539,7 @@ func transition_to(new_state: int) -> void:
 			# but by default this is not maintained when leaving the slope
 			velocity *= cos(angle)
 		States.DASH_GROUND:
+			has_crowd_dash_boost = false
 			if not new_state == States.DASH_AIR:
 				# Reset speed if ending a ground dash
 				#var yspeed := velocity.y
@@ -533,6 +547,7 @@ func transition_to(new_state: int) -> void:
 				#velocity.y = yspeed
 				$DashCooldownTimer.start()
 		States.DASH_AIR:
+			has_crowd_dash_boost = false
 			$DashCooldownTimer.start()
 		
 
@@ -561,6 +576,7 @@ func transition_to(new_state: int) -> void:
 				$CrashTimer.start()
 				player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash")
+				get_viewport().get_camera_3d().apply_shake()
 		States.STOMP_WINDUP:
 			player_sprite.play_animation("stomp")
 			# If dash is active as stomp begins, end it
@@ -608,6 +624,7 @@ func transition_to(new_state: int) -> void:
 			# Lower friction in midair
 			friction /= 2.0
 		States.DASH_GROUND, States.DASH_AIR:
+			crowd_dash_check()
 			can_air_dash = false
 			# Don't reapply dash boost if going from ground dash to air dash
 			if not current_state == States.DASH_GROUND:
@@ -621,6 +638,8 @@ func transition_to(new_state: int) -> void:
 					# Ensure speed is at least min_dash_speed and apply stomp_boost
 					# The timer handles resetting these values to 0
 					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
+					if(has_crowd_dash_boost): #add crowd dash bonus if this is a crowd dash
+						dash_speed += crowd_dash_force
 					max_speed = max(max_speed, max_speed_before_stomp)
 					# If you successfully stomp-dash, retain your speed
 					if not $StompDashMargin.is_stopped():
@@ -634,13 +653,20 @@ func transition_to(new_state: int) -> void:
 					player_sprite.play_animation("dash")
 					# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
 					$DashAnimationEndTimer.start()
+					
+					if (vfx_manager == null):
+						print("ERROR: No VFX manager assigned to player!!")
+					elif (abs(velocity.z) > abs(velocity.x)):
+						vfx_manager.spawn_vfx(position, velocity, "dash_up", self)
+					else:
+						vfx_manager.spawn_vfx(position, velocity, "dash_side", self)
+		
 				# Play dash sound
 				$DashSound.play()
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	
 	current_state = new_state
-	print(state_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -740,6 +766,12 @@ func just_crashed() -> bool:
 	if speed_into_wall < min_speed_for_crash:
 		return false
 	# Crashed!
+	
+	if (vfx_manager == null):
+		print("ERROR: No VFX manager assigned to player!!")
+	else:
+		vfx_manager.spawn_vfx(position, velocity, "bonk")
+	
 	return true
 
 ## Checks player's current height
@@ -763,6 +795,8 @@ func check_crowd_wall() -> bool:
 
 ## crowd slowdown which gets the current body rid to check if any collisions exist with its mask 4
 func crowd_slowdown() -> void:
+	if has_crowd_dash_boost: return
+	#don't do any crowd slowdown while doing a crowd dash
 	var space_state = get_world_3d().direct_space_state
 	
 	var rid_shape = $CollisionShape3D.shape.get_rid()
@@ -813,6 +847,32 @@ func crowd_stop_impact(results) -> void:
 		if manager and manager.has_method("crowd_stomp_stop"):
 			manager.crowd_stomp_stop(rid)
 		
+
+func crowd_dash_check() -> void: 
+	var space_state = get_world_3d().direct_space_state
+	
+	var blast_shape = SphereShape3D.new()
+	var dash_radius = crowd_dash_radius
+	blast_shape.radius = dash_radius
+	
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape = blast_shape
+	query.transform = global_transform
+	query.collision_mask = 4
+	
+	var results = space_state.intersect_shape(query, 500)
+	var personCount = 0
+	for result in results:
+		var manager = result.collider
+		# Rid specific ID here
+		if manager and manager.has_method("crowd_stomp_spread"):
+			personCount += 1
+			if personCount >= crowd_dash_min_members_requirement:
+				has_crowd_dash_boost = true
+				break;
+	
+	if personCount < crowd_dash_min_members_requirement:
+		has_crowd_dash_boost = false
 
 
 ## Update FMOD floor material parameter based on raycast
@@ -883,9 +943,11 @@ func update_trail(delta):
 	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
 	if max_speed > 140:
 		$TrailHolder/GPUTrail3D.visible = true
+		trail_spakle.visible = true
 	else:
 		$TrailHolder/GPUTrail3D.restart()
-	print(max_speed)
+		trail_spakle.visible = false
+	#print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.
