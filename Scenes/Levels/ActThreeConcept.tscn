@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=110 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -93,7 +93,9 @@
 [ext_resource type="PackedScene" uid="uid://dbnpkl1rnvyk1" path="res://Scenes/Level Components/Objects/TreeVariants/Tree2.tscn" id="62_lsqwo"]
 [ext_resource type="PackedScene" uid="uid://cxq7y3jah1q6" path="res://Scenes/Level Components/SpecialObjects/boost_pad.tscn" id="68_eyaef"]
 [ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="68_ykr1p"]
+[ext_resource type="PackedScene" uid="uid://b1fiv6i6c15yx" path="res://Scenes/Level Components/SpecialObjects/Arrows/ArrowStraightGuide.tscn" id="69_d4o05"]
 [ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="69_w6g8g"]
+[ext_resource type="PackedScene" uid="uid://dnbc5bh1y8efa" path="res://Scenes/Level Components/SpecialObjects/Arrows/ArrowTurnGuide.tscn" id="70_a5b6m"]
 [ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
 [ext_resource type="PackedScene" uid="uid://b4ael0l6hrklj" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantFullSpew.tscn" id="73_a6g0v"]
 [ext_resource type="PackedScene" uid="uid://mkge8kjmbt85" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantNormal.tscn" id="74_eyaef"]
@@ -2209,6 +2211,54 @@ transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70
 boostDirection = Vector3(1, 0.3, -1)
 boostPower = 300.0
 speedCap = 300.0
+
+[node name="ArrowsGroup" type="Node3D" parent="SpecialComponentsGroup"]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -485, 0.91, 680)
+
+[node name="StaticBody3D" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 232.5, -2.5, -2.9802322e-08)
+
+[node name="StaticBody3D3" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 267.5, 370, 1.6242266e-05)
+
+[node name="StaticBody3D5" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("70_a5b6m")]
+transform = Transform3D(0.8660254, -0.5, -2.1855694e-08, 0.5, 0.8660254, -5.856215e-09, 2.1855694e-08, -5.856215e-09, 1, 267.5, 792.5, 3.4809113e-05)
+
+[node name="StaticBody3D7" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(0.7071068, 0.7071068, 3.0908623e-08, -0.7071068, 0.7071068, -1.28027615e-08, -3.0908627e-08, -1.2802783e-08, 1, 762.5, 1135, 4.9889088e-05)
+
+[node name="StaticBody3D8" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(0.7071068, 0.7071068, 3.0908623e-08, -0.7071068, 0.7071068, -1.2802754e-08, -3.0908634e-08, -1.280279e-08, 1, 962.5, 1334.9999, 5.8591366e-05)
+
+[node name="StaticBody3D6" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("70_a5b6m")]
+transform = Transform3D(1.0000001, -2.9802322e-08, -3.5527137e-15, 2.9802322e-08, 1.0000001, 0, 3.0790577e-15, 0, 1, 497.5, 1047.5, 4.6104193e-05)
+
+[node name="StaticBody3D4" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("70_a5b6m")]
+transform = Transform3D(-5.9604645e-08, 1.0000001, 1.0552865e-07, 1.0000001, 5.9604645e-08, -1.810583e-08, -1.8105833e-08, 1.05528656e-07, -1, 1140, 1530, 1.0000026)
+
+[node name="StaticBody3D9" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(-1.0000001, -1.0331605e-07, 6.1817204e-08, -1.0331604e-07, 1.0000001, 1.4924004e-07, -6.1817225e-08, 1.4924005e-07, -1, 1117.5, 1570, 1.0000044)
+
+[node name="StaticBody3D10" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(-1.0000001, -1.0331605e-07, 6.1817204e-08, -1.0331604e-07, 1.0000001, 1.4924004e-07, -6.1817225e-08, 1.4924005e-07, -1, 1217.5, 1570, 1.0000044)
+
+[node name="StaticBody3D11" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(-1.0000001, -1.0331605e-07, 6.1817204e-08, -1.0331604e-07, 1.0000001, 1.4924004e-07, -6.1817225e-08, 1.4924005e-07, -1, 1167.5, 1570, 1.0000044)
+
+[node name="StaticBody3D2" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("70_a5b6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -20, -7.748604e-07)
+
+[node name="StaticBody3D12" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("70_a5b6m")]
+transform = Transform3D(0.258819, 0.9659257, -8.156657e-08, 0.9659257, -0.258819, 9.756603e-08, 7.3130565e-08, -1.04039195e-07, -1, 170, 367.5, 1.6212463e-05)
+
+[node name="StaticBody3D14" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(-0.7071068, 0.7071068, -8.742278e-08, 0.7071068, 0.7071068, -1.4210855e-14, 6.181723e-08, -6.181723e-08, -1, 720, 792.5, 3.4809113e-05)
+
+[node name="StaticBody3D15" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(-0.9659258, 0.25881904, -5.3854635e-08, 0.25881904, 0.9659258, -3.7855195e-08, 4.222195e-08, -5.0503903e-08, -1, 730, 945, 50)
+
+[node name="StaticBody3D16" parent="SpecialComponentsGroup/ArrowsGroup" instance=ExtResource("69_d4o05")]
+transform = Transform3D(-3.4985233e-15, -1.0000001, 9.272589e-08, -1.5893253e-08, 9.272585e-08, 0.99999994, -1.0000001, 5.8295323e-15, -1.589326e-08, 817.5, 987.5, 62.5)
 
 [node name="DecorationsGroup" type="Node3D" parent="."]
 
