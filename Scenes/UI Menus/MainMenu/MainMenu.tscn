@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=41 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -27,6 +27,7 @@
 [ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/exit_click_mask.png" id="21_8fxli"]
 [ext_resource type="BitMap" uid="uid://45oo5cy4l7wl" path="res://Assets/Art/UI/MainMenu/Main/social_media_click_mask.png" id="22_yjf4t"]
 [ext_resource type="BitMap" uid="uid://d2ef7bx3li3ox" path="res://Assets/Art/UI/MainMenu/Main/settings_click_mask.png" id="23_4v1m8"]
+[ext_resource type="PackedScene" uid="uid://boacixvku1uw6" path="res://Scenes/UI Menus/MainMenu/voicemails_screen.tscn" id="27_fe6hl"]
 [ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 [ext_resource type="Texture2D" uid="uid://bmn876h0e8tcp" path="res://Assets/Art/UI/ui_phone_edge.png" id="28_dnqoa"]
 
@@ -299,6 +300,91 @@ _data = {
 &"open_orders": SubResource("Animation_q16ba")
 }
 
+[sub_resource type="Animation" id="Animation_fe6hl"]
+resource_name = "open_voicemails"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneImage/PhoneBg/VoicemailsScene:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.95, 0.312), Vector2(1, 0.9), Vector2(1, 0.95), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhoneImage/PhoneBg/VoicemailsScene:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneImage/PhoneBg/VoicemailsScene:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.17453292, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhoneImage/PhoneBg/MainContainer/VoicemailsButton:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.053, 2.344), Vector2(1.053, 2.741), Vector2(1.053, 2.885)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PhoneImage/PhoneBg/MainContainer:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"set_voicemails_scene_visibility"
+}, {
+"args": [true],
+"method": &"set_voicemails_scene_visibility"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hamnu"]
+_data = {
+&"open_voicemails": SubResource("Animation_fe6hl")
+}
+
 [sub_resource type="Animation" id="Animation_mtjt5"]
 length = 0.001
 tracks/0/type = "value"
@@ -439,7 +525,7 @@ background_move_radius_x = 9.0
 background_move_radius_y = 9.0
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_j0r1m")]
-confirm_buttons = [NodePath("../PhoneImage/PhoneBg/MainContainer/VoiceMailButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/SettingsButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/OrdersButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/SocialMediaButton")]
+confirm_buttons = [NodePath("../PhoneImage/PhoneBg/MainContainer/VoicemailsButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/SettingsButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/OrdersButton"), NodePath("../PhoneImage/PhoneBg/MainContainer/SocialMediaButton")]
 back_buttons = [NodePath("../PhoneImage/PhoneBg/MainContainer/ExitButton")]
 
 [node name="BackgroundsFarther" type="Control" parent="."]
@@ -554,7 +640,7 @@ texture_disabled = ExtResource("6_ahrg2")
 texture_click_mask = ExtResource("15_h6nhr")
 script = ExtResource("19_pnqed")
 
-[node name="VoiceMailButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
+[node name="VoicemailsButton" type="TextureButton" parent="PhoneImage/PhoneBg/MainContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -564,6 +650,7 @@ offset_top = 628.06586
 offset_right = 1041.9768
 offset_bottom = 1168.0659
 grow_vertical = 2
+pivot_offset = Vector2(331.30884, 492.0592)
 texture_normal = ExtResource("7_mtjt5")
 texture_hover = ExtResource("8_vga46")
 texture_click_mask = ExtResource("19_mwlcr")
@@ -606,6 +693,13 @@ offset_right = 435.73694
 offset_bottom = 800.281
 pivot_offset = Vector2(360.322, 643.346)
 
+[node name="VoicemailsScene" parent="PhoneImage/PhoneBg" instance=ExtResource("27_fe6hl")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+rotation = -0.17453292
+scale = Vector2(0.95, 0.312)
+pivot_offset = Vector2(737.089, 1091.812)
+
 [node name="SettingsScene" parent="PhoneImage/PhoneBg" instance=ExtResource("6_j0r1m")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -634,6 +728,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_ahrg2")
 }
 
+[node name="VoicemailsAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hamnu")
+}
+
 [node name="SettingsAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vga46")
@@ -642,9 +741,9 @@ libraries = {
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
-[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" to="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" to="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/VoiceMailButton" to="." method="_on_voice_mail_button_pressed"]
+[connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="." method="_on_voicemails_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
@@ -654,7 +753,9 @@ libraries = {
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/OrdersScene/OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_orders_back_button_pressed"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/VoicemailsScene/VoicemailsBody/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_voicemails_back_button_pressed"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
 
 [editable path="PhoneImage/PhoneBg/OrdersScene"]
+[editable path="PhoneImage/PhoneBg/VoicemailsScene"]
 [editable path="PhoneImage/PhoneBg/SettingsScene"]
