@@ -21,6 +21,7 @@ func transition_to_scene(finalScene: PackedScene):
 	animation_player.play("fade_in")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
+	get_tree().paused = false
 
 	# Change scenes to finalScene, wait while this happens
 	get_tree().change_scene_to_packed(finalScene)
@@ -38,6 +39,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	animation_player.play("fade_in")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
+	get_tree().paused = false
 
 	# Change scene to loading scene, wait while this happens
 	get_tree().change_scene_to_packed(load(LOAD_SCENE))

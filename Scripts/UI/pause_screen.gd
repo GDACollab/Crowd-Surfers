@@ -12,6 +12,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	
 func _on_resume_button_pressed() -> void:
+	if (transitioning):
+		return
+		
 	get_tree().paused = false
 	queue_free()
 
@@ -52,14 +55,12 @@ func _on_settings_back_button_pressed() -> void:
 
 func _on_restart_level_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
-	get_tree().paused = false
-	queue_free()
+	transitioning = true
 
 func _on_exit_level_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
-	await get_tree().create_timer(SceneFadeTransition.FADE_TIME - 0.1).timeout 
-	get_tree().paused = false
-	
+	transitioning = true
+		
 # Following functions called by animation player
 func stop_transitioning() -> void:
 	transitioning = false
