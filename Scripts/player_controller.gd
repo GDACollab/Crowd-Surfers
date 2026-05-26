@@ -4,7 +4,6 @@ extends CharacterBody3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
-@onready var trail_spakle: AnimatedSprite3D = $TrailSparkle
 
 # STOMP CROWD
 signal crowd_stomp_end
@@ -653,20 +652,13 @@ func transition_to(new_state: int) -> void:
 					player_sprite.play_animation("dash")
 					# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
 					$DashAnimationEndTimer.start()
-					
-					if (vfx_manager == null):
-						print("ERROR: No VFX manager assigned to player!!")
-					elif (abs(velocity.z) > abs(velocity.x)):
-						vfx_manager.spawn_vfx(position, velocity, "dash_up", self)
-					else:
-						vfx_manager.spawn_vfx(position, velocity, "dash_side", self)
-		
 				# Play dash sound
 				$DashSound.play()
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	
 	current_state = new_state
+	print(state_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -766,12 +758,6 @@ func just_crashed() -> bool:
 	if speed_into_wall < min_speed_for_crash:
 		return false
 	# Crashed!
-	
-	if (vfx_manager == null):
-		print("ERROR: No VFX manager assigned to player!!")
-	else:
-		vfx_manager.spawn_vfx(position, velocity, "bonk")
-	
 	return true
 
 ## Checks player's current height
@@ -943,11 +929,9 @@ func update_trail(delta):
 	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
 	if max_speed > 140:
 		$TrailHolder/GPUTrail3D.visible = true
-		trail_spakle.visible = true
 	else:
 		$TrailHolder/GPUTrail3D.restart()
-		trail_spakle.visible = false
-	#print(max_speed)
+	print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.

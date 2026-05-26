@@ -1,32 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1326i5a5xn3f"]
+[gd_scene load_steps=4 format=3 uid="uid://b1326i5a5xn3f"]
 
 [ext_resource type="Script" uid="uid://bljhi438vjo7c" path="res://Scripts/vfx_manager.gd" id="1_j544o"]
 [ext_resource type="PackedScene" uid="uid://dnble8x3bgr7y" path="res://Scenes/VFX/stomp_vfx.tscn" id="2_ednj2"]
 [ext_resource type="PackedScene" uid="uid://d4kauo4x7sj2s" path="res://Scenes/VFX/glide_vfx.tscn" id="3_knotp"]
-[ext_resource type="PackedScene" uid="uid://duqovoj3guyqv" path="res://Scenes/VFX/bonk_vfx.tscn" id="4_eto2c"]
-[ext_resource type="PackedScene" uid="uid://cfavjdeb4kkd0" path="res://Scenes/VFX/dash_side_vfx.tscn" id="5_xxm0u"]
-[ext_resource type="PackedScene" uid="uid://di2f7wmrtam5r" path="res://Scenes/VFX/dash_up_vfx.tscn" id="6_jklqy"]
 
 [node name="VfxManager" type="Node3D"]
 script = ExtResource("1_j544o")
 scene_dictionary = Dictionary[String, PackedScene]({
-"bonk": ExtResource("4_eto2c"),
-"dash_side": ExtResource("5_xxm0u"),
-"dash_up": ExtResource("6_jklqy"),
 "glide": ExtResource("3_knotp"),
 "stomp": ExtResource("2_ednj2")
 })
 offset_dictionary = Dictionary[String, Vector3]({
-"bonk": Vector3(0, 0, 0),
-"dash_side": Vector3(-28, 7, 0),
-"dash_up": Vector3(-24, 0, 0),
 "glide": Vector3(0, -6, 0),
 "stomp": Vector3(-5.184, 0, 0)
 })
-rotate_dictionary = Dictionary[String, int]({
-"bonk": 0,
-"dash_side": 3,
-"dash_up": 2,
-"glide": 0,
-"stomp": 1
+rotate_dictionary = Dictionary[String, bool]({
+"glide": false,
+"stomp": true
 })

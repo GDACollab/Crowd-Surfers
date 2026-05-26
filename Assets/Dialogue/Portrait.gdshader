@@ -20,3 +20,8 @@ void fragment() {
     COLOR.a = mix(avg_alpha(TEXTURE,UV,TEXTURE_PIXEL_SIZE),COLOR.a,COLOR.a);
   }
 }
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
