@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
-[ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_mg333"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_mg333"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="2_7ikem"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="3_8ah0k"]
 [ext_resource type="PackedScene" uid="uid://dumdrwcby7fk6" path="res://Scenes/Level Components/Objects/Road-FourWayStop.tscn" id="3_g7qq8"]
@@ -2731,6 +2731,8 @@ bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Soun
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_cuima")]
 player = NodePath("../Player")
+music_path = "event:/MUS/level_3"
+ambience_path = "event:/SFX/ENV/ambience/city_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_7ikem")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -872.13184, 120.806206, 1306.3073)
