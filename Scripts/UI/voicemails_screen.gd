@@ -1,5 +1,10 @@
 extends Control
 
+@export var voicemail_button_scene: PackedScene
+
+@onready var voicemail_container: VBoxContainer = $VoicemailsBody/ScrollContainer/VoicemailVBoxContainer
+@onready var no_voicemails_text: RichTextLabel = $VoicemailsBody/NoVoicemailsText
+
 ## Proper names for voicemail entries
 var voicemail_directory := {
 	"main_act1_scene2_voicemail" : "Pavo Act 1",
@@ -12,10 +17,20 @@ var voicemail_directory := {
 	"Minny_act3_voicemail" : "Minny Act 3",
 }
 
-## TODO: Currently plays a random voicemail, will eventually have to pull up a list of available scenes
-func _on_voicemail_1_button_pressed() -> void:
-	## Just plays a random voicemail if any are available
-	if(Story.voicemail_history.size() > 0):
-		var new_voicemail = Story.voicemail_history.pick_random()
-		print("[DIALOGUE] Playing voicemail for: ", voicemail_directory[new_voicemail])
-		Inky.PlayStoryFromKnot(new_voicemail)
+func _ready() -> void:
+	for voicemail: String in Story.voicemail_history:
+		var voicemail_button: TextureButton = voicemail_button_scene.instantiate()
+		voicemail_button.get_child(0).text = "[i]" + voicemail_directory[voicemail]
+		voicemail_container.add_child(voicemail_button)
+		voicemail_button.pressed.connect(_on_voicemail_button_pressed.bind(voicemail_button))
+
+	if (Story.voicemail_history.size() > 0):
+		no_voicemails_text.visible = false
+	else:
+		no_voicemails_text.visible = true
+
+func _on_voicemail_button_pressed(button: TextureButton) -> void:
+	var raw_voicemail: String = voicemail_directory.find_key(button.get_child(0).text.substr(3))
+	print(raw_voicemail)
+		
+	Inky.PlayStoryFromKnot(raw_voicemail)
