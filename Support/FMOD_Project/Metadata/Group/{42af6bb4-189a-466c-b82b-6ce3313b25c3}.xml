@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerGroup" id="{42af6bb4-189a-466c-b82b-6ce3313b25c3}">
 		<property name="name">
-			<value>Player</value>
+			<value>P</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{9cd252f4-6a71-4aa6-8c60-20c9ecd68315}</destination>
@@ -16,11 +16,23 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{9cd252f4-6a71-4aa6-8c60-20c9ecd68315}">
 		<relationship name="effects">
-			<destination>{dd5dc2b0-1275-436b-8220-d48abdf7cc2c}</destination>
+			<destination>{d5a9b706-9fb1-47a6-9973-af59680981fb}</destination>
+			<destination>{92eb1440-5837-4dec-a868-4b256bd692b5}</destination>
 			<destination>{278286ef-efcb-48ca-8ff5-b8256d4a2f4e}</destination>
+			<destination>{dd5dc2b0-1275-436b-8220-d48abdf7cc2c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{eadb3dd0-7db2-4b6c-b27a-7124d5bcb4ae}" />
+	<object class="CompressorEffect" id="{d5a9b706-9fb1-47a6-9973-af59680981fb}">
+		<property name="threshold">
+			<value>-10.5</value>
+		</property>
+		<property name="attackTime">
+			<value>0.25</value>
+		</property>
+	</object>
+	<object class="Sidechain" id="{92eb1440-5837-4dec-a868-4b256bd692b5}" />
+	<object class="MixerBusFader" id="{278286ef-efcb-48ca-8ff5-b8256d4a2f4e}" />
 	<object class="MixerSend" id="{dd5dc2b0-1275-436b-8220-d48abdf7cc2c}">
 		<property name="level">
 			<value>0</value>
@@ -32,5 +44,4 @@
 			<destination>{101d0c10-c591-41ba-b87b-ad02a4633a39}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusFader" id="{278286ef-efcb-48ca-8ff5-b8256d4a2f4e}" />
 </objects>

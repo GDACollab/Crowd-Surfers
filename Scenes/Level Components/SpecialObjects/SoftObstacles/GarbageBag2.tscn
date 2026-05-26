@@ -19,4 +19,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 pixel_size = 0.03
 texture = ExtResource("2_rjxgx")
 
+[node name="CollideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/trashbag"
+event_guid = "{98fa6f9e-d095-44cf-9a60-dcc7cda46d20}"
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="10_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://tppgww38oiga" path="res://Scenes/Level Components/Objects/building-beige.tscn" id="11_m1wnl"]
 [ext_resource type="PackedScene" uid="uid://bsuo1d1l7ny80" path="res://Scenes/Level Components/Objects/building-green.tscn" id="11_qp3i3"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_cdwv3"]
+[ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="12_cdwv3"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="14_pmu2x"]
 [ext_resource type="PackedScene" uid="uid://cd1nym7k5lhuo" path="res://Scenes/Level Components/Objects/road-intersection.tscn" id="15_eavq4"]
 [ext_resource type="PackedScene" uid="uid://b4d324vip84gg" path="res://Scenes/Level Components/Objects/TreeVariants/Tree1.tscn" id="18_pf2ne"]
@@ -461,6 +461,17 @@ texture = ExtResource("24_oo0hd")
 transform = Transform3D(-6.5567076e-07, -14.999999, -6.5567076e-07, 0, -6.5567076e-07, 14.999999, -14.999999, 6.5567076e-07, 2.866028e-14, -1325, 2, -150)
 texture = ExtResource("24_oo0hd")
 
+[node name="ArrowStraight18" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(14.999999, 0, 0, 0, -6.5567076e-07, 14.999999, 0, -14.999999, -6.5567076e-07, 500, 2, 350)
+texture = ExtResource("24_oo0hd")
+
+[node name="ArrowStraight19" type="Sprite3D" parent="Level2-intro/PropCont"]
+transform = Transform3D(14.999999, 0, 0, 0, -6.5567076e-07, 14.999999, 0, -14.999999, -6.5567076e-07, 600, 2, 350)
+texture = ExtResource("24_oo0hd")
+
+[node name="firehydrant" parent="Level2-intro/PropCont" instance=ExtResource("25_ar8rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 0, 100)
+
 [node name="Grass" type="Node3D" parent="Level2-intro"]
 
 [node name="StaticBody3D" parent="Level2-intro/Grass" instance=ExtResource("22_4yc5l")]
@@ -606,12 +617,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1200, 0, -100)
 [node name="grass10" parent="crowdsbase" instance=ExtResource("23_ar8rp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1300, 0, -100)
 
-[node name="tintersection1" parent="crowdsbase" instance=ExtResource("9_pf2ne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -200)
-
-[node name="left-turn2" parent="crowdsbase" instance=ExtResource("14_pmu2x")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1350, 0, -50)
-
 [node name="Tree1" parent="crowdsbase" instance=ExtResource("18_pf2ne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 0, -100)
 
@@ -644,6 +649,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1125, 0, -100)
 
 [node name="Tree11" parent="crowdsbase" instance=ExtResource("18_pf2ne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1275, 0, -100)
+
+[node name="hori-road31" parent="crowdsbase" instance=ExtResource("7_3gcbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -200)
+
+[node name="grass11" parent="crowdsbase" instance=ExtResource("23_ar8rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1400, 0, -100)
 
 [node name="Crowds" type="Node3D" parent="."]
 

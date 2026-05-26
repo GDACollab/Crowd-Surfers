@@ -5,6 +5,10 @@ extends Node3D
 var isplayer: bool = false
 var player: CharacterBody3D
 
+var collide_sound: FmodEventEmitter3D = null
+var rng := RandomNumberGenerator.new()
+var instance_name := "slow_pad" + str(rng.randi())
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (isplayer):
@@ -12,17 +16,17 @@ func _process(delta: float) -> void:
 		if (player.max_speed < min_speed): player.max_speed = min_speed
 		player.velocity /= slow_multiplier
 
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	#print(body.name)
-	print('slow enter')
+	# print(body.name)
+	# print('slow enter')
 	if (body.name == "Player"):
 		isplayer = true
 		player = body
-
-
+		Audio.create_persistent(instance_name, "event:/SFX/ENV/objects/slow_pad", true).start()
+		
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	#print(body.name)
 	print('slow exit')
 	if (body.name == "Player"):
 		isplayer = false
+		Audio.kill_persistent(instance_name)
