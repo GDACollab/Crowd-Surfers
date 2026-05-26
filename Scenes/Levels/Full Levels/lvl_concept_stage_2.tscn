@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bynnjj1dvn6i4" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile4.tscn" id="18_i686c"]
 [ext_resource type="PackedScene" uid="uid://dk7rjy5he7x5i" path="res://Scenes/UI Menus/Pause/pause_holder.tscn" id="18_njsij"]
 [ext_resource type="PackedScene" uid="uid://bstag8o386tuv" path="res://Scenes/Level Components/SpecialObjects/level_end_collider.tscn" id="18_r2b5i"]
-[ext_resource type="PackedScene" uid="uid://cg5atjrtrnq3w" path="res://Scenes/UI Menus/Level_Clear.tscn" id="19_7y7j4"]
+[ext_resource type="PackedScene" uid="uid://fofxf6elvwe2" path="res://Scenes/UI Menus/Level_Clear.tscn" id="19_7y7j4"]
 [ext_resource type="PackedScene" uid="uid://dc3rcuwcooube" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile2.tscn" id="19_yn7c2"]
 [ext_resource type="PackedScene" uid="uid://cuq5u67b203ty" path="res://Scenes/Level Components/Objects/default-stair.tscn" id="20_jtff7"]
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="21_tvis2"]
@@ -42,8 +42,8 @@
 [ext_resource type="Texture2D" uid="uid://ck8qtl483el4c" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Turn S6.png" id="33_1olov"]
 [ext_resource type="Texture2D" uid="uid://dwct6333ddc2q" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS RoadBlockAssets S6/Chain_Linked_Fence_S6.png" id="33_m0tkt"]
 [ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="35_lg4t4"]
-[ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
-[ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
 
 [sub_resource type="Gradient" id="Gradient_lxrsn"]
 offsets = PackedFloat32Array(0, 0.06358381, 1)
@@ -190,19 +190,16 @@ _data = {
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_njsij")]
 player = NodePath("../Player")
+music_path = "event:/MUS/level_2"
+ambience_path = "event:/SFX/ENV/ambience/nightcity_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_omilu")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 561.30725)
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
-
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("vfx_manager") instance=ExtResource("1_wef7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 35.921, 550)

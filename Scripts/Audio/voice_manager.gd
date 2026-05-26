@@ -10,6 +10,16 @@ const PUNCTUATION_PITCHES := {
 	"!": 0.5
 }
 
+const TYPERWRITER_IMPLEMENTED := [
+	"Chef",
+	"Slip",
+	"Pavo",
+	"Minny",
+	"Nyx",
+	"Sam",
+	"Max"
+]
+
 var punctuation_regexes := {
 	"?": RegEx.create_from_string("[?]+"),
 	".": RegEx.create_from_string("[.]+"),
@@ -18,7 +28,7 @@ var punctuation_regexes := {
 
 var letter_regex := RegEx.create_from_string("[A-Za-z]")
 
-func _handle_typewriter_voice(dialogue_text: String, character: String, letter_index: int, alphanumerics_count: int, textSpeedScale: float) -> bool:
+func _handle_typewriter(dialogue_text: String, character: String, letter_index: int, alphanumerics_count: int, textSpeedScale: float) -> bool:
 	var frequency_scaled := floor(typewriter_voice_frequency * textSpeedScale) as int
 	
 	if alphanumerics_count % frequency_scaled != 0:
@@ -26,9 +36,10 @@ func _handle_typewriter_voice(dialogue_text: String, character: String, letter_i
 	
 	var should_increment := true
 	var letter := dialogue_text[letter_index]
-	var letter_sound := FmodServer.create_event_instance("event:/SFX/CHAR/voiceover/typewriter/vo_typewriter_hub")
+	var letter_sound := FmodServer.create_event_instance("event:/SFX/CHAR/voiceover/typewriter/typewriter_hub")
 
-	letter_sound.set_parameter_by_name_with_label("voice", character.to_lower(), false)
+	if (character in TYPERWRITER_IMPLEMENTED): 
+		letter_sound.set_parameter_by_name_with_label("voice", character.to_lower(), false)
 
 	if letter_regex.search(letter): 
 		letter_sound.set_parameter_by_name_with_label("letter", letter.to_lower(), false )
@@ -53,3 +64,6 @@ func _handle_typewriter_voice(dialogue_text: String, character: String, letter_i
 	letter_sound.start()
 	
 	return should_increment
+
+func _handle_voiceover():
+	pass
