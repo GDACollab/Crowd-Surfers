@@ -667,7 +667,6 @@ func transition_to(new_state: int) -> void:
 			crowd_launch()
 	
 	current_state = new_state
-	print(state_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
