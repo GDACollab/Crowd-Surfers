@@ -76,6 +76,7 @@ const VOPATH_TO_FMODPATH := {
 	"Nyx_act1": "event:/SFX/CHAR/voiceover/scenes/NYXA1",
 	"Nyx_act2": "event:/SFX/CHAR/voiceover/scenes/NYXA2",
 	"Nyx_act3": "event:/SFX/CHAR/voiceover/scenes/NYXA3",
+	"Minny_act1": "event:/SFX/CHAR/voiceover/scenes/A2S1",
 	"Minny_act2": "event:/SFX/CHAR/voiceover/scenes/MINNYA2",
 	"Minny_act3": "event:/SFX/CHAR/voiceover/scenes/MINNYA3"
 }
