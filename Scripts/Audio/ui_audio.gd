@@ -7,6 +7,8 @@ extends Node2D
 ## all buttons that make 'levelstart' sound when clicked
 @export var start_buttons: Array[BaseButton]
 
+@export var credits_text_labels: Array[RichTextLabel]
+
 func _ready() -> void:
 	# connect audio playback to all confirm buttons
 	for button in confirm_buttons:
@@ -21,6 +23,10 @@ func _ready() -> void:
 	for button in back_buttons:
 		button.mouse_entered.connect(play_hover_sound)
 		button.pressed.connect(play_back_sound)
+		
+	for label in credits_text_labels:
+		print("trigger")
+		label.mouse_entered.connect(play_hover_sound)
 
 func play_confirm_sound() -> void:
 	FmodServer.play_one_shot("event:/SFX/UI/menu_confirm")

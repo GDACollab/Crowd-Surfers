@@ -42,5 +42,9 @@ shaded = true
 texture_filter = 2
 texture = ExtResource("3_55sop")
 
+[node name="CollideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/boost_pad"
+event_guid = "{945861ca-bafd-48f3-80dd-e2c3b03299ce}"
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
