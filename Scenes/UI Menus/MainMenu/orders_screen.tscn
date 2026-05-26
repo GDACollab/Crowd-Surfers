@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=9 format=3 uid="uid://c5rie8boisw4x"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
 [ext_resource type="Script" uid="uid://b5jkrrd2dj5sp" path="res://Scripts/UI/orders_screen.gd" id="1_day0g"]
-[ext_resource type="Texture2D" uid="uid://bvixuyd6ejljf" path="res://Assets/Art/GrayboxTemplateAssets/icon.svg" id="3_yohfk"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
+[ext_resource type="Texture2D" uid="uid://bu5ow00t63c83" path="res://Assets/Art/UI/MainMenu/Orders/orders_text.png" id="4_wbn7y"]
+[ext_resource type="Texture2D" uid="uid://dwk06ymifbdaq" path="res://Assets/Art/UI/MainMenu/Orders/order_normal.png" id="5_iclaa"]
+[ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="5_p8qb0"]
+[ext_resource type="Texture2D" uid="uid://bevsfgf4bv204" path="res://Assets/Art/UI/MainMenu/Orders/orders_phone_base_bg.png" id="5_s2td8"]
+[ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="6_g3g7s"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="6_lw5l0"]
 
 [node name="Orders" type="Control"]
 layout_mode = 3
@@ -14,98 +17,65 @@ offset_bottom = 40.0
 script = ExtResource("1_day0g")
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "start_buttons") instance=ExtResource("1_3bm1j")]
-back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]
-start_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act2Button"), NodePath("../ScrollMask/ScrollContainer/VBoxContainer/Act3Button")]
+back_buttons = [NodePath("../OrdersBody/ScrollContainer/VBoxContainer/BackButton")]
+start_buttons = [NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act2Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act3Button"), null]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -217.8685
-offset_right = 217.8685
-offset_bottom = 70.0
-grow_horizontal = 2
-pivot_offset = Vector2(217.869, 0)
-color = Color(0.74978, 0.74978, 0.74977994, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -167.0
-offset_top = 1.0
-offset_right = 153.0
-offset_bottom = 77.0
-grow_horizontal = 2
-bbcode_enabled = true
-text = "[font_size=55]-- Orders --"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="ScrollMask" type="ColorRect" parent="."]
-clip_children = 2
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -217.869
-offset_top = 70.0
-offset_right = 217.868
-offset_bottom = 800.0
-grow_horizontal = 2
-pivot_offset = Vector2(217.869, 0)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ScrollMask"]
+[node name="OrdersText" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 435.737
-offset_bottom = 730.281
+offset_right = 830.0
+offset_bottom = 1400.0
+texture = ExtResource("4_wbn7y")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollMask/ScrollContainer"]
+[node name="OrdersBody" type="TextureRect" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_s2td8")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="OrdersBody"]
+clip_contents = false
+layout_mode = 0
+offset_left = 119.0
+offset_top = 368.0
+offset_right = 725.0
+offset_bottom = 1127.835
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OrdersBody/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = -70
 
-[node name="Act1Button" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="BackButton" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Act One
-"
-icon = ExtResource("3_yohfk")
+texture_normal = ExtResource("5_p8qb0")
+texture_click_mask = ExtResource("6_g3g7s")
+script = ExtResource("6_lw5l0")
 
-[node name="Act2Button" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="Act1Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Act Two
-"
-icon = ExtResource("3_yohfk")
+texture_normal = ExtResource("5_iclaa")
+script = ExtResource("6_lw5l0")
 
-[node name="Act3Button" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="Act2Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Act Three
-"
-icon = ExtResource("3_yohfk")
+texture_normal = ExtResource("5_iclaa")
+script = ExtResource("6_lw5l0")
 
-[node name="BackButton" type="Button" parent="ScrollMask/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="Act3Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhsqn")
-text = "Back
-"
+texture_normal = ExtResource("5_iclaa")
+script = ExtResource("6_lw5l0")
 
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act1Button" to="." method="_on_act_1_button_pressed"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act2Button" to="." method="_on_act_2_button_pressed"]
-[connection signal="pressed" from="ScrollMask/ScrollContainer/VBoxContainer/Act3Button" to="." method="_on_act_3_button_pressed"]
+[connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="." method="_on_act_1_button_pressed"]
+[connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="." method="_on_act_2_button_pressed"]
+[connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="." method="_on_act_3_button_pressed"]
