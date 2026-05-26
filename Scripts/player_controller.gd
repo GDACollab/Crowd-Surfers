@@ -522,6 +522,8 @@ func transition_to(new_state: int) -> void:
 		States.GLIDE:
 			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
+			if new_state == States.AIR:
+				player_sprite.play_animation("glide_exit", true)
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
