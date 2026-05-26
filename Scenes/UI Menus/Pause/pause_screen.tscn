@@ -385,6 +385,75 @@ tracks/7/keys = {
 "values": [Vector2(0.8, 0.8)]
 }
 
+[sub_resource type="Animation" id="Animation_qb0ju"]
+resource_name = "close_settings"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsScene:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(410, 160), Vector2(-250, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(820, 160), Vector2(160, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePage1:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePage2:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_tmijn"]
 resource_name = "open_settings"
 length = 0.25
@@ -638,75 +707,6 @@ tracks/6/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_qb0ju"]
-resource_name = "close_settings"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SettingsScene:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(410, 160), Vector2(-250, 160)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonContainer:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(820, 160), Vector2(160, 160)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage1:modulate")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage2:modulate")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../..")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"start_transitioning"
-}, {
-"args": [],
-"method": &"stop_transitioning"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
 _data = {
 &"RESET": SubResource("Animation_r6arl"),
@@ -916,20 +916,21 @@ offset_bottom = 200.0
 
 [node name="ResumeButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = -45.0
-offset_right = 585.0
-offset_bottom = 315.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 103.45822
+offset_right = 561.25
+offset_bottom = 463.45822
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
 [node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.92857
-offset_right = 615.75
-offset_bottom = 335.9286
+offset_left = -30.87069
+offset_top = 85.57293
+offset_right = 616.12933
+offset_bottom = 337.57294
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -937,7 +938,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]RESUME"
 fit_content = true
@@ -946,11 +947,12 @@ horizontal_alignment = 1
 
 [node name="ControlsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 170.0
-offset_right = 585.0
-offset_bottom = 530.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 308.4582
+offset_right = 561.25
+offset_bottom = 668.45825
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
@@ -976,20 +978,21 @@ horizontal_alignment = 1
 
 [node name="SettingsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 385.0
-offset_right = 585.0
-offset_bottom = 745.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 513.4582
+offset_right = 561.25
+offset_bottom = 873.45825
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
 [node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.929
-offset_right = 615.75
-offset_bottom = 335.92902
+offset_left = -32.086536
+offset_top = 90.70649
+offset_right = 614.91345
+offset_bottom = 342.7065
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -997,7 +1000,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]SETTINGS"
 fit_content = true
@@ -1006,20 +1009,21 @@ horizontal_alignment = 1
 
 [node name="RestartLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 600.0
-offset_right = 585.0
-offset_bottom = 960.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 718.45825
+offset_right = 561.25
+offset_bottom = 1078.4583
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
-[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton"]
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.929
-offset_right = 615.75
-offset_bottom = 335.92902
+offset_left = -31.001236
+offset_top = 81.91356
+offset_right = 615.9988
+offset_bottom = 333.91357
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -1027,7 +1031,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]RESTART"
 fit_content = true
@@ -1036,20 +1040,21 @@ horizontal_alignment = 1
 
 [node name="ExitLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 815.0
-offset_right = 585.0
-offset_bottom = 1175.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 923.45825
+offset_right = 561.25
+offset_bottom = 1283.4583
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
-[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"]
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.929
-offset_right = 615.75
-offset_bottom = 335.92902
+offset_left = -31.087778
+offset_top = 87.33155
+offset_right = 615.91223
+offset_bottom = 339.33157
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -1057,7 +1062,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]EXIT"
 fit_content = true
