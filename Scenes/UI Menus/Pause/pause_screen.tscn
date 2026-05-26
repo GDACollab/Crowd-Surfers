@@ -1,85 +1,357 @@
-[gd_scene load_steps=16 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=70 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/UI/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_0kv7i"]
 [ext_resource type="Texture2D" uid="uid://2y5aqlmv0kgk" path="res://Assets/Art/UI/PauseScreen/square.png" id="2_no0yh"]
 [ext_resource type="Shader" uid="uid://dbhbs6o4ufvkc" path="res://Scripts/Shaders/blur.gdshader" id="2_p5gsh"]
-[ext_resource type="Texture2D" uid="uid://qeyfipl3hssl" path="res://Assets/Art/UI/PauseScreen/temp_phone.png" id="3_qyxbx"]
-[ext_resource type="Texture2D" uid="uid://uj81v2lnrv0v" path="res://Assets/Art/UI/PauseScreen/temp_phone_outline.png" id="4_r6arl"]
 [ext_resource type="Texture2D" uid="uid://c1hfiodjgkd6p" path="res://Assets/Art/UI/PauseScreen/page_holder.png" id="5_g4tqe"]
 [ext_resource type="Texture2D" uid="uid://hdx1fa75x36k" path="res://Assets/Art/UI/PauseScreen/page_circle.png" id="5_ojd7t"]
+[ext_resource type="Texture2D" uid="uid://crbvhp12gvfa2" path="res://Assets/Art/UI/ui_phone_base.png" id="5_tmijn"]
+[ext_resource type="Texture2D" uid="uid://pltwgtmqepn6" path="res://Assets/Art/UI/ui_phone_base_bg.png" id="6_t601t"]
 [ext_resource type="PackedScene" uid="uid://kvs3yueyscim" path="res://Scenes/UI Menus/MainMenu/settings_screen.tscn" id="6_tmijn"]
+[ext_resource type="Texture2D" uid="uid://bdvjx56tobfiv" path="res://Assets/Art/UI/PauseScreen/controls_arrows.png" id="7_t601t"]
+[ext_resource type="Texture2D" uid="uid://botfqon1y2akb" path="res://Assets/Art/UI/PauseScreen/controls_wasd.png" id="8_6nlnl"]
+[ext_resource type="Texture2D" uid="uid://hbrqocy3umxl" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0001.png" id="9_2sge0"]
+[ext_resource type="Texture2D" uid="uid://do21jpwkglhgg" path="res://Assets/Art/UI/exit.png" id="9_uhb38"]
+[ext_resource type="Texture2D" uid="uid://c6sdnvsj5a8l3" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0002.png" id="10_03m81"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="10_en6uu"]
+[ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/exit_click_mask.png" id="10_gkt0c"]
+[ext_resource type="Texture2D" uid="uid://bjfyngt8heu42" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0003.png" id="11_s4mb5"]
+[ext_resource type="Texture2D" uid="uid://w7qjcvameqyh" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0004.png" id="12_ueahi"]
+[ext_resource type="Texture2D" uid="uid://b6bxcr5g3lwin" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0005.png" id="13_fgs3e"]
+[ext_resource type="Texture2D" uid="uid://cl5yq36vaat7s" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0006.png" id="14_kp3yf"]
+[ext_resource type="Texture2D" uid="uid://bjn1ovh1j2jmy" path="res://Assets/Art/PlayerAnimationFrames/Dash/Frontside/frontside_dash-1.png" id="15_kp3yf"]
+[ext_resource type="Texture2D" uid="uid://ci6lub5g5ki4j" path="res://Assets/Art/PlayerAnimationFrames/Dash/Frontside/frontside_dash-2.png" id="16_gt0ed"]
+[ext_resource type="Texture2D" uid="uid://c40doim7n7nnl" path="res://Assets/Art/PlayerAnimationFrames/Dash Exit/Frontside/frontside_dash_exit-1.png" id="17_ibeq5"]
+[ext_resource type="Texture2D" uid="uid://1r5thjh0bdt0" path="res://Assets/Art/PlayerAnimationFrames/Dash Exit/Frontside/frontside_dash_exit-2.png" id="18_slmuf"]
+[ext_resource type="Texture2D" uid="uid://o4ghhdqle3iy" path="res://Assets/Art/PlayerAnimationFrames/Jump/Jump_Front_Side/jumpFS0001.png" id="19_2rv72"]
+[ext_resource type="Texture2D" uid="uid://dwwd42877d408" path="res://Assets/Art/PlayerAnimationFrames/Jump/Jump_Front_Side/jumpFS0002.png" id="20_lvb7r"]
+[ext_resource type="Texture2D" uid="uid://b5nkoo1nyert6" path="res://Assets/Art/PlayerAnimationFrames/Jump/Jump_Front_Side/jumpFS0003.png" id="21_oekbg"]
+[ext_resource type="Texture2D" uid="uid://bb622on0pfhnk" path="res://Assets/Art/PlayerAnimationFrames/Fall/Fall_Front_Side/fallFS0001.png" id="22_wvn4n"]
+[ext_resource type="Texture2D" uid="uid://bnylvlxnnqow2" path="res://Assets/Art/PlayerAnimationFrames/Fall/Fall_Front_Side/fallFS0002.png" id="23_1qisx"]
+[ext_resource type="Texture2D" uid="uid://oljj65qvppx8" path="res://Assets/Art/PlayerAnimationFrames/Fall/Fall_Front_Side/fallFS0003.png" id="24_jkgsv"]
+[ext_resource type="Texture2D" uid="uid://b2vhgsym8bycw" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0001.png" id="25_lvb7r"]
+[ext_resource type="Texture2D" uid="uid://c60o4xnicohvu" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0002.png" id="26_jkgsv"]
+[ext_resource type="Texture2D" uid="uid://85qnnlpu78bc" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0003.png" id="27_ff7gk"]
+[ext_resource type="Texture2D" uid="uid://vhn5puxycswn" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0004.png" id="28_xcye8"]
+[ext_resource type="Texture2D" uid="uid://g2haeqn10snt" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0005.png" id="29_b0tki"]
+[ext_resource type="Texture2D" uid="uid://d22bt2f1evxgs" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0001.png" id="30_2m6ih"]
+[ext_resource type="Texture2D" uid="uid://ck4ovlg1bjeht" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0002.png" id="31_b0la8"]
+[ext_resource type="Texture2D" uid="uid://ctlbo1v8vfk7a" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0003.png" id="32_uhb38"]
+[ext_resource type="Texture2D" uid="uid://qh0plwu2bcga" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0004.png" id="33_en6uu"]
+[ext_resource type="Texture2D" uid="uid://dhi62u0yv0shv" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0005.png" id="34_gkt0c"]
+[ext_resource type="Texture2D" uid="uid://bup7wq3nwgxek" path="res://Assets/Art/UI/button_medium.png" id="38_tr4yg"]
+[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="39_qb0ju"]
+[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="40_edyq6"]
+[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="44_qb0ju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0kv7i"]
 shader = ExtResource("2_p5gsh")
 shader_parameter/blur_amount = 1.250000059375
+
+[sub_resource type="Animation" id="Animation_3uo0b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlsImage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_t601t")]
+}
+
+[sub_resource type="Animation" id="Animation_2sge0"]
+resource_name = "controls_image"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlsImage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_t601t"), ExtResource("8_6nlnl")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0qof"]
+_data = {
+&"RESET": SubResource("Animation_3uo0b"),
+&"controls_image": SubResource("Animation_2sge0")
+}
+
+[sub_resource type="Animation" id="Animation_ibeq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipMove:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_2sge0")]
+}
+
+[sub_resource type="Animation" id="Animation_gt0ed"]
+resource_name = "slip_move"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipMove:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_2sge0"), ExtResource("10_03m81"), ExtResource("11_s4mb5"), ExtResource("12_ueahi"), ExtResource("13_fgs3e"), ExtResource("14_kp3yf")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_slmuf"]
+_data = {
+&"RESET": SubResource("Animation_ibeq5"),
+&"slip_move": SubResource("Animation_gt0ed")
+}
+
+[sub_resource type="Animation" id="Animation_olch6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipDash1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_kp3yf")]
+}
+
+[sub_resource type="Animation" id="Animation_iipw1"]
+resource_name = "slip_dash"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipDash1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_kp3yf"), ExtResource("16_gt0ed"), ExtResource("17_ibeq5"), ExtResource("18_slmuf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slips/SlipDash2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_ibeq5"), ExtResource("18_slmuf"), ExtResource("15_kp3yf"), ExtResource("16_gt0ed")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2rv72"]
+_data = {
+&"RESET": SubResource("Animation_olch6"),
+&"slip_dash": SubResource("Animation_iipw1")
+}
+
+[sub_resource type="Animation" id="Animation_xcye8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipJump:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_2rv72")]
+}
+
+[sub_resource type="Animation" id="Animation_ff7gk"]
+resource_name = "slip_jump"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipJump:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("19_2rv72"), ExtResource("20_lvb7r"), ExtResource("21_oekbg"), ExtResource("22_wvn4n"), ExtResource("23_1qisx"), ExtResource("24_jkgsv")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0tki"]
+_data = {
+&"RESET": SubResource("Animation_xcye8"),
+&"slip_jump": SubResource("Animation_ff7gk")
+}
+
+[sub_resource type="Animation" id="Animation_2m6ih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipGlide:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_lvb7r")]
+}
+
+[sub_resource type="Animation" id="Animation_pi7fh"]
+resource_name = "slip_glide"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipGlide:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("25_lvb7r"), ExtResource("26_jkgsv"), ExtResource("27_ff7gk"), ExtResource("28_xcye8"), ExtResource("29_b0tki")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0la8"]
+_data = {
+&"RESET": SubResource("Animation_2m6ih"),
+&"slip_glide": SubResource("Animation_pi7fh")
+}
+
+[sub_resource type="Animation" id="Animation_tr4yg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipStomp:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("30_2m6ih")]
+}
+
+[sub_resource type="Animation" id="Animation_y6uv0"]
+resource_name = "slip_stomp"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipStomp:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("30_2m6ih"), ExtResource("31_b0la8"), ExtResource("32_uhb38"), ExtResource("33_en6uu"), ExtResource("34_gkt0c")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb0ju"]
+_data = {
+&"RESET": SubResource("Animation_tr4yg"),
+&"slip_stomp": SubResource("Animation_y6uv0")
+}
 
 [sub_resource type="Animation" id="Animation_r6arl"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("ButtonContainer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(160, 160)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("ControlsContainer:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(820, 160)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ButtonContainer:position")
+tracks/2/path = NodePath("PhonePage2:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(175, 125.5)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ControlsContainer:position")
+tracks/3/path = NodePath("PhonePage3:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(618, 132.5)]
+"values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PhonePage2:modulate")
+tracks/4/path = NodePath("SettingsScene:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(-281, -13.500007)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PhonePage3:modulate")
+tracks/5/path = NodePath("PhonePage1:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -91,26 +363,26 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SettingsScene:position")
+tracks/6/path = NodePath("..:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-281, -13.500007)]
+"values": [0.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("PhonePage1:modulate")
+tracks/7/path = NodePath("..:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
+"values": [Vector2(0.8, 0.8)]
 }
 
 [sub_resource type="Animation" id="Animation_tmijn"]
@@ -126,7 +398,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-281, -13.500007), Vector2(288, -13.5)]
+"values": [Vector2(-250, 160), Vector2(410, 160)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -138,7 +410,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(175, 125.5), Vector2(950, 125.5)]
+"values": [Vector2(160, 160), Vector2(820, 160)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -167,19 +439,13 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("..")
+tracks/4/path = NodePath("../..")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.24, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"stop_transitioning"
-}, {
-"args": [],
-"method": &"start_transitioning"
-}, {
 "args": [],
 "method": &"start_transitioning"
 }, {
@@ -190,193 +456,261 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_qyxbx"]
 resource_name = "rotate_landscape"
-length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("ButtonContainer:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 1.2),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -1.5707964]
+"values": [Vector2(160, 160), Vector2(-500, 160)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("ControlsContainer:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 1.2),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.55, 1.55)]
+"values": [Vector2(820, 160), Vector2(160, 160)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
+tracks/2/path = NodePath("PhonePage2:modulate")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.25, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"hide_buttons"
-}, {
-"args": [],
-"method": &"stop_transitioning"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ButtonContainer:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(175, 125.5), Vector2(-258, 125.5)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ControlsContainer:position")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(618, 132.5), Vector2(92.5, 132.5)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PhonePage2:modulate")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PhonePage3:modulate")
-tracks/6/interp = 2
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePage3:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_g4tqe"]
-resource_name = "rotate_portrait"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 1.2),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.5707963267948966, 0.0]
+"values": [0.0, -1.5707964]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 1.2),
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..:scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1.55, 1.55), Vector2(1, 1)]
+"values": [Vector2(0.8, 0.8), Vector2(1.2, 1.2)]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.25, 1.2),
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"hide_controls"
+"method": &"start_transitioning"
 }, {
 "args": [],
 "method": &"stop_transitioning"
 }]
 }
+
+[sub_resource type="Animation" id="Animation_g4tqe"]
+resource_name = "rotate_portrait"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-500, 160), Vector2(160, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlsContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 160), Vector2(820, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePage2:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ButtonContainer:position")
+tracks/3/path = NodePath("PhonePage3:modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-258, 125), Vector2(175, 125.5)]
+"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ControlsContainer:position")
+tracks/4/path = NodePath("..:rotation")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(92.5, 132.5), Vector2(618, 132.5)]
+"values": [-1.5707963267948966, 0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PhonePage2:modulate")
+tracks/5/path = NodePath("..:scale")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(0.8, 0.8)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qb0ju"]
+resource_name = "close_settings"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsScene:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+"values": [Vector2(410, 160), Vector2(-250, 160)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PhonePage3:modulate")
-tracks/6/interp = 2
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(820, 160), Vector2(160, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePage1:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePage2:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
 _data = {
 &"RESET": SubResource("Animation_r6arl"),
+&"close_settings": SubResource("Animation_qb0ju"),
 &"open_settings": SubResource("Animation_tmijn"),
 &"rotate_landscape": SubResource("Animation_qyxbx"),
 &"rotate_portrait": SubResource("Animation_g4tqe")
@@ -396,8 +730,8 @@ script = ExtResource("1_f6gwv")
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_0kv7i")]
-confirm_buttons = [NodePath("../PhoneBackground/ButtonContainer/ResumeButton"), NodePath("../PhoneBackground/ButtonContainer/ControlsButton"), NodePath("../PhoneBackground/ButtonContainer/SettingsButton"), NodePath("../PhoneBackground/ButtonContainer/RestartLevelButton")]
-back_buttons = [NodePath("../PhoneBackground/ButtonContainer/ExitLevelButton"), NodePath("../PhoneBackground/ControlsContainer/BackButtonHolder/BackButton")]
+confirm_buttons = [NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton"), NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton"), NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton"), NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton")]
+back_buttons = [NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"), NodePath("../PhoneOutline/PhoneBackground/ControlsContainer/BackButton")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0kv7i")
@@ -419,173 +753,328 @@ grow_vertical = 2
 texture = ExtResource("2_no0yh")
 expand_mode = 2
 
-[node name="PhoneBackground" type="TextureRect" parent="."]
-clip_contents = true
+[node name="PhoneOutline" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -412.5
-offset_right = 300.0
-offset_bottom = 412.5
+offset_left = -415.0
+offset_top = -700.0
+offset_right = 415.0
+offset_bottom = 700.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(300, 412)
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(415, 700)
 mouse_filter = 2
-texture = ExtResource("3_qyxbx")
-expand_mode = 1
+texture = ExtResource("5_tmijn")
 
-[node name="ControlsContainer" type="VBoxContainer" parent="PhoneBackground"]
+[node name="PhoneBackground" type="TextureRect" parent="PhoneOutline"]
+clip_children = 2
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 318.0
-offset_top = -280.0
-offset_right = 733.0011
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 830.0
+offset_bottom = 1400.0
+pivot_offset = Vector2(415, 700)
+mouse_filter = 2
+texture = ExtResource("6_t601t")
 
-[node name="TextHolder" type="Control" parent="PhoneBackground/ControlsContainer"]
-custom_minimum_size = Vector2(0, 275)
-layout_mode = 2
-
-[node name="TempText" type="RichTextLabel" parent="PhoneBackground/ControlsContainer/TextHolder"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 185.24193
-offset_top = -92.1129
-offset_right = 731.24194
-offset_bottom = 1221.8871
+[node name="ControlsContainer" type="Control" parent="PhoneOutline/PhoneBackground"]
+anchors_preset = 0
+offset_left = 820.0
+offset_top = 160.0
+offset_right = 2322.0005
+offset_bottom = 160.0
 rotation = 1.5707964
-pivot_offset = Vector2(130, 139)
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 22
+
+[node name="ControlsImage" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+layout_mode = 0
+offset_left = -47.49994
+offset_top = -619.9999
+offset_right = 1454.5
+offset_bottom = 282.00012
+scale = Vector2(0.77, 0.77)
+texture = ExtResource("7_t601t")
+
+[node name="ControlsImageAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_k0qof")
+}
+autoplay = "controls_image"
+
+[node name="BackButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+layout_mode = 0
+offset_left = 961.6667
+offset_top = -590.0
+offset_right = 1141.6667
+offset_bottom = -410.0
+rotation = 0.17278759
+scale = Vector2(0.9, 0.9)
+texture_normal = ExtResource("9_uhb38")
+texture_click_mask = ExtResource("10_gkt0c")
+script = ExtResource("10_en6uu")
+
+[node name="Slips" type="Control" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+anchors_preset = 0
+
+[node name="SlipMove" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 135.00006
+offset_top = -310.83337
+offset_right = 1215.0
+offset_bottom = 769.1666
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("9_2sge0")
+
+[node name="SlipMoveAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_slmuf")
+}
+autoplay = "slip_move"
+
+[node name="SlipDash1" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 376.6667
+offset_top = -224.16669
+offset_right = 1456.6667
+offset_bottom = 855.8333
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("15_kp3yf")
+
+[node name="SlipDash2" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 910.8333
+offset_top = -245.0
+offset_right = 1990.8333
+offset_bottom = 835.0
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("17_ibeq5")
+
+[node name="SlipDashAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_2rv72")
+}
+autoplay = "slip_dash"
+
+[node name="SlipJump" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 105.833374
+offset_top = -563.3334
+offset_right = 1185.8334
+offset_bottom = 532.6666
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("19_2rv72")
+
+[node name="SlipJumpAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_b0tki")
+}
+autoplay = "slip_jump"
+
+[node name="SlipGlide" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 385.83337
+offset_top = -444.1667
+offset_right = 1465.8334
+offset_bottom = 651.8333
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("25_lvb7r")
+
+[node name="SlipGlideAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_b0la8")
+}
+autoplay = "slip_glide"
+
+[node name="SlipStomp" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 651.6667
+offset_top = -342.49997
+offset_right = 1731.6667
+offset_bottom = 753.5
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("30_2m6ih")
+
+[node name="SlipStompAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_qb0ju")
+}
+autoplay = "slip_stomp"
+
+[node name="ButtonContainer" type="Control" parent="PhoneOutline/PhoneBackground"]
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 160.0
+offset_right = 200.00006
+offset_bottom = 200.0
+
+[node name="ResumeButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 585.0
+offset_bottom = 315.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.92857
+offset_right = 615.75
+offset_bottom = 335.9286
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
 bbcode_enabled = true
-text = "[font_size=60]Controls:
-[font_size=44]WASD: Move
-Space (ground): Jump
-Space (midair): Glide
-Shift/J: Dash
-Ctrl/K: Stomp
-Escape: Pause
- "
+text = "[i]RESUME"
 fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="BackButtonHolder" type="Control" parent="PhoneBackground/ControlsContainer"]
-layout_mode = 2
+[node name="ControlsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 170.0
+offset_right = 585.0
+offset_bottom = 530.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
 
-[node name="BackButton" type="Button" parent="PhoneBackground/ControlsContainer/BackButtonHolder"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -130.64517
-offset_top = 150.82259
-offset_right = 64.35483
-offset_bottom = 251.32259
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5707964
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Back"
-
-[node name="ButtonContainer" type="VBoxContainer" parent="PhoneBackground"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -287.0
-offset_right = 124.99985
-offset_bottom = 287.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(125, 287.5)
-
-[node name="ResumeButton" type="Button" parent="PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Resume"
-metadata/_edit_use_anchors_ = true
-
-[node name="ControlsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Controls"
-metadata/_edit_use_anchors_ = true
-
-[node name="SettingsButton" type="Button" parent="PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Settings
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="RestartLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Restart Level
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="ExitLevelButton" type="Button" parent="PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Exit Level
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="SettingsScene" parent="PhoneBackground" instance=ExtResource("6_tmijn")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -581.0
-offset_top = -13.500007
-offset_right = -541.0
-offset_bottom = 26.499992
-grow_horizontal = 2
-scale = Vector2(0.8, 0.8)
-
-[node name="PhoneOutline" type="TextureRect" parent="PhoneBackground"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -412.5
-offset_right = 300.0
-offset_bottom = 412.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.01, 1.01)
-pivot_offset = Vector2(300, 412)
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 89.285706
+offset_right = 615.75
+offset_bottom = 341.2857
+scale = Vector2(1, 1.429)
 mouse_filter = 2
-texture = ExtResource("4_r6arl")
-expand_mode = 1
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 110
+bbcode_enabled = true
+text = "[i]CONTROLS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
 
-[node name="PhonePageHolder" type="TextureRect" parent="PhoneBackground"]
+[node name="SettingsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 385.0
+offset_right = 585.0
+offset_bottom = 745.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.929
+offset_right = 615.75
+offset_bottom = 335.92902
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]SETTINGS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="RestartLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 600.0
+offset_right = 585.0
+offset_bottom = 960.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.929
+offset_right = 615.75
+offset_bottom = 335.92902
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]RESTART"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ExitLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 815.0
+offset_right = 585.0
+offset_bottom = 1175.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.929
+offset_right = 615.75
+offset_bottom = 335.92902
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]EXIT"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="SettingsScene" parent="PhoneOutline/PhoneBackground" instance=ExtResource("6_tmijn")]
+layout_mode = 0
+offset_left = -281.0
+offset_top = -13.500007
+offset_right = -241.0
+offset_bottom = 26.499992
+
+[node name="ScrollMask" parent="PhoneOutline/PhoneBackground/SettingsScene" index="3"]
+color = Color(0.59607846, 0.59607846, 0.59607846, 0)
+
+[node name="PhonePageHolder" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
 modulate = Color(0.7121294, 0.7121294, 0.71212924, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -593,17 +1082,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -30.0
-offset_top = -54.0
-offset_right = 30.0
-offset_bottom = -34.0
+offset_left = -22.500061
+offset_top = -174.99988
+offset_right = 37.49994
+offset_bottom = -154.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(30, 10)
 texture = ExtResource("5_g4tqe")
 expand_mode = 1
 
-[node name="PhonePage1" type="TextureRect" parent="PhoneBackground"]
+[node name="PhonePage1" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
 modulate = Color(0.78352344, 0.78352344, 0.78352326, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -611,34 +1100,34 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -49.0
-offset_right = -15.0
-offset_bottom = -39.0
+offset_left = -17.500061
+offset_top = -169.99988
+offset_right = -7.500061
+offset_bottom = -159.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
 texture = ExtResource("5_ojd7t")
 expand_mode = 1
 
-[node name="PhonePage2" type="TextureRect" parent="PhoneBackground"]
+[node name="PhonePage2" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -5.0
-offset_top = -49.0
-offset_right = 5.0
-offset_bottom = -39.0
+offset_left = 2.499939
+offset_top = -169.99988
+offset_right = 12.499939
+offset_bottom = -159.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
 texture = ExtResource("5_ojd7t")
 expand_mode = 1
 
-[node name="PhonePage3" type="TextureRect" parent="PhoneBackground"]
+[node name="PhonePage3" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
 modulate = Color(0.78352344, 0.78352344, 0.78352326, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -646,27 +1135,42 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -49.0
-offset_right = 25.0
-offset_bottom = -39.0
+offset_left = 22.499939
+offset_top = -169.99988
+offset_right = 32.49994
+offset_bottom = -159.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
 texture = ExtResource("5_ojd7t")
 expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PhoneBackground"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground"]
 libraries = {
 &"": SubResource("AnimationLibrary_ojd7t")
 }
 
-[connection signal="pressed" from="PhoneBackground/ControlsContainer/BackButtonHolder/BackButton" to="." method="_on_controls_back_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
-[connection signal="pressed" from="PhoneBackground/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
+[node name="Vignette" parent="." instance=ExtResource("44_qb0ju")]
+layout_mode = 0
 
-[editable path="PhoneBackground/SettingsScene"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="." method="_on_controls_back_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
+
+[editable path="PhoneOutline/PhoneBackground/SettingsScene"]
