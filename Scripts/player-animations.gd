@@ -4,6 +4,7 @@ extends AnimatedSprite3D
 @export var deadzone: float = 0.2
 
 @export var stomp_speed: float = 5.0 
+@export var glide_animation_speed: float = 10.0
 @onready var player: CharacterBody3D = get_node(player_path)
 
 # Track the last animation played before changing so we can handle looping animations correctly
@@ -30,6 +31,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var v := player.velocity
 	speed_scale = 0.5 + v.length() / 125.0
+	# Glide and Stomp should have constant animation speeds
+	if current_animation == "glide" or current_animation == "stomp" or current_animation == "glide_exit":
+		speed_scale = 1.0
 	# Flip Slip's sprite if they are moving right
 	if v.x != 0.0:
 		prev_flip_h = flip_h
@@ -38,12 +42,23 @@ func _process(_delta: float) -> void:
 		flip_h = crash_dir.x < 0.0
 
 func set_speeds():
-	#stomp speeds
 	sprite_frames.set_animation_speed('stomp_back',stomp_speed)
 	sprite_frames.set_animation_speed('stomp_back_side',stomp_speed)
 	sprite_frames.set_animation_speed('stomp_front',stomp_speed)
 	sprite_frames.set_animation_speed('stomp_front_side',stomp_speed)
 	sprite_frames.set_animation_speed('stomp_side',stomp_speed)
+	
+	sprite_frames.set_animation_speed('glide_back',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_back_side',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_front',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_front_side',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_side',glide_animation_speed)
+	
+	sprite_frames.set_animation_speed('glide_exit_back',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_exit_back_side',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_exit_front',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_exit_front_side',glide_animation_speed)
+	sprite_frames.set_animation_speed('glide_exit_side',glide_animation_speed)
 
 ## Handles special logic for playing the idle animation
 func play_idle_animation():
