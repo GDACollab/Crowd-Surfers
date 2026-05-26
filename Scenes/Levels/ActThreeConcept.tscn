@@ -2731,13 +2731,13 @@ bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Soun
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_cuima")]
 player = NodePath("../Player")
+music_path = "event:/MUS/level_3"
+ambience_path = "event:/SFX/ENV/ambience/city_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_7ikem")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -872.13184, 120.806206, 1306.3073)
 near = 0.001
 offset = Vector3(0, 1000, 1000)
-
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." instance=ExtResource("3_8ah0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -857.0073, 2.5224152, 1210.4185)
