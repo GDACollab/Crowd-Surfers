@@ -7,6 +7,10 @@ extends Control
 @onready var orders_scene: Control = $PhoneImage/MainPhoneMask/OrdersScene
 @onready var settings_scene: Control = $PhoneImage/MainPhoneMask/SettingsScene
 
+@onready var orders_button: TextureButton = $PhoneImage/MainPhoneMask/MainContainer/OrdersButton
+@onready var voicemails_button: TextureButton = $PhoneImage/MainPhoneMask/MainContainer/VoiceMailButton
+
+
 @onready var backgrounds_farther: Control = $BackgroundsFarther
 @onready var backgrounds_closer: Control = $BackgroundsCloser
 
@@ -73,6 +77,7 @@ func _on_orders_button_pressed() -> void:
 	if (transitioning):
 		return
 	
+	orders_button.disabled = true
 	orders_animation_player.play("open_orders")
 	orders_scene.visible = true
 	
@@ -92,6 +97,7 @@ func _on_orders_back_button_pressed() -> void:
 	if (transitioning):
 		return
 		
+	orders_button.disabled = false
 	orders_animation_player.play_backwards("open_orders")
 	orders_animation_player.seek(animation_time * 0.8, true)
 	

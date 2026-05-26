@@ -1,13 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=16 format=3 uid="uid://c5rie8boisw4x"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
 [ext_resource type="Script" uid="uid://b5jkrrd2dj5sp" path="res://Scripts/UI/orders_screen.gd" id="1_day0g"]
 [ext_resource type="Texture2D" uid="uid://bu5ow00t63c83" path="res://Assets/Art/UI/MainMenu/Orders/orders_text.png" id="4_wbn7y"]
+[ext_resource type="Texture2D" uid="uid://cx7ew6n2o7p56" path="res://Assets/Art/UI/MainMenu/Orders/scrollbar.png" id="5_g3g7s"]
 [ext_resource type="Texture2D" uid="uid://dwk06ymifbdaq" path="res://Assets/Art/UI/MainMenu/Orders/order_normal.png" id="5_iclaa"]
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="5_p8qb0"]
 [ext_resource type="Texture2D" uid="uid://bevsfgf4bv204" path="res://Assets/Art/UI/MainMenu/Orders/orders_phone_base_bg.png" id="5_s2td8"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="6_g3g7s"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="6_lw5l0"]
+[ext_resource type="BitMap" uid="uid://cl0bvkex1nokv" path="res://Assets/Art/UI/MainMenu/Orders/order_click_mask.png" id="10_f7nka"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f7nka"]
+texture = ExtResource("5_g3g7s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g3g7s"]
+texture = ExtResource("5_g3g7s")
+modulate_color = Color(1.3945211, 1.3945211, 1.3945211, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4olv6"]
+texture = ExtResource("5_g3g7s")
+modulate_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_08fti"]
+content_margin_left = 30.0
+texture = ExtResource("5_g3g7s")
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+modulate_color = Color(1, 1, 1, 0.08235294)
+
+[sub_resource type="Theme" id="Theme_08fti"]
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_f7nka")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_g3g7s")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_4olv6")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_08fti")
 
 [node name="Orders" type="Control"]
 layout_mode = 3
@@ -18,7 +44,7 @@ script = ExtResource("1_day0g")
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "start_buttons") instance=ExtResource("1_3bm1j")]
 back_buttons = [NodePath("../OrdersBody/ScrollContainer/VBoxContainer/BackButton")]
-start_buttons = [NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act2Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act3Button"), null]
+start_buttons = [NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act2Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act3Button")]
 
 [node name="OrdersText" type="TextureRect" parent="."]
 layout_mode = 0
@@ -36,10 +62,11 @@ texture = ExtResource("5_s2td8")
 [node name="ScrollContainer" type="ScrollContainer" parent="OrdersBody"]
 clip_contents = false
 layout_mode = 0
-offset_left = 119.0
-offset_top = 368.0
-offset_right = 725.0
-offset_bottom = 1127.835
+offset_left = 135.0
+offset_top = 349.0
+offset_right = 726.13
+offset_bottom = 1119.0
+theme = SubResource("Theme_08fti")
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OrdersBody/ScrollContainer"]
@@ -56,16 +83,19 @@ script = ExtResource("6_lw5l0")
 [node name="Act1Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
+texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
 [node name="Act2Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
+texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
 [node name="Act3Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
+texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
 [connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_entered"]

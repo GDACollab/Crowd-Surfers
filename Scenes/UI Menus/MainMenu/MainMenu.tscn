@@ -150,6 +150,18 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_q16ba"]
 resource_name = "open_orders"
@@ -164,7 +176,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.245), Vector2(1, 0.9), Vector2(1, 0.95), Vector2(1, 1)]
+"values": [Vector2(0.95, 0.312), Vector2(1, 0.9), Vector2(1, 0.95), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -188,7 +200,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 3.65), Vector2(1, 3.852), Vector2(1, 4.055)]
+"values": [Vector2(1, 1), Vector2(1.053, 2.344), Vector2(1.053, 2.741), Vector2(1.053, 2.885)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -266,6 +278,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PhoneImage/MainPhoneMask/OrdersScene:rotation")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.17453292, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahrg2"]
@@ -522,8 +546,10 @@ offset_left = 336.20834
 offset_top = 278.8747
 offset_right = 1056.2084
 offset_bottom = 818.8747
+pivot_offset = Vector2(245.80383, 239.27454)
 texture_normal = ExtResource("6_ahrg2")
 texture_hover = ExtResource("8_a8df5")
+texture_disabled = ExtResource("6_ahrg2")
 texture_click_mask = ExtResource("15_h6nhr")
 script = ExtResource("19_pnqed")
 
@@ -577,9 +603,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 435.73694
 offset_bottom = 800.281
-
-[node name="UIAudio" parent="PhoneImage/MainPhoneMask/OrdersScene" index="0" node_paths=PackedStringArray("start_buttons")]
-start_buttons = [NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act1Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act2Button"), NodePath("../OrdersBody/ScrollContainer/VBoxContainer/Act3Button")]
+pivot_offset = Vector2(360.322, 643.346)
 
 [node name="SettingsScene" parent="PhoneImage/MainPhoneMask" instance=ExtResource("6_j0r1m")]
 modulate = Color(1, 1, 1, 0)
