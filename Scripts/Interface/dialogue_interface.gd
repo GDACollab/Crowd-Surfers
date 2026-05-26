@@ -440,12 +440,14 @@ func _handle_tags(currentTags, newPanel):
 	_handle_panel_text(newPanel)
 
 ## Reset portrait attributes
+## I'm aware this is redundant lol
 func _reset_display():
 	leftPortrait.scale = Vector2.ONE
 	leftPortrait.self_modulate = Color.WHITE
 	leftPortrait.material = null
+	
 	rightPortrait.scale = Vector2.ONE
-	leftPortrait.self_modulate = Color.WHITE
+	rightPortrait.self_modulate = Color.WHITE
 	rightPortrait.material = null
 
 func _hide_all_panels():
@@ -457,10 +459,8 @@ func _draw_outline(drawMat : ShaderMaterial):
 	
 	while iter > 0:
 		drawMat.set_shader_parameter("threshold", iter)
-		
 		if(sketchyDraw):
-			drawMat.set_shader_parameter("dist", randi_range(outlineSize - 3, outlineSize + 3))
-			
+			drawMat.set_shader_parameter("dist", randi_range(outlineSize - 3, outlineSize + 3))		
 		iter -= 0.1
 		await get_tree().create_timer(0.03).timeout
 		
