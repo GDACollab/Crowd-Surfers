@@ -33,7 +33,7 @@ extends Control
 @export var sketchyDraw := true
 @export var textSpeedScale : float = 1
 @onready var leftPortrait = $"Left Character Portrait/Portrait Image"
-@onready var rightPortrait = $"Right Character Portrait/Portrait Image"
+@onready var rightPortrait : Control = $"Right Character Portrait/Portrait Image"
 var textSpeedInMilliseconds : float = 0.05
 @onready var animator = $"Interface Animator"
 var dialoguePanels : Array[InterfacePanel]
