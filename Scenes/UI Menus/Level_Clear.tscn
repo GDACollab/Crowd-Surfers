@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://fofxf6elvwe2"]
+[gd_scene load_steps=18 format=3 uid="uid://cg5atjrtrnq3w"]
 
 [ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/UI/level_clear.gd" id="1_8u14x"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_ashpn"]
@@ -187,6 +187,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_8u14x")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_ashpn")]
 visible = false
