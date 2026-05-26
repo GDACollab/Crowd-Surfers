@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://dabrrb6h753bm"]
+[gd_scene load_steps=107 format=3 uid="uid://dabrrb6h753bm"]
 
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="1_7ikem"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_cuima"]
@@ -94,6 +94,8 @@
 [ext_resource type="PackedScene" uid="uid://baqb8x7vhpc6" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle2.tscn" id="68_ykr1p"]
 [ext_resource type="PackedScene" uid="uid://b85mrrdirnxxt" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle5.tscn" id="69_w6g8g"]
 [ext_resource type="PackedScene" uid="uid://b57jh2xfv6ln7" path="res://Scenes/Level Components/SpecialObjects/TarPuddleSlowPads/TarPuddle4.tscn" id="70_lkj5b"]
+[ext_resource type="PackedScene" uid="uid://b4ael0l6hrklj" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantFullSpew.tscn" id="73_a6g0v"]
+[ext_resource type="PackedScene" uid="uid://mkge8kjmbt85" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantNormal.tscn" id="74_eyaef"]
 [ext_resource type="PackedScene" uid="uid://djh3u3ghtvce2" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingTallApartment.tscn" id="75_lk4wn"]
 [ext_resource type="PackedScene" uid="uid://ci0n2ibbk4cit" path="res://Scenes/Level Components/Objects/NewBuildingsWithBillBoards/BuildingShortBillBoard.tscn" id="76_ypdg7"]
 [ext_resource type="PackedScene" uid="uid://bsmts5ygr25hs" path="res://Scenes/Levels/Level Lighting/act_3_lighting.tscn" id="87_i1c8y"]
@@ -1805,9 +1807,6 @@ transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 350, 0, -100)
 [node name="StaticBody3D4" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("4_v7jmr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, -200)
 
-[node name="StaticBody3D31" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("24_iti87")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 850, 0, -499.99)
-
 [node name="StaticBody3D15" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("24_iti87")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 650, 0, 0)
 
@@ -1819,6 +1818,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0, 300)
 
 [node name="StaticBody3D32" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("5_vn3cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 750, 0, -499.99)
+
+[node name="StaticBody3D2" parent="BuildingGroup/DowntownBuildings/StaticBody3D32" instance=ExtResource("43_mjexf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0.01)
+
+[node name="StaticBody3D3" parent="BuildingGroup/DowntownBuildings/StaticBody3D32" instance=ExtResource("43_nxk34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, -100)
+
+[node name="StaticBody3D4" parent="BuildingGroup/DowntownBuildings/StaticBody3D32" instance=ExtResource("52_18qlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -200)
+
+[node name="StaticBody3D5" parent="BuildingGroup/DowntownBuildings/StaticBody3D32" instance=ExtResource("49_5uxql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -300)
 
 [node name="StaticBody3D17" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("3_tqh1b")]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 650, 0, 200)
@@ -1867,15 +1878,6 @@ transform = Transform3D(0.70710677, 0, 0.07071068, 0, 1, 0, -0.70710677, 0, 0.07
 
 [node name="StaticBody3D11" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("27_4sj7n")]
 transform = Transform3D(0.70710677, 0, 0.07071068, 0, 1, 0, -0.70710677, 0, 0.07071068, 216.00327, 0, -231.4484)
-
-[node name="StaticBody3D29" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("44_w6g8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1150, 0, -800)
-
-[node name="StaticBody3D30" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("44_w6g8g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 0, -700)
-
-[node name="StaticBody3D2" parent="BuildingGroup/DowntownBuildings/StaticBody3D30" instance=ExtResource("45_lkj5b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100)
 
 [node name="StaticBody3D43" parent="BuildingGroup/DowntownBuildings" instance=ExtResource("24_iti87")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 100, -1499.99)
@@ -2454,6 +2456,18 @@ transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70
 transform = Transform3D(100.000015, 0, 0, 0, 20, 0, 0, 0, 50.000008, 0.00048828125, 0, 21.213074)
 boostPower = 75.0
 speedCap = 300.0
+
+[node name="PlazaDecor" type="Node3D" parent="DecorationsGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -400)
+
+[node name="StaticBody3D" parent="DecorationsGroup/PlazaDecor" instance=ExtResource("73_a6g0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 100)
+
+[node name="StaticBody3D2" parent="DecorationsGroup/PlazaDecor" instance=ExtResource("19_mecku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 0, -100)
+
+[node name="StaticBody3D3" parent="DecorationsGroup/PlazaDecor" instance=ExtResource("74_eyaef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0, -300)
 
 [node name="Lighting_Spotlights#Segment Traffic" type="Node" parent="."]
 
@@ -3664,6 +3678,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -300)
 
 [node name="StaticBody3D28" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -200)
+
+[node name="StaticBody3D76" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, -100)
+
+[node name="StaticBody3D77" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -200)
+
+[node name="StaticBody3D78" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600, 0, -300)
+
+[node name="StaticBody3D79" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, -400)
+
+[node name="StaticBody3D80" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 800, 0, -500)
+
+[node name="StaticBody3D81" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 900, 0, -600)
+
+[node name="StaticBody3D82" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, -700)
+
+[node name="StaticBody3D83" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -700)
+
+[node name="StaticBody3D84" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1100, 0, -700)
 
 [node name="StaticBody3D29" parent="Enviromental Fixes" instance=ExtResource("20_k5g0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 0, -100)
