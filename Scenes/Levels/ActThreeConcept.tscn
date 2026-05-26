@@ -3972,4 +3972,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -700, -0.51, 1200)
 [node name="Light" parent="Lighting" index="3"]
 light_color = Color(0.94946927, 0.72991407, 0.71596175, 1)
 
+[node name="BackGround" type="Node" parent="."]
+
+[node name="Floor" parent="BackGround" instance=ExtResource("4_rscd0")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 250, -150, -3300)
+
 [editable path="Lighting"]
