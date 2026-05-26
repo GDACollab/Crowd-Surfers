@@ -75,6 +75,7 @@ func _ready() -> void:
 				for i in range(num_spaces_to_add):
 					text = text.insert(text.find("]") + 1, " ")
 			label.text = text
+			print(text)
 			
 		# Add label as a child
 		credits_text_container.add_child(label)

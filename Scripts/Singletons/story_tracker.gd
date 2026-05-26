@@ -44,6 +44,7 @@ func get_current_knot() -> String:
 			return ""
 		post_level = false
 		current_act = story_arcs_progress[selected_level]
+		print("[STORY] ", current_act)
 		## Checks if story is complete
 		if(current_act == 2):
 			return ""
