@@ -1,10 +1,10 @@
 extends Node
 
-const LOAD_SCENE: String = "res://Scenes/UI Menus/loading.tscn"
-const MINIMUM_LOAD_SCENE_TIME: float = 0.5
-const FADE_TIME: float = 1.0
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+const LOAD_SCENE: String = "res://Scenes/UI Menus/loading.tscn"
+const MINIMUM_LOAD_SCENE_TIME: float = 0.35
+const FADE_TIME: float = 1.0
 
 var transitioning: bool = false
 
@@ -21,18 +21,14 @@ func transition_to_scene(finalScene: PackedScene):
 	animation_player.play("fade_in")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
+	get_tree().paused = false
 
 	# Change scenes to finalScene, wait while this happens
 	get_tree().change_scene_to_packed(finalScene)
 	await get_tree().scene_changed
 	Settings.update_fmod_volumes()
 
-	animation_player.play("fade_out")
-	# Wait for animation
-	await get_tree().create_timer(FADE_TIME).timeout 
-	
-	self.visible = false
-	transitioning = false
+	fade_out()
 
 func transition_to_scene_with_loading(finalScene: String):
 	if (transitioning):
@@ -43,21 +39,26 @@ func transition_to_scene_with_loading(finalScene: String):
 	animation_player.play("fade_in")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
+	get_tree().paused = false
 
 	# Change scene to loading scene, wait while this happens
 	get_tree().change_scene_to_packed(load(LOAD_SCENE))
 	await get_tree().scene_changed
 	# Enable this if/when loading screen gets sound
-	# Settings.update_fmod_volumes()
+	Settings.update_fmod_volumes()
 	
 	animation_player.play("fade_out")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
 	
 	ResourceLoader.load_threaded_request(finalScene)
-	while ResourceLoader.load_threaded_get_status(finalScene) != ResourceLoader.THREAD_LOAD_LOADED:
+	var progress: Array[float] = []
+	var progressBar: TextureProgressBar = get_tree().current_scene.get_node("SynthProgressBar")
+	while ResourceLoader.load_threaded_get_status(finalScene, progress) != ResourceLoader.THREAD_LOAD_LOADED:
+		progressBar.value = lerp(progressBar.value, progress[0], get_process_delta_time())
 		await get_tree().process_frame
-		
+	progressBar.value = 1.0
+
 	var finalSceneLoaded: PackedScene = ResourceLoader.load_threaded_get(finalScene)
 	
 	await get_tree().create_timer(MINIMUM_LOAD_SCENE_TIME).timeout 
@@ -71,6 +72,9 @@ func transition_to_scene_with_loading(finalScene: String):
 	await get_tree().scene_changed
 	Settings.update_fmod_volumes()
 	
+	fade_out()
+
+func fade_out():
 	animation_player.play("fade_out")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
