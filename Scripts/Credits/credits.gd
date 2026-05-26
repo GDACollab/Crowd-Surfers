@@ -1,5 +1,6 @@
 extends Control
 @onready var credits_text_container: VBoxContainer = $CreditsTextContainer
+# @onready var ui_audio: Node2D = self.get_parent().get_child(0)
 
 @export_category("Scroll Settings")
 @export var slow_scroll_speed: float = 50.0
@@ -15,13 +16,17 @@ extends Control
 @export_category("Images")
 @export var images: Array[CreditsImageData]
 
-var credits_music: FmodEvent
+var title_music: FmodEvent
 
 #Used for a smooth transition between slow and fast scroll speeds
 var current_scroll_speed: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if (!Audio.registry.has("mus_title")):
+		title_music = Audio.create_persistent("mus_title", "event:/MUS/title")
+		title_music.start()
+	
 	current_scroll_speed = slow_scroll_speed
 	self.position.y = credits_starting_y
 	
@@ -78,6 +83,7 @@ func _ready() -> void:
 			
 		# Add label as a child
 		credits_text_container.add_child(label)
+		# ui_audio.credits_text_labels.append(label)
 		
 	# Create images
 	for i in images.size():

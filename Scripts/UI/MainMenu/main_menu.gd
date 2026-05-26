@@ -54,8 +54,11 @@ func _ready() -> void:
 	if (!Audio.registry.has("mus_hub")):
 		hub_music = Audio.create_persistent("mus_hub", "event:/MUS/hub")
 		hub_music.start()
+		
+	else:
+		Audio.unpause_persistent("mus_hub")
 	
-	SaveDataManager.save_data()
+	# SaveDataManager.save_data()
 
 func _process(delta: float) -> void:
 	time += delta
@@ -71,7 +74,7 @@ func _process(delta: float) -> void:
 	
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
-	Audio.kill_persistent("mus_hub")
+	Audio.pause_persistent("mus_hub")
 
 func _on_orders_button_pressed() -> void:
 	if (transitioning):

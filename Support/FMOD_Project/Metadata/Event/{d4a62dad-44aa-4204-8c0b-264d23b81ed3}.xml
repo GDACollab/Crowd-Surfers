@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{d4a62dad-44aa-4204-8c0b-264d23b81ed3}">
+		<property name="note">
+			<value>tbh i kinda like maxs animalese as chef's animalese
+</value>
+		</property>
 		<property name="name">
-			<value>vo_typewriter_hub</value>
+			<value>typewriter_hub</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -49,6 +53,8 @@
 			<destination>{21c66a8d-c2e4-4580-ae8c-59fde7eafd90}</destination>
 			<destination>{613148b6-012b-4581-a36b-46b4e9fc1bb9}</destination>
 			<destination>{d977f356-365b-4fc5-9c7d-d974f77f8dd5}</destination>
+			<destination>{2a7610f7-ee71-4b7f-966f-748fba8ebc0a}</destination>
+			<destination>{d72ac443-657a-4878-998a-2eafb1752385}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{dfd8e7c9-c9a9-4ae0-a139-e9ccbf459ba1}</destination>
@@ -81,12 +87,17 @@
 			<destination>{21c66a8d-c2e4-4580-ae8c-59fde7eafd90}</destination>
 			<destination>{613148b6-012b-4581-a36b-46b4e9fc1bb9}</destination>
 			<destination>{d977f356-365b-4fc5-9c7d-d974f77f8dd5}</destination>
+			<destination>{2a7610f7-ee71-4b7f-966f-748fba8ebc0a}</destination>
+			<destination>{d72ac443-657a-4878-998a-2eafb1752385}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{4aa2a202-d1d8-417d-9dd8-9227d77a0e97}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{dfd8e7c9-c9a9-4ae0-a139-e9ccbf459ba1}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{05c568a0-605f-43d3-8283-c3b4b9ca76a4}</destination>
 		</relationship>
@@ -124,7 +135,7 @@
 	</object>
 	<object class="EventSound" id="{e2332a55-296d-4f06-831b-3edc24126209}">
 		<property name="color">
-			<value>Red Light 1</value>
+			<value>Green</value>
 		</property>
 		<property name="start">
 			<value>2</value>
@@ -192,6 +203,34 @@
 			<destination>{8323754a-1798-49f0-9327-65986f256dcf}</destination>
 		</relationship>
 	</object>
+	<object class="EventSound" id="{2a7610f7-ee71-4b7f-966f-748fba8ebc0a}">
+		<property name="color">
+			<value>Yellow Light 1</value>
+		</property>
+		<property name="start">
+			<value>7</value>
+		</property>
+		<relationship name="parameters">
+			<destination>{e5c2dba7-8f1a-4b65-90da-ddb0bb15a9c3}</destination>
+		</relationship>
+		<relationship name="event">
+			<destination>{f2dcb40f-52e7-4062-b4e8-073c26314fd2}</destination>
+		</relationship>
+	</object>
+	<object class="EventSound" id="{d72ac443-657a-4878-998a-2eafb1752385}">
+		<property name="color">
+			<value>Red Light 1</value>
+		</property>
+		<property name="start">
+			<value>8</value>
+		</property>
+		<relationship name="parameters">
+			<destination>{4b3489bb-c988-4576-940c-2893a33dfc26}</destination>
+		</relationship>
+		<relationship name="event">
+			<destination>{086fa495-e9d8-408a-af14-cbcb93e87e21}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{25016fc3-2769-4b59-af86-b3f5b6d0a970}">
 		<relationship name="effects">
 			<destination>{07bf12a4-4010-4883-9013-abd1b53ddc0d}</destination>
@@ -240,6 +279,16 @@
 	<object class="ParameterProperty" id="{d72b8697-7fda-4cc3-b0b8-f0fd0f937e0c}">
 		<relationship name="parameter">
 			<destination>{46d28507-d994-419b-ac92-26dd4f4fc78d}</destination>
+		</relationship>
+	</object>
+	<object class="ParameterProperty" id="{e5c2dba7-8f1a-4b65-90da-ddb0bb15a9c3}">
+		<relationship name="parameter">
+			<destination>{414d20d2-13aa-4db2-92f6-5b2c733fa038}</destination>
+		</relationship>
+	</object>
+	<object class="ParameterProperty" id="{4b3489bb-c988-4576-940c-2893a33dfc26}">
+		<relationship name="parameter">
+			<destination>{94f3412d-c8d3-4d8c-aca1-a7c135828ba0}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{07bf12a4-4010-4883-9013-abd1b53ddc0d}" />

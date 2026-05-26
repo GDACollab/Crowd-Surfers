@@ -6,6 +6,12 @@ extends Node3D
 var isplayer: bool = false
 var player: CharacterBody3D
 
+@onready var collideSound: FmodEventEmitter3D = null
+
+func _ready() -> void:
+	if has_node("CollideSound"):
+		collideSound = get_node("CollideSound")
+
 func _physics_process(_delta: float) -> void:
 	if (isplayer):
 		if (player.velocity.length() < speedCap):
@@ -23,6 +29,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		isplayer = true
 		player = body
 		player.touched_windbox = true
+		if (collideSound):
+			collideSound.play()
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.name == "Player"):

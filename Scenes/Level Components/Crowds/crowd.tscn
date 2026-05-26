@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://kc2va7uohqqi"]
+[gd_scene load_steps=23 format=3 uid="uid://kc2va7uohqqi"]
 
 [ext_resource type="Script" uid="uid://bnonkgk7oq8x4" path="res://Scripts/crowd_ai.gd" id="1_1ls1x"]
 [ext_resource type="Shader" uid="uid://h2h8c3qmcba1" path="res://Scripts/Shaders/CrowdMember.gdshader" id="2_43vip"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://doqgg3pj7p26y" path="res://Assets/Art/Crowd/SenXie_Tired/tiredbunny.png" id="15_gm7wd"]
 [ext_resource type="Texture2D" uid="uid://dhowv52lds1ai" path="res://Assets/Art/Crowd/SenXie_tired_bunny/bunny-1.png" id="16_jfx14"]
 [ext_resource type="Texture2D" uid="uid://btqseq64ii73v" path="res://Assets/Art/Crowd/SenXie_tired_bunny/bunny-2.png" id="17_dcdd2"]
+[ext_resource type="PackedScene" uid="uid://sltybbrtxg4g" path="res://Scenes/Audio/proximity_audio.tscn" id="19_cstqm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1jb4w"]
 friction = 0.0
@@ -66,6 +67,23 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor"]
 shape = SubResource("CapsuleShape3D_1ls1x")
 debug_color = Color(0.827451, 0.16470589, 0.047058824, 0.7490196)
+
+[node name="ProximityAudio" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]
+proximity_sound = NodePath("CrowdAmbience")
+collider_scale = 300.0
+
+[node name="CrowdAmbience" type="FmodEventEmitter3D" parent="Anchor/ProximityAudio"]
+event_name = "event:/SFX/ENV/ambience/crowd_ambience"
+event_guid = "{76b14f88-6872-4f5e-9c06-2d2541c46f5e}"
+
+[node name="ProximityAudio2" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]
+proximity_sound = NodePath("CrowdCrashSound")
+collider_scale = 25.0
+one_shot = true
+
+[node name="CrowdCrashSound" type="FmodEventEmitter3D" parent="Anchor/ProximityAudio2"]
+event_name = "event:/SFX/ENV/crowd/Crowd_Crash"
+event_guid = "{2057b8ff-14c8-4577-8780-c6fc360f7955}"
 
 [connection signal="navigation_finished" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
 [connection signal="target_reached" from="Anchor/NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

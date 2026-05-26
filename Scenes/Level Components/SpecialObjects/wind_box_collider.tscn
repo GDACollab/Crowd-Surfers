@@ -19,5 +19,10 @@ debug_color = Color(1.92523e-07, 0.7885931, 0.9148605, 1)
 transform = Transform3D(-8.742279e-09, 0.273, 8.742278e-09, 0, -1.1933209e-08, 0.2, 0.2, 1.193321e-08, 3.8213714e-16, 0, 0.01, 0)
 texture = ExtResource("2_8eexc")
 
+[node name="CollideSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/airvent"
+event_guid = "{6730ac66-0326-49ca-b539-52e2fbc83776}"
+volume = 2.0
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

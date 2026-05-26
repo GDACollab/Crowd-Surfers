@@ -1,13 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhhu1rtmwgctf"]
 
-[ext_resource type="Script" uid="uid://ctu30s482urix" path="res://Scripts/dialogue_trigger.gd" id="1_8jywf"]
+[ext_resource type="Script" path="res://Scripts/dialogue_trigger.gd" id="1_8jywf"]
 [ext_resource type="Resource" uid="uid://dsglycoyfanig" path="res://Assets/Dialogue/Ink Files/MainStory.ink" id="2_ys501"]
 
 [node name="Dialogue Testing" type="Node2D"]
 script = ExtResource("1_8jywf")
 story = ExtResource("2_ys501")
-knot = "main_act1_scene1"
+knot = "main_act1_scene2"
 nextScenePath = "res://Scenes/Levels/AllTogetherNOW!!!!.tscn"
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]

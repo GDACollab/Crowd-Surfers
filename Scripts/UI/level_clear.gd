@@ -2,13 +2,17 @@ extends Control
 
 @export var hud_ui: Control
 @export var level_number: int
+@export var button_scale_amount: float = 1.1
 
 @onready var clear_time_sprite: TextureRect = $Background/ClearTime
 @onready var clear_time_text: Label = $Background/ClearTime/ClearTimeText
 @onready var best_time_sprite: TextureRect = $Background/BestTime
 @onready var best_time_text: Label = $Background/BestTime/BestTimeText
 @onready var level_clear_sprite: TextureRect = $Background/LevelClear
+@onready var restart_button: TextureButton = $Background/RestartButton
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+var level_clear_music : FmodEvent
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -28,6 +32,10 @@ func _on_continue_button_pressed() -> void:
 	await get_tree().create_timer(SceneFadeTransition.FADE_TIME - 0.1).timeout 
 	get_tree().paused = false
 
+func _exit_tree() -> void:
+	Audio.ui_pulsing = false
+	Audio.kill_persistent("mus_clear")
+
 func open_ui() -> void:
 	#don't adjust save file if not assigned
 	if level_number > 0:
@@ -43,6 +51,22 @@ func open_ui() -> void:
 		
 	animation_player.play("show_level_clear")
 	
+	Audio.kill_all_persistents()
+	level_clear_music = Audio.create_persistent("mus_clear", "event:/MUS/clear")
+	# level_clear_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
+	level_clear_music.start()
+	
+# ## FMOD event callback trigger, occurs every beat based on the event's desginated tempo
+# func _handle_beat_events(_dict: Dictionary, type: int) -> void: 
+# 	if type == FmodServer.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT:
+# 		_animate_to_beat()
+# 		Audio.ui_pulsing = true
+
+func _animate_to_beat() -> void:
+	level_clear_sprite.scale = Vector2.ONE * button_scale_amount
+	clear_time_sprite.scale = Vector2.ONE * button_scale_amount
+	restart_button.scale = Vector2.ONE * button_scale_amount * 0.95
+
 func scale_level_clear():	
 	var tween: Tween = create_tween()
 	tween.set_ignore_time_scale(true)
