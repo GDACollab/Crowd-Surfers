@@ -1,5 +1,14 @@
 ->END
 
+===test_all_scenes=== //Plays all scenes in succession
+<-main_act1_scene1
+<-main_act1_scene2
+<-main_act2_scene1
+<-main_act2_scene2
+<-main_act3_scene1
+<-main_act3_scene2
+->DONE
+
 ===main_act1_scene1=== //COMPLETE
 \*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
 At least until...
@@ -35,7 +44,7 @@ Understood? #speaker:Sam #vo:play
 So... am I getting a raise for all this? #speaker:Slip #vo:play
 You’re a funny fella, Slip! #speaker:Sam #anim:Laugh #vo:play
 Now get to work! The clock's ticking! #speaker:Sam #vo:play
-->END
+->DONE
 
 ===main_act1_scene2=== //COMPLETE
 //VOICEMAIL CONFIRMATION
@@ -98,7 +107,7 @@ I-it matters not. My 4K copy of Mammalton (Director’s Cut) will keep my compan
 It even features the original cast! #speaker:Sam #vo:play
 They are the ones truly missing out... #speaker:Sam #vo:play
 ... #speaker:Sam
-->END
+->DONE
 
 ===main_act2_scene1=== //REDIRECT
 ->Minny_act1
@@ -135,7 +144,7 @@ Well, we both got busy with work #speaker:Slip #expression:Confused #anim:Shake 
 Ah. Like I said, it’s easy to lose sight of each other #speaker:Chef
 Yeah. She works so close by, too. I should really check in with her... #speaker:Slip #expression:Nervous #vo:play
 That sounds like a plan! #speaker:Chef #anim:Laugh
-->END
+->DONE
 
 ===main_act3_scene1=== //COMPLETE
 \*You enter groggily, collapsing before Sam* #vo:main_act3_scene1
@@ -165,7 +174,7 @@ ONLY if I get a raise after this though, deal? #speaker:Slip #expression:Confuse
 Absolutely, I would forever be in your debt. Though, how will you ever make it through? #speaker:Sam #expression:Neutral #vo:play
 Even with those skates of yours, the roads will be flooded with Madame Menagerie’s adoring audience! #speaker:Sam #expression:Nervous #anim:Shake #vo:play
 Please, with all of these deliveries, I’ve learned to be a bit of a Crowd Surfer #speaker:Slip #expression:Confident #vo:play
-->END
+->DONE
 
 ===main_act3_scene2=== //COMPLETE
 \*You reach the airport terminal just in time to stop Maximilian* #vo:main_act3_scene2
@@ -178,7 +187,7 @@ There… there may be one thing #speaker:Sam #expression:Nervous #vo:play
 Will you… go to Feathers with me...? #speaker:Sam #expression:Confident #vo:play
 Damn you! Must you always hold the key to my shell? Of course I shall go, Samuel! Let us deep fry our conflicts and dance under the spotlight! #speaker:Max #vo:play
 I better get that raise... #speaker:Slip #expression:Nervous #vo:play
-->END
+->DONE
 
 ===Pavo_act1=== //COMPLETE
 \*Your phone buzzes* #vo:Pavo_act1
@@ -401,6 +410,7 @@ Keep at it, Slip #speaker:Nyx #expression:Default
 
 Later, Pierce #speaker:Slip #expression:Confused #vo:play
 ->DONE
+
 ===Nyx_act2=== //COMPLETE
 \*Your phone buzzes* #vo:Nyx_act2
 Hey, Slip, I really appreciate these speedy deliveries! One less thing I’ve gotta worry about these days #speaker:Nyx #expression:Happy
