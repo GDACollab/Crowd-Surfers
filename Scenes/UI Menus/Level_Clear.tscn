@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cg5atjrtrnq3w"]
+[gd_scene load_steps=18 format=3 uid="uid://cg5atjrtrnq3w"]
 
 [ext_resource type="Script" uid="uid://b736kd0kfh32i" path="res://Scripts/UI/level_clear.gd" id="1_8u14x"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_ashpn"]
@@ -11,10 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cnxpiynitwknp" path="res://Assets/Art/UI/LevelClear/background_star_2.PNG" id="9_ewal3"]
 [ext_resource type="Texture2D" uid="uid://dk7knx18hwvme" path="res://Assets/Art/UI/LevelClear/background_star_3.PNG" id="10_5bgqs"]
 [ext_resource type="Texture2D" uid="uid://du6g6cfb6dmn5" path="res://Assets/Art/UI/LevelClear/background_star_4.PNG" id="11_rm4hk"]
-[ext_resource type="Texture2D" uid="uid://bup7wq3nwgxek" path="res://Assets/Art/UI/button_medium.png" id="12_rm4hk"]
+[ext_resource type="Texture2D" uid="uid://dwa6wsr41784a" path="res://Assets/Art/UI/LevelClear/restart_button.PNG" id="13_ewal3"]
+[ext_resource type="Texture2D" uid="uid://d7vnoe50wc8r" path="res://Assets/Art/UI/LevelClear/continue_button.PNG" id="14_5bgqs"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="14_rm4hk"]
-[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="14_vw3ka"]
-[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="15_rm4hk"]
 
 [sub_resource type="Animation" id="Animation_rm4hk"]
 length = 0.001
@@ -214,16 +213,18 @@ layout_mode = 0
 offset_left = -2656.5935
 offset_top = 381.4286
 offset_right = -2.5935059
-offset_bottom = 725.4286
+offset_bottom = 725.42883
 texture = ExtResource("5_auuq0")
 
 [node name="Star1" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 480.00003
 offset_bottom = 680.0
 texture = ExtResource("8_auuq0")
 
 [node name="Star2" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 30.21978
 offset_top = 934.28577
@@ -232,6 +233,7 @@ offset_bottom = 1378.2858
 texture = ExtResource("9_ewal3")
 
 [node name="Star3" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2129.121
 offset_top = 90.0
@@ -240,6 +242,7 @@ offset_bottom = 948.0
 texture = ExtResource("10_5bgqs")
 
 [node name="Star4" type="TextureRect" parent="Background/BackgroundElements"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 806.31866
 offset_top = 311.42856
@@ -302,59 +305,46 @@ text = "00:00.00"
 
 [node name="RestartButton" type="TextureButton" parent="Background"]
 layout_mode = 0
-offset_left = 1710.1648
-offset_top = 622.8572
-offset_right = 2340.1648
-offset_bottom = 982.8572
-scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("12_rm4hk")
+offset_left = 1541.2087
+offset_top = 781.4286
+offset_right = 2687.209
+offset_bottom = 1141.4286
+texture_normal = ExtResource("13_ewal3")
 script = ExtResource("14_rm4hk")
 brightness_change = 0.1
 
-[node name="Text" type="RichTextLabel" parent="Background/RestartButton"]
+[node name="TempText" type="RichTextLabel" parent="Background/RestartButton"]
 layout_mode = 0
-offset_left = 86.99637
-offset_top = 108.57139
-offset_right = 733.99634
-offset_bottom = 360.57138
+offset_left = 282.96704
+offset_top = 22.857143
+offset_right = 341.96704
+offset_bottom = 62.857143
+scale = Vector2(10, 10)
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_fonts/normal_font = ExtResource("14_vw3ka")
-theme_override_fonts/italics_font = ExtResource("15_rm4hk")
-theme_override_fonts/mono_font = ExtResource("14_vw3ka")
-theme_override_font_sizes/italics_font_size = 115
-bbcode_enabled = true
-text = "[i]RESTART"
+text = "Restart"
 fit_content = true
 autowrap_mode = 0
 
 [node name="ContinueButton" type="TextureButton" parent="Background"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 1629.1208
-offset_top = 1050.0
-offset_right = 2259.1208
-offset_bottom = 1410.0
-scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("12_rm4hk")
+offset_left = 1443.6813
+offset_top = 1127.143
+offset_right = 2659.6812
+offset_bottom = 1537.143
+texture_normal = ExtResource("14_5bgqs")
 script = ExtResource("14_rm4hk")
 brightness_change = 0.1
 
-[node name="Text" type="RichTextLabel" parent="Background/ContinueButton"]
+[node name="TempText" type="RichTextLabel" parent="Background/ContinueButton"]
 layout_mode = 0
-offset_left = 75.091606
-offset_top = 112.380936
-offset_right = 722.0916
-offset_bottom = 364.38092
+offset_left = 259.6154
+offset_top = 42.857056
+offset_right = 329.6154
+offset_bottom = 82.857056
+scale = Vector2(10, 10)
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_fonts/normal_font = ExtResource("14_vw3ka")
-theme_override_fonts/italics_font = ExtResource("15_rm4hk")
-theme_override_fonts/mono_font = ExtResource("14_vw3ka")
-theme_override_font_sizes/italics_font_size = 115
-bbcode_enabled = true
-text = "[i]CONTINUE"
+text = "Continue"
 fit_content = true
 autowrap_mode = 0
 

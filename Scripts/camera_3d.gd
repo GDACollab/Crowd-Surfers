@@ -1,5 +1,4 @@
 extends Camera3D
-class_name SlipCamera
 
 @export var player_path: NodePath
 @export var follow_speed: float = 0.5
@@ -117,7 +116,7 @@ func apply_occlusion(sprite: GeometryInstance3D) -> void:
 	occluding[sprite] = { "original": sprite.material_override, "material": mat, "tween": null }
 	sprite.material_override = mat
 	tween_occlusion(sprite, occlusion_alpha, false)
- 
+
 func remove_occlusion(sprite: GeometryInstance3D) -> void:
 	tween_occlusion(sprite, 1.0, true)
 
@@ -143,7 +142,6 @@ func tween_occlusion(sprite: GeometryInstance3D, target_alpha: float, restore_af
 	data["tween"] = tween
 
 func restore_sprite(sprite: GeometryInstance3D, original: Material) -> void:
-	print("[OCCLUSION] Restoring sprite: ", sprite)
 	if is_instance_valid(sprite):
 		sprite.material_override = original
 	occluding.erase(sprite)

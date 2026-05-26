@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=3 uid="uid://cfik16ilynn7l"]
+[gd_scene load_steps=178 format=3 uid="uid://cfik16ilynn7l"]
 
 [ext_resource type="Script" uid="uid://vruytsvl503q" path="res://Scripts/player_controller.gd" id="1_i0hvh"]
 [ext_resource type="Texture2D" uid="uid://d3e32r174a02j" path="res://Assets/Art/PlayerAnimationFrames/Crash/Back/crash_B0001.png" id="2_kf3bj"]
@@ -168,8 +168,6 @@
 [ext_resource type="Shader" uid="uid://ccc1807xplo8e" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="166_wdytq"]
 [ext_resource type="Texture2D" uid="uid://dw8hrkutvar7a" path="res://Assets/Art/VFX/speed_gradient.png" id="167_wdytq"]
 [ext_resource type="Script" uid="uid://f280k613n5v8" path="res://addons/GPUTrail/GPUTrail3D.gd" id="167_x80xa"]
-[ext_resource type="Texture2D" uid="uid://cuysutm5r3lj8" path="res://Assets/Art/VFX/TrailSparkle/TrailSparkle1.png" id="169_3mnch"]
-[ext_resource type="Texture2D" uid="uid://dhsf0aabplduc" path="res://Assets/Art/VFX/TrailSparkle/TrailSparkle2.png" id="170_ojguh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3qbh"]
 animations = [{
@@ -927,20 +925,6 @@ shader_parameter/flags = 12
 [sub_resource type="QuadMesh" id="QuadMesh_3j1fi"]
 material = SubResource("ShaderMaterial_2odea")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2odea"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("169_3mnch")
-}, {
-"duration": 1.0,
-"texture": ExtResource("170_ojguh")
-}],
-"loop": true,
-"name": &"sparkle",
-"speed": 5.0
-}]
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 floor_snap_length = 5.0
@@ -1084,14 +1068,6 @@ billboard = true
 clip_overlaps = false
 _defaults_have_been_set = true
 metadata/_custom_type_script = "uid://f280k613n5v8"
-
-[node name="TrailSparkle" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 3, 0.337)
-alpha_cut = 1
-sprite_frames = SubResource("SpriteFrames_2odea")
-animation = &"sparkle"
-autoplay = "sparkle"
-frame_progress = 0.45355117
 
 [connection signal="animation_changed" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_animation_finished"]
