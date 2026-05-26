@@ -119,7 +119,6 @@ func apply_occlusion(sprite: GeometryInstance3D) -> void:
 	tween_occlusion(sprite, occlusion_alpha, false)
  
 func remove_occlusion(sprite: GeometryInstance3D) -> void:
-	print("[OCCLUSION] Removing occlusion on sprite: ", sprite)
 	tween_occlusion(sprite, 1.0, true)
 
 func tween_occlusion(sprite: GeometryInstance3D, target_alpha: float, restore_after: bool) -> void:

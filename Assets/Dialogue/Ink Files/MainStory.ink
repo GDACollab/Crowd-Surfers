@@ -1,5 +1,6 @@
 ->END
 
+//COMPLETE
 ===main_act1_scene1===
 \*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
 At least until...
@@ -10,31 +11,31 @@ Right on time...but only barely. You need to be faster than that. Much faster #s
 Um, sorry boss! I was asking Chef how his morning was going–but he just started rambling about some "cheese shortage"? #speaker:Slip #anim:Shake #vo:play
 Preposterous! The great Sammy Sassbear’s would never fall victim to the fabled cheese shortage! #speaker:Sam #vo:play
 Well, if you want to be the one to argue with Chef… #speaker:Slip #vo:play
-…I think I shall pass on that kind offer #speaker:Sam #expression:Scared
-Anywhooo…we are officially at war! And Slip, you have won the audition to be our shining lead actor! #speaker:Sam
+…I think I shall pass on that kind offer #speaker:Sam #expression:Scared #vo:play
+Anywhooo…we are officially at war! And Slip, you have won the audition to be our shining lead actor! #speaker:Sam #vo:play
 *Uhh, I don’t remember auditioning… #speaker:Slip #vo:play
     Nevermind that #speaker:Sam #vo:play
 *Wait, did you say war? I’m too young to die! #speaker:Slip #vo:play
     Not to that extreme, but a war nonetheless #speaker:Sam #vo:play
 -A message from up-top was emailed to us this morning #speaker:Sam #vo:play
-Those big, dirty, disgusting corporate suits have tempted me with a most glorious treasure #speaker:Sam
+Those big, dirty, disgusting corporate suits have tempted me with a most glorious treasure #speaker:Sam #vo:play
 A ticket to Feathers! On Broadway! Eeeeeeee!!! #speaker:Sam #anim:Shake #vo:play
 Umm...okay? #speaker:Slip #vo:play
-But who are we at war with? #speaker:Slip #expression:Scared
+But who are we at war with? #speaker:Slip #expression:Scared #vo:play
 Caeno Gastropub, of course! We must best them in a game of speedy deliveries and top-quality food! #speaker:Sam #vo:play
-Only then shall we seize the ever-elusive prize! #speaker:Sam
+Only then shall we seize the ever-elusive prize! #speaker:Sam #vo:play
 So you’re saying that all I gotta do is deliver pizza? #speaker:Slip #vo:play
 Ha, dear Slip. You are not just delivering pizza. You are delivering justice. #speaker:Sam #vo:play
-Justice to that slimy Maximilian. It is high time that Noise City learns who the most magnificent business owner truly is! #speaker:Sam #anim:Laugh
+Justice to that slimy Maximilian. It is high time that Noise City learns who the most magnificent business owner truly is! #speaker:Sam #anim:Laugh #vo:play
 *The CEO of Scratch Records? #speaker:Slip #vo:play
 *Oh, Gabrielle D. Annabelle of course! #speaker:Slip #vo:play
 -WRONG! It is I, Samuel. Ario. MAXIMUS! #speaker:Sam #vo:play
 Now Slip, get those skates on the ground and satisfy our audience with cheesy deliciousness! #speaker:Sam #vo:play
-If I hear those delivery times are slipping, I may have to ask you to, ahem, exit stage left. Kindly, of course. #speaker:Sam #anim:Shake
-Got it? #speaker:Sam
+If I hear those delivery times are slipping, I may have to ask you to, ahem, exit stage left. Kindly, of course. #speaker:Sam #anim:Shake #vo:play
+Got it? #speaker:Sam #vo:play
 So...am I getting a raise for all this? #speaker:Slip #vo:play
 You’re a funny fella, Slip! #speaker:Sam #anim:Laugh #vo:play
-Now get to work! The clock's ticking! #speaker:Sam
+Now get to work! The clock's ticking! #speaker:Sam #vo:play
 ->END
 
 ===main_act1_scene2===
@@ -149,7 +150,7 @@ And if this is Samuel, I hope you are happy. #speaker:Max
 
 H-he’s going to France? But… he is my rival. My opposite. That coward would not dare give the final curtain call! #speaker:Sam #expression:Nervous #anim:Laugh
 
-Uhh, you won. Shouldn’t you be happy? #speaker:Slip #expression:Default #Anim:Spin
+Uhh, you won. Shouldn’t you be happy? #speaker:Slip #Anim:Spin
 
 No. No, I never wanted this. How could he leave like that, over some stupid tickets?! #speaker:Sam #expression:Angry #anim:Shake
 
@@ -243,11 +244,104 @@ Oop, I’ve got a rehearsal coming up soon and a whole pie to myself. Tata, Slip
 	
 I’ve got a feeling this is gonna be more work than I bargained for. #speaker:Slip #expression:Confused
 ->DONE
+
 ===Pavo_act2===
-This is Pavo act 2
+\*Your phone buzzes* #vo:Pavo_act2
+
+Hey Pavo! Everything good with the food? #speaker:Slip
+
+My darling, the pizza is positively delightful #speaker:Pavo
+
+Compliments to the chef, as always #speaker:Pavo #expression:Performance #anim:Spin
+
+He sure does put those tentacles to good use, huh? #speaker:Slip #expression:Confident
+
+Tentacles…? Ah, enough about the food, it’s about time we served the T #speaker:Pavo #expression:Awkward
+
+Oh, sorry Pavo, but we actually don’t have tea on the menu. How about a fountain drink? #speaker:Slip #expression:Nervous #anim:Shake
+
+The tea I prefer can seldom be found on any menu #speaker:Pavo
+
+Tell me, now that your boss is back with his sweet little shell of a man, you think he’ll give this doll a ring as well? #speaker:Pavo #anim:Spin
+
+Surely he can no longer resist my friendship after last week’s dazzling performance #speaker:Pavo #expression:Performance
+
+*Why do you care so much about being his friend? #speaker:Slip #expression:Confused
+
+	Loose ends leave a bad taste in my mouth #speaker:Pavo #expression:Awkward
+	
+	Besides, that man is due for a long, hard reading #speaker:Pavo #expression:Awkward
+	
+*Now that you mention it, he did seem to be warming up to the idea #speaker:Slip #anim:Shake
+	
+	Splendid. #speaker:Pavo #expression:Performance #anim:laugh
+
+-Tell that slug of yours to visit Reverb Park at 9:00 P.M. sharp. #speaker:Pavo
+
+Convince him an exclusive reception will be taking place, and he just so happens to be on the invitation list #speaker:Pavo #expression:Performance
+
+A man like him could never resist #speaker:Pavo #expression:Performance #anim:laugh
+
+You can make that happen, right dear? #speaker:Pavo #expression:Performance
+
+*As you wish, Madame! #speaker:Slip #expression:Confident
+
+	No need to be so formal, my dear #speaker:Pavo #expression:awkward
+	
+	After all, I must uphold my end of the bargain as well #speaker:Pavo #expression:default
+	
+	Once this affair is over, we shall tear up the runway to your tunes #speaker:Pavo #expression:Performance #anim:Spin
+	
+*The deal’s still on, right? #speaker:Slip #expression:default
+
+	Oh darling, these feathers would never shed their word. Don’t go thinking I forgot where I came from #speaker:Pavo #expression:default
+	
+	Your music will electrify the runway in no time #speaker:Pavo #expression:Performance #anim:Spin
+	
+-Thanks, Pavo #speaker:Slip #expression:nervous #anim:Shake
+
+Oh! Here comes another order. Gotta run! #speaker:Slip #expression:Confident
+
+Kid’s a hard worker. I’ll make sure they see the stars #anim:Exit #speaker:Pavo #expression:Performance #anim:Spin
+
 ->DONE
 ===Pavo_act3===
-This is Pavo act 3
+\*Your phone buzzes* #vo:Pavo_act3
+
+Good afternoon, Pavo! Is everything going well? #speaker:Slip #expression:Confident
+
+Yes, dear, I’m more than fine. I actually have some fresh T for you! #speaker:Pavo #expression:Performance #anim:Spin
+
+Oh? #speaker:Slip #expression:Default
+
+I took your advice! #speaker:Pavo #expression:Performance
+
+If you haven’t heard, Sam and I haven’t been on the best of terms, so he and I had a bit of a sit-and-talk #speaker:Pavo #expression:Default
+
+Well? How did it go?! #speaker:Slip #expression:Scared
+
+Fabulous, darling! Our friendship is back on track, thanks to you! #speaker:Pavo #expression:performance #anim:spin
+
+Wow, that’s amazing! #speaker:Slip #expression:Confident
+
+And as thanks for delivering me not just a pizza, but your boss on top of that, I’ll be sending you front row tickets to my next big show! #speaker:Pavo #expression:Default
+
+Really?! #speaker:Slip #expression:Scared #anim:Shake
+
+Absolutely, one for you and a friend #speaker:Pavo #expression:Default
+And, you’ll want to be there for a certain pizza deliverer’s professional debut! #speaker:Pavo #expression:Performance #anim:Laugh
+
+Oh? Who? #speaker:Slip #expression:Default
+
+\* A piano plays a tune through the phone * #speaker:Pavo #expression:performance #anim:Shake
+
+Wait, MY song?! #speaker:Slip #expression:Scared
+
+Indeed. I can’t wait to see you there! #speaker:Pavo #expression:Performance #anim:Laugh
+
+Thank you so much! #speaker:Slip #expression:Confident
+
+Ta-ta! #speaker:Pavo #expression:Performance
 ->DONE
 
 //MINNY
@@ -468,9 +562,9 @@ Heh, well, if I’m being honest, I wouldn’t recommend just getting initials d
 
 Hey, wouldn’t you be the one tattooing me? #speaker:Slip #expression:Confused #anim:Shake
 
-Well, yeah, but you’re asking my opinion on this stuff. Thought I might give some advice. #speaker:Nyx #expression:Default
+Well, yeah, but you’re asking my opinion on this stuff. Thought I might give some advice. #speaker:Nyx
 
-(sigh) Then I guess I’ll keep thinking… I’ll try to come by before you close up shop. #speaker:Slip #expression:Default 
+(sigh) Then I guess I’ll keep thinking… I’ll try to come by before you close up shop. #speaker:Slip
 
 Oh, uh… actually, I decided I’m staying. #speaker:Nyx #expression:Happy
 
