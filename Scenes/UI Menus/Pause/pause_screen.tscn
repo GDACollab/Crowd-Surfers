@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=65 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/UI/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_0kv7i"]
@@ -10,10 +10,277 @@
 [ext_resource type="Texture2D" uid="uid://pltwgtmqepn6" path="res://Assets/Art/UI/ui_phone_base_bg.png" id="6_t601t"]
 [ext_resource type="PackedScene" uid="uid://kvs3yueyscim" path="res://Scenes/UI Menus/MainMenu/settings_screen.tscn" id="6_tmijn"]
 [ext_resource type="Texture2D" uid="uid://bdvjx56tobfiv" path="res://Assets/Art/UI/PauseScreen/controls_arrows.png" id="7_t601t"]
+[ext_resource type="Texture2D" uid="uid://botfqon1y2akb" path="res://Assets/Art/UI/PauseScreen/controls_wasd.png" id="8_6nlnl"]
+[ext_resource type="Texture2D" uid="uid://hbrqocy3umxl" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0001.png" id="9_2sge0"]
+[ext_resource type="Texture2D" uid="uid://do21jpwkglhgg" path="res://Assets/Art/UI/exit.png" id="9_uhb38"]
+[ext_resource type="Texture2D" uid="uid://c6sdnvsj5a8l3" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0002.png" id="10_03m81"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="10_en6uu"]
+[ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/exit_click_mask.png" id="10_gkt0c"]
+[ext_resource type="Texture2D" uid="uid://bjfyngt8heu42" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0003.png" id="11_s4mb5"]
+[ext_resource type="Texture2D" uid="uid://w7qjcvameqyh" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0004.png" id="12_ueahi"]
+[ext_resource type="Texture2D" uid="uid://b6bxcr5g3lwin" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0005.png" id="13_fgs3e"]
+[ext_resource type="Texture2D" uid="uid://cl5yq36vaat7s" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0006.png" id="14_kp3yf"]
+[ext_resource type="Texture2D" uid="uid://bjn1ovh1j2jmy" path="res://Assets/Art/PlayerAnimationFrames/Dash/Frontside/frontside_dash-1.png" id="15_kp3yf"]
+[ext_resource type="Texture2D" uid="uid://ci6lub5g5ki4j" path="res://Assets/Art/PlayerAnimationFrames/Dash/Frontside/frontside_dash-2.png" id="16_gt0ed"]
+[ext_resource type="Texture2D" uid="uid://c40doim7n7nnl" path="res://Assets/Art/PlayerAnimationFrames/Dash Exit/Frontside/frontside_dash_exit-1.png" id="17_ibeq5"]
+[ext_resource type="Texture2D" uid="uid://1r5thjh0bdt0" path="res://Assets/Art/PlayerAnimationFrames/Dash Exit/Frontside/frontside_dash_exit-2.png" id="18_slmuf"]
+[ext_resource type="Texture2D" uid="uid://o4ghhdqle3iy" path="res://Assets/Art/PlayerAnimationFrames/Jump/Jump_Front_Side/jumpFS0001.png" id="19_2rv72"]
+[ext_resource type="Texture2D" uid="uid://dwwd42877d408" path="res://Assets/Art/PlayerAnimationFrames/Jump/Jump_Front_Side/jumpFS0002.png" id="20_lvb7r"]
+[ext_resource type="Texture2D" uid="uid://b5nkoo1nyert6" path="res://Assets/Art/PlayerAnimationFrames/Jump/Jump_Front_Side/jumpFS0003.png" id="21_oekbg"]
+[ext_resource type="Texture2D" uid="uid://bb622on0pfhnk" path="res://Assets/Art/PlayerAnimationFrames/Fall/Fall_Front_Side/fallFS0001.png" id="22_wvn4n"]
+[ext_resource type="Texture2D" uid="uid://bnylvlxnnqow2" path="res://Assets/Art/PlayerAnimationFrames/Fall/Fall_Front_Side/fallFS0002.png" id="23_1qisx"]
+[ext_resource type="Texture2D" uid="uid://oljj65qvppx8" path="res://Assets/Art/PlayerAnimationFrames/Fall/Fall_Front_Side/fallFS0003.png" id="24_jkgsv"]
+[ext_resource type="Texture2D" uid="uid://b2vhgsym8bycw" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0001.png" id="25_lvb7r"]
+[ext_resource type="Texture2D" uid="uid://c60o4xnicohvu" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0002.png" id="26_jkgsv"]
+[ext_resource type="Texture2D" uid="uid://85qnnlpu78bc" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0003.png" id="27_ff7gk"]
+[ext_resource type="Texture2D" uid="uid://vhn5puxycswn" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0004.png" id="28_xcye8"]
+[ext_resource type="Texture2D" uid="uid://g2haeqn10snt" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0005.png" id="29_b0tki"]
+[ext_resource type="Texture2D" uid="uid://d22bt2f1evxgs" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0001.png" id="30_2m6ih"]
+[ext_resource type="Texture2D" uid="uid://ck4ovlg1bjeht" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0002.png" id="31_b0la8"]
+[ext_resource type="Texture2D" uid="uid://ctlbo1v8vfk7a" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0003.png" id="32_uhb38"]
+[ext_resource type="Texture2D" uid="uid://qh0plwu2bcga" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0004.png" id="33_en6uu"]
+[ext_resource type="Texture2D" uid="uid://dhi62u0yv0shv" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0005.png" id="34_gkt0c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0kv7i"]
 shader = ExtResource("2_p5gsh")
 shader_parameter/blur_amount = 1.250000059375
+
+[sub_resource type="Animation" id="Animation_3uo0b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlsImage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_t601t")]
+}
+
+[sub_resource type="Animation" id="Animation_2sge0"]
+resource_name = "controls_image"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlsImage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_t601t"), ExtResource("8_6nlnl")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0qof"]
+_data = {
+&"RESET": SubResource("Animation_3uo0b"),
+&"controls_image": SubResource("Animation_2sge0")
+}
+
+[sub_resource type="Animation" id="Animation_ibeq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipMove:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_2sge0")]
+}
+
+[sub_resource type="Animation" id="Animation_gt0ed"]
+resource_name = "slip_move"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipMove:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_2sge0"), ExtResource("10_03m81"), ExtResource("11_s4mb5"), ExtResource("12_ueahi"), ExtResource("13_fgs3e"), ExtResource("14_kp3yf")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_slmuf"]
+_data = {
+&"RESET": SubResource("Animation_ibeq5"),
+&"slip_move": SubResource("Animation_gt0ed")
+}
+
+[sub_resource type="Animation" id="Animation_olch6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipDash1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_kp3yf")]
+}
+
+[sub_resource type="Animation" id="Animation_iipw1"]
+resource_name = "slip_dash"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipDash1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_kp3yf"), ExtResource("16_gt0ed"), ExtResource("17_ibeq5"), ExtResource("18_slmuf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slips/SlipDash2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_ibeq5"), ExtResource("18_slmuf"), ExtResource("15_kp3yf"), ExtResource("16_gt0ed")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2rv72"]
+_data = {
+&"RESET": SubResource("Animation_olch6"),
+&"slip_dash": SubResource("Animation_iipw1")
+}
+
+[sub_resource type="Animation" id="Animation_xcye8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipJump:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_2rv72")]
+}
+
+[sub_resource type="Animation" id="Animation_ff7gk"]
+resource_name = "slip_jump"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipJump:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("19_2rv72"), ExtResource("20_lvb7r"), ExtResource("21_oekbg"), ExtResource("22_wvn4n"), ExtResource("23_1qisx"), ExtResource("24_jkgsv")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0tki"]
+_data = {
+&"RESET": SubResource("Animation_xcye8"),
+&"slip_jump": SubResource("Animation_ff7gk")
+}
+
+[sub_resource type="Animation" id="Animation_2m6ih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipGlide:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_lvb7r")]
+}
+
+[sub_resource type="Animation" id="Animation_pi7fh"]
+resource_name = "slip_glide"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipGlide:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("25_lvb7r"), ExtResource("26_jkgsv"), ExtResource("27_ff7gk"), ExtResource("28_xcye8"), ExtResource("29_b0tki")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0la8"]
+_data = {
+&"RESET": SubResource("Animation_2m6ih"),
+&"slip_glide": SubResource("Animation_pi7fh")
+}
+
+[sub_resource type="Animation" id="Animation_tr4yg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipStomp:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("30_2m6ih")]
+}
+
+[sub_resource type="Animation" id="Animation_y6uv0"]
+resource_name = "slip_stomp"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slips/SlipStomp:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("30_2m6ih"), ExtResource("31_b0la8"), ExtResource("32_uhb38"), ExtResource("33_en6uu"), ExtResource("34_gkt0c")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb0ju"]
+_data = {
+&"RESET": SubResource("Animation_tr4yg"),
+&"slip_stomp": SubResource("Animation_y6uv0")
+}
 
 [sub_resource type="Animation" id="Animation_r6arl"]
 length = 0.001
@@ -443,36 +710,128 @@ texture = ExtResource("6_t601t")
 anchors_preset = 0
 offset_left = 820.0
 offset_top = 160.0
-offset_right = 2321.9998
+offset_right = 2322.0005
 offset_bottom = 160.0
+rotation = 1.5707964
 
 [node name="ControlsImage" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
 layout_mode = 0
-offset_left = 621.6667
-offset_top = -49.16658
-offset_right = 2123.6667
-offset_bottom = 852.83344
-rotation = 1.5707964
+offset_left = -47.49994
+offset_top = -619.9999
+offset_right = 1454.5
+offset_bottom = 282.00012
 scale = Vector2(0.77, 0.77)
 texture = ExtResource("7_t601t")
 
-[node name="BackButton" type="Button" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -198.49982
-offset_top = 886.6668
-offset_right = -3.499817
-offset_bottom = 987.1669
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5707964
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Back"
+[node name="ControlsImageAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_k0qof")
+}
+autoplay = "controls_image"
+
+[node name="BackButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+layout_mode = 0
+offset_left = 961.6667
+offset_top = -590.0
+offset_right = 1141.6667
+offset_bottom = -410.0
+rotation = 0.17278759
+scale = Vector2(0.9, 0.9)
+texture_normal = ExtResource("9_uhb38")
+texture_click_mask = ExtResource("10_gkt0c")
+script = ExtResource("10_en6uu")
+
+[node name="Slips" type="Control" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+anchors_preset = 0
+
+[node name="SlipMove" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 135.00006
+offset_top = -310.83337
+offset_right = 1215.0
+offset_bottom = 769.1666
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("9_2sge0")
+
+[node name="SlipMoveAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_slmuf")
+}
+autoplay = "slip_move"
+
+[node name="SlipDash1" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 376.6667
+offset_top = -224.16669
+offset_right = 1456.6667
+offset_bottom = 855.8333
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("15_kp3yf")
+
+[node name="SlipDash2" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 910.8333
+offset_top = -245.0
+offset_right = 1990.8333
+offset_bottom = 835.0
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("17_ibeq5")
+
+[node name="SlipDashAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_2rv72")
+}
+autoplay = "slip_dash"
+
+[node name="SlipJump" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 105.833374
+offset_top = -563.3334
+offset_right = 1185.8334
+offset_bottom = 532.6666
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("19_2rv72")
+
+[node name="SlipJumpAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_b0tki")
+}
+autoplay = "slip_jump"
+
+[node name="SlipGlide" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 385.83337
+offset_top = -444.1667
+offset_right = 1465.8334
+offset_bottom = 651.8333
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("25_lvb7r")
+
+[node name="SlipGlideAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_b0la8")
+}
+autoplay = "slip_glide"
+
+[node name="SlipStomp" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+layout_mode = 0
+offset_left = 651.6667
+offset_top = -342.49997
+offset_right = 1731.6667
+offset_bottom = 753.5
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("30_2m6ih")
+
+[node name="SlipStompAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_qb0ju")
+}
+autoplay = "slip_stomp"
 
 [node name="ButtonContainer" type="VBoxContainer" parent="PhoneOutline/PhoneBackground"]
 layout_mode = 1
@@ -545,10 +904,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -7.142853
-offset_top = -192.85718
-offset_right = 52.857147
-offset_bottom = -172.85718
+offset_left = -22.500061
+offset_top = -174.99988
+offset_right = 37.49994
+offset_bottom = -154.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(30, 10)
@@ -563,10 +922,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -2.1428528
-offset_top = -187.85718
-offset_right = 7.857147
-offset_bottom = -177.85718
+offset_left = -17.500061
+offset_top = -169.99988
+offset_right = -7.500061
+offset_bottom = -159.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
@@ -580,10 +939,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 17.857147
-offset_top = -187.85718
-offset_right = 27.857147
-offset_bottom = -177.85718
+offset_left = 2.499939
+offset_top = -169.99988
+offset_right = 12.499939
+offset_bottom = -159.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
@@ -598,10 +957,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 37.857147
-offset_top = -187.85718
-offset_right = 47.857147
-offset_bottom = -177.85718
+offset_left = 22.499939
+offset_top = -169.99988
+offset_right = 32.49994
+offset_bottom = -159.99988
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
@@ -613,6 +972,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_ojd7t")
 }
 
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="." method="_on_controls_back_button_pressed"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
