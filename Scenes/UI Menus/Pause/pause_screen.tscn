@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=70 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/UI/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_0kv7i"]
@@ -40,6 +40,10 @@
 [ext_resource type="Texture2D" uid="uid://ctlbo1v8vfk7a" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0003.png" id="32_uhb38"]
 [ext_resource type="Texture2D" uid="uid://qh0plwu2bcga" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0004.png" id="33_en6uu"]
 [ext_resource type="Texture2D" uid="uid://dhi62u0yv0shv" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0005.png" id="34_gkt0c"]
+[ext_resource type="Texture2D" uid="uid://bup7wq3nwgxek" path="res://Assets/Art/UI/button_medium.png" id="38_tr4yg"]
+[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="39_qb0ju"]
+[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="40_edyq6"]
+[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="44_qb0ju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0kv7i"]
 shader = ExtResource("2_p5gsh")
@@ -439,15 +443,9 @@ tracks/4/path = NodePath("../..")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.01, 0.24, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"stop_transitioning"
-}, {
-"args": [],
-"method": &"start_transitioning"
-}, {
 "args": [],
 "method": &"start_transitioning"
 }, {
@@ -537,9 +535,12 @@ tracks/6/path = NodePath("../..")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
 "args": [],
 "method": &"stop_transitioning"
 }]
@@ -626,9 +627,81 @@ tracks/6/path = NodePath("../..")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qb0ju"]
+resource_name = "close_settings"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsScene:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(410, 160), Vector2(-250, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(820, 160), Vector2(160, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePage1:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePage2:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
 "args": [],
 "method": &"stop_transitioning"
 }]
@@ -637,6 +710,7 @@ tracks/6/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojd7t"]
 _data = {
 &"RESET": SubResource("Animation_r6arl"),
+&"close_settings": SubResource("Animation_qb0ju"),
 &"open_settings": SubResource("Animation_tmijn"),
 &"rotate_landscape": SubResource("Animation_qyxbx"),
 &"rotate_portrait": SubResource("Animation_g4tqe")
@@ -833,58 +907,162 @@ libraries = {
 }
 autoplay = "slip_stomp"
 
-[node name="ButtonContainer" type="VBoxContainer" parent="PhoneOutline/PhoneBackground"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -255.0
-offset_top = -540.0
-offset_right = 274.99976
-offset_bottom = 460.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(125, 287.5)
+[node name="ButtonContainer" type="Control" parent="PhoneOutline/PhoneBackground"]
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 160.0
+offset_right = 200.00006
+offset_bottom = 200.0
 
-[node name="ResumeButton" type="Button" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Resume"
-metadata/_edit_use_anchors_ = true
+[node name="ResumeButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 585.0
+offset_bottom = 315.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
 
-[node name="ControlsButton" type="Button" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Controls"
-metadata/_edit_use_anchors_ = true
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.92857
+offset_right = 615.75
+offset_bottom = 335.9286
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]RESUME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Settings
-"
-metadata/_edit_use_anchors_ = true
+[node name="ControlsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 170.0
+offset_right = 585.0
+offset_bottom = 530.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
 
-[node name="RestartLevelButton" type="Button" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Restart Level
-"
-metadata/_edit_use_anchors_ = true
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 89.285706
+offset_right = 615.75
+offset_bottom = 341.2857
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 110
+bbcode_enabled = true
+text = "[i]CONTROLS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
 
-[node name="ExitLevelButton" type="Button" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "Exit Level
-"
-metadata/_edit_use_anchors_ = true
+[node name="SettingsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 385.0
+offset_right = 585.0
+offset_bottom = 745.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.929
+offset_right = 615.75
+offset_bottom = 335.92902
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]SETTINGS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="RestartLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 600.0
+offset_right = 585.0
+offset_bottom = 960.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.929
+offset_right = 615.75
+offset_bottom = 335.92902
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]RESTART"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ExitLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 815.0
+offset_right = 585.0
+offset_bottom = 1175.0
+scale = Vector2(1, 0.7)
+texture_normal = ExtResource("38_tr4yg")
+script = ExtResource("10_en6uu")
+
+[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"]
+layout_mode = 0
+offset_left = -31.25
+offset_top = 83.929
+offset_right = 615.75
+offset_bottom = 335.92902
+scale = Vector2(1, 1.429)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("39_qb0ju")
+theme_override_fonts/italics_font = ExtResource("40_edyq6")
+theme_override_fonts/mono_font = ExtResource("39_qb0ju")
+theme_override_font_sizes/italics_font_size = 115
+bbcode_enabled = true
+text = "[i]EXIT"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="SettingsScene" parent="PhoneOutline/PhoneBackground" instance=ExtResource("6_tmijn")]
 layout_mode = 0
@@ -972,13 +1150,26 @@ libraries = {
 &"": SubResource("AnimationLibrary_ojd7t")
 }
 
+[node name="Vignette" parent="." instance=ExtResource("44_qb0ju")]
+layout_mode = 0
+
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="." method="_on_controls_back_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
 
