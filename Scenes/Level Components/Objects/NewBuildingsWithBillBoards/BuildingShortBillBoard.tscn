@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci0n2ibbk4cit"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_nfsfr"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_fvjw2"]
+[ext_resource type="Texture2D" uid="uid://l46pyh7ft15b" path="res://Assets/Art/AlphaSprites/SprintEightAssets/FinalBillboardBuildings/Billboard_4_DanicaDancelCarlos.png" id="3_3e04s"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_xuuit"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3e04s"]
+render_priority = 0
+shader = ExtResource("4_xuuit")
+shader_parameter/tex = ExtResource("3_3e04s")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igx84"]
+size = Vector3(100, 180, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3yj5"]
+size = Vector3(100, 20, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_nfsfr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
+script = ExtResource("2_fvjw2")
+front_filename = ExtResource("3_3e04s")
+width = 100.0
+length = 100.0
+height = 200.0
+front_spr_pad_left = 49.405
+front_spr_pad_right = 44.555
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(18.941406, 0, 8.537381e-07, 8.2795515e-07, 1.9106855e-15, -19.53125, 0, 1, 3.7318076e-14, -2.425, 100, 100)
+material_overlay = SubResource("ShaderMaterial_3e04s")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_3e04s")
+region_enabled = true
+region_rect = Rect2(0, 0, 1024, 1024)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, 50)
+shape = SubResource("BoxShape3D_igx84")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 190, 50)
+shape = SubResource("BoxShape3D_a3yj5")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

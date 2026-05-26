@@ -1,12 +1,79 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=19 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
+[ext_resource type="Texture2D" uid="uid://36yxe1kfp6ui" path="res://Assets/Art/UI/Dialogue/dialogue_bubble_right_fixed.PNG" id="3_6jg30"]
 [ext_resource type="Script" uid="uid://c1w18kcvp65su" path="res://Scripts/Interface/InterfacePanel.gd" id="4_6em14"]
-[ext_resource type="Texture2D" uid="uid://bsu3080xa05dw" path="res://Assets/Art/Portraits/Slip/Slip_Confident.png" id="4_tk2da"]
+[ext_resource type="Texture2D" uid="uid://5tipx2afipq3" path="res://Assets/Art/Portraits/Slip/Slip_Default.png" id="4_tk2da"]
 [ext_resource type="PackedScene" uid="uid://cvwdknj7n8u5o" path="res://Scenes/Dialogue Interface/character_portrait.tscn" id="4_wemfb"]
+[ext_resource type="Texture2D" uid="uid://b8gxbfx18tx8s" path="res://Assets/Art/UI/Dialogue/choice_1.PNG" id="5_6jg30"]
 [ext_resource type="Material" uid="uid://di7ysi5m6lg7" path="res://Scenes/Dialogue Interface/character_portrait_material.tres" id="5_tk2da"]
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="6_obotj"]
+[ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
+[ext_resource type="Texture2D" uid="uid://c5x3qkjr4lfma" path="res://Assets/Art/UI/Dialogue/choice_2.PNG" id="6_l8m2v"]
+[ext_resource type="Script" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
+[ext_resource type="Shader" uid="uid://nrpqs0j0lece" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
+shader = ExtResource("9_obotj")
+shader_parameter/blur_amount = 2.000000095
+
+[sub_resource type="Gradient" id="Gradient_tk2da"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ybge"]
+gradient = SubResource("Gradient_tk2da")
+
+[sub_resource type="Animation" id="Animation_4ybge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tk2da"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hide_all_panels"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ybge"]
+_data = {
+&"RESET": SubResource("Animation_4ybge"),
+&"fade": SubResource("Animation_tk2da")
+}
 
 [node name="Dialogue Interface" type="Control" node_paths=PackedStringArray("mainPanels")]
 layout_mode = 3
@@ -18,15 +85,48 @@ grow_vertical = 2
 script = ExtResource("1_6mp5d")
 mainPanels = [NodePath("Left Character Portrait"), NodePath("Right Character Portrait")]
 dialoguePanel = ExtResource("5_wemfb")
+right_panel_sprite = ExtResource("3_6jg30")
 choiceButton = ExtResource("2_vriws")
+choice_button_sprites = Array[Texture2D]([ExtResource("5_6jg30"), ExtResource("6_l8m2v")])
 choiceSelectDelay = 1.0
 defaultPortait = ExtResource("4_tk2da")
 speakingPortraitScale = Vector2(1.1, 1.1)
 portraitSwapTime = 0.5
-upperDialogueBoxHeight = 50.0
+upperDialogueBoxHeight = 25.0
 upperDialogueBoxScale = Vector2(0.4, 0.4)
+lowerDialogueBoxHeight = 150.0
 lowerDialogueBoxScale = Vector2(0.65, 0.65)
 portraitOutlineMaterial = ExtResource("5_tk2da")
+
+[node name="UIAudio" parent="." instance=ExtResource("6_obotj")]
+
+[node name="Blur Buffer" type="BackBufferCopy" parent="."]
+position = Vector2(909.99994, 496.99994)
+scale = Vector2(10.099999, 5.9699993)
+copy_mode = 2
+
+[node name="Blur" type="ColorRect" parent="Blur Buffer"]
+material = SubResource("ShaderMaterial_j466g")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -91.980194
+offset_top = -87.269684
+offset_right = -99.70296
+offset_bottom = -97.82243
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fade Panel" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_4ybge")
 
 [node name="Left Character Portrait" parent="." instance=ExtResource("4_wemfb")]
 layout_mode = 1
@@ -51,7 +151,6 @@ showPosition = Vector2(1218, 310)
 hidePosition = Vector2(1637.254, 1200)
 
 [node name="Choice Button Container" type="VBoxContainer" parent="."]
-clip_contents = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -61,10 +160,10 @@ anchor_bottom = 1.0
 offset_left = -322.0
 offset_top = -858.0
 offset_right = 423.0
-offset_bottom = -43.0
+offset_bottom = -137.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 130
+theme_override_constants/separation = 150
 alignment = 2
 script = ExtResource("4_6em14")
 showPosition = Vector2(600, 222)
@@ -75,3 +174,14 @@ layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "PRESS X TO SKIP SCENE"
+
+[node name="Interface Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4ybge")
+}
+
+[node name="VoiceManager" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_4ybge")

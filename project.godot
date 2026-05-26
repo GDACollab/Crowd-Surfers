@@ -33,6 +33,14 @@ Settings="*res://Scripts/Singletons/settings.gd"
 Inky="*res://Scripts/Singletons/InkyHandler.cs"
 SaveDataManager="*res://Scripts/Singletons/save_data_manager.gd"
 Story="*res://Scripts/Singletons/story_tracker.gd"
+Audio="*res://Scripts/Singletons/audio_manager.tscn"
+
+[debug]
+
+shapes/navigation/3d/geometry_face_color=Color(0.5019608, 1, 1, 1)
+shapes/navigation/3d/geometry_face_disabled_color=Color(0.5019608, 0.5019608, 0.5019608, 0.5568628)
+shapes/collision/shape_color=Color(0, 0.6, 0.69803923, 1)
+shapes/collision/contact_color=Color(1, 0.2, 0.101960786, 1)
 
 [display]
 
@@ -50,7 +58,7 @@ project/assembly_name="Crowd Surfers V1.0"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotInk/plugin.cfg", "res://addons/fmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail/plugin.cfg", "res://addons/GodotInk/plugin.cfg", "res://addons/fmod/plugin.cfg")
 
 [global_group]
 
@@ -62,6 +70,7 @@ Grass=""
 
 [gui]
 
+common/snap_controls_to_pixels=false
 theme/custom_font="uid://dm26d870h8e4d"
 
 [input]
@@ -158,6 +167,7 @@ DialogueInteract={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
 DialogueCancel={
@@ -170,12 +180,21 @@ DEBUG_SkipLevel={
 "deadzone": 0.2,
 "events": []
 }
+aar_camera_debug={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":56,"key_label":0,"unicode":42,"location":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
 3d_physics/layer_2="Player"
 3d_physics/layer_4="4"
 3d_physics/layer_8="8"
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=2
 
 [shader_globals]
 

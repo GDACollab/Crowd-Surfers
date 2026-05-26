@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerGroup" id="{7c971f8c-3ed5-4406-8ff7-1475248d5513}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<property name="name">
 			<value>UI</value>
 		</property>
@@ -17,8 +20,20 @@
 	<object class="MixerBusEffectChain" id="{2c170946-df20-4adb-8544-a8313d24840f}">
 		<relationship name="effects">
 			<destination>{4326c507-a095-491f-bd99-abadca68b42c}</destination>
+			<destination>{d1bd71e3-fc6b-4fcd-97a7-307f8846cf4c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2d0b64a0-1ab1-4c9d-9ea9-ceb97dc61375}" />
 	<object class="MixerBusFader" id="{4326c507-a095-491f-bd99-abadca68b42c}" />
+	<object class="MixerSend" id="{d1bd71e3-fc6b-4fcd-97a7-307f8846cf4c}">
+		<property name="level">
+			<value>0</value>
+		</property>
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{26636a52-6407-4181-8208-2815804316fb}</destination>
+		</relationship>
+	</object>
 </objects>

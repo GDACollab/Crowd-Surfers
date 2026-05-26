@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1ocrcmyvwoqg"]
+
+[ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_7e6gw"]
+[ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_lin74"]
+[ext_resource type="Texture2D" uid="uid://u0btl15u3btb" path="res://Assets/Art/AlphaSprites/SprintEightAssets/FinalBillboardBuildings/Billboard_4_StellaNguyen.PNG" id="3_7e6gw"]
+[ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_3tmgn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lin74"]
+render_priority = 0
+shader = ExtResource("4_3tmgn")
+shader_parameter/tex = ExtResource("3_7e6gw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rq2ql"]
+size = Vector3(100, 180, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3tmgn"]
+size = Vector3(100, 20, 100)
+
+[node name="StaticBody3D" type="Node3D"]
+script = ExtResource("1_7e6gw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Concrete"]]
+script = ExtResource("2_lin74")
+front_filename = ExtResource("3_7e6gw")
+width = 100.0
+length = 100.0
+height = 200.0
+front_spr_pad_bottom = 2.735
+front_spr_pad_left = 5.775
+front_spr_pad_right = 11.525
+
+[node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(7.514414, 0, 3.3580253e-07, 3.2846546e-07, 1.9106855e-15, -7.682266, 0, 1, 1.4678395e-14, 2.875, 98.6325, 100)
+material_overlay = SubResource("ShaderMaterial_lin74")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("3_7e6gw")
+region_enabled = true
+region_rect = Rect2(0, 0, 1561, 2639)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, 50)
+shape = SubResource("BoxShape3D_rq2ql")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 190, 50)
+shape = SubResource("BoxShape3D_3tmgn")
+debug_color = Color(0.972549, 0.25490198, 1, 1)

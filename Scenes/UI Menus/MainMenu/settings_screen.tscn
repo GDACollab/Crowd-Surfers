@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://kvs3yueyscim"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6kqvo"]
-[ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/settings_screen.gd" id="1_p0nga"]
+[ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/UI/settings_screen.gd" id="1_p0nga"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhsqn"]
 bg_color = Color(0.4817894, 0.48178953, 0.4817894, 1)
@@ -13,9 +13,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(0, 533.333)
 script = ExtResource("1_p0nga")
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
 
 [node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons") instance=ExtResource("1_6kqvo")]
 back_buttons = [NodePath("../ScrollMask/ScrollContainer/VBoxContainer/BackButton")]

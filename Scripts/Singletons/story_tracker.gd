@@ -21,6 +21,7 @@ var selected_level : int = 0
 var post_level := false
 var next_scene : String
 var voicemail_history : Array[String]
+var current_voicemail_knot : String
 
 func increase_main_story_progress():
 	if(main_story_progress == 2):
@@ -43,10 +44,13 @@ func get_current_knot() -> String:
 			return ""
 		post_level = false
 		current_act = story_arcs_progress[selected_level]
+		## Checks if story is complete
+		if(current_act == 2):
+			return ""
 		## Increment to next scene
-		if(story_arcs_progress[selected_level] < 1):
+		if(story_arcs_progress[selected_level] <= 1):
 			story_arcs_progress[selected_level] += 1
-		knot_name = level_character[selected_level] + "_act" + str(current_act + 1)
+		knot_name = level_character[selected_level] + "_act" + str(current_act + 2)
 		_add_voicemail(knot_name)
 	## Main Story scene
 	else:
@@ -113,3 +117,4 @@ func reset_story():
 	main_story_complete = false
 	for s in story_arcs_progress:
 		s = 0
+	voicemail_history.clear()
