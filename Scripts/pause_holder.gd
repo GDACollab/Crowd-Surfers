@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 			var pause_screen: Node = pause_screen_scene.instantiate()
 			add_child(pause_screen)
 			get_tree().paused = true
-		else:
+		elif get_child(0).transitioning != true:
 			visible = false
 			get_tree().paused = false
 			get_child(0).queue_free()
