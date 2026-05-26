@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c1xw1x5562w3b"]
+[gd_scene load_steps=46 format=3 uid="uid://c1xw1x5562w3b"]
 
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="1_sowhy"]
 [ext_resource type="PackedScene" uid="uid://br6g1tex7717e" path="res://Scenes/Level Components/Objects/road-turn-right-up.tscn" id="2_6hqax"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bdut5ftbrho7p" path="res://Scenes/Level Components/Objects/building-brick.tscn" id="17_snqwb"]
 [ext_resource type="Texture2D" uid="uid://dwct6333ddc2q" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS RoadBlockAssets S6/Chain_Linked_Fence_S6.png" id="18_03cxy"]
 [ext_resource type="PackedScene" uid="uid://cxnpgpdvwm5sn" path="res://Scenes/Level Components/Objects/BananaPeel.tscn" id="20_r2nto"]
+[ext_resource type="PackedScene" uid="uid://dsx75spajgxig" path="res://Scenes/Level Components/SpecialObjects/SoftObstacles/ConeObstacle.tscn" id="22_bf3vi"]
 [ext_resource type="PackedScene" uid="uid://dk60vjxm33eaq" path="res://Scenes/Level Components/Objects/GrassVariants/GrassTFlipped.tscn" id="22_gth1d"]
 [ext_resource type="PackedScene" uid="uid://kc2va7uohqqi" path="res://Scenes/Level Components/Crowds/crowd.tscn" id="23_236f0"]
 [ext_resource type="PackedScene" uid="uid://ccwxwnif2kc7k" path="res://Scenes/Level Components/Objects/GrassVariants/GrassCornerTopRight.tscn" id="23_qk3yq"]
@@ -354,43 +355,31 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -648.8615, 2, 57.75003)
 
 [node name="SlowPads" type="Node3D" parent="Segment1"]
 
-[node name="sp" parent="Segment1/SlowPads" instance=ExtResource("8_6biee")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1543.2749, 1, 490.25458)
-
-[node name="sp2" parent="Segment1/SlowPads" instance=ExtResource("9_hfqsx")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1602.3416, 1, 596.85126)
-
-[node name="sp3" parent="Segment1/SlowPads" instance=ExtResource("10_s60nl")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1396.9828, 1, 578.6886)
-
 [node name="sp4" parent="Segment1/SlowPads" instance=ExtResource("11_ida46")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 803.79926, 1, 326.23825)
 
 [node name="sp5" parent="Segment1/SlowPads" instance=ExtResource("12_y2d7a")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 899.934, 1, 582.01624)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 899.934, 1, 607.01624)
 
 [node name="sp6" parent="Segment1/SlowPads" instance=ExtResource("8_6biee")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 675.5137, 1, 589.2511)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 675.5137, 1, 599.2511)
 
 [node name="BananaPeels" type="Node3D" parent="Segment1"]
 
-[node name="bp1" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 782.84973, 2, 607.8747)
-
 [node name="bp2" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 824.9176, 2, 574.47534)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 824.9176, 2, 499.47534)
 
 [node name="bp3" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1028.4547, 2, 585.84875)
 
 [node name="bp4" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1215.3008, 2, 613.38525)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1165.3008, 2, 613.38525)
 
 [node name="bp5" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1297.1417, 2, 583.58636)
 
 [node name="bp6" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1297.1417, 2, 583.58636)
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1397.1417, 2, 608.58636)
 
 [node name="bp7" parent="Segment1/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1297.1417, 2, 408.80945)
@@ -699,38 +688,11 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1626.2573, 1, -10.0
 
 [node name="BananaPeels" type="Node3D" parent="Segment2"]
 
-[node name="bp1" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1884.1569, 2, -19.238853)
-
-[node name="bp3" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1878.8851, 2, 23.379555)
-
-[node name="bp4" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1988.3901, 2, -117.953636)
-
 [node name="bp5" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1932.6934, 2, -99.81185)
 
-[node name="bp6" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1981.4182, 2, -67.84796)
-
-[node name="bp7" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1941.4327, 2, -43.38261)
-
-[node name="bp8" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -2007.4923, 2, -27.811676)
-
-[node name="bp9" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1979.8964, 2, 10.924351)
-
-[node name="bp10" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1725.9419, 2, -16.571552)
-
 [node name="bp11" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1690.5541, 2, 12.434589)
-
-[node name="bp12" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1805.3267, 2, 6.233616)
 
 [node name="bp13" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1883.0382, 2, -271.01285)
@@ -750,9 +712,6 @@ transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 
 [node name="bp18" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1565.7579, 2, -497.10388)
 
-[node name="bp19" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
-transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1908.5, 2, 71.435684)
-
 [node name="bp20" parent="Segment2/BananaPeels" instance=ExtResource("20_r2nto")]
 transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1314.4521, 2, 109.42404)
 
@@ -769,6 +728,33 @@ transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 
 transform = Transform3D(6.9324703, 0.96997714, 0, -0.96997714, 6.9324703, 0, 0, 0, 7, -1416.7412, 2, 34.21069)
 
 [node name="Sprint 7 Addons" type="Node3D" parent="."]
+
+[node name="Cone" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1875, 4, 50)
+
+[node name="Cone2" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1900, 4, 45)
+
+[node name="Cone3" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1925, 4, 40)
+
+[node name="Cone4" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1030, 4, 80)
+
+[node name="Cone5" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1975, 4, 15)
+
+[node name="Cone6" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -2000, 4, 20)
+
+[node name="Cone7" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -2025, 4, 25)
+
+[node name="Cone8" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1030, 4, 120)
+
+[node name="Cone9" parent="Sprint 7 Addons" instance=ExtResource("22_bf3vi")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -1025, 4, 100)
 
 [node name="CrowdSpace" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_nghji")
