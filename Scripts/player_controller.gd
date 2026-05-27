@@ -244,6 +244,7 @@ func _physics_process(delta: float) -> void:
 	if touched_windbox:
 		velocity += windbox_boost
 		touched_windbox = false
+	decay_past_ramping_cap(delta)
 	process_state(delta)
 	check_state_transitions()
 	stick_to_slope()
@@ -270,7 +271,7 @@ func _physics_process(delta: float) -> void:
 	update_trail(delta)
 	if debugLabels:
 		update_labels()
-	
+
 ## Processes the current state. More complicated states have their own child nodes
 func process_state(delta: float) -> void:
 	match current_state:
@@ -278,8 +279,7 @@ func process_state(delta: float) -> void:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
-			else:
-				max_speed -= pow(max_speed - ramping_cap, damping_exponent) * delta
+				
 			handle_inputs(delta)
 			if is_on_floor():
 				velocity.y = 0.0
@@ -965,7 +965,7 @@ func update_trail(delta):
 			
 		$TrailHolder/GPUTrail3D.restart()
 		trail_spakle.visible = false
-	#print(max_speed)
+	print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.
@@ -977,4 +977,10 @@ func restart():
 ## Reloads the scene, might need to move this to a singleton if needed.
 func reload_scene():
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
+	
+# Decays slip's max speed when over the ramping cap (due to boost pads)
+func decay_past_ramping_cap(delta: float):
+	if max_speed > ramping_cap: 
+		max_speed -= pow(max_speed - ramping_cap, damping_exponent) * delta
+	
 	

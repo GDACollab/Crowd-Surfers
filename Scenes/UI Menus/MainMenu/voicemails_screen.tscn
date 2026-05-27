@@ -1,0 +1,111 @@
+[gd_scene load_steps=17 format=3 uid="uid://boacixvku1uw6"]
+
+[ext_resource type="Script" uid="uid://cm42416cxg3po" path="res://Scripts/UI/voicemails_screen.gd" id="1_h271t"]
+[ext_resource type="PackedScene" uid="uid://busk12xpm68s7" path="res://Scenes/UI Menus/MainMenu/voicemail_button.tscn" id="2_232fl"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_x0gen"]
+[ext_resource type="Texture2D" uid="uid://vjofdh07t2qw" path="res://Assets/Art/UI/MainMenu/Voicemails/voicemails_text.png" id="3_h271t"]
+[ext_resource type="Texture2D" uid="uid://c1mualsra4brn" path="res://Assets/Art/UI/MainMenu/Voicemails/voicemails_phone_base_bg.png" id="4_ld38a"]
+[ext_resource type="Texture2D" uid="uid://cx7ew6n2o7p56" path="res://Assets/Art/UI/MainMenu/Orders/scrollbar.png" id="5_72ly1"]
+[ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="6_5uj0v"]
+[ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="7_dsfld"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="8_1i1cu"]
+[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="13_ocb0a"]
+[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="14_h32g7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f7nka"]
+texture = ExtResource("5_72ly1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g3g7s"]
+texture = ExtResource("5_72ly1")
+modulate_color = Color(1.3945211, 1.3945211, 1.3945211, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4olv6"]
+texture = ExtResource("5_72ly1")
+modulate_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_08fti"]
+content_margin_left = 30.0
+texture = ExtResource("5_72ly1")
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+modulate_color = Color(1, 1, 1, 0.08235294)
+
+[sub_resource type="Theme" id="Theme_08fti"]
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_f7nka")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_g3g7s")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_4olv6")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_08fti")
+
+[node name="Voicemails" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_h271t")
+voicemail_button_scene = ExtResource("2_232fl")
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons") instance=ExtResource("2_x0gen")]
+back_buttons = [NodePath("../VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton")]
+
+[node name="VoicemailsText" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 830.0
+offset_bottom = 1400.0
+texture = ExtResource("3_h271t")
+
+[node name="VoicemailsBody" type="TextureRect" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_ld38a")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VoicemailsBody"]
+clip_contents = false
+layout_mode = 0
+offset_left = 135.0
+offset_top = 349.0
+offset_right = 726.13
+offset_bottom = 1119.0
+theme = SubResource("Theme_08fti")
+horizontal_scroll_mode = 0
+
+[node name="VoicemailVBoxContainer" type="VBoxContainer" parent="VoicemailsBody/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -70
+
+[node name="BackButton" type="TextureButton" parent="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_5uj0v")
+texture_click_mask = ExtResource("7_dsfld")
+script = ExtResource("8_1i1cu")
+
+[node name="NoVoicemailsText" type="RichTextLabel" parent="VoicemailsBody"]
+layout_mode = 0
+offset_left = 96.000015
+offset_top = 493.00003
+offset_right = 687.0
+offset_bottom = 744.0
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("13_ocb0a")
+theme_override_fonts/italics_font = ExtResource("14_h32g7")
+theme_override_fonts/mono_font = ExtResource("13_ocb0a")
+theme_override_font_sizes/italics_font_size = 60
+bbcode_enabled = true
+text = "
+
+
+
+[i]Play through the
+story to unlock
+some voicemails!"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" method="_on_mouse_exited"]
