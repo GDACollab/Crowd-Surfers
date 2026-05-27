@@ -1,6 +1,6 @@
-[gd_scene load_steps=120 format=3 uid="uid://b1drkl7ehyem5"]
+[gd_scene load_steps=110 format=3 uid="uid://b1drkl7ehyem5"]
 
-[ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_haeap"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_haeap"]
 [ext_resource type="PackedScene" uid="uid://bgp1lscaxtuut" path="res://Scenes/Level Components/Objects/road-diag-turn-right-up.tscn" id="2_em4hp"]
 [ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="3_2430q"]
 [ext_resource type="PackedScene" uid="uid://0k2u2p1wosod" path="res://Scenes/Level Components/Objects/road-diag-turn-left-up.tscn" id="4_5o1iy"]
@@ -103,63 +103,6 @@
 [ext_resource type="PackedScene" uid="uid://b15lflnmkx7e5" path="res://Scenes/Level Components/Objects/road-diag-turn-right-down.tscn" id="101_exnjc"]
 [ext_resource type="PackedScene" uid="uid://2bh76jv7nmnc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassMiddle.tscn" id="102_bv87n"]
 [ext_resource type="PackedScene" uid="uid://bsmts5ygr25hs" path="res://Scenes/Levels/Level Lighting/act_3_lighting.tscn" id="103_4gfyt"]
-
-[sub_resource type="Curve" id="Curve_d4o05"]
-_limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_iem5g"]
-curve = SubResource("Curve_d4o05")
-
-[sub_resource type="Curve" id="Curve_a5b6m"]
-_data = [Vector2(0.0049261153, 0), 0.0, 0.0, 0, 0, Vector2(0.33004928, 0.57303375), 2.1008284, 2.1008284, 0, 0, Vector2(0.5123153, 1), 0.0, 0.0, 0, 0, Vector2(0.6748768, 0.28089893), -2.6775765, -2.6775765, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="CurveTexture" id="CurveTexture_dy6nc"]
-curve = SubResource("Curve_a5b6m")
-
-[sub_resource type="Curve" id="Curve_4g4og"]
-_limits = [-12.498398, 15.344521, 0.0, 1.0]
-_data = [Vector2(0, 6.897794), 0.0, 0.0, 0, 0, Vector2(0.26108375, -2.8003006), 0.0, 0.0, 0, 0, Vector2(0.5073892, 5.646427), 0.0, 0.0, 0, 0, Vector2(0.75862074, -2.8003006), 0.0, 0.0, 0, 0, Vector2(0.9901479, 4.707901), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="CurveTexture" id="CurveTexture_5rnn1"]
-curve = SubResource("Curve_4g4og")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ck7ho"]
-emission_shape = 3
-emission_box_extents = Vector3(38.605, 229.165, 78.285)
-angle_curve = SubResource("CurveTexture_iem5g")
-direction = Vector3(0, 1, 0)
-spread = 1.5
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-gravity = Vector3(0, 1, 0)
-linear_accel_min = 30.609997
-linear_accel_max = 40.809998
-tangential_accel_min = 0.99999774
-tangential_accel_max = 2.9999976
-tangential_accel_curve = SubResource("CurveTexture_5rnn1")
-scale_curve = SubResource("CurveTexture_dy6nc")
-turbulence_noise_strength = 0.34
-turbulence_noise_scale = 0.557
-
-[sub_resource type="Curve" id="Curve_tyndo"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3361702, 0.7422414), 0.0, 0.0, 0, 0, Vector2(0.5531915, 0.26034486), 0.0, 0.0, 0, 0, Vector2(0.7829787, 0.48448277), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyndo"]
-shading_mode = 0
-disable_receive_shadows = true
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_dnwfo"]
-material = SubResource("StandardMaterial3D_tyndo")
-shape = 0
-size = 1.5
-section_segments = 50
-curve = SubResource("Curve_tyndo")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rbx1u"]
 vertices = PackedVector3Array(-32, 25.5, -580.5, -7.75, 25.5, -580.5, -8, 25.5, -629.5, -32, 25.5, -629.5, 108, 15.5, -629.5, 108, 15.5, -580.5, 132, 15.5, -580.5, 132, 15.5, -629.5, -31.75, 23, -629.25, -31.75, 23, -580.5, -8, 23, -580.5, -8, 23, -629.25, -49.5, 1.5, -581.5, -33, 1.5, -581.5, -33, 1.5, -599.5, -49.5, 1.5, -599.5, -31.75, 1.5, -599.5, -31.75, 1.5, -580.5, -8, 1.5, -580.5, -8, 1.5, -599.5, 26, 1.5, -599.5, -6.75, 1.5, -599.5, -6.75, 1.5, -579.75, 2.5, 1.5, -530.5, 26, 1.5, -530.5, 28.25, 1.5, -494, 67, 1.5, -493.75, 67.25, 1.5, -495.5, 28.25, 1.5, -530.25, 92.75, 1.5, -495.5, 107, 1.5, -579.75, 107, 1.5, -599.5, 108.25, 1.5, -599.5, 108.25, 1.5, -580.5, 132, 1.5, -580.5, 132, 1.5, -599.5, 133.25, 1.5, -581.25, 149.5, 1.5, -581, 149.5, 1.5, -599.5, 133.25, 1.5, -599.5, -32.75, 1.5, -579.25, -49.5, 1.5, -528.25, 2, 1.5, -528.25, 2, 1.5, -530, -7.25, 1.5, -579.25, 133.25, 1.5, -579.75, 132.75, 1.5, -579.25, 149.5, 1.5, -494, 93.25, 1.5, -495.25, 93.25, 1.5, -493.75, 107.25, 1.5, -579.25, 3, 15.5, -529.5, 3, 15.5, -480.5, 27, 15.5, -480.5, 27, 15.5, -529.5, 3.25, 1.5, -529.25, 3.25, 1.5, -480.5, 27, 1.5, -480.5, 27, 1.5, -529.25, -49.5, 1.5, -481.5, 2, 1.5, -481.5, 68, 15.5, -494.5, 68, 15.5, -445.5, 92, 15.5, -445.5, 92, 15.5, -494.5, 68.25, 1.5, -494.25, 68.25, 1.5, -445.5, 92, 1.5, -445.5, 92, 1.5, -494.25, 28.25, 1.5, -481.25, 67, 1.5, -481, 93.25, 1.5, -446.25, 149.5, 1.5, -446, -49.5, 1.5, -413.25, -28, 1.5, -413.25, -27.75, 1.5, -415.5, 2, 1.5, -479.75, -2.25, 1.5, -415.5, 28.25, 1.5, -479.75, 27.75, 1.5, -479.25, 67, 1.5, -444.5, 0.5, 1.5, -416.75, 67.5, 1.5, -444.25, 2.5, 1.5, -479.25, -1.75, 1.5, -415, 98, 1.5, -375.5, 98.25, 1.5, -373.75, 149.5, 1.5, -374, 93.25, 1.5, -444.75, 92.75, 1.5, -444.25, 91.25, 1.5, -444.25, 91.5, 1.5, -375.5, -1.75, 1.5, -374, 72, 1.5, -373.75, 72, 1.5, -375.25, 73.75, 1.5, -375.5, 73.5, 1.5, -444.25, -27, 25.5, -365.5, -2.75, 25.5, -365.5, -3, 25.5, -414.5, -27, 25.5, -414.5, -26.75, 1.5, -414.25, -26.75, 1.5, -365.5, -3, 1.5, -365.5, -3, 1.5, -414.25, -26.75, 23, -414.25, -26.75, 23, -365.5, -3, 23, -365.5, -3, 23, -414.25, -49.5, 1.5, -366.5, -28, 1.5, -366.5, 250.25, 1, -301.25, 349.5, 1, -301, 349.5, 1, -399.5, 250.25, 1, -399.5, 73, 15.5, -374.5, 73, 15.5, -325.5, 97, 15.5, -325.5, 97, 15.5, -374.5, 73.25, 1.5, -374.25, 73.25, 1.5, -325.5, 97, 1.5, -325.5, 97, 1.5, -374.25, 33, 1.5, -335.5, 33.25, 1.5, -333.75, 72, 1.5, -334, -1.75, 1.5, -364.75, 7.5, 1.5, -335.5, 98.25, 1.5, -326.25, 149.5, 1.5, -326, -27.75, 1.5, -364.25, 7, 1.5, -335, -2.25, 1.5, -364.25, -49.5, 1.5, -284.75, 7, 1.5, -284.75, 8, 15.5, -334.5, 8, 15.5, -285.5, 32, 15.5, -285.5, 32, 15.5, -334.5, 8.25, 1.5, -334.25, 8.25, 1.5, -285.5, 32, 1.5, -285.5, 32, 1.5, -334.25, 33.25, 1.5, -325.75, 72, 1.5, -326, 98.25, 1.5, -325, 107.5, 1.5, -270.5, 132.75, 1.5, -270.5, 149.5, 1.5, -300, 72.25, 1.5, -324.25, 33.25, 1.5, -284.75, 32.5, 1.5, -284.25, 105.75, 1.5, -270.75, 97.5, 1.5, -324.25, 107, 1.5, -270, 150, 1.5, -299.5, 133.25, 1.5, -270, 133.25, 1.5, -220, 250, 1, -299.5, 148.31451, 1.5, -230.25806, 152.08064, 1, -232.82257, 150.975, 1, -298.525, 149.52153, 1.5, -295.47964, 151.00655, 1, -295.51865, 149.48305, 1.5, -292.49527, 151.01807, 1, -292.48428, 149.50452, 1.5, -289.50485, 150.98953, 1, -289.49387, 149.51665, 1.5, -285.02112, 151.00165, 1, -285.01013, 149.51233, 1.5, -283.49484, 149.48135, 1.5, -238.51688, 150.98615, 1, -240.00363, 149.51564, 1.5, -243.0151, 249.75, 1, -100.25, 349.5, 1, -100.25, 148.28226, 1.5, -204.5484, 152.04031, 1, -200.68549, 249.5, 1, -99.75, 148.25, 1.5, -204.48389, 152, 1, -200.60483, 107, 1.5, -219.5, 7.25, 1.5, -284.25, -49.5, 1.5, 2, 149.5, 1.5, 2, 149.5, 1.5, 0.25, 132.5, 1.5, -219.25, 108, 15.5, -269.5, 108, 15.5, -220.5, 132, 15.5, -220.5, 132, 15.5, -269.5, 108.25, 1.5, -269.25, 108.25, 1.5, -220.5, 132, 1.5, -220.5, 132, 1.5, -269.25, 149.75, 1.5, -0.25, 249.5, 1, -0.25, 152.96774, 1, -0.25, 150.98088, 1, -199.52295, 151.01216, 1, -1.4883423, 149.49574, 1.5, -200.9938, -49.5, 1.5, 499.5, 149.5, 1.5, 499.5)
@@ -2906,17 +2849,6 @@ offset = Vector3(0, 1000, 1000)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -857.0073, 2.5224152, 1210.4185)
 vfx_manager = NodePath("../VfxManager")
 
-[node name="Wind Particles" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.4840546, 15.116859, 10.5157585)
-amount = 12
-lifetime = 5.0
-preprocess = 5.9
-visibility_aabb = AABB(-5.87, -4, -4, 1000, 1000, 1000)
-trail_enabled = true
-trail_lifetime = 1.21
-process_material = SubResource("ParticleProcessMaterial_ck7ho")
-draw_pass_1 = SubResource("RibbonTrailMesh_dnwfo")
-
 [node name="VfxManager" parent="." instance=ExtResource("80_xvp7b")]
 
 [node name="Environment" parent="." instance=ExtResource("81_1pjf3")]
@@ -2953,31 +2885,31 @@ route = Array[Vector3]([Vector3(143, 11, -183), Vector3(143, 11, -103), Vector3(
 
 [node name="TheaterCrowd" parent="Crowds" instance=ExtResource("86_vyp34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 15, -950)
-circum = 300.0
-crowd_size = 100
+circum = 100.0
+crowd_size = 50
 max_speed = 50.0
 check_limit = 8
 route = Array[Vector3]([Vector3(0, 5, -950), Vector3(100, 5, -950), Vector3(0, 5, -850)])
 
 [node name="TheaterCrowd4" parent="Crowds" instance=ExtResource("86_vyp34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 11, -1095)
-circum = 300.0
-crowd_size = 100
+circum = 15.0
+crowd_size = 30
 max_speed = 50.0
 check_limit = 8
 route = Array[Vector3]([Vector3(-45, 11, -1090), Vector3(50, 11, -1045), Vector3(145, 11, -1095), Vector3(50, 11, -1165)])
 
 [node name="TheaterCrowd2" parent="Crowds" instance=ExtResource("86_vyp34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 15, -1100)
-circum = 300.0
-crowd_size = 100
+circum = 100.0
+crowd_size = 50
 max_speed = 50.0
 route = Array[Vector3]([Vector3(200, 5, -1100), Vector3(250, 5, -1250), Vector3(50, 5, -1250)])
 
 [node name="TheaterCrowd3" parent="Crowds" instance=ExtResource("86_vyp34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 15, -1200)
-circum = 300.0
-crowd_size = 200
+circum = 50.0
+crowd_size = 50
 max_speed = 30.0
 check_limit = 8
 route = Array[Vector3]([Vector3(0, 5, -1100), Vector3(100, 5, -1100), Vector3(50, 5, -1150), Vector3(0, 15, -1100)])

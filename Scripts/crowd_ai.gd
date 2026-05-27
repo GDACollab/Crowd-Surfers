@@ -918,3 +918,4 @@ func _on_screen_exited():
 	print("[CROWDS] Freeing crowd agents from crowd: ", name)
 	for rid in agents:
 		PhysicsServer3D.free_rid(rid)
+	PhysicsServer3D.free_rid(shape)
