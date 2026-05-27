@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 @onready var animatic_frames : AnimatedSprite2D = $AnimatedSprite2D
 @onready var cutscene_sound : FmodEventEmitter2D = $CutsceneSound
