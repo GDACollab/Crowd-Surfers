@@ -3,12 +3,13 @@ extends Control
 @onready var orders_animation_player : AnimationPlayer = $OrdersAnimationPlayer
 @onready var voicemails_animation_player : AnimationPlayer = $VoicemailsAnimationPlayer
 @onready var settings_animation_player : AnimationPlayer = $SettingsAnimationPlayer
+@onready var social_media_animation_player : AnimationPlayer = $SocialMediaAnimationPlayer
 
 @onready var main_container: Control = $PhoneImage/PhoneBg/MainContainer
 @onready var orders_scene: Control = $PhoneImage/PhoneBg/OrdersScene
 @onready var voicemails_scene: Control = $PhoneImage/PhoneBg/VoicemailsScene
-
 @onready var settings_scene: Control = $PhoneImage/PhoneBg/SettingsScene
+@onready var social_media_scene: Control = $PhoneImage/PhoneBg/SocialMediaScene
 
 @onready var orders_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/OrdersButton
 @onready var voicemails_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/VoicemailsButton
@@ -38,7 +39,8 @@ func _ready() -> void:
 	orders_scene.visible = false
 	voicemails_scene.visible = false
 	settings_scene.visible = false
-	
+	social_media_scene.visible = false
+
 	start_background_position = backgrounds_closer.position
 	time = time_between_target_changes
 	
@@ -100,6 +102,15 @@ func _on_settings_button_pressed() -> void:
 	
 	set_transitioning()
 	
+func _on_social_media_button_pressed() -> void:
+	if (transitioning):
+		return
+		
+	social_media_animation_player.play("open_social_media")
+	social_media_scene.visible = true
+	
+	set_transitioning()
+	
 #Signalled by back button inside orders scene
 func _on_orders_back_button_pressed() -> void:
 	if (transitioning):
@@ -133,16 +144,32 @@ func _on_settings_back_button_pressed() -> void:
 	
 	SaveDataManager.save_data()
 	
+func _on_social_media_back_button_pressed() -> void:
+	if (transitioning):
+		return
+		
+	social_media_animation_player.play_backwards("open_social_media")
+	social_media_animation_player.seek(animation_time * 0.8, true)
+	
+	set_transitioning()
+	
+	SaveDataManager.save_data()
+	
 #Trigged by OrdersAnimationPlayer
 func set_orders_scene_visibility(new_visible: bool) -> void:
 	orders_scene.visible = new_visible
 	
+#Trigged by VoicemailsAnimationPlayer
 func set_voicemails_scene_visibility(new_visible: bool) -> void:
 	voicemails_scene.visible = new_visible
 	
 #Trigged by SettingsAnimationPlayer
 func set_settings_scene_visibility(new_visible: bool) -> void:
 	settings_scene.visible = new_visible
+	
+#Trigged by SocialMediaAnimationPlayer
+func set_social_media_scene_visibility(new_visible: bool) -> void:
+	social_media_scene.visible = new_visible
 
 func set_transitioning() -> void:
 	transitioning = true

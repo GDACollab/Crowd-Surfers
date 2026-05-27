@@ -347,7 +347,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-281, -13.500007)]
+"values": [Vector2(-660, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -399,7 +399,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(410, 160), Vector2(-250, 160)]
+"values": [Vector2(0, 0), Vector2(-660, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -468,7 +468,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-250, 160), Vector2(410, 160)]
+"values": [Vector2(-660, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -921,7 +921,7 @@ autoplay = "slip_stomp"
 anchors_preset = 0
 offset_left = 160.0
 offset_top = 160.0
-offset_right = 200.00012
+offset_right = 200.00018
 offset_bottom = 200.0
 
 [node name="ResumeButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
@@ -1081,13 +1081,8 @@ horizontal_alignment = 1
 
 [node name="SettingsScene" parent="PhoneOutline/PhoneBackground" instance=ExtResource("6_tmijn")]
 layout_mode = 0
-offset_left = -281.0
-offset_top = -13.500007
-offset_right = -241.0
-offset_bottom = 26.499992
-
-[node name="ScrollMask" parent="PhoneOutline/PhoneBackground/SettingsScene" index="3"]
-color = Color(0.59607846, 0.59607846, 0.59607846, 0)
+offset_left = -660.0
+offset_right = -620.0
 
 [node name="PhonePageHolder" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
 self_modulate = Color(0.12156863, 0.09019608, 0.20784314, 1)
@@ -1188,6 +1183,6 @@ layout_mode = 0
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]
-[connection signal="pressed" from="PhoneOutline/PhoneBackground/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="PhoneOutline/PhoneBackground/SettingsScene/SettingsBody/BackButton" to="." method="_on_settings_back_button_pressed"]
 
 [editable path="PhoneOutline/PhoneBackground/SettingsScene"]
