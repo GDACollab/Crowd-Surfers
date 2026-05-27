@@ -76,6 +76,7 @@ func _on_exit_level_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
 		
+	Audio.toggle_level_audio()
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
 	start_transitioning()
 		
