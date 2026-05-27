@@ -45,9 +45,9 @@ func open_ui() -> void:
 			SaveDataManager.level_times[level_number-1] = hud_ui.curr_Time
 		SaveDataManager.save_data()
 		
-	clear_time_text.text = hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, false, false) + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, true, false)
+	clear_time_text.text = hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, false) + hud_ui.get_Formatted_Timer_Text(hud_ui.curr_Time, true)
 	if level_number > 0:
-		best_time_text.text = hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], false, false) + hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], true, false)
+		best_time_text.text = hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], false) + hud_ui.get_Formatted_Timer_Text(SaveDataManager.level_times[level_number-1], true)
 		
 	animation_player.play("show_level_clear")
 	

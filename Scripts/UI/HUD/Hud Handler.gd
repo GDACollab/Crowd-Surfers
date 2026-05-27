@@ -87,9 +87,9 @@ func set_Level_Progress(new_Progress: float):
 	level_progress_Display.set_Progress(new_Progress)
 	
 func set_Time(new_Time: float):
-	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, false, true), get_Formatted_Timer_Text(new_Time, true, true))
+	timer_Display.set_timer_text(get_Formatted_Timer_Text(new_Time, false), get_Formatted_Timer_Text(new_Time, true))
 	
-func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: bool = false) -> String:
+func get_Formatted_Timer_Text(time: float, centiseconds: bool = false) -> String:
 	var rounded_time: float = snapped(time, 0.01)
 	var seconds: String = str(int(rounded_time) % 60)
 	if (seconds.length() == 1):
@@ -109,16 +109,6 @@ func get_Formatted_Timer_Text(time: float, centiseconds: bool = false, sprites: 
 	else:
 		formatted_time = minutes + ":" + seconds
 		
-	#if (sprites):
-		#var sprite_formatted_time: String = ""
-		#for character in formatted_time:
-			#if (character == ':'):
-				#sprite_formatted_time += ":"
-			#elif (character == '.'):
-				#sprite_formatted_time += "." 
-			#else:
-				#sprite_formatted_time += str(character)
-		#formatted_time = sprite_formatted_time
 	return formatted_time
 
 func _process(delta: float) -> void:

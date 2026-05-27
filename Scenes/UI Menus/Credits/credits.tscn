@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=13 format=3 uid="uid://pq5rrrmglvc3"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6r17f"]
 [ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/UI/Credits/pitch_art_temp.PNG" id="1_ykwev"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://cmigokryp7r8n" path="res://Scripts/Credits/credits_image_data.gd" id="4_fax7y"]
 [ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/UI/Credits/temp_image_2.PNG" id="4_ut8rr"]
 [ext_resource type="PackedScene" uid="uid://dh1oqjfhmcs6c" path="res://Scenes/UI Menus/Credits/credits_text.tscn" id="5_4hn7j"]
+[ext_resource type="Texture2D" uid="uid://do21jpwkglhgg" path="res://Assets/Art/UI/exit.png" id="8_epa2d"]
+[ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/exit_click_mask.png" id="9_7eibb"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="10_7eibb"]
 
 [sub_resource type="Resource" id="Resource_8pn86"]
 script = ExtResource("4_fax7y")
@@ -22,7 +25,7 @@ scale = 0.3
 position = Vector2(-844.02, 1980)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
-[node name="Control" type="Control"]
+[node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,19 +103,18 @@ offset_bottom = 3316.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_ut8rr")
 
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -45.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(3, 3)
-pivot_offset = Vector2(72, 45)
-text = "Back"
+[node name="BackButton" type="TextureButton" parent="."]
+self_modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 0
+offset_left = 16.0
+offset_top = -21.000004
+offset_right = 196.0
+offset_bottom = 159.0
+rotation = 0.17453292
+texture_normal = ExtResource("8_epa2d")
+texture_click_mask = ExtResource("9_7eibb")
+script = ExtResource("10_7eibb")
 
+[connection signal="mouse_entered" from="BackButton" to="BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackButton" to="BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]
