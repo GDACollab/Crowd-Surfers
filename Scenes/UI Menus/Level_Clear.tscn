@@ -73,7 +73,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Background/BackgroundElements/Star1:self_modulate")
+tracks/1/path = NodePath("Background/BackgroundElements/Stars/Star1:self_modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +85,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Background/BackgroundElements/Star2:self_modulate")
+tracks/2/path = NodePath("Background/BackgroundElements/Stars/Star2:self_modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -97,7 +97,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Background/BackgroundElements/Star3:self_modulate")
+tracks/3/path = NodePath("Background/BackgroundElements/Stars/Star3:self_modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -109,7 +109,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Background/BackgroundElements/Star4:self_modulate")
+tracks/4/path = NodePath("Background/BackgroundElements/Stars/Star4:self_modulate")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -188,6 +188,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_8u14x")
+button_scale_amount = 1.05
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
@@ -217,44 +218,70 @@ offset_right = -2.5935059
 offset_bottom = 725.4286
 texture = ExtResource("5_auuq0")
 
-[node name="Star1" type="TextureRect" parent="Background/BackgroundElements"]
+[node name="Stars" type="Control" parent="Background/BackgroundElements"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Star1" type="TextureRect" parent="Background/BackgroundElements/Stars"]
 layout_mode = 0
 offset_right = 480.00003
 offset_bottom = 680.0
+rotation = 0.017453292
+pivot_offset = Vector2(240, 340)
 texture = ExtResource("8_auuq0")
 
-[node name="Star2" type="TextureRect" parent="Background/BackgroundElements"]
+[node name="Star2" type="TextureRect" parent="Background/BackgroundElements/Stars"]
 layout_mode = 0
 offset_left = 30.21978
 offset_top = 934.28577
 offset_right = 326.2198
 offset_bottom = 1378.2858
+rotation = -0.017453292
+pivot_offset = Vector2(148, 222)
 texture = ExtResource("9_ewal3")
 
-[node name="Star3" type="TextureRect" parent="Background/BackgroundElements"]
+[node name="Star3" type="TextureRect" parent="Background/BackgroundElements/Stars"]
 layout_mode = 0
 offset_left = 2129.121
 offset_top = 90.0
 offset_right = 2655.121
 offset_bottom = 948.0
+rotation = 0.017453292
+pivot_offset = Vector2(263, 429)
 texture = ExtResource("10_5bgqs")
 
-[node name="Star4" type="TextureRect" parent="Background/BackgroundElements"]
+[node name="Star4" type="TextureRect" parent="Background/BackgroundElements/Stars"]
 layout_mode = 0
 offset_left = 806.31866
 offset_top = 311.42856
 offset_right = 1730.3186
 offset_bottom = 1485.4286
+rotation = -0.017453292
+pivot_offset = Vector2(462, 587)
 texture = ExtResource("11_rm4hk")
 
-[node name="LevelClear" type="TextureRect" parent="Background"]
+[node name="LevelClearHolder" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(1328, 323)
+
+[node name="LevelClear" type="TextureRect" parent="Background/LevelClearHolder"]
 layout_mode = 0
 offset_right = 2656.0
 offset_bottom = 646.0
+rotation = 0.017453292
 pivot_offset = Vector2(1328, 323)
 texture = ExtResource("4_dql68")
 
-[node name="ClearTime" type="TextureRect" parent="Background"]
+[node name="ClearTimeHolder" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(731.242, 876.088)
+
+[node name="ClearTime" type="TextureRect" parent="Background/ClearTimeHolder"]
 layout_mode = 0
 offset_left = 8.241767
 offset_top = 537.08795
@@ -263,7 +290,7 @@ offset_bottom = 1215.0879
 pivot_offset = Vector2(723, 339)
 texture = ExtResource("5_dql68")
 
-[node name="ClearTimeText" type="Label" parent="Background/ClearTime"]
+[node name="ClearTimeText" type="Label" parent="Background/ClearTimeHolder/ClearTime"]
 layout_mode = 0
 offset_left = 491.75815
 offset_top = 267.19775
@@ -277,7 +304,13 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/font_size = 100
 text = "00:00.00"
 
-[node name="BestTime" type="TextureRect" parent="Background"]
+[node name="BestTimeHolder" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(763.787, 1304.839)
+
+[node name="BestTime" type="TextureRect" parent="Background/BestTimeHolder"]
 layout_mode = 0
 offset_left = 129.12088
 offset_top = 1119.5055
@@ -286,7 +319,7 @@ offset_bottom = 1397.5055
 pivot_offset = Vector2(634.666, 185.334)
 texture = ExtResource("6_k5fbo")
 
-[node name="BestTimeText" type="Label" parent="Background/BestTime"]
+[node name="BestTimeText" type="Label" parent="Background/BestTimeHolder/BestTime"]
 layout_mode = 0
 offset_left = 439.56046
 offset_top = 213.3518
@@ -302,11 +335,12 @@ text = "00:00.00"
 
 [node name="RestartButton" type="TextureButton" parent="Background"]
 layout_mode = 0
-offset_left = 1710.1648
-offset_top = 622.8572
-offset_right = 2340.1648
-offset_bottom = 982.8572
+offset_left = 1865.3846
+offset_top = 694.28577
+offset_right = 2495.3848
+offset_bottom = 1054.2858
 scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(315, 180)
 texture_normal = ExtResource("12_rm4hk")
 script = ExtResource("14_rm4hk")
 brightness_change = 0.1
@@ -331,11 +365,12 @@ autowrap_mode = 0
 
 [node name="ContinueButton" type="TextureButton" parent="Background"]
 layout_mode = 0
-offset_left = 1629.1208
-offset_top = 1050.0
-offset_right = 2259.1208
-offset_bottom = 1410.0
+offset_left = 1786.621
+offset_top = 1140.0
+offset_right = 2416.621
+offset_bottom = 1500.0
 scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(315, 180)
 texture_normal = ExtResource("12_rm4hk")
 script = ExtResource("14_rm4hk")
 brightness_change = 0.1
