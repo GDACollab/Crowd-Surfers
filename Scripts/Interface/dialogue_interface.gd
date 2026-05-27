@@ -53,6 +53,7 @@ var previousSpeaker : Control
 var lastNonSlipSpeaker : String = ""
 var awaitingAnimations := false
 var awaitingTags := false
+var can_skip := false ## Edge-case protection
 
 var hub_music: FmodEvent
 var music_bus : FmodBus
@@ -103,7 +104,7 @@ func _exit_tree() -> void:
 	Audio.kill_persistent("mus_hub")
 
 func _process(_delta: float) -> void:
-	if(Input.is_action_just_pressed("DialogueCancel")):
+	if(Input.is_action_just_pressed("DialogueCancel") and can_skip):
 		Inky.EndDialogue()
 		
 	if(Input.is_action_just_pressed("DialogueInteract")):
@@ -214,6 +215,7 @@ func _do_typewriter_text():
 		
 		await get_tree().create_timer(textSpeedInMilliseconds / textSpeedScale).timeout
 	isTyping = false
+	can_skip = true
 
 ## Move old panels
 func _animate_panels():
