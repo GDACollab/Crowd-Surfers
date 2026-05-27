@@ -972,7 +972,7 @@ func update_trail(delta):
 			
 		$TrailHolder/GPUTrail3D.restart()
 		trail_spakle.visible = false
-	print(max_speed)
+	#print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.
