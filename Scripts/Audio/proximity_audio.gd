@@ -2,6 +2,7 @@ extends Area3D
 
 @export var proximity_sound : FmodEventEmitter3D
 @export var collider_scale : float = 400.
+@export var trigger_minimum_speed: float = 0
 @export var one_shot: bool = false
 
 @onready var area := self
@@ -19,7 +20,11 @@ func _exit_tree():
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		proximity_sound.play()
+		# Calculate horizontal speed
+		var speed: float = Vector2(body.velocity.x, body.velocity.z).length();
+		print(speed)
+		if (speed > trigger_minimum_speed):
+			proximity_sound.play()
 		# print("Playing: " + str(proximity_sound))
 
 func _on_body_exited(body):

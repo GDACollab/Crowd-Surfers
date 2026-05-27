@@ -527,6 +527,8 @@ func transition_to(new_state: int) -> void:
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
+				FmodServer.set_global_parameter_by_name_with_label(
+					"floor_material", floor_sound_material)
 				$StompSound.set_parameter("stomp_state", "end")
 			else:
 				# interrupt playback
@@ -556,11 +558,13 @@ func transition_to(new_state: int) -> void:
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
 		States.GROUND:
+			Audio.unpause_persistent("skating_loop")
 			can_air_dash = true
 			can_glide = true
 			# Check if landing sound needs to be played
 			if current_state == States.AIR or current_state == States.GLIDE:
-				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
+				FmodServer.set_global_parameter_by_name_with_label(
+					"floor_material", floor_sound_material)
 				$LandingSound.play()
 			elif current_state == States.CRASH_GROUND or current_state == States.CRASH_AIR:
 				#player_sprite.crash_dir = -velocity
@@ -579,6 +583,7 @@ func transition_to(new_state: int) -> void:
 				player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash")
 				get_viewport().get_camera_3d().apply_shake()
+				$CrashSound.play()
 		States.STOMP_WINDUP:
 			player_sprite.play_animation("stomp")
 			# If dash is active as stomp begins, end it
@@ -602,7 +607,6 @@ func transition_to(new_state: int) -> void:
 			# Start the windup timer
 			$StompWindupTimer.start()
 			# Start stomp sound windup
-			FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 			$StompSound.set_parameter("stomp_state", "windup")
 			$StompSound.play()
 			
@@ -623,6 +627,7 @@ func transition_to(new_state: int) -> void:
 			glide_vfxs_spawned = 0
 					
 		States.AIR:
+			Audio.pause_persistent("skating_loop")
 			# Lower friction in midair
 			friction /= 2.0
 		States.DASH_GROUND, States.DASH_AIR:
@@ -669,6 +674,7 @@ func transition_to(new_state: int) -> void:
 			crowd_launch()
 	
 	current_state = new_state
+	#print(state_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -886,13 +892,13 @@ func update_fmod_floor_material() -> void:
 	var floor_collider = raycast.get_collider()
 	if floor_collider.is_in_group("Concrete"):
 		floor_sound_material = "concrete"
-		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "concrete")
 	elif floor_collider.is_in_group("Metal"):
 		floor_sound_material = "metal"
-		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "metal")
 	elif floor_collider.is_in_group("Grass"):
 		floor_sound_material = "grass"
-		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "grass")
+	else:
+		floor_sound_material = "concrete"
+		
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
@@ -940,13 +946,23 @@ func stick_to_slope():
 	if is_on_floor():
 		floor_snap_length = snap_length
 
+# var trail_sound_playing := false
+
 func update_trail(delta):
 	var inputDir = Input.get_vector("move_left", "move_right", "move_down", "move_up").angle()
 	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
 	if max_speed > 140:
+		# if (trail_sound_playing == false):
+		# 	Audio.create_persistent("player_trail", "event:/SFX/P/trail_effect", true).start()
+		# 	trail_sound_playing = true
+		
 		$TrailHolder/GPUTrail3D.visible = true
 		trail_spakle.visible = true
 	else:
+		# if (trail_sound_playing == true):
+		# 	Audio.kill_persistent("player_trail")
+		# 	trail_sound_playing = false
+			
 		$TrailHolder/GPUTrail3D.restart()
 		trail_spakle.visible = false
 	#print(max_speed)
