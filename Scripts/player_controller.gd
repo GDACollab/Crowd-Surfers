@@ -645,8 +645,15 @@ func transition_to(new_state: int) -> void:
 					# Ensure speed is at least min_dash_speed and apply stomp_boost
 					# The timer handles resetting these values to 0
 					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
-					if(has_crowd_dash_boost): #add crowd dash bonus if this is a crowd dash
+					if (has_crowd_dash_boost): #add crowd dash bonus if this is a crowd dash
 						dash_speed += crowd_dash_force
+						
+						if (vfx_manager == null):
+							print("ERROR: No VFX manager assigned to player!!")
+						else:
+							vfx_manager.spawn_vfx(position, velocity, "crowd_dash")
+							vfx_manager.spawn_vfx(position + 0.2 * Vector3(velocity.x, 0, velocity.z), velocity, "crowd_dash")
+						
 					max_speed = max(max_speed, max_speed_before_stomp)
 					# If you successfully stomp-dash, retain your speed
 					if not $StompDashMargin.is_stopped():

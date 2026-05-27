@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=25 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -11,8 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
 [ext_resource type="Texture2D" uid="uid://c5x3qkjr4lfma" path="res://Assets/Art/UI/Dialogue/choice_2.PNG" id="6_l8m2v"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="6_obotj"]
-[ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
+[ext_resource type="Script" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
 [ext_resource type="Shader" uid="uid://nrpqs0j0lece" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
+[ext_resource type="Texture2D" uid="uid://ceh46l4giw0eq" path="res://Assets/Art/UI/Dialogue/continue_dialogue.PNG" id="14_yajxp"]
+[ext_resource type="Texture2D" uid="uid://sta7j2uaxr2t" path="res://Assets/Art/UI/Dialogue/skip_dialogue.PNG" id="15_e5ork"]
+[ext_resource type="Texture2D" uid="uid://baxlna7c5gsi0" path="res://Assets/Art/UI/Dialogue/continue_dialogue_pressed.PNG" id="15_j18xy"]
+[ext_resource type="Texture2D" uid="uid://bbo3md2gbyc31" path="res://Assets/Art/UI/Dialogue/continue_arrow.PNG" id="16_osr46"]
+[ext_resource type="Texture2D" uid="uid://dai7u2voply8x" path="res://Assets/Art/UI/Dialogue/skip_dialogue_pressed.PNG" id="17_xpygo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
 shader = ExtResource("9_obotj")
@@ -74,7 +79,7 @@ _data = {
 &"fade": SubResource("Animation_tk2da")
 }
 
-[node name="Dialogue Interface" type="Control" node_paths=PackedStringArray("mainPanels")]
+[node name="Dialogue Interface" type="Control" node_paths=PackedStringArray("mainPanels", "continue_arrow")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +96,7 @@ choiceSelectDelay = 1.0
 defaultPortait = ExtResource("4_tk2da")
 speakingPortraitScale = Vector2(1.1, 1.1)
 portraitSwapTime = 0.5
+continue_arrow = NodePath("Continue Arrow")
 upperDialogueBoxHeight = 25.0
 upperDialogueBoxScale = Vector2(0.4, 0.4)
 lowerDialogueBoxHeight = 150.0
@@ -168,11 +174,26 @@ script = ExtResource("4_6em14")
 showPosition = Vector2(600, 222)
 hidePosition = Vector2(600, 1200)
 
-[node name="Label" type="Label" parent="."]
+[node name="Continue Label" type="Label" parent="."]
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 23.0
-text = "PRESS X TO SKIP SCENE"
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 291.0
+offset_bottom = 33.0
+text = "PRESS SPACEBAR TO CONTINUE"
+
+[node name="Skip Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -322.08997
+offset_top = 10.0
+offset_right = -41.089966
+offset_bottom = 33.0
+grow_horizontal = 0
+text = "Press X TO SKIP"
+horizontal_alignment = 2
 
 [node name="Interface Animator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -184,3 +205,37 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_4ybge")
+
+[node name="Skip Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -174.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 159.0
+grow_horizontal = 0
+texture_normal = ExtResource("14_yajxp")
+texture_pressed = ExtResource("15_j18xy")
+
+[node name="Continue Button" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 124.0
+offset_bottom = 153.0
+texture_normal = ExtResource("15_e5ork")
+texture_pressed = ExtResource("17_xpygo")
+
+[node name="Continue Arrow" type="TextureRect" parent="."]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("16_osr46")
+
+[connection signal="pressed" from="Skip Button" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="Continue Button" to="." method="_on_continue_button_pressed"]

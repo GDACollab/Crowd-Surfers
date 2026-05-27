@@ -1,50 +1,89 @@
-[gd_scene load_steps=6 format=3 uid="uid://em30ir22qg8u"]
+[gd_scene load_steps=7 format=3 uid="uid://em30ir22qg8u"]
 
 [ext_resource type="Script" uid="uid://o5s4vauyi0wp" path="res://Scripts/UI/scene_fade_transition.gd" id="1_0v7k1"]
+[ext_resource type="Texture2D" uid="uid://b3pevfmljgaqh" path="res://Assets/Art/UI/PauseScreen/purple_line.png" id="2_gy86h"]
 
 [sub_resource type="Animation" id="Animation_bdw6s"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("TextureProgressBar1:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
+"update": 1,
+"values": [1620.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureProgressBar2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1620.0]
 }
 
 [sub_resource type="Animation" id="Animation_ow3ta"]
 resource_name = "fade_in"
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
+tracks/0/path = NodePath("TextureProgressBar1:position:y")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [1620.0, 540.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureProgressBar2:position:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1620.0, -540.0]
 }
 
 [sub_resource type="Animation" id="Animation_c53g8"]
 resource_name = "fade_out"
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
+tracks/0/path = NodePath("TextureProgressBar1:position:y")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"values": [540.0, 1620.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureProgressBar2:position:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-540.0, -1620.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pyawm"]
@@ -59,15 +98,31 @@ process_mode = 3
 z_index = 8
 script = ExtResource("1_0v7k1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="TextureProgressBar1" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_top = 1620.0
 offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+offset_bottom = 2700.0117
+rotation = 0.2617994
+scale = Vector2(2, 1)
+pivot_offset = Vector2(960, 0)
+value = 100.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_gy86h")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_top = -1620.0
+offset_right = 1920.0
+offset_bottom = -540.0
+rotation = 0.2617994
+scale = Vector2(2, 1)
+pivot_offset = Vector2(960, 0)
+value = 100.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_gy86h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

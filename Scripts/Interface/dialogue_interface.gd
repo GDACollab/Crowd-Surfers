@@ -22,6 +22,7 @@ extends Control
 ## Where the portrait moves when swapping characters
 @export var portraitSwapPosition := Vector2(2000, 345)
 @export var portraitSwapTime := 1.0
+@export var continue_arrow : TextureRect
 @export_category("Past Dialogue Line Settings")
 @export var upperDialogueBoxHeight : float = 0
 @export var upperDialogueBoxScale := Vector2(0.5, 0.5)
@@ -175,6 +176,7 @@ func _get_input():
 ##  Loads next line
 func _continue_story():
 	dialogueText = currentStory.Continue()
+	continue_arrow.visible = false
 	var newDialoguePanel = dialoguePanel.instantiate() as InterfacePanel # Create new panel
 	_handle_tags(currentStory.GetCurrentTags(), newDialoguePanel)
 
@@ -215,6 +217,7 @@ func _do_typewriter_text():
 		
 		await get_tree().create_timer(textSpeedInMilliseconds / textSpeedScale).timeout
 	isTyping = false
+	continue_arrow.visible = true
 	can_skip = true
 
 ## Move old panels
@@ -268,11 +271,13 @@ func _skip_scroll():
 
 ##Reveals all initial interface panels
 func _load_main_panels():
+	continue_arrow.visible = false
 	for p in mainPanels:
 		p.showPanel()
 
 ##Instances correct amount of choice boxes and gets choice index
 func _display_choices():
+	continue_arrow.visible = false
 	#Adjust portraits
 	leftPortrait.self_modulate = Color.WHITE
 	leftPortrait.scale = Vector2(1.2, 1.2)
@@ -468,3 +473,14 @@ func _draw_outline(drawMat : ShaderMaterial):
 		
 	drawMat.set_shader_parameter("dist", outlineSize)
 	return
+
+func _on_skip_button_pressed() -> void:
+	if(can_skip):
+		Inky.EndDialogue()
+
+func _on_continue_button_pressed() -> void:
+	if(!isTyping):
+		if(!awaitingAnimations): FmodServer.play_one_shot("event:/SFX/UI/dialogue_next")
+		_get_input()
+	else:
+		_skip_scroll()

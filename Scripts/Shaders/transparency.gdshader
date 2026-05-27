@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode depth_prepass_alpha;
+render_mode depth_prepass_alpha, cull_disabled;
 
 uniform sampler2D tex : source_color;
 uniform float alpha_amount : hint_range(0.0, 1.0) = 1.0;

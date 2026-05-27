@@ -5,7 +5,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
 
-[node name="WindBoxCollider2" type="Node3D"]
+[node name="WindBoxCollider2" type="Node3D" groups=["Cullable"]]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_elp6e")
 
@@ -20,7 +20,7 @@ transform = Transform3D(-8.742279e-09, 0.273, 8.742278e-09, 0, -1.1933209e-08, 0
 texture = ExtResource("2_8eexc")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/airvent"
+event_name = "event:/SFX/ENV/objects/airvent"
 event_guid = "{6730ac66-0326-49ca-b539-52e2fbc83776}"
 volume = 2.0
 
