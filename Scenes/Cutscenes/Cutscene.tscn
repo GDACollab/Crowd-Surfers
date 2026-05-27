@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b8miwt7cr6tcm"]
+[gd_scene load_steps=29 format=3 uid="uid://xi3ddy3x461s"]
 
 [ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scenes/Cutscenes/cutscene_interface.gd" id="1_usugl"]
 [ext_resource type="Texture2D" uid="uid://vd2amtrcq6hq" path="res://Scenes/Cutscenes/cutscene-1.png" id="2_7g7te"]
@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://b173vm7j2ker1" path="res://Scenes/Cutscenes/cutscene-23.png" id="24_xrrhw"]
 [ext_resource type="Texture2D" uid="uid://7o8qgtw2yhow" path="res://Scenes/Cutscenes/cutscene-24.png" id="25_feqog"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ocqqe"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_p87ff"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -101,9 +101,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_feqog")
 }],
-"loop": false,
+"loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 5.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_7g7te"]
@@ -118,13 +118,18 @@ anchors_preset = 0
 script = ExtResource("1_usugl")
 
 [node name="DefaultCutsceneSound" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/CUTSCENE/opening"
+event_name = "event:/CUTSCENE/opening_hub"
 event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
+fmod_parameters/cutscene_muffling/id = -6540895482099023269
+fmod_parameters/cutscene_muffling = 0.5
+fmod_parameters/cutscene_muffling/variant_type = 3
+fmod_parameters/cutscene_frame/id = -8208998917813621879
+fmod_parameters/cutscene_frame = 0
+fmod_parameters/cutscene_frame/variant_type = 2
 
 [node name="DefaultCutsceneFrames" type="AnimatedSprite2D" parent="."]
 position = Vector2(960, 544)
-sprite_frames = SubResource("SpriteFrames_ocqqe")
-frame = 21
+sprite_frames = SubResource("SpriteFrames_p87ff")
 
 [node name="ProgressBar" type="Node2D" parent="."]
 position = Vector2(0, 1056)

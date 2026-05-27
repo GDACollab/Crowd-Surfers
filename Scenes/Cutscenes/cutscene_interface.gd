@@ -27,12 +27,10 @@ func _process(delta):
 			_end_cutscene()
 		
 		progress_bar.scale.x = 0
-		cutscene_sound.stop()
 		
 		animatic_frames.frame += 1
 		wait_timer = WAIT_TIME
 		cutscene_sound.set_parameter("cutscene_frame", animatic_frames.frame)
-		cutscene_sound.play()
 	
 	if (Input.is_action_just_pressed("DialogueCancel")):
 		_end_cutscene()
