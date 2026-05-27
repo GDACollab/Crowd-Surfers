@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=20 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -10,7 +10,8 @@
 [ext_resource type="Material" uid="uid://di7ysi5m6lg7" path="res://Scenes/Dialogue Interface/character_portrait_material.tres" id="5_tk2da"]
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
 [ext_resource type="Texture2D" uid="uid://c5x3qkjr4lfma" path="res://Assets/Art/UI/Dialogue/choice_2.PNG" id="6_l8m2v"]
-[ext_resource type="Script" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="6_obotj"]
+[ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
 [ext_resource type="Shader" uid="uid://nrpqs0j0lece" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
@@ -95,6 +96,8 @@ upperDialogueBoxScale = Vector2(0.4, 0.4)
 lowerDialogueBoxHeight = 150.0
 lowerDialogueBoxScale = Vector2(0.65, 0.65)
 portraitOutlineMaterial = ExtResource("5_tk2da")
+
+[node name="UIAudio" parent="." instance=ExtResource("6_obotj")]
 
 [node name="Blur Buffer" type="BackBufferCopy" parent="."]
 position = Vector2(909.99994, 496.99994)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4ael0l6hrklj"]
+[gd_scene load_steps=9 format=3 uid="uid://b4ael0l6hrklj"]
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_iv6gk"]
+[ext_resource type="PackedScene" uid="uid://sltybbrtxg4g" path="res://Scenes/Audio/proximity_audio.tscn" id="2_52b1l"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="2_e4fio"]
 [ext_resource type="Texture2D" uid="uid://dvx77s7n00qte" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS FireHydrantVariants S6/Fire_Hydrant_Spewing_Water_Up_S6.png" id="3_iv6gk"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="4_o382t"]
@@ -19,7 +20,10 @@ size = Vector3(20, 2, 10)
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_iv6gk")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound") instance=ExtResource("2_52b1l")]
+proximity_sound = NodePath("../HydrantIdleSound")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 script = ExtResource("2_e4fio")
 front_filename = ExtResource("3_iv6gk")
 width = 20.0
@@ -45,3 +49,7 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 5)
 shape = SubResource("BoxShape3D_o382t")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
+
+[node name="HydrantIdleSound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/objects/fire_hydrant_idle"
+event_guid = "{dea2b9c8-dc23-46fa-89f4-2551d7d1108c}"

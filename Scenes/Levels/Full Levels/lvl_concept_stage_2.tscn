@@ -190,19 +190,16 @@ _data = {
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_njsij")]
 player = NodePath("../Player")
+music_path = "event:/MUS/level_2"
+ambience_path = "event:/SFX/ENV/ambience/nightcity_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_omilu")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 561.30725)
 size = 150.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
-
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("vfx_manager") instance=ExtResource("1_wef7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1050, 35.921, 550)
@@ -804,7 +801,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314664, 0.9999418, 0, -0.9999418, 0.010314664, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314664, 0.99994177, 0, -0.99994177, 0.010314664, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -813,7 +810,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043604, -0.0007304823, 0, 0.006614326, 0.9999781, 0.11043893, -0.9938568, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043603, -0.0007304823, 0, 0.0066143256, 0.9999781, 0.11043893, -0.9938567, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -822,7 +819,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039813027, -0.00026512897, 0, 0.0066591473, 0.99997777, 0.039814085, -0.99918056, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039813027, -0.00026512897, 0, 0.006659147, 0.99997777, 0.039814085, -0.9991805, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0

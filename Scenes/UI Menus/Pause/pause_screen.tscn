@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://i7gpb3ctj5lh"]
+[gd_scene load_steps=71 format=3 uid="uid://i7gpb3ctj5lh"]
 
 [ext_resource type="Script" uid="uid://bf60e5de7km52" path="res://Scripts/UI/pause_screen.gd" id="1_f6gwv"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_0kv7i"]
@@ -12,10 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://bdvjx56tobfiv" path="res://Assets/Art/UI/PauseScreen/controls_arrows.png" id="7_t601t"]
 [ext_resource type="Texture2D" uid="uid://botfqon1y2akb" path="res://Assets/Art/UI/PauseScreen/controls_wasd.png" id="8_6nlnl"]
 [ext_resource type="Texture2D" uid="uid://hbrqocy3umxl" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0001.png" id="9_2sge0"]
-[ext_resource type="Texture2D" uid="uid://do21jpwkglhgg" path="res://Assets/Art/UI/exit.png" id="9_uhb38"]
+[ext_resource type="Texture2D" uid="uid://b3pevfmljgaqh" path="res://Assets/Art/UI/PauseScreen/purple_line.png" id="9_edyq6"]
 [ext_resource type="Texture2D" uid="uid://c6sdnvsj5a8l3" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0002.png" id="10_03m81"]
+[ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="10_edyq6"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="10_en6uu"]
-[ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/exit_click_mask.png" id="10_gkt0c"]
+[ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="11_pkbh5"]
 [ext_resource type="Texture2D" uid="uid://bjfyngt8heu42" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0003.png" id="11_s4mb5"]
 [ext_resource type="Texture2D" uid="uid://w7qjcvameqyh" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0004.png" id="12_ueahi"]
 [ext_resource type="Texture2D" uid="uid://b6bxcr5g3lwin" path="res://Assets/Art/PlayerAnimationFrames/Skate/skate_front_side/skate_FS0005.png" id="13_fgs3e"]
@@ -33,8 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://b2vhgsym8bycw" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0001.png" id="25_lvb7r"]
 [ext_resource type="Texture2D" uid="uid://c60o4xnicohvu" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0002.png" id="26_jkgsv"]
 [ext_resource type="Texture2D" uid="uid://85qnnlpu78bc" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0003.png" id="27_ff7gk"]
-[ext_resource type="Texture2D" uid="uid://vhn5puxycswn" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0004.png" id="28_xcye8"]
-[ext_resource type="Texture2D" uid="uid://g2haeqn10snt" path="res://Assets/Art/PlayerAnimationFrames/Glide/Glide_Front_Side/Glide_Front_Side_0005.png" id="29_b0tki"]
+[ext_resource type="Texture2D" uid="uid://vhn5puxycswn" path="res://Assets/Art/PlayerAnimationFrames/Glide Exit/Glide Exit Front Side/Glide_Front_Side_0004.png" id="28_xcye8"]
+[ext_resource type="Texture2D" uid="uid://g2haeqn10snt" path="res://Assets/Art/PlayerAnimationFrames/Glide Exit/Glide Exit Front Side/Glide_Front_Side_0005.png" id="29_b0tki"]
 [ext_resource type="Texture2D" uid="uid://d22bt2f1evxgs" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0001.png" id="30_2m6ih"]
 [ext_resource type="Texture2D" uid="uid://ck4ovlg1bjeht" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0002.png" id="31_b0la8"]
 [ext_resource type="Texture2D" uid="uid://ctlbo1v8vfk7a" path="res://Assets/Art/PlayerAnimationFrames/Stomp/stomp_front_side/stomp_FS0003.png" id="32_uhb38"]
@@ -315,26 +316,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage2:modulate")
+tracks/2/path = NodePath("PhonePageHolder/PhonePage2:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0.5647059, 1, 0.50980395, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage3:modulate")
+tracks/3/path = NodePath("PhonePageHolder/PhonePage3:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
+"values": [Color(0.95686275, 0.8352941, 0.69411767, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -351,14 +352,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PhonePage1:modulate")
+tracks/5/path = NodePath("PhonePageHolder/PhonePage1:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.78352344, 0.78352344, 0.78352326, 1)]
+"values": [Color(0.95686275, 0.8352941, 0.69411767, 1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -383,6 +384,75 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_qb0ju"]
+resource_name = "close_settings"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsScene:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(410, 160), Vector2(-250, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(820, 160), Vector2(160, 160)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhonePageHolder/PhonePage1:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.5647059, 1, 0.50980395, 1), Color(0.95686275, 0.8352941, 0.69411767, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhonePageHolder/PhonePage2:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.95686275, 0.8352941, 0.69411767, 1), Color(0.5647059, 1, 0.50980395, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_transitioning"
+}, {
+"args": [],
+"method": &"stop_transitioning"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_tmijn"]
@@ -415,26 +485,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage1:modulate")
+tracks/2/path = NodePath("PhonePageHolder/PhonePage1:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.95686275, 0.8352941, 0.69411767, 1), Color(0.5647059, 1, 0.50980395, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage2:modulate")
+tracks/3/path = NodePath("PhonePageHolder/PhonePage2:modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.78431374, 0.78431374, 0.78431374, 1)]
+"values": [Color(0.5647059, 1, 0.50980395, 1), Color(0.95686275, 0.8352941, 0.69411767, 1)]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -483,26 +553,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage2:modulate")
+tracks/2/path = NodePath("PhonePageHolder/PhonePage2:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
+"values": [Color(0.5647059, 1, 0.50980395, 1), Color(0.95686275, 0.8352941, 0.69411767, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage3:modulate")
+tracks/3/path = NodePath("PhonePageHolder/PhonePage3:modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.78352344, 0.78352344, 0.78352326, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.95686275, 0.8352941, 0.69411767, 1), Color(0.5647059, 1, 0.50980395, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -575,26 +645,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage2:modulate")
+tracks/2/path = NodePath("PhonePageHolder/PhonePage2:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.95686275, 0.8352941, 0.69411767, 1), Color(0.5647059, 1, 0.50980395, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage3:modulate")
+tracks/3/path = NodePath("PhonePageHolder/PhonePage3:modulate")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
+"values": [Color(0.5647059, 1, 0.50980395, 1), Color(0.95686275, 0.8352941, 0.69411767, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -628,75 +698,6 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"start_transitioning"
-}, {
-"args": [],
-"method": &"stop_transitioning"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_qb0ju"]
-resource_name = "close_settings"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SettingsScene:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(410, 160), Vector2(-250, 160)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ButtonContainer:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(820, 160), Vector2(160, 160)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PhonePage1:modulate")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.78352344, 0.78352344, 0.78352326, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PhonePage2:modulate")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.78431374, 0.78431374, 0.78431374, 1), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../..")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -784,17 +785,17 @@ texture = ExtResource("6_t601t")
 anchors_preset = 0
 offset_left = 820.0
 offset_top = 160.0
-offset_right = 2322.0005
+offset_right = 2322.0044
 offset_bottom = 160.0
 rotation = 1.5707964
 
 [node name="ControlsImage" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
 layout_mode = 0
-offset_left = -47.49994
-offset_top = -619.9999
-offset_right = 1454.5
-offset_bottom = 282.00012
-scale = Vector2(0.77, 0.77)
+offset_left = -46.666607
+offset_top = -569.1666
+offset_right = 1654.3334
+offset_bottom = 332.83337
+scale = Vector2(0.678, 0.678)
 texture = ExtResource("7_t601t")
 
 [node name="ControlsImageAnimation" type="AnimationPlayer" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
@@ -802,6 +803,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_k0qof")
 }
 autoplay = "controls_image"
+
+[node name="PurpleLine" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
+layout_mode = 0
+offset_left = -219.56519
+offset_top = 40.09987
+offset_right = -179.56519
+offset_bottom = 80.09987
+scale = Vector2(50, 0.5)
+texture = ExtResource("9_edyq6")
 
 [node name="BackButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
 layout_mode = 0
@@ -811,8 +821,8 @@ offset_right = 1141.6667
 offset_bottom = -410.0
 rotation = 0.17278759
 scale = Vector2(0.9, 0.9)
-texture_normal = ExtResource("9_uhb38")
-texture_click_mask = ExtResource("10_gkt0c")
+texture_normal = ExtResource("10_edyq6")
+texture_click_mask = ExtResource("11_pkbh5")
 script = ExtResource("10_en6uu")
 
 [node name="Slips" type="Control" parent="PhoneOutline/PhoneBackground/ControlsContainer"]
@@ -820,10 +830,10 @@ anchors_preset = 0
 
 [node name="SlipMove" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
 layout_mode = 0
-offset_left = 135.00006
-offset_top = -310.83337
-offset_right = 1215.0
-offset_bottom = 769.1666
+offset_left = 158.33339
+offset_top = -317.5
+offset_right = 1238.3334
+offset_bottom = 762.5
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("9_2sge0")
 
@@ -836,19 +846,19 @@ autoplay = "slip_move"
 
 [node name="SlipDash1" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
 layout_mode = 0
-offset_left = 376.6667
-offset_top = -224.16669
-offset_right = 1456.6667
-offset_bottom = 855.8333
+offset_left = 392.50003
+offset_top = -227.50002
+offset_right = 1472.5
+offset_bottom = 852.5
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("15_kp3yf")
 
 [node name="SlipDash2" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
 layout_mode = 0
-offset_left = 910.8333
-offset_top = -245.0
-offset_right = 1990.8333
-offset_bottom = 835.0
+offset_left = 896.6666
+offset_top = -235.0
+offset_right = 1976.6666
+offset_bottom = 845.0
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("17_ibeq5")
 
@@ -861,10 +871,10 @@ autoplay = "slip_dash"
 
 [node name="SlipJump" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
 layout_mode = 0
-offset_left = 105.833374
-offset_top = -563.3334
-offset_right = 1185.8334
-offset_bottom = 532.6666
+offset_left = 128.33337
+offset_top = -543.3334
+offset_right = 1208.3334
+offset_bottom = 552.6666
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("19_2rv72")
 
@@ -877,10 +887,10 @@ autoplay = "slip_jump"
 
 [node name="SlipGlide" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
 layout_mode = 0
-offset_left = 385.83337
-offset_top = -444.1667
-offset_right = 1465.8334
-offset_bottom = 651.8333
+offset_left = 378.33337
+offset_top = -432.49997
+offset_right = 1458.3334
+offset_bottom = 663.5
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("25_lvb7r")
 
@@ -893,10 +903,10 @@ autoplay = "slip_glide"
 
 [node name="SlipStomp" type="TextureRect" parent="PhoneOutline/PhoneBackground/ControlsContainer/Slips"]
 layout_mode = 0
-offset_left = 651.6667
-offset_top = -342.49997
-offset_right = 1731.6667
-offset_bottom = 753.5
+offset_left = 653.3334
+offset_top = -332.5
+offset_right = 1733.3334
+offset_bottom = 763.5
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("30_2m6ih")
 
@@ -911,25 +921,26 @@ autoplay = "slip_stomp"
 anchors_preset = 0
 offset_left = 160.0
 offset_top = 160.0
-offset_right = 200.00006
+offset_right = 200.00012
 offset_bottom = 200.0
 
 [node name="ResumeButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = -45.0
-offset_right = 585.0
-offset_bottom = 315.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 103.45822
+offset_right = 561.25
+offset_bottom = 463.45822
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
 [node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.92857
-offset_right = 615.75
-offset_bottom = 335.9286
+offset_left = -30.87069
+offset_top = 85.57293
+offset_right = 616.12933
+offset_bottom = 337.57294
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -937,7 +948,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]RESUME"
 fit_content = true
@@ -946,11 +957,12 @@ horizontal_alignment = 1
 
 [node name="ControlsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 170.0
-offset_right = 585.0
-offset_bottom = 530.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 308.4582
+offset_right = 561.25
+offset_bottom = 668.45825
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
@@ -976,20 +988,21 @@ horizontal_alignment = 1
 
 [node name="SettingsButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 385.0
-offset_right = 585.0
-offset_bottom = 745.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 513.4582
+offset_right = 561.25
+offset_bottom = 873.45825
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
 [node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.929
-offset_right = 615.75
-offset_bottom = 335.92902
+offset_left = -32.086536
+offset_top = 90.70649
+offset_right = 614.91345
+offset_bottom = 342.7065
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -997,7 +1010,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]SETTINGS"
 fit_content = true
@@ -1006,20 +1019,21 @@ horizontal_alignment = 1
 
 [node name="RestartLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 600.0
-offset_right = 585.0
-offset_bottom = 960.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 718.45825
+offset_right = 561.25
+offset_bottom = 1078.4583
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
-[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton"]
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.929
-offset_right = 615.75
-offset_bottom = 335.92902
+offset_left = -31.001236
+offset_top = 81.91356
+offset_right = 615.9988
+offset_bottom = 333.91357
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -1027,7 +1041,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]RESTART"
 fit_content = true
@@ -1036,20 +1050,21 @@ horizontal_alignment = 1
 
 [node name="ExitLevelButton" type="TextureButton" parent="PhoneOutline/PhoneBackground/ButtonContainer"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = 815.0
-offset_right = 585.0
-offset_bottom = 1175.0
-scale = Vector2(1, 0.7)
+offset_left = -68.75
+offset_top = 923.45825
+offset_right = 561.25
+offset_bottom = 1283.4583
+rotation = -0.28099802
+scale = Vector2(1, 0.6)
 texture_normal = ExtResource("38_tr4yg")
 script = ExtResource("10_en6uu")
 
-[node name="Text2" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"]
+[node name="Text" type="RichTextLabel" parent="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"]
 layout_mode = 0
-offset_left = -31.25
-offset_top = 83.929
-offset_right = 615.75
-offset_bottom = 335.92902
+offset_left = -31.087778
+offset_top = 87.33155
+offset_right = 615.91223
+offset_bottom = 339.33157
 scale = Vector2(1, 1.429)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -1057,7 +1072,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("39_qb0ju")
 theme_override_fonts/italics_font = ExtResource("40_edyq6")
 theme_override_fonts/mono_font = ExtResource("39_qb0ju")
-theme_override_font_sizes/italics_font_size = 115
+theme_override_font_sizes/italics_font_size = 110
 bbcode_enabled = true
 text = "[i]EXIT"
 fit_content = true
@@ -1075,7 +1090,7 @@ offset_bottom = 26.499992
 color = Color(0.59607846, 0.59607846, 0.59607846, 0)
 
 [node name="PhonePageHolder" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
-modulate = Color(0.7121294, 0.7121294, 0.71212924, 1)
+self_modulate = Color(0.12156863, 0.09019608, 0.20784314, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1088,57 +1103,59 @@ offset_right = 37.49994
 offset_bottom = -154.99988
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(2, 2)
 pivot_offset = Vector2(30, 10)
 texture = ExtResource("5_g4tqe")
 expand_mode = 1
 
-[node name="PhonePage1" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
-modulate = Color(0.78352344, 0.78352344, 0.78352326, 1)
+[node name="PhonePage1" type="TextureRect" parent="PhoneOutline/PhoneBackground/PhonePageHolder"]
+modulate = Color(0.95686275, 0.8352941, 0.69411767, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -17.500061
-offset_top = -169.99988
-offset_right = -7.500061
-offset_bottom = -159.99988
+offset_left = -25.0
+offset_top = -15.0
+offset_right = -15.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
 texture = ExtResource("5_ojd7t")
 expand_mode = 1
 
-[node name="PhonePage2" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
+[node name="PhonePage2" type="TextureRect" parent="PhoneOutline/PhoneBackground/PhonePageHolder"]
+modulate = Color(0.5647059, 1, 0.50980395, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 2.499939
-offset_top = -169.99988
-offset_right = 12.499939
-offset_bottom = -159.99988
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)
 texture = ExtResource("5_ojd7t")
 expand_mode = 1
 
-[node name="PhonePage3" type="TextureRect" parent="PhoneOutline/PhoneBackground"]
-modulate = Color(0.78352344, 0.78352344, 0.78352326, 1)
+[node name="PhonePage3" type="TextureRect" parent="PhoneOutline/PhoneBackground/PhonePageHolder"]
+modulate = Color(0.95686275, 0.8352941, 0.69411767, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 22.499939
-offset_top = -169.99988
-offset_right = 32.49994
-offset_bottom = -159.99988
+offset_left = 15.0
+offset_top = -15.0
+offset_right = 25.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(5, 5)

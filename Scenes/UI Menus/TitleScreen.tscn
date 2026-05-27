@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=24 format=3 uid="uid://7uehf4aws4ii"]
 
 [ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/UI/title_screen.gd" id="1_sjn55"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
 [ext_resource type="Texture2D" uid="uid://b2rff4pg2w0gi" path="res://Assets/Art/UI/TitleScreen/background.png" id="3_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2v1kr7g0ysu8" path="res://Assets/Art/UI/TitleScreen/title.png" id="4_xym7l"]
-[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
+[ext_resource type="PackedScene" uid="uid://yidw5kopolvj" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
 [ext_resource type="Texture2D" uid="uid://b52ppde1ewcqm" path="res://Assets/Art/UI/TitleScreen/slip.png" id="5_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2feq7alf2tqs" path="res://Assets/Art/UI/TitleScreen/now_playing.png" id="5_km04c"]
 [ext_resource type="Texture2D" uid="uid://c3s5ifd2i0xvm" path="res://Assets/Art/UI/TitleScreen/play_button.png" id="6_sh7nw"]
@@ -18,6 +18,28 @@
 [ext_resource type="Texture2D" uid="uid://cyx7l5k8duoue" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note5.png" id="11_f8b7y"]
 [ext_resource type="BitMap" uid="uid://dvbgirwbu1fiw" path="res://Assets/Art/UI/TitleScreen/credits_button_click_mask.png" id="12_8o0qd"]
 [ext_resource type="Texture2D" uid="uid://cg5jsfwllp3hx" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note6.png" id="12_ij21d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_idimm"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_idimm"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 0.7137255, 0.25882354)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w6tul"]
+gradient = SubResource("Gradient_idimm")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_w6tul"]
+offsets = PackedFloat32Array(0.33962265, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 0.8862745, 0.6117647)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_in3d3"]
+gradient = SubResource("Gradient_w6tul")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.995, 0)
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("music_notes")]
 layout_mode = 3
@@ -56,6 +78,7 @@ texture = ExtResource("4_xym7l")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+pivot_offset = Vector2(280, 135)
 texture = ExtResource("5_km04c")
 
 [node name="Slip" type="TextureRect" parent="Images"]
@@ -123,6 +146,7 @@ offset_left = 463.0
 offset_top = 430.0
 offset_right = 1113.0
 offset_bottom = 930.0
+pivot_offset = Vector2(325, 250)
 texture_normal = ExtResource("6_sh7nw")
 texture_click_mask = ExtResource("9_h17gc")
 script = ExtResource("9_0iu0x")
@@ -134,18 +158,31 @@ offset_left = 387.0
 offset_top = 807.0
 offset_right = 1037.0
 offset_bottom = 1307.0
+pivot_offset = Vector2(215, 137)
 texture_normal = ExtResource("7_vbb3l")
 texture_click_mask = ExtResource("12_8o0qd")
 script = ExtResource("9_0iu0x")
 brightness_change = 0.15
 
-[node name="Vignette" parent="." instance=ExtResource("5_6t3va")]
+[node name="BottomGlow" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+material = SubResource("CanvasItemMaterial_idimm")
 layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_w6tul")
 
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Flash" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_in3d3")
+
+[node name="Vignette" parent="." instance=ExtResource("5_6t3va")]
+visible = false
+layout_mode = 0
 
 [connection signal="mouse_entered" from="PlayButton" to="PlayButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_mouse_exited"]

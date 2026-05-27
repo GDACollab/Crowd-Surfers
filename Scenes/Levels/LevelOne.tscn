@@ -229,19 +229,16 @@ size = Vector3(1000, 500, 1000)
 texture_albedo = ExtResource("3_tyndo")
 modulate = Color(0, 0, 0, 0.52156866)
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/Level.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_bjeon")]
 player = NodePath("../Player")
+music_path = "event:/MUS/level_1"
+ambience_path = "event:/SFX/ENV/ambience/city_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_cnki7")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -317.1856, 120.806206, -938.69275)
 size = 200.0
 near = 0.001
 offset = Vector3(0, 1000, 1000)
-
-[node name="FmodListener3D" type="FmodListener3D" parent="Camera3D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("vfx_manager") instance=ExtResource("3_nusql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3129883, 0.06352997, 45.04034)
@@ -5537,7 +5534,7 @@ boostPower = 400.0
 speedCap = 400.0
 
 [node name="BoostPad4" parent="Level Components/Windboxes" instance=ExtResource("58_3tfrk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 1, 350.88943)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7200, 1.1155586, 350.88943)
 boostPower = 400.0
 speedCap = 400.0
 
