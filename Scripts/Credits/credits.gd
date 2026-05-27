@@ -101,7 +101,7 @@ func _process(delta: float):
 		current_scroll_speed -= scroll_speed_change_rate_per_second * delta
 	self.position.y += current_scroll_speed * -1 * delta
 	
-	if (self.position.y < credits_end_y):
+	if (Input.is_action_just_pressed("ui_back") || self.position.y < credits_end_y):
 		_on_back_button_pressed()
 
 func _on_back_button_pressed() -> void:
