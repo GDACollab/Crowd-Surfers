@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://xi3ddy3x461s"]
+[gd_scene load_steps=35 format=3 uid="uid://rp5hggksir1k"]
 
 [ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scenes/Cutscenes/cutscene_interface.gd" id="1_usugl"]
 [ext_resource type="Texture2D" uid="uid://vd2amtrcq6hq" path="res://Scenes/Cutscenes/cutscene-1.png" id="2_7g7te"]
@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://b173vm7j2ker1" path="res://Scenes/Cutscenes/cutscene-23.png" id="24_xrrhw"]
 [ext_resource type="Texture2D" uid="uid://7o8qgtw2yhow" path="res://Scenes/Cutscenes/cutscene-24.png" id="25_feqog"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_p87ff"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocqqe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -101,9 +101,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_feqog")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_7g7te"]
@@ -111,6 +111,64 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_vvmgn"]
 gradient = SubResource("Gradient_7g7te")
+
+[sub_resource type="Gradient" id="Gradient_tk2da"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p87ff"]
+gradient = SubResource("Gradient_tk2da")
+
+[sub_resource type="Animation" id="Animation_4ybge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p87ff"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tk2da"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ybge"]
+_data = {
+&"RESET": SubResource("Animation_4ybge"),
+&"fade_in": SubResource("Animation_p87ff"),
+&"fade_out": SubResource("Animation_tk2da")
+}
 
 [node name="Cutscene" type="Control"]
 layout_mode = 3
@@ -120,16 +178,10 @@ script = ExtResource("1_usugl")
 [node name="DefaultCutsceneSound" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/CUTSCENE/opening_hub"
 event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
-fmod_parameters/cutscene_muffling/id = -6540895482099023269
-fmod_parameters/cutscene_muffling = 0.5
-fmod_parameters/cutscene_muffling/variant_type = 3
-fmod_parameters/cutscene_frame/id = -8208998917813621879
-fmod_parameters/cutscene_frame = 0
-fmod_parameters/cutscene_frame/variant_type = 2
 
 [node name="DefaultCutsceneFrames" type="AnimatedSprite2D" parent="."]
 position = Vector2(960, 544)
-sprite_frames = SubResource("SpriteFrames_p87ff")
+sprite_frames = SubResource("SpriteFrames_ocqqe")
 
 [node name="ProgressBar" type="Node2D" parent="."]
 position = Vector2(0, 1056)
@@ -139,3 +191,22 @@ offset_top = 16.0
 offset_right = 1920.0
 offset_bottom = 28.0
 texture = SubResource("GradientTexture1D_vvmgn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 222.0
+offset_bottom = 23.0
+text = "PRESS X TO SKIP SCENE"
+
+[node name="Fade Panel" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+z_index = 1
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1088.0
+texture = SubResource("GradientTexture2D_p87ff")
+
+[node name="Interface Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4ybge")
+}

@@ -8,6 +8,7 @@ extends Control
 @export var cutscene_sound : FmodEventEmitter2D
 
 @onready var progress_bar : Node2D = $ProgressBar
+@onready var animator = $"Interface Animator"
 @onready var wait_timer : float = abs(WAIT_TIME) 
 
 var animatic_frame_count : int
@@ -19,6 +20,7 @@ func _ready():
 	animatic_frame_count = animatic_frames.sprite_frames.get_frame_count("default")
 	
 	cutscene_sound.play()
+	animator.play("fade_in")
 	progress_bar.scale.x = 0
 
 func _process(delta):
@@ -40,5 +42,7 @@ func _process(delta):
 
 func _end_cutscene():
 	## TODO: Scene flow
-	print("trigger")
+	print("Cutscene: Cutscene has been stopped")
+	animator.play("fade_out")
+	cutscene_sound.stop()
 	pass
