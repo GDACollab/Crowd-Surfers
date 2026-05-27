@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kvs3yueyscim"]
+[gd_scene load_steps=10 format=3 uid="uid://kvs3yueyscim"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6kqvo"]
 [ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/UI/settings_screen.gd" id="1_p0nga"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="5_enenp"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="6_7ddfd"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="7_gisvi"]
+[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="8_gisvi"]
+[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="9_0ww7i"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -42,26 +44,45 @@ texture_click_mask = ExtResource("6_7ddfd")
 script = ExtResource("7_gisvi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsBody"]
+visible = false
 layout_mode = 0
-offset_left = 165.00002
-offset_top = 539.00006
-offset_right = 600.737
-offset_bottom = 1109.0
+offset_left = 132.0
+offset_top = 536.00006
+offset_right = 657.0
+offset_bottom = 1106.0
 rotation = -0.17453292
 size_flags_horizontal = 3
 
-[node name="MasterVolumeText" type="RichTextLabel" parent="SettingsBody/VBoxContainer"]
-layout_mode = 2
+[node name="MasterVolumeText" type="RichTextLabel" parent="SettingsBody"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 536.00006
+offset_right = 665.0
+offset_bottom = 602.00006
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("8_gisvi")
+theme_override_fonts/italics_font = ExtResource("9_0ww7i")
+theme_override_fonts/mono_font = ExtResource("8_gisvi")
+theme_override_font_sizes/italics_font_size = 65
 bbcode_enabled = true
-text = "[font_size=45]Master Volume"
+text = "[i] MASTER VOLUME "
 fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="MasterSliderHolder" type="Control" parent="SettingsBody/VBoxContainer"]
+[node name="MasterSliderHolder" type="Control" parent="SettingsBody"]
 custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
+anchors_preset = 0
+offset_left = 152.15536
+offset_top = 604.9366
+offset_right = 677.1554
+offset_bottom = 684.9366
+rotation = -0.17453292
 
-[node name="MasterSlider" type="HSlider" parent="SettingsBody/VBoxContainer/MasterSliderHolder"]
+[node name="MasterSlider" type="HSlider" parent="SettingsBody/MasterSliderHolder"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,18 +100,36 @@ pivot_offset = Vector2(54.375, 8)
 max_value = 1.0
 step = 0.0
 
-[node name="MusicVolumeText" type="RichTextLabel" parent="SettingsBody/VBoxContainer"]
-layout_mode = 2
+[node name="MusicVolumeText" type="RichTextLabel" parent="SettingsBody"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 687.66046
+offset_right = 665.0
+offset_bottom = 753.66046
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("8_gisvi")
+theme_override_fonts/italics_font = ExtResource("9_0ww7i")
+theme_override_fonts/mono_font = ExtResource("8_gisvi")
+theme_override_font_sizes/italics_font_size = 65
 bbcode_enabled = true
-text = "[font_size=45]Music Volume"
+text = "[i] MUSIC VOLUME "
 fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="MusicSliderHolder" type="Control" parent="SettingsBody/VBoxContainer"]
+[node name="MusicSliderHolder" type="Control" parent="SettingsBody"]
 custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
+anchors_preset = 0
+offset_left = 152.15536
+offset_top = 756.597
+offset_right = 677.1554
+offset_bottom = 836.597
+rotation = -0.17453292
 
-[node name="MusicSlider" type="HSlider" parent="SettingsBody/VBoxContainer/MusicSliderHolder"]
+[node name="MusicSlider" type="HSlider" parent="SettingsBody/MusicSliderHolder"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -108,18 +147,36 @@ pivot_offset = Vector2(54.375, 8)
 max_value = 1.0
 step = 0.0
 
-[node name="SFXVolumeText" type="RichTextLabel" parent="SettingsBody/VBoxContainer"]
-layout_mode = 2
+[node name="SFXVolumeText" type="RichTextLabel" parent="SettingsBody"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 839.3208
+offset_right = 664.0
+offset_bottom = 905.3208
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("8_gisvi")
+theme_override_fonts/italics_font = ExtResource("9_0ww7i")
+theme_override_fonts/mono_font = ExtResource("8_gisvi")
+theme_override_font_sizes/italics_font_size = 65
 bbcode_enabled = true
-text = "[font_size=45]SFX Volume"
+text = "[i] SFX VOLUME "
 fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="SFXSliderHolder" type="Control" parent="SettingsBody/VBoxContainer"]
+[node name="SFXSliderHolder" type="Control" parent="SettingsBody"]
 custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
+anchors_preset = 0
+offset_left = 151.15536
+offset_top = 908.2574
+offset_right = 676.1554
+offset_bottom = 988.2574
+rotation = -0.17453292
 
-[node name="SFXSlider" type="HSlider" parent="SettingsBody/VBoxContainer/SFXSliderHolder"]
+[node name="SFXSlider" type="HSlider" parent="SettingsBody/SFXSliderHolder"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,6 +196,6 @@ step = 0.0
 
 [connection signal="mouse_entered" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_mouse_exited"]
-[connection signal="value_changed" from="SettingsBody/VBoxContainer/MasterSliderHolder/MasterSlider" to="." method="_on_master_slider_value_changed"]
-[connection signal="value_changed" from="SettingsBody/VBoxContainer/MusicSliderHolder/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="SettingsBody/VBoxContainer/SFXSliderHolder/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="SettingsBody/MasterSliderHolder/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="SettingsBody/MusicSliderHolder/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="SettingsBody/SFXSliderHolder/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

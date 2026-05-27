@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=45 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -30,11 +30,14 @@
 [ext_resource type="PackedScene" uid="uid://boacixvku1uw6" path="res://Scenes/UI Menus/MainMenu/voicemails_screen.tscn" id="27_fe6hl"]
 [ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 [ext_resource type="Texture2D" uid="uid://bmn876h0e8tcp" path="res://Assets/Art/UI/ui_phone_edge.png" id="28_dnqoa"]
-[ext_resource type="PackedScene" uid="uid://4doyudtagl7a" path="res://Scenes/UI Menus/MainMenu/social_media_screen.tscn" id="29_hamnu"]
+[ext_resource type="PackedScene" uid="uid://dc41wgb5xtf7r" path="res://Scenes/UI Menus/MainMenu/social_media_screen.tscn" id="29_hamnu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hamnu"]
+blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_75vxy"]
 offsets = PackedFloat32Array(0, 0.64)
-colors = PackedColorArray(1, 0.9306667, 0.74, 1, 1, 0.92941177, 0.7411765, 0)
+colors = PackedColorArray(1, 0.92941177, 0.7411765, 0.45490196, 1, 0.92941177, 0.7411765, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_60cbh"]
 gradient = SubResource("Gradient_75vxy")
@@ -624,6 +627,7 @@ offset_bottom = 1080.0
 texture = ExtResource("3_mdd1j")
 
 [node name="FireGlowImage" type="TextureRect" parent="BackgroundsFarther"]
+material = SubResource("CanvasItemMaterial_hamnu")
 layout_mode = 0
 offset_left = 895.0
 offset_top = 73.0
