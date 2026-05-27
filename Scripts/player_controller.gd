@@ -4,6 +4,7 @@ extends CharacterBody3D
 var player_sprite_starting_pos: float = 0.0
 @onready var raycast : RayCast3D = $CollisionShape3D/RayCast3D
 @onready var slope_check_raycast: RayCast3D = $CollisionShape3D/SlopeCheckRaycast
+@onready var trail_spakle: AnimatedSprite3D = $TrailSparkle
 
 # STOMP CROWD
 signal crowd_stomp_end
@@ -33,6 +34,8 @@ var stateColors = {
 @export var starting_speed : float = 30.0
 ## Growth exponent for ramping
 @export var ramping_exponent: float = 0.5
+## Shrinking exponent for damping
+@export var damping_exponent: float = 0.5
 ## Penalty to max speed when crashing into a wall
 @export var crash_penalty_mult: float = 1.05
 ## Acceleration before modifications
@@ -258,9 +261,8 @@ func _physics_process(delta: float) -> void:
 			
 			# If the normal's Y value is low, it means we got hit from the SIDE (bumper)
 			if hit_normal.y < 0.5: 
-				pass
 				# Call Slip's damage function here! 
-				#print("Slip got hit by the bumper!")
+				print("Slip got hit by the bumper!")
 				# take_damage(1)d
 	restart()
 	check_height()
@@ -276,6 +278,8 @@ func process_state(delta: float) -> void:
 			# Ramping
 			if max_speed < ramping_cap: 
 				max_speed += pow(ramping_cap - max_speed, ramping_exponent) * delta
+			else:
+				max_speed -= pow(max_speed - ramping_cap, damping_exponent) * delta
 			handle_inputs(delta)
 			if is_on_floor():
 				velocity.y = 0.0
@@ -408,6 +412,7 @@ func check_state_transitions() -> void:
 				transition_to(States.STOMP_FALL)
 		States.STOMP_FALL:
 			if is_on_floor():
+				print("STOMP HIT FLOOR")
 				crowd_stomp_end.emit()
 				var hit_crowd = false
 				
@@ -421,21 +426,20 @@ func check_state_transitions() -> void:
 					var collision = get_slide_collision(i)
 					var collider = collision.get_collider()
 					
-					#print("Collision ", i, " with: ", collider.name)
-					#print("  - Groups on this object: ", collider.get_groups())
+					print("Collision ", i, " with: ", collider.name)
+					print("  - Groups on this object: ", collider.get_groups())
 					
 					if collider.is_in_group("Crowd"):
-						#print("Detects Crowd")
+						print("Detects Crowd")
 						hit_crowd = true
 						break
 				
 				if hit_crowd:
-					#print("SUCCESS! Crowd object detected. Launching!")
+					print("SUCCESS! Crowd object detected. Launching!")
 					transition_to(States.STOMP_CROWD_LAUNCH)
 					return
 				else:
-					pass
-					#print("Normal floor detected. Transitioning to GROUND.")
+					print("Normal floor detected. Transitioning to GROUND.")
 			
 				$StompDashMargin.start()
 				transition_to(States.GROUND)
@@ -518,11 +522,11 @@ func transition_to(new_state: int) -> void:
 		States.GLIDE:
 			# Stop glide sound
 			$GlideSound.set_parameter("glide_state", "end")
+			if new_state == States.AIR:
+				player_sprite.play_animation("glide_exit", true)
 		States.STOMP_FALL:
 			if new_state == States.GROUND:
 				# Play end of stomp sound
-				FmodServer.set_global_parameter_by_name_with_label(
-					"floor_material", floor_sound_material)
 				$StompSound.set_parameter("stomp_state", "end")
 			else:
 				# interrupt playback
@@ -552,18 +556,16 @@ func transition_to(new_state: int) -> void:
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
 		States.GROUND:
-			Audio.unpause_persistent("skating_loop")
 			can_air_dash = true
 			can_glide = true
 			# Check if landing sound needs to be played
 			if current_state == States.AIR or current_state == States.GLIDE:
-				FmodServer.set_global_parameter_by_name_with_label(
-					"floor_material", floor_sound_material)
+				FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 				$LandingSound.play()
 			elif current_state == States.CRASH_GROUND or current_state == States.CRASH_AIR:
 				#player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash_exit")
-				#print("Crash Exit!")
+				print("Crash Exit!")
 		States.COYOTE:
 			$CoyoteTimer.start()
 		States.CRASH_GROUND, States.CRASH_AIR:
@@ -577,7 +579,6 @@ func transition_to(new_state: int) -> void:
 				player_sprite.crash_dir = -velocity
 				player_sprite.play_animation("crash")
 				get_viewport().get_camera_3d().apply_shake()
-				$CrashSound.play()
 		States.STOMP_WINDUP:
 			player_sprite.play_animation("stomp")
 			# If dash is active as stomp begins, end it
@@ -601,6 +602,7 @@ func transition_to(new_state: int) -> void:
 			# Start the windup timer
 			$StompWindupTimer.start()
 			# Start stomp sound windup
+			FmodServer.set_global_parameter_by_name_with_label("floor_material", floor_sound_material)
 			$StompSound.set_parameter("stomp_state", "windup")
 			$StompSound.play()
 			
@@ -621,7 +623,6 @@ func transition_to(new_state: int) -> void:
 			glide_vfxs_spawned = 0
 					
 		States.AIR:
-			Audio.pause_persistent("skating_loop")
 			# Lower friction in midair
 			friction /= 2.0
 		States.DASH_GROUND, States.DASH_AIR:
@@ -654,13 +655,20 @@ func transition_to(new_state: int) -> void:
 					player_sprite.play_animation("dash")
 					# We want the dash animation to be held for longer than the dash actually lasts cause it's cool asf
 					$DashAnimationEndTimer.start()
+					
+					if (vfx_manager == null):
+						print("ERROR: No VFX manager assigned to player!!")
+					elif (abs(velocity.z) > abs(velocity.x)):
+						vfx_manager.spawn_vfx(position, velocity, "dash_up", self)
+					else:
+						vfx_manager.spawn_vfx(position, velocity, "dash_side", self)
+		
 				# Play dash sound
 				$DashSound.play()
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	
 	current_state = new_state
-	#print(state_to_string())
 
 ## Handles inputs for standard movement and the dash
 func handle_inputs(delta: float) -> void:
@@ -760,6 +768,12 @@ func just_crashed() -> bool:
 	if speed_into_wall < min_speed_for_crash:
 		return false
 	# Crashed!
+	
+	if (vfx_manager == null):
+		print("ERROR: No VFX manager assigned to player!!")
+	else:
+		vfx_manager.spawn_vfx(position, velocity, "bonk")
+	
 	return true
 
 ## Checks player's current height
@@ -872,13 +886,13 @@ func update_fmod_floor_material() -> void:
 	var floor_collider = raycast.get_collider()
 	if floor_collider.is_in_group("Concrete"):
 		floor_sound_material = "concrete"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "concrete")
 	elif floor_collider.is_in_group("Metal"):
 		floor_sound_material = "metal"
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "metal")
 	elif floor_collider.is_in_group("Grass"):
 		floor_sound_material = "grass"
-	else:
-		floor_sound_material = "concrete"
-		
+		#FmodServer.set_global_parameter_by_name_with_label("floor_material", "grass")
 
 ## Returns whether the player is currently dashing
 func is_dashing() -> bool:
@@ -926,23 +940,16 @@ func stick_to_slope():
 	if is_on_floor():
 		floor_snap_length = snap_length
 
-# var trail_sound_playing := false
-
 func update_trail(delta):
 	var inputDir = Input.get_vector("move_left", "move_right", "move_down", "move_up").angle()
 	$TrailHolder.rotation.z = lerp_angle($TrailHolder.rotation.z, inputDir, 10 * delta)
 	if max_speed > 140:
-		# if (trail_sound_playing == false):
-		# 	Audio.create_persistent("player_trail", "event:/SFX/P/trail_effect", true).start()
-		# 	trail_sound_playing = true
-		
 		$TrailHolder/GPUTrail3D.visible = true
+		trail_spakle.visible = true
 	else:
-		# if (trail_sound_playing == true):
-		# 	Audio.kill_persistent("player_trail")
-		# 	trail_sound_playing = false
-			
 		$TrailHolder/GPUTrail3D.restart()
+		trail_spakle.visible = false
+	#print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.

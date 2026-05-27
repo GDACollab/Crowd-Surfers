@@ -21,6 +21,7 @@ func transition_to_scene(finalScene: PackedScene):
 	animation_player.play("fade_in")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
+	get_tree().paused = false
 
 	# Change scenes to finalScene, wait while this happens
 	get_tree().change_scene_to_packed(finalScene)
@@ -38,6 +39,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	animation_player.play("fade_in")
 	# Wait for animation
 	await get_tree().create_timer(FADE_TIME).timeout 
+	get_tree().paused = false
 
 	# Change scene to loading scene, wait while this happens
 	get_tree().change_scene_to_packed(load(LOAD_SCENE))
@@ -53,8 +55,7 @@ func transition_to_scene_with_loading(finalScene: String):
 	var progress: Array[float] = []
 	var progressBar: TextureProgressBar = get_tree().current_scene.get_node("SynthProgressBar")
 	while ResourceLoader.load_threaded_get_status(finalScene, progress) != ResourceLoader.THREAD_LOAD_LOADED:
-		# Why multiply by 4? Good question
-		progressBar.value = lerp(progressBar.value, progress[0] * 4, get_process_delta_time())
+		progressBar.value = lerp(progressBar.value, progress[0], get_process_delta_time())
 		await get_tree().process_frame
 	progressBar.value = 1.0
 
