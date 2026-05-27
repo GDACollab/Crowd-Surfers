@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://b8miwt7cr6tcm"]
+[gd_scene load_steps=29 format=3 uid="uid://b8miwt7cr6tcm"]
 
-[ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scenes/Cutscenes/cutscene_example.gd" id="1_usugl"]
+[ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scenes/Cutscenes/cutscene_interface.gd" id="1_usugl"]
 [ext_resource type="Texture2D" uid="uid://vd2amtrcq6hq" path="res://Scenes/Cutscenes/cutscene-1.png" id="2_7g7te"]
 [ext_resource type="Texture2D" uid="uid://lyb6snf0tnrf" path="res://Scenes/Cutscenes/cutscene-2.png" id="3_vvmgn"]
 [ext_resource type="Texture2D" uid="uid://be7l6e5qchvnn" path="res://Scenes/Cutscenes/cutscene-3.png" id="4_gbjbp"]
@@ -106,52 +106,31 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="Animation" id="Animation_uv44y"]
-resource_name = "CutsceneOpening"
-length = 24.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-}
+[sub_resource type="Gradient" id="Gradient_7g7te"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_rd2gs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vvmgn"]
+gradient = SubResource("Gradient_7g7te")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rd2gs"]
-_data = {
-&"CutsceneOpening": SubResource("Animation_uv44y"),
-&"RESET": SubResource("Animation_rd2gs")
-}
-
-[node name="Cutscene_Example" type="Node" unique_id=991710418]
+[node name="Cutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_usugl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=205311043]
-position = Vector2(1132, 446)
+[node name="DefaultCutsceneSound" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/CUTSCENE/opening"
+event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
+
+[node name="DefaultCutsceneFrames" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 544)
 sprite_frames = SubResource("SpriteFrames_ocqqe")
+frame = 1
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1881992755]
-position = Vector2(1129, 448)
+[node name="ProgressBar" type="Node2D" parent="."]
+position = Vector2(0, 1056)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2011759030]
-libraries/ = SubResource("AnimationLibrary_rd2gs")
+[node name="ProgressBarTexture" type="TextureRect" parent="ProgressBar"]
+offset_top = 16.0
+offset_right = 1920.0
+offset_bottom = 28.0
+texture = SubResource("GradientTexture1D_vvmgn")
