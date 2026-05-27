@@ -1,8 +1,8 @@
 extends Control
 
-@onready var master_slider: HSlider = $SettingsBody/VBoxContainer/MasterSliderHolder/MasterSlider
-@onready var music_slider: HSlider = $SettingsBody/VBoxContainer/MusicSliderHolder/MusicSlider
-@onready var sfx_slider: HSlider = $SettingsBody/VBoxContainer/SFXSliderHolder/SFXSlider
+@onready var master_slider: HSlider = $SettingsBody/MasterSliderHolder/MasterSlider
+@onready var music_slider: HSlider = $SettingsBody/MusicSliderHolder/MusicSlider
+@onready var sfx_slider: HSlider = $SettingsBody/SFXSliderHolder/SFXSlider
 
 func _ready() -> void:
 	master_slider.set_value_no_signal(Settings.master_volume)
