@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=26 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -11,12 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://c26316wye2n1k" path="res://Scenes/Dialogue Interface/dialogue_panel.tscn" id="5_wemfb"]
 [ext_resource type="Texture2D" uid="uid://c5x3qkjr4lfma" path="res://Assets/Art/UI/Dialogue/choice_2.PNG" id="6_l8m2v"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="6_obotj"]
-[ext_resource type="Script" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
-[ext_resource type="Shader" uid="uid://nrpqs0j0lece" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
+[ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
 [ext_resource type="Texture2D" uid="uid://ceh46l4giw0eq" path="res://Assets/Art/UI/Dialogue/continue_dialogue.PNG" id="14_yajxp"]
 [ext_resource type="Texture2D" uid="uid://sta7j2uaxr2t" path="res://Assets/Art/UI/Dialogue/skip_dialogue.PNG" id="15_e5ork"]
 [ext_resource type="Texture2D" uid="uid://baxlna7c5gsi0" path="res://Assets/Art/UI/Dialogue/continue_dialogue_pressed.PNG" id="15_j18xy"]
 [ext_resource type="Texture2D" uid="uid://bbo3md2gbyc31" path="res://Assets/Art/UI/Dialogue/continue_arrow.PNG" id="16_osr46"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="16_rhwms"]
 [ext_resource type="Texture2D" uid="uid://dai7u2voply8x" path="res://Assets/Art/UI/Dialogue/skip_dialogue_pressed.PNG" id="17_xpygo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
@@ -103,7 +104,9 @@ lowerDialogueBoxHeight = 150.0
 lowerDialogueBoxScale = Vector2(0.65, 0.65)
 portraitOutlineMaterial = ExtResource("5_tk2da")
 
-[node name="UIAudio" parent="." instance=ExtResource("6_obotj")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("6_obotj")]
+confirm_buttons = [NodePath("../Skip Button")]
+back_buttons = [NodePath("../Continue Button")]
 
 [node name="Blur Buffer" type="BackBufferCopy" parent="."]
 position = Vector2(909.99994, 496.99994)
@@ -180,7 +183,8 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 291.0
 offset_bottom = 33.0
-text = "PRESS SPACEBAR TO CONTINUE"
+theme_override_font_sizes/font_size = 25
+text = "Press SPACEBAR to continue"
 
 [node name="Skip Label" type="Label" parent="."]
 layout_mode = 1
@@ -192,7 +196,8 @@ offset_top = 10.0
 offset_right = -41.089966
 offset_bottom = 33.0
 grow_horizontal = 0
-text = "Press X TO SKIP"
+theme_override_font_sizes/font_size = 25
+text = "Press X to skip"
 horizontal_alignment = 2
 
 [node name="Interface Animator" type="AnimationPlayer" parent="."]
@@ -218,6 +223,8 @@ offset_bottom = 159.0
 grow_horizontal = 0
 texture_normal = ExtResource("14_yajxp")
 texture_pressed = ExtResource("15_j18xy")
+script = ExtResource("16_rhwms")
+brightness_change = 0.3
 
 [node name="Continue Button" type="TextureButton" parent="."]
 layout_mode = 1
@@ -227,6 +234,8 @@ offset_right = 124.0
 offset_bottom = 153.0
 texture_normal = ExtResource("15_e5ork")
 texture_pressed = ExtResource("17_xpygo")
+script = ExtResource("16_rhwms")
+brightness_change = 0.3
 
 [node name="Continue Arrow" type="TextureRect" parent="."]
 visible = false
@@ -237,5 +246,9 @@ offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("16_osr46")
 
+[connection signal="mouse_entered" from="Skip Button" to="Skip Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Skip Button" to="Skip Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="Skip Button" to="." method="_on_skip_button_pressed"]
+[connection signal="mouse_entered" from="Continue Button" to="Continue Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Continue Button" to="Continue Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="Continue Button" to="." method="_on_continue_button_pressed"]

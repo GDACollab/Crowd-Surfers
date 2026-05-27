@@ -8,14 +8,14 @@ extends Control
 
 ## Proper names for voicemail entries
 var voicemail_directory := {
-	"main_act1_scene2_voicemail" : "Pavo Act 1",
-	"Pavo_act2_voicemail" : "Pavo Act 2",
-	"Pavo_act3_voicemail" : "Pavo Act 3",
-	"main_act2_scene2_voicemail" : "Nyx Act 1",
-	"Nyx_act2_voicemail" : "Nyx Act 2",
-	"Nyx_act3_voicemail" : "Nyx Act 3",
-	"Minny_act2_voicemail" : "Minny Act 2",
-	"Minny_act3_voicemail" : "Minny Act 3",
+	"main_act1_scene2_voicemail" : "PAVO ACT 1",
+	"Pavo_act2_voicemail" : "PAVO ACT 2",
+	"Pavo_act3_voicemail" : "PAVO ACT 3",
+	"main_act2_scene2_voicemail" : "NYX ACT 1",
+	"Nyx_act2_voicemail" : "NYX ACT 2",
+	"Nyx_act3_voicemail" : "NYX ACT 3",
+	"Minny_act2_voicemail" : "MINNY ACT 2",
+	"Minny_act3_voicemail" : "MINNY ACT 3",
 }
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4doyudtagl7a"]
+[gd_scene load_steps=16 format=3 uid="uid://dc41wgb5xtf7r"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_5k433"]
 [ext_resource type="Texture2D" uid="uid://bu5ow00t63c83" path="res://Assets/Art/UI/MainMenu/Orders/orders_text.png" id="3_jgvbw"]
@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cx7ew6n2o7p56" path="res://Assets/Art/UI/MainMenu/Orders/scrollbar.png" id="5_jqjde"]
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="6_c2788"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="7_0wp62"]
-[ext_resource type="Texture2D" uid="uid://jqk64qsgrmop" path="res://Assets/Art/UI/MainMenu/SocialMedia/temp_social_media.png" id="8_5aamn"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="8_xg21w"]
 [ext_resource type="Texture2D" uid="uid://m5vuac0um0ao" path="res://Assets/Art/UI/MainMenu/SocialMedia/Abilities_Alina_Makarova.jpg" id="11_5urtv"]
-[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="13_tw3wh"]
-[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="14_s8tj3"]
+[ext_resource type="PackedScene" uid="uid://df3c7rvqhjyid" path="res://Scenes/UI Menus/MainMenu/social_media_section.tscn" id="12_shw3m"]
+[ext_resource type="Texture2D" uid="uid://kwq6s8h8hbj8" path="res://Assets/Art/UI/MainMenu/SocialMedia/Abilities_Carmen_Chen.jpg" id="13_i68pm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itith"]
 texture = ExtResource("5_jqjde")
@@ -71,6 +70,7 @@ horizontal_scroll_mode = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="SocialMediaBody/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
 [node name="BackButton" type="TextureButton" parent="SocialMediaBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -78,55 +78,17 @@ texture_normal = ExtResource("6_c2788")
 texture_click_mask = ExtResource("7_0wp62")
 script = ExtResource("8_xg21w")
 
-[node name="TextureRect" type="TextureRect" parent="SocialMediaBody/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 91.045)
+[node name="SocialMediaSection" parent="SocialMediaBody/ScrollContainer/VBoxContainer" instance=ExtResource("12_shw3m")]
 layout_mode = 2
-texture = ExtResource("8_5aamn")
-expand_mode = 2
+artist_name = "Alina Makarova"
+art = ExtResource("11_5urtv")
+description = "Slip ability concepting"
 
-[node name="BestTime2" type="RichTextLabel" parent="SocialMediaBody/ScrollContainer/VBoxContainer/TextureRect"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 8.0
-offset_right = 666.0
-offset_bottom = 260.00003
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_fonts/normal_font = ExtResource("13_tw3wh")
-theme_override_fonts/italics_font = ExtResource("14_s8tj3")
-theme_override_fonts/mono_font = ExtResource("13_tw3wh")
-theme_override_font_sizes/italics_font_size = 75
-bbcode_enabled = true
-text = "[i]ARTIST NAME"
-fit_content = true
-autowrap_mode = 0
-
-[node name="TextureRect3" type="TextureRect" parent="SocialMediaBody/ScrollContainer/VBoxContainer"]
+[node name="SocialMediaSection2" parent="SocialMediaBody/ScrollContainer/VBoxContainer" instance=ExtResource("12_shw3m")]
 layout_mode = 2
-texture = ExtResource("11_5urtv")
-expand_mode = 5
-
-[node name="TextureRect2" type="TextureRect" parent="SocialMediaBody/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 174.25)
-layout_mode = 2
-texture = ExtResource("8_5aamn")
-expand_mode = 2
-
-[node name="BestTime2" type="RichTextLabel" parent="SocialMediaBody/ScrollContainer/VBoxContainer/TextureRect2"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 8.0
-offset_right = 666.0
-offset_bottom = 260.00003
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_fonts/normal_font = ExtResource("13_tw3wh")
-theme_override_fonts/italics_font = ExtResource("14_s8tj3")
-theme_override_fonts/mono_font = ExtResource("13_tw3wh")
-theme_override_font_sizes/italics_font_size = 75
-bbcode_enabled = true
-text = "[i]Desc, desc, desc, desc, desc"
-fit_content = true
+artist_name = "Carmen Chen"
+art = ExtResource("13_i68pm")
+description = "Slip ability concepting"
 
 [connection signal="mouse_entered" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_exited"]

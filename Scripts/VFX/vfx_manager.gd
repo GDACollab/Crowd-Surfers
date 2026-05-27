@@ -41,7 +41,7 @@ func spawn_vfx(vfx_position: Vector3, player_velocity: Vector3, vfx_name: String
 	elif (rotate_dictionary[vfx_name] == RotationSetting.FLIP_Y):
 		if (player_flat_velocity.y > 0):
 			vfx.rotation.x = PI
-			offset += Vector3(0, 30, 20)
+			offset += Vector3(0, 12, 38.0)
 		
 	elif (rotate_dictionary[vfx_name] == RotationSetting.ROTATE):
 		# weird ahh code. turns velocity into an angle rounded to the nearest 45 degrees. each 45 degree angle goes from from 0 to 7
