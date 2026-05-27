@@ -131,7 +131,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 5, 4), PackedInt32Arr
 [node name="ActThreeConcept" type="Node3D"]
 script = ExtResource("1_haeap")
 
-[node name="RoadGroup" type="Node3D" parent="."]
+[node name="RoadGroup" type="Node3D" parent="." groups=["Cullable"]]
 
 [node name="DiagonalRoadGroup1" type="Node3D" parent="RoadGroup"]
 transform = Transform3D(-8.940697e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -8.940697e-08, -300, 0, -350)
@@ -2823,7 +2823,7 @@ speedCap = 300.0
 [node name="PlazaDecor" type="Node3D" parent="DecorationsGroup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, -400)
 
-[node name="StaticBody3D" parent="DecorationsGroup/PlazaDecor" instance=ExtResource("75_fhb1r")]
+[node name="StaticBody3D" parent="DecorationsGroup/PlazaDecor" groups=["Cullable"] instance=ExtResource("75_fhb1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 100)
 
 [node name="StaticBody3D2" parent="DecorationsGroup/PlazaDecor" instance=ExtResource("25_4yl7l")]

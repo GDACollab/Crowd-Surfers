@@ -9,13 +9,12 @@ size = Vector3(1, 0.036376953, 1)
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_bsyfa")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["Cullable"]]
 transform = Transform3D(78.125, 0, 0, 0, 78.125, 0, 0, 0, 78.125, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013793945, 0)
 shape = SubResource("BoxShape3D_1ltsb")
-debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(78.125, 0, 0, 0, -3.4149523e-06, 78.125, 0, -78.125, -3.4149523e-06, 0, 0.01, 0)

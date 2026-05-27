@@ -742,7 +742,6 @@ func create_rids(position) -> void:
 		rid_dictionary[rid] = CrowdData.new(i, agents_main)
 		agents.append(rid)
 		
-		
 		# Add to main group and map to the visual instance ID
 		agents_main.append(rid)
 
