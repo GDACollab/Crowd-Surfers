@@ -79,8 +79,9 @@ stall_area = NodePath("../Area3D")
 squish_speed = 0.3
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/canopy_jump"
+event_name = "event:/SFX/ENV/objects/canopy_jump"
 event_guid = "{32f7fa6b-edff-4a91-bcda-c7e92b3ca29b}"
+preload_event = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

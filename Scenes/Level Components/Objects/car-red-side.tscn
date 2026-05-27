@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqf7gs7fe3hfc"]
+[gd_scene load_steps=11 format=3 uid="uid://bqf7gs7fe3hfc"]
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_h0kgm"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_hs2nn"]
 [ext_resource type="Texture2D" uid="uid://bviaojyhypmwt" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Side/redcar_side_TOP.PNG" id="2_ks1xq"]
+[ext_resource type="PackedScene" path="res://Scenes/Audio/proximity_audio.tscn" id="2_ncy2q"]
 [ext_resource type="Texture2D" uid="uid://co0pbc6wkh6c4" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Side/redcar_side_FRONT.PNG" id="3_ygd7i"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="6_ncy2q"]
 
@@ -24,6 +25,9 @@ size = Vector3(50, 1.5, 25)
 
 [node name="CarRedSide" type="Node3D"]
 script = ExtResource("1_h0kgm")
+
+[node name="ProximityAudio" parent="." instance=ExtResource("2_ncy2q")]
+proximity_sound_path = "event:/SFX/ENV/objects/car_idle"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 script = ExtResource("1_hs2nn")
@@ -65,8 +69,3 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 12.5)
 shape = SubResource("BoxShape3D_upb4s")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="CarIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/car_idle"
-event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
-autoplay = true

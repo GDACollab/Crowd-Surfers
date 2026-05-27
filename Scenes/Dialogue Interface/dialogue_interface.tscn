@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c5x3qkjr4lfma" path="res://Assets/Art/UI/Dialogue/choice_2.PNG" id="6_l8m2v"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="6_obotj"]
 [ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
-[ext_resource type="Shader" uid="uid://nrpqs0j0lece" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
 shader = ExtResource("9_obotj")
@@ -179,8 +179,26 @@ libraries = {
 &"": SubResource("AnimationLibrary_4ybge")
 }
 
-[node name="VoiceManager" type="Control" parent="."]
+[node name="VoiceManager" type="Control" parent="." node_paths=PackedStringArray("typewriter_hub_event")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_4ybge")
+typewriter_hub_event = NodePath("TypewriterHub")
+
+[node name="TypewriterHub" type="FmodEventEmitter2D" parent="VoiceManager"]
+event_name = "event:/SFX/CHAR/voiceover/typewriter/typewriter_hub"
+event_guid = "{d4a62dad-44aa-4204-8c0b-264d23b81ed3}"
+auto_release = true
+preload_event = false
+fmod_parameters/letter_pitch/id = 660499492982063754
+fmod_parameters/letter_pitch = 0.0
+fmod_parameters/letter_pitch/variant_type = 3
+fmod_parameters/voice/id = -4677231802910129506
+fmod_parameters/voice = "default"
+fmod_parameters/voice/labels = PackedStringArray("default", "andro", "chef", "slip", "pavo", "minny", "nyx", "sam", "max")
+fmod_parameters/voice/variant_type = 4
+fmod_parameters/letter/id = -3171231326155068235
+fmod_parameters/letter = "a"
+fmod_parameters/letter/labels = PackedStringArray("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "punc")
+fmod_parameters/letter/variant_type = 4

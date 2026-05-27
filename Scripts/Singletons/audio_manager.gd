@@ -43,7 +43,7 @@ func _on_scene_changed():
 ## Takes a key, takes an FMOD event path, and returns a newly created event instance.
 ## Also takes a `killOnSceneChange` boolean that determines whether or not to stop and release the instance upon a scene change.
 ## The key, instance, path, and `killOnSceneChange` are then mapped to `registry`.
-func create_persistent(key: String, eventPath: String, killOnSceneChange := false) -> FmodEvent:
+func create_persistent(key: String, eventPath: String, killOnSceneChange := false, do_debug_print := true) -> FmodEvent:
 	var eventInstance = FmodServer.create_event_instance(eventPath)
 
 	registry[key] = {
@@ -53,54 +53,61 @@ func create_persistent(key: String, eventPath: String, killOnSceneChange := fals
 		"pausePosition": -1
 		}
 		
-	print("AudioManager: Created instance of \"" + str(eventPath) + "\"")
+	if (do_debug_print): 
+		print("AudioManager: Created instance of \"" + str(eventPath) + "\"")
 		
 	return eventInstance
 	
 ## Takes a key and pauses the instance belonging to it, storing the playback position in memory.
 ## Returns true upon success, false upon failure (key not found or instance is already paused)
 ## The FmodEvent `paused` property does not account for fade outs, which is why this function is necessary.
-func pause_persistent(key: String) -> bool:
+func pause_persistent(key: String, do_debug_print := true) -> bool:
 	if (registry.has(key) and registry[key]["pausePosition"] == -1):
 		var eventInstance = registry[key]["instance"]
 		registry[key]["pausePosition"] = eventInstance.position
 		eventInstance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		
-		# this is annoying
-		if (key != "skating_loop"):
+		if (do_debug_print):
 			print("AudioManager: Paused instance of \"" + str(key) + "\"")
 		
 		return true
 	
-	if (key != "skating_loop"): print("AudioManager: Failed to pause \"" + str(key) + "\"")
+	if (do_debug_print): 
+		print("AudioManager: Failed to pause \"" + str(key) + "\"")
+		
 	return false
 
 ## Takes a key and unpauses the instance belonging to it.
 ## Returns true upon success, false upon failure (key not found or instance is not paused)
-func unpause_persistent(key: String) -> bool:
+func unpause_persistent(key: String, do_debug_print := true) -> bool:
 	if (registry.has(key) and registry[key]["pausePosition"] != -1):
 		var eventInstance = registry[key]["instance"]
 		eventInstance.set_timeline_position(registry[key]["pausePosition"])
 		eventInstance.start()
 		registry[key]["pausePosition"] = -1
 		
-		if (key != "skating_loop"):
+		if (do_debug_print):
 			print("AudioManager: Unpaused instance of \"" + str(key) + "\"")
 		
 		return true
 		
-	if (key != "skating_loop"): print("AudioManager: Failed to unpause \"" + str(key) + "\"")
+	if (do_debug_print): 
+		print("AudioManager: Failed to unpause \"" + str(key) + "\"")
+		
 	return false
 	
 ## Takes a registry key, stops and releases the associated event instance, and removes it from the registry.
 ## Returns true if the item was successfully removed, false if any not.
-func kill_persistent(key: String, stopMode: int = FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT) -> bool:
+func kill_persistent(key: String, stopMode: int = FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT, do_debug_print := true) -> bool:
 	var returnCode = false
 		
 	if (registry.has(key)):
 		registry[key]["instance"].stop(stopMode)
 		registry[key]["instance"].release()
-		print("AudioManager: Killed the instance \"" + str(key) + "\"")
+		
+		if (do_debug_print):
+			print("AudioManager: Killed the instance \"" + str(key) + "\"")
+		
 		return registry.erase(key)
 		
 	return returnCode
@@ -198,7 +205,7 @@ func path_exists_in_registry(eventPath: String) -> bool:
 func toggle_level_audio() -> void:
 	var busArray : Array[FmodBus]
 	var pause_snapshot : FmodEvent
-
+	
 	busArray.assign([
 		FmodServer.get_bus("bus:/SFX/ENV"),
 		FmodServer.get_bus("bus:/SFX/CHAR"),
@@ -210,8 +217,8 @@ func toggle_level_audio() -> void:
 	for b in busArray:
 		b.paused = game_paused
 		
-	if (game_paused):
-		pause_snapshot = create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling") 
+	if (game_paused): 
+		pause_snapshot = create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling")
 		pause_snapshot.start()
 	else: 
 		kill_persistent("pause_snapshot", FmodServer.FMOD_STUDIO_STOP_IMMEDIATE)

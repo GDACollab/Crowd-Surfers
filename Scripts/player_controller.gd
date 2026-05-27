@@ -558,7 +558,7 @@ func transition_to(new_state: int) -> void:
 	# Use this match statement to maintain invariants when entering states
 	match new_state:
 		States.GROUND:
-			Audio.unpause_persistent("skating_loop")
+			Audio.unpause_persistent("skating_loop", false)
 			can_air_dash = true
 			can_glide = true
 			# Check if landing sound needs to be played
@@ -627,7 +627,7 @@ func transition_to(new_state: int) -> void:
 			glide_vfxs_spawned = 0
 					
 		States.AIR:
-			Audio.pause_persistent("skating_loop")
+			Audio.pause_persistent("skating_loop", false)
 			# Lower friction in midair
 			friction /= 2.0
 		States.DASH_GROUND, States.DASH_AIR:
@@ -965,7 +965,7 @@ func update_trail(delta):
 			
 		$TrailHolder/GPUTrail3D.restart()
 		trail_spakle.visible = false
-	print(max_speed)
+	# print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.

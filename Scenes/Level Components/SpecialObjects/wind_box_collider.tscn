@@ -20,8 +20,9 @@ transform = Transform3D(-8.742279e-09, 0.273, 8.742278e-09, 0, -1.1933209e-08, 0
 texture = ExtResource("2_8eexc")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/airvent"
+event_name = "event:/SFX/ENV/objects/airvent"
 event_guid = "{6730ac66-0326-49ca-b539-52e2fbc83776}"
+preload_event = false
 volume = 2.0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
