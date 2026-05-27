@@ -167,13 +167,14 @@ func enable_crowd_system() -> void:
 	#pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	var should_run = checkShouldRunInstance()
 	# this is just a state machine pretty much but i dont have too much time (if i rememeber, switch this soon plz) - chris
-	if (active_crowd == false and !checkShouldRunInstance()):  # player is not in range, and crowd is off, should just return
+	if (active_crowd == false and !should_run):  # player is not in range, and crowd is off, should just return
 		return
-	elif (active_crowd == true and !checkShouldRunInstance()): # player is in range and crowd is on, should be turned off
+	elif (active_crowd == true and !should_run): # player is in range and crowd is on, should be turned off
 		disable_crowd_system()
 		return
-	elif (active_crowd == false and checkShouldRunInstance()): # player is in range and crowd is off, should be turned on
+	elif (active_crowd == false and should_run): # player is in range and crowd is off, should be turned on
 		enable_crowd_system()
 	
 	#print('running')
