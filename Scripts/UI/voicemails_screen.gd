@@ -2,6 +2,7 @@ extends Control
 
 @export var voicemail_button_scene: PackedScene
 
+@onready var ui_audio: Node2D = $UIAudio
 @onready var voicemail_container: VBoxContainer = $VoicemailsBody/ScrollContainer/VoicemailVBoxContainer
 @onready var no_voicemails_text: RichTextLabel = $VoicemailsBody/NoVoicemailsText
 
@@ -23,7 +24,8 @@ func _ready() -> void:
 		voicemail_button.get_child(0).text = "[i]" + voicemail_directory[voicemail]
 		voicemail_container.add_child(voicemail_button)
 		voicemail_button.pressed.connect(_on_voicemail_button_pressed.bind(voicemail_button))
-
+		ui_audio.connect_confirm_button(voicemail_button)
+		
 	if (Story.voicemail_history.size() > 0):
 		no_voicemails_text.visible = false
 	else:
