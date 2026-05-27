@@ -1,13 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxq7y3jah1q6"]
+[gd_scene load_steps=6 format=3 uid="uid://cxq7y3jah1q6"]
 
 [ext_resource type="Script" uid="uid://df1k8ebao2g3p" path="res://Scripts/wind_box_collider.gd" id="1_8swyf"]
 [ext_resource type="Texture2D" uid="uid://dqfwc7eruchnm" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS BoostPad S6/Boost_Pad_S6_Outer.png" id="2_r6kbh"]
 [ext_resource type="Texture2D" uid="uid://ds246t4ljaii2" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS BoostPad S6/Boost_Pad_S6_Inner.png" id="3_55sop"]
 [ext_resource type="Shader" uid="uid://bmvb6a3ydpls4" path="res://Scripts/Shaders/boost_pad_scroll.gdshader" id="4_55sop"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55sop"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_55sop")
 shader_parameter/texture_albedo = ExtResource("3_55sop")
@@ -20,13 +19,6 @@ script = ExtResource("1_8swyf")
 boostDirection = Vector3(1, 0.3, 0)
 boostPower = 200.0
 speedCap = 200.0
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-shape = SubResource("BoxShape3D_elp6e")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(39.062992, 0, 0, 0, 4.6582156e-07, 39.062996, 0, -39.062996, 4.6582156e-07, 0, 0.01, 0)
@@ -43,8 +35,4 @@ texture_filter = 2
 texture = ExtResource("3_55sop")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/boost_pad"
 event_guid = "{945861ca-bafd-48f3-80dd-e2c3b03299ce}"
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

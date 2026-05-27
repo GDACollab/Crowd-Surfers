@@ -1,18 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdsouc1rqugyc"]
+[gd_scene load_steps=3 format=3 uid="uid://cdsouc1rqugyc"]
 
 [ext_resource type="Script" uid="uid://jr1sdhb67frw" path="res://Scripts/soft-object.gd" id="1_l0de8"]
 [ext_resource type="Texture2D" uid="uid://d1aw6lhy312y0" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS SoftObstacleAssets S6/Garbage Bag3 Soft Obstacle S6.png" id="2_l0de8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mpbxv"]
-
 [node name="SoftObject" type="Node3D"]
 script = ExtResource("1_l0de8")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0.63300157, 0)
-shape = SubResource("BoxShape3D_mpbxv")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -20,7 +12,4 @@ pixel_size = 0.03
 texture = ExtResource("2_l0de8")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/trashbag"
 event_guid = "{98fa6f9e-d095-44cf-9a60-dcc7cda46d20}"
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

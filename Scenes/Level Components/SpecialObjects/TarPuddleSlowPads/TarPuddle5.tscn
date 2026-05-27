@@ -1,21 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b85mrrdirnxxt"]
+[gd_scene load_steps=3 format=3 uid="uid://b85mrrdirnxxt"]
 
 [ext_resource type="Script" uid="uid://ccr1tc3w830q4" path="res://Scripts/slow_pad_collider.gd" id="1_bsyfa"]
 [ext_resource type="Texture2D" uid="uid://bmgg63lek475e" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS TarPuddleVariants S6/Tar_Puddle 5 S6.png" id="3_gg67o"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1ltsb"]
-size = Vector3(1, 0.036376953, 1)
-
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_bsyfa")
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(78.125, 0, 0, 0, 78.125, 0, 0, 0, 78.125, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013793945, 0)
-shape = SubResource("BoxShape3D_1ltsb")
-debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(78.125, 0, 0, 0, -3.4149523e-06, 78.125, 0, -78.125, -3.4149523e-06, 0, 0.01, 0)
@@ -23,8 +12,4 @@ shaded = true
 texture = ExtResource("3_gg67o")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/slow_pad"
 event_guid = "{258573f0-857e-4890-b540-13f1d26c7198}"
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

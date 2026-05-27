@@ -1,28 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6ipg1n8uf8sa"]
+[gd_scene load_steps=3 format=3 uid="uid://c6ipg1n8uf8sa"]
 
 [ext_resource type="Script" uid="uid://df1k8ebao2g3p" path="res://Scripts/wind_box_collider.gd" id="1_elp6e"]
 [ext_resource type="Texture2D" uid="uid://b374dlsvfc380" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS SidewalkTiles S6/Storm Drain S3.png" id="2_8eexc"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_elp6e"]
-
 [node name="WindBoxCollider2" type="Node3D"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 script = ExtResource("1_elp6e")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_elp6e")
-debug_color = Color(1.92523e-07, 0.7885931, 0.9148605, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-8.742279e-09, 0.273, 8.742278e-09, 0, -1.1933209e-08, 0.2, 0.2, 1.193321e-08, 3.8213714e-16, 0, 0.01, 0)
 texture = ExtResource("2_8eexc")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/airvent"
 event_guid = "{6730ac66-0326-49ca-b539-52e2fbc83776}"
 volume = 2.0
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
