@@ -31,6 +31,7 @@ height = 16.0
 
 [node name="Crowd" type="Node3D"]
 script = ExtResource("1_1ls1x")
+check_running_distance = 400
 animationShader = ExtResource("2_43vip")
 crowdMemberAnimations = Array[CompressedTexture2D]([ExtResource("3_43vip"), ExtResource("4_cstqm"), ExtResource("5_lbuht"), ExtResource("6_kn2ya"), ExtResource("6_0trnm"), ExtResource("7_kn2ya"), ExtResource("8_wc3gg"), ExtResource("9_0kvyk"), ExtResource("10_tgvct"), ExtResource("11_ycvg0"), ExtResource("12_32j54"), ExtResource("13_5y156"), ExtResource("14_epcxh"), ExtResource("15_gm7wd"), ExtResource("16_jfx14"), ExtResource("17_dcdd2")])
 
@@ -61,6 +62,7 @@ avoidance_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Anchor"]
 transparency = 0.7
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_1ls1x")
 skeleton = NodePath("")
 
@@ -73,7 +75,7 @@ proximity_sound = NodePath("CrowdAmbience")
 collider_scale = 300.0
 
 [node name="CrowdAmbience" type="FmodEventEmitter3D" parent="Anchor/ProximityAudio"]
-event_name = "event:/SFX/ENV/ambience/crowd_ambience"
+event_name = "event:/SFX/ENV/objects/crowd_chatter"
 event_guid = "{76b14f88-6872-4f5e-9c06-2d2541c46f5e}"
 
 [node name="ProximityAudio2" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]

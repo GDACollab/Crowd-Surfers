@@ -1,4 +1,5 @@
 extends Node3D
+class_name CrowdGroup
 
 ## I MADE MISTAKE, CIRCUMFERENCE MEANS DIAMETER
 
@@ -84,7 +85,7 @@ var curr_point = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print('start')
+	print("[CROWD] Loading crowd: ", name)
 	navigation_agent_3d.max_speed = max_speed
 	navigation_agent_3d.radius = circum / 2.0
 	var anchor_mesh = $Anchor/MeshInstance3D
@@ -175,17 +176,14 @@ func _physics_process(delta: float) -> void:
 	elif (active_crowd == false and checkShouldRunInstance()): # player is in range and crowd is off, should be turned on
 		enable_crowd_system()
 	
-	
 	#print('running')
 	# move behaviors
 	match state: 
 		State.IDLE:
 			get_new_loc()
 			#apply_move_and_slide(anchor)
-			for nav in agents_sub:
-				
+			for nav in agents_sub:		
 				#apply_move_and_slide(nav[0])
-				
 				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
 				#get_new_sub_loc(nav_agent, nav[0])
 				group_sub(nav, moving_behav(nav[0], nav_agent))
@@ -193,8 +191,7 @@ func _physics_process(delta: float) -> void:
 			group_main(moving_behav(anchor, navigation_agent_3d))
 			#apply_move_and_slide(anchor)
 			for nav in agents_sub:
-				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
-				
+				var nav_agent = nav[0].find_child("NavigationAgent3D", false)		
 				group_sub(nav, moving_behav(nav[0], nav_agent))
 				#apply_move_and_slide(nav[0])
 				
