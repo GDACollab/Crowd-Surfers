@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=22 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="6_obotj"]
 [ext_resource type="Script" uid="uid://bfcqebu8i7584" path="res://Scripts/Audio/voice_manager.gd" id="8_4ybge"]
 [ext_resource type="Shader" uid="uid://nrpqs0j0lece" path="res://Scripts/Shaders/interface_blur.gdshader" id="9_obotj"]
+[ext_resource type="Texture2D" uid="uid://ceh46l4giw0eq" path="res://Assets/Art/UI/Dialogue/continue_dialogue.PNG" id="14_yajxp"]
+[ext_resource type="Texture2D" uid="uid://sta7j2uaxr2t" path="res://Assets/Art/UI/Dialogue/skip_dialogue.PNG" id="15_e5ork"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
 shader = ExtResource("9_obotj")
@@ -184,3 +186,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_4ybge")
+
+[node name="Continue Button" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("14_yajxp")
+
+[node name="Skip Dialogue" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_e5ork")
+
+[node name="Skip Dialogue2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_e5ork")
