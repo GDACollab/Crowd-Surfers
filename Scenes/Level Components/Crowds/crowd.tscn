@@ -71,6 +71,7 @@ shape = SubResource("CapsuleShape3D_1ls1x")
 debug_color = Color(0.827451, 0.16470589, 0.047058824, 0.7490196)
 
 [node name="ProximityAudio" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]
+monitorable = false
 proximity_sound = NodePath("CrowdAmbience")
 collider_scale = 300.0
 
@@ -79,6 +80,7 @@ event_name = "event:/SFX/ENV/objects/crowd_chatter"
 event_guid = "{76b14f88-6872-4f5e-9c06-2d2541c46f5e}"
 
 [node name="ProximityAudio2" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]
+monitorable = false
 proximity_sound = NodePath("CrowdCrashSound")
 collider_scale = 25.0
 trigger_minimum_speed = 100.0
