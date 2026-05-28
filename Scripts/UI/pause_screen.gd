@@ -22,7 +22,7 @@ func _on_resume_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
 		
-	Audio.toggle_level_audio()
+	Audio.set_level_audio_state(false)
 	get_tree().paused = false
 	queue_free()
 
@@ -47,7 +47,6 @@ func _on_settings_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
 	
-	Audio.toggle_level_audio()
 	start_transitioning()
 	settings_scene.visible = true
 	page = PauseScreenPage.SETTINGS
@@ -57,7 +56,6 @@ func _on_settings_back_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.SETTINGS):
 		return
 		
-	Audio.toggle_level_audio()
 	start_transitioning()
 	page = PauseScreenPage.BUTTONS
 	phone_animation_player.play("close_settings")
@@ -68,7 +66,7 @@ func _on_restart_level_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
 		
-	Audio.toggle_level_audio()
+	Audio.set_level_audio_state(false)
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
 	start_transitioning()
 
@@ -76,7 +74,7 @@ func _on_exit_level_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
 		
-	Audio.toggle_level_audio()
+	Audio.set_level_audio_state(false)
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/MainMenu/MainMenu.tscn"))
 	start_transitioning()
 		

@@ -9,7 +9,6 @@ var previous_scene: Node = null
 var value := 0.0
 var target := 100.0
 var speed := 20.0   # units per second
-var game_paused := false
 
 func _ready():
 	print("AudioManager loaded")
@@ -200,9 +199,8 @@ func path_exists_in_registry(eventPath: String) -> bool:
 		
 	return returnCode
 
-# TODO: Currently broken, killing the snapshot doesn't return the mixer to its original state
 ## Pauses all level audio (env, char, player buses) and muffles music
-func toggle_level_audio() -> void:
+func set_level_audio_state(paused: bool) -> void:
 	var busArray : Array[FmodBus]
 	var pause_snapshot : FmodEvent
 	
@@ -212,12 +210,10 @@ func toggle_level_audio() -> void:
 		FmodServer.get_bus("bus:/SFX/P")
 	])
 	
-	game_paused = !game_paused
-	
 	for b in busArray:
-		b.paused = game_paused
+		b.paused = paused
 		
-	if (game_paused): 
+	if (paused): 
 		pause_snapshot = create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling")
 		pause_snapshot.start()
 	else: 

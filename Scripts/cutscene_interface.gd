@@ -10,12 +10,15 @@ extends Control
 ## Scene to transition to upon exit
 @export var scene_to_transition_to := "res://Scenes/UI Menus/TitleScreen.tscn"
 ## Cutscene fade-in transition time
-@export var fade_in_time := 8.
+@export var fade_in_time := 5.
 ## Cutscene fade-out transition time
 @export var fade_out_time := 1.
 
 @onready var animator : AnimationPlayer = $InterfaceAnimator
 @onready var progress_bar : Node2D = $ProgressBar
+@onready var skip_button : BaseButton = $SkipButton
+@onready var continue_button : BaseButton = $ContinueButton
+@onready var dialogue_next_sound : FmodEventEmitter2D = $DialogueNext
 @onready var wait_timer : float = abs(WAIT_TIME) 
 
 var animatic_frame_count : int
@@ -31,6 +34,9 @@ func _ready():
 	if (cutscene_sound == null): 
 		cutscene_sound = $DefaultCutsceneSound
 	
+	continue_button.pressed.connect(_continue_cutscene)
+	skip_button.pressed.connect(_end_cutscene)
+	
 	animatic_frame_count = animatic_frames.sprite_frames.get_frame_count("default")
 	progress_bar.scale.x = 0
 	
@@ -38,16 +44,8 @@ func _ready():
 	animator.play("fade_in", -1, 1/abs(fade_in_time))
 
 func _process(delta):
-	if (Input.is_action_just_pressed("DialogueInteract") and wait_timer <= 0.):
-		if (animatic_frames.frame + 1 >= animatic_frame_count):
-			is_ending = true
-			_end_cutscene()
-		
-		progress_bar.scale.x = 0
-		
-		animatic_frames.frame += 1
-		wait_timer = WAIT_TIME
-		cutscene_sound.set_parameter("cutscene_frame", animatic_frames.frame)
+	if (Input.is_action_just_pressed("DialogueInteract")):
+		_continue_cutscene()
 	
 	if (Input.is_action_just_pressed("DialogueCancel")):
 		_end_cutscene()
@@ -56,9 +54,24 @@ func _process(delta):
 		wait_timer -= delta
 		progress_bar.scale.x += delta/(WAIT_TIME + 0.1) # Divide by zero handling
 
+func _continue_cutscene():
+	if (wait_timer <= 0.):
+		if (animatic_frames.frame + 1 >= animatic_frame_count):
+			is_ending = true
+			_end_cutscene()
+			
+		progress_bar.scale.x = 0
+		animatic_frames.frame += 1
+		wait_timer = WAIT_TIME
+		
+		dialogue_next_sound.play()
+		cutscene_sound.set_parameter("cutscene_frame", animatic_frames.frame)
+
 func _end_cutscene():
 	print("Cutscene: Cutscene has been stopped.")
+	
 	cutscene_sound.stop()
 	animator.play("fade_out", -1, 1/abs(fade_out_time))
 	await get_tree().create_timer(1/abs(fade_out_time)).timeout
+	
 	SceneFadeTransition.transition_to_scene(load(scene_to_transition_to))

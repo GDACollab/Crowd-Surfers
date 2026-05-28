@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://rp5hggksir1k"]
+[gd_scene load_steps=41 format=3 uid="uid://rp5hggksir1k"]
 
 [ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scripts/cutscene_interface.gd" id="1_ejaj3"]
 [ext_resource type="Texture2D" uid="uid://vd2amtrcq6hq" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-1.png" id="2_dt3ct"]
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_sit2d"]
 [ext_resource type="Texture2D" uid="uid://lyb6snf0tnrf" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-2.png" id="3_2s4gi"]
 [ext_resource type="Texture2D" uid="uid://be7l6e5qchvnn" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-3.png" id="4_jfrd6"]
 [ext_resource type="Texture2D" uid="uid://cfv20n05xs056" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-4.png" id="5_nx2mc"]
@@ -25,6 +26,11 @@
 [ext_resource type="Texture2D" uid="uid://dvgm3bl76vj1l" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-22.png" id="23_epn06"]
 [ext_resource type="Texture2D" uid="uid://b173vm7j2ker1" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-23.png" id="24_6qk8v"]
 [ext_resource type="Texture2D" uid="uid://7o8qgtw2yhow" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-24.png" id="25_jg7ig"]
+[ext_resource type="Texture2D" uid="uid://ceh46l4giw0eq" path="res://Assets/Art/UI/Dialogue/continue_dialogue.PNG" id="26_ltdj6"]
+[ext_resource type="Texture2D" uid="uid://baxlna7c5gsi0" path="res://Assets/Art/UI/Dialogue/continue_dialogue_pressed.PNG" id="27_sit2d"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="28_qwhny"]
+[ext_resource type="Texture2D" uid="uid://sta7j2uaxr2t" path="res://Assets/Art/UI/Dialogue/skip_dialogue.PNG" id="29_sfbyu"]
+[ext_resource type="Texture2D" uid="uid://dai7u2voply8x" path="res://Assets/Art/UI/Dialogue/skip_dialogue_pressed.PNG" id="30_gplr5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocqqe"]
 animations = [{
@@ -176,11 +182,21 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ejaj3")
 
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "hover_buttons") instance=ExtResource("2_sit2d")]
+back_buttons = [NodePath("../SkipButton")]
+hover_buttons = [NodePath("../ContinueButton")]
+
 [node name="DefaultCutsceneSound" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/CUTSCENE/opening_hub"
 event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
 auto_release = true
 preload_event = false
+
+[node name="DialogueNext" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/SFX/UI/dialogue_next"
+event_guid = "{a82c5018-7733-4ce6-b8df-7ce6250d36f9}"
+preload_event = false
+volume = 0.5
 
 [node name="DefaultCutsceneFrames" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -196,21 +212,66 @@ offset_right = 1920.0
 offset_bottom = 28.0
 texture = SubResource("GradientTexture1D_vvmgn")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 222.0
-offset_bottom = 23.0
-text = "PRESS X TO SKIP SCENE"
-
 [node name="FadePanel" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 0)
 z_index = 1
 layout_mode = 1
+offset_top = -8.0
 offset_right = 1920.0
-offset_bottom = 1088.0
+offset_bottom = 1080.0
 texture = SubResource("GradientTexture2D_p87ff")
 
 [node name="InterfaceAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4ybge")
 }
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1768.0
+offset_top = 56.0
+offset_right = 1896.0
+offset_bottom = 168.0
+grow_horizontal = 0
+texture_normal = ExtResource("26_ltdj6")
+texture_pressed = ExtResource("27_sit2d")
+script = ExtResource("28_qwhny")
+brightness_change = 0.3
+
+[node name="ContinueButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 98.0
+offset_bottom = 159.0
+texture_normal = ExtResource("29_sfbyu")
+texture_pressed = ExtResource("30_gplr5")
+script = ExtResource("28_qwhny")
+brightness_change = 0.3
+
+[node name="SkipLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1536.0
+offset_top = 16.0
+offset_right = 1897.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 25
+text = "Press X to skip"
+horizontal_alignment = 2
+
+[node name="ContinueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 385.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 25
+text = "Press SPACEBAR to continue"
+
+[connection signal="mouse_entered" from="SkipButton" to="SkipButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SkipButton" to="SkipButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="ContinueButton" to="ContinueButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ContinueButton" to="ContinueButton" method="_on_mouse_exited"]
