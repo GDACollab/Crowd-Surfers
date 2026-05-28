@@ -6,6 +6,7 @@ extends Control
 @onready var timer_Display = $"Hud Container/Timer Component"
 @onready var level_progress_Display = $"Hud Container/Level Progress Component"
 @onready var hud_container = $"Hud Container/Stars Container"
+@onready var hud_background = $"Hud Container/Hud Background"
 
 # Get reference without actually editing the player script
 @onready var player: Node = get_parent().get_node("Player")
@@ -29,6 +30,10 @@ extends Control
 @export var shake_time: float = 0.5
 @export var shake_magnitue: float = 5
 @export var num_shakes: int = 15
+
+@export_category("Overspeed")
+@export var max_visual_overspeed: float = 150
+@export var shader_outline_change_speed: float = 3
 
 var star_images: Array[TextureRect]
 var star_base_modulate: Array[float]
@@ -119,6 +124,14 @@ func _process(delta: float) -> void:
 	# This gets the actual speed of the player, not the max speed. No longer used
 	#var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
 	var max_speed = player.max_speed
+	
+	# Overspeed shader
+	var over_speed: float = max_speed - saved_ramping_cap
+	var threshold: float = 1 - (over_speed / max_visual_overspeed)
+	var lerp_threshhold: float = lerp(hud_background.material.get_shader_parameter("threshold"), threshold, delta * shader_outline_change_speed)
+	hud_background.material.set_shader_parameter("threshold", lerp_threshhold)
+	
+	max_speed = min(player.max_speed, saved_ramping_cap)
 	set_player_speed(max_speed)
 	
 	if (max_speed > speed_change_to_shake + max_speed_last_frame):
