@@ -85,6 +85,9 @@ var curr_point = 0
 
 # Joelle Testing
 var shape : RID
+var previous_delta : float
+# Can process in first physics tick
+@export var can_crowd_process := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -174,6 +177,11 @@ func enable_crowd_system() -> void:
 	#pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if(!can_process):
+		previous_delta = delta
+		can_crowd_process = true
+		return
+	can_crowd_process = false
 	var should_run = checkShouldRunInstance()
 	# this is just a state machine pretty much but i dont have too much time (if i rememeber, switch this soon plz) - chris
 	if (active_crowd == false and !should_run):  # player is not in range, and crowd is off, should just return
@@ -276,7 +284,7 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 func group_main(safe_velocity) -> void:
 	var anchor_state = PhysicsServer3D.body_get_direct_state(anchor)
 	
-	var delta_time = get_physics_process_delta_time()
+	var delta_time = get_physics_process_delta_time() + previous_delta
 	var accel_delta = delta_time * acceleration * 1.5;
 	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
 	vel.limit_length(sub_max_speed)
@@ -299,7 +307,7 @@ func group_sub(sub_array, safe_velocity) -> void:
 	var sub_anchor = sub_array[0]
 	var anchor_state = PhysicsServer3D.body_get_direct_state(sub_anchor)
 	
-	var delta_time = get_physics_process_delta_time()
+	var delta_time = get_physics_process_delta_time() + previous_delta
 	var accel_delta = delta_time * acceleration * 1.5;
 	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
 	vel.limit_length(sub_max_speed)
@@ -852,7 +860,7 @@ func get_rid_position(rid) -> Vector3:
 func set_velocity(body, vel) -> void:
 	body.velocity.x = vel.x
 	body.velocity.z = vel.z
-	body.velocity.y += gravity_force_for_velocity.y * get_physics_process_delta_time()
+	body.velocity.y += gravity_force_for_velocity.y * (get_physics_process_delta_time() + previous_delta)
 	
 # get a force with given direction/velocity (I think) over time
 func get_velocity_change(member, target_vel) -> Vector3:

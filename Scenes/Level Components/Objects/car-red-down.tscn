@@ -44,9 +44,12 @@ size = Vector3(25, 1.5, 50)
 script = ExtResource("1_j51ng")
 
 [node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound") instance=ExtResource("2_kc4ek")]
+collision_layer = 0
+collision_mask = 2
 proximity_sound = NodePath("../CarIdleSound")
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="." groups=["Metal"]]
+collision_mask = 0
 sync_to_physics = false
 script = ExtResource("1_8uu8r")
 top_filename = ExtResource("2_lihl8")

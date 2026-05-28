@@ -10,7 +10,7 @@
 ->DONE
 
 ===main_act1_scene1=== //COMPLETE
-\*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
+\*It's been a pretty slow morning so far. Light traffic, uneventful news < Press SPACEBAR or Z to continue > #vo:main_act1_scene1
 At least until...
 You knock on your boss's door. What could he be calling you in for?*
 Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown #vo:play
