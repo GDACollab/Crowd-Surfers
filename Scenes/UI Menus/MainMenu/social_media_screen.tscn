@@ -100,6 +100,10 @@ theme_override_constants/separation = 10
 
 [node name="BackButton" type="TextureButton" parent="SocialMediaBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("6_c2788")
 texture_click_mask = ExtResource("7_0wp62")
 script = ExtResource("8_xg21w")
@@ -246,5 +250,7 @@ artist_name = "@saira_hamid"
 art = ExtResource("34_6nueq")
 description = "concept for nyx focused on finger tattoos"
 
+[connection signal="focus_entered" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_exited"]
