@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://dc41wgb5xtf7r"]
+
+[ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_5k433"]
+[ext_resource type="Texture2D" uid="uid://bu5ow00t63c83" path="res://Assets/Art/UI/MainMenu/Orders/orders_text.png" id="3_jgvbw"]
+[ext_resource type="Texture2D" uid="uid://bevsfgf4bv204" path="res://Assets/Art/UI/MainMenu/Orders/orders_phone_base_bg.png" id="4_2uxhc"]
+[ext_resource type="Texture2D" uid="uid://cx7ew6n2o7p56" path="res://Assets/Art/UI/MainMenu/Orders/scrollbar.png" id="5_jqjde"]
+[ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="6_c2788"]
+[ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="7_0wp62"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="8_xg21w"]
+[ext_resource type="Texture2D" uid="uid://m5vuac0um0ao" path="res://Assets/Art/UI/MainMenu/SocialMedia/Abilities_Alina_Makarova.jpg" id="11_5urtv"]
+[ext_resource type="PackedScene" uid="uid://df3c7rvqhjyid" path="res://Scenes/UI Menus/MainMenu/social_media_section.tscn" id="12_shw3m"]
+[ext_resource type="Texture2D" uid="uid://kwq6s8h8hbj8" path="res://Assets/Art/UI/MainMenu/SocialMedia/Abilities_Carmen_Chen.jpg" id="13_i68pm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itith"]
+texture = ExtResource("5_jqjde")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3xmgw"]
+texture = ExtResource("5_jqjde")
+modulate_color = Color(1.3945211, 1.3945211, 1.3945211, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jf67p"]
+texture = ExtResource("5_jqjde")
+modulate_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wq1nd"]
+content_margin_left = 30.0
+texture = ExtResource("5_jqjde")
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+modulate_color = Color(1, 1, 1, 0.08235294)
+
+[sub_resource type="Theme" id="Theme_08fti"]
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_itith")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_3xmgw")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_jf67p")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_wq1nd")
+
+[node name="SocialMedia" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons") instance=ExtResource("2_5k433")]
+back_buttons = [NodePath("../SocialMediaBody/ScrollContainer/VBoxContainer/BackButton")]
+
+[node name="SocialMediaText" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 830.0
+offset_bottom = 1400.0
+texture = ExtResource("3_jgvbw")
+
+[node name="SocialMediaBody" type="TextureRect" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_2uxhc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SocialMediaBody"]
+clip_contents = false
+layout_mode = 0
+offset_left = 135.0
+offset_top = 349.0
+offset_right = 723.03
+offset_bottom = 1119.0
+theme = SubResource("Theme_08fti")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SocialMediaBody/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="TextureButton" parent="SocialMediaBody/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_c2788")
+texture_click_mask = ExtResource("7_0wp62")
+script = ExtResource("8_xg21w")
+
+[node name="SocialMediaSection" parent="SocialMediaBody/ScrollContainer/VBoxContainer" instance=ExtResource("12_shw3m")]
+layout_mode = 2
+artist_name = "Alina Makarova"
+art = ExtResource("11_5urtv")
+description = "Slip ability concepting"
+
+[node name="SocialMediaSection2" parent="SocialMediaBody/ScrollContainer/VBoxContainer" instance=ExtResource("12_shw3m")]
+layout_mode = 2
+artist_name = "Carmen Chen"
+art = ExtResource("13_i68pm")
+description = "Slip ability concepting"
+
+[connection signal="mouse_entered" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_exited"]

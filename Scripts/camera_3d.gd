@@ -97,7 +97,10 @@ func _process(delta: float) -> void:
 		if not is_instance_valid(sprite):
 			occluding.erase(sprite)
 		elif not newly_occluding.has(sprite):
-			remove_occlusion(sprite)
+			var data: Dictionary = occluding[sprite]
+			if not data.get("restoring", false):
+				remove_occlusion(sprite)
+			
 
 func get_sprite_texture(sprite: GeometryInstance3D) -> Texture2D:
 	if sprite is Sprite3D:
@@ -119,7 +122,18 @@ func apply_occlusion(sprite: GeometryInstance3D) -> void:
 	tween_occlusion(sprite, occlusion_alpha, false)
  
 func remove_occlusion(sprite: GeometryInstance3D) -> void:
-	tween_occlusion(sprite, 1.0, true)
+	if not occluding.has(sprite):
+		return
+	var data: Dictionary = occluding[sprite]
+	data["restoring"] = true
+	if data["tween"]:
+		(data["tween"] as Tween).kill()
+	var mat := data["material"] as ShaderMaterial
+	var tween := create_tween()
+	data["tween"] = tween
+	tween.tween_property(mat, "shader_parameter/alpha_amount", 1.0, fade_duration)
+	await tween.finished
+	restore_sprite(sprite, data["original"])
 
 func tween_occlusion(sprite: GeometryInstance3D, target_alpha: float, restore_after: bool) -> void:
 	if not occluding.has(sprite):
@@ -135,11 +149,6 @@ func tween_occlusion(sprite: GeometryInstance3D, target_alpha: float, restore_af
 
 	var tween := create_tween()
 	tween.tween_property(mat, "shader_parameter/alpha_amount", target_alpha, fade_duration)
-
-	if restore_after:
-		# once faded back in, swap the occlusion material out for the original
-		tween.tween_callback(restore_sprite.bind(sprite, data["original"]))
-
 	data["tween"] = tween
 
 func restore_sprite(sprite: GeometryInstance3D, original: Material) -> void:

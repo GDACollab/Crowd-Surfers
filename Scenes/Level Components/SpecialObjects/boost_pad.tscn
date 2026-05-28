@@ -23,6 +23,8 @@ speedCap = 200.0
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -43,7 +45,7 @@ texture_filter = 2
 texture = ExtResource("3_55sop")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/boost_pad"
+event_name = "event:/SFX/ENV/objects/boost_pad"
 event_guid = "{945861ca-bafd-48f3-80dd-e2c3b03299ce}"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

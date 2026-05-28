@@ -1,37 +1,59 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0vf3acmawr05"]
+[gd_scene load_steps=15 format=3 uid="uid://c0vf3acmawr05"]
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_3hc8u"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_hbosu"]
 [ext_resource type="Texture2D" uid="uid://chydbtt0sccuo" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Up/redcar_up_TOP(updated).PNG" id="2_7kvh7"]
 [ext_resource type="Texture2D" uid="uid://bmsbcjfkeo8s3" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Up/redcar_up_FRONT(updated).PNG" id="3_hpkck"]
+[ext_resource type="Texture2D" uid="uid://co0pbc6wkh6c4" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Side/redcar_side_FRONT.PNG" id="5_5eqol"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="6_5eqol"]
+[ext_resource type="Texture2D" uid="uid://cfxuu0w004uoq" path="res://Assets/Art/Chopped Art (Fixed)/Car Red Down/redcar_down_FRONT(updated).PNG" id="6_vjflo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hc8u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjflo"]
 render_priority = 0
 shader = ExtResource("6_5eqol")
 shader_parameter/tex = ExtResource("2_7kvh7")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5eqol"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72iw7"]
 render_priority = 0
 shader = ExtResource("6_5eqol")
 shader_parameter/tex = ExtResource("3_hpkck")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vjflo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g77dm"]
+render_priority = 0
+shader = ExtResource("6_5eqol")
+shader_parameter/tex = ExtResource("5_5eqol")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0x7r"]
+render_priority = 0
+shader = ExtResource("6_5eqol")
+shader_parameter/tex = ExtResource("5_5eqol")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1m8t1"]
+render_priority = 0
+shader = ExtResource("6_5eqol")
+shader_parameter/tex = ExtResource("6_vjflo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fpyf3"]
 size = Vector3(25, 13.5, 50)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_72iw7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivjkw"]
 size = Vector3(25, 1.5, 50)
 
 [node name="CarRedUp" type="Node3D"]
 script = ExtResource("1_3hc8u")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
+collision_mask = 0
 script = ExtResource("1_hbosu")
 top_filename = ExtResource("2_7kvh7")
 front_filename = ExtResource("3_hpkck")
+left_filename = ExtResource("5_5eqol")
+right_filename = ExtResource("5_5eqol")
+back_filename = ExtResource("6_vjflo")
 width = 25.0
 length = 50.0
 height = 15.0
+left_flip = 180.0
 top_spr_pad_top = 0.89
 top_spr_pad_bottom = 0.71
 top_spr_pad_left = 3.05
@@ -40,10 +62,19 @@ front_spr_pad_top = 0.23
 front_spr_pad_bottom = 0.94
 front_spr_pad_left = 3.05
 front_spr_pad_right = 3.16
+left_spr_pad_bottom = 0.3
+left_spr_pad_left = 0.69
+left_spr_pad_right = 0.57
+right_spr_pad_bottom = 0.56
+right_spr_pad_left = 0.61
+back_spr_pad_left = 2.88
+back_spr_pad_right = 1.94
+left_r_cutoff = 40.835
+right_r_cutoff = 50.69
 
 [node name="TopSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(9.518292, 0, 0, 0, 1, 0, 0, 0, 11.647856, 0.06, 15, 24.91)
-material_overlay = SubResource("ShaderMaterial_3hc8u")
+material_overlay = SubResource("ShaderMaterial_vjflo")
 axis = 1
 shaded = true
 alpha_cut = 1
@@ -51,23 +82,51 @@ texture = ExtResource("2_7kvh7")
 
 [node name="FrontSprite" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(9.515244, 0, 5.6545053e-07, 4.1592452e-07, 1.9106855e-15, -12.936, 0, 1, 2.4716626e-14, 0.055, 7.145, 50)
-material_overlay = SubResource("ShaderMaterial_5eqol")
+material_overlay = SubResource("ShaderMaterial_72iw7")
 axis = 1
 shaded = true
 alpha_cut = 1
 texture = ExtResource("3_hpkck")
 
+[node name="LeftSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 1.3023887e-06, 0, 10.774648, 0, -1.7484555e-07, 0, 7.448795, -12.5, 7.35, 24.94)
+material_overlay = SubResource("ShaderMaterial_g77dm")
+axis = 0
+shaded = true
+alpha_cut = 1
+texture = ExtResource("5_5eqol")
+region_enabled = true
+region_rect = Rect2(0, 0, 688.165, 142)
+
+[node name="RightSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 10.9577465, 0, 0, 0, 7.46119, 12.5, 7.22, 25.305)
+material_overlay = SubResource("ShaderMaterial_l0x7r")
+axis = 0
+shaded = true
+alpha_cut = 1
+texture = ExtResource("5_5eqol")
+region_enabled = true
+region_rect = Rect2(0, 0, 678.31, 142)
+
+[node name="BackSprite" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(8.822485, 0, 0, 0, -4.371139e-08, -14.851485, 0, 1, -6.49179e-07, 0.47, 7.5, 0)
+material_overlay = SubResource("ShaderMaterial_1m8t1")
+axis = 1
+shaded = true
+alpha_cut = 1
+texture = ExtResource("6_vjflo")
+
 [node name="MainHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 25)
-shape = SubResource("BoxShape3D_vjflo")
+shape = SubResource("BoxShape3D_fpyf3")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="PlatformHitbox" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
-shape = SubResource("BoxShape3D_72iw7")
+shape = SubResource("BoxShape3D_ivjkw")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
 
 [node name="CarIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/car_idle"
+event_name = "event:/SFX/ENV/objects/car_idle"
 event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
 autoplay = true

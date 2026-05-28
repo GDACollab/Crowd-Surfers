@@ -6,6 +6,7 @@ extends Control
 @export var slow_scroll_speed: float = 50.0
 @export var fast_scroll_speed: float = 250.0
 @export var scroll_speed_change_rate_per_second: float = 250.0
+@export var credits_end_y: float = -30996.725
 
 @export_category("Text Settings")
 @export var separator_size: float = 40.0
@@ -99,6 +100,9 @@ func _process(delta: float):
 	elif (!Input.is_action_pressed("speed_up_credits") and current_scroll_speed > slow_scroll_speed):
 		current_scroll_speed -= scroll_speed_change_rate_per_second * delta
 	self.position.y += current_scroll_speed * -1 * delta
+	
+	if (self.position.y < credits_end_y):
+		_on_back_button_pressed()
 
 func _on_back_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))

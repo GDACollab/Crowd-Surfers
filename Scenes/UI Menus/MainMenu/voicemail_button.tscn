@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://busk12xpm68s7"]
+
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="8_bk881"]
+[ext_resource type="Texture2D" uid="uid://bjn7wgi8icm7q" path="res://Assets/Art/UI/MainMenu/Voicemails/voicemail_hover.png" id="9_ws8nm"]
+[ext_resource type="BitMap" uid="uid://blleponydlwkm" path="res://Assets/Art/UI/MainMenu/Voicemails/voicemail_click_mask.png" id="10_5vqf1"]
+[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="11_eixc4"]
+[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="12_m5rhc"]
+
+[node name="Voicemail1Button" type="TextureButton"]
+offset_right = 591.0
+offset_bottom = 450.0
+texture_normal = ExtResource("9_ws8nm")
+texture_hover = ExtResource("9_ws8nm")
+texture_click_mask = ExtResource("10_5vqf1")
+script = ExtResource("8_bk881")
+
+[node name="VoicemailText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 138.00002
+offset_top = 94.00001
+offset_right = 785.0
+offset_bottom = 346.0
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.972549, 0.9372549, 0.8784314, 1)
+theme_override_fonts/normal_font = ExtResource("11_eixc4")
+theme_override_fonts/italics_font = ExtResource("12_m5rhc")
+theme_override_fonts/mono_font = ExtResource("11_eixc4")
+theme_override_font_sizes/italics_font_size = 55
+bbcode_enabled = true
+text = "[i]MINNY ACT 3"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

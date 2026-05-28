@@ -28,6 +28,12 @@ func _ready() -> void:
 		print("trigger")
 		label.mouse_entered.connect(play_hover_sound)
 
+func connect_confirm_button(button: BaseButton) -> void:
+	confirm_buttons.append(button)
+	
+	button.mouse_entered.connect(play_hover_sound)
+	button.pressed.connect(play_confirm_sound)
+		
 func play_confirm_sound() -> void:
 	FmodServer.play_one_shot("event:/SFX/UI/menu_confirm")
 	

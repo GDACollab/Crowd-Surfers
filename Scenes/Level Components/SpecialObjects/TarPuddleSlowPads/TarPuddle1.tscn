@@ -9,8 +9,10 @@ size = Vector3(0.8866577, 0.043121338, 0.8828125)
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_jyg14")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["Cullable"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008270264, 0.02, 0.0126953125)
