@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://vbliirsi4uwo" path="res://Scripts/UI/social_media_section.gd" id="1_8eby2"]
 [ext_resource type="Texture2D" uid="uid://jqk64qsgrmop" path="res://Assets/Art/UI/MainMenu/SocialMedia/temp_social_media.png" id="1_dy2s0"]
-[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="2_8eby2"]
-[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="3_vuw28"]
-[ext_resource type="Texture2D" uid="uid://m5vuac0um0ao" path="res://Assets/Art/UI/MainMenu/SocialMedia/Abilities_Alina_Makarova.jpg" id="4_2nl0d"]
+[ext_resource type="FontVariation" uid="uid://dm26d870h8e4d" path="res://Assets/Font/lamebrain_font_variation.tres" id="3_dy2s0"]
+[ext_resource type="Texture2D" uid="uid://uqaqsott58a3" path="res://Assets/Art/UI/MainMenu/SocialMedia/post_line.png" id="4_8eby2"]
+[ext_resource type="Texture2D" uid="uid://tb5rry2u1mjv" path="res://Assets/Art/UI/MainMenu/SocialMedia/Jellyfishcelebrity_Stella_Nguyen.PNG" id="4_dy2s0"]
 
 [node name="SocialMediaSection" type="VBoxContainer"]
 offset_right = 588.03
@@ -12,6 +12,7 @@ offset_bottom = 403.0
 script = ExtResource("1_8eby2")
 
 [node name="ArtistNamePanel" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 91.045)
 layout_mode = 2
 texture = ExtResource("1_dy2s0")
@@ -19,44 +20,42 @@ expand_mode = 2
 
 [node name="ArtistName" type="RichTextLabel" parent="ArtistNamePanel"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 8.0
-offset_right = 666.0
-offset_bottom = 260.00003
+offset_left = 9.0
+offset_top = 17.0
+offset_right = 696.0
+offset_bottom = 269.00003
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_fonts/normal_font = ExtResource("2_8eby2")
-theme_override_fonts/italics_font = ExtResource("3_vuw28")
-theme_override_fonts/mono_font = ExtResource("2_8eby2")
-theme_override_font_sizes/italics_font_size = 75
+theme_override_fonts/normal_font = ExtResource("3_dy2s0")
+theme_override_fonts/italics_font = ExtResource("3_dy2s0")
+theme_override_fonts/mono_font = ExtResource("3_dy2s0")
+theme_override_font_sizes/italics_font_size = 58
 bbcode_enabled = true
-text = "[i]ARTIST NAME"
+text = "[i]@serena_killingsworth"
 fit_content = true
 autowrap_mode = 0
 
+[node name="Line" type="TextureRect" parent="ArtistNamePanel"]
+layout_mode = 0
+offset_left = -97.0
+offset_right = 556.83
+offset_bottom = 10.0
+texture = ExtResource("4_8eby2")
+expand_mode = 1
+
 [node name="Art" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("4_2nl0d")
+texture = ExtResource("4_dy2s0")
 expand_mode = 5
 
-[node name="DescriptionPanel" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(0, 174.25)
+[node name="Description" type="RichTextLabel" parent="."]
 layout_mode = 2
-texture = ExtResource("1_dy2s0")
-expand_mode = 2
-
-[node name="Description" type="RichTextLabel" parent="DescriptionPanel"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 8.0
-offset_right = 573.11
-offset_bottom = 260.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
-theme_override_fonts/normal_font = ExtResource("2_8eby2")
-theme_override_fonts/italics_font = ExtResource("3_vuw28")
-theme_override_fonts/mono_font = ExtResource("2_8eby2")
-theme_override_font_sizes/italics_font_size = 50
+theme_override_fonts/normal_font = ExtResource("3_dy2s0")
+theme_override_fonts/italics_font = ExtResource("3_dy2s0")
+theme_override_fonts/mono_font = ExtResource("3_dy2s0")
+theme_override_font_sizes/italics_font_size = 40
 bbcode_enabled = true
 text = "[i]Desc, desc, desc, desc, desc, desc, sdfasdfa sdfasdf asdf sdf asdf "
 fit_content = true

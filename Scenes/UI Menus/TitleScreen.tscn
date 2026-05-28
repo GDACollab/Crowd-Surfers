@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=26 format=3 uid="uid://7uehf4aws4ii"]
 
 [ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/UI/title_screen.gd" id="1_sjn55"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
 [ext_resource type="Texture2D" uid="uid://b2rff4pg2w0gi" path="res://Assets/Art/UI/TitleScreen/background.png" id="3_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2v1kr7g0ysu8" path="res://Assets/Art/UI/TitleScreen/title.png" id="4_xym7l"]
-[ext_resource type="PackedScene" uid="uid://yidw5kopolvj" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
+[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
 [ext_resource type="Texture2D" uid="uid://b52ppde1ewcqm" path="res://Assets/Art/UI/TitleScreen/slip.png" id="5_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2feq7alf2tqs" path="res://Assets/Art/UI/TitleScreen/now_playing.png" id="5_km04c"]
 [ext_resource type="Texture2D" uid="uid://c3s5ifd2i0xvm" path="res://Assets/Art/UI/TitleScreen/play_button.png" id="6_sh7nw"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://cyx7l5k8duoue" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note5.png" id="11_f8b7y"]
 [ext_resource type="BitMap" uid="uid://dvbgirwbu1fiw" path="res://Assets/Art/UI/TitleScreen/credits_button_click_mask.png" id="12_8o0qd"]
 [ext_resource type="Texture2D" uid="uid://cg5jsfwllp3hx" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note6.png" id="12_ij21d"]
+[ext_resource type="Texture2D" uid="uid://c36txpxfj5d06" path="res://Assets/Art/UI/TitleScreen/quit_button.png" id="19_in3d3"]
+[ext_resource type="BitMap" uid="uid://1bpihhub3m1j" path="res://Assets/Art/UI/TitleScreen/quit_button_click_mask.png" id="20_in3d3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_idimm"]
 blend_mode = 1
@@ -94,18 +96,18 @@ offset_bottom = 40.0
 
 [node name="Note1" type="TextureRect" parent="Images/MusicNotes"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 31.0
-offset_right = 111.0
-offset_bottom = 131.0
+offset_left = 116.0
+offset_top = 264.0
+offset_right = 216.0
+offset_bottom = 364.0
 texture = ExtResource("7_idimm")
 
 [node name="Note2" type="TextureRect" parent="Images/MusicNotes"]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 9.0
-offset_right = 155.0
-offset_bottom = 109.0
+offset_left = 160.0
+offset_top = 242.0
+offset_right = 260.0
+offset_bottom = 342.0
 texture = ExtResource("8_w6tul")
 
 [node name="Note3" type="TextureRect" parent="Images/MusicNotes"]
@@ -184,9 +186,22 @@ texture = SubResource("GradientTexture2D_in3d3")
 visible = false
 layout_mode = 0
 
+[node name="QuitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 184.0
+offset_bottom = 179.0
+texture_normal = ExtResource("19_in3d3")
+texture_click_mask = ExtResource("20_in3d3")
+script = ExtResource("9_0iu0x")
+
 [connection signal="mouse_entered" from="PlayButton" to="PlayButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="mouse_entered" from="CreditsButton" to="CreditsButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CreditsButton" to="CreditsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="QuitButton" to="QuitButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="QuitButton" to="QuitButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

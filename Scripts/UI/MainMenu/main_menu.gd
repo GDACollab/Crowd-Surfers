@@ -14,7 +14,6 @@ extends Control
 @onready var orders_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/OrdersButton
 @onready var voicemails_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/VoicemailsButton
 
-
 @onready var backgrounds_farther: Control = $BackgroundsFarther
 @onready var backgrounds_closer: Control = $BackgroundsCloser
 
@@ -35,6 +34,15 @@ var time: float
 var velocity: Vector2
 var hub_music: FmodEvent
 
+enum MainMenuPage {
+	MAIN = 1,
+	ORDERS = 2,
+	VOICEMAILS = 3,
+	SETTINGS = 4,
+	SOCIAL_MEDIA = 5
+}
+var page: MainMenuPage = MainMenuPage.MAIN
+
 func _ready() -> void:
 	orders_scene.visible = false
 	voicemails_scene.visible = false
@@ -52,9 +60,20 @@ func _ready() -> void:
 	else:
 		Audio.unpause_persistent("mus_hub")
 	
-	# SaveDataManager.save_data()
-
 func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("ui_back")):
+		match page:
+			MainMenuPage.MAIN:
+				_on_exit_button_pressed()
+			MainMenuPage.ORDERS:
+				_on_orders_back_button_pressed()
+			MainMenuPage.VOICEMAILS:
+				_on_voicemails_back_button_pressed()
+			MainMenuPage.SETTINGS:
+				_on_settings_back_button_pressed()
+			MainMenuPage.SOCIAL_MEDIA:
+				_on_social_media_back_button_pressed()
+		
 	time += delta
 	if (time > time_between_target_changes):
 		time = 0
@@ -79,8 +98,8 @@ func _on_orders_button_pressed() -> void:
 	orders_animation_player.play("open_orders")
 	orders_scene.visible = true
 	
+	page = MainMenuPage.ORDERS
 	set_transitioning()
-	
 	
 func _on_voicemails_button_pressed() -> void:
 	if (transitioning):
@@ -91,6 +110,7 @@ func _on_voicemails_button_pressed() -> void:
 	voicemails_animation_player.play("open_voicemails")
 	voicemails_scene.visible = true
 	
+	page = MainMenuPage.VOICEMAILS
 	set_transitioning()
 	
 func _on_settings_button_pressed() -> void:
@@ -100,6 +120,7 @@ func _on_settings_button_pressed() -> void:
 	settings_animation_player.play("open_settings")
 	settings_scene.visible = true
 	
+	page = MainMenuPage.SETTINGS
 	set_transitioning()
 	
 func _on_social_media_button_pressed() -> void:
@@ -109,6 +130,7 @@ func _on_social_media_button_pressed() -> void:
 	social_media_animation_player.play("open_social_media")
 	social_media_scene.visible = true
 	
+	page = MainMenuPage.SOCIAL_MEDIA
 	set_transitioning()
 	
 #Signalled by back button inside orders scene
@@ -120,6 +142,7 @@ func _on_orders_back_button_pressed() -> void:
 	orders_animation_player.play_backwards("open_orders")
 	orders_animation_player.seek(animation_time * 0.8, true)
 	
+	page = MainMenuPage.MAIN
 	set_transitioning()
 	
 func _on_voicemails_back_button_pressed() -> void:
@@ -130,6 +153,7 @@ func _on_voicemails_back_button_pressed() -> void:
 	voicemails_animation_player.play_backwards("open_voicemails")
 	voicemails_animation_player.seek(animation_time * 0.8, true)
 	
+	page = MainMenuPage.MAIN
 	set_transitioning()
 
 #Signalled by back button inside settings scene
@@ -140,6 +164,7 @@ func _on_settings_back_button_pressed() -> void:
 	settings_animation_player.play_backwards("open_settings")
 	settings_animation_player.seek(animation_time * 0.8, true)
 	
+	page = MainMenuPage.MAIN
 	set_transitioning()
 	
 	SaveDataManager.save_data()
@@ -151,6 +176,7 @@ func _on_social_media_back_button_pressed() -> void:
 	social_media_animation_player.play_backwards("open_social_media")
 	social_media_animation_player.seek(animation_time * 0.8, true)
 	
+	page = MainMenuPage.MAIN
 	set_transitioning()
 	
 	SaveDataManager.save_data()
