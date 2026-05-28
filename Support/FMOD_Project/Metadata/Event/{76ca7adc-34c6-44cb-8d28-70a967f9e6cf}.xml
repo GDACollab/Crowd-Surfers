@@ -129,6 +129,9 @@
 		<property name="length">
 			<value>0.75</value>
 		</property>
+		<property name="volume">
+			<value>3</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{ed89b095-53b8-45fa-bda2-21c95f553713}</destination>
 		</relationship>
@@ -148,8 +151,14 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{cd2439ad-ef29-428d-9ded-ed451a14ff8f}">
+		<property name="start">
+			<value>0.5</value>
+		</property>
 		<property name="length">
 			<value>4.25</value>
+		</property>
+		<property name="volume">
+			<value>9</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{f199e183-1e03-4751-8c43-ce252c1b5854}</destination>
@@ -181,9 +190,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{207f455a-e99e-4d64-af67-934c8bbc4d20}">
-		<property name="volume">
-			<value>-3</value>
-		</property>
 		<property name="name">
 			<value>Audio 3</value>
 		</property>
@@ -203,6 +209,9 @@
 		</property>
 		<property name="length">
 			<value>2.9158276643990928</value>
+		</property>
+		<property name="volume">
+			<value>6</value>
 		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{5c429eb9-d2a0-4c26-9c4d-3fbbe4811ba4}</destination>
@@ -291,6 +300,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{60bceefc-fc35-4335-bdd7-b50f1f8e37fa}">
 		<relationship name="effects">
+			<destination>{2657db24-5ee6-46b5-b936-499d2299149c}</destination>
 			<destination>{c373d876-8f64-4b2c-9d4b-3ec16f59cd38}</destination>
 		</relationship>
 	</object>
@@ -322,6 +332,14 @@
 		</property>
 		<property name="value">
 			<value>0</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{2657db24-5ee6-46b5-b936-499d2299149c}">
+		<property name="lowGain">
+			<value>-6</value>
+		</property>
+		<property name="highGain">
+			<value>3</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{c373d876-8f64-4b2c-9d4b-3ec16f59cd38}" />

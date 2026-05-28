@@ -106,16 +106,17 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="OpeningCutscene" type="Node2D"]
+[node name="OpeningCutscene" type="Node"]
 
-[node name="CutsceneInterface" parent="." node_paths=PackedStringArray("animatic_frames", "cutscene_sound") instance=ExtResource("1_0bk40")]
-animatic_frames = NodePath("OpeningCutsceneFrames")
-cutscene_sound = NodePath("OpeningCutsceneSound")
-
-[node name="OpeningCutsceneSound" type="FmodEventEmitter2D" parent="CutsceneInterface"]
+[node name="OpeningCutsceneSound" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/CUTSCENE/opening_hub"
 event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
+preload_event = false
 
-[node name="OpeningCutsceneFrames" type="AnimatedSprite2D" parent="CutsceneInterface"]
+[node name="OpeningCutsceneFrames" type="AnimatedSprite2D" parent="."]
 position = Vector2(960, 544)
 sprite_frames = SubResource("SpriteFrames_1fqup")
+
+[node name="CutsceneInterface" parent="." node_paths=PackedStringArray("animatic_frames", "cutscene_sound") instance=ExtResource("1_0bk40")]
+animatic_frames = NodePath("../OpeningCutsceneFrames")
+cutscene_sound = NodePath("../OpeningCutsceneSound")
