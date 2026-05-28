@@ -806,7 +806,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314656, 0.99994105, 0, -0.99994105, 0.010314656, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314647, 0.9999402, 0, -0.9999402, 0.010314647, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -824,7 +824,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039812997, -0.00026512894, 0, 0.0066591427, 0.99997777, 0.03981408, -0.99917984, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.03981297, -0.00026512897, 0, 0.006659137, 0.99997777, 0.039814085, -0.99917907, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -1158,26 +1158,36 @@ spot_range = 42.744
 
 [node name="LightChunk_Start" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(6.775, 0, 0, 0, 1.89, 0, 0, 0, 5.27, 952.032, 80.47998, 84.582596)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/Start/Spotlight_Start"), NodePath("../../Spotlights/Start/Spotlight_Alley_1"), NodePath("../../Spotlights/Start/Spotlight_Alley_2"), NodePath("../../Spotlights/Start/Spotlight_Alley_3"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Brakelight_1"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Brakelight_2"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Spotlight_1"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Spotlight_2"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Brakelight_1"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Brakelight_2"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Spotlight_1"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Spotlight_2")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_Freeway" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(11.52, 0, 0, 0, 2, 0, 0, 0, 4.77, -297.86716, 76.2602, -167.58585)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/Freeway/Freeway_01"), NodePath("../../Spotlights/Freeway/Freeway_02"), NodePath("../../Spotlights/Freeway/Freeway_03"), NodePath("../../Spotlights/Freeway/Freeway_04"), NodePath("../../Spotlights/Freeway/Freeway_05"), NodePath("../../Spotlights/Freeway/Spotlight_FreewayEnd")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_Park" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(13.885, 0, 0, 0, 2, 0, 0, 0, 7.745, -2167.9873, 76.2602, -349.33688)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/Park/SpotLight_BackAlleyStart"), NodePath("../../Spotlights/Park/Spotlight_Park_1"), NodePath("../../Spotlights/Park/Spotlight_Park_2"), NodePath("../../Spotlights/Park/Spotlight_Park_3"), NodePath("../../Spotlights/Park/Spotlight_Park_4"), NodePath("../../Spotlights/Park/Spotlight_Park_5"), NodePath("../../Spotlights/Park/Spotlight_Park_6"), NodePath("../../Spotlights/Park/SpotLight_Blue_Park"), NodePath("../../Spotlights/Park/Spotlight_Park_End")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_MainStreet" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(14.71, 0, 0, 0, 2, 0, 0, 0, 7.745, -2067.8809, 76.2602, 863.3634)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Car Lights/Car 3/Car_Brakelight_1"), NodePath("../../Car Lights/Car 3/Car_Brakelight_2"), NodePath("../../Car Lights/Car 3/Car_Spotlight_1"), NodePath("../../Car Lights/Car 3/Car_Spotlight_2"), NodePath("../../Car Lights/Car 4/Car_Brakelight_1"), NodePath("../../Car Lights/Car 4/Car_Brakelight_2"), NodePath("../../Car Lights/Car 4/Car_Spotlight_1"), NodePath("../../Car Lights/Car 4/Car_Spotlight_2"), NodePath("../../Spotlights/Main Street/SpotLight_Shortcut_End"), NodePath("../../Spotlights/Main Street/Spotlight_Main_1"), NodePath("../../Spotlights/Main Street/Spotlight_Main_2"), NodePath("../../Spotlights/Main Street/Spotlight_Main_3"), NodePath("../../Spotlights/Main Street/Spotlight_Main_4"), NodePath("../../Spotlights/Main Street/Spotlight_Main_5"), NodePath("../../Spotlights/Main Street/SpotLight_Shortcut_Start"), NodePath("../../Spotlights/Main Street/Spotlight_Main_Shortcut_1"), NodePath("../../Spotlights/Main Street/Spotlight_Main_Shortcut_2"), NodePath("../../Spotlights/Main Street/Spotlight_Main_7"), NodePath("../../Spotlights/Main Street/Spotlight_Main_6")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_End" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(14.71, 0, 0, 0, 2, 0, 0, 0, 7.745, 56.546, 76.26, 1058.705)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/End/Spotlight_End_Start"), NodePath("../../Spotlights/End/Spotlight_End_Middle"), NodePath("../../Spotlights/End/Spotlight_End_End")]
 metadata/_edit_lock_ = true
 
