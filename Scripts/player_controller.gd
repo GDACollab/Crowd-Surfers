@@ -853,6 +853,7 @@ func crowd_impact() -> void:
 		if manager and manager.has_method("crowd_stomp_spread"):
 			manager.crowd_stomp_spread(self, rid, crowd_stomp_force, crowd_stomp_radius)
 			
+	
 	await crowd_stomp_end
 	crowd_stop_impact(results)
 
@@ -889,7 +890,7 @@ func crowd_dash_check() -> void:
 	
 	if personCount < crowd_dash_min_members_requirement:
 		has_crowd_dash_boost = false
-
+		
 
 ## Update FMOD floor material parameter based on raycast
 func update_fmod_floor_material() -> void:

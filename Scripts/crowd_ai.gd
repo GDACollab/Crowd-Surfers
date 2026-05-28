@@ -24,8 +24,8 @@ class_name CrowdGroup
 #If this didn't work, you may have to dive into the shader. sorry :(
 
 # CONSTANTS
-const CAP_RADIUS = 4
-const CAP_HEIGHT = 24
+const CAP_RADIUS = 4.0
+const CAP_HEIGHT = 24.0
 const SPRITE_SIZE = 26
 const HEIGHT_RESET = -50
 @export var ε: float = 1.0
@@ -93,6 +93,7 @@ var previous_delta : float
 func _ready() -> void:
 	shape = PhysicsServer3D.capsule_shape_create() # I'm not too sure on this
 	PhysicsServer3D.shape_set_data(shape, {"radius": CAP_RADIUS, "height": CAP_HEIGHT})
+	
 	print("[CROWD] Loading crowd: ", name)
 	navigation_agent_3d.max_speed = max_speed
 	navigation_agent_3d.radius = circum / 2.0
@@ -248,7 +249,8 @@ func multi_mesh_process(array, vel) -> void:
 		if (!rid_dictionary[member].stomped):
 			var velocity_change = (vel - current_vel)
 				
-			PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
+			if velocity_change.length_squared() > 0.01:
+				PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
 			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 		else:
 			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
@@ -285,7 +287,7 @@ func group_main(safe_velocity) -> void:
 	var anchor_state = PhysicsServer3D.body_get_direct_state(anchor)
 	
 	var delta_time = get_physics_process_delta_time() + previous_delta
-	var accel_delta = delta_time * acceleration * 1.5;
+	var accel_delta = delta_time * acceleration;
 	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
 	vel.limit_length(sub_max_speed)
 	
@@ -718,8 +720,9 @@ func create_rids(position) -> void:
 		var radi = circum / 4.0
 		
 		var start_pos = hexPackedPositions[i] if i < hexPackedPositions.size() else position
+		start_pos.y += 6
 		#var start_transform = Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
-		var start_transform = Transform3D(crowd_basis, start_pos) if start_pos != position else Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
+		var start_transform = Transform3D(crowd_basis, start_pos) if start_pos != position else Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y + 6, position.z + randf_range(-radi, radi)))
 		
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, start_transform)
 		multi_mesh_manager.multimesh.set_instance_transform(i, start_transform)
@@ -734,7 +737,7 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_X, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Z, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Y, true)
-		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 50.0)
+		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 160.0)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_MASS, mass)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_FRICTION, 0.0)
 		
