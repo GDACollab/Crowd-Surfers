@@ -278,6 +278,7 @@ func _load_main_panels():
 ##Instances correct amount of choice boxes and gets choice index
 func _display_choices():
 	continue_arrow.visible = false
+	currentChoiceIndex = 0
 	#Adjust portraits
 	leftPortrait.self_modulate = Color.WHITE
 	leftPortrait.scale = Vector2(1.2, 1.2)
