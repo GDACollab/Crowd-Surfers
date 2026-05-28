@@ -25,6 +25,15 @@ func _ready() -> void:
 		voicemail_container.add_child(voicemail_button)
 		voicemail_button.pressed.connect(_on_voicemail_button_pressed.bind(voicemail_button))
 		ui_audio.connect_confirm_button(voicemail_button)
+	
+	# Connect focus neighbors
+	var buttons: Array[Node] = voicemail_container.get_children()
+	for i: int in buttons.size():
+		# Set focus neighbors
+		if i > 0:
+			buttons[i].focus_neighbor_top = buttons[i-1].get_path()
+		if i < buttons.size()-1:
+			buttons[i].focus_neighbor_bottom = buttons[i+1].get_path()
 		
 	if (Story.voicemail_history.size() > 0):
 		no_voicemails_text.visible = false

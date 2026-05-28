@@ -35,6 +35,7 @@ func connect_confirm_button(button: BaseButton) -> void:
 	confirm_buttons.append(button)
 	
 	button.mouse_entered.connect(play_hover_sound)
+	button.focus_entered.connect(play_hover_sound)
 	button.pressed.connect(play_confirm_sound)
 		
 func play_confirm_sound() -> void:

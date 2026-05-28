@@ -68,6 +68,7 @@ offset_top = 349.0
 offset_right = 726.13
 offset_bottom = 1119.0
 theme = SubResource("Theme_08fti")
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="VoicemailVBoxContainer" type="VBoxContainer" parent="VoicemailsBody/ScrollContainer"]
@@ -77,6 +78,10 @@ theme_override_constants/separation = -70
 
 [node name="BackButton" type="TextureButton" parent="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("6_5uj0v")
 texture_click_mask = ExtResource("7_dsfld")
 script = ExtResource("8_1i1cu")
@@ -107,5 +112,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="focus_entered" from="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" method="_on_mouse_exited"]
