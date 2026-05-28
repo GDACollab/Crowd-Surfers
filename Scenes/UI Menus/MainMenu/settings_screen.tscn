@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kvs3yueyscim"]
+[gd_scene load_steps=14 format=3 uid="uid://kvs3yueyscim"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6kqvo"]
 [ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/UI/settings_screen.gd" id="1_p0nga"]
@@ -9,6 +9,18 @@
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="7_gisvi"]
 [ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="8_gisvi"]
 [ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="9_0ww7i"]
+[ext_resource type="Texture2D" uid="uid://nbgsgeqhleou" path="res://Assets/Art/UI/MainMenu/Settings/grabber_normal.png" id="10_r363m"]
+[ext_resource type="Texture2D" uid="uid://0x5hi2gaqqlv" path="res://Assets/Art/UI/MainMenu/Settings/grabber_hover.png" id="11_2r2op"]
+[ext_resource type="Texture2D" uid="uid://po61v1jk3t0e" path="res://Assets/Art/UI/MainMenu/Settings/slider_track.png" id="11_hnq8v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2r2op"]
+content_margin_left = 160.0
+content_margin_right = 160.0
+texture = ExtResource("11_hnq8v")
+expand_margin_left = 20.0
+expand_margin_top = 40.0
+expand_margin_right = 20.0
+expand_margin_bottom = 40.0
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -89,14 +101,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -54.374916
-offset_top = -8.0
-offset_right = 54.374916
-offset_bottom = 8.0
+offset_left = -209.66045
+offset_top = -46.865395
+offset_right = 110.33957
+offset_bottom = 13.134605
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(54.375, 8)
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("10_r363m")
+theme_override_icons/grabber_highlight = ExtResource("11_2r2op")
+theme_override_styles/slider = SubResource("StyleBoxTexture_2r2op")
 max_value = 1.0
 step = 0.0
 
@@ -136,14 +152,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -54.374916
-offset_top = -8.0
-offset_right = 54.374916
-offset_bottom = 8.0
+offset_left = -209.66045
+offset_top = -46.865395
+offset_right = 110.33957
+offset_bottom = 13.134605
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(54.375, 8)
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("10_r363m")
+theme_override_icons/grabber_highlight = ExtResource("11_2r2op")
+theme_override_styles/slider = SubResource("StyleBoxTexture_2r2op")
 max_value = 1.0
 step = 0.0
 
@@ -183,14 +203,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -54.374916
-offset_top = -8.0
-offset_right = 54.374916
-offset_bottom = 8.0
+offset_left = -209.66045
+offset_top = -46.865395
+offset_right = 110.33957
+offset_bottom = 13.134605
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(54.375, 8)
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("10_r363m")
+theme_override_icons/grabber_highlight = ExtResource("11_2r2op")
+theme_override_styles/slider = SubResource("StyleBoxTexture_2r2op")
 max_value = 1.0
 step = 0.0
 
