@@ -296,7 +296,8 @@ func process_state(delta: float) -> void:
 			if velocity.y < 0\
 			 and $DashAnimationEndTimer.is_stopped()\
 			 and not player_sprite.current_animation == "fall"\
-			 and not player_sprite.current_animation == "crash":
+			 and not player_sprite.current_animation == "crash"\
+			 and not player_sprite.current_animation == "glide_exit":
 				player_sprite.play_animation("fall", true)
 		States.CRASH_AIR:
 			fall(delta)
@@ -972,7 +973,7 @@ func update_trail(delta):
 			
 		$TrailHolder/GPUTrail3D.restart()
 		trail_spakle.visible = false
-	print(max_speed)
+	#print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.
