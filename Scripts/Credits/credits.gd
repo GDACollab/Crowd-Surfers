@@ -57,14 +57,14 @@ func _ready() -> void:
 		var label: RichTextLabel = credits_text_scene.instantiate()
 		label.text = text
 		
-		if (text.contains("|||")):
+		if (text.contains(" ✧ ")):
 			# this is the stupidest code ive ever made why is godot doing this to me
 			var font: Font = label.get_theme_font("normal_font")
 			
-			var first_half_text: String = text.substr(text.find("]") + 1, text.find("|||") - text.find("]") - 1)
+			var first_half_text: String = text.substr(text.find("]") + 1, text.find(" ✧ ") - text.find("]") - 1)
 			var first_half_text_size: Vector2 = font.get_string_size(first_half_text, HORIZONTAL_ALIGNMENT_CENTER, -1, label.get_theme_font_size("font_size"))
 			
-			var second_half_text: String = text.substr(text.find("|||") + 3, text.find("[", text.find("|||") + 3) - (text.find("|||") + 3))
+			var second_half_text: String = text.substr(text.find(" ✧ ") + 3, text.find("[", text.find(" ✧ ") + 3) - (text.find(" ✧ ") + 3))
 			var second_half_text_size: Vector2 = font.get_string_size(second_half_text, HORIZONTAL_ALIGNMENT_CENTER, -1, label.get_theme_font_size("font_size"))
 			
 			var move_distance: float = second_half_text_size.x - first_half_text_size.x
@@ -101,7 +101,7 @@ func _process(delta: float):
 		current_scroll_speed -= scroll_speed_change_rate_per_second * delta
 	self.position.y += current_scroll_speed * -1 * delta
 	
-	if (self.position.y < credits_end_y):
+	if (Input.is_action_just_pressed("ui_back") || self.position.y < credits_end_y):
 		_on_back_button_pressed()
 
 func _on_back_button_pressed() -> void:
