@@ -4,8 +4,10 @@ extends Control
 ## I Couldn't figure out signals and did this method lol
 @onready var speedometer = $"Hud Container/Speedometer Component"
 @onready var timer_Display = $"Hud Container/Timer Component"
-@onready var level_progress_Display = $"Hud Container/Level Progress Component"
-@onready var hud_container = $"Hud Container/Stars Container"
+@onready var level_progress_Display = $"Level Progress Component"
+@onready var hud_container = $"Hud Container"
+@onready var stars_container = $"Hud Container/Stars Container"
+@onready var hud_background = $"Hud Container/Hud Background"
 
 # Get reference without actually editing the player script
 @onready var player: Node = get_parent().get_node("Player")
@@ -29,6 +31,16 @@ extends Control
 @export var shake_time: float = 0.5
 @export var shake_magnitue: float = 5
 @export var num_shakes: int = 15
+
+@export_category("Overspeed")
+@export var max_visual_overspeed: float = 150
+@export var shader_outline_change_speed: float = 3
+
+@export_category("Act 2 special case")
+@export var act_2_otherside: Vector2
+@export var act_2: bool = false
+
+var act_2_otherside_reached: bool = false
 
 var star_images: Array[TextureRect]
 var star_base_modulate: Array[float]
@@ -66,7 +78,7 @@ func _ready():
 		var star: TextureRect = hud_star_scene.instantiate()
 		star.texture = stars[i].texture
 		star.position = stars[i].position
-		hud_container.add_child(star)
+		stars_container.add_child(star)
 		star_images.append(star)
 		star_base_modulate.append(0.0)
 	
@@ -119,6 +131,14 @@ func _process(delta: float) -> void:
 	# This gets the actual speed of the player, not the max speed. No longer used
 	#var hypotenuse = pow(pow(player.velocity.x,2) + pow(player.velocity.z,2),.5)
 	var max_speed = player.max_speed
+	
+	# Overspeed shader
+	var over_speed: float = max_speed - saved_ramping_cap
+	var threshold: float = 1 - 0.25 * (over_speed / max_visual_overspeed)
+	var lerp_threshhold: float = lerp(hud_background.material.get_shader_parameter("threshold"), threshold, delta * shader_outline_change_speed)
+	hud_background.material.set_shader_parameter("threshold", lerp_threshhold)
+	
+	max_speed = min(player.max_speed, saved_ramping_cap)
 	set_player_speed(max_speed)
 	
 	if (max_speed > speed_change_to_shake + max_speed_last_frame):
@@ -175,9 +195,28 @@ func _process(delta: float) -> void:
 		
 	## Handle Level Progression
 	if(has_level_end_pos):
-		var player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
-		# Fraction of player distance to total distance, * 100 makes it a percent
-		var progress = player_dist_to_start / (level_end_pos.distance_to(player_start_pos)) * 100
+		var progress: float
+		var player_dist_to_start: float
+		
+		if (act_2 == true):
+			print("hi")
+			if (act_2_otherside_reached == false):
+				player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
+				progress = player_dist_to_start / (act_2_otherside.distance_to(player_start_pos)) * 50
+			else:
+				player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(act_2_otherside)
+				progress = 50 + (player_dist_to_start / (level_end_pos.distance_to(act_2_otherside)) * 50)
+		
+		else:
+			player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
+			
+			# Fraction of player distance to total distance, * 100 makes it a percent
+			progress = player_dist_to_start / (level_end_pos.distance_to(player_start_pos)) * 100
+			
+		if (player.position.x < act_2_otherside.x):
+			act_2_otherside_reached = true
+			
+		
 		set_Level_Progress(progress)
 	# Error message to let level designer know to attach the script
 	else:
@@ -188,9 +227,9 @@ func _process(delta: float) -> void:
 func handle_shake(delta: float) -> void:
 	if (shake_timer > 0):
 		if (shake_timer < (shake_time / num_shakes) * (num_shakes - total_shakes)):
-			position = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized() * shake_magnitue * (shake_timer / shake_time)
+			hud_container.position = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized() * shake_magnitue * (shake_timer / shake_time)
 			total_shakes += 1
 	else:
-		position = Vector2.ZERO
+		hud_container.position = Vector2.ZERO
 		
 	shake_timer -= delta
