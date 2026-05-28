@@ -5,10 +5,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mpbxv"]
 
-[node name="SoftObject" type="Node3D"]
+[node name="SoftObject" type="Node3D" groups=["Cullable"]]
 script = ExtResource("1_5oq6p")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["Cullable"]]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0.63300157, 0)
@@ -20,7 +22,7 @@ pixel_size = 0.03
 texture = ExtResource("2_5oq6p")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/cone"
+event_name = "event:/SFX/ENV/objects/cone"
 event_guid = "{cff0233d-a6d4-498d-89a1-f219454ffa88}"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

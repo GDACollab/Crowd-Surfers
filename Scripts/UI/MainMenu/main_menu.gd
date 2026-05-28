@@ -1,11 +1,18 @@
 extends Control
 
 @onready var orders_animation_player : AnimationPlayer = $OrdersAnimationPlayer
+@onready var voicemails_animation_player : AnimationPlayer = $VoicemailsAnimationPlayer
 @onready var settings_animation_player : AnimationPlayer = $SettingsAnimationPlayer
+@onready var social_media_animation_player : AnimationPlayer = $SocialMediaAnimationPlayer
 
-@onready var main_container: Control = $PhoneImage/MainPhoneMask/MainContainer
-@onready var orders_scene: Control = $PhoneImage/MainPhoneMask/OrdersScene
-@onready var settings_scene: Control = $PhoneImage/MainPhoneMask/SettingsScene
+@onready var main_container: Control = $PhoneImage/PhoneBg/MainContainer
+@onready var orders_scene: Control = $PhoneImage/PhoneBg/OrdersScene
+@onready var voicemails_scene: Control = $PhoneImage/PhoneBg/VoicemailsScene
+@onready var settings_scene: Control = $PhoneImage/PhoneBg/SettingsScene
+@onready var social_media_scene: Control = $PhoneImage/PhoneBg/SocialMediaScene
+
+@onready var orders_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/OrdersButton
+@onready var voicemails_button: TextureButton = $PhoneImage/PhoneBg/MainContainer/VoicemailsButton
 
 @onready var backgrounds_farther: Control = $BackgroundsFarther
 @onready var backgrounds_closer: Control = $BackgroundsCloser
@@ -27,22 +34,21 @@ var time: float
 var velocity: Vector2
 var hub_music: FmodEvent
 
-## Proper names for voicemail entries
-var voicemail_directory := {
-	"main_act1_scene2_voicemail" : "Pavo Act 1",
-	"Pavo_act2_voicemail" : "Pavo Act 2",
-	"Pavo_act3_voicemail" : "Pavo Act 3",
-	"main_act2_scene2_voicemail" : "Nyx Act 1",
-	"Nyx_act2_voicemail" : "Nyx Act 2",
-	"Nyx_act3_voicemail" : "Nyx Act 3",
-	"Minny_act2_voicemail" : "Minny Act 2",
-	"Minny_act3_voicemail" : "Minny Act 3",
+enum MainMenuPage {
+	MAIN = 1,
+	ORDERS = 2,
+	VOICEMAILS = 3,
+	SETTINGS = 4,
+	SOCIAL_MEDIA = 5
 }
+var page: MainMenuPage = MainMenuPage.MAIN
 
 func _ready() -> void:
 	orders_scene.visible = false
+	voicemails_scene.visible = false
 	settings_scene.visible = false
-	
+	social_media_scene.visible = false
+
 	start_background_position = backgrounds_closer.position
 	time = time_between_target_changes
 	
@@ -54,9 +60,20 @@ func _ready() -> void:
 	else:
 		Audio.unpause_persistent("mus_hub")
 	
-	# SaveDataManager.save_data()
-
 func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("ui_back")):
+		match page:
+			MainMenuPage.MAIN:
+				_on_exit_button_pressed()
+			MainMenuPage.ORDERS:
+				_on_orders_back_button_pressed()
+			MainMenuPage.VOICEMAILS:
+				_on_voicemails_back_button_pressed()
+			MainMenuPage.SETTINGS:
+				_on_settings_back_button_pressed()
+			MainMenuPage.SOCIAL_MEDIA:
+				_on_social_media_back_button_pressed()
+		
 	time += delta
 	if (time > time_between_target_changes):
 		time = 0
@@ -76,9 +93,24 @@ func _on_orders_button_pressed() -> void:
 	if (transitioning):
 		return
 	
+	orders_button.disabled = true
+	orders_button.modulate = Color.WHITE
 	orders_animation_player.play("open_orders")
 	orders_scene.visible = true
 	
+	page = MainMenuPage.ORDERS
+	set_transitioning()
+	
+func _on_voicemails_button_pressed() -> void:
+	if (transitioning):
+		return
+	
+	voicemails_button.disabled = true
+	voicemails_button.modulate = Color.WHITE
+	voicemails_animation_player.play("open_voicemails")
+	voicemails_scene.visible = true
+	
+	page = MainMenuPage.VOICEMAILS
 	set_transitioning()
 	
 func _on_settings_button_pressed() -> void:
@@ -88,6 +120,17 @@ func _on_settings_button_pressed() -> void:
 	settings_animation_player.play("open_settings")
 	settings_scene.visible = true
 	
+	page = MainMenuPage.SETTINGS
+	set_transitioning()
+	
+func _on_social_media_button_pressed() -> void:
+	if (transitioning):
+		return
+		
+	social_media_animation_player.play("open_social_media")
+	social_media_scene.visible = true
+	
+	page = MainMenuPage.SOCIAL_MEDIA
 	set_transitioning()
 	
 #Signalled by back button inside orders scene
@@ -95,11 +138,24 @@ func _on_orders_back_button_pressed() -> void:
 	if (transitioning):
 		return
 		
+	orders_button.disabled = false
 	orders_animation_player.play_backwards("open_orders")
 	orders_animation_player.seek(animation_time * 0.8, true)
 	
+	page = MainMenuPage.MAIN
 	set_transitioning()
 	
+func _on_voicemails_back_button_pressed() -> void:
+	if (transitioning):
+		return
+		
+	voicemails_button.disabled = false
+	voicemails_animation_player.play_backwards("open_voicemails")
+	voicemails_animation_player.seek(animation_time * 0.8, true)
+	
+	page = MainMenuPage.MAIN
+	set_transitioning()
+
 #Signalled by back button inside settings scene
 func _on_settings_back_button_pressed() -> void:
 	if (transitioning):
@@ -108,6 +164,19 @@ func _on_settings_back_button_pressed() -> void:
 	settings_animation_player.play_backwards("open_settings")
 	settings_animation_player.seek(animation_time * 0.8, true)
 	
+	page = MainMenuPage.MAIN
+	set_transitioning()
+	
+	SaveDataManager.save_data()
+	
+func _on_social_media_back_button_pressed() -> void:
+	if (transitioning):
+		return
+		
+	social_media_animation_player.play_backwards("open_social_media")
+	social_media_animation_player.seek(animation_time * 0.8, true)
+	
+	page = MainMenuPage.MAIN
 	set_transitioning()
 	
 	SaveDataManager.save_data()
@@ -116,22 +185,19 @@ func _on_settings_back_button_pressed() -> void:
 func set_orders_scene_visibility(new_visible: bool) -> void:
 	orders_scene.visible = new_visible
 	
+#Trigged by VoicemailsAnimationPlayer
+func set_voicemails_scene_visibility(new_visible: bool) -> void:
+	voicemails_scene.visible = new_visible
+	
 #Trigged by SettingsAnimationPlayer
 func set_settings_scene_visibility(new_visible: bool) -> void:
 	settings_scene.visible = new_visible
+	
+#Trigged by SocialMediaAnimationPlayer
+func set_social_media_scene_visibility(new_visible: bool) -> void:
+	social_media_scene.visible = new_visible
 
 func set_transitioning() -> void:
 	transitioning = true
 	await get_tree().create_timer(animation_time).timeout 
 	transitioning = false
-
-## TODO: Currently plays a random voicemail, will eventually have to pull up a list of available scenes
-func _on_voice_mail_button_pressed() -> void:
-	if (transitioning):
-		return
-	## Just plays a random voicemail if any are available
-	if(Story.voicemail_history.size() > 0):
-		var new_voicemail = Story.voicemail_history.pick_random()
-		print("[DIALOGUE] Playing voicemail for: ", voicemail_directory[new_voicemail])
-		Inky.PlayStoryFromKnot(new_voicemail)
-	

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpa7c1838gcwa"]
+
+[ext_resource type="Texture2D" uid="uid://bsu3080xa05dw" path="res://Assets/Art/Portraits/Slip/Slip_Confident.png" id="1_2krso"]
+[ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scenes/Cutscenes/cutscene_example.gd" id="1_ksmxe"]
+[ext_resource type="Texture2D" uid="uid://bcmwaa0mckn5d" path="res://Assets/Art/Portraits/Slip/Slip_Nervous.png" id="2_ksmxe"]
+[ext_resource type="Texture2D" uid="uid://dm3br3d3sbt6w" path="res://Assets/Art/Portraits/Slip/Slip_Scared.png" id="3_5m7x1"]
+
+[node name="Cutscene_Example" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ksmxe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 808.0
+offset_right = 1919.0
+offset_bottom = 1076.0
+color = Color(0.11674089, 0.116740905, 0.11674089, 1)
+
+[node name="SlipConfident" type="Sprite2D" parent="."]
+position = Vector2(-99.99997, 558.00006)
+scale = Vector2(0.21673004, 0.21673004)
+texture = ExtResource("1_2krso")
+
+[node name="SlipNervous" type="Sprite2D" parent="."]
+position = Vector2(-1285, 729)
+scale = Vector2(0.2287706, 0.2287706)
+texture = ExtResource("2_ksmxe")
+
+[node name="SlipScared" type="Sprite2D" parent="."]
+position = Vector2(-969, 1204)
+scale = Vector2(0.22179975, 0.22179976)
+texture = ExtResource("3_5m7x1")

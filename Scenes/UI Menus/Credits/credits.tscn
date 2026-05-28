@@ -1,28 +1,167 @@
-[gd_scene load_steps=10 format=3 uid="uid://pq5rrrmglvc3"]
+[gd_scene load_steps=47 format=3 uid="uid://pq5rrrmglvc3"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6r17f"]
-[ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/UI/Credits/pitch_art_temp.PNG" id="1_ykwev"]
+[ext_resource type="Texture2D" uid="uid://ddc1uecivg48j" path="res://Assets/Art/UI/Credits/pitch_art.PNG" id="1_ykwev"]
 [ext_resource type="Script" uid="uid://fiap15slvs4" path="res://Scripts/Credits/credits.gd" id="2_22rij"]
-[ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/UI/Credits/temp_image_1.PNG" id="3_4lsct"]
+[ext_resource type="Texture2D" uid="uid://nto2lrqhtolb" path="res://Assets/Art/UI/Credits/image_1.PNG" id="3_4lsct"]
 [ext_resource type="Script" uid="uid://cmigokryp7r8n" path="res://Scripts/Credits/credits_image_data.gd" id="4_fax7y"]
-[ext_resource type="Texture2D" uid="uid://cnerwekuuc15d" path="res://Assets/Art/UI/Credits/temp_image_2.PNG" id="4_ut8rr"]
 [ext_resource type="PackedScene" uid="uid://dh1oqjfhmcs6c" path="res://Scenes/UI Menus/Credits/credits_text.tscn" id="5_4hn7j"]
+[ext_resource type="Texture2D" uid="uid://bcmwaa0mckn5d" path="res://Assets/Art/Portraits/Slip/Slip_Nervous.png" id="7_vt5ck"]
+[ext_resource type="Texture2D" uid="uid://do21jpwkglhgg" path="res://Assets/Art/UI/exit.png" id="8_epa2d"]
+[ext_resource type="Texture2D" uid="uid://ca5nvtldwcy3j" path="res://Assets/Art/Portraits/Chef/Chef_Default.PNG" id="8_vt5ck"]
+[ext_resource type="BitMap" uid="uid://664kp2rhdwqc" path="res://Assets/Art/UI/exit_click_mask.png" id="9_7eibb"]
+[ext_resource type="Texture2D" uid="uid://osoal0eyv0ts" path="res://Assets/Art/Crowd/SenXie_Cat1/00coolcat1.png" id="9_bswle"]
+[ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="10_7eibb"]
+[ext_resource type="Texture2D" uid="uid://btqseq64ii73v" path="res://Assets/Art/Crowd/SenXie_tired_bunny/bunny-2.png" id="10_c2hck"]
+[ext_resource type="Texture2D" uid="uid://cp6nyfc7robl4" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS Decorations S7/PIZZA_graffiti.png" id="11_4uh2x"]
+[ext_resource type="Texture2D" uid="uid://cbhctwqmvr665" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS Decorations S7/BEEF_graffiti.png" id="12_k7q75"]
+[ext_resource type="Texture2D" uid="uid://cs7w0xbwpj2kx" path="res://Assets/Art/AlphaSprites/SprintSevenAssets/CS Decorations S7/SLUG_graffiti.png" id="13_6eswg"]
+[ext_resource type="Texture2D" uid="uid://b6u7cllpvnwg8" path="res://Assets/Art/Portraits/Sam/SAM_Angry_StellaNguyen.PNG" id="14_43pq5"]
+[ext_resource type="Texture2D" uid="uid://chi0iwcsod5wb" path="res://Assets/Art/UI/HUD/Stars/star2.png" id="15_n4n4c"]
+[ext_resource type="Texture2D" uid="uid://dqwegw300fsf8" path="res://Assets/Art/UI/HUD/Stars/star3.png" id="16_hilcs"]
+[ext_resource type="Texture2D" uid="uid://dmdhs6i7ymsr0" path="res://Assets/Art/UI/HUD/Stars/star8.PNG" id="17_8moob"]
+[ext_resource type="Texture2D" uid="uid://b2v1kr7g0ysu8" path="res://Assets/Art/UI/TitleScreen/title.png" id="18_n4n4c"]
+[ext_resource type="Texture2D" uid="uid://dyro4vuot6lxw" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note3.png" id="20_8moob"]
+[ext_resource type="Texture2D" uid="uid://cg5jsfwllp3hx" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note6.png" id="20_hilcs"]
+[ext_resource type="Texture2D" uid="uid://ojwf0kiqemd1" path="res://Assets/Art/UI/TitleScreen/MusicNotes/note4.png" id="21_mynru"]
+[ext_resource type="Texture2D" uid="uid://cd3k5y685bltf" path="res://Assets/Art/UI/Loading/disc_1.PNG" id="22_4pu2f"]
+[ext_resource type="Texture2D" uid="uid://rs2gj6jh85mr" path="res://Assets/Art/Portraits/Pavo/Pavo_Performance_StellaNguyen.PNG" id="23_0d23a"]
+[ext_resource type="Texture2D" uid="uid://d1mcnbcdhvdya" path="res://Assets/Art/Portraits/Minny/Minny_Nervous.png" id="24_hilcs"]
 
 [sub_resource type="Resource" id="Resource_8pn86"]
 script = ExtResource("4_fax7y")
 texture = ExtResource("3_4lsct")
 scale = 0.75
-position = Vector2(550.638, 670)
+position = Vector2(550.638, 1150)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
 [sub_resource type="Resource" id="Resource_oug0m"]
 script = ExtResource("4_fax7y")
-texture = ExtResource("4_ut8rr")
-scale = 0.3
-position = Vector2(-844.02, 1980)
+texture = ExtResource("7_vt5ck")
+scale = 0.4
+position = Vector2(-942.64, 2080)
 metadata/_custom_type_script = "uid://cmigokryp7r8n"
 
-[node name="Control" type="Control"]
+[sub_resource type="Resource" id="Resource_8uu34"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("8_vt5ck")
+scale = 0.3
+position = Vector2(305.275, 5400.265)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_bswle"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("9_bswle")
+scale = 0.9
+position = Vector2(330, 2872.47)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_c2hck"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("10_c2hck")
+scale = 0.7
+position = Vector2(338, 6450)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_4uh2x"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("11_4uh2x")
+scale = 3.0
+position = Vector2(-1060, 5490)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_k7q75"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("12_k7q75")
+scale = 3.0
+position = Vector2(337, 9074)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_6eswg"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("13_6eswg")
+scale = 3.0
+position = Vector2(-1050, 14812)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_43pq5"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("14_43pq5")
+scale = 0.5
+position = Vector2(449, 11396)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_n4n4c"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("15_n4n4c")
+scale = 0.4
+position = Vector2(-893, 7709)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_hilcs"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("16_hilcs")
+scale = 0.4
+position = Vector2(-691, 7938)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_8moob"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("17_8moob")
+scale = 0.4
+position = Vector2(-582, 7756)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_mynru"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("22_4pu2f")
+scale = 1.0
+position = Vector2(-375, 20926)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_0d23a"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("20_8moob")
+scale = 1.5
+position = Vector2(-676, 18856)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_4pu2f"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("20_hilcs")
+scale = 1.5
+position = Vector2(-666, 18976.002)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_130ac"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("21_mynru")
+scale = 1.5
+position = Vector2(-714, 18976.002)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_nwkig"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("23_0d23a")
+scale = 0.4
+position = Vector2(372, 19765)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_7hurp"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("24_hilcs")
+scale = 0.4
+position = Vector2(-975, 22811)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[sub_resource type="Resource" id="Resource_gwojs"]
+script = ExtResource("4_fax7y")
+texture = ExtResource("18_n4n4c")
+scale = 1.0
+position = Vector2(-710, 34048.047)
+metadata/_custom_type_script = "uid://cmigokryp7r8n"
+
+[node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,13 +194,14 @@ offset_bottom = 40.000015
 grow_horizontal = 2
 script = ExtResource("2_22rij")
 slow_scroll_speed = 85.0
-fast_scroll_speed = 375.0
+fast_scroll_speed = 550.0
 scroll_speed_change_rate_per_second = 375.0
+credits_end_y = -34000.725
 separator_size = 60.0
 credits_starting_y = 1167.0
 credits_text_file_string = "res://Assets/credits.txt"
 credits_text_scene = ExtResource("5_4hn7j")
-images = Array[ExtResource("4_fax7y")]([SubResource("Resource_8pn86"), SubResource("Resource_oug0m")])
+images = Array[ExtResource("4_fax7y")]([SubResource("Resource_8pn86"), SubResource("Resource_oug0m"), SubResource("Resource_8uu34"), SubResource("Resource_bswle"), SubResource("Resource_c2hck"), SubResource("Resource_4uh2x"), SubResource("Resource_k7q75"), SubResource("Resource_6eswg"), SubResource("Resource_43pq5"), SubResource("Resource_n4n4c"), SubResource("Resource_hilcs"), SubResource("Resource_8moob"), SubResource("Resource_mynru"), SubResource("Resource_0d23a"), SubResource("Resource_4pu2f"), SubResource("Resource_130ac"), SubResource("Resource_nwkig"), SubResource("Resource_7hurp"), SubResource("Resource_gwojs")])
 
 [node name="CreditsTextContainer" type="VBoxContainer" parent="CreditsContainer"]
 layout_mode = 1
@@ -90,29 +230,27 @@ text = "[font_size=112
 visible_characters = 2
 visible_ratio = 0.18181819
 
-[node name="UseDuringRuntimeToPositionImages" type="TextureRect" parent="CreditsContainer"]
+[node name="UseDuringRuntimeToPositionImages7" type="TextureRect" parent="CreditsContainer"]
 visible = false
 layout_mode = 0
-offset_left = -511.0
-offset_top = 1676.0
-offset_right = 631.0
-offset_bottom = 3316.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_ut8rr")
+offset_left = -732.0
+offset_top = 30048.0
+offset_right = 1188.0
+offset_bottom = 31128.0
+texture = ExtResource("18_n4n4c")
 
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -45.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(3, 3)
-pivot_offset = Vector2(72, 45)
-text = "Back"
+[node name="BackButton" type="TextureButton" parent="."]
+self_modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 0
+offset_left = 16.0
+offset_top = -21.000004
+offset_right = 196.0
+offset_bottom = 159.0
+rotation = 0.17453292
+texture_normal = ExtResource("8_epa2d")
+texture_click_mask = ExtResource("9_7eibb")
+script = ExtResource("10_7eibb")
 
+[connection signal="mouse_entered" from="BackButton" to="BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackButton" to="BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="BackButton" to="CreditsContainer" method="_on_back_button_pressed"]

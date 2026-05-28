@@ -1,5 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=59 format=3 uid="uid://ykvmtt70mexg"]
 
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_1opd7"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_wef7b"]
@@ -31,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="26_nx437"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="27_1olov"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="27_jtff7"]
-[ext_resource type="Script" uid="uid://cdxqkuup5thoc" path="res://Scripts/act2_endclear.gd" id="27_tvis2"]
+[ext_resource type="Script" path="res://Scripts/act2_endclear.gd" id="27_tvis2"]
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="28_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="28_tvis2"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="29_2sk22"]
@@ -44,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="35_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
 [ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
+[ext_resource type="Script" path="res://Scripts/Debug/cull_wall.gd" id="45_js7g2"]
 
 [sub_resource type="Gradient" id="Gradient_lxrsn"]
 offsets = PackedFloat32Array(0, 0.06358381, 1)
@@ -188,7 +190,11 @@ _data = {
 &"light_flicker": SubResource("Animation_evjpn")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lxrsn"]
+size = Vector3(500, 500, 10)
+
 [node name="LvlConcept-Stage2" type="Node3D"]
+script = ExtResource("1_1opd7")
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_njsij")]
 player = NodePath("../Player")
@@ -216,8 +222,9 @@ follow_speed = 10.0
 transform = Transform3D(1, 0, 0, 0, 0.22438975, 0.97449946, 0, -0.97449946, 0.22438975, 0, 0, 37.228912)
 light_energy = 0.347
 spot_range = 449.358
-spot_attenuation = -0.02
-spot_angle = 13.78
+spot_attenuation = -0.1
+spot_angle = 40.436157
+spot_angle_attenuation = 3.4822016
 
 [node name="VfxManager" parent="." instance=ExtResource("5_3ykl1")]
 
@@ -503,14 +510,14 @@ transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 850,
 [node name="StaticBody3D23" parent="AddedBuildings" instance=ExtResource("22_m0tkt")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 850, 0, -200)
 
-[node name="StaticBody3D24" parent="AddedBuildings" instance=ExtResource("22_m0tkt")]
-transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 850, 0, -100)
-
 [node name="StaticBody3D13" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(5.7620454e-08, 0, -1, 0, 1, 0, 1, 0, 5.7620454e-08, 1250.0002, 0, 100)
 
 [node name="BrickL10" parent="AddedBuildings" instance=ExtResource("29_2sk22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 0, 750)
+
+[node name="StaticBody3D24" parent="AddedBuildings" instance=ExtResource("22_m0tkt")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 850, 0, -100)
 
 [node name="BrickBuild10" parent="AddedBuildings" instance=ExtResource("21_tvis2")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 700, 0, 850)
@@ -599,6 +606,8 @@ script = ExtResource("27_tvis2")
 
 [node name="Area3D" type="Area3D" parent="EndEvent/Checkpoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 900)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndEvent/Checkpoint/Area3D"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 50, 0)
@@ -718,6 +727,8 @@ texture = ExtResource("35_lg4t4")
 transform = Transform3D(13649.581, 0, 0, 0, 20, 0, 0, 0, 5296.4404, 0, -260, 405)
 
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
+act_2_otherside = Vector2(-2804.666, 550)
+act_2 = true
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("18_r2b5i")]
 transform = Transform3D(-4.3711385e-08, 0, 5.5099998, 0, 2.4999998, 0, -0.99999994, 0, -2.4084974e-07, 1050, 50, -300)
@@ -801,7 +812,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314664, 0.99994177, 0, -0.99994177, 0.010314664, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314643, 0.9999398, 0, -0.9999398, 0.010314643, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -810,7 +821,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_02" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9938829, 0.11043603, -0.0007304823, 0, 0.0066143256, 0.9999781, 0.11043893, -0.9938567, 0.006573894, 389.8143, 0, -124.91382)
+transform = Transform3D(0.9938829, 0.11043598, -0.0007304823, 0, 0.006614323, 0.9999781, 0.11043893, -0.9938563, 0.006573894, 389.8143, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -819,7 +830,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039813027, -0.00026512897, 0, 0.006659147, 0.99997777, 0.039814085, -0.9991805, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039812956, -0.00026512897, 0, 0.0066591348, 0.99997777, 0.039814085, -0.9991787, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -1153,41 +1164,144 @@ spot_range = 42.744
 
 [node name="LightChunk_Start" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(6.775, 0, 0, 0, 1.89, 0, 0, 0, 5.27, 952.032, 80.47998, 84.582596)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/Start/Spotlight_Start"), NodePath("../../Spotlights/Start/Spotlight_Alley_1"), NodePath("../../Spotlights/Start/Spotlight_Alley_2"), NodePath("../../Spotlights/Start/Spotlight_Alley_3"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Brakelight_1"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Brakelight_2"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Spotlight_1"), NodePath("../../../EndEvent/Blockade/Car 1/Car_Spotlight_2"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Brakelight_1"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Brakelight_2"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Spotlight_1"), NodePath("../../../EndEvent/Blockade/Car 2/Car_Spotlight_2")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_Freeway" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(11.52, 0, 0, 0, 2, 0, 0, 0, 4.77, -297.86716, 76.2602, -167.58585)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/Freeway/Freeway_01"), NodePath("../../Spotlights/Freeway/Freeway_02"), NodePath("../../Spotlights/Freeway/Freeway_03"), NodePath("../../Spotlights/Freeway/Freeway_04"), NodePath("../../Spotlights/Freeway/Freeway_05"), NodePath("../../Spotlights/Freeway/Spotlight_FreewayEnd")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_Park" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(13.885, 0, 0, 0, 2, 0, 0, 0, 7.745, -2167.9873, 76.2602, -349.33688)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/Park/SpotLight_BackAlleyStart"), NodePath("../../Spotlights/Park/Spotlight_Park_1"), NodePath("../../Spotlights/Park/Spotlight_Park_2"), NodePath("../../Spotlights/Park/Spotlight_Park_3"), NodePath("../../Spotlights/Park/Spotlight_Park_4"), NodePath("../../Spotlights/Park/Spotlight_Park_5"), NodePath("../../Spotlights/Park/Spotlight_Park_6"), NodePath("../../Spotlights/Park/SpotLight_Blue_Park"), NodePath("../../Spotlights/Park/Spotlight_Park_End")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_MainStreet" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(14.71, 0, 0, 0, 2, 0, 0, 0, 7.745, -2067.8809, 76.2602, 863.3634)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Car Lights/Car 3/Car_Brakelight_1"), NodePath("../../Car Lights/Car 3/Car_Brakelight_2"), NodePath("../../Car Lights/Car 3/Car_Spotlight_1"), NodePath("../../Car Lights/Car 3/Car_Spotlight_2"), NodePath("../../Car Lights/Car 4/Car_Brakelight_1"), NodePath("../../Car Lights/Car 4/Car_Brakelight_2"), NodePath("../../Car Lights/Car 4/Car_Spotlight_1"), NodePath("../../Car Lights/Car 4/Car_Spotlight_2"), NodePath("../../Spotlights/Main Street/SpotLight_Shortcut_End"), NodePath("../../Spotlights/Main Street/Spotlight_Main_1"), NodePath("../../Spotlights/Main Street/Spotlight_Main_2"), NodePath("../../Spotlights/Main Street/Spotlight_Main_3"), NodePath("../../Spotlights/Main Street/Spotlight_Main_4"), NodePath("../../Spotlights/Main Street/Spotlight_Main_5"), NodePath("../../Spotlights/Main Street/SpotLight_Shortcut_Start"), NodePath("../../Spotlights/Main Street/Spotlight_Main_Shortcut_1"), NodePath("../../Spotlights/Main Street/Spotlight_Main_Shortcut_2"), NodePath("../../Spotlights/Main Street/Spotlight_Main_7"), NodePath("../../Spotlights/Main Street/Spotlight_Main_6")]
 metadata/_edit_lock_ = true
 
 [node name="LightChunk_End" parent="Lights/Lighting Chunks" node_paths=PackedStringArray("lights") instance=ExtResource("41_iej4l")]
 transform = Transform3D(14.71, 0, 0, 0, 2, 0, 0, 0, 7.745, 56.546, 76.26, 1058.705)
+collision_layer = 0
+collision_mask = 2
 lights = [NodePath("../../Spotlights/End/Spotlight_End_Start"), NodePath("../../Spotlights/End/Spotlight_End_Middle"), NodePath("../../Spotlights/End/Spotlight_End_End")]
 metadata/_edit_lock_ = true
 
-[node name="Minimap" type="SubViewportContainer" parent="."]
-visible = false
-offset_right = 190.0
-offset_bottom = 185.0
+[node name="Area Cull Walls" type="Node" parent="."]
 
-[node name="SubViewport" type="SubViewport" parent="Minimap"]
-handle_input_locally = false
-render_target_update_mode = 0
+[node name="Wall" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1025.4789, 82, 437.409)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/stage_2_concept_end")
+uncull_area = NodePath("../../Scenes/stage-2-start")
 
-[node name="Camera3D" type="Camera3D" parent="Minimap/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -899.7218, 2027.6989, 518.76636)
-fov = 100.5
-far = 3998.8
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.02832, 73.15881, -34.84314)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="Wall2" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(0.013473536, 0, 0.9999092, 0, 1, 0, -0.9999092, 0, 0.013473536, -1000.00757, 40.00006, -98.8152)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/stage-2-start")
+uncull_area = NodePath("../../Scenes/LowDensityAct2")
+
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="Wall3" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(0.013473536, 0, 0.9999092, 0, 1, 0, -0.9999092, 0, 0.013473536, -981.5699, 40.00006, -98.8152)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/LowDensityAct2")
+uncull_area = NodePath("../../Scenes/stage-2-start")
+
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="Wall4" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(-0.99990666, 0, -0.013665456, 0, 1, 0, 0.013665456, 0, -0.99990666, -2917.3384, 40.00006, -42.06482)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/MidDensityAct2")
+uncull_area = NodePath("../../Scenes/LowDensityAct2")
+
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="Wall5" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(-0.99990666, 0, -0.013665456, 0, 1, 0, 0.013665456, 0, -0.99990666, -2929.682, 40.00006, -16.763718)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/LowDensityAct2")
+uncull_area = NodePath("../../Scenes/MidDensityAct2")
+
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="Wall6" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(0.0136655, 0, -0.9999066, 0, 1, 0, 0.9999066, 0, 0.0136655, -1065.5103, 40.00006, 470.51855)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/stage_2_concept_end")
+uncull_area = NodePath("../../Scenes/MidDensityAct2")
+
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="Wall7" type="Area3D" parent="Area Cull Walls" node_paths=PackedStringArray("cull_area", "uncull_area")]
+transform = Transform3D(0.0136655, 0, -0.9999066, 0, 1, 0, 0.9999066, 0, 0.0136655, -1040.209, 40.00006, 482.86206)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("45_js7g2")
+cull_area = NodePath("../../Scenes/MidDensityAct2")
+uncull_area = NodePath("../../Scenes/stage_2_concept_end")
+
+[node name="Wall Shape" type="CollisionShape3D" parent="Area Cull Walls/Wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
+shape = SubResource("BoxShape3D_lxrsn")
+debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
 
 [connection signal="body_entered" from="EndEvent/Checkpoint/Area3D" to="EndEvent/Checkpoint" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall" to="Area Cull Walls/Wall" method="_on_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall2" to="Area Cull Walls/Wall2" method="_on_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall3" to="Area Cull Walls/Wall3" method="_on_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall4" to="Area Cull Walls/Wall4" method="_on_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall5" to="Area Cull Walls/Wall5" method="_on_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall6" to="Area Cull Walls/Wall6" method="_on_body_entered"]
+[connection signal="body_entered" from="Area Cull Walls/Wall7" to="Area Cull Walls/Wall7" method="_on_body_entered"]

@@ -1,4 +1,5 @@
 extends Node3D
+class_name CrowdGroup
 
 ## I MADE MISTAKE, CIRCUMFERENCE MEANS DIAMETER
 
@@ -23,8 +24,8 @@ extends Node3D
 #If this didn't work, you may have to dive into the shader. sorry :(
 
 # CONSTANTS
-const CAP_RADIUS = 4
-const CAP_HEIGHT = 24
+const CAP_RADIUS = 4.0
+const CAP_HEIGHT = 24.0
 const SPRITE_SIZE = 26
 const HEIGHT_RESET = -50
 @export var ε: float = 1.0
@@ -82,9 +83,18 @@ var curr_point = 0
 @onready var anchor_type = preload("res://Scenes/Level Components/Crowds/sub-anchor.tscn")
 @onready var crowd = preload("res://Assets/Art/temp player.png")
 
+# Joelle Testing
+var shape : RID
+var previous_delta : float
+# Can process in first physics tick
+@export var can_crowd_process := true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print('start')
+	shape = PhysicsServer3D.capsule_shape_create() # I'm not too sure on this
+	PhysicsServer3D.shape_set_data(shape, {"radius": CAP_RADIUS, "height": CAP_HEIGHT})
+	
+	print("[CROWD] Loading crowd: ", name)
 	navigation_agent_3d.max_speed = max_speed
 	navigation_agent_3d.radius = circum / 2.0
 	var anchor_mesh = $Anchor/MeshInstance3D
@@ -116,6 +126,7 @@ func _ready() -> void:
 	
 
 func disable_crowd_system() -> void:
+	print("[CROWD] Disabling")
 	active_crowd = false
 	anchor.freeze = false
 	anchor.linear_velocity = Vector3.ZERO
@@ -125,19 +136,20 @@ func disable_crowd_system() -> void:
 		if is_instance_valid(sub_anchor):
 			sub_anchor.linear_velocity = Vector3.ZERO
 			sub_anchor.angular_velocity = Vector3.ZERO
-			
 			sub_anchor.freeze = true
 	for rid in agents:
+		## Removes shape until renabled
+		PhysicsServer3D.body_remove_shape(rid, 0)
+		
+		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 0.0)
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, Vector3.ZERO)
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, true)
-	
 
 func _exit_tree() -> void:
 	_on_screen_exited()
 
 func enable_crowd_system() -> void:
 	active_crowd = true
-	
 	anchor.freeze = false
 	anchor.sleeping = false
 	anchor.linear_velocity = Vector3.ZERO
@@ -150,11 +162,11 @@ func enable_crowd_system() -> void:
 		sub_anchor.angular_velocity = Vector3.ZERO
 		
 	for rid in agents:
+		## Adds shape back to agent
+		PhysicsServer3D.body_add_shape(rid, shape)
+		
+		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 50.0)
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_SLEEPING, false)
-
-
-
-
 
 # called during physics processing, allowing for safely modify the simulation state for the object
 # mainly used for sub navs since they used rigid body 3ds
@@ -166,15 +178,20 @@ func enable_crowd_system() -> void:
 	#pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	# this is just a state machine pretty much but i dont have too much time (if i rememeber, switch this soon plz) - chris
-	if (active_crowd == false and !checkShouldRunInstance()):  # player is not in range, and crowd is off, should just return
+	if(!can_process):
+		previous_delta = delta
+		can_crowd_process = true
 		return
-	elif (active_crowd == true and !checkShouldRunInstance()): # player is in range and crowd is on, should be turned off
+	can_crowd_process = false
+	var should_run = checkShouldRunInstance()
+	# this is just a state machine pretty much but i dont have too much time (if i rememeber, switch this soon plz) - chris
+	if (active_crowd == false and !should_run):  # player is not in range, and crowd is off, should just return
+		return
+	elif (active_crowd == true and !should_run): # player is in range and crowd is on, should be turned off
 		disable_crowd_system()
 		return
-	elif (active_crowd == false and checkShouldRunInstance()): # player is in range and crowd is off, should be turned on
+	elif (active_crowd == false and should_run): # player is in range and crowd is off, should be turned on
 		enable_crowd_system()
-	
 	
 	#print('running')
 	# move behaviors
@@ -183,9 +200,7 @@ func _physics_process(delta: float) -> void:
 			get_new_loc()
 			#apply_move_and_slide(anchor)
 			for nav in agents_sub:
-				
 				#apply_move_and_slide(nav[0])
-				
 				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
 				#get_new_sub_loc(nav_agent, nav[0])
 				group_sub(nav, moving_behav(nav[0], nav_agent))
@@ -193,8 +208,7 @@ func _physics_process(delta: float) -> void:
 			group_main(moving_behav(anchor, navigation_agent_3d))
 			#apply_move_and_slide(anchor)
 			for nav in agents_sub:
-				var nav_agent = nav[0].find_child("NavigationAgent3D", false)
-				
+				var nav_agent = nav[0].find_child("NavigationAgent3D", false)		
 				group_sub(nav, moving_behav(nav[0], nav_agent))
 				#apply_move_and_slide(nav[0])
 				
@@ -235,7 +249,8 @@ func multi_mesh_process(array, vel) -> void:
 		if (!rid_dictionary[member].stomped):
 			var velocity_change = (vel - current_vel)
 				
-			PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
+			if velocity_change.length_squared() > 0.01:
+				PhysicsServer3D.body_apply_central_force(member, velocity_change * acceleration)
 			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
 		else:
 			multi_mesh_manager.multimesh.set_instance_transform(mesh_index, member_transform)
@@ -271,8 +286,8 @@ func group_brain(count, size, type = 1, position = Vector3(0,0,0) ) -> Array:
 func group_main(safe_velocity) -> void:
 	var anchor_state = PhysicsServer3D.body_get_direct_state(anchor)
 	
-	var delta_time = get_physics_process_delta_time()
-	var accel_delta = delta_time * acceleration * 1.5;
+	var delta_time = get_physics_process_delta_time() + previous_delta
+	var accel_delta = delta_time * acceleration;
 	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
 	vel.limit_length(sub_max_speed)
 	
@@ -294,7 +309,7 @@ func group_sub(sub_array, safe_velocity) -> void:
 	var sub_anchor = sub_array[0]
 	var anchor_state = PhysicsServer3D.body_get_direct_state(sub_anchor)
 	
-	var delta_time = get_physics_process_delta_time()
+	var delta_time = get_physics_process_delta_time() + previous_delta
 	var accel_delta = delta_time * acceleration * 1.5;
 	var vel = anchor_state.linear_velocity.move_toward(safe_velocity, accel_delta)
 	vel.limit_length(sub_max_speed)
@@ -700,15 +715,14 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_mode(rid, PhysicsServer3D.BODY_MODE_RIGID)
 		PhysicsServer3D.body_set_space(rid, get_world_3d().space)
 		
-		var shape = PhysicsServer3D.capsule_shape_create() # I'm not too sure on this
-		PhysicsServer3D.shape_set_data(shape, {"radius": CAP_RADIUS, "height": CAP_HEIGHT})
 		PhysicsServer3D.body_add_shape(rid, shape)
 		
 		var radi = circum / 4.0
 		
 		var start_pos = hexPackedPositions[i] if i < hexPackedPositions.size() else position
+		start_pos.y += 6
 		#var start_transform = Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
-		var start_transform = Transform3D(crowd_basis, start_pos) if start_pos != position else Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y, position.z + randf_range(-radi, radi)))
+		var start_transform = Transform3D(crowd_basis, start_pos) if start_pos != position else Transform3D(crowd_basis, Vector3(position.x + randf_range(-radi, radi), position.y + 6, position.z + randf_range(-radi, radi)))
 		
 		PhysicsServer3D.body_set_state(rid, PhysicsServer3D.BODY_STATE_TRANSFORM, start_transform)
 		multi_mesh_manager.multimesh.set_instance_transform(i, start_transform)
@@ -723,7 +737,7 @@ func create_rids(position) -> void:
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_X, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Z, true)
 		PhysicsServer3D.body_set_axis_lock(rid, PhysicsServer3D.BODY_AXIS_ANGULAR_Y, true)
-		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 50.0)
+		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_GRAVITY_SCALE, 160.0)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_MASS, mass)
 		PhysicsServer3D.body_set_param(rid, PhysicsServer3D.BODY_PARAM_FRICTION, 0.0)
 		
@@ -738,7 +752,6 @@ func create_rids(position) -> void:
 		# assign rid for reference
 		rid_dictionary[rid] = CrowdData.new(i, agents_main)
 		agents.append(rid)
-		
 		
 		# Add to main group and map to the visual instance ID
 		agents_main.append(rid)
@@ -850,7 +863,7 @@ func get_rid_position(rid) -> Vector3:
 func set_velocity(body, vel) -> void:
 	body.velocity.x = vel.x
 	body.velocity.z = vel.z
-	body.velocity.y += gravity_force_for_velocity.y * get_physics_process_delta_time()
+	body.velocity.y += gravity_force_for_velocity.y * (get_physics_process_delta_time() + previous_delta)
 	
 # get a force with given direction/velocity (I think) over time
 func get_velocity_change(member, target_vel) -> Vector3:
@@ -915,3 +928,4 @@ func _on_screen_exited():
 	print("[CROWDS] Freeing crowd agents from crowd: ", name)
 	for rid in agents:
 		PhysicsServer3D.free_rid(rid)
+	PhysicsServer3D.free_rid(shape)

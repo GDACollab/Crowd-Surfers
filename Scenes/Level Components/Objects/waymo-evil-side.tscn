@@ -26,6 +26,7 @@ size = Vector3(50, 1.5, 25)
 script = ExtResource("1_it5v5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
+collision_mask = 0
 script = ExtResource("1_h40i7")
 top_filename = ExtResource("2_ry3x0")
 front_filename = ExtResource("3_7a2ox")
@@ -65,6 +66,6 @@ shape = SubResource("BoxShape3D_acfqw")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
 
 [node name="CarIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/car_idle"
+event_name = "event:/SFX/ENV/objects/car_idle"
 event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
 autoplay = true

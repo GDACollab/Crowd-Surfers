@@ -9,6 +9,7 @@
 script = ExtResource("1_l0de8")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0.63300157, 0)
@@ -20,7 +21,7 @@ pixel_size = 0.03
 texture = ExtResource("2_l0de8")
 
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/trashbag"
+event_name = "event:/SFX/ENV/objects/trashbag"
 event_guid = "{98fa6f9e-d095-44cf-9a60-dcc7cda46d20}"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

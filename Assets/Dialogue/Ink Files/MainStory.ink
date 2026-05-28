@@ -10,7 +10,7 @@
 ->DONE
 
 ===main_act1_scene1=== //COMPLETE
-\*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
+\*It's been a pretty slow morning so far. Light traffic, uneventful news < Press SPACEBAR or Z to continue > #vo:main_act1_scene1
 At least until...
 You knock on your boss's door. What could he be calling you in for?*
 Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown #vo:play
@@ -401,11 +401,10 @@ Ah, well… It’s… complicated, kid. Just feels like I need to change it up #
 	
 Wha- But, you’re amazing! My “djslipster” tattoo you made was so awesome! #speaker:Slip #expression:Confident #vo:play
 	
-… You’ll get it one day, kid. Anyways, lemme know what kind of design you want. We can talk about it more later #speaker:Nyx #expression:Default
+You’ll get it one day, kid. Anyways, lemme know what kind of design you want. We can talk about it more later #speaker:Nyx #expression:Default
 	
-	Slip: Ah… alright… How would a dragon feel? #speaker:Slip #expression:Nervous #vo:play
-	
-… Kid… At least, give it some thought, a’ight? #speaker:Nyx #expression:Default
+Ah… alright… How would a dragon feel? #speaker:Slip #expression:Nervous #vo:play
+Kid… At least, give it some thought, a’ight? #speaker:Nyx #expression:Default
 Keep at it, Slip #speaker:Nyx #expression:Default
 
 Later, Pierce #speaker:Slip #expression:Confused #vo:play
@@ -413,7 +412,7 @@ Later, Pierce #speaker:Slip #expression:Confused #vo:play
 
 ===Nyx_act2=== //COMPLETE
 \*Your phone buzzes* #vo:Nyx_act2
-Hey, Slip, I really appreciate these speedy deliveries! One less thing I’ve gotta worry about these days #speaker:Nyx #expression:Happy
+Hey, Slip, I really appreciate these speedy deliveries! One less thing I’ve gotta worry about these days #speaker:Nyx #expression:Happy #anim:Shake 
 
 No problem, but isn’t there any other way I can help? Y’know, with your shop closing and all? #speaker:Slip #expression:Confused #anim:Shake #vo:play
 	
