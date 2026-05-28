@@ -6,7 +6,7 @@ extends Node
 
 @onready var artist_name_text: RichTextLabel = $ArtistNamePanel/ArtistName
 @onready var art_image: TextureRect = $Art
-@onready var description_text: RichTextLabel = $DescriptionPanel/Description
+@onready var description_text: RichTextLabel = $Description
 
 func _ready() -> void:
 	artist_name_text.text = "[i]" + artist_name
