@@ -515,6 +515,21 @@ _data = {
 &"open_settings": SubResource("Animation_ahrg2")
 }
 
+[sub_resource type="Animation" id="Animation_hamnu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneImage:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.17453292]
+}
+
 [sub_resource type="Animation" id="Animation_sum8r"]
 resource_name = "open_social_media"
 length = 0.3
@@ -594,21 +609,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.17453292, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_hamnu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PhoneImage:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.17453292]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_da4sb"]
@@ -702,12 +702,13 @@ texture = ExtResource("5_53pih")
 
 [node name="PhoneImage" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 1209.9999
-offset_top = -63.999985
-offset_right = 2039.9999
-offset_bottom = 1336.0
+offset_left = 1144.0
+offset_top = -56.999996
+offset_right = 1974.0
+offset_bottom = 1343.0
 rotation = 0.17453292
 scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(250, 250)
 mouse_filter = 2
 texture = ExtResource("4_ahrg2")
 
