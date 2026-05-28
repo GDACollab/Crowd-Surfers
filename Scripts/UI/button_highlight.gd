@@ -1,7 +1,7 @@
 extends TextureButton
 
 @export var brightness_change: float = 0.2
-@export var focus_brightness_change: float = 0.8
+@export var focus_brightness_change: float = 0.5
 
 
 func _on_mouse_entered() -> void:
