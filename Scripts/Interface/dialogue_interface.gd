@@ -226,7 +226,7 @@ func _animate_panels():
 		awaitingAnimations = true
 		var panelIndex = 1
 		while panelIndex < dialoguePanels.size():
-			var currentPanel = dialoguePanels[panelIndex]
+			var currentPanel := dialoguePanels[panelIndex]
 			
 			if(currentPanel.pivot_offset.x > 0 and panelIndex > 1):
 				currentPanel.pivot_offset.x = currentPanel.size.x
