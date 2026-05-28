@@ -31,4 +31,4 @@ func _activate():
 	for area in cull_children:
 		if(area != null):
 			area.monitoring = false
-			area.monitorable = false
+			#area.monitorable = false
