@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=48 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -43,6 +43,12 @@ colors = PackedColorArray(1, 0.92941177, 0.7411765, 0.45490196, 1, 0.92941177, 0
 gradient = SubResource("Gradient_75vxy")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="InputEventAction" id="InputEventAction_hamnu"]
+action = &"ui_back"
+
+[sub_resource type="Shortcut" id="Shortcut_sum8r"]
+events = [SubResource("InputEventAction_hamnu")]
 
 [sub_resource type="Animation" id="Animation_j0r1m"]
 length = 0.001
@@ -784,6 +790,7 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../SocialMediaButton")
 focus_neighbor_bottom = NodePath("../OrdersButton")
+shortcut = SubResource("Shortcut_sum8r")
 texture_normal = ExtResource("10_u2ljj")
 texture_click_mask = ExtResource("21_8fxli")
 script = ExtResource("19_pnqed")
