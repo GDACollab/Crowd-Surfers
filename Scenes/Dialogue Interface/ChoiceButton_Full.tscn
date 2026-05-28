@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://devtvs7rog4mi"]
+[gd_scene load_steps=8 format=3 uid="uid://devtvs7rog4mi"]
 
 [ext_resource type="Script" uid="uid://dq38sb7gjfo0l" path="res://Scripts/Interface/DialogueChoiceButton.gd" id="1_j5l2q"]
 [ext_resource type="Texture2D" uid="uid://c5x3qkjr4lfma" path="res://Assets/Art/UI/Dialogue/choice_2.PNG" id="2_3d06h"]
 [ext_resource type="Texture2D" uid="uid://dijvqiggq00n" path="res://Assets/Art/UI/Dialogue/choice_1_selected.PNG" id="2_3wuh7"]
 [ext_resource type="Texture2D" uid="uid://m46qhs2l00kv" path="res://Assets/Art/UI/Dialogue/choice_2_selected.PNG" id="3_rc48d"]
 [ext_resource type="Texture2D" uid="uid://b8gxbfx18tx8s" path="res://Assets/Art/UI/Dialogue/choice_1.PNG" id="4_rc48d"]
+[ext_resource type="Texture2D" uid="uid://cur6hnpw6q68u" path="res://Assets/Art/UI/Dialogue/choice_arrow.PNG" id="6_1cb7l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j5l2q"]
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="Panel" type="Panel" node_paths=PackedStringArray("panel_texture")]
+[node name="Panel" type="Panel" node_paths=PackedStringArray("arrow_sprite", "panel_texture")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(350, 125)
 anchors_preset = 8
@@ -29,6 +30,7 @@ script = ExtResource("1_j5l2q")
 transitionType = 6
 selected_sprites = Array[Texture2D]([ExtResource("2_3wuh7"), ExtResource("3_rc48d")])
 unselected_sprites = Array[Texture2D]([ExtResource("4_rc48d"), ExtResource("2_3d06h")])
+arrow_sprite = NodePath("Arrow")
 panel_texture = NodePath("Choice Button Sprite")
 
 [node name="Choice Button Sprite" type="TextureRect" parent="."]
@@ -63,3 +65,11 @@ label_settings = SubResource("LabelSettings_j5l2q")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Arrow" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 8.0
+offset_right = 805.0
+offset_bottom = 199.0
+texture = ExtResource("6_1cb7l")

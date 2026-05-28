@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=44 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://boacixvku1uw6" path="res://Scenes/UI Menus/MainMenu/voicemails_screen.tscn" id="27_fe6hl"]
 [ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 [ext_resource type="Texture2D" uid="uid://bmn876h0e8tcp" path="res://Assets/Art/UI/ui_phone_edge.png" id="28_dnqoa"]
+[ext_resource type="PackedScene" uid="uid://4doyudtagl7a" path="res://Scenes/UI Menus/MainMenu/social_media_screen.tscn" id="29_hamnu"]
 
 [sub_resource type="Gradient" id="Gradient_75vxy"]
 offsets = PackedFloat32Array(0, 0.64)
@@ -449,7 +450,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.245), Vector2(1, 0.9), Vector2(1, 0.95), Vector2(1, 1)]
+"values": [Vector2(0.2, 0.12), Vector2(1, 0.9), Vector2(1, 0.95), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -473,7 +474,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 3.65), Vector2(1, 3.852), Vector2(1, 4.055)]
+"values": [Vector2(1, 1), Vector2(4.705, 7.1), Vector2(4.79, 7.59), Vector2(4.79, 8.23)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -509,6 +510,80 @@ tracks/4/keys = {
 _data = {
 &"RESET": SubResource("Animation_mtjt5"),
 &"open_settings": SubResource("Animation_ahrg2")
+}
+
+[sub_resource type="Animation" id="Animation_sum8r"]
+resource_name = "open_social_media"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhoneImage/PhoneBg/MainContainer:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"set_social_media_scene_visibility"
+}, {
+"args": [true],
+"method": &"set_social_media_scene_visibility"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhoneImage/PhoneBg/SocialMediaScene:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.12), Vector2(1, 0.9), Vector2(1, 0.95), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhoneImage/PhoneBg/SocialMediaScene:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PhoneImage/PhoneBg/MainContainer/SocialMediaButton:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4.705, 7.1), Vector2(4.79, 7.59), Vector2(4.79, 8.23)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_da4sb"]
+_data = {
+&"open_social_media": SubResource("Animation_sum8r")
 }
 
 [node name="MainMenu" type="Control"]
@@ -672,6 +747,7 @@ offset_left = 567.36743
 offset_top = 191.8743
 offset_right = 747.36743
 offset_bottom = 371.8743
+pivot_offset = Vector2(97.778534, 40.467636)
 texture_normal = ExtResource("12_h3juu")
 texture_click_mask = ExtResource("22_yjf4t")
 script = ExtResource("19_pnqed")
@@ -682,6 +758,7 @@ offset_left = 719.93616
 offset_top = 163.26532
 offset_right = 899.93616
 offset_bottom = 343.26532
+pivot_offset = Vector2(140.0286, 38.72868)
 texture_normal = ExtResource("9_n277a")
 texture_click_mask = ExtResource("23_4v1m8")
 script = ExtResource("19_pnqed")
@@ -703,11 +780,16 @@ pivot_offset = Vector2(737.089, 1091.812)
 [node name="SettingsScene" parent="PhoneImage/PhoneBg" instance=ExtResource("6_j0r1m")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 218.00916
-offset_top = 275.79965
-offset_right = 653.7461
-offset_bottom = 1076.0807
+offset_right = 435.73694
+offset_bottom = 800.281
 scale = Vector2(1, 0.245)
+pivot_offset = Vector2(654.4463, 301.13696)
+
+[node name="SocialMediaScene" parent="PhoneImage/PhoneBg" instance=ExtResource("29_hamnu")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+scale = Vector2(0.2, 0.12)
+pivot_offset = Vector2(462.49805, 330.92505)
 
 [node name="PhoneEdge" type="TextureRect" parent="."]
 layout_mode = 0
@@ -738,6 +820,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_vga46")
 }
 
+[node name="SocialMediaAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_da4sb")
+}
+
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
@@ -749,13 +836,16 @@ libraries = {
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="." method="_on_social_media_button_pressed"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/OrdersScene/OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_orders_back_button_pressed"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/VoicemailsScene/VoicemailsBody/ScrollContainer/VoicemailVBoxContainer/BackButton" to="." method="_on_voicemails_back_button_pressed"]
-[connection signal="pressed" from="PhoneImage/PhoneBg/SettingsScene/ScrollMask/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/SettingsScene/SettingsBody/BackButton" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="PhoneImage/PhoneBg/SocialMediaScene/SocialMediaBody/ScrollContainer/VBoxContainer/BackButton" to="." method="_on_social_media_back_button_pressed"]
 
 [editable path="PhoneImage/PhoneBg/OrdersScene"]
 [editable path="PhoneImage/PhoneBg/VoicemailsScene"]
 [editable path="PhoneImage/PhoneBg/SettingsScene"]
+[editable path="PhoneImage/PhoneBg/SocialMediaScene"]

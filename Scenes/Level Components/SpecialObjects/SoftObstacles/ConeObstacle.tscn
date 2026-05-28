@@ -5,10 +5,10 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mpbxv"]
 
-[node name="SoftObject" type="Node3D"]
+[node name="SoftObject" type="Node3D" groups=["Cullable"]]
 script = ExtResource("1_5oq6p")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["Cullable"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0.63300157, 0)

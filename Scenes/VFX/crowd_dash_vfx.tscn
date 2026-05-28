@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsbcgfkynbj7h"]
+
+[ext_resource type="Texture2D" uid="uid://f6r1e8prnt3j" path="res://Assets/Art/UI/HUD/Stars/star5.png" id="1_vxvpv"]
+[ext_resource type="Texture2D" uid="uid://dqwegw300fsf8" path="res://Assets/Art/UI/HUD/Stars/star3.png" id="2_tnab1"]
+[ext_resource type="Texture2D" uid="uid://r7e4g6xd6x25" path="res://Assets/Art/UI/HUD/Stars/star4.png" id="3_sjnr7"]
+[ext_resource type="Texture2D" uid="uid://dmdhs6i7ymsr0" path="res://Assets/Art/UI/HUD/Stars/star8.PNG" id="4_bewym"]
+[ext_resource type="Texture2D" uid="uid://c11w1rybmwy3e" path="res://Assets/Art/VFX/Stomp/Stomp12.png" id="5_tnab1"]
+[ext_resource type="Script" uid="uid://bhnbxbh3tmc8d" path="res://Scripts/VFX/crowd_dash_vfx.gd" id="6_sjnr7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cila"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vxvpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tnab1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sjnr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bewym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tnab1")
+}],
+"loop": false,
+"name": &"bonk",
+"speed": 4.0
+}]
+
+[node name="CrowdDashVFX" type="AnimatedSprite3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_5cila")
+animation = &"bonk"
+autoplay = "bonk"
+script = ExtResource("6_sjnr7")
