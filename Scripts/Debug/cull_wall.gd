@@ -28,7 +28,6 @@ func _activate():
 	for area in uncull_children:
 		if(area != null):
 			area.monitoring = true
-			area.monitorable = true
 	for area in cull_children:
 		if(area != null):
 			area.monitoring = false
