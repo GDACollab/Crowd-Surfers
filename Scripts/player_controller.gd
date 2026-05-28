@@ -296,7 +296,8 @@ func process_state(delta: float) -> void:
 			if velocity.y < 0\
 			 and $DashAnimationEndTimer.is_stopped()\
 			 and not player_sprite.current_animation == "fall"\
-			 and not player_sprite.current_animation == "crash":
+			 and not player_sprite.current_animation == "crash"\
+			 and not player_sprite.current_animation == "glide_exit":
 				player_sprite.play_animation("fall", true)
 		States.CRASH_AIR:
 			fall(delta)
@@ -852,6 +853,7 @@ func crowd_impact() -> void:
 		if manager and manager.has_method("crowd_stomp_spread"):
 			manager.crowd_stomp_spread(self, rid, crowd_stomp_force, crowd_stomp_radius)
 			
+	
 	await crowd_stomp_end
 	crowd_stop_impact(results)
 
@@ -888,7 +890,7 @@ func crowd_dash_check() -> void:
 	
 	if personCount < crowd_dash_min_members_requirement:
 		has_crowd_dash_boost = false
-
+		
 
 ## Update FMOD floor material parameter based on raycast
 func update_fmod_floor_material() -> void:
@@ -972,7 +974,7 @@ func update_trail(delta):
 			
 		$TrailHolder/GPUTrail3D.restart()
 		trail_spakle.visible = false
-	# print(max_speed)
+	#print(max_speed)
 	pass
 
 ## Checks when the restart button is pressed.

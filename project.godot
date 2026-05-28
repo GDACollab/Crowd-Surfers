@@ -27,7 +27,6 @@ config/icon="res://Assets/Art/icon.svg"
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
-DebugMenu="*res://Scripts/Singletons/DebugMenu.tscn"
 PlayerSpawn="*res://Scripts/Singletons/Player_Spawn.gd"
 SceneFadeTransition="*res://Scripts/Singletons/scene_fade_transition.tscn"
 Settings="*res://Scripts/Singletons/settings.gd"
@@ -187,6 +186,12 @@ aar_camera_debug={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":56,"key_label":0,"unicode":42,"location":0,"echo":false,"script":null)
 ]
 }
+ui_back={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -196,6 +201,16 @@ aar_camera_debug={
 
 [physics]
 
+3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/speculative_contact_distance=0.01
+jolt_physics_3d/simulation/bounce_velocity_threshold=50.0
+jolt_physics_3d/simulation/body_pair_contact_cache_distance_threshold=0.01
+jolt_physics_3d/simulation/body_pair_contact_cache_angle_threshold=0.08726646259971647
+jolt_physics_3d/motion_queries/use_enhanced_internal_edge_removal=false
+3d/solver/solver_iterations=10
+3d/solver/contact_recycle_radius=0.1
+3d/solver/contact_max_allowed_penetration=0.1
+3d/solver/default_contact_bias=0.0
 3d/vsync/vsync_mode=1
 
 [rendering]

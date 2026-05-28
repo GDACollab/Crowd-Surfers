@@ -70,12 +70,22 @@ skeleton = NodePath("")
 shape = SubResource("CapsuleShape3D_1ls1x")
 debug_color = Color(0.827451, 0.16470589, 0.047058824, 0.7490196)
 
-[node name="ProximityAudio" parent="Anchor" instance=ExtResource("19_cstqm")]
-proximity_sound_path = "event:/SFX/ENV/objects/crowd_chatter"
+[node name="ProximityAudio" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+proximity_sound = NodePath("CrowdAmbience")
 collider_scale = 300.0
 
-[node name="ProximityAudio2" parent="Anchor" instance=ExtResource("19_cstqm")]
-proximity_sound_path = "event:/SFX/ENV/crowd/Crowd_Crash"
+[node name="CrowdAmbience" type="FmodEventEmitter3D" parent="Anchor/ProximityAudio"]
+event_name = "event:/SFX/ENV/objects/crowd_chatter"
+event_guid = "{76b14f88-6872-4f5e-9c06-2d2541c46f5e}"
+
+[node name="ProximityAudio2" parent="Anchor" node_paths=PackedStringArray("proximity_sound") instance=ExtResource("19_cstqm")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+proximity_sound = NodePath("CrowdCrashSound")
 collider_scale = 25.0
 trigger_minimum_speed = 100.0
 one_shot = true

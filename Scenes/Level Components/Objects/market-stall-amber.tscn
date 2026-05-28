@@ -30,11 +30,14 @@ script = ExtResource("1_ffssr")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 50, 0, 37, 25)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ffssr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 0
 script = ExtResource("1_kr4un")
 top_filename = ExtResource("2_tpn6k")
 front_filename = ExtResource("3_4610g")

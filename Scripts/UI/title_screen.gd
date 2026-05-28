@@ -96,3 +96,7 @@ func _on_play_button_pressed() -> void:
 	# title_music.set_parameter_by_name("muffling", 1.)
 	# Audio.kill_persistent("mus_title")
 	Audio.pause_persistent("mus_title")
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
