@@ -35,6 +35,12 @@ extends Control
 @export var max_visual_overspeed: float = 150
 @export var shader_outline_change_speed: float = 3
 
+@export_category("Act 2 special case")
+@export var act_2_otherside: Vector2
+@export var act_2: bool = false
+
+var act_2_otherside_reached: bool = false
+
 var star_images: Array[TextureRect]
 var star_base_modulate: Array[float]
 var current_animation_time: float
@@ -188,9 +194,28 @@ func _process(delta: float) -> void:
 		
 	## Handle Level Progression
 	if(has_level_end_pos):
-		var player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
-		# Fraction of player distance to total distance, * 100 makes it a percent
-		var progress = player_dist_to_start / (level_end_pos.distance_to(player_start_pos)) * 100
+		var progress: float
+		var player_dist_to_start: float
+		
+		if (act_2 == true):
+			print("hi")
+			if (act_2_otherside_reached == false):
+				player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
+				progress = player_dist_to_start / (act_2_otherside.distance_to(player_start_pos)) * 50
+			else:
+				player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(act_2_otherside)
+				progress = 50 + (player_dist_to_start / (level_end_pos.distance_to(act_2_otherside)) * 50)
+		
+		else:
+			player_dist_to_start = Vector2(player.position.x, player.position.z).distance_to(player_start_pos)
+			
+			# Fraction of player distance to total distance, * 100 makes it a percent
+			progress = player_dist_to_start / (level_end_pos.distance_to(player_start_pos)) * 100
+			
+		if (player.position.x < act_2_otherside.x):
+			act_2_otherside_reached = true
+			
+		
 		set_Level_Progress(progress)
 	# Error message to let level designer know to attach the script
 	else:

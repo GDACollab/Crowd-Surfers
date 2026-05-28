@@ -1,5 +1,6 @@
-[gd_scene load_steps=58 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=59 format=3 uid="uid://ykvmtt70mexg"]
 
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_1opd7"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
 [ext_resource type="PackedScene" uid="uid://ovvqfk1qhw68" path="res://Scenes/Level Components/Environment/light.tscn" id="1_omilu"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="1_wef7b"]
@@ -31,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://c0dj0rnl3463" path="res://Scenes/Level Components/Objects/invisible_wall_small.tscn" id="26_nx437"]
 [ext_resource type="PackedScene" uid="uid://c3vh6mrajf5vc" path="res://Scenes/Level Components/Objects/BrickWallVariants/DarkBrickWall.tscn" id="27_1olov"]
 [ext_resource type="PackedScene" uid="uid://balel46fh6clm" path="res://Scenes/Level Components/Objects/waymo-confused-side.tscn" id="27_jtff7"]
-[ext_resource type="Script" uid="uid://cdxqkuup5thoc" path="res://Scripts/act2_endclear.gd" id="27_tvis2"]
+[ext_resource type="Script" path="res://Scripts/act2_endclear.gd" id="27_tvis2"]
 [ext_resource type="PackedScene" uid="uid://dgbi8pfl22uep" path="res://Scenes/Level Components/Objects/BrickWallVariants/LightBrickWall.tscn" id="28_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://bqf7gs7fe3hfc" path="res://Scenes/Level Components/Objects/car-red-side.tscn" id="28_tvis2"]
 [ext_resource type="PackedScene" uid="uid://2hx1h6l4wi6v" path="res://Scenes/Level Components/Objects/BrickWallVariants/MediumBrickWall.tscn" id="29_2sk22"]
@@ -44,7 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="35_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
 [ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
-[ext_resource type="Script" uid="uid://cyk1o3lcjirk1" path="res://Scripts/Debug/cull_wall.gd" id="45_js7g2"]
+[ext_resource type="Script" path="res://Scripts/Debug/cull_wall.gd" id="45_js7g2"]
 
 [sub_resource type="Gradient" id="Gradient_lxrsn"]
 offsets = PackedFloat32Array(0, 0.06358381, 1)
@@ -193,6 +194,7 @@ _data = {
 size = Vector3(500, 500, 10)
 
 [node name="LvlConcept-Stage2" type="Node3D"]
+script = ExtResource("1_1opd7")
 
 [node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_njsij")]
 player = NodePath("../Player")
@@ -723,6 +725,8 @@ texture = ExtResource("35_lg4t4")
 transform = Transform3D(13649.581, 0, 0, 0, 20, 0, 0, 0, 5296.4404, 0, -260, 405)
 
 [node name="Hud" parent="." instance=ExtResource("17_4gi21")]
+act_2_otherside = Vector2(-2804.666, 550)
+act_2 = true
 
 [node name="LevelEndCollider" parent="." node_paths=PackedStringArray("level_clear_ui") instance=ExtResource("18_r2b5i")]
 transform = Transform3D(-4.3711385e-08, 0, 5.5099998, 0, 2.4999998, 0, -0.99999994, 0, -2.4084974e-07, 1050, 50, -300)
@@ -806,7 +810,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314647, 0.99994016, 0, -0.99994016, 0.010314647, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.010314646, 0.9999401, 0, -0.9999401, 0.010314646, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -824,7 +828,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039812963, -0.00026512894, 0, 0.006659137, 0.99997777, 0.03981408, -0.999179, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.039812963, -0.00026512897, 0, 0.0066591366, 0.99997777, 0.039814085, -0.99917895, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
