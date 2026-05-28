@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c5rie8boisw4x"]
+[gd_scene load_steps=20 format=3 uid="uid://c5rie8boisw4x"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_3bm1j"]
 [ext_resource type="Script" uid="uid://b5jkrrd2dj5sp" path="res://Scripts/UI/orders_screen.gd" id="1_day0g"]
@@ -38,12 +38,6 @@ VScrollBar/styles/grabber = SubResource("StyleBoxTexture_itith")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_3xmgw")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_jf67p")
 VScrollBar/styles/scroll = SubResource("StyleBoxTexture_wq1nd")
-
-[sub_resource type="InputEventAction" id="InputEventAction_itith"]
-action = &"ui_back"
-
-[sub_resource type="Shortcut" id="Shortcut_3xmgw"]
-events = [SubResource("InputEventAction_itith")]
 
 [node name="Orders" type="Control"]
 layout_mode = 3
@@ -91,7 +85,6 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Act1Button")
-shortcut = SubResource("Shortcut_3xmgw")
 texture_normal = ExtResource("5_p8qb0")
 texture_click_mask = ExtResource("6_g3g7s")
 script = ExtResource("6_lw5l0")
