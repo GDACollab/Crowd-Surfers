@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://rp5hggksir1k"]
+[gd_scene load_steps=43 format=3 uid="uid://rp5hggksir1k"]
 
 [ext_resource type="Script" uid="uid://bvghqq44gujfc" path="res://Scripts/cutscene_interface.gd" id="1_ejaj3"]
 [ext_resource type="Texture2D" uid="uid://vd2amtrcq6hq" path="res://Assets/Art/Cutscenes/Opening Final/cutscene-1.png" id="2_dt3ct"]
@@ -31,6 +31,8 @@
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="28_qwhny"]
 [ext_resource type="Texture2D" uid="uid://sta7j2uaxr2t" path="res://Assets/Art/UI/Dialogue/skip_dialogue.PNG" id="29_sfbyu"]
 [ext_resource type="Texture2D" uid="uid://dai7u2voply8x" path="res://Assets/Art/UI/Dialogue/skip_dialogue_pressed.PNG" id="30_gplr5"]
+[ext_resource type="Texture2D" uid="uid://cjlan16a5biax" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_1.png" id="32_sfbyu"]
+[ext_resource type="Texture2D" uid="uid://cx78edtg6e4ms" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_2.png" id="33_gplr5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocqqe"]
 animations = [{
@@ -137,6 +139,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CutsceneUI/ContinueButton:self_modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_p87ff"]
 resource_name = "fade_in"
@@ -149,7 +163,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(5, 5),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
@@ -181,10 +195,7 @@ _data = {
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ejaj3")
-
-[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "hover_buttons") instance=ExtResource("2_sit2d")]
-back_buttons = [NodePath("../SkipButton")]
-hover_buttons = [NodePath("../ContinueButton")]
+WAIT_TIME = 1.0
 
 [node name="DefaultCutsceneSound" type="FmodEventEmitter2D" parent="."]
 event_name = "event:/CUTSCENE/opening_hub"
@@ -192,21 +203,79 @@ event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
 auto_release = true
 preload_event = false
 
-[node name="DialogueNext" type="FmodEventEmitter2D" parent="."]
-event_name = "event:/SFX/UI/dialogue_next"
-event_guid = "{a82c5018-7733-4ce6-b8df-7ce6250d36f9}"
-preload_event = false
-volume = 0.5
-
 [node name="DefaultCutsceneFrames" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(960, 544)
 sprite_frames = SubResource("SpriteFrames_ocqqe")
 
-[node name="ProgressBar" type="Node2D" parent="."]
+[node name="CutsceneUI" type="Node" parent="."]
+
+[node name="UIAudio" parent="CutsceneUI" node_paths=PackedStringArray("back_buttons", "hover_buttons") instance=ExtResource("2_sit2d")]
+back_buttons = [NodePath("../SkipButton")]
+hover_buttons = [NodePath("../ContinueButton")]
+
+[node name="CutsceneNext" type="FmodEventEmitter2D" parent="CutsceneUI"]
+event_name = "event:/SFX/UI/dialogue_next"
+event_guid = "{a82c5018-7733-4ce6-b8df-7ce6250d36f9}"
+preload_event = false
+volume = 0.5
+
+[node name="ContinueButton" type="TextureButton" parent="CutsceneUI"]
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 98.0
+offset_bottom = 167.0
+texture_normal = ExtResource("29_sfbyu")
+texture_pressed = ExtResource("30_gplr5")
+script = ExtResource("28_qwhny")
+brightness_change = 0.3
+
+[node name="SkipButton" type="TextureButton" parent="CutsceneUI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 56.0
+offset_right = -24.0
+offset_bottom = 168.0
+grow_horizontal = 0
+texture_normal = ExtResource("26_ltdj6")
+texture_pressed = ExtResource("27_sit2d")
+script = ExtResource("28_qwhny")
+brightness_change = 0.3
+
+[node name="ContinueLabelBacking" type="Sprite2D" parent="CutsceneUI"]
+position = Vector2(210.99998, 32.05574)
+scale = Vector2(0.6053412, 0.6248244)
+texture = ExtResource("32_sfbyu")
+
+[node name="SkipLabelBacking" type="Sprite2D" parent="CutsceneUI"]
+position = Vector2(1797, 29.25)
+scale = Vector2(0.5743243, 0.5743243)
+texture = ExtResource("33_gplr5")
+
+[node name="ContinueLabel" type="Label" parent="CutsceneUI"]
+offset_left = 27.773666
+offset_top = 15.05574
+offset_right = 388.77368
+offset_bottom = 47.05574
+theme_override_colors/font_outline_color = Color(0.1254902, 0.09019608, 0.20784314, 1)
+theme_override_font_sizes/font_size = 25
+text = "Press SPACEBAR to continue"
+
+[node name="SkipLabel" type="Label" parent="CutsceneUI"]
+offset_left = 1536.0
+offset_top = 10.25
+offset_right = 1897.0
+offset_bottom = 42.25
+theme_override_font_sizes/font_size = 25
+text = "Press X to skip"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="Node2D" parent="CutsceneUI"]
 position = Vector2(0, 1056)
 
-[node name="ProgressBarTexture" type="TextureRect" parent="ProgressBar"]
+[node name="ProgressBarTexture" type="TextureRect" parent="CutsceneUI/ProgressBar"]
 offset_top = 16.0
 offset_right = 1920.0
 offset_bottom = 28.0
@@ -226,52 +295,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_4ybge")
 }
 
-[node name="SkipButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1768.0
-offset_top = 56.0
-offset_right = 1896.0
-offset_bottom = 168.0
-grow_horizontal = 0
-texture_normal = ExtResource("26_ltdj6")
-texture_pressed = ExtResource("27_sit2d")
-script = ExtResource("28_qwhny")
-brightness_change = 0.3
-
-[node name="ContinueButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 56.0
-offset_right = 98.0
-offset_bottom = 159.0
-texture_normal = ExtResource("29_sfbyu")
-texture_pressed = ExtResource("30_gplr5")
-script = ExtResource("28_qwhny")
-brightness_change = 0.3
-
-[node name="SkipLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1536.0
-offset_top = 16.0
-offset_right = 1897.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 25
-text = "Press X to skip"
-horizontal_alignment = 2
-
-[node name="ContinueLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 385.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 25
-text = "Press SPACEBAR to continue"
-
-[connection signal="mouse_entered" from="SkipButton" to="SkipButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SkipButton" to="SkipButton" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="ContinueButton" to="ContinueButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ContinueButton" to="ContinueButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CutsceneUI/ContinueButton" to="CutsceneUI/ContinueButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CutsceneUI/ContinueButton" to="CutsceneUI/ContinueButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CutsceneUI/SkipButton" to="CutsceneUI/SkipButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CutsceneUI/SkipButton" to="CutsceneUI/SkipButton" method="_on_mouse_exited"]

@@ -113,11 +113,15 @@ event_name = "event:/CUTSCENE/opening_hub"
 event_guid = "{20bf9bf5-aa57-47b3-9a5e-daf19f0f7e53}"
 auto_release = true
 preload_event = false
+position = Vector2(0, -4)
 
 [node name="OpeningCutsceneFrames" type="AnimatedSprite2D" parent="."]
-position = Vector2(960, 544)
+position = Vector2(960, 540)
 sprite_frames = SubResource("SpriteFrames_1fqup")
 
 [node name="CutsceneInterface" parent="." node_paths=PackedStringArray("animatic_frames", "cutscene_sound") instance=ExtResource("1_0bk40")]
+offset_top = -4.0
+offset_bottom = -4.0
 animatic_frames = NodePath("../OpeningCutsceneFrames")
 cutscene_sound = NodePath("../OpeningCutsceneSound")
+progress_bar_visible = false
