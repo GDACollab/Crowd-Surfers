@@ -67,7 +67,7 @@ func pause_persistent(key: String, do_debug_print := true) -> bool:
 		eventInstance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		
 		if (do_debug_print):
-			print("AudioManager: Paused instance of \"" + str(key) + "\"")
+			print("AudioManager: Paused instance of \"" + str(key) + "\" at " + str(registry[key]["pausePosition"]))
 		
 		return true
 	
@@ -202,7 +202,6 @@ func path_exists_in_registry(eventPath: String) -> bool:
 ## Pauses all level audio (env, char, player buses) and muffles music
 func set_level_audio_state(paused: bool) -> void:
 	var busArray : Array[FmodBus]
-	var pause_snapshot : FmodEvent
 	
 	busArray.assign([
 		FmodServer.get_bus("bus:/SFX/ENV"),
@@ -213,7 +212,12 @@ func set_level_audio_state(paused: bool) -> void:
 	for b in busArray:
 		b.paused = paused
 		
-	if (paused): 
+	set_music_muffling_state(paused)
+
+func set_music_muffling_state(do_muffle: bool):
+	var pause_snapshot : FmodEvent
+	
+	if (do_muffle and !registry.has("pause_snapshot")): 
 		pause_snapshot = create_persistent("pause_snapshot", "snapshot:/pause_menu_muffling")
 		pause_snapshot.start()
 	else: 

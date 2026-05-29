@@ -18,6 +18,9 @@ var page: PauseScreenPage = PauseScreenPage.BUTTONS
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
+func _exit_tree() -> void:
+	Audio.set_music_muffling_state(false)
+
 func _on_resume_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
@@ -47,6 +50,7 @@ func _on_settings_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
 		return
 	
+	Audio.set_music_muffling_state(false)
 	start_transitioning()
 	settings_scene.visible = true
 	page = PauseScreenPage.SETTINGS
@@ -55,7 +59,8 @@ func _on_settings_button_pressed() -> void:
 func _on_settings_back_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.SETTINGS):
 		return
-		
+	
+	Audio.set_music_muffling_state(true)
 	start_transitioning()
 	page = PauseScreenPage.BUTTONS
 	phone_animation_player.play("close_settings")

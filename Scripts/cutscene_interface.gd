@@ -53,7 +53,7 @@ func _process(delta):
 	if (Input.is_action_just_pressed("DialogueInteract")):
 		_continue_cutscene()
 	
-	if (Input.is_action_just_pressed("DialogueCancel")):
+	if (Input.is_action_just_pressed("DialogueCancel") and !is_ending):
 		$CutsceneUI/UIAudio/BackSound.play()
 		_end_cutscene()
 		
@@ -65,9 +65,8 @@ func _process(delta):
 		wait_timer -= delta
 
 func _continue_cutscene():
-	if (wait_timer <= 0.):
+	if (wait_timer <= 0. and !is_ending):
 		if (animatic_frames.frame + 1 >= animatic_frame_count):
-			is_ending = true
 			_end_cutscene()
 			
 		progress_bar.scale.x = 0
@@ -80,13 +79,14 @@ func _continue_cutscene():
 		cutscene_sound.set_parameter("cutscene_frame", animatic_frames.frame)
 
 func _end_cutscene():
-	print("Cutscene: Cutscene has been stopped.")
-	
-	cutscene_sound.stop()
-	animator.play("fade_out", -1, 1/abs(fade_out_time))
-	await get_tree().create_timer(1/abs(fade_out_time)).timeout
-	
-	SceneFadeTransition.transition_to_scene(load(scene_to_transition_to))
+	if (!is_ending): 
+		print("Cutscene: Cutscene has been stopped.")
+		
+		is_ending = true
+		cutscene_sound.stop()
+		animator.play("fade_out", -1, 1/abs(fade_out_time))
+		await get_tree().create_timer(1/abs(fade_out_time)).timeout
+		SceneFadeTransition.transition_to_scene(load(scene_to_transition_to))
 
 func _enable_continue_button():
 	continue_button_enabled = true

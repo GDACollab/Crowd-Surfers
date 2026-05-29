@@ -646,6 +646,11 @@ func transition_to(new_state: int) -> void:
 					# Ensure speed is at least min_dash_speed and apply stomp_boost
 					# The timer handles resetting these values to 0
 					dash_speed = max(min_dash_speed, max_speed * dash_speed_multiplier, velocity_before_stomp.length()) + stomp_boost
+					
+					if (dash_speed != 0):
+						# Play dash sound
+						$DashSound.play()
+					
 					if (has_crowd_dash_boost): #add crowd dash bonus if this is a crowd dash
 						dash_speed += crowd_dash_force
 						
@@ -675,9 +680,6 @@ func transition_to(new_state: int) -> void:
 						vfx_manager.spawn_vfx(position, velocity, "dash_up", self)
 					else:
 						vfx_manager.spawn_vfx(position, velocity, "dash_side", self)
-		
-				# Play dash sound
-				$DashSound.play()
 		States.STOMP_CROWD_LAUNCH:
 			crowd_launch()
 	
