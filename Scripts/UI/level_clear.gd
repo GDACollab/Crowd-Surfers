@@ -21,6 +21,7 @@ extends Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var level_clear_music : FmodEvent
+var has_control_focus: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -34,6 +35,14 @@ func _process(delta: float) -> void:
 	best_time_holder.scale = best_time_holder.scale.lerp(Vector2.ONE, delta)
 	restart_button.scale = restart_button.scale.lerp(Vector2.ONE * 1.5, delta)
 	continue_button.scale = continue_button.scale.lerp(Vector2.ONE * 1.5, delta)
+
+func _unhandled_input(event: InputEvent) -> void:
+	# grab focus if a ui direction is used
+	if (not has_control_focus and 
+			(event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") or 
+			 event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"))):
+		has_control_focus = true
+		$Background/ContinueButton.grab_focus.call_deferred()
 		
 func open_ui() -> void:
 	#don't adjust save file if not assigned

@@ -9,8 +9,13 @@
 [node name="Voicemail1Button" type="TextureButton"]
 offset_right = 591.0
 offset_bottom = 450.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("9_ws8nm")
 texture_hover = ExtResource("9_ws8nm")
+texture_focused = ExtResource("9_ws8nm")
 texture_click_mask = ExtResource("10_5vqf1")
 script = ExtResource("8_bk881")
 
@@ -33,5 +38,7 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

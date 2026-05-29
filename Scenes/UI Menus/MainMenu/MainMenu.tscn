@@ -742,9 +742,14 @@ offset_top = 278.8747
 offset_right = 1056.2084
 offset_bottom = 818.8747
 pivot_offset = Vector2(245.80383, 239.27454)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../VoicemailsButton")
 texture_normal = ExtResource("6_ahrg2")
 texture_hover = ExtResource("8_a8df5")
 texture_disabled = ExtResource("6_ahrg2")
+texture_focused = ExtResource("8_a8df5")
 texture_click_mask = ExtResource("15_h6nhr")
 script = ExtResource("19_pnqed")
 
@@ -759,8 +764,13 @@ offset_right = 1041.9768
 offset_bottom = 1168.0659
 grow_vertical = 2
 pivot_offset = Vector2(331.30884, 492.0592)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../OrdersButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("7_mtjt5")
 texture_hover = ExtResource("8_vga46")
+texture_focused = ExtResource("8_vga46")
 texture_click_mask = ExtResource("19_mwlcr")
 script = ExtResource("19_pnqed")
 
@@ -770,6 +780,10 @@ offset_left = 344.85596
 offset_top = 233.57208
 offset_right = 524.85596
 offset_bottom = 413.57208
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SocialMediaButton")
+focus_neighbor_bottom = NodePath("../OrdersButton")
 texture_normal = ExtResource("10_u2ljj")
 texture_click_mask = ExtResource("21_8fxli")
 script = ExtResource("19_pnqed")
@@ -781,6 +795,10 @@ offset_top = 191.8743
 offset_right = 747.36743
 offset_bottom = 371.8743
 pivot_offset = Vector2(97.778534, 40.467636)
+focus_neighbor_left = NodePath("../ExitButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../OrdersButton")
 texture_normal = ExtResource("12_h3juu")
 texture_click_mask = ExtResource("22_yjf4t")
 script = ExtResource("19_pnqed")
@@ -792,6 +810,10 @@ offset_top = 163.26532
 offset_right = 899.93616
 offset_bottom = 343.26532
 pivot_offset = Vector2(140.0286, 38.72868)
+focus_neighbor_left = NodePath("../SocialMediaButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../OrdersButton")
 texture_normal = ExtResource("9_n277a")
 texture_click_mask = ExtResource("23_4v1m8")
 script = ExtResource("19_pnqed")
@@ -854,18 +876,28 @@ libraries = {
 &"": SubResource("AnimationLibrary_da4sb")
 }
 
+[connection signal="focus_entered" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="." method="_on_orders_button_pressed"]
+[connection signal="focus_entered" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/VoicemailsButton" to="." method="_on_voicemails_button_pressed"]
+[connection signal="focus_entered" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="PhoneImage/PhoneBg/MainContainer/ExitButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="focus_entered" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/SocialMediaButton" to="." method="_on_social_media_button_pressed"]
+[connection signal="focus_entered" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="PhoneImage/PhoneBg/MainContainer/SettingsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneImage/PhoneBg/MainContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
