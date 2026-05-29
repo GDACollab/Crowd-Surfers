@@ -8,6 +8,8 @@ extends Control
 
 var transitioning: bool = false
 
+var has_control_focus: bool = false
+
 enum PauseScreenPage {
 	SETTINGS = 1,
 	BUTTONS = 2,
@@ -17,6 +19,35 @@ var page: PauseScreenPage = PauseScreenPage.BUTTONS
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+
+func _unhandled_input(event: InputEvent) -> void:
+	# grab focus if a ui direction is used
+	if (not has_control_focus and 
+			(event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") or 
+			 event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"))):
+		has_control_focus = true
+		var node_to_focus: Control
+		match page:
+			PauseScreenPage.SETTINGS:
+				node_to_focus = settings_scene.get_node("SettingsBody/BackButton")
+			PauseScreenPage.BUTTONS:
+				node_to_focus = buttons_container.get_node("ResumeButton")
+			PauseScreenPage.CONTROLS:
+				node_to_focus = controls_container.get_node("BackButton")
+		node_to_focus.grab_focus()
+	
+	# Back button behavior
+	# But don't overwrite the ability to close the menu using open_pause_menu
+	if event.is_action_pressed("ui_back") and not event.is_action_pressed("open_pause_menu"):
+		var button_to_trigger: BaseButton
+		match page:
+			PauseScreenPage.SETTINGS:
+				button_to_trigger = settings_scene.get_node("SettingsBody/BackButton")
+			PauseScreenPage.BUTTONS:
+				button_to_trigger = buttons_container.get_node("ResumeButton")
+			PauseScreenPage.CONTROLS:
+				button_to_trigger = controls_container.get_node("BackButton")
+		button_to_trigger.pressed.emit()
 
 func _on_resume_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
@@ -34,6 +65,9 @@ func _on_controls_button_pressed() -> void:
 	controls_container.visible = true
 	page = PauseScreenPage.CONTROLS
 	phone_animation_player.play("rotate_landscape")
+	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	has_control_focus = false
 
 func _on_controls_back_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.CONTROLS):
@@ -42,6 +76,9 @@ func _on_controls_back_button_pressed() -> void:
 	start_transitioning()
 	page = PauseScreenPage.BUTTONS
 	phone_animation_player.play("rotate_portrait")
+	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	has_control_focus = false
 	
 func _on_settings_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
@@ -53,6 +90,9 @@ func _on_settings_button_pressed() -> void:
 	page = PauseScreenPage.SETTINGS
 	phone_animation_player.play("open_settings")
 	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	has_control_focus = false
+	
 func _on_settings_back_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.SETTINGS):
 		return
@@ -61,6 +101,9 @@ func _on_settings_back_button_pressed() -> void:
 	start_transitioning()
 	page = PauseScreenPage.BUTTONS
 	phone_animation_player.play("close_settings")
+	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	has_control_focus = false
 	
 	SaveDataManager.save_data()
 

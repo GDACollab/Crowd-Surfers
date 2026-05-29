@@ -118,7 +118,7 @@ func _process(_delta: float) -> void:
 			
 	# Choice selection
 	if(choicesDisplayed):
-		if(Input.is_action_just_pressed("move_down")):
+		if(Input.is_action_just_pressed("ui_down")):
 			FmodServer.play_one_shot("event:/SFX/UI/dialogue_hover")
 			selectedButton._unhighlight()
 			
@@ -130,7 +130,7 @@ func _process(_delta: float) -> void:
 			selectedButton = _find_choice(currentChoiceIndex)
 			selectedButton._highlight()
 			
-		if(Input.is_action_just_pressed("move_up")):
+		if(Input.is_action_just_pressed("ui_up")):
 			FmodServer.play_one_shot("event:/SFX/UI/dialogue_hover")
 			selectedButton._unhighlight()
 			

@@ -71,6 +71,7 @@ offset_top = 349.0
 offset_right = 726.13
 offset_bottom = 1119.0
 theme = SubResource("Theme_08fti")
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OrdersBody/ScrollContainer"]
@@ -80,15 +81,24 @@ theme_override_constants/separation = -70
 
 [node name="BackButton" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Act1Button")
 texture_normal = ExtResource("5_p8qb0")
 texture_click_mask = ExtResource("6_g3g7s")
 script = ExtResource("6_lw5l0")
 
 [node name="Act1Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Act2Button")
 texture_normal = ExtResource("5_iclaa")
 texture_hover = ExtResource("10_4olv6")
 texture_disabled = ExtResource("11_itith")
+texture_focused = ExtResource("10_4olv6")
 texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
@@ -153,6 +163,7 @@ layout_mode = 2
 texture_normal = ExtResource("5_iclaa")
 texture_hover = ExtResource("10_4olv6")
 texture_disabled = ExtResource("11_itith")
+texture_focused = ExtResource("10_4olv6")
 texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
@@ -214,9 +225,14 @@ horizontal_alignment = 2
 
 [node name="Act3Button" type="TextureButton" parent="OrdersBody/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Act2Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("5_iclaa")
 texture_hover = ExtResource("10_4olv6")
 texture_disabled = ExtResource("11_itith")
+texture_focused = ExtResource("10_4olv6")
 texture_click_mask = ExtResource("10_f7nka")
 script = ExtResource("6_lw5l0")
 
@@ -276,14 +292,22 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
 
+[connection signal="focus_entered" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/BackButton" to="OrdersBody/ScrollContainer/VBoxContainer/BackButton" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" method="_on_focus_entered"]
+[connection signal="focus_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="OrdersBody/ScrollContainer/VBoxContainer/Act1Button" to="." method="_on_act_1_button_pressed"]
+[connection signal="focus_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" method="_on_focus_entered"]
+[connection signal="focus_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="OrdersBody/ScrollContainer/VBoxContainer/Act2Button" to="." method="_on_act_2_button_pressed"]
+[connection signal="focus_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" method="_on_focus_entered"]
+[connection signal="focus_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="OrdersBody/ScrollContainer/VBoxContainer/Act3Button" to="." method="_on_act_3_button_pressed"]
