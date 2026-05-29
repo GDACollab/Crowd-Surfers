@@ -105,7 +105,9 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	Audio.set_bus_volume("bus:/MUS", music_bus.volume / music_bus_volume_scalar)
-	Audio.kill_persistent("mus_hub")
+	# End music if this dialogue is NOT instantiated within the main menu
+	if (get_tree().current_scene.name != "MainMenu"):
+		Audio.kill_persistent("mus_hub")
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("DialogueCancel") and can_skip):
