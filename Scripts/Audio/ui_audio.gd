@@ -12,14 +12,17 @@ extends Node2D
 func _ready() -> void:
 	for button in confirm_buttons:
 		button.mouse_entered.connect(play_hover_sound)
+		button.focus_entered.connect(play_hover_sound)
 		button.pressed.connect(play_confirm_sound)
 		
 	for button in start_buttons:
 		button.mouse_entered.connect(play_hover_sound)
+		button.focus_entered.connect(play_hover_sound)
 		button.pressed.connect(play_levelstart_sound)
 	
 	for button in back_buttons:
 		button.mouse_entered.connect(play_hover_sound)
+		button.focus_entered.connect(play_hover_sound)
 		button.pressed.connect(play_back_sound)
 		
 	for button in hover_buttons:
@@ -29,6 +32,7 @@ func connect_confirm_button(button: BaseButton) -> void:
 	confirm_buttons.append(button)
 	
 	button.mouse_entered.connect(play_hover_sound)
+	button.focus_entered.connect(play_hover_sound)
 	button.pressed.connect(play_confirm_sound)
 		
 func play_confirm_sound() -> void:

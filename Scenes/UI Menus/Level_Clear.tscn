@@ -190,9 +190,6 @@ offset_bottom = 40.0
 script = ExtResource("1_8u14x")
 button_scale_amount = 1.05
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_ashpn")]
 visible = false
 confirm_buttons = [NodePath("../Background/ContinueButton")]
@@ -341,6 +338,10 @@ offset_right = 2495.3848
 offset_bottom = 1054.2858
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(315, 180)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ContinueButton")
 texture_normal = ExtResource("12_rm4hk")
 script = ExtResource("14_rm4hk")
 brightness_change = 0.1
@@ -371,6 +372,10 @@ offset_right = 2416.621
 offset_bottom = 1500.0
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(315, 180)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("12_rm4hk")
 script = ExtResource("14_rm4hk")
 brightness_change = 0.1
@@ -398,9 +403,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_vw3ka")
 }
 
+[connection signal="focus_entered" from="Background/RestartButton" to="Background/RestartButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Background/RestartButton" to="Background/RestartButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Background/RestartButton" to="Background/RestartButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Background/RestartButton" to="Background/RestartButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="Background/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="focus_entered" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Background/ContinueButton" to="Background/ContinueButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="Background/ContinueButton" to="." method="_on_continue_button_pressed"]
