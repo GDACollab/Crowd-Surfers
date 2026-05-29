@@ -21,7 +21,7 @@ func _on_body_entered(body):
 			proximity_sound_emitter.play()
 			# print("Creating new " + str(proximity_sound) + " instance")
 			
-		elif (one_shot):
+		elif (body.name == "Player" and one_shot):
 			proximity_sound_emitter.play_one_shot()
 
 func _on_body_exited(body):
