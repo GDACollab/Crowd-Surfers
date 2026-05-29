@@ -34,14 +34,28 @@ func _ready() -> void:
 			buttons[i].focus_neighbor_top = buttons[i-1].get_path()
 		if i < buttons.size()-1:
 			buttons[i].focus_neighbor_bottom = buttons[i+1].get_path()
-		
+	
+	# Setup disabling focus input when starting dialogue
+	Inky.DialogueStarted.connect(_on_start_dialogue)
+	Inky.DialogueEnded.connect(_on_end_dialogue)
+	
 	if (Story.voicemail_history.size() > 0):
 		no_voicemails_text.visible = false
 	else:
 		no_voicemails_text.visible = true
 
+func _exit_tree() -> void:
+	Inky.DialogueStarted.disconnect(_on_start_dialogue)
+	Inky.DialogueEnded.disconnect(_on_end_dialogue)
+
 func _on_voicemail_button_pressed(button: TextureButton) -> void:
 	var raw_voicemail: String = voicemail_directory.find_key(button.get_child(0).text.substr(3))
 	print(raw_voicemail)
-		
+	
 	Inky.PlayStoryFromKnot(raw_voicemail)
+
+func _on_start_dialogue() -> void:
+	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+
+func _on_end_dialogue() -> void:
+	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
