@@ -26,8 +26,16 @@ size = Vector3(25, 2.5, 50)
 [node name="Bus1Down" type="Node3D"]
 script = ExtResource("1_khc7b")
 
-[node name="ProximityAudio" parent="." instance=ExtResource("2_ibt32")]
-proximity_sound_path = "event:/SFX/ENV/objects/bus_idle"
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("2_ibt32")]
+proximity_sound_emitter = NodePath("ProximitySound")
+
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="ProximityAudio"]
+event_name = "event:/SFX/ENV/objects/bus_idle"
+event_guid = "{8e5b24e1-c0a9-45a8-9e0a-4cb56d0593cb}"
+preload_event = false
+"fmod_parameters/random sample/id" = 5236919471461692415
+"fmod_parameters/random sample" = 0
+"fmod_parameters/random sample/variant_type" = 2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 collision_mask = 0

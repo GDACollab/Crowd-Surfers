@@ -67,7 +67,7 @@ func pause_persistent(key: String, do_debug_print := true) -> bool:
 		eventInstance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		
 		if (do_debug_print):
-			print("AudioManager: Paused instance of \"" + str(key) + "\" at " + str(registry[key]["pausePosition"]))
+			print("AudioManager: Paused instance of \"" + str(key) + "\" at " + str(registry[key]["pausePosition"]) + "ms")
 		
 		return true
 	

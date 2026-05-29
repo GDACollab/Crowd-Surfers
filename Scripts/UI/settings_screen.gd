@@ -38,3 +38,4 @@ func _on_voice_slider_drag_started() -> void:
 
 func _on_voice_slider_drag_ended(_value_changed: bool) -> void:
 	Audio.pause_persistent("voice_sample")
+	Audio.registry["voice_sample"]["pausePosition"] += 200

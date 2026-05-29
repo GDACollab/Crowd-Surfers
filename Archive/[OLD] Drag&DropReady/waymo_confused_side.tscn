@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://n61dg7uri6m1"]
+[gd_scene load_steps=7 format=3 uid="uid://n61dg7uri6m1"]
 
 [ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Archive/automated_asset_type_obstacle.gd" id="1_vcf1w"]
 [ext_resource type="Texture2D" uid="uid://c3xgcjnbtlqq1" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_TOP(UPDATE2).PNG" id="2_dtx8a"]
 [ext_resource type="Texture2D" uid="uid://buf0562seemuj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_FRONT(UPDATE2).PNG" id="3_qmvp7"]
+[ext_resource type="PackedScene" uid="uid://sltybbrtxg4g" path="res://Scenes/Audio/proximity_audio.tscn" id="4_4r6gv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dtx8a"]
 size = Vector3(5.9, 2, 2.35)
@@ -47,3 +48,11 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.175)
 shape = SubResource("BoxShape3D_qmvp7")
 debug_color = Color(0.85490197, 0, 0.8862745, 1)
+
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("4_4r6gv")]
+proximity_sound_emitter = NodePath("ProximitySound")
+
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="ProximityAudio"]
+event_name = "event:/SFX/ENV/objects/car_idle"
+event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
+preload_event = false
