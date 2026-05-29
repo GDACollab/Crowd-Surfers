@@ -39,7 +39,8 @@ enum MainMenuPage {
 	ORDERS = 2,
 	VOICEMAILS = 3,
 	SETTINGS = 4,
-	SOCIAL_MEDIA = 5
+	SOCIAL_MEDIA = 5,
+	DIALOGUE = 6
 }
 var page: MainMenuPage = MainMenuPage.MAIN
 
@@ -59,6 +60,9 @@ func _ready() -> void:
 		
 	else:
 		Audio.unpause_persistent("mus_hub")
+		
+	Inky.DialogueStarted.connect(_on_dialogue_start)
+	Inky.DialogueEnded.connect(_on_dialogue_end)
 	
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_back")):
@@ -84,6 +88,12 @@ func _process(delta: float) -> void:
 		velocity = velocity.normalized() * background_max_speed
 	backgrounds_closer.position += velocity
 	backgrounds_farther.position = start_background_position.lerp(backgrounds_closer.position, far_background_move_percentage)
+
+func _on_dialogue_start() -> void:
+	page = MainMenuPage.DIALOGUE
+	
+func _on_dialogue_end() -> void:
+	page = MainMenuPage.VOICEMAILS
 	
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
