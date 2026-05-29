@@ -35,10 +35,18 @@ func _process(delta: float) -> void:
 	best_time_holder.scale = best_time_holder.scale.lerp(Vector2.ONE, delta)
 	restart_button.scale = restart_button.scale.lerp(Vector2.ONE * 1.5, delta)
 	continue_button.scale = continue_button.scale.lerp(Vector2.ONE * 1.5, delta)
+	
+	# Disable mouse input while animating
+	if animation_player.is_playing():
+		restart_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		continue_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	else:
+		restart_button.mouse_filter = Control.MOUSE_FILTER_STOP
+		continue_button.mouse_filter = Control.MOUSE_FILTER_STOP
 
 func _unhandled_input(event: InputEvent) -> void:
 	# grab focus if a ui direction is used
-	if (not has_control_focus and 
+	if (not has_control_focus and not animation_player.is_playing() and
 			(event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") or 
 			 event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"))):
 		has_control_focus = true
