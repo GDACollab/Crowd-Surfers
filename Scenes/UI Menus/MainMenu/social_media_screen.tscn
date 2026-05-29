@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://dc41wgb5xtf7r"]
+[gd_scene load_steps=41 format=3 uid="uid://dc41wgb5xtf7r"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_5k433"]
 [ext_resource type="Texture2D" uid="uid://olxtrn50e5ic" path="res://Assets/Art/UI/MainMenu/SocialMedia/social_media_text.png" id="2_eoyxf"]
 [ext_resource type="Texture2D" uid="uid://bevsfgf4bv204" path="res://Assets/Art/UI/MainMenu/Orders/orders_phone_base_bg.png" id="4_2uxhc"]
+[ext_resource type="Script" uid="uid://n6yl0nk2xk4i" path="res://Scripts/UI/ui_scroll_support.gd" id="5_6nueq"]
 [ext_resource type="Texture2D" uid="uid://cx7ew6n2o7p56" path="res://Assets/Art/UI/MainMenu/Orders/scrollbar.png" id="5_jqjde"]
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="6_c2788"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="7_0wp62"]
@@ -92,6 +93,8 @@ offset_right = 723.03
 offset_bottom = 1119.0
 theme = SubResource("Theme_08fti")
 horizontal_scroll_mode = 0
+script = ExtResource("5_6nueq")
+scroll_speed = 2200.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SocialMediaBody/ScrollContainer"]
 layout_mode = 2

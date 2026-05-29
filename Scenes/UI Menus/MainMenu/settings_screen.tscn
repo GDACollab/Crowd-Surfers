@@ -30,8 +30,9 @@ offset_bottom = 40.0
 pivot_offset = Vector2(0, 533.333)
 script = ExtResource("1_p0nga")
 
-[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons") instance=ExtResource("1_6kqvo")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "sliders") instance=ExtResource("1_6kqvo")]
 back_buttons = [NodePath("../SettingsBody/BackButton")]
+sliders = [NodePath("../SettingsBody/MasterSliderHolder/MasterSlider"), NodePath("../SettingsBody/MusicSliderHolder/MusicSlider"), NodePath("../SettingsBody/SFXSliderHolder/SFXSlider"), NodePath("../SettingsBody/VoiceSliderHolder/VoiceSlider")]
 
 [node name="SettingsText" type="TextureRect" parent="."]
 layout_mode = 0
@@ -228,7 +229,7 @@ pivot_offset = Vector2(54.375, 8)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../MusicSliderHolder/MusicSlider")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
+focus_neighbor_bottom = NodePath("../../VoiceSliderHolder/VoiceSlider")
 theme_override_constants/center_grabber = 1
 theme_override_icons/grabber = ExtResource("10_r363m")
 theme_override_icons/grabber_highlight = ExtResource("11_2r2op")
@@ -260,6 +261,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(54.375, 8)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../SFXSliderHolder/SFXSlider")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 theme_override_constants/center_grabber = 1
 theme_override_icons/grabber = ExtResource("10_r363m")
 theme_override_icons/grabber_highlight = ExtResource("11_2r2op")

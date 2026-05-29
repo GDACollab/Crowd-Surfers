@@ -13,6 +13,22 @@ func _ready() -> void:
 	voice_slider.set_value_no_signal(Settings.voice_volume)
 	Settings.update_fmod_volumes()
 
+func _process(delta: float) -> void:
+	var slide_input: float = Input.get_axis("ui_left", "ui_right")
+	
+	if not is_equal_approx(slide_input, 0):
+		_change_focused_slider(slide_input * delta)
+
+func _change_focused_slider(amount: float) -> void:
+	if master_slider.has_focus():
+		master_slider.value += amount
+	elif music_slider.has_focus():
+		music_slider.value += amount
+	elif sfx_slider.has_focus():
+		sfx_slider.value += amount
+	elif voice_slider.has_focus():
+		voice_slider.value += amount
+
 func _on_master_slider_value_changed(value: float) -> void:
 	Settings.master_volume = value
 	Settings.update_fmod_volumes()

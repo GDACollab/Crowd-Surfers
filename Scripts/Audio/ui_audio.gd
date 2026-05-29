@@ -9,6 +9,8 @@ extends Node2D
 
 @export var hover_buttons: Array[BaseButton]
 
+@export var sliders: Array[Range]
+
 func _ready() -> void:
 	for button in confirm_buttons:
 		button.mouse_entered.connect(play_hover_sound)
@@ -27,6 +29,9 @@ func _ready() -> void:
 		
 	for button in hover_buttons:
 		button.mouse_entered.connect(play_hover_sound)
+	
+	for slider in sliders:
+		slider.focus_entered.connect(play_hover_sound)
 
 func connect_confirm_button(button: BaseButton) -> void:
 	confirm_buttons.append(button)
