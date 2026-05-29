@@ -23,8 +23,8 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# grab focus if a ui direction is used
 	if (not has_control_focus and 
-			(event.is_action("ui_up") or event.is_action("ui_down") or 
-			 event.is_action("ui_left") or event.is_action("ui_right"))):
+			(event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") or 
+			 event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"))):
 		has_control_focus = true
 		var node_to_focus: Control
 		match page:
@@ -37,7 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		node_to_focus.grab_focus()
 	
 	# Back button behavior
-	if event.is_action_pressed("ui_back"):
+	# But don't overwrite the ability to close the menu using open_pause_menu
+	if event.is_action_pressed("ui_back") and not event.is_action_pressed("open_pause_menu"):
 		var button_to_trigger: BaseButton
 		match page:
 			PauseScreenPage.SETTINGS:
