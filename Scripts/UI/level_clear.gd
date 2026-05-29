@@ -82,6 +82,7 @@ func _animate_to_beat() -> void:
 		star.rotation *= -1
 	
 func _on_restart_button_pressed() -> void:
+	FmodServer.play_one_shot("event:/SFX/UI/menu_back")
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
 	get_tree().paused = false
 	queue_free()
@@ -91,6 +92,7 @@ func _exit_tree() -> void:
 	Audio.kill_persistent("mus_clear")
 	
 func _on_continue_button_pressed() -> void:
+	FmodServer.play_one_shot("event:/SFX/UI/menu_confirm")
 	Story.post_level = true
 	Story.next_scene = "res://Scenes/UI Menus/MainMenu/MainMenu.tscn"
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/level_dialogue_player.tscn"))

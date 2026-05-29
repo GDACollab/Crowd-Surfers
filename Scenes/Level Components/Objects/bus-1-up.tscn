@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwfwoc6s5cbjn"]
+[gd_scene load_steps=11 format=3 uid="uid://dwfwoc6s5cbjn"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_6xqhd"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_65lph"]
+[ext_resource type="PackedScene" uid="uid://sltybbrtxg4g" path="res://Scenes/Audio/proximity_audio.tscn" id="2_7513w"]
 [ext_resource type="Texture2D" uid="uid://pdlc4usagjml" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_TOP(updated).png" id="2_fajbu"]
 [ext_resource type="Texture2D" uid="uid://dcfquoapgiqcs" path="res://Assets/Art/Chopped Art (Fixed)/Bus 1 Up/bus_up_FRONT(updated).png" id="3_or0y1"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="6_7513w"]
@@ -24,6 +25,17 @@ size = Vector3(25, 2.5, 50)
 
 [node name="Bus1Up" type="Node3D"]
 script = ExtResource("1_65lph")
+
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("2_7513w")]
+proximity_sound_emitter = NodePath("ProximitySound")
+
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="ProximityAudio"]
+event_name = "event:/SFX/ENV/objects/bus_idle"
+event_guid = "{8e5b24e1-c0a9-45a8-9e0a-4cb56d0593cb}"
+preload_event = false
+"fmod_parameters/random sample/id" = 5236919471461692415
+"fmod_parameters/random sample" = 0
+"fmod_parameters/random sample/variant_type" = 2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 collision_mask = 0
@@ -64,8 +76,3 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.75, 25)
 shape = SubResource("BoxShape3D_64kr8")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="BusIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/bus_idle"
-event_guid = "{8e5b24e1-c0a9-45a8-9e0a-4cb56d0593cb}"
-autoplay = true

@@ -7,10 +7,9 @@ extends Node2D
 ## all buttons that make 'levelstart' sound when clicked
 @export var start_buttons: Array[BaseButton]
 
-@export var credits_text_labels: Array[RichTextLabel]
+@export var hover_buttons: Array[BaseButton]
 
 func _ready() -> void:
-	# connect audio playback to all confirm buttons
 	for button in confirm_buttons:
 		button.mouse_entered.connect(play_hover_sound)
 		button.focus_entered.connect(play_hover_sound)
@@ -21,15 +20,13 @@ func _ready() -> void:
 		button.focus_entered.connect(play_hover_sound)
 		button.pressed.connect(play_levelstart_sound)
 	
-	# connect audio playback to all back buttons
 	for button in back_buttons:
 		button.mouse_entered.connect(play_hover_sound)
 		button.focus_entered.connect(play_hover_sound)
 		button.pressed.connect(play_back_sound)
 		
-	for label in credits_text_labels:
-		print("trigger")
-		label.mouse_entered.connect(play_hover_sound)
+	for button in hover_buttons:
+		button.mouse_entered.connect(play_hover_sound)
 
 func connect_confirm_button(button: BaseButton) -> void:
 	confirm_buttons.append(button)

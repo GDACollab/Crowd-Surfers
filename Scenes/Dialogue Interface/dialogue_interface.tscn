@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bxh4py23vy7ll"]
+[gd_scene load_steps=28 format=3 uid="uid://bxh4py23vy7ll"]
 
 [ext_resource type="Script" uid="uid://c4nbqhys2qrk" path="res://Scripts/Interface/dialogue_interface.gd" id="1_6mp5d"]
 [ext_resource type="PackedScene" uid="uid://devtvs7rog4mi" path="res://Scenes/Dialogue Interface/ChoiceButton_Full.tscn" id="2_vriws"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bbo3md2gbyc31" path="res://Assets/Art/UI/Dialogue/continue_arrow.PNG" id="16_osr46"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="16_rhwms"]
 [ext_resource type="Texture2D" uid="uid://dai7u2voply8x" path="res://Assets/Art/UI/Dialogue/skip_dialogue_pressed.PNG" id="17_xpygo"]
+[ext_resource type="Texture2D" uid="uid://cjlan16a5biax" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_1.png" id="20_i8o8j"]
+[ext_resource type="Texture2D" uid="uid://cx78edtg6e4ms" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_2.png" id="21_aduds"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j466g"]
 shader = ExtResource("9_obotj")
@@ -97,16 +99,17 @@ choiceSelectDelay = 1.0
 defaultPortait = ExtResource("4_tk2da")
 speakingPortraitScale = Vector2(1.1, 1.1)
 portraitSwapTime = 0.5
-continue_arrow = NodePath("Continue Arrow")
+continue_arrow = NodePath("Old Buttons/Continue Arrow")
 upperDialogueBoxHeight = 25.0
 upperDialogueBoxScale = Vector2(0.4, 0.4)
 lowerDialogueBoxHeight = 150.0
 lowerDialogueBoxScale = Vector2(0.65, 0.65)
 portraitOutlineMaterial = ExtResource("5_tk2da")
 
-[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("6_obotj")]
-confirm_buttons = [NodePath("../Skip Button")]
-back_buttons = [NodePath("../Continue Button")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons", "hover_buttons") instance=ExtResource("6_obotj")]
+confirm_buttons = [NodePath("../Old Buttons/Skip Button")]
+back_buttons = [NodePath("../Old Buttons/Continue Button"), NodePath("../SkipButton")]
+hover_buttons = [NodePath("../ContinueButton")]
 
 [node name="Blur Buffer" type="BackBufferCopy" parent="."]
 position = Vector2(909.99994, 496.99994)
@@ -177,29 +180,6 @@ script = ExtResource("4_6em14")
 showPosition = Vector2(600, 222)
 hidePosition = Vector2(600, 1200)
 
-[node name="Continue Label" type="Label" parent="."]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 291.0
-offset_bottom = 33.0
-theme_override_font_sizes/font_size = 25
-text = "Press SPACEBAR to continue"
-
-[node name="Skip Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -322.08997
-offset_top = 10.0
-offset_right = -41.089966
-offset_bottom = 33.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 25
-text = "Press X to skip"
-horizontal_alignment = 2
-
 [node name="Interface Animator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4ybge")
@@ -211,8 +191,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_4ybge")
 
-[node name="Skip Button" type="TextureButton" parent="."]
-layout_mode = 1
+[node name="Old Buttons" type="Node" parent="."]
+
+[node name="Skip Button" type="TextureButton" parent="Old Buttons"]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -226,8 +208,31 @@ texture_pressed = ExtResource("15_j18xy")
 script = ExtResource("16_rhwms")
 brightness_change = 0.3
 
-[node name="Continue Button" type="TextureButton" parent="."]
-layout_mode = 1
+[node name="Continue Label" type="Label" parent="Old Buttons"]
+visible = false
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 371.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 25
+text = "Press SPACEBAR to continue"
+
+[node name="Skip Label" type="Label" parent="Old Buttons"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -322.08997
+offset_top = 10.0
+offset_right = -41.089966
+offset_bottom = 42.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "Press X to skip"
+horizontal_alignment = 2
+
+[node name="Continue Button" type="TextureButton" parent="Old Buttons"]
+visible = false
 offset_left = 50.0
 offset_top = 50.0
 offset_right = 124.0
@@ -237,18 +242,77 @@ texture_pressed = ExtResource("17_xpygo")
 script = ExtResource("16_rhwms")
 brightness_change = 0.3
 
-[node name="Continue Arrow" type="TextureRect" parent="."]
+[node name="Continue Arrow" type="TextureRect" parent="Old Buttons"]
 visible = false
 z_index = 1
-layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 texture = ExtResource("16_osr46")
 
-[connection signal="mouse_entered" from="Skip Button" to="Skip Button" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Skip Button" to="Skip Button" method="_on_mouse_exited"]
-[connection signal="pressed" from="Skip Button" to="." method="_on_skip_button_pressed"]
-[connection signal="mouse_entered" from="Continue Button" to="Continue Button" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Continue Button" to="Continue Button" method="_on_mouse_exited"]
-[connection signal="pressed" from="Continue Button" to="." method="_on_continue_button_pressed"]
+[node name="ContinueButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 98.0
+offset_bottom = 167.0
+texture_normal = ExtResource("15_e5ork")
+texture_pressed = ExtResource("17_xpygo")
+script = ExtResource("16_rhwms")
+brightness_change = 0.3
+
+[node name="SkipButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 56.0
+offset_right = -24.0
+offset_bottom = 168.0
+grow_horizontal = 0
+texture_normal = ExtResource("14_yajxp")
+texture_pressed = ExtResource("15_j18xy")
+script = ExtResource("16_rhwms")
+brightness_change = 0.3
+
+[node name="ContinueLabelBacking" type="Sprite2D" parent="."]
+position = Vector2(210.99998, 32.05574)
+scale = Vector2(0.6053412, 0.6248244)
+texture = ExtResource("20_i8o8j")
+
+[node name="SkipLabelBacking" type="Sprite2D" parent="."]
+position = Vector2(1797, 29.25)
+scale = Vector2(0.5743243, 0.5743243)
+texture = ExtResource("21_aduds")
+
+[node name="ContinueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.773666
+offset_top = 15.05574
+offset_right = 388.77368
+offset_bottom = 47.05574
+theme_override_colors/font_outline_color = Color(0.1254902, 0.09019608, 0.20784314, 1)
+theme_override_font_sizes/font_size = 25
+text = "Press SPACEBAR to continue"
+
+[node name="SkipLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1536.0
+offset_top = 10.25
+offset_right = 1897.0
+offset_bottom = 42.25
+theme_override_font_sizes/font_size = 25
+text = "Press X to skip"
+horizontal_alignment = 2
+
+[connection signal="mouse_entered" from="Old Buttons/Skip Button" to="Old Buttons/Skip Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Old Buttons/Skip Button" to="Old Buttons/Skip Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="Old Buttons/Skip Button" to="." method="_on_skip_button_pressed"]
+[connection signal="mouse_entered" from="Old Buttons/Continue Button" to="Old Buttons/Continue Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Old Buttons/Continue Button" to="Old Buttons/Continue Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="Old Buttons/Continue Button" to="." method="_on_continue_button_pressed"]
+[connection signal="mouse_entered" from="ContinueButton" to="ContinueButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ContinueButton" to="ContinueButton" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="SkipButton" to="SkipButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SkipButton" to="SkipButton" method="_on_mouse_exited"]

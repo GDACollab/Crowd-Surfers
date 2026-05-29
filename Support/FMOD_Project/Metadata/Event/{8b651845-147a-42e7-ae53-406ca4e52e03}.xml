@@ -248,7 +248,11 @@
 			<destination>{b140c0f7-542a-494b-9a90-6ae52a3b7f2d}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{45893a2f-c12c-4baa-8e29-8841ce7f27fb}" />
+	<object class="MixerBusPanner" id="{45893a2f-c12c-4baa-8e29-8841ce7f27fb}">
+		<property name="stereoPan">
+			<value>5</value>
+		</property>
+	</object>
 	<object class="ADSRModulator" id="{9edc845c-9836-4c87-b368-1f3587f91e45}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
@@ -283,10 +287,13 @@
 	<object class="MixerBusFader" id="{53efdf8a-6bc7-4445-96ce-bc5033bb3001}" />
 	<object class="ThreeEQEffect" id="{8cda5c6a-6512-43ef-85a8-bcb2b32e54df}">
 		<property name="lowGain">
-			<value>-8</value>
+			<value>-21</value>
 		</property>
 		<property name="lowCrossover">
-			<value>560</value>
+			<value>520</value>
+		</property>
+		<property name="crossoverSlope">
+			<value>0</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{b140c0f7-542a-494b-9a90-6ae52a3b7f2d}" />

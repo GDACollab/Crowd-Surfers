@@ -43,10 +43,15 @@ size = Vector3(25, 1.5, 50)
 [node name="CarRedDown" type="Node3D"]
 script = ExtResource("1_j51ng")
 
-[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound") instance=ExtResource("2_kc4ek")]
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("2_kc4ek")]
 collision_layer = 0
 collision_mask = 2
-proximity_sound = NodePath("../CarIdleSound")
+proximity_sound_emitter = NodePath("ProximitySound")
+
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="ProximityAudio"]
+event_name = "event:/SFX/ENV/objects/car_idle"
+event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
+preload_event = false
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="." groups=["Metal"]]
 collision_mask = 0
@@ -127,7 +132,3 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
 shape = SubResource("BoxShape3D_bo4ws")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="CarIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/car_idle"
-event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"

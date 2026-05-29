@@ -24,5 +24,6 @@ texture = ExtResource("2_d6mss")
 [node name="CollideSound" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/SFX/ENV/objects/banana"
 event_guid = "{a79d2cf1-1986-49f7-bd49-248314db819b}"
+preload_event = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

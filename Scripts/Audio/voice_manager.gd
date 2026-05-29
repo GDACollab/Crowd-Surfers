@@ -62,7 +62,8 @@ func _handle_typewriter(dialogue_text: String, character: String, letter_index: 
 				break
 	
 	letter_sound.start()
-	
+	letter_sound.release()
+
 	return should_increment
 
 func _handle_voiceover():
