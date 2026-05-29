@@ -8,6 +8,8 @@ extends Control
 
 var transitioning: bool = false
 
+var has_control_focus: bool = false
+
 enum PauseScreenPage {
 	SETTINGS = 1,
 	BUTTONS = 2,
@@ -17,6 +19,14 @@ var page: PauseScreenPage = PauseScreenPage.BUTTONS
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+
+func _unhandled_input(event: InputEvent) -> void:
+	# grab focus if a ui direction is used
+	if (not has_control_focus and 
+			(event.is_action("ui_up") or event.is_action("ui_down") or 
+			 event.is_action("ui_left") or event.is_action("ui_right"))):
+		has_control_focus = true
+		buttons_container.get_node("ResumeButton").grab_focus()
 
 func _on_resume_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
