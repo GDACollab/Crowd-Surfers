@@ -35,7 +35,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			PauseScreenPage.CONTROLS:
 				node_to_focus = controls_container.get_node("BackButton")
 		node_to_focus.grab_focus()
-				
+	
+	# Back button behavior
+	if event.is_action_pressed("ui_back"):
+		var button_to_trigger: BaseButton
+		match page:
+			PauseScreenPage.SETTINGS:
+				button_to_trigger = settings_scene.get_node("SettingsBody/BackButton")
+			PauseScreenPage.BUTTONS:
+				button_to_trigger = buttons_container.get_node("ResumeButton")
+			PauseScreenPage.CONTROLS:
+				button_to_trigger = controls_container.get_node("BackButton")
+		button_to_trigger.pressed.emit()
 
 func _on_resume_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
