@@ -21,6 +21,7 @@ extends Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var level_clear_music : FmodEvent
+var has_control_focus: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -28,14 +29,39 @@ func _ready() -> void:
 	clear_time_sprite.scale = Vector2.ZERO
 	best_time_sprite.scale = Vector2.ZERO
 	
+	# dont grab focus until this ui is opened
+	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	
+
 func _process(delta: float) -> void:
 	level_clear_holder.scale = level_clear_holder.scale.lerp(Vector2.ONE, delta)
 	clear_time_holder.scale = clear_time_holder.scale.lerp(Vector2.ONE, delta)
 	best_time_holder.scale = best_time_holder.scale.lerp(Vector2.ONE, delta)
 	restart_button.scale = restart_button.scale.lerp(Vector2.ONE * 1.5, delta)
 	continue_button.scale = continue_button.scale.lerp(Vector2.ONE * 1.5, delta)
+	
+	# Disable mouse input while animating
+	if animation_player.is_playing():
+		restart_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		continue_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	else:
+		restart_button.mouse_filter = Control.MOUSE_FILTER_STOP
+		continue_button.mouse_filter = Control.MOUSE_FILTER_STOP
+
+func _unhandled_input(event: InputEvent) -> void:
+	# grab focus if a ui direction is used
+	if (not has_control_focus and not animation_player.is_playing() and
+			(event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") or 
+			 event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"))):
+		has_control_focus = true
+		$Background/ContinueButton.grab_focus()
 		
 func open_ui() -> void:
+	# Disable pause holder to stop interfering with this ui
+	$"../PauseHolder".focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	has_control_focus = false
+	
 	#don't adjust save file if not assigned
 	if level_number > 0:
 		SaveDataManager.levels_complete[level_number-1] = true
@@ -73,6 +99,7 @@ func _animate_to_beat() -> void:
 		star.rotation *= -1
 	
 func _on_restart_button_pressed() -> void:
+	FmodServer.play_one_shot("event:/SFX/UI/menu_back")
 	SceneFadeTransition.transition_to_scene(load(get_tree().current_scene.scene_file_path))
 	get_tree().paused = false
 	queue_free()
@@ -82,6 +109,7 @@ func _exit_tree() -> void:
 	Audio.kill_persistent("mus_clear")
 	
 func _on_continue_button_pressed() -> void:
+	FmodServer.play_one_shot("event:/SFX/UI/menu_confirm")
 	Story.post_level = true
 	Story.next_scene = "res://Scenes/UI Menus/MainMenu/MainMenu.tscn"
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/level_dialogue_player.tscn"))

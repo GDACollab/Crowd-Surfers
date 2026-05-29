@@ -729,9 +729,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f6gwv")
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Sound_Banks/Master.bank", "res://Assets/Sound_Banks/UI.bank"]
-
 [node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons") instance=ExtResource("2_0kv7i")]
 confirm_buttons = [NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton"), NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton"), NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton"), NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton")]
 back_buttons = [NodePath("../PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton"), NodePath("../PhoneOutline/PhoneBackground/ControlsContainer/BackButton")]
@@ -823,6 +820,10 @@ offset_right = 1141.6667
 offset_bottom = -410.0
 rotation = 0.17278759
 scale = Vector2(0.9, 0.9)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("10_edyq6")
 texture_click_mask = ExtResource("11_pkbh5")
 script = ExtResource("10_en6uu")
@@ -942,6 +943,10 @@ offset_right = 561.25
 offset_bottom = 550.01776
 rotation = -0.14137167
 scale = Vector2(1, 1.2)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ControlsButton")
 texture_normal = ExtResource("40_pkbh5")
 texture_click_mask = ExtResource("41_gf2cc")
 script = ExtResource("10_en6uu")
@@ -974,6 +979,10 @@ offset_right = 561.25
 offset_bottom = 725.0178
 rotation = -0.14137167
 scale = Vector2(1, 1.2)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
 texture_normal = ExtResource("40_pkbh5")
 texture_click_mask = ExtResource("41_gf2cc")
 script = ExtResource("10_en6uu")
@@ -1006,6 +1015,10 @@ offset_right = 561.25
 offset_bottom = 900.01776
 rotation = -0.14137167
 scale = Vector2(1, 1.2)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ControlsButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../RestartLevelButton")
 texture_normal = ExtResource("40_pkbh5")
 texture_click_mask = ExtResource("41_gf2cc")
 script = ExtResource("10_en6uu")
@@ -1038,6 +1051,10 @@ offset_right = 561.25
 offset_bottom = 1075.0178
 rotation = -0.14137167
 scale = Vector2(1, 1.2)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ExitLevelButton")
 texture_normal = ExtResource("40_pkbh5")
 texture_click_mask = ExtResource("41_gf2cc")
 script = ExtResource("10_en6uu")
@@ -1070,6 +1087,10 @@ offset_right = 561.25
 offset_bottom = 1250.0181
 rotation = -0.14137167
 scale = Vector2(1, 1.2)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../RestartLevelButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("40_pkbh5")
 texture_click_mask = ExtResource("41_gf2cc")
 script = ExtResource("10_en6uu")
@@ -1180,21 +1201,33 @@ libraries = {
 [node name="Vignette" parent="." instance=ExtResource("44_qb0ju")]
 layout_mode = 0
 
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="." method="_on_controls_back_button_pressed"]
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ButtonContainer/ExitLevelButton" to="." method="_on_exit_level_button_pressed"]

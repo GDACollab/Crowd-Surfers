@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://balel46fh6clm"]
+[gd_scene load_steps=10 format=3 uid="uid://balel46fh6clm"]
 
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_4ai1i"]
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_fpm45"]
+[ext_resource type="PackedScene" uid="uid://sltybbrtxg4g" path="res://Scenes/Audio/proximity_audio.tscn" id="2_fpm45"]
 [ext_resource type="Texture2D" uid="uid://c3fieux013x3" path="res://Assets/Art/AlphaSprites/SprintEightAssets/Laymos_Side.png" id="3_v6edg"]
 [ext_resource type="Shader" uid="uid://co0ijqq05bc1v" path="res://Scripts/Shaders/height_fog.gdshader" id="6_siyns"]
 
@@ -23,6 +24,11 @@ size = Vector3(50, 1.5, 25)
 
 [node name="WaymoConfusedSide" type="Node3D"]
 script = ExtResource("1_fpm45")
+
+[node name="ProximityAudio" parent="." instance=ExtResource("2_fpm45")]
+collision_layer = 0
+collision_mask = 2
+proximity_sound_path = "event:/SFX/ENV/objects/car_idle"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 collision_mask = 0
@@ -69,8 +75,3 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 12.5)
 shape = SubResource("BoxShape3D_3l4g6")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="CarIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/car_idle"
-event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
-autoplay = true

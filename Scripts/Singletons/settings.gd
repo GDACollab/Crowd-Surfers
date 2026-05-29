@@ -1,10 +1,17 @@
 extends Node
 
+const VOLUME_DEFAULTS = {
+	"master_volume": 1.0,
+	"music_volume": 0.75,
+	"sfx_volume": 0.75,
+	"voice_volume": 0.75
+}
+
 #All settings 0.0-1.0
 var master_volume: float = 1.0;
-var music_volume: float = 1.0;
-var sfx_volume: float = 1.0;
-var voice_volume: float = 1.0;
+var music_volume: float = 0.75;
+var sfx_volume: float = 0.75;
+var voice_volume: float = 0.75;
 	
 func update_fmod_volumes():
 	#For some reason the busses cant be @onready, it didnt work when switching between (or reloading) scenes

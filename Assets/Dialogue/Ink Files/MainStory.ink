@@ -10,7 +10,7 @@
 ->DONE
 
 ===main_act1_scene1=== //COMPLETE
-\*It's been a pretty slow morning so far. Light traffic, uneventful news < Press SPACEBAR or Z to continue > #vo:main_act1_scene1
+\*It's been a pretty slow morning so far. Light traffic, uneventful news #vo:main_act1_scene1
 At least until...
 You knock on your boss's door. What could he be calling you in for?*
 Ah, finally. You may enter. And do treat the door handle with care #speaker:Unknown #vo:play
@@ -22,9 +22,9 @@ Well, if you want to be the one to argue with Chef... #speaker:Slip #vo:play
 ... I think I shall pass on that kind offer #speaker:Sam #expression:Scared #vo:play
 Anywhooo... we are officially at war! And Slip, you have won the audition to be our shining lead actor! #speaker:Sam #vo:play
 *Uhh, I don’t remember auditioning... #speaker:Slip #vo:play
-    Nevermind that #speaker:Sam #vo:play
+	Nevermind that #speaker:Sam #vo:play
 *Wait, did you say war? I’m too young to die! #speaker:Slip #vo:play
-    Not to that extreme, but a war nonetheless #speaker:Sam #vo:play
+	Not to that extreme, but a war nonetheless #speaker:Sam #vo:play
 -A message from up-top was emailed to us this morning #speaker:Sam #vo:return #vo:play
 Those big, dirty, disgusting, horrendous, rotten, no-good corporate suits have tempted me with a most glorious treasure! #speaker:Sam #vo:play
 A ticket to Feathers! On Broadway! Eeeeeeee!!! #speaker:Sam #anim:Shake #vo:play
@@ -77,8 +77,8 @@ Ah, right! Their name was... Pavo? They were some kind of music artist, I think 
 P- Pavo? It has been oh so many years... #speaker:Sam #vo:play
 Although, "friend" is not the word I would use to describe them #speaker:Sam #anim:Shake #vo:play
 *Is "buddy" a better word? #speaker:Slip #vo:play
-    Buddy. Pal. Friend. It's all the same, and Pavo is none of them #speaker:Sam #vo:play
-    Not anymore, that is #speaker:Sam #vo:play
+	Buddy. Pal. Friend. It's all the same, and Pavo is none of them #speaker:Sam #vo:play
+	Not anymore, that is #speaker:Sam #vo:play
 *Why's that? #speaker:Slip #vo:play
 -That green-feathered goose dared to sabotage me on my journey to the main stage! #speaker:Sam #vo:return #vo:play
 Twisting my teachings, and turning them around, back against me! #speaker:Sam #anim:Flip #vo:play
@@ -401,11 +401,10 @@ Ah, well… It’s… complicated, kid. Just feels like I need to change it up #
 	
 Wha- But, you’re amazing! My “djslipster” tattoo you made was so awesome! #speaker:Slip #expression:Confident #vo:play
 	
-… You’ll get it one day, kid. Anyways, lemme know what kind of design you want. We can talk about it more later #speaker:Nyx #expression:Default
+You’ll get it one day, kid. Anyways, lemme know what kind of design you want. We can talk about it more later #speaker:Nyx #expression:Default
 	
-	Slip: Ah… alright… How would a dragon feel? #speaker:Slip #expression:Nervous #vo:play
-	
-… Kid… At least, give it some thought, a’ight? #speaker:Nyx #expression:Default
+Ah… alright… How would a dragon feel? #speaker:Slip #expression:Nervous #vo:play
+Kid… At least, give it some thought, a’ight? #speaker:Nyx #expression:Default
 Keep at it, Slip #speaker:Nyx #expression:Default
 
 Later, Pierce #speaker:Slip #expression:Confused #vo:play
@@ -413,7 +412,7 @@ Later, Pierce #speaker:Slip #expression:Confused #vo:play
 
 ===Nyx_act2=== //COMPLETE
 \*Your phone buzzes* #vo:Nyx_act2
-Hey, Slip, I really appreciate these speedy deliveries! One less thing I’ve gotta worry about these days #speaker:Nyx #expression:Happy
+Hey, Slip, I really appreciate these speedy deliveries! One less thing I’ve gotta worry about these days #speaker:Nyx #expression:Happy #anim:Shake 
 
 No problem, but isn’t there any other way I can help? Y’know, with your shop closing and all? #speaker:Slip #expression:Confused #anim:Shake #vo:play
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://tghcf3lwvxj8"]
+[gd_scene load_steps=11 format=3 uid="uid://tghcf3lwvxj8"]
 
 [ext_resource type="Script" uid="uid://cj82nqijyv5b" path="res://Scripts/object.gd" id="1_afg43"]
 [ext_resource type="Script" uid="uid://c54uwxdm1f1ce" path="res://Scripts/automated_asset_type_3D_object.gd" id="1_hngf2"]
 [ext_resource type="Texture2D" uid="uid://dbkk0ee218gy0" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Down/confuwaymo_down_TOP(UPDATE2).PNG" id="2_67nc5"]
+[ext_resource type="PackedScene" path="res://Scenes/Audio/proximity_audio.tscn" id="2_e5ki1"]
 [ext_resource type="Texture2D" uid="uid://dp4y785g85ndg" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Down/confuwaymo_down_FRONT(UPDATE2).PNG" id="3_oyiom"]
 [ext_resource type="Texture2D" uid="uid://buf0562seemuj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Side/confuwaymo_side_FRONT(UPDATE2).PNG" id="5_e5ki1"]
 [ext_resource type="Texture2D" uid="uid://bghscf80h4c51" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Confused Up/confuwaymo_up_FRONT(UPDATE2).PNG" id="6_5ll4a"]
@@ -41,6 +42,9 @@ size = Vector3(25, 1.5, 50)
 
 [node name="WaymoConfusedDown" type="Node3D"]
 script = ExtResource("1_afg43")
+
+[node name="ProximityAudio" parent="." instance=ExtResource("2_e5ki1")]
+proximity_sound_path = "event:/SFX/ENV/objects/car_idle"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 collision_mask = 0
@@ -119,8 +123,3 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.25, 25)
 shape = SubResource("BoxShape3D_h87lh")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="CarIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/car_idle"
-event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
-autoplay = true

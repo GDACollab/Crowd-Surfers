@@ -20,8 +20,13 @@ size = Vector3(20, 2, 10)
 [node name="StaticBody3D" type="Node3D"]
 script = ExtResource("1_iv6gk")
 
-[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound") instance=ExtResource("2_52b1l")]
-proximity_sound = NodePath("../HydrantIdleSound")
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/ENV/objects/fire_hydrant_idle"
+event_guid = "{dea2b9c8-dc23-46fa-89f4-2551d7d1108c}"
+preload_event = false
+
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("2_52b1l")]
+proximity_sound_emitter = NodePath("../ProximitySound")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Metal"]]
 script = ExtResource("2_e4fio")
@@ -49,7 +54,3 @@ debug_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 5)
 shape = SubResource("BoxShape3D_o382t")
 debug_color = Color(0.972549, 0.25490198, 1, 1)
-
-[node name="HydrantIdleSound" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/ENV/objects/fire_hydrant_idle"
-event_guid = "{dea2b9c8-dc23-46fa-89f4-2551d7d1108c}"

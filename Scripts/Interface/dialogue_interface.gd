@@ -89,6 +89,9 @@ func _ready() -> void:
 	_load_main_panels()
 	_get_input()
 	
+	$ContinueButton.pressed.connect(_on_continue_button_pressed)
+	$SkipButton.pressed.connect(_on_skip_button_pressed)
+	
 	music_bus = FmodServer.get_bus("bus:/MUS")
 	Audio.set_bus_volume("bus:/MUS", music_bus.volume * music_bus_volume_scalar)
 	
@@ -99,13 +102,16 @@ func _ready() -> void:
 		
 	else:
 		Audio.unpause_persistent("mus_hub")
-		
+
 func _exit_tree() -> void:
 	Audio.set_bus_volume("bus:/MUS", music_bus.volume / music_bus_volume_scalar)
-	Audio.kill_persistent("mus_hub")
+	# End music if this dialogue is NOT instantiated within the main menu
+	if (get_tree().current_scene.name != "MainMenu"):
+		Audio.kill_persistent("mus_hub")
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("DialogueCancel") and can_skip):
+		FmodServer.play_one_shot("event:/SFX/UI/menu_back")
 		Inky.EndDialogue()
 		
 	if(Input.is_action_just_pressed("DialogueInteract")):
@@ -118,7 +124,7 @@ func _process(_delta: float) -> void:
 			
 	# Choice selection
 	if(choicesDisplayed):
-		if(Input.is_action_just_pressed("move_down")):
+		if(Input.is_action_just_pressed("ui_down")):
 			FmodServer.play_one_shot("event:/SFX/UI/dialogue_hover")
 			selectedButton._unhighlight()
 			
@@ -130,7 +136,7 @@ func _process(_delta: float) -> void:
 			selectedButton = _find_choice(currentChoiceIndex)
 			selectedButton._highlight()
 			
-		if(Input.is_action_just_pressed("move_up")):
+		if(Input.is_action_just_pressed("ui_up")):
 			FmodServer.play_one_shot("event:/SFX/UI/dialogue_hover")
 			selectedButton._unhighlight()
 			
@@ -226,7 +232,7 @@ func _animate_panels():
 		awaitingAnimations = true
 		var panelIndex = 1
 		while panelIndex < dialoguePanels.size():
-			var currentPanel = dialoguePanels[panelIndex]
+			var currentPanel := dialoguePanels[panelIndex]
 			
 			if(currentPanel.pivot_offset.x > 0 and panelIndex > 1):
 				currentPanel.pivot_offset.x = currentPanel.size.x
@@ -278,6 +284,7 @@ func _load_main_panels():
 ##Instances correct amount of choice boxes and gets choice index
 func _display_choices():
 	continue_arrow.visible = false
+	currentChoiceIndex = 0
 	#Adjust portraits
 	leftPortrait.self_modulate = Color.WHITE
 	leftPortrait.scale = Vector2(1.2, 1.2)

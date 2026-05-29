@@ -39,7 +39,8 @@ enum MainMenuPage {
 	ORDERS = 2,
 	VOICEMAILS = 3,
 	SETTINGS = 4,
-	SOCIAL_MEDIA = 5
+	SOCIAL_MEDIA = 5,
+	DIALOGUE = 6
 }
 var page: MainMenuPage = MainMenuPage.MAIN
 
@@ -59,9 +60,13 @@ func _ready() -> void:
 		
 	else:
 		Audio.unpause_persistent("mus_hub")
+		
+	Inky.DialogueStarted.connect(_on_dialogue_start)
+	Inky.DialogueEnded.connect(_on_dialogue_end)
 	
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_back")):
+		$UIAudio.play_back_sound()
 		match page:
 			MainMenuPage.MAIN:
 				_on_exit_button_pressed()
@@ -84,6 +89,12 @@ func _process(delta: float) -> void:
 		velocity = velocity.normalized() * background_max_speed
 	backgrounds_closer.position += velocity
 	backgrounds_farther.position = start_background_position.lerp(backgrounds_closer.position, far_background_move_percentage)
+
+func _on_dialogue_start() -> void:
+	page = MainMenuPage.DIALOGUE
+	
+func _on_dialogue_end() -> void:
+	page = MainMenuPage.VOICEMAILS
 	
 func _on_exit_button_pressed() -> void:
 	SceneFadeTransition.transition_to_scene(load("res://Scenes/UI Menus/TitleScreen.tscn"))
@@ -98,6 +109,8 @@ func _on_orders_button_pressed() -> void:
 	orders_animation_player.play("open_orders")
 	orders_scene.visible = true
 	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	
 	page = MainMenuPage.ORDERS
 	set_transitioning()
 	
@@ -110,6 +123,8 @@ func _on_voicemails_button_pressed() -> void:
 	voicemails_animation_player.play("open_voicemails")
 	voicemails_scene.visible = true
 	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	
 	page = MainMenuPage.VOICEMAILS
 	set_transitioning()
 	
@@ -120,6 +135,8 @@ func _on_settings_button_pressed() -> void:
 	settings_animation_player.play("open_settings")
 	settings_scene.visible = true
 	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	
 	page = MainMenuPage.SETTINGS
 	set_transitioning()
 	
@@ -129,6 +146,8 @@ func _on_social_media_button_pressed() -> void:
 		
 	social_media_animation_player.play("open_social_media")
 	social_media_scene.visible = true
+	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
 	
 	page = MainMenuPage.SOCIAL_MEDIA
 	set_transitioning()
@@ -142,6 +161,8 @@ func _on_orders_back_button_pressed() -> void:
 	orders_animation_player.play_backwards("open_orders")
 	orders_animation_player.seek(animation_time * 0.8, true)
 	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	
 	page = MainMenuPage.MAIN
 	set_transitioning()
 	
@@ -152,6 +173,8 @@ func _on_voicemails_back_button_pressed() -> void:
 	voicemails_button.disabled = false
 	voicemails_animation_player.play_backwards("open_voicemails")
 	voicemails_animation_player.seek(animation_time * 0.8, true)
+	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
 	
 	page = MainMenuPage.MAIN
 	set_transitioning()
@@ -164,6 +187,8 @@ func _on_settings_back_button_pressed() -> void:
 	settings_animation_player.play_backwards("open_settings")
 	settings_animation_player.seek(animation_time * 0.8, true)
 	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	
 	page = MainMenuPage.MAIN
 	set_transitioning()
 	
@@ -175,6 +200,8 @@ func _on_social_media_back_button_pressed() -> void:
 		
 	social_media_animation_player.play_backwards("open_social_media")
 	social_media_animation_player.seek(animation_time * 0.8, true)
+	
+	main_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
 	
 	page = MainMenuPage.MAIN
 	set_transitioning()

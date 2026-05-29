@@ -42,15 +42,13 @@ size = Vector3(25, 2.5, 50)
 [node name="Bus1Full" type="Node3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound") instance=ExtResource("1_ykd5o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0053619e-06, 13, 23)
-collision_layer = 0
-collision_mask = 2
-proximity_sound = NodePath("../BusIdleSound")
+[node name="ProximityAudio2" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("1_ykd5o")]
+proximity_sound_emitter = NodePath("ProximitySound")
 
-[node name="BusIdleSound" type="FmodEventEmitter3D" parent="."]
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="ProximityAudio2"]
 event_name = "event:/SFX/ENV/objects/bus_idle"
 event_guid = "{8e5b24e1-c0a9-45a8-9e0a-4cb56d0593cb}"
+preload_event = false
 "fmod_parameters/random sample/id" = 5236919471461692415
 "fmod_parameters/random sample" = 0
 "fmod_parameters/random sample/variant_type" = 2
