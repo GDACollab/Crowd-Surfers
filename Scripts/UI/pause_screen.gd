@@ -37,6 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				node_to_focus = buttons_container.get_node("ResumeButton")
 			PauseScreenPage.CONTROLS:
 				node_to_focus = controls_container.get_node("BackButton")
+		await get_tree().create_timer(0.01).timeout
 		node_to_focus.grab_focus()
 	
 	# Back button behavior
