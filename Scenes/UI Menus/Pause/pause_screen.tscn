@@ -820,6 +820,10 @@ offset_right = 1141.6667
 offset_bottom = -410.0
 rotation = 0.17278759
 scale = Vector2(0.9, 0.9)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 texture_normal = ExtResource("10_edyq6")
 texture_click_mask = ExtResource("11_pkbh5")
 script = ExtResource("10_en6uu")
@@ -1197,6 +1201,8 @@ libraries = {
 [node name="Vignette" parent="." instance=ExtResource("44_qb0ju")]
 layout_mode = 0
 
+[connection signal="focus_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="PhoneOutline/PhoneBackground/ControlsContainer/BackButton" to="." method="_on_controls_back_button_pressed"]

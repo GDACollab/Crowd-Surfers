@@ -26,7 +26,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			(event.is_action("ui_up") or event.is_action("ui_down") or 
 			 event.is_action("ui_left") or event.is_action("ui_right"))):
 		has_control_focus = true
-		buttons_container.get_node("ResumeButton").grab_focus()
+		var node_to_focus: Control
+		match page:
+			PauseScreenPage.SETTINGS:
+				node_to_focus = settings_scene.get_node("SettingsBody/BackButton")
+			PauseScreenPage.BUTTONS:
+				node_to_focus = buttons_container.get_node("ResumeButton")
+			PauseScreenPage.CONTROLS:
+				node_to_focus = controls_container.get_node("BackButton")
+		node_to_focus.grab_focus()
+				
 
 func _on_resume_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
@@ -44,6 +53,9 @@ func _on_controls_button_pressed() -> void:
 	controls_container.visible = true
 	page = PauseScreenPage.CONTROLS
 	phone_animation_player.play("rotate_landscape")
+	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	has_control_focus = false
 
 func _on_controls_back_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.CONTROLS):
@@ -52,6 +64,9 @@ func _on_controls_back_button_pressed() -> void:
 	start_transitioning()
 	page = PauseScreenPage.BUTTONS
 	phone_animation_player.play("rotate_portrait")
+	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	has_control_focus = false
 	
 func _on_settings_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.BUTTONS):
@@ -63,6 +78,9 @@ func _on_settings_button_pressed() -> void:
 	page = PauseScreenPage.SETTINGS
 	phone_animation_player.play("open_settings")
 	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	has_control_focus = false
+	
 func _on_settings_back_button_pressed() -> void:
 	if (transitioning or page != PauseScreenPage.SETTINGS):
 		return
@@ -71,6 +89,9 @@ func _on_settings_back_button_pressed() -> void:
 	start_transitioning()
 	page = PauseScreenPage.BUTTONS
 	phone_animation_player.play("close_settings")
+	
+	buttons_container.focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	has_control_focus = false
 	
 	SaveDataManager.save_data()
 
