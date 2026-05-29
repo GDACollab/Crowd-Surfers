@@ -29,6 +29,10 @@ func _ready() -> void:
 	clear_time_sprite.scale = Vector2.ZERO
 	best_time_sprite.scale = Vector2.ZERO
 	
+	# dont grab focus until this ui is opened
+	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	
+
 func _process(delta: float) -> void:
 	level_clear_holder.scale = level_clear_holder.scale.lerp(Vector2.ONE, delta)
 	clear_time_holder.scale = clear_time_holder.scale.lerp(Vector2.ONE, delta)
@@ -50,9 +54,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			(event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") or 
 			 event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"))):
 		has_control_focus = true
-		$Background/ContinueButton.grab_focus.call_deferred()
+		$Background/ContinueButton.grab_focus()
 		
 func open_ui() -> void:
+	# Disable pause holder to stop interfering with this ui
+	$"../PauseHolder".focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
+	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_INHERITED
+	has_control_focus = false
+	
 	#don't adjust save file if not assigned
 	if level_number > 0:
 		SaveDataManager.levels_complete[level_number-1] = true
