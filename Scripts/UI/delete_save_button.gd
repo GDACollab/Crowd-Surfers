@@ -5,12 +5,15 @@ extends "res://Scripts/UI/button_highlight.gd"
 @onready var delete_sound: FmodEventEmitter2D = $DeleteSound
 
 var hold_time: float = 0
+var finished: bool = false
+
 signal button_hold_finished
 
 func _ready() -> void:
 	button_hold_finished.connect(delete_sound.play)
 
 func _process(delta: float) -> void:
+	if finished: return
 	# Update hold_time
 	if button_pressed:
 		hold_time += delta
@@ -22,6 +25,13 @@ func _process(delta: float) -> void:
 		hold_time = 0
 	elif hold_time >= required_hold_time:
 		button_hold_finished.emit()
-		hold_time = 0
+		finished = true
+		hold_time = 1
 	
-	#print(hold_time)
+	_update_fill_bar()
+
+func _update_fill_bar() -> void:
+	var mat: ShaderMaterial = material
+	var hold_progress := hold_time / required_hold_time
+	hold_progress = clampf(hold_progress, 0, 1)
+	mat.set_shader_parameter("hold_progress", hold_progress)
