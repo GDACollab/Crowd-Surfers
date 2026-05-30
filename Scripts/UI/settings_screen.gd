@@ -67,5 +67,5 @@ func _on_fullscreen_button_pressed() -> void:
 
 func _on_delete_save_button_pressed() -> void:
 	SaveDataManager.reset_data()
-	var current_scene := get_tree().current_scene.scene_file_path
-	SceneFadeTransition.transition_to_scene_with_loading(current_scene)
+	var main_scene: String = ProjectSettings.get_setting("application/run/main_scene")
+	SceneFadeTransition.transition_to_scene_with_loading(main_scene)
