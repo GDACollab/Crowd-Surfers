@@ -55,3 +55,14 @@ func _on_voice_slider_drag_started() -> void:
 func _on_voice_slider_drag_ended(_value_changed: bool) -> void:
 	Audio.pause_persistent("voice_sample")
 	Audio.registry["voice_sample"]["pausePosition"] += 200
+
+
+func _on_fullscreen_button_pressed() -> void:
+	var mode := DisplayServer.window_get_mode()
+	var is_window: bool = mode != DisplayServer.WINDOW_MODE_FULLSCREEN
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_window else DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+
+func _on_delete_save_button_pressed() -> void:
+	pass # Replace with function body.
