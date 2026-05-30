@@ -1,9 +1,14 @@
 extends "res://Scripts/UI/button_highlight.gd"
 
-@export var required_hold_time: float = 2
+@export var required_hold_time: float = 1
+
+@onready var delete_sound: FmodEventEmitter2D = $DeleteSound
 
 var hold_time: float = 0
 signal button_hold_finished
+
+func _ready() -> void:
+	button_hold_finished.connect(delete_sound.play)
 
 func _process(delta: float) -> void:
 	# Update hold_time

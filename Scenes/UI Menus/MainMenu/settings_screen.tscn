@@ -33,9 +33,10 @@ offset_bottom = 40.0
 pivot_offset = Vector2(0, 533.333)
 script = ExtResource("1_p0nga")
 
-[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons", "sliders") instance=ExtResource("1_6kqvo")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons", "hover_buttons", "sliders") instance=ExtResource("1_6kqvo")]
 confirm_buttons = [NodePath("../SettingsBody/FullscreenButton")]
 back_buttons = [NodePath("../SettingsBody/BackButton")]
+hover_buttons = [NodePath("../SettingsBody/DeleteSaveButton")]
 sliders = [NodePath("../SettingsBody/MasterSliderHolder/MasterSlider"), NodePath("../SettingsBody/MusicSliderHolder/MusicSlider"), NodePath("../SettingsBody/SFXSliderHolder/SFXSlider"), NodePath("../SettingsBody/VoiceSliderHolder/VoiceSlider")]
 
 [node name="SettingsText" type="TextureRect" parent="."]
@@ -347,6 +348,8 @@ autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="DeleteSound" type="FmodEventEmitter2D" parent="SettingsBody/DeleteSaveButton"]
+event_name = "event:/SFX/UI/menu_back"
+event_guid = "{66af70c1-1806-4860-b2e8-d4690b982f60}"
 
 [connection signal="focus_entered" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_focus_entered"]
 [connection signal="focus_exited" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_focus_exited"]
