@@ -29,6 +29,7 @@ func _ready() -> void:
 		
 	for button in hover_buttons:
 		button.mouse_entered.connect(play_hover_sound)
+		button.focus_entered.connect(play_hover_sound)
 	
 	for slider in sliders:
 		slider.focus_entered.connect(play_hover_sound)
