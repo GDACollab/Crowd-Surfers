@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://cis5mpf3o7p8i"]
+
+[ext_resource type="Script" uid="uid://67tfyb8rwysc" path="res://Scripts/Audio/now_playing.gd" id="1_elhs8"]
+[ext_resource type="Texture2D" uid="uid://co27dhjp6fyk6" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_1_white.png" id="2_elhs8"]
+[ext_resource type="Texture2D" uid="uid://mr8y00u61ixy" path="res://Assets/Art/UI/Loading/disc_1_small.png" id="2_h1vrq"]
+[ext_resource type="Texture2D" uid="uid://cldtt41hi7ahb" path="res://Assets/Art/UI/Loading/disc_2_small.png" id="3_elhs8"]
+
+[sub_resource type="Animation" id="Animation_jaai6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPContainer/LoadingDisc:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_h1vrq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NPContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -75)]
+}
+
+[sub_resource type="Animation" id="Animation_3aetr"]
+resource_name = "slide_in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 4.5, 5),
+"transitions": PackedFloat32Array(0.22531283, 1, 0.28717512, 0.22531283),
+"update": 0,
+"values": [Vector2(0, -75), Vector2(0, 15), Vector2(0, 15), Vector2(0, -75)]
+}
+
+[sub_resource type="Animation" id="Animation_qp5b4"]
+resource_name = "loading_image_animate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPContainer/LoadingDisc:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_h1vrq"), ExtResource("3_elhs8")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0yno"]
+_data = {
+&"RESET": SubResource("Animation_jaai6"),
+&"banner": SubResource("Animation_3aetr"),
+&"loading_image_animate": SubResource("Animation_qp5b4")
+}
+
+[node name="NowPlaying" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_elhs8")
+continue_label_text = "Marlowe Nash - IYKYK"
+
+[node name="NPContainer" type="Node" parent="."]
+
+[node name="ContinueLabelBacking" type="Sprite2D" parent="NPContainer"]
+position = Vector2(1524.0001, -0.5999942)
+rotation = 3.1415925
+scale = Vector2(0.075, -0.625)
+texture = ExtResource("2_elhs8")
+centered = false
+
+[node name="ContinueLabel" type="RichTextLabel" parent="NPContainer"]
+offset_right = 1.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "aaefglsjghkldjsfg"
+autowrap_mode = 2
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LoadingDisc" type="Sprite2D" parent="NPContainer"]
+position = Vector2(1429.6002, 23.199997)
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("2_h1vrq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s0yno")
+}
+autoplay = "loading_image_animate"
