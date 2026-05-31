@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://kvs3yueyscim"]
+[gd_scene load_steps=22 format=3 uid="uid://kvs3yueyscim"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6kqvo"]
 [ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/UI/settings_screen.gd" id="1_p0nga"]
@@ -7,15 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="5_enenp"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="6_7ddfd"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="7_gisvi"]
+[ext_resource type="Texture2D" uid="uid://dytw6q6n1p34" path="res://Assets/Art/UI/MainMenu/Settings/UI_Icon_ToWindowedButtonFinal.png" id="8_fw4jo"]
 [ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="8_gisvi"]
 [ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="9_0ww7i"]
+[ext_resource type="Script" uid="uid://e01fvay3343i" path="res://Scripts/UI/fullscreen_toggle_button.gd" id="9_mbcj8"]
+[ext_resource type="Texture2D" uid="uid://dp8thu6bvxxh7" path="res://Assets/Art/UI/MainMenu/Settings/UI_Icon_ToFullscreenButtonFinal.png" id="10_kidrl"]
 [ext_resource type="Texture2D" uid="uid://nbgsgeqhleou" path="res://Assets/Art/UI/MainMenu/Settings/grabber_normal.png" id="10_r363m"]
 [ext_resource type="Texture2D" uid="uid://0x5hi2gaqqlv" path="res://Assets/Art/UI/MainMenu/Settings/grabber_hover.png" id="11_2r2op"]
 [ext_resource type="Texture2D" uid="uid://po61v1jk3t0e" path="res://Assets/Art/UI/MainMenu/Settings/slider_track.png" id="11_hnq8v"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/hold_button.gdshader" id="13_hxo2j"]
+[ext_resource type="Shader" uid="uid://2pv2sv74ofnj" path="res://Scripts/Shaders/hold_button.gdshader" id="13_hxo2j"]
 [ext_resource type="Texture2D" uid="uid://by1u3h1jmh3n5" path="res://Assets/Art/UI/button_small.png" id="13_vyrmn"]
 [ext_resource type="BitMap" uid="uid://cdo5beqdsnkpk" path="res://Assets/Art/UI/button_small_click_mask.png" id="14_5t1eb"]
-[ext_resource type="Script" path="res://Scripts/UI/delete_save_button.gd" id="15_5t1eb"]
+[ext_resource type="Script" uid="uid://wstfscbqumn8" path="res://Scripts/UI/delete_save_button.gd" id="15_5t1eb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2r2op"]
 content_margin_left = 200.0
@@ -83,9 +86,11 @@ focus_neighbor_left = NodePath("../BackButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../MasterSliderHolder/MasterSlider")
-texture_normal = ExtResource("5_enenp")
+texture_normal = ExtResource("8_fw4jo")
 texture_click_mask = ExtResource("6_7ddfd")
-script = ExtResource("7_gisvi")
+script = ExtResource("9_mbcj8")
+to_windowed_texture = ExtResource("8_fw4jo")
+to_fullscreen_texture = ExtResource("10_kidrl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsBody"]
 visible = false
@@ -366,7 +371,7 @@ event_guid = "{66af70c1-1806-4860-b2e8-d4690b982f60}"
 [connection signal="focus_exited" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="SettingsBody/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_pressed"]
 [connection signal="value_changed" from="SettingsBody/MasterSliderHolder/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="SettingsBody/MusicSliderHolder/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="SettingsBody/SFXSliderHolder/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
