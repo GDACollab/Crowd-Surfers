@@ -1,11 +1,48 @@
-[gd_scene load_steps=12 format=3 uid="uid://cis5mpf3o7p8i"]
+[gd_scene load_steps=14 format=3 uid="uid://cis5mpf3o7p8i"]
 
 [ext_resource type="Script" uid="uid://67tfyb8rwysc" path="res://Scripts/Audio/now_playing.gd" id="1_elhs8"]
 [ext_resource type="Texture2D" uid="uid://co27dhjp6fyk6" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_1_white.png" id="2_elhs8"]
 [ext_resource type="Texture2D" uid="uid://mr8y00u61ixy" path="res://Assets/Art/UI/Loading/disc_1_small.png" id="2_h1vrq"]
 [ext_resource type="Texture2D" uid="uid://cldtt41hi7ahb" path="res://Assets/Art/UI/Loading/disc_2_small.png" id="3_elhs8"]
 [ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="3_ivcxm"]
-[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="4_v16dj"]
+[ext_resource type="FontVariation" uid="uid://dm26d870h8e4d" path="res://Assets/Font/lamebrain_font_variation.tres" id="5_ivcxm"]
+
+[sub_resource type="Animation" id="Animation_ivcxm"]
+resource_name = "loading_disc"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingDisc:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_h1vrq"), ExtResource("3_elhs8")]
+}
+
+[sub_resource type="Animation" id="Animation_v16dj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingDisc:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_h1vrq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytm1i"]
+_data = {
+&"RESET": SubResource("Animation_v16dj"),
+&"loading_disc": SubResource("Animation_ivcxm")
+}
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ivcxm"]
 content_margin_left = 25.0
@@ -57,28 +94,10 @@ tracks/0/keys = {
 "values": [-75.0, 15.0, 15.0, -75.0]
 }
 
-[sub_resource type="Animation" id="Animation_qp5b4"]
-resource_name = "loading_image_animate"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NPContainer/LoadingDisc:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_h1vrq"), ExtResource("3_elhs8")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s0yno"]
 _data = {
 &"RESET": SubResource("Animation_jaai6"),
-&"banner": SubResource("Animation_3aetr"),
-&"loading_image_animate": SubResource("Animation_qp5b4")
+&"banner": SubResource("Animation_3aetr")
 }
 
 [node name="NowPlaying" type="Control"]
@@ -89,23 +108,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_elhs8")
-continue_label_text = "Marlowe Nash - IYKYK "
+continue_label_text = " IYKYK - Marlowe Nash "
 
 [node name="NPContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1.0
+offset_left = -19.0
 offset_top = -75.0
 offset_right = 210.0
-offset_bottom = -7.0
+offset_bottom = -1.0
 grow_horizontal = 0
 
 [node name="LoadingDisc" type="TextureRect" parent="NPContainer"]
 layout_mode = 2
 texture = ExtResource("2_h1vrq")
 expand_mode = 3
+
+[node name="LoadingDiscAnimationPlayer" type="AnimationPlayer" parent="NPContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytm1i")
+}
+autoplay = "loading_disc"
 
 [node name="LabelBackground" type="PanelContainer" parent="NPContainer"]
 layout_mode = 2
@@ -117,14 +142,15 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_fonts/normal_font = ExtResource("3_ivcxm")
-theme_override_fonts/italics_font = ExtResource("4_v16dj")
+theme_override_fonts/italics_font = ExtResource("5_ivcxm")
 theme_override_fonts/mono_font = ExtResource("3_ivcxm")
-theme_override_font_sizes/italics_font_size = 65
+theme_override_font_sizes/italics_font_size = 55
 bbcode_enabled = true
 text = "[i] e "
 fit_content = true
 autowrap_mode = 0
-horizontal_alignment = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

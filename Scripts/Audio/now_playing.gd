@@ -13,7 +13,7 @@ func _ready() -> void:
 	continue_label.text = "[i]" + continue_label_text
 	
 	var font: Font = continue_label.get_theme_font("italics_font")	
-	var font_size: Vector2 = font.get_string_size("[i]" + continue_label_text, HORIZONTAL_ALIGNMENT_RIGHT, -1, continue_label.get_theme_font_size("font_size"))
+	var font_size: Vector2 = font.get_string_size("[i]" + continue_label_text, HORIZONTAL_ALIGNMENT_CENTER, -1, continue_label.get_theme_font_size("font_size"))
 	
 	container.position.x -= font_size.x
 	print(font_size)
