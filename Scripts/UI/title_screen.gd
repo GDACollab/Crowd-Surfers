@@ -39,11 +39,14 @@ func _ready():
 		title_music = Audio.create_persistent("mus_title", "event:/MUS/title")
 		title_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
 		title_music.start()
+		$NowPlaying.play_banner_animation()
 		
 	else:
 		title_music = Audio.get_persistent_instance("mus_title")
 		title_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
 		title_music.set_parameter_by_name("muffling", 0.)
+		$NowPlaying.hold_time = 1.0
+		$NowPlaying.play_banner_animation()
 		Audio.unpause_persistent("mus_title")
 
 func _process(delta: float):	
