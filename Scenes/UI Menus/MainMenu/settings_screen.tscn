@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kvs3yueyscim"]
+[gd_scene load_steps=22 format=3 uid="uid://kvs3yueyscim"]
 
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="1_6kqvo"]
 [ext_resource type="Script" uid="uid://c46am33cb552l" path="res://Scripts/UI/settings_screen.gd" id="1_p0nga"]
@@ -7,20 +7,32 @@
 [ext_resource type="Texture2D" uid="uid://pm3j4qlblbm1" path="res://Assets/Art/UI/back.png" id="5_enenp"]
 [ext_resource type="BitMap" uid="uid://v4cj72lsijsr" path="res://Assets/Art/UI/back_click_mask.png" id="6_7ddfd"]
 [ext_resource type="Script" uid="uid://cmlkjpn3vpxc1" path="res://Scripts/UI/button_highlight.gd" id="7_gisvi"]
+[ext_resource type="Texture2D" uid="uid://dytw6q6n1p34" path="res://Assets/Art/UI/MainMenu/Settings/UI_Icon_ToWindowedButtonFinal.png" id="8_fw4jo"]
 [ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="8_gisvi"]
 [ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="9_0ww7i"]
+[ext_resource type="Script" uid="uid://e01fvay3343i" path="res://Scripts/UI/fullscreen_toggle_button.gd" id="9_mbcj8"]
+[ext_resource type="Texture2D" uid="uid://dp8thu6bvxxh7" path="res://Assets/Art/UI/MainMenu/Settings/UI_Icon_ToFullscreenButtonFinal.png" id="10_kidrl"]
 [ext_resource type="Texture2D" uid="uid://nbgsgeqhleou" path="res://Assets/Art/UI/MainMenu/Settings/grabber_normal.png" id="10_r363m"]
 [ext_resource type="Texture2D" uid="uid://0x5hi2gaqqlv" path="res://Assets/Art/UI/MainMenu/Settings/grabber_hover.png" id="11_2r2op"]
 [ext_resource type="Texture2D" uid="uid://po61v1jk3t0e" path="res://Assets/Art/UI/MainMenu/Settings/slider_track.png" id="11_hnq8v"]
+[ext_resource type="Shader" uid="uid://2pv2sv74ofnj" path="res://Scripts/Shaders/hold_button.gdshader" id="13_hxo2j"]
+[ext_resource type="Texture2D" uid="uid://by1u3h1jmh3n5" path="res://Assets/Art/UI/button_small.png" id="13_vyrmn"]
+[ext_resource type="BitMap" uid="uid://cdo5beqdsnkpk" path="res://Assets/Art/UI/button_small_click_mask.png" id="14_5t1eb"]
+[ext_resource type="Script" uid="uid://wstfscbqumn8" path="res://Scripts/UI/delete_save_button.gd" id="15_5t1eb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2r2op"]
-content_margin_left = 160.0
-content_margin_right = 160.0
+content_margin_left = 200.0
+content_margin_right = 200.0
 texture = ExtResource("11_hnq8v")
 expand_margin_left = 20.0
-expand_margin_top = 40.0
+expand_margin_top = 60.0
 expand_margin_right = 20.0
-expand_margin_bottom = 40.0
+expand_margin_bottom = 60.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fw4jo"]
+shader = ExtResource("13_hxo2j")
+shader_parameter/hold_progress = 0.0
+shader_parameter/brightness = 0.1
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -30,8 +42,10 @@ offset_bottom = 40.0
 pivot_offset = Vector2(0, 533.333)
 script = ExtResource("1_p0nga")
 
-[node name="UIAudio" parent="." node_paths=PackedStringArray("back_buttons", "sliders") instance=ExtResource("1_6kqvo")]
+[node name="UIAudio" parent="." node_paths=PackedStringArray("confirm_buttons", "back_buttons", "hover_buttons", "sliders") instance=ExtResource("1_6kqvo")]
+confirm_buttons = [NodePath("../SettingsBody/FullscreenButton")]
 back_buttons = [NodePath("../SettingsBody/BackButton")]
+hover_buttons = [NodePath("../SettingsBody/DeleteSaveButton")]
 sliders = [NodePath("../SettingsBody/MasterSliderHolder/MasterSlider"), NodePath("../SettingsBody/MusicSliderHolder/MusicSlider"), NodePath("../SettingsBody/SFXSliderHolder/SFXSlider"), NodePath("../SettingsBody/VoiceSliderHolder/VoiceSlider")]
 
 [node name="SettingsText" type="TextureRect" parent="."]
@@ -51,16 +65,32 @@ texture = ExtResource("4_pyejf")
 [node name="BackButton" type="TextureButton" parent="SettingsBody"]
 layout_mode = 0
 offset_left = 135.0
-offset_top = 349.0
+offset_top = 342.0
 offset_right = 315.0
-offset_bottom = 529.0
+offset_bottom = 522.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
+focus_neighbor_right = NodePath("../FullscreenButton")
 focus_neighbor_bottom = NodePath("../MasterSliderHolder/MasterSlider")
 texture_normal = ExtResource("5_enenp")
 texture_click_mask = ExtResource("6_7ddfd")
 script = ExtResource("7_gisvi")
+
+[node name="FullscreenButton" type="TextureButton" parent="SettingsBody"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 275.0
+offset_right = 716.0
+offset_bottom = 455.0
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../MasterSliderHolder/MasterSlider")
+texture_normal = ExtResource("8_fw4jo")
+texture_click_mask = ExtResource("6_7ddfd")
+script = ExtResource("9_mbcj8")
+to_windowed_texture = ExtResource("8_fw4jo")
+to_fullscreen_texture = ExtResource("10_kidrl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsBody"]
 visible = false
@@ -75,9 +105,9 @@ size_flags_horizontal = 3
 [node name="MasterVolumeText" type="RichTextLabel" parent="SettingsBody"]
 layout_mode = 0
 offset_left = 140.0
-offset_top = 536.00006
+offset_top = 533.1653
 offset_right = 665.0
-offset_bottom = 602.00006
+offset_bottom = 599.1653
 rotation = -0.17453292
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -85,7 +115,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("8_gisvi")
 theme_override_fonts/italics_font = ExtResource("9_0ww7i")
 theme_override_fonts/mono_font = ExtResource("8_gisvi")
-theme_override_font_sizes/italics_font_size = 65
+theme_override_font_sizes/italics_font_size = 55
 bbcode_enabled = true
 text = "[i] MASTER VOLUME "
 fit_content = true
@@ -96,9 +126,9 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 80)
 anchors_preset = 0
 offset_left = 152.15536
-offset_top = 604.9366
+offset_top = 597.9366
 offset_right = 677.1554
-offset_bottom = 684.9366
+offset_bottom = 677.9366
 rotation = -0.17453292
 
 [node name="MasterSlider" type="HSlider" parent="SettingsBody/MasterSliderHolder"]
@@ -108,13 +138,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -209.66045
-offset_top = -46.865395
-offset_right = 110.33957
-offset_bottom = 13.134605
+offset_left = -236.426
+offset_top = -90.0
+offset_right = 163.574
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(54.375, 8)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../BackButton")
@@ -130,9 +160,9 @@ step = 0.0
 [node name="MusicVolumeText" type="RichTextLabel" parent="SettingsBody"]
 layout_mode = 0
 offset_left = 140.0
-offset_top = 687.66046
+offset_top = 669.826
 offset_right = 665.0
-offset_bottom = 753.66046
+offset_bottom = 735.826
 rotation = -0.17453292
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -140,7 +170,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("8_gisvi")
 theme_override_fonts/italics_font = ExtResource("9_0ww7i")
 theme_override_fonts/mono_font = ExtResource("8_gisvi")
-theme_override_font_sizes/italics_font_size = 65
+theme_override_font_sizes/italics_font_size = 55
 bbcode_enabled = true
 text = "[i] MUSIC VOLUME "
 fit_content = true
@@ -150,10 +180,10 @@ horizontal_alignment = 1
 [node name="MusicSliderHolder" type="Control" parent="SettingsBody"]
 custom_minimum_size = Vector2(0, 80)
 anchors_preset = 0
-offset_left = 152.15536
-offset_top = 756.597
-offset_right = 677.1554
-offset_bottom = 836.597
+offset_left = 152.155
+offset_top = 734.597
+offset_right = 677.155
+offset_bottom = 814.597
 rotation = -0.17453292
 
 [node name="MusicSlider" type="HSlider" parent="SettingsBody/MusicSliderHolder"]
@@ -163,13 +193,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -209.66045
-offset_top = -46.865395
-offset_right = 110.33957
-offset_bottom = 13.134605
+offset_left = -236.426
+offset_top = -90.0
+offset_right = 163.574
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(54.375, 8)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../MasterSliderHolder/MasterSlider")
@@ -185,9 +215,9 @@ step = 0.0
 [node name="SFXVolumeText" type="RichTextLabel" parent="SettingsBody"]
 layout_mode = 0
 offset_left = 139.0
-offset_top = 839.3208
+offset_top = 806.486
 offset_right = 664.0
-offset_bottom = 905.3208
+offset_bottom = 872.486
 rotation = -0.17453292
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
@@ -195,7 +225,7 @@ theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921
 theme_override_fonts/normal_font = ExtResource("8_gisvi")
 theme_override_fonts/italics_font = ExtResource("9_0ww7i")
 theme_override_fonts/mono_font = ExtResource("8_gisvi")
-theme_override_font_sizes/italics_font_size = 65
+theme_override_font_sizes/italics_font_size = 55
 bbcode_enabled = true
 text = "[i] SFX VOLUME "
 fit_content = true
@@ -205,10 +235,10 @@ horizontal_alignment = 1
 [node name="SFXSliderHolder" type="Control" parent="SettingsBody"]
 custom_minimum_size = Vector2(0, 80)
 anchors_preset = 0
-offset_left = 151.15536
-offset_top = 908.2574
-offset_right = 676.1554
-offset_bottom = 988.2574
+offset_left = 151.155
+offset_top = 871.257
+offset_right = 676.155
+offset_bottom = 951.257
 rotation = -0.17453292
 
 [node name="SFXSlider" type="HSlider" parent="SettingsBody/SFXSliderHolder"]
@@ -218,13 +248,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -209.66045
-offset_top = -46.865395
-offset_right = 110.33957
-offset_bottom = 13.134605
+offset_left = -236.426
+offset_top = -90.0
+offset_right = 163.574
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(54.375, 8)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../MusicSliderHolder/MusicSlider")
@@ -237,13 +267,33 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_2r2op")
 max_value = 1.0
 step = 0.0
 
+[node name="VoiceVolumeText" type="RichTextLabel" parent="SettingsBody"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 935.331
+offset_right = 670.0
+offset_bottom = 1001.33105
+rotation = -0.17453292
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("8_gisvi")
+theme_override_fonts/italics_font = ExtResource("9_0ww7i")
+theme_override_fonts/mono_font = ExtResource("8_gisvi")
+theme_override_font_sizes/italics_font_size = 55
+bbcode_enabled = true
+text = "[i] VOICE VOLUME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
 [node name="VoiceSliderHolder" type="Control" parent="SettingsBody"]
 custom_minimum_size = Vector2(0, 80)
 anchors_preset = 0
-offset_left = 157.15536
-offset_top = 1062.1018
-offset_right = 682.1554
-offset_bottom = 1142.1018
+offset_left = 157.155
+offset_top = 1010.102
+offset_right = 682.155
+offset_bottom = 1090.102
 rotation = -0.17453292
 
 [node name="VoiceSlider" type="HSlider" parent="SettingsBody/VoiceSliderHolder"]
@@ -253,18 +303,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -209.66045
-offset_top = -46.865395
-offset_right = 110.33957
-offset_bottom = 13.134605
+offset_left = -236.426
+offset_top = -90.0
+offset_right = 163.574
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(54.375, 8)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../SFXSliderHolder/SFXSlider")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
+focus_neighbor_bottom = NodePath("../../DeleteSaveButton")
 theme_override_constants/center_grabber = 1
 theme_override_icons/grabber = ExtResource("10_r363m")
 theme_override_icons/grabber_highlight = ExtResource("11_2r2op")
@@ -272,33 +322,64 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_2r2op")
 max_value = 1.0
 step = 0.0
 
-[node name="VoiceVolumeText" type="RichTextLabel" parent="."]
+[node name="DeleteSaveButton" type="TextureButton" parent="SettingsBody"]
+material = SubResource("ShaderMaterial_fw4jo")
 layout_mode = 0
-offset_left = 145.0
-offset_top = 993.1653
-offset_right = 670.0
-offset_bottom = 1059.1653
-rotation = -0.17453292
+offset_left = 170.00002
+offset_top = 1066.0
+offset_right = 800.0
+offset_bottom = 1426.0
+rotation = -0.1729162
+scale = Vector2(0.8, 0.96)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../VoiceSliderHolder/VoiceSlider")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+texture_normal = ExtResource("13_vyrmn")
+texture_click_mask = ExtResource("14_5t1eb")
+script = ExtResource("15_5t1eb")
+
+[node name="Text" type="RichTextLabel" parent="SettingsBody/DeleteSaveButton"]
+layout_mode = 0
+offset_left = -38.288273
+offset_top = 58.588776
+offset_right = 608.71173
+offset_bottom = 310.58878
+scale = Vector2(1, 0.667)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
 theme_override_fonts/normal_font = ExtResource("8_gisvi")
 theme_override_fonts/italics_font = ExtResource("9_0ww7i")
 theme_override_fonts/mono_font = ExtResource("8_gisvi")
-theme_override_font_sizes/italics_font_size = 65
+theme_override_font_sizes/italics_font_size = 70
 bbcode_enabled = true
-text = "[i] VOICE VOLUME"
+text = "[i] DELETE SAVE"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
+
+[node name="DeleteSound" type="FmodEventEmitter2D" parent="SettingsBody/DeleteSaveButton"]
+event_name = "event:/SFX/UI/menu_back"
+event_guid = "{66af70c1-1806-4860-b2e8-d4690b982f60}"
 
 [connection signal="focus_entered" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_focus_entered"]
 [connection signal="focus_exited" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SettingsBody/BackButton" to="SettingsBody/BackButton" method="_on_mouse_exited"]
+[connection signal="focus_entered" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="SettingsBody/FullscreenButton" to="SettingsBody/FullscreenButton" method="_on_pressed"]
 [connection signal="value_changed" from="SettingsBody/MasterSliderHolder/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="SettingsBody/MusicSliderHolder/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="SettingsBody/SFXSliderHolder/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="drag_ended" from="SettingsBody/VoiceSliderHolder/VoiceSlider" to="." method="_on_voice_slider_drag_ended"]
 [connection signal="drag_started" from="SettingsBody/VoiceSliderHolder/VoiceSlider" to="." method="_on_voice_slider_drag_started"]
 [connection signal="value_changed" from="SettingsBody/VoiceSliderHolder/VoiceSlider" to="." method="_on_voice_slider_value_changed"]
+[connection signal="button_hold_finished" from="SettingsBody/DeleteSaveButton" to="." method="_on_delete_save_button_pressed"]
+[connection signal="focus_entered" from="SettingsBody/DeleteSaveButton" to="SettingsBody/DeleteSaveButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="SettingsBody/DeleteSaveButton" to="SettingsBody/DeleteSaveButton" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="SettingsBody/DeleteSaveButton" to="SettingsBody/DeleteSaveButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsBody/DeleteSaveButton" to="SettingsBody/DeleteSaveButton" method="_on_mouse_exited"]

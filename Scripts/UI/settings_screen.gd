@@ -5,6 +5,7 @@ extends Control
 @onready var sfx_slider: HSlider = $SettingsBody/SFXSliderHolder/SFXSlider
 @onready var voice_slider: HSlider = $SettingsBody/VoiceSliderHolder/VoiceSlider
 @onready var voice_slider_sample : FmodEvent
+@onready var fullscreen_toggle : TextureButton = $SettingsBody/FullscreenButton
 
 func _ready() -> void:
 	master_slider.set_value_no_signal(Settings.master_volume)
@@ -55,3 +56,10 @@ func _on_voice_slider_drag_started() -> void:
 func _on_voice_slider_drag_ended(_value_changed: bool) -> void:
 	Audio.pause_persistent("voice_sample")
 	Audio.registry["voice_sample"]["pausePosition"] += 200
+
+
+func _on_delete_save_button_pressed() -> void:
+	SaveDataManager.reset_data()
+	var main_scene: String = ProjectSettings.get_setting("application/run/main_scene")
+	Audio.kill_all_persistents()
+	SceneFadeTransition.transition_to_scene_with_loading(main_scene)
