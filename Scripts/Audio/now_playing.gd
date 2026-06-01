@@ -2,20 +2,21 @@ extends Control
 
 @export var continue_label_text : String 
 
-@onready var animator := $AnimationPlayer
+@onready var animation_player := $AnimationPlayer
 @onready var container := $NPContainer
-@onready var continue_label := $NPContainer/ContinueLabel
-@onready var continue_label_backing := $NPContainer/ContinueLabelBacking
-@onready var loading_disc_sprite := $NPContainer/LoadingDisc
+@onready var continue_label := $NPContainer/LabelBackground/ContinueLabel
+#@onready var continue_label_background := $NPContainer/LabelBackground
+#@onready var loading_disc_sprite := $NPContainer/LoadingDisc
 
 func _ready() -> void:
 	play_banner_animation()
-	continue_label.text = continue_label_text
+	continue_label.text = "[i]" + continue_label_text
 	
-	# Really dumb implementation with arbitrary constants that don't work. how do i make this work :sob:
-	# I tried doing an HBoxContainer thing but my whole implementation got fucked up so idk if what this is doing is even comprehensible
-	continue_label_backing.scale.x += continue_label.get_total_character_count() * 0.0175
-	loading_disc_sprite.position.x += continue_label.get_total_character_count() * 12
+	var font: Font = continue_label.get_theme_font("italics_font")	
+	var font_size: Vector2 = font.get_string_size("[i]" + continue_label_text, HORIZONTAL_ALIGNMENT_RIGHT, -1, continue_label.get_theme_font_size("font_size"))
+	
+	container.position.x -= font_size.x
+	print(font_size)
 
 func play_banner_animation():
-	animator.play("banner")
+	animation_player.play("banner")

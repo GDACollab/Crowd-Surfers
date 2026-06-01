@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cis5mpf3o7p8i"]
 
-[ext_resource type="Script" path="res://Scripts/Audio/now_playing.gd" id="1_elhs8"]
+[ext_resource type="Script" uid="uid://67tfyb8rwysc" path="res://Scripts/Audio/now_playing.gd" id="1_elhs8"]
 [ext_resource type="Texture2D" uid="uid://co27dhjp6fyk6" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_1_white.png" id="2_elhs8"]
 [ext_resource type="Texture2D" uid="uid://mr8y00u61ixy" path="res://Assets/Art/UI/Loading/disc_1_small.png" id="2_h1vrq"]
 [ext_resource type="Texture2D" uid="uid://cldtt41hi7ahb" path="res://Assets/Art/UI/Loading/disc_2_small.png" id="3_elhs8"]
@@ -8,6 +8,10 @@
 [ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="4_v16dj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ivcxm"]
+content_margin_left = 25.0
+content_margin_top = 1.0
+content_margin_right = 25.0
+content_margin_bottom = 1.0
 texture = ExtResource("2_elhs8")
 
 [sub_resource type="Animation" id="Animation_jaai6"]
@@ -27,14 +31,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NPContainer:position")
+tracks/1/path = NodePath("NPContainer:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -75)]
+"update": 1,
+"values": [-75.0]
 }
 
 [sub_resource type="Animation" id="Animation_3aetr"]
@@ -43,14 +47,14 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("NPContainer:position")
+tracks/0/path = NodePath("NPContainer:position:y")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 4.5, 5),
 "transitions": PackedFloat32Array(0.22531283, 1e-05, 0.28717512, 0.22531283),
 "update": 0,
-"values": [Vector2(1763, -75), Vector2(1763, 15), Vector2(1763, 15), Vector2(1763, -75)]
+"values": [-75.0, 15.0, 15.0, -75.0]
 }
 
 [sub_resource type="Animation" id="Animation_qp5b4"]
@@ -85,17 +89,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_elhs8")
-continue_label_text = "Marlowe Nash - IYKYK"
+continue_label_text = "Marlowe Nash - IYKYK "
 
 [node name="NPContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1920.0
+offset_left = 1.0
 offset_top = -75.0
-offset_right = -1763.0
-offset_bottom = -9.0
+offset_right = 210.0
+offset_bottom = -7.0
 grow_horizontal = 0
 
 [node name="LoadingDisc" type="TextureRect" parent="NPContainer"]
@@ -103,11 +107,11 @@ layout_mode = 2
 texture = ExtResource("2_h1vrq")
 expand_mode = 3
 
-[node name="TextBackground" type="PanelContainer" parent="NPContainer"]
+[node name="LabelBackground" type="PanelContainer" parent="NPContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ivcxm")
 
-[node name="Text" type="RichTextLabel" parent="NPContainer/TextBackground"]
+[node name="ContinueLabel" type="RichTextLabel" parent="NPContainer/LabelBackground"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
