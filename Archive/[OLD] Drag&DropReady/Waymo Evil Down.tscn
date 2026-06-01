@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqo2bmqac8he"]
+
+[ext_resource type="Script" uid="uid://cyhtux8dqt5s0" path="res://Archive/automated_asset_type_obstacle.gd" id="1_f6wiy"]
+[ext_resource type="Texture2D" uid="uid://b0qunmxcrygau" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_FRONT(UPDATE2).PNG" id="2_xlxnx"]
+[ext_resource type="Texture2D" uid="uid://d2msvbva5e2aj" path="res://Assets/Art/Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_TOP(UPDATE2).PNG" id="3_wmyru"]
+[ext_resource type="PackedScene" uid="uid://sltybbrtxg4g" path="res://Scenes/Audio/proximity_audio.tscn" id="4_4ay4n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6wiy"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlxnx"]
+size = Vector3(4, 1, 1)
+
+[node name="Way" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_f6wiy")
+width = 4.0
+top_length = 4.0
+front_length = 1.0
+top_filename = "Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_FRONT(UPDATE2).PNG"
+front_filename = "Chopped Art (Fixed)/Waymo Evil Down/evilwaymo_down_TOP(UPDATE2).PNG"
+
+[node name="TopSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0471205, 0, -7.40871e-08, 0, 1, 0, 9.154218e-08, 0, -0.84745765, 0, 0.01, 0.5)
+axis = 1
+texture = ExtResource("2_xlxnx")
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0471205, 0, -8.406036e-08, 0, 1, 0, 9.154218e-08, 0, -0.96153843, 0, 0.01, -2)
+axis = 1
+texture = ExtResource("3_wmyru")
+
+[node name="PlatSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-1.0471205, 0, -7.40871e-08, 0, 1, 0, 9.154218e-08, 0, -0.84745765, 0, 1, 2)
+axis = 1
+texture = ExtResource("2_xlxnx")
+region_enabled = true
+region_rect = Rect2(0, 0, 382, 118)
+
+[node name="MainHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+shape = SubResource("BoxShape3D_f6wiy")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="PlatformHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+shape = SubResource("BoxShape3D_xlxnx")
+debug_color = Color(0.85490197, 0, 0.8862745, 1)
+
+[node name="ProximityAudio" parent="." node_paths=PackedStringArray("proximity_sound_emitter") instance=ExtResource("4_4ay4n")]
+proximity_sound_emitter = NodePath("ProximitySound")
+
+[node name="ProximitySound" type="FmodEventEmitter3D" parent="ProximityAudio"]
+event_name = "event:/SFX/ENV/objects/car_idle"
+event_guid = "{26030870-3824-4c7e-bf61-55021ceb1115}"
+preload_event = false

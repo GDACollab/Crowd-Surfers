@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp64vn3gfu61h"]
+
+[ext_resource type="Texture2D" uid="uid://v6tttn83cmdx" path="res://Assets/Art/AlphaSprites/SprintThreeAssets/CS Buildings S3/Restaurant Slug Pizza S3.png" id="1_njou6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eeg00"]
+size = Vector3(13.85989, 377.16464, 15.098913)
+
+[node name="BasicBuilding" type="StaticBody3D" groups=["Concrete"]]
+
+[node name="FrontSprite" type="Sprite3D" parent="."]
+transform = Transform3D(9.999998, 0, 0, 0, -8.742278e-09, 0.2, 0, -9.999998, -4.371137e-07, -0.9000592, 171.28506, -4.999998)
+alpha_cut = 1
+texture = ExtResource("1_njou6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, -6.310978, 77.6324, 4.3062525)
+shape = SubResource("BoxShape3D_eeg00")
+debug_color = Color(0.3276008, 1.1619871, 0.7100278, 0.85490197)

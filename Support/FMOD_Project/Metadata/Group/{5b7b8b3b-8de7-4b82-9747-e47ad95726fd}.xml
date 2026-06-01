@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerGroup" id="{5b7b8b3b-8de7-4b82-9747-e47ad95726fd}">
+		<property name="name">
+			<value>typewriter</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{cf9b3aad-60ac-43bf-87d2-831b8131c95f}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{8c2c2584-29fc-4ac8-b724-195d7f5438ce}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{3ec4460b-5dd3-42a8-844b-a623a5e590e2}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{cf9b3aad-60ac-43bf-87d2-831b8131c95f}">
+		<relationship name="effects">
+			<destination>{950c06b3-f8a4-42f5-ab9a-aa0203f78e5d}</destination>
+			<destination>{efedd103-9ede-46c6-a428-6ec52d0ca661}</destination>
+			<destination>{d7e7fdcb-2a9d-4c8a-8aa1-94a87f73af76}</destination>
+			<destination>{f4729505-8745-4444-825d-e994061bf401}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{8c2c2584-29fc-4ac8-b724-195d7f5438ce}" />
+	<object class="CompressorEffect" id="{950c06b3-f8a4-42f5-ab9a-aa0203f78e5d}">
+		<property name="threshold">
+			<value>-30</value>
+		</property>
+		<property name="ratio">
+			<value>50</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="releaseTime">
+			<value>500</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{84531245-4c31-4b67-b4a9-4b2f00b6f959}</destination>
+		</relationship>
+	</object>
+	<object class="ThreeEQEffect" id="{efedd103-9ede-46c6-a428-6ec52d0ca661}">
+		<property name="highCrossover">
+			<value>3000</value>
+		</property>
+	</object>
+	<object class="Sidechain" id="{d7e7fdcb-2a9d-4c8a-8aa1-94a87f73af76}">
+		<property name="level">
+			<value>6</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{f4729505-8745-4444-825d-e994061bf401}" />
+</objects>

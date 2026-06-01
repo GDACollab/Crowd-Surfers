@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerReturn" id="{26636a52-6407-4181-8208-2815804316fb}">
+		<property name="overridingInputFormat">
+			<value>2</value>
+		</property>
+		<property name="name">
+			<value>ui_verb</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{09dea658-4775-4d46-9187-c953ac54bada}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{f3ea4b97-1557-404c-b8ac-9096323e63b0}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{7c971f8c-3ed5-4406-8ff7-1475248d5513}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{09dea658-4775-4d46-9187-c953ac54bada}">
+		<relationship name="effects">
+			<destination>{9a5754cb-0c94-45b7-839f-d8765ae7aacd}</destination>
+			<destination>{e0bafeba-34ea-4245-a27a-ca9692237439}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{f3ea4b97-1557-404c-b8ac-9096323e63b0}" />
+	<object class="SFXReverbEffect" id="{9a5754cb-0c94-45b7-839f-d8765ae7aacd}">
+		<property name="earlyDelay">
+			<value>7</value>
+		</property>
+		<property name="lateDelay">
+			<value>11</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>67</value>
+		</property>
+		<property name="diffusion">
+			<value>50</value>
+		</property>
+		<property name="lowShelfFrequency">
+			<value>30</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>-36</value>
+		</property>
+		<property name="highCut">
+			<value>4050</value>
+		</property>
+		<property name="earlyLateMix">
+			<value>66</value>
+		</property>
+		<property name="wetLevel">
+			<value>-36</value>
+		</property>
+		<property name="dryLevel">
+			<value>-80</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{45580104-9b44-4559-9bf3-9e3b14f2db0c}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusFader" id="{e0bafeba-34ea-4245-a27a-ca9692237439}" />
+	<object class="RandomizerModulator" id="{45580104-9b44-4559-9bf3-9e3b14f2db0c}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>lowShelfGain</value>
+		</property>
+	</object>
+</objects>

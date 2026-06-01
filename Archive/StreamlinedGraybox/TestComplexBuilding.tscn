@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvjre1yma4jq8"]
+
+[ext_resource type="Script" uid="uid://bgfkmb0fk43wh" path="res://Archive/automated_asset_type_building.gd" id="1_imtrv"]
+[ext_resource type="Texture2D" uid="uid://dgmixqah1koc6" path="res://Assets/Art/AlphaSprites/SprintThreeAssets/CS Buildings S3/Building Brick 2 S3.png" id="2_e64v4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_imtrv"]
+size = Vector3(1.045, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e64v4"]
+size = Vector3(0.455, 2, 1.72)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0c8ic"]
+points = PackedVector3Array(0.2275, 0, 0.14, 0.2275, 2, 0.14, 0.2275, 0, -0.14, 0.2275, 2, -0.14, -0.2275, 0, 0.14, -0.2275, 2, 0.14)
+
+[node name="TestComplexBuilding" type="StaticBody3D"]
+script = ExtResource("1_imtrv")
+width = 2.0
+top_length = 2.0
+height = 2.0
+offsetZR = 0.28
+offsetXR = 0.455
+x_pad = 0.5
+top_filename = "AlphaSprites/CS Buildings S3/Building Brick 2 S3.png"
+
+[node name="TopSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-0.17636684, 0, -9.345032e-09, 0, 1, 0, 1.5418479e-08, 0, -0.10689471, 0, 0.01, -1)
+axis = 1
+texture = ExtResource("2_e64v4")
+
+[node name="PlatSprite2" type="Sprite3D" parent="."]
+transform = Transform3D(-0.17636684, 0, -9.345032e-09, 0, 1, 0, 1.5418479e-08, 0, -0.10689471, 0, 2, -0.5)
+axis = 1
+texture = ExtResource("2_e64v4")
+region_enabled = true
+region_rect = Rect2(0, 0, 1134, 935.5)
+
+[node name="MainHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2275, 1, -1)
+shape = SubResource("BoxShape3D_imtrv")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="RightHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5225, 1, -0.86)
+shape = SubResource("BoxShape3D_e64v4")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="RightTriHitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5225, 0, -1.86)
+shape = SubResource("ConvexPolygonShape3D_0c8ic")
+debug_color = Color(1, 0, 0, 1)
