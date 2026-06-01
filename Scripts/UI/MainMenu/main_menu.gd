@@ -69,7 +69,6 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_back")):
-		$UIAudio.play_back_sound()
 		match page:
 			MainMenuPage.MAIN:
 				_on_exit_button_pressed()
@@ -81,6 +80,9 @@ func _process(delta: float) -> void:
 				_on_settings_back_button_pressed()
 			MainMenuPage.SOCIAL_MEDIA:
 				_on_social_media_back_button_pressed()
+			MainMenuPage.DIALOGUE:
+				return
+		$UIAudio.play_back_sound()
 		
 	time += delta
 	if (time > time_between_target_changes):

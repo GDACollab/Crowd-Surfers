@@ -58,6 +58,7 @@ func _on_resume_button_pressed() -> void:
 		
 	Audio.set_level_audio_state(false)
 	get_tree().paused = false
+	get_parent().visible = false
 	queue_free()
 
 func _on_controls_button_pressed() -> void:
