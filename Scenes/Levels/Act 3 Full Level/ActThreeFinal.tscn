@@ -1,12 +1,12 @@
-[gd_scene load_steps=105 format=3 uid="uid://b1drkl7ehyem5"]
+[gd_scene load_steps=106 format=3 uid="uid://b1drkl7ehyem5"]
 
-[ext_resource type="Script" uid="uid://bybeo8tyviiq0" path="res://Scripts/level.gd" id="1_haeap"]
-[ext_resource type="PackedScene" uid="uid://bgp1lscaxtuut" path="res://Scenes/Level Components/Objects/road-diag-turn-right-up.tscn" id="2_em4hp"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_haeap"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-diag-turn-right-up.tscn" id="2_em4hp"]
 [ext_resource type="PackedScene" uid="uid://c2nrdty72a3mg" path="res://Scenes/Level Components/Objects/alleyway-floor.tscn" id="3_2430q"]
-[ext_resource type="PackedScene" uid="uid://0k2u2p1wosod" path="res://Scenes/Level Components/Objects/road-diag-turn-left-up.tscn" id="4_5o1iy"]
-[ext_resource type="PackedScene" uid="uid://db7tx8ne7qwiv" path="res://Scenes/Level Components/Objects/road-T-up.tscn" id="5_vspvk"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-diag-turn-left-up.tscn" id="4_5o1iy"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-T-up.tscn" id="5_vspvk"]
 [ext_resource type="PackedScene" uid="uid://brqtqcecl1h5q" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteTile1.tscn" id="6_tyb8j"]
-[ext_resource type="PackedScene" uid="uid://bu75e4p860f8a" path="res://Scenes/Level Components/Objects/road-diag-turn-left-down.tscn" id="7_g564r"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-diag-turn-left-down.tscn" id="7_g564r"]
 [ext_resource type="PackedScene" uid="uid://b16hg3p1u5q2k" path="res://Scenes/Level Components/Objects/road-turn-left-down.tscn" id="8_kgh8g"]
 [ext_resource type="PackedScene" uid="uid://b1r5q3mowih6m" path="res://Scenes/Level Components/Objects/road-horizontal.tscn" id="9_o7bwj"]
 [ext_resource type="PackedScene" uid="uid://dqntn010cffo4" path="res://Scenes/Level Components/Objects/road-vertical.tscn" id="10_of4kd"]
@@ -77,6 +77,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ael0l6hrklj" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantFullSpew.tscn" id="75_fhb1r"]
 [ext_resource type="PackedScene" uid="uid://mkge8kjmbt85" path="res://Scenes/Level Components/Objects/FireHydrantObstacleVariants/FireHydrantNormal.tscn" id="76_d8c5v"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="77_8mtoo"]
+[ext_resource type="PackedScene" uid="uid://cis5mpf3o7p8i" path="res://Scenes/Audio/now_playing.tscn" id="78_0c3kj"]
 [ext_resource type="PackedScene" uid="uid://bayc23wdt70ft" path="res://Scenes/Level Components/Camera/camera.tscn" id="78_h2ir5"]
 [ext_resource type="PackedScene" uid="uid://cfik16ilynn7l" path="res://Scenes/Level Components/Player/player.tscn" id="79_jef0s"]
 [ext_resource type="PackedScene" uid="uid://b1326i5a5xn3f" path="res://Scenes/VFX/vfx_manager.tscn" id="80_xvp7b"]
@@ -100,7 +101,7 @@
 [ext_resource type="PackedScene" uid="uid://dc3rcuwcooube" path="res://Scenes/Level Components/Objects/RoadDecorationTiles/ConcreteCrackedTile2.tscn" id="98_rmoem"]
 [ext_resource type="PackedScene" uid="uid://dbnpkl1rnvyk1" path="res://Scenes/Level Components/Objects/TreeVariants/Tree2.tscn" id="99_h6hps"]
 [ext_resource type="PackedScene" uid="uid://8wdcd3rve455" path="res://Scenes/Level Components/Objects/road-turn-left-up.tscn" id="100_xbp41"]
-[ext_resource type="PackedScene" uid="uid://b15lflnmkx7e5" path="res://Scenes/Level Components/Objects/road-diag-turn-right-down.tscn" id="101_exnjc"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Objects/road-diag-turn-right-down.tscn" id="101_exnjc"]
 [ext_resource type="PackedScene" uid="uid://2bh76jv7nmnc" path="res://Scenes/Level Components/Objects/GrassVariants/GrassMiddle.tscn" id="102_bv87n"]
 [ext_resource type="PackedScene" uid="uid://bsmts5ygr25hs" path="res://Scenes/Levels/Level Lighting/act_3_lighting.tscn" id="103_4gfyt"]
 
@@ -2828,6 +2829,12 @@ bank_paths = ["res://Assets/Sound_Banks/Master.strings.bank", "res://Assets/Soun
 player = NodePath("../Player")
 music_path = "event:/MUS/level_3"
 ambience_path = "event:/SFX/ENV/ambience/city_ambience"
+
+[node name="NowPlaying" parent="LevelAudio" instance=ExtResource("78_0c3kj")]
+offset_left = 1920.0
+offset_right = 1920.0
+track_label_text = "Samuel \"Spicy\" Spivey - Gotta Move!"
+manual_x_position_offset = 135
 
 [node name="Camera3D" parent="." instance=ExtResource("78_h2ir5")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -872.13184, 120.806206, 1306.3073)
