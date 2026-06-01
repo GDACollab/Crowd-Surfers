@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cis5mpf3o7p8i"]
+[gd_scene load_steps=12 format=3 uid="uid://cis5mpf3o7p8i"]
 
-[ext_resource type="Script" uid="uid://67tfyb8rwysc" path="res://Scripts/Audio/now_playing.gd" id="1_elhs8"]
+[ext_resource type="Script" path="res://Scripts/Audio/now_playing.gd" id="1_elhs8"]
 [ext_resource type="Texture2D" uid="uid://co27dhjp6fyk6" path="res://Assets/Art/Cutscenes/cutscene_textlabel_backing_1_white.png" id="2_elhs8"]
 [ext_resource type="Texture2D" uid="uid://mr8y00u61ixy" path="res://Assets/Art/UI/Loading/disc_1_small.png" id="2_h1vrq"]
 [ext_resource type="Texture2D" uid="uid://cldtt41hi7ahb" path="res://Assets/Art/UI/Loading/disc_2_small.png" id="3_elhs8"]
+[ext_resource type="FontVariation" uid="uid://betx2f2esqut2" path="res://Assets/Font/bonk_font_variation.tres" id="3_ivcxm"]
+[ext_resource type="FontVariation" uid="uid://fepog2ealmag" path="res://Assets/Font/bonk_italic_font_variation.tres" id="4_v16dj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ivcxm"]
+texture = ExtResource("2_elhs8")
 
 [sub_resource type="Animation" id="Animation_jaai6"]
 length = 0.001
@@ -39,13 +44,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("NPContainer:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 4.5, 5),
-"transitions": PackedFloat32Array(0.22531283, 1, 0.28717512, 0.22531283),
+"transitions": PackedFloat32Array(0.22531283, 1e-05, 0.28717512, 0.22531283),
 "update": 0,
-"values": [Vector2(0, -75), Vector2(0, 15), Vector2(0, 15), Vector2(0, -75)]
+"values": [Vector2(1763, -75), Vector2(1763, 15), Vector2(1763, 15), Vector2(1763, -75)]
 }
 
 [sub_resource type="Animation" id="Animation_qp5b4"]
@@ -82,29 +87,40 @@ grow_vertical = 2
 script = ExtResource("1_elhs8")
 continue_label_text = "Marlowe Nash - IYKYK"
 
-[node name="NPContainer" type="Node" parent="."]
+[node name="NPContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1920.0
+offset_top = -75.0
+offset_right = -1763.0
+offset_bottom = -9.0
+grow_horizontal = 0
 
-[node name="ContinueLabelBacking" type="Sprite2D" parent="NPContainer"]
-position = Vector2(1524.0001, -0.5999942)
-rotation = 3.1415925
-scale = Vector2(0.075, -0.625)
-texture = ExtResource("2_elhs8")
-centered = false
-
-[node name="ContinueLabel" type="RichTextLabel" parent="NPContainer"]
-offset_right = 1.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 25
-text = "aaefglsjghkldjsfg"
-autowrap_mode = 2
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="LoadingDisc" type="Sprite2D" parent="NPContainer"]
-position = Vector2(1429.6002, 23.199997)
-scale = Vector2(0.38, 0.38)
+[node name="LoadingDisc" type="TextureRect" parent="NPContainer"]
+layout_mode = 2
 texture = ExtResource("2_h1vrq")
+expand_mode = 3
+
+[node name="TextBackground" type="PanelContainer" parent="NPContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ivcxm")
+
+[node name="Text" type="RichTextLabel" parent="NPContainer/TextBackground"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_colors/font_shadow_color = Color(0.15686275, 0.043137256, 0.23921569, 1)
+theme_override_fonts/normal_font = ExtResource("3_ivcxm")
+theme_override_fonts/italics_font = ExtResource("4_v16dj")
+theme_override_fonts/mono_font = ExtResource("3_ivcxm")
+theme_override_font_sizes/italics_font_size = 65
+bbcode_enabled = true
+text = "[i] e "
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
