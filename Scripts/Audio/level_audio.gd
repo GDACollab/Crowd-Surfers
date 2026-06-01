@@ -4,14 +4,15 @@ extends Node2D
 @export var music_path: String
 @export var ambience_path: String
 
-# TODO: Logic that handles level_audio playing different music based on the level
-
 func _ready() -> void:
 	assert(player and music_path and ambience_path)
 	var mus_level := Audio.create_persistent("mus_level", music_path, true)
 	var amb_city := Audio.create_persistent("amb_city", ambience_path, true)
 	var skating_loop := Audio.create_persistent("skating_loop", "event:/SFX/P/skate_loop", true)
 	
+	if ($NowPlaying != null):
+		$NowPlaying.play_banner_animation()
+		
 	mus_level.start()
 	amb_city.start()
 	skating_loop.start()

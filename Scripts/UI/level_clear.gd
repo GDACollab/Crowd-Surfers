@@ -31,7 +31,6 @@ func _ready() -> void:
 	
 	# dont grab focus until this ui is opened
 	focus_behavior_recursive = Control.FOCUS_BEHAVIOR_DISABLED
-	
 
 func _process(delta: float) -> void:
 	level_clear_holder.scale = level_clear_holder.scale.lerp(Vector2.ONE, delta)
@@ -79,6 +78,7 @@ func open_ui() -> void:
 	Audio.kill_all_persistents()
 	level_clear_music = Audio.create_persistent("mus_clear", "event:/MUS/clear")
 	level_clear_music.set_callback(Callable(self, "_handle_beat_events"), FmodServer.FMOD_STUDIO_EVENT_CALLBACK_ALL)
+	if ($NowPlaying != null): $NowPlaying.play_banner_animation()
 	level_clear_music.start()
 	
  ## FMOD event callback trigger, occurs every beat based on the event's desginated tempo

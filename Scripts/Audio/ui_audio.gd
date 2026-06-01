@@ -29,8 +29,10 @@ func _ready() -> void:
 		
 	for button in hover_buttons:
 		button.mouse_entered.connect(play_hover_sound)
+		button.focus_entered.connect(play_hover_sound)
 	
 	for slider in sliders:
+		slider.mouse_entered.connect(play_hover_sound)
 		slider.focus_entered.connect(play_hover_sound)
 
 func connect_confirm_button(button: BaseButton) -> void:

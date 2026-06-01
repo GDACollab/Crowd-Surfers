@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://7uehf4aws4ii"]
+[gd_scene load_steps=27 format=3 uid="uid://7uehf4aws4ii"]
 
 [ext_resource type="Script" uid="uid://dupey448fr6vw" path="res://Scripts/UI/title_screen.gd" id="1_sjn55"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_dl3ah"]
+[ext_resource type="PackedScene" uid="uid://cis5mpf3o7p8i" path="res://Scenes/Audio/now_playing.tscn" id="3_a31pv"]
 [ext_resource type="Texture2D" uid="uid://b2rff4pg2w0gi" path="res://Assets/Art/UI/TitleScreen/background.png" id="3_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2v1kr7g0ysu8" path="res://Assets/Art/UI/TitleScreen/title.png" id="4_xym7l"]
-[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="5_6t3va"]
 [ext_resource type="Texture2D" uid="uid://b52ppde1ewcqm" path="res://Assets/Art/UI/TitleScreen/slip.png" id="5_crh2s"]
 [ext_resource type="Texture2D" uid="uid://b2feq7alf2tqs" path="res://Assets/Art/UI/TitleScreen/now_playing.png" id="5_km04c"]
 [ext_resource type="Texture2D" uid="uid://c3s5ifd2i0xvm" path="res://Assets/Art/UI/TitleScreen/play_button.png" id="6_sh7nw"]
@@ -210,6 +211,11 @@ texture_normal = ExtResource("19_in3d3")
 texture_click_mask = ExtResource("20_in3d3")
 script = ExtResource("9_0iu0x")
 focus_brightness_change = 0.5
+
+[node name="NowPlaying" parent="." instance=ExtResource("3_a31pv")]
+layout_mode = 1
+track_label_text = "Elliot \"Egg\" Fargnoli - Pizza Time."
+manual_x_position_offset = 110
 
 [connection signal="focus_entered" from="PlayButton" to="PlayButton" method="_on_focus_entered"]
 [connection signal="focus_exited" from="PlayButton" to="PlayButton" method="_on_focus_exited"]
