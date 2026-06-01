@@ -56,9 +56,12 @@ func _ready() -> void:
 	# Start music
 	if (!Audio.registry.has("mus_hub")):
 		hub_music = Audio.create_persistent("mus_hub", "event:/MUS/hub")
+		$NowPlaying.play_banner_animation()
 		hub_music.start()
 		
 	else:
+		$NowPlaying.hold_time = 1.0
+		$NowPlaying.play_banner_animation()
 		Audio.unpause_persistent("mus_hub")
 		
 	Inky.DialogueStarted.connect(_on_dialogue_start)

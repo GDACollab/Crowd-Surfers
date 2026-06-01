@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ykvmtt70mexg"]
+[gd_scene load_steps=60 format=3 uid="uid://ykvmtt70mexg"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_1opd7"]
 [ext_resource type="PackedScene" uid="uid://dcq1x56p7uigc" path="res://Scenes/Audio/level_audio.tscn" id="1_njsij"]
@@ -44,8 +44,9 @@
 [ext_resource type="Texture2D" uid="uid://dwct6333ddc2q" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS RoadBlockAssets S6/Chain_Linked_Fence_S6.png" id="33_m0tkt"]
 [ext_resource type="Texture2D" uid="uid://cg7sj5poy84sx" path="res://Assets/Art/AlphaSprites/SprintSixAssets/CS ArrowGuides S6/Arrow Straight S6.png" id="35_lg4t4"]
 [ext_resource type="PackedScene" uid="uid://bxbjbek0s5fxq" path="res://Scenes/Level Components/SpecialObjects/death_box_collider.tscn" id="39_lxrsn"]
-[ext_resource type="PackedScene" uid="uid://cgpvjxbmeu41i" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
-[ext_resource type="Script" path="res://Scripts/Debug/cull_wall.gd" id="45_js7g2"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Components/Environment/lighting_chunk.tscn" id="41_iej4l"]
+[ext_resource type="Script" uid="uid://cyk1o3lcjirk1" path="res://Scripts/Debug/cull_wall.gd" id="45_js7g2"]
+[ext_resource type="PackedScene" uid="uid://cis5mpf3o7p8i" path="res://Scenes/Audio/now_playing.tscn" id="47_ahdj3"]
 
 [sub_resource type="Gradient" id="Gradient_lxrsn"]
 offsets = PackedFloat32Array(0, 0.06358381, 1)
@@ -195,11 +196,6 @@ size = Vector3(500, 500, 10)
 
 [node name="LvlConcept-Stage2" type="Node3D"]
 script = ExtResource("1_1opd7")
-
-[node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_njsij")]
-player = NodePath("../Player")
-music_path = "event:/MUS/level_2"
-ambience_path = "event:/SFX/ENV/ambience/nightcity_ambience"
 
 [node name="Camera3D" parent="." instance=ExtResource("2_omilu")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 1032.8145, 120.806206, 561.30725)
@@ -812,7 +808,7 @@ spot_angle = 89.99
 transform = Transform3D(1, 0, 0, 0, 0.9564934, -0.2917541, 0, 0.2917541, 0.9564934, -120.550415, 261.48132, 58.284935)
 
 [node name="Freeway_01" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(1, 0, 0, 0, 0.010314643, 0.9999398, 0, -0.9999398, 0.010314643, 0, 0, -124.91382)
+transform = Transform3D(1, 0, 0, 0, 0.0103146415, 0.9999397, 0, -0.9999397, 0.0103146415, 0, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -830,7 +826,7 @@ spot_attenuation = 0.2
 spot_angle = 11.780311
 
 [node name="Freeway_03" type="SpotLight3D" parent="Lights/Spotlights/Freeway"]
-transform = Transform3D(0.9992071, 0.039812956, -0.00026512897, 0, 0.0066591348, 0.99997777, 0.039814085, -0.9991787, 0.0066538956, -335.53638, 0, -124.91382)
+transform = Transform3D(0.9992071, 0.03981295, -0.00026512894, 0, 0.0066591348, 0.99997777, 0.03981408, -0.99917865, 0.0066538956, -335.53638, 0, -124.91382)
 light_energy = 4.265
 shadow_bias = 10.0
 shadow_normal_bias = 10.0
@@ -1296,6 +1292,17 @@ uncull_area = NodePath("../../Scenes/stage_2_concept_end")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.15881, 0)
 shape = SubResource("BoxShape3D_lxrsn")
 debug_color = Color(0.95549387, 3.946722e-06, 0.5403561, 1)
+
+[node name="LevelAudio" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_njsij")]
+player = NodePath("../Player")
+music_path = "event:/MUS/level_2"
+ambience_path = "event:/SFX/ENV/ambience/nightcity_ambience"
+
+[node name="NowPlaying" parent="LevelAudio" instance=ExtResource("47_ahdj3")]
+offset_left = 1920.0
+offset_right = 1920.0
+track_label_text = "Daniel Fotovat - Nightrush"
+manual_x_position_offset = 50
 
 [connection signal="body_entered" from="EndEvent/Checkpoint/Area3D" to="EndEvent/Checkpoint" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area Cull Walls/Wall" to="Area Cull Walls/Wall" method="_on_body_entered"]

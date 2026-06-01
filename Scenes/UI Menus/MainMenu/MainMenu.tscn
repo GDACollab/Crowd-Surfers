@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bsqdn34fhynmr"]
+[gd_scene load_steps=47 format=3 uid="uid://bsqdn34fhynmr"]
 
 [ext_resource type="Script" uid="uid://corhkifmrl2k3" path="res://Scripts/UI/MainMenu/main_menu.gd" id="1_dsamw"]
 [ext_resource type="PackedScene" uid="uid://cljb6gga3q8f2" path="res://Scenes/Audio/ui_audio.tscn" id="2_j0r1m"]
@@ -28,9 +28,10 @@
 [ext_resource type="BitMap" uid="uid://45oo5cy4l7wl" path="res://Assets/Art/UI/MainMenu/Main/social_media_click_mask.png" id="22_yjf4t"]
 [ext_resource type="BitMap" uid="uid://d2ef7bx3li3ox" path="res://Assets/Art/UI/MainMenu/Main/settings_click_mask.png" id="23_4v1m8"]
 [ext_resource type="PackedScene" uid="uid://boacixvku1uw6" path="res://Scenes/UI Menus/MainMenu/voicemails_screen.tscn" id="27_fe6hl"]
-[ext_resource type="PackedScene" uid="uid://bbd8fgunh305q" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
+[ext_resource type="PackedScene" path="res://Scenes/UI Menus/vignette.tscn" id="28_aq2ku"]
 [ext_resource type="Texture2D" uid="uid://bmn876h0e8tcp" path="res://Assets/Art/UI/MainMenu/ui_phone_edge.png" id="28_dnqoa"]
 [ext_resource type="PackedScene" uid="uid://dc41wgb5xtf7r" path="res://Scenes/UI Menus/MainMenu/social_media_screen.tscn" id="29_hamnu"]
+[ext_resource type="PackedScene" uid="uid://cis5mpf3o7p8i" path="res://Scenes/Audio/now_playing.tscn" id="32_sum8r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hamnu"]
 blend_mode = 1
@@ -875,6 +876,21 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_da4sb")
 }
+
+[node name="NowPlaying" parent="." instance=ExtResource("32_sum8r")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5090001
+anchor_right = 1.5090001
+offset_left = -1696.0366
+offset_top = 1008.0
+offset_right = -1696.0366
+offset_bottom = 1008.0
+grow_horizontal = 1
+track_label_text = "Marlowe Nash - Pocket Change"
+manual_x_position_offset = 90
+text_alignment = "Left"
+enter_position = "Bottom"
 
 [connection signal="focus_entered" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_focus_entered"]
 [connection signal="focus_exited" from="PhoneImage/PhoneBg/MainContainer/OrdersButton" to="PhoneImage/PhoneBg/MainContainer/OrdersButton" method="_on_focus_exited"]
