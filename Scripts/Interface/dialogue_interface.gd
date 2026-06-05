@@ -60,6 +60,7 @@ var hub_music: FmodEvent
 var music_bus : FmodBus
 var voice_lines : FmodEvent
 var currentVOPath : String = ""
+var animalese_muted := false
 var music_bus_volume_scalar := 0.3
 ## Used to count the number of choices the play has been given, for my jank FMOD dialogue tree implementation
 var choice_query_count := 0 
@@ -215,13 +216,16 @@ func _do_typewriter_text():
 		var letter_index = dialogueLabel.visible_characters; 
 		var character_name = currentSpeakerData.characterName if (currentSpeakerData != null) else "default"
 		
-		var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter(
-			dialogueText, character_name, letter_index, alphanumerics_count, textSpeedScale)
-		
 		dialogueLabel.visible_characters += 1
-		if (should_increment_alphanumeric_counter): alphanumerics_count += 1
+		
+		if (!animalese_muted):
+			var should_increment_alphanumeric_counter = $VoiceManager._handle_typewriter(
+				dialogueText, character_name, letter_index, alphanumerics_count, textSpeedScale)
+		
+			if (should_increment_alphanumeric_counter): alphanumerics_count += 1
 		
 		await get_tree().create_timer(textSpeedInMilliseconds / textSpeedScale).timeout
+		
 	isTyping = false
 	continue_arrow.visible = true
 	can_skip = true
@@ -348,6 +352,7 @@ func _handle_tags(currentTags, newPanel):
 		var splitTag = t.split(":")
 		var tagKey = splitTag[0]
 		var tagValue = splitTag[1]
+		animalese_muted = false
 		
 		match(tagKey):
 			"speaker":
@@ -434,6 +439,7 @@ func _handle_tags(currentTags, newPanel):
 					
 				elif(tagValue == "play"):
 					voice_lines.start()
+					animalese_muted = true
 					pass
 					
 				else:
